@@ -100,10 +100,10 @@ HG_EXTRACTDIR.${repo}?=	${repo}
 # determine appropriate checkout date or tag
 .  if defined(HG_TAG.${repo})
 _HG_TAG_FLAG.${repo}=	-r${HG_TAG.${repo}}
-_HG_TAG.${repo}=	${HG_TAG.${repo}}
+_HG_TAG.${repo}=	${HG_TAG.${repo}:S/\//_/g}
 .  elif defined(HG_TAG)
 _HG_TAG_FLAG.${repo}=	-r${HG_TAG}
-_HG_TAG.${repo}=	${HG_TAG}
+_HG_TAG.${repo}=	${HG_TAG:S/\//_/g}
 .  elif defined(CHECKOUT_DATE)
 _HG_TAG_FLAG.${repo}=	-d<${CHECKOUT_DATE:Q}
 _HG_TAG.${repo}=	${CHECKOUT_DATE:Q}
