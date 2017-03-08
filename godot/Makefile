@@ -18,8 +18,12 @@ USE_TOOLS+=	pkg-config
 
 BUILD_DEPENDS+=	scons>=0:../../devel/scons
 
-SCONS_ARGS=
+SCONS_ARGS=	# defined
 SCONS_ARGS+=	platform=x11
+SCONS_ARGS+=	target=debug
+SCONS_ARGS+=	tools=yes
+SCONS_ARGS+=	gdscript=yes
+SCONS_ARGS+=	vsproj=no
 SCONS_ARGS+=	builtin_freetype=no
 SCONS_ARGS+=	builtin_glew=no
 SCONS_ARGS+=	builtin_libogg=no
@@ -33,6 +37,27 @@ SCONS_ARGS+=	builtin_speex=no
 SCONS_ARGS+=	builtin_zlib=no
 SCONS_ARGS+=	pulseaudio=no # XXX should be an /option/
 SCONS_ARGS+=	udev=no
+
+SCONS_ARGS+=	module_gdscript_enabled=no
+SCONS_ARGS+=	module_gridmap_enabled=no
+SCONS_ARGS+=	module_chibi_enabled=no
+SCONS_ARGS+=	module_cscript_enabled=no
+SCONS_ARGS+=	module_dds_enabled=no
+SCONS_ARGS+=	module_etc1_enabled=no
+SCONS_ARGS+=	module_freetype_enabled=no
+SCONS_ARGS+=	module_ik_enabled=no
+SCONS_ARGS+=	module_jpg_enabled=no
+SCONS_ARGS+=	module_mpc_enabled=no
+SCONS_ARGS+=	module_ogg_enabled=no
+SCONS_ARGS+=	module_openssl_enabled=no
+SCONS_ARGS+=	module_opus_enabled=no
+SCONS_ARGS+=	module_pbm_enabled=no
+SCONS_ARGS+=	module_pvr_enabled=no
+SCONS_ARGS+=	module_speex_enabled=no
+SCONS_ARGS+=	module_squish_enabled=no
+SCONS_ARGS+=	module_theora_enabled=no
+SCONS_ARGS+=	module_vorbis_enabled=no
+SCONS_ARGS+=	module_webp_enabled=no
 
 do-build:
 	cd ${WRKSRC} && ${PKGSRC_SETENV} ${MAKE_ENV} ${PREFIX}/bin/scons ${SCONS_ARGS}
