@@ -12,13 +12,27 @@ LICENSE=	modified-bsd
 
 EXTRACT_USING=	gtar
 USE_CMAKE=	yes
+USE_TOOLS+=	pkg-config
 
+WRKSRC=		${WRKDIR}/${DISTNAME}/toonz/sources
+
+CMAKE_MODULE_PATH_OVERRIDE+=	../cmake
+
+USE_LANGUAGES+=	c c++
+
+.include "../../archivers/lz4/buildlink3.mk"
 .include "../../archivers/lzo/buildlink3.mk"
+.include "../../archivers/xz/buildlink3.mk"
 .include "../../devel/SDL2/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
+.include "../../graphics/glew/buildlink3.mk"
+.include "../../graphics/glu/buildlink3.mk"
+.include "../../graphics/glut/buildlink3.mk"
 .include "../../graphics/libmypaint/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
+.include "../../graphics/tiff/buildlink3.mk"
+.include "../../mk/jpeg.buildlink3.mk"
 .include "../../wip/superlu5/buildlink3.mk"
 
 # XXX hopefully this is what we need -- translated from "here's what to
