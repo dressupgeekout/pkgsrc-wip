@@ -19,7 +19,7 @@ USE_CMAKE=	yes
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/libmypaint/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
-.include "../../math/superlu/buildlink3.mk"
+.include "../../wip/superlu5/buildlink3.mk"
 
 # XXX hopefully this is what we need -- translated from "here's what to
 # apt-get" instructions
