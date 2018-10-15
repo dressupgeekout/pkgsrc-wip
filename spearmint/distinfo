@@ -1,0 +1,7 @@
+$NetBSD$
+
+SHA1 (spearmint-1.0.0.tar.gz) = be9dfc484117b7b8cf9a24bcaa51c466fcb0487b
+RMD160 (spearmint-1.0.0.tar.gz) = df1f04680bd85088170c9b46f469884181eb4ced
+SHA512 (spearmint-1.0.0.tar.gz) = 8f2d152ecd3227a88d616f02d1bbbaabd1b0e60d64dd659f15b032d788931c061e50c7a8b66e8e7782abbf5932e4ff61e64ec26bdf09409e1f8d7592a1748b01
+Size (spearmint-1.0.0.tar.gz) = 7802143 bytes
+SHA1 (patch-Makefile) = 2a38809081a1e8bbb8fd3b9f9c012d2e90f33aab
