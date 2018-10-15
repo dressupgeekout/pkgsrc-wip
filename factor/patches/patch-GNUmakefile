@@ -1,0 +1,13 @@
+$NetBSD$
+--- GNUmakefile.orig	2018-10-14 23:13:43.145548370 -0700
++++ GNUmakefile	2018-10-14 23:14:19.858894335 -0700
+@@ -185,6 +185,9 @@
+ 	$(MAKE) $(ALL) CONFIG=vm/Config.windows.x86.64
+ 	$(MAKE) factor-console CONFIG=vm/Config.windows.x86.64
+ 
++unix-x86-64:
++	$(MAKE) $(ALL) CONFIG=vm/Config.unix
++
+ ifdef CONFIG
+ 
+ macosx.app: factor
