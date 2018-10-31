@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.3 2011/03/22 10:14:08 phonohawk Exp $
 
-SHA1 (synfig-1.2.2.tar.gz) = 58fc80d08d9fa515ab5d7f819214546a5aefca75
-RMD160 (synfig-1.2.2.tar.gz) = 10760051f167dec49a9f405e59803af1a54e859f
-SHA512 (synfig-1.2.2.tar.gz) = b46af40f9f4ffb64e8a3162c5b955d912a66f5cf9d2987e76d3017ba03dec7b6f426e684172c6f55323f530fa3f005ee2087d258e4bfe1ccf386f87c14b86fc9
-Size (synfig-1.2.2.tar.gz) = 11107386 bytes
+SHA1 (source-synfig-1.2.2.tar.gz) = 3fdc8f4b90888dfecc0589f9c7c88e3d1841add9
+RMD160 (source-synfig-1.2.2.tar.gz) = ddc2de6a6243519cbc146ed72619a8d58f6a145f
+SHA512 (source-synfig-1.2.2.tar.gz) = 8ae00c6b68036c89f9c230f073531ac7bdd41bafea540c0c328301c33a66fa2345a9cf0e3139cfa025a5e2e627b9310e8be7396da34c98789e383339e4f32721
+Size (source-synfig-1.2.2.tar.gz) = 5005298 bytes
