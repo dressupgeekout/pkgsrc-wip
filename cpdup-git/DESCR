@@ -1,0 +1,3 @@
+The cpdup utility makes an exact mirror copy of the source in the
+destination, creating and deleting files and directories as necessary.
+UTimes, hardlinks, softlinks, devices, permissions, and flags are mirrored.
