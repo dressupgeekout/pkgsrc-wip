@@ -1,6 +1,5 @@
 # $NetBSD$
 
-#DISTNAME=	cpdup-git-${GIT_REVISION}
 GIT_REPO=	https://github.com/DragonFlyBSD/cpdup
 GIT_REVISION=	b384d1cfc872da4c3c680e32e77365c39e19dcf2
 CATEGORIES=	misc
@@ -14,5 +13,6 @@ USE_LANGUAGES=	c
 
 MAKE_FILE=	GNUmakefile
 
+.include "../../security/openssl/buildlink3.mk"
 .include "../../wip/mk/git-package.mk"
 .include "../../mk/bsd.pkg.mk"
