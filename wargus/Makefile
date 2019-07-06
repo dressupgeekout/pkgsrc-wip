@@ -2,9 +2,8 @@
 
 DISTNAME=	wargus-2.4.2
 CATEGORIES=	games
-GITHUB_PROJECT=	wargus
-GITHUB_TAG=	v${PKGVERSION_NOREV}
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Wargus/}
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	cfkoch@edgebsd.org
 HOMEPAGE=	https://github.com/Wargus/wargus
