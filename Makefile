@@ -4902,6 +4902,7 @@ SUBDIR+=	wackamole
 SUBDIR+=	waffle
 SUBDIR+=	wanderer
 SUBDIR+=	wang-ttf
+SUBDIR+=	wargus
 SUBDIR+=	warsow
 SUBDIR+=	watch
 SUBDIR+=	wayland
