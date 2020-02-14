@@ -1,11 +1,10 @@
 # $NetBSD$
 
 GITHUB_PROJECT=	pipes.c
-DISTNAME=	pipes-c-1.2.0
+DISTNAME=	pipes-c-1.2.1
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=pipeseroni/}
-GITHUB_RELEASE=	v1.2.0
-DIST_SUBDIR=	${GITHUB_PROJECT}
+GITHUB_RELEASE=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	tpaul@NetBSD.org
 HOMEPAGE=	https://github.com/pipeseroni/pipes.c/

@@ -7,7 +7,7 @@ CATEGORIES=	devel java
 MASTER_SITES=	http://mirrors.axint.net/apache//commons/digester/binaries/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://commons.apache.org/digester/
+HOMEPAGE=	https://commons.apache.org/digester/
 COMMENT=	Rule based XML Java object mapping tool
 LICENSE=	apache-2.0
 
@@ -21,7 +21,7 @@ USE_TOOLS+=	pax
 USE_LANGUAGES=	# none
 
 USE_JAVA=		yes
-PKG_JVMS_ACCEPTED=	sun-jdk6 sun-jdk15
+PKG_JVMS_ACCEPTED=	sun-jdk7
 
 INSTALLATION_DIRS=	lib/java share/doc/apache-commons-digester
 

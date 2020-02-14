@@ -7,13 +7,13 @@ MASTER_SITES=	http://braingames.jorito.net/f1spirit/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://f1spirit.jorito.net/
+HOMEPAGE=	https://f1spirit.jorito.net/
 COMMENT=	Remake the Konami MSX1 classic F-1 Spirit
 LICENSE=	unlicense
 
 WRKSRC=		${WRKDIR}/f1spirit-0.rc9.1615
-USE_TOOLS+=	gmake
-USE_LANGUAGES=	c++ c
+#USE_TOOLS+=	make
+USE_LANGUAGES=	c++03 c
 
 #LDFLAGS+=	-nostartfiles
 CFLAGS+=	-Wno-write-strings
@@ -25,10 +25,11 @@ SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	pre-install
 SUBST_FILES.prefix=	f1spirit.sh
 SUBST_MESSAGE.prefix=	Fixing PREFIX.
-SUBST_SED.prefix=	-e "s|@PREFIX@|${PREFIX}|g"
+SUBST_VARS.prefix=	PREFIX
 
 pre-patch:
 	${CP} ${FILESDIR}/f1spirit ${WRKSRC}/f1spirit.sh
+	${MV} ${WRKSRC}/sources/* ${WRKSRC}
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/f1spirit.sh \
@@ -50,7 +51,5 @@ do-install:
 .include "../../www/curl/buildlink3.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../graphics/glu/buildlink3.mk"
-.include "../../graphics/glut/buildlink3.mk"
-.include "../../x11/libX11/buildlink3.mk"
-.include "../../mk/x11.buildlink3.mk"
+.include "../../graphics/freeglut/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

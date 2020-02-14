@@ -14,7 +14,7 @@ MASTER_SITES=	# empty
 DISTFILES=	# empty
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://gcc.gnu.org/
+HOMEPAGE=	https://gcc.gnu.org/
 COMMENT=	The GNU Compiler Collection (GCC) support shared libraries
 LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND gnu-lgpl-v3
 
@@ -28,7 +28,7 @@ BUILD_DEPENDS+=		${GCC_PKGNAME}-${GCC46_DIST_VERSION}{,nb[0-9]*}:../../wip/gcc46
 .include "../../mk/bsd.prefs.mk"
 
 LIBGCC_SUBPREFIX=	${GCC_PKGNAME}
-LIBGCC_PREFIX=		${LOCALBASE}/${LIBGCC_SUBPREFIX}
+LIBGCC_PREFIX=		${PREFIX}/${LIBGCC_SUBPREFIX}
 GCC_TARGET_MACHINE?=	${MACHINE_GNU_PLATFORM}
 BUILD_DEFS+=		GCC_TARGET_MACHINE
 

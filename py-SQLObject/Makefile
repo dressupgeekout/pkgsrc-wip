@@ -8,7 +8,7 @@ MASTER_SITES=	${MASTER_SITE_PYPI:=S/SQLObject/}
 EXTRACT_SUFX=	.gz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://sqlobject.sourceforge.net/
+HOMEPAGE=	https://sqlobject.sourceforge.io/
 COMMENT=	Allows you to translate RDBMS table rows into Python objects
 LICENSE=	gnu-lgpl-v2
 
@@ -18,7 +18,7 @@ USE_LANGUAGES=	# none
 PY_PATCHPLIST=		yes
 PYDISTUTILSPKG=		yes
 PLIST_SUBST+=		EGG_INFODIR=${EGG_NAME}-py${PYVERSSUFFIX}.egg-info
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-mxDateTime
+PYTHON_VERSIONS_ACCEPTED=	27 # py-mxDateTime
 
 .include "options.mk"
 

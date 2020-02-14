@@ -16,14 +16,14 @@ CATEGORIES=	biology
 MASTER_SITES=	http://www.drive5.com/muscle/downloads${PV}/
 
 MAINTAINER=	bacon@NetBSD.org
-HOMEPAGE=	http://www.drive5.com/muscle/
+HOMEPAGE=	https://www.drive5.com/muscle/
 COMMENT=	MUltiple Sequence Comparison by Log-Expectation
 
 DEPENDS+=	dos2unix>0:../../converters/dos2unix
 
 LICENSE=	public-domain
 
-ONLY_FOR_PLATFORM=	 *-*-x86_64 *-*-i386
+ONLY_FOR_PLATFORM=	*-*-x86_64 *-*-i386
 
 USE_LANGUAGES=	c c++
 

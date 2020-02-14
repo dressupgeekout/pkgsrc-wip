@@ -1,13 +1,13 @@
-$NetBSD: distinfo,v 1.10 2018/07/13 04:24:39 dbj Exp $
+$NetBSD$
 
-SHA1 (fltk-1.4.x-r13065.tar.bz2) = be3e0a647797b6f8987631e9f6f61b648cec6abc
-RMD160 (fltk-1.4.x-r13065.tar.bz2) = b1fc24d9f8869e116200bd794e6d2f01261059f3
-SHA512 (fltk-1.4.x-r13065.tar.bz2) = 2e56237708119c0803a8d0849d7064d060e59e7e1d8964413e0b361bb8e50c449bf22d7812b4eabb8ca50aad089dc8fd8eea76418531676259c79e47749fb4d2
-Size (fltk-1.4.x-r13065.tar.bz2) = 5405807 bytes
-SHA1 (patch-Makefile) = 7db024b114282797a0b1b20df70f73a487fec0e2
-SHA1 (patch-configure) = 7c0f973352802dedbc38564b18950c10d1829d12
+SHA1 (fltk-1.4.x-940b7ba13d26dcde4fbd4574d56167501e598327.zip) = a31bac4f6cc3f453d221ccaba95f31eab78a33dd
+RMD160 (fltk-1.4.x-940b7ba13d26dcde4fbd4574d56167501e598327.zip) = 736dfdbba96d8b121a0b8929a943f149c1005393
+SHA512 (fltk-1.4.x-940b7ba13d26dcde4fbd4574d56167501e598327.zip) = 9f7aa0fe4ee515b0bb0d3d7a70d9823b235b53f8ccf98c243522e7e6bdf4f155564e0a611df19dc40d872dc8fe292d4e71435c66e16b6cfb984ad3c3467c39c8
+Size (fltk-1.4.x-940b7ba13d26dcde4fbd4574d56167501e598327.zip) = 6722087 bytes
+SHA1 (patch-Makefile) = b6f6fee9f7d164f568bfcc7f7c119324052c4e1b
+SHA1 (patch-configure.ac) = d4bfad45fefa60ce6a62ba2c429ac8c1f1552397
 SHA1 (patch-documentation_Makefile) = ce2872dae289672a8bc603e1c10225df8d06f126
-SHA1 (patch-fluid_Makefile) = 5b566f80f9b7dc9212edabc71b11c50f66c156d7
+SHA1 (patch-fluid_Makefile) = 8a727140bbcea9ca3bd8ce16ec3cb9b37cef3bb4
 SHA1 (patch-makeinclude.in) = b79a32c2d7571f79078f8ec6036a0e41604f6fac
-SHA1 (patch-src_Makefile) = c36f590280da5604ebf949142074db02d0cc327e
-SHA1 (patch-test_Makefile) = d3d67f4053dc6f59cad0988358b3cd5dc38e89e8
+SHA1 (patch-src_Makefile) = 33923c156f8cb589868578217c96c035847aa9d5
+SHA1 (patch-test_Makefile) = 4f6da5c42db6c06703b72522551172fb873efb01

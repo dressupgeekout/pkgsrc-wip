@@ -5,7 +5,7 @@ CATEGORIES=		graphics x11
 MASTER_SITES=		http://cgit.freedesktop.org/piglit
 
 MAINTAINER=		tnn@NetBSD.org
-HOMEPAGE=		http://piglit.freedesktop.org/
+HOMEPAGE=		https://piglit.freedesktop.org/
 COMMENT=		OpenGL driver testing framework
 #LICENSE=		mostly 2-clause-bsd but some GPL
 
@@ -43,7 +43,7 @@ LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib/piglit/lib
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/glu/buildlink3.mk"
-.include "../../graphics/glut/buildlink3.mk"
+.include "../../graphics/freeglut/buildlink3.mk"
 .include "../../wip/waffle/buildlink3.mk"
 .include "../../x11/libICE/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"

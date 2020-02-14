@@ -7,24 +7,23 @@ MASTER_SITES=	http://braingames.jorito.net/roadfighter/downloads/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://roadfighter.jorito.net/
+HOMEPAGE=	https://roadfighter.jorito.net/
 COMMENT=	Remake the Konami MSX classic game Road Fighter
 LICENSE=	unlicense
 
 WRKSRC=		${WRKDIR}/roadfighter-1.0.1269
 #USE_TOOLS=	gmake
-USE_LANGUAGES=	c++ c
+USE_LANGUAGES=	c++03 c
 CFLAGS+=	-Wno-write-strings
 
 SHAREDIR=		${PREFIX}/share/roadfighter
 INSTALLATION_DIRS=	bin ${SHAREDIR}
 
-
 SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	pre-install
 SUBST_FILES.prefix=	roadfighter.sh
 SUBST_MESSAGE.prefix=	Fixing PREFIX.
-SUBST_SED.prefix=	-e "s|@PREFIX@|${PREFIX}|g"
+SUBST_VARS.prefix=	PREFIX
 
 pre-patch:
 	${MV} ${WRKSRC}/src/sge/* ${WRKSRC}
@@ -48,5 +47,4 @@ do-install:
 .include "../../devel/SDL_ttf/buildlink3.mk"
 .include "../../audio/SDL_sound/buildlink3.mk"
 .include "../../audio/SDL_mixer/buildlink3.mk"
-.include "../../mk/x11.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

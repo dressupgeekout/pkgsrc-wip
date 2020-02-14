@@ -58,7 +58,7 @@ PLIST.x11=	yes
 
 SUBST_CLASSES+=		paths
 SUBST_FILES.paths=	kioslave/info/kde-info2html.conf
-SUBST_SED.paths=	-e 's,@LOCALBASE@,${LOCALBASE},g'
+SUBST_SED.paths=	-e 's,@LOCALBASE@,${PREFIX},g'
 SUBST_STAGE.paths=	post-patch
 
 REPLACE_PERL+= \
@@ -69,7 +69,7 @@ REPLACE_PERL+= \
 	kioslave/info/kde-info2html
 
 CONF_FILES+=	${PREFIX}/share/examples/kde-runtime4/kde-information.menu \
-                ${PKG_SYSCONFDIR}/xdg/menus/kde-information.menu
+		${PKG_SYSCONFDIR}/xdg/menus/kde-information.menu
 CONF_FILES+=	${PREFIX}/share/examples/kde4-dbus/org.kde.kcontrol.kcmremotewidgets.conf \
 		${PKG_SYSCONFDIR}/dbus-1/system.d/org.kde.kcontrol.kcmremotewidgets.conf
 

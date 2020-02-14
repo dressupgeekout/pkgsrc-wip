@@ -23,8 +23,8 @@ include/xbps/xbps_object.h
 include/xbps/xbps_string.h
 lib/libxbps.a
 lib/libxbps.so
-lib/libxbps.so.2
-lib/libxbps.so.2.0.0
+lib/libxbps.so.3
+lib/libxbps.so.3.0.0
 lib/pkgconfig/libxbps.pc
 man/man1/xbps-alternatives.1
 man/man1/xbps-checkvers.1
@@ -39,6 +39,7 @@ man/man1/xbps-remove.1
 man/man1/xbps-rindex.1
 man/man1/xbps-uchroot.1
 man/man1/xbps-uunshare.1
+man/man5/xbps.d.5
 share/bash-completion/completions/xbps
 share/bash-completion/completions/xbps-checkvers
 share/bash-completion/completions/xbps-create
@@ -49,8 +50,7 @@ share/bash-completion/completions/xbps-query
 share/bash-completion/completions/xbps-reconfigure
 share/bash-completion/completions/xbps-remove
 share/bash-completion/completions/xbps-rindex
-share/man/man5/xbps.d.5
-share/xbps.d/00-repository-main.conf
-share/xbps.d/xbps.conf
+share/examples/xbps/00-repository-main.conf
+share/examples/xbps/xbps.conf
 share/zsh/site-functions/_xbps
 share/zsh/site-functions/_xbps_src

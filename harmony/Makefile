@@ -1,20 +1,26 @@
 # $NetBSD: Makefile,v 1.26 2017/01/16 14:06:43 mef Exp $
 
-GITHUB_TAG=	32272f8af620a0eebb0fb5b3e21389719abca17e
+GITHUB_TAG=	a7bb5a65b71644d9efce5fed783ed545b9336548
 GITHUB_PROJECT=	harmony
 DISTNAME=	harmony-${GITHUB_TAG}
-PKGNAME=	harmony-0.0.20180305
+PKGNAME=	harmony-0.0.20181014
 CATEGORIES=	www devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=bugzilla/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.bugzilla.org/
+HOMEPAGE=	https://www.bugzilla.org/
 COMMENT=	Web based bug tracking system
 LICENSE=	mpl-2.0
 
-# mod_perl
 DEPENDS+=	ap2[0-9]-perl-[0-9]*:../../www/ap2-perl
+DEPENDS+=	p5-Mojolicious-[0-9]*:../../wip/p5-Mojolicious
+DEPENDS+=	p5-Mojolicious-Plugin-OAuth2-Server-[0-9]*:../../www/p5-Mojolicious-Plugin-OAuth2-Server
+DEPENDS+=	p5-MojoX-Log-Log4perl-Tiny-[0-9]*:../../wip/p5-MojoX-Log-Log4perl-Tiny
+DEPENDS+=	p5-Mojo-JWT-[0-9]*:../../wip/p5-Mojo-JWT
+DEPENDS+=	p5-FFI-Platypus-[0-9]*:../../wip/p5-FFI-Platypus
+DEPENDS+=	p5-DBIx-Connector-[0-9]*:../../databases/p5-DBIx-Connector
 DEPENDS+=	p5-CGI-[0-9]*:../../www/p5-CGI
+DEPENDS+=	p5-Type-Tiny-[0-9]*:../../devel/p5-Type-Tiny
 DEPENDS+=	p5-Digest-SHA-[0-9]*:../../security/p5-Digest-SHA
 DEPENDS+=	p5-TimeDate-[0-9]*:../../time/p5-TimeDate
 DEPENDS+=	p5-DateTime-[0-9]*:../../time/p5-DateTime
@@ -113,11 +119,11 @@ SUBST_CLASSES+=		conf
 SUBST_STAGE.conf=	pre-install
 SUBST_MESSAGE.conf=	Fixing configuration files.
 SUBST_FILES.conf=	bugzilla.conf localconfig Bugzilla/BugMail.pm
-SUBST_SED.conf=		-e "s|@BZ_WEB_GROUP@|${BZ_WEB_GROUP}|g"
-SUBST_SED.conf+=	-e "s|@PREFIX@|${PREFIX}|g"
-SUBST_SED.conf+=	-e "s|@BZDIR@|${BZDIR}|g"
-SUBST_SED.conf+=	-e "s|@CVS@|${CVS}|g"
-SUBST_SED.conf+=	-e "s|@DBDRIVER@|${DBDRIVER}|g"
+SUBST_VARS.conf=	BZ_WEB_GROUP
+SUBST_VARS.conf+=	PREFIX
+SUBST_VARS.conf+=	BZDIR
+SUBST_VARS.conf+=	CVS
+SUBST_VARS.conf+=	DBDRIVER
 SUBST_SED.conf+=	-e "s|/usr/lib/sendmail|${SENDMAIL}|g"
 
 SUBST_CLASSES+=		diff
@@ -136,7 +142,7 @@ INSTALLATION_DIRS+=	${BZDIR}/${i}
 .endfor
 
 FILES_SUBST+=	WWWGRP=${APACHE_GROUP} WWWOWN=${APACHE_USER} \
-                BZDIR=${BZDIR}
+		BZDIR=${BZDIR}
 
 do-configure:
 	(cd ${WRKSRC}; ./checksetup.pl)

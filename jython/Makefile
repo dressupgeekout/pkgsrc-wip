@@ -9,7 +9,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=jython/}
 EXTRACT_SUFX=	.jar
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://www.jython.org/
+HOMEPAGE=	https://www.jython.org/
 COMMENT=	Python for the Java Platform
 LICENSE=	python-software-foundation
 
@@ -23,7 +23,7 @@ JYTHON_NAME=	${PKGNAME}
 
 ONLY_FOR_PLATFORM=	NetBSD-*-* Linux-*-* FreeBSD-*-* OpenBSD-*-*
 
-PKG_JVMS_ACCEPTED=	sun-jdk6 sun-jdk15
+PKG_JVMS_ACCEPTED=	sun-jdk7
 MAKE_ENV+=		JAVA_HOME=${PKG_JAVA_HOME}
 
 REPLACE_PYTHON+=	jython
@@ -33,9 +33,9 @@ PY_PATCHPLIST=	yes
 TMPJYTHON=	${WRKDIR}/temp.jython
 TARGET_NAME=	${PREFIX}/${PYSITELIB}/${JYTHON_NAME}/Lib
 
-INSTALLATION_DIRS+=	bin                       \
-					share/doc/jython  \
-					lib/java/jython      \
+INSTALLATION_DIRS+=	bin					\
+					share/doc/jython	\
+					lib/java/jython		\
 					lib/java/jython/Lib
 
 post-extract:

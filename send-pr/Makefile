@@ -7,7 +7,7 @@ CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GNU:=gnats/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/gnats/
+HOMEPAGE=	https://www.gnu.org/software/gnats/
 COMMENT=	Problem reporting tool for GNATS bug-tracker
 LICENSE=	gnu-gpl-v2
 
@@ -41,7 +41,7 @@ SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		post-patch
 SUBST_MESSAGE.fix-paths=	Fixing paths
 SUBST_FILES.fix-paths+=		send-pr.NetBSD.conf
-SUBST_SED.fix-paths+=		-e 's,@PKG_SYSCONFDIR@,${PKG_SYSCONFDIR},g'
+SUBST_VARS.fix-paths=		PKG_SYSCONFDIR
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1 ${PKGMANDIR}/man8
 INSTALLATION_DIRS+=	share/gnats/dist ${EGDIR}

@@ -4,7 +4,7 @@ DISTNAME=	pwnat-0.3
 CATEGORIES=	net
 
 MAINTAINER=	pho@cielonegro.org
-HOMEPAGE=	http://samy.pl/pwnat/
+HOMEPAGE=	https://samy.pl/pwnat/
 COMMENT=	NAT to NAT client-server communication
 LICENSE=	gnu-gpl-v3
 
@@ -19,7 +19,7 @@ USE_TOOLS=		gmake
 NO_CONFIGURE=		YES
 INSTALLATION_DIRS=	${PKGMANDIR}/man8 sbin share/doc/${PKGBASE}
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-docutils
+PYTHON_VERSIONS_ACCEPTED=	27 # py-docutils
 
 post-build:
 	${PREFIX}/bin/rst2man.py ${FILESDIR}/pwnat.8.rst > ${WRKSRC}/pwnat.8

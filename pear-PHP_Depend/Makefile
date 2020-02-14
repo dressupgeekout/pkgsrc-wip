@@ -6,8 +6,8 @@ CATEGORIES=	devel
 MASTER_SITES+=	http://pear.pdepend.org/get/
 
 MAINTAINER=	noud4@users.sourceforge.net
-HOMEPAGE=	http://pdepend.org/
-COMMENT=	PHP_Depend design quality metrics for PHP packages	
+HOMEPAGE=	https://pdepend.org/
+COMMENT=	PHP_Depend design quality metrics for PHP packages
 LICENSE=	original-bsd
 
 BUILD_DEPENDS+=	${PHP_PKG_PREFIX}-pear-channel-pdepend-[0-9]*:../../wip/pear-channel-pdepend

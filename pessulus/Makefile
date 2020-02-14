@@ -7,7 +7,7 @@ MASTER_SITES=	${MASTER_SITE_GNOME:=sources/pessulus/2.30/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc.gnome@gmail.com
-HOMEPAGE=	http://live.gnome.org/Pessulus
+HOMEPAGE=	https://live.gnome.org/Pessulus
 COMMENT=	Pessulus is a lockdown editor for GNOME
 LICENSE=	gnu-gpl-v2
 
@@ -17,7 +17,7 @@ USE_TOOLS+=		pkg-config gmake intltool msgfmt
 USE_LANGUAGES=		c
 
 PY_PATCHPLIST=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-ORBit via py-gnome2, py-gtk2, py-gobject
+PYTHON_VERSIONS_ACCEPTED=	27 # py-ORBit via py-gnome2, py-gtk2, py-gobject
 
 .include "../../devel/py-gobject/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"

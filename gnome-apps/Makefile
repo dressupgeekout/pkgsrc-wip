@@ -13,7 +13,7 @@ META_PACKAGE=	yes
 
 # see http://ftp.gnome.org/pub/GNOME/apps/3.16/3.16.2/sources/
 
-DEPENDS+=	accerciser>=3.14.0:../../devel/accerciser3
+DEPENDS+=	accerciser>=3.14.0:../../devel/accerciser
 #DEPENDS+=	aisleriot>=3.16.2:../../devel/aisleriot
 DEPENDS+=	anjuta>=3.16.0:../../devel/anjuta
 #DEPENDS+=	bijiben>=3.16.2:../../devel/bijiben
@@ -24,9 +24,9 @@ DEPENDS+=	evolution>=3.16.2.1:../../mail/evolution
 DEPENDS+=	file-roller>=3.16.2:../../archivers/file-roller
 #DEPENDS+=	five-or-more>=3.16.1:../../devel/five-or-more
 #DEPENDS+=	four-in-a-row>=3.16.2:../../devel/four-in-a-row
-DEPENDS+=	gedit>=3.16.1:../../editors/gedit3
+DEPENDS+=	gedit>=3.16.1:../../editors/gedit
 DEPENDS+=	gitg>=3.16.1:../../wip/gitg
-DEPENDS+=	glade>=3.18.3:../../devel/glade3
+DEPENDS+=	glade>=3.18.3:../../devel/glade
 #DEPENDS+=	gnome-boxes>=3.16.2:../../devel/gnome-boxes
 #DEPENDS+=	gnome-calendar>=3.16.2:../../devel/gnome-calendar
 #DEPENDS+=	gnome-characters>=3.16.2:../../devel/gnome-characters

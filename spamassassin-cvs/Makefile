@@ -9,7 +9,7 @@ MASTER_SITES=	http://www.spamassassin.org/devel/		\
 		http://au.spamassassin.org/devel/
 
 MAINTAINER=	tom@replic8.net
-HOMEPAGE=	http://spamassassin.apache.org/
+HOMEPAGE=	https://spamassassin.apache.org/
 COMMENT=	Mail filter to identify spam (CVS snapshot)
 LICENSE=	apache-2.0
 
@@ -19,7 +19,7 @@ DEPENDS+=	p5-Digest-SHA1-[0-9]*:../../security/p5-Digest-SHA1
 DEPENDS+=	p5-MIME-Base64>=2.11:../../converters/p5-MIME-Base64
 DEPENDS+=	p5-DB_File-[0-9]*:../../databases/p5-DB_File
 
-CONFLICTS=	p5-Mail-SpamAssassin-[1-9]*			\
+CONFLICTS=	p5-Mail-SpamAssassin-[1-9]* \
 		spamassassin-[1-9]*
 
 
@@ -126,7 +126,7 @@ RULE_SUBDIR=		${RULESDIR:S,^${PREFIX}/,,}
 
 CONF_FILES+=		${EGDIR}/local.cf  ${PKG_SYSCONFDIR}/local.cf	\
 			${RULESDIR}/user_prefs.template			\
-		 	${PKG_SYSCONFDIR}/user_prefs.template
+			${PKG_SYSCONFDIR}/user_prefs.template
 SUPPORT_FILES_PERMS+=	${EGDIR}/netbsd_lists.cf			\
 			${PKG_SYSCONFDIR}/netbsd_lists.cf ${SHAREOWN}	\
 			${SHAREGRP} ${SHAREMODE}
@@ -141,9 +141,7 @@ SUBST_SED.sa1=		-e s!@SA_CONTACT_ADDRESS@!${SPAMASSASSIN_CONTACT_ADDRESS}!
 
 SUBST_STAGE.sa2=	post-patch
 SUBST_FILES.sa2=	README spamd/spamd.raw
-SUBST_SED.sa2=		-e s!@PREFIX@!${PREFIX}!g			\
-			-e s!@PKG_SYSCONFDIR@!${PKG_SYSCONFDIR}!g	\
-			-e s!@SA_SSLCERTS@!${SA_SSLCERTS}!g
+SUBST_VARS.sa2=		PREFIX PKG_SYSCONFDIR SA_SSLCERTS
 
 SUBST_STAGE.sa3=	post-patch
 SUBST_FILES.sa3=	INSTALL USAGE lib/Mail/SpamAssassin/Conf.pm	\

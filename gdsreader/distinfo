@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (GDSreader-0.4.2.tar.gz) = e3ec645781a37de987a81cc54ca39c52974821fa
-RMD160 (GDSreader-0.4.2.tar.gz) = e9683c217bfa97a6cea4331fd450edef299169a1
-SHA512 (GDSreader-0.4.2.tar.gz) = e803e2b3e92a8305f731c71c1840ed8448e25a95a2d3b2048317735d990090f0f6a6d04276f338176ec18b526b773c1c54ba6f0c28751c2c7aadbc96280a8b35
-Size (GDSreader-0.4.2.tar.gz) = 82792 bytes
+SHA1 (GDSreader-0.4.5.tar.gz) = 9b9c576a2aa0ce7cd6c865d903479bb7db876eae
+RMD160 (GDSreader-0.4.5.tar.gz) = 0ae71966ade8abed329c820267dbf1409840959c
+SHA512 (GDSreader-0.4.5.tar.gz) = 4ee0110ba2f55ea71559dfad0fec850617c105784332a7d00fb504be1f0b9e4659dabd46861c0020f6728ceb05b7ce56c9a3b95fba85ccb07a8bea79ba49cf13
+Size (GDSreader-0.4.5.tar.gz) = 82870 bytes

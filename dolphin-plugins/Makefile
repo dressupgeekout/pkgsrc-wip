@@ -3,7 +3,7 @@
 DISTNAME=	dolphin-plugins-${KAPPSVER}
 CATEGORIES=	misc
 
-HOMEPAGE=	http://kde.org/applications/system/dolphin/
+HOMEPAGE=	https://kde.org/applications/system/dolphin/
 COMMENT=	Extra Dolphin plugins
 LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
@@ -15,6 +15,5 @@ USE_TOOLS+=	msgmerge
 
 .include "../../wip/dolphin5/buildlink3.mk"
 .include "../../devel/ktexteditor/buildlink3.mk"
-.include "../../x11/kdelibs4support/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

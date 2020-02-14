@@ -18,15 +18,13 @@ BUILD_DEPENDS+=	${PYPKGPREFIX}-distutils-extra-[0-9]*:../../wip/py-distutils-ext
 DEPENDS+=	${PYPKGPREFIX}-argparse-[0-9]*:../../devel/py-argparse
 DEPENDS+=	${PYPKGPREFIX}-gobject3-[0-9]*:../../devel/py-gobject3
 DEPENDS+=	${PYPKGPREFIX}-mutagen-[0-9]*:../../audio/py-mutagen
-DEPENDS+=	${PYPKGPREFIX}-pdfrw-[0-9]*:../../wip/py-pdfrw
+DEPENDS+=	${PYPKGPREFIX}-pdfrw-[0-9]*:../../textproc/py-pdfrw
 
 SUBST_CLASSES+=		setup
 SUBST_STAGE.setup=	pre-patch
 SUBST_MESSAGE.setup=	Fixing hardcoded paths in setup.py
 SUBST_FILES.setup=	setup.py
 SUBST_SED.setup+=	-e 's,share/man,${PKGMANDIR},g'
-
-PYTHON_VERSIONS_INCOMPATIBLE=	35	# py-pdfrw
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"

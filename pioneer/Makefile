@@ -8,7 +8,7 @@ MASTER_SITES=	${MASTER_SITE_GITHUB:=pioneerspacesim/}
 GITHUB_TAG=	20160205
 
 MAINTAINER=	cfkoch@edgebsd.org
-HOMEPAGE=	http://pioneerspacesim.net/
+HOMEPAGE=	https://pioneerspacesim.net/
 COMMENT=	A game of lonely space adventure
 LICENSE=	gnu-gpl-v3
 
@@ -18,7 +18,7 @@ GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config automake autoconf gmake
 
 CONFIGURE_ENV+=	PIONEER_DATA_DIR=${PREFIX}/share/pioneer/data
-   
+
 BUILDLINK_PKGSRCDIR.assimp=	../../wip/assimp
 
 pre-configure:

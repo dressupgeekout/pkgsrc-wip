@@ -1,31 +1,38 @@
 # $NetBSD$
 
-DISTNAME=	luakit-2017.08.10
+DISTNAME=	luakit-2.1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=luakit/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://luakit.org/
+HOMEPAGE=	https://luakit.org/
 COMMENT=	Webkit based browser framework extensible by Lua
 LICENSE=	gnu-gpl-v3
 
 USE_TOOLS+=	gmake pkg-config
 
-LUAKIT_MAKE_FLAGS+=	DEVELOPMENT_PATHS=0
-LUAKIT_MAKE_FLAGS+=	APPDIR=${DESTDIR}${PREFIX}/share/applications
-LUAKIT_MAKE_FLAGS+=	DOCDIR=${DESTDIR}${PREFIX}/share/doc/luakit
-LUAKIT_MAKE_FLAGS+=	MANPREFIX=${DESTDIR}${PREFIX}/${PKGMANDIR}
-LUAKIT_MAKE_FLAGS+=	PIXMAPDIR=${DESTDIR}${PREFIX}/share/pixmaps
-LUAKIT_MAKE_FLAGS+=	XDGPREFIX=${DESTDIR}${PREFIX}/etc/xdg
-LUAKIT_MAKE_FLAGS+=	USE_LUAJIT=0
-BUILD_MAKE_FLAGS+=	${LUAKIT_MAKE_FLAGS}
-INSTALL_MAKE_FLAGS+=	${LUAKIT_MAKE_FLAGS}
+MAKE_FLAGS+=	DEVELOPMENT_PATHS=0
+MAKE_FLAGS+=	APPDIR=${PREFIX}/share/applications
+MAKE_FLAGS+=	DOCDIR=${PREFIX}/share/doc/luakit
+MAKE_FLAGS+=	MANPREFIX=${PREFIX}/${PKGMANDIR}
+MAKE_FLAGS+=	PIXMAPDIR=${PREFIX}/share/pixmaps
+MAKE_FLAGS+=	XDGPREFIX=${PKG_SYSCONFDIR}
+
+MAKE_ENV+=	DISPLAY=${DISPLAY:Q}
 
 LUA_VERSIONS_ACCEPTED=	51
 
 .include "../../lang/lua/luaversion.mk"
 
 DEPENDS+=	${LUA_PKGPREFIX}-filesystem-[0-9]*:../../devel/lua-filesystem
+
+OWN_DIRS+=	${PKG_SYSCONFDIR}/xdg/luakit
+
+CONF_FILES+=	${PREFIX}/share/examples/luakit/rc.lua \
+		${PKG_SYSCONFDIR}/xdg/luakit/rc.lua
+
+CONF_FILES+=	${PREFIX}/share/examples/luakit/theme.lua \
+		${PKG_SYSCONFDIR}/xdg/luakit/theme.lua
 
 # Based on lang/swi-prolog-packages:
 setupx:
@@ -40,8 +47,6 @@ DISPLAY= :2
 	@${FALSE}
 .endif  #Xvfb
 
-MAKE_ENV+=	DISPLAY=${DISPLAY:Q}
-
 teardownx:
 	${ECHO} teardownx: Xvfb-PID: `${CAT} ${WRKDIR}/.Xvfb.pid`
 	sleep 5
@@ -51,8 +56,11 @@ teardownx:
 pre-build:	setupx
 post-build:	teardownx
 
+pre-install:
+	${RM} -f ${WRKSRC}/lib/*.orig
+
+.include "options.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
-.include "../../lang/lua/buildlink3.mk"
 .include "../../www/webkit-gtk/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

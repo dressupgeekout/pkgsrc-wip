@@ -3,13 +3,13 @@
 VERSION=	1159
 DISTNAME=	vbam-r${VERSION}-src
 PKGNAME=	vba-m-1.8.0.${VERSION}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=vbam/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://vba-m.com/
+HOMEPAGE=	https://vba-m.com/
 COMMENT=	VBA-M is a fork from the now inactive VisualBoy Advance project
 LICENSE=	gnu-gpl-v2
 

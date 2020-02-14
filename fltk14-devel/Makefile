@@ -1,89 +1,65 @@
 # $NetBSD$
 
-# pkglint complains if PKGNAME is listed first
-FLTK_VERSION=	fltk-1.4.x
-
-DISTNAME=	${FLTK_VERSION}-r13065
-PKGNAME=	${FLTK_VERSION}
+DISTNAME=	fltk-1.4.x
 CATEGORIES=	x11
-MASTER_SITES=	http://fltk.org/pub/fltk/snapshots/
-EXTRACT_SUFX=	.tar.bz2
+MASTER_SITES=	${MASTER_SITE_GITHUB:=fltk/}
+GITHUB_TAG=	940b7ba13d26dcde4fbd4574d56167501e598327
+EXTRACT_SUFX=	.zip
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.fltk.org/
+HOMEPAGE=	https://www.fltk.org/
 COMMENT=	Fast Light Tool Kit for graphical user interfaces
 LICENSE=	gnu-lgpl-v2
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
-USE_TOOLS+=		gmake nroff
+USE_TOOLS+=		autoconf gmake nroff
+# Doesn't run tests, only build them (because they are GUI programs)
 TEST_TARGET=		test
-
-# ------------------------------------------------------
-# Options
-
-PKG_OPTIONS_VAR=	PKG_OPTIONS.fltk14
-PKG_SUPPORTED_OPTIONS=	cairo opengl pango
-PKG_SUGGESTED_OPTIONS=	opengl pango
-PLIST_VARS+=		opengl
-
-.include "../../mk/bsd.prefs.mk"
-.include "../../mk/bsd.options.mk"
-
-.if !empty(PKG_OPTIONS:Mcairo)
-.  include "../../graphics/cairo/buildlink3.mk"
-CONFIGURE_ARGS+=	--enable-cairo
-.else
-CONFIGURE_ARGS+=	--disable-cairo
-.endif
-
-.if !empty(PKG_OPTIONS:Mopengl)
-.if ${OPSYS} != "Darwin"
-.  include "../../graphics/Mesa/buildlink3.mk"
-.endif
-CONFIGURE_ARGS+=	--enable-gl
-PLIST.opengl=	yes
-.else
-CONFIGURE_ARGS+=	--disable-gl
-.endif
-
-.if !empty(PKG_OPTIONS:Mpango)
-.  include "../../devel/pango/buildlink3.mk"
-CONFIGURE_ARGS+=	--enable-pango
-.else
-CONFIGURE_ARGS+=	--disable-pango
-.endif
-
-# ------------------------------------------------------
 
 PTHREAD_OPTS+=		require
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-libtool=${LIBTOOL:Q}
+CONFIGURE_ARGS+=	--enable-nanosvg
+CONFIGURE_ARGS+=	--enable-print
+CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ARGS+=	--enable-threads
-CONFIGURE_ARGS+=	ac_cv_have_overlay=yes
+CONFIGURE_ARGS+=	--enable-xcursor
+CONFIGURE_ARGS+=	--enable-xfixes
+CONFIGURE_ARGS+=	--enable-xrender
 
+# Use pkgsrc versions of libraries, not package's bundled versions
+CONFIGURE_ARGS+=	--disable-localjpeg
+CONFIGURE_ARGS+=	--disable-localpng
+CONFIGURE_ARGS+=	--disable-localzlib
+
+.include "options.mk"
+
+# Create symlinks for common misspellings of headerfile names
+# (if filesystem is case-sensitive)
 PLIST_VARS+=		cs	# case-sensitive
 .if !exists(./descr) && ${OPSYS} != "Darwin"
 CONFIGURE_ARGS+=	--with-links
 PLIST.cs=		yes
 .endif
 
-CONFIGURE_ARGS+=	--enable-shared
-# Use pkgsrc versions, not package's bundled versions.
-CONFIGURE_ARGS+=	--disable-localjpeg --disable-localzlib --disable-localpng
+# ------------------------------------------------------
+# No documentation where and why this was needed for FLTK 1.3 package
+# => Comment out for tests. Reenabled if problem still exists.
+#CONFIGURE_ARGS+=	ac_cv_have_overlay=yes
+# ------------------------------------------------------
 
+# ------------------------------------------------------
+# Clean the source tree first for snapshots
+# (CPPFLAGS/LDFLAGS are for modular X)
+# => Remove this section for release version
 pre-configure:
-	cd ${WRKSRC} && ${GMAKE} ${MAKE_FLAGS} clean
+	cd ${WRKSRC} && autoconf
+	cd ${WRKSRC} && \
+		CPPFLAGS="-I ${PREFIX}/include" LDFLAGS="-L ${PREFIX}/lib" \
+		${GMAKE} ${MAKE_FLAGS} clean
+# ------------------------------------------------------
 
-.if ${OPSYS} != "Darwin"
-.include "../../graphics/MesaLib/buildlink3.mk"
-.include "../../graphics/glu/buildlink3.mk"
-.include "../../x11/libXext/buildlink3.mk"
-.include "../../x11/libXft/buildlink3.mk"
-.include "../../x11/libXinerama/buildlink3.mk"
-BUILDLINK_DEPMETHOD.libXt?=	build
-.include "../../x11/libXt/buildlink3.mk"
-.endif
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

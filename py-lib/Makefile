@@ -8,7 +8,7 @@ MASTER_SITES=	${MASTER_SITE_PYPI:=p/py/}
 EXTRACT_SUFX=	.tar.gz#md5=d64444015bac78e0c73ac285f9423750
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://pylib.org/
+HOMEPAGE=	https://pylib.org/
 COMMENT=	Agile development and test support library
 LICENSE=	mit
 
@@ -16,7 +16,7 @@ DEPENDS+=	${PYPKGPREFIX}-docutils>=0.5:../../textproc/py-docutils
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-docutils
+PYTHON_VERSIONS_ACCEPTED=	27 # py-docutils
 REPLACE_PYTHON+=		py/cmdline/pycleanup.py
 REPLACE_PYTHON+=		py/cmdline/pycountloc.py
 REPLACE_PYTHON+=		py/cmdline/pylookup.py

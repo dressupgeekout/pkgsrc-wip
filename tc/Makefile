@@ -71,15 +71,12 @@ SUBST_SED.s2i=		-e s/string-to-int/string-to-number/g
 .include "options.mk"
 
 pre-configure:
-		( cd ${WRKSRC} && \
-		aclocal ;\
-		automake --add-missing; \
-		autoconf ; \
-		)
+	cd ${WRKSRC} && aclocal && automake --add-missing && autoconf
+
 # To avoid byte-compile error 'Invalid syntax ?', convert EUC-JP to UTF-8
 # Just one file is to be converted now,
-.if !empty(EMACS_TYPE:Memacs25) || \
-    !empty(EMACS_TYPE:Memacs26)
+.if (${EMACS_TYPE} == emacs25) || \
+    (${EMACS_TYPE} == emacs26)
 post-patch:
 	(cd ${WRKSRC}/lisp; \
 	for i in tc-bushu.el;  \

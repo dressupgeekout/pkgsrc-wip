@@ -1,4 +1,6 @@
 # $NetBSD$
 
-OPENBLAS_VARIANT = openblas_openmp
-.include "../openblas/Makefile.common"
+MAINTAINER=	thomas.orgis@uni-hamburg.de
+
+OPENBLAS_VARIANT= openblas_openmp
+.include "../../wip/openblas/Makefile.common"

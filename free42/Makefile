@@ -9,7 +9,7 @@ MASTER_SITES=	http://thomasokken.com/free42/download/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://thomasokken.com/free42/
+HOMEPAGE=	https://thomasokken.com/free42/
 COMMENT=	HP42S Calculator Simulator
 LICENSE=	gnu-gpl-v2
 
@@ -24,8 +24,8 @@ BUILD_TARGET=	free42${VARIANT}
 CXXFLAGS.NetBSD+=	-DNO_SINCOS
 MAKE_ENV.Linux+=	AUDIO_ALSA=1
 
-INSTALLATION_DIRS+= bin
-INSTALLATION_DIRS+= share/doc/free42
+INSTALLATION_DIRS+=	bin
+INSTALLATION_DIRS+=	share/doc/free42
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${BUILD_DIRS}/${BUILD_TARGET} \

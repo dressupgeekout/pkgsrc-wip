@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	toxic-0.8.0
+DISTNAME=	toxic-0.8.3
 CATEGORIES=	chat
 GIT_REPO=	https://github.com/JFreegman/toxic.git
 
@@ -13,9 +13,15 @@ NO_CONFIGURE=	yes
 USE_TOOLS+=	gmake pkg-config
 USE_LANGUAGES+=	c
 
+SUBST_CLASSES+=		makefile
+SUBST_STAGE.makefile=	post-patch
+SUBST_MESSAGE.makefile=	Fixing variable for manpath
+SUBST_SED.makefile=	-e 's|share/man|${PKGMANDIR}|g'
+SUBST_FILES.makefile=	cfg/global_vars.mk
+
 .include "options.mk"
 
-.include "../../wip/toxcore-git/buildlink3.mk"
+.include "../../chat/toxcore/buildlink3.mk"
 
 .include "../../audio/openal-soft/buildlink3.mk"
 .include "../../converters/qrencode/buildlink3.mk"

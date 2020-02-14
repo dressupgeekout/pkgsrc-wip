@@ -6,13 +6,13 @@ CATEGORIES=	parallel python
 MASTER_SITES=	http://www.parallelpython.com/downloads/pp/
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://www.parallelpython.com/
+HOMEPAGE=	https://www.parallelpython.com/
 COMMENT=	Parallel and distributed programming for Python
 LICENSE=	2-clause-bsd
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # as of 1.6.4
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 1.6.4
 
 INSTALLATION_DIRS=	${PKGMANDIR}/man1 share/doc/py-pp
 

@@ -3,11 +3,12 @@
 
 DISTNAME=	redmine-2.5.1
 PKGNAME=	${RUBY_PKGPREFIX}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.redmine.org/releases/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.redmine.org/
+HOMEPAGE=	https://www.redmine.org/
 COMMENT=	Flexible project management web application
 LICENSE=	gnu-gpl-v2
 
@@ -236,18 +237,15 @@ INSTALLATION_DIRS+=	share/${PKGBASE}/tmp/thumbnails share/${PKGBASE}/vendor
 .include "options.mk"
 
 #do-install:
-#	set -e; cd ${WRKSRC}; 
-		#for i in `find . -path ./doc -prune -o -type f ! -perm 775 -print`; 
-		#do 
-		#	${INSTALL_DATA} $$i 
-				#${DESTDIR}${PREFIX}/share/${PKGBASE}/$$i; 
-		#done; 
-		#for i in `find . -type f -executable -not -name ttf2ufm\\* -print`; 
-		#do 
-		#	${INSTALL_SCRIPT} $$i 
-				#${DESTDIR}${PREFIX}/share/${PKGBASE}/$$i; 
-		#done; 
-		#${INSTALL_DATA} doc/* ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
+#	set -e; cd ${WRKSRC};
+#	for i in `find . -path ./doc -prune -o -type f ! -perm 775 -print`; do
+#		${INSTALL_DATA} $$i ${DESTDIR}${PREFIX}/share/${PKGBASE}/$$i;
+#	done;
+#	for i in `find . -type f -executable -not -name ttf2ufm\\* -print`; do
+#		${INSTALL_SCRIPT} $$i
+#		${DESTDIR}${PREFIX}/share/${PKGBASE}/$$i;
+#	done;
+#	${INSTALL_DATA} doc/* ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

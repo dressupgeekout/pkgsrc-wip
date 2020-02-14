@@ -23,7 +23,6 @@ DEPENDS+=	${PYPKGPREFIX}-subprocess32-[0-9]*:../../devel/py-subprocess32
 .endif
 
 USE_TOOLS+=	gmake
-PYTHON_VERSIONS_ACCEPTED= 37 36 35 34 27
 
 EGDIR=		${PREFIX}/share/examples/ansible
 
@@ -54,9 +53,9 @@ SUBST_FILES.prefix+=	lib/ansible/modules/system/ping.py
 SUBST_FILES.prefix+=	lib/ansible/modules/system/setup.py
 SUBST_FILES.prefix+=	lib/ansible/utils/module_docs_fragments/openstack.py
 SUBST_MESSAGE.prefix=	Fixing PREFIX, PYSITELIB, and PKG_SYSCONFDIR path.
-SUBST_SED.prefix=	-e "s,@PREFIX@,${PREFIX},"
-SUBST_SED.prefix+=	-e "s,@PKG_SYSCONFDIR@,${PKG_SYSCONFDIR},g"
-SUBST_SED.prefix+=	-e "s,@PYSITELIB@,${PYSITELIB},"
+SUBST_VARS.prefix=	PREFIX
+SUBST_VARS.prefix+=	PKG_SYSCONFDIR
+SUBST_VARS.prefix+=	PYSITELIB
 
 SUBST_CLASSES+=			subprocess
 SUBST_STAGE.subprocess=		pre-configure

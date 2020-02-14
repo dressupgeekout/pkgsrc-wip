@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.2 2015/02/19 18:01:20 jihbed Exp $
 
-DISTNAME=	cinnamon-settings-daemon-3.8.2
+DISTNAME=	cinnamon-settings-daemon-4.0.3
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=linuxmint/}
 GITHUB_PROJECT=	cinnamon-settings-daemon
@@ -65,7 +65,7 @@ CONF_FILES+=		${EGDIR}/cinnamon-settings-daemon-a11y-keyboard.desktop		\
 			${PKG_SYSCONFDIR}/dbus-1/system.d/org.cinnamon.SettingsDaemon.DateTimeMechanism.conf
 
 pre-configure:
-		cd ${WRKSRC} && NOCONFIGURE=1 ./autogen.sh
+	cd ${WRKSRC} && NOCONFIGURE=1 ./autogen.sh
 
 BUILD_DEPENDS+=	autoconf-archive-[0-9]*:../../devel/autoconf-archive
 BUILD_DEPENDS+=	gettext-m4>=0.14.6:../../devel/gettext-m4

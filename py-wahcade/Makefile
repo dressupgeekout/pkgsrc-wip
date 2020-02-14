@@ -15,7 +15,7 @@ USE_PKGLOCALEDIR=		yes
 USE_LANGUAGES=			# none
 USE_TOOLS+=			bash
 PY_PATCHPLIST=			yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-imaging
+PYTHON_VERSIONS_ACCEPTED=	27 # py-imaging
 
 REPLACE_BASH+=		doc/samples/run_mess.sh
 REPLACE_PYTHON+=	*.py
@@ -25,13 +25,6 @@ SUBST_FILES.share=	constants.py
 SUBST_MESSAGE.share=	Fixing DATADIR.
 SUBST_SED.share=	-e "s|os.getcwd()|'${PREFIX}/share/games/wahcade/'|1"
 SUBST_STAGE.share=	post-patch
-
-do-build:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} && ${PYTHONBIN} setup.py build
-
-do-install:
-	cd ${WRKSRC} && ${SETENV} ${INSTALL_ENV} && \
-		${PYTHONBIN} setup.py install --root=${DESTDIR}
 
 post-install:
 	${RM} ${DESTDIR}${PREFIX}/bin/wahcade*.py

@@ -3,11 +3,11 @@
 DISTNAME=	JSON-WebToken-0.10
 PKGREVISION=	1
 PKGNAME=	p5-${DISTNAME}
-CATEGORIES=	www perl5 
+CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=JSON/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://search.cpan.org/dist/JSON-WebToken/
+HOMEPAGE=	https://metacpan.org/release/JSON-WebToken
 COMMENT=	JSON Web Token (JWT) implementation for Perl
 LICENSE=	${PERL5_LICENSE}
 

@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.2 2018/03/14 08:46:23 bsiegert Exp $
+
+SHA1 (lf-13.tar.gz) = 0ac58823fbaef505c98f32d478a64100e5191cd1
+RMD160 (lf-13.tar.gz) = d542305b5a26090262304d5f330145b4926ba319
+SHA512 (lf-13.tar.gz) = 67c0fdbf7dc86a3856a0dce9fb8ed38f1a4c8a66a8ae051887b4aa6ddcbd086a748124cae804f4a051e20efcffb1cd847611b400c54143a79587ce4561a938c0
+Size (lf-13.tar.gz) = 67064 bytes

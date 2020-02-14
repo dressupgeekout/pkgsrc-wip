@@ -5,12 +5,12 @@ PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_PYPI:=m/mailman/}
 
-MAINTAINER=	filip@joyent.com
-HOMEPAGE=	http://www.list.org/
+MAINTAINER=	fhajny@NetBSD.org
+HOMEPAGE=	https://www.list.org/
 COMMENT=	GNU mailing list manager
 LICENSE=	gnu-gpl-v3
 
-PYTHON_VERSIONS_ACCEPTED=	37 36 35 34
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 DEPENDS+=	${PYPKGPREFIX}-aiosmtpd>=1.0.0:../../mail/py-aiosmtpd
 DEPENDS+=	${PYPKGPREFIX}-alembic-[0-9]*:../../databases/py-alembic

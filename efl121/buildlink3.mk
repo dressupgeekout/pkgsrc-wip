@@ -1,8 +1,9 @@
 # $NetBSD: buildlink3.mk,v 1.17 2018/08/16 18:54:28 adam Exp $
 
-BUILDLINK_TREE+=        efl
+BUILDLINK_TREE+=	efl
 
-BUILDLINK_PKGSRCDIR.efl?=     ../../wip/efl121
+BUILDLINK_ABI_DEPENDS.efl?=	efl>=1.21.0nb1
+BUILDLINK_PKGSRCDIR.efl?=	../../wip/efl121
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
@@ -11,7 +12,6 @@ BUILDLINK_PKGSRCDIR.efl?=     ../../wip/efl121
 .include "../../x11/libXcursor/buildlink3.mk"
 .include "../../x11/libXdamage/buildlink3.mk"
 .include "../../x11/libXinerama/buildlink3.mk"
-.include "../../x11/libXp/buildlink3.mk"
 .include "../../x11/libXrandr/buildlink3.mk"
 .include "../../x11/libXrender/buildlink3.mk"
 .include "../../x11/libXtst/buildlink3.mk"
@@ -39,3 +39,5 @@ BUILDLINK_PKGSRCDIR.efl?=     ../../wip/efl121
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../devel/libuuid/buildlink3.mk"
+
+BUILDLINK_TREE+=	-efl

@@ -1,30 +1,37 @@
 $NetBSD$
 
-A few things are done here:
+Changes:
 
 1) Make libm, libz, libjansson and libiconv dynamically linked, instead of statically.
 2) Use system libjansson instead of the one included with zero-epwing.
-3) Link libintl if |UNIX AND NOT APPLE|.
-4) Specify the full path to the libeb static library, since (at least on macOS) the linker
+3) Specify the full path to the libeb static library, since (at least on macOS) the linker
    has trouble linking it otherwise.
+4) Skip install-ing libeb.
 
---- CMakeLists.txt.orig	2017-10-06 02:15:49.000000000 +0000
+--- CMakeLists.txt.orig
 +++ CMakeLists.txt
-@@ -1,10 +1,15 @@
- cmake_minimum_required(VERSION 3.5)
- project(zero-epwing)
- include_directories(eb)
--link_directories(eb/eb/.libs jansson/lib)
+@@ -9,17 +9,22 @@
+ 	PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/eb
+ 	BUILD_COMMAND make
+ 	BUILD_IN_SOURCE 1
++	INSTALL_COMMAND cmake -E echo "Skipping installing libeb"
+ 	)
+ include_directories(eb ${CMAKE_BINARY_DIR})
+ option(JANSSON_EXAMPLES "" OFF)
+ option(JANSSON_BUILD_DOCS "" OFF)
+ option(JANSSON_WITHOUT_TESTS "" ON)
+ add_subdirectory(jansson)
+-link_directories(eb/eb/.libs ${CMAKE_BINARY_DIR}/jansson/lib)
 +link_directories(eb/eb/.libs)
  add_executable(zero-epwing main.c book.c convert.c hooks.c)
--target_link_libraries(zero-epwing libm.a libeb.a libm.a libz.a libjansson.a)
+ add_dependencies(zero-epwing eb jansson)
+-target_link_libraries(zero-epwing libeb.a libz.a libjansson.a)
 +target_link_libraries(zero-epwing
-+    m z jansson
-+    ${CMAKE_SOURCE_DIR}/eb/eb/.libs/libeb.a
++    z jansson
++    ${CMAKE_CURRENT_SOURCE_DIR}/eb/eb/.libs/libeb.a
 +)
-+if (UNIX AND NOT APPLE)
-+    target_link_libraries(zero-epwing intl)
-+endif (UNIX AND NOT APPLE)
++
++# Dynamically link libiconv on Windows or macOS
  if (WIN32 OR APPLE)
 -    target_link_libraries(zero-epwing libiconv.a)
 +    target_link_libraries(zero-epwing iconv)

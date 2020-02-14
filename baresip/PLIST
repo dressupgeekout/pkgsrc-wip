@@ -14,6 +14,7 @@ lib/baresip/modules/cons.so
 lib/baresip/modules/contact.so
 lib/baresip/modules/ctrl_tcp.so
 lib/baresip/modules/debug_cmd.so
+lib/baresip/modules/echo.so
 lib/baresip/modules/fakevideo.so
 lib/baresip/modules/g711.so
 lib/baresip/modules/g722.so
@@ -22,7 +23,6 @@ lib/baresip/modules/gsm.so
 ${PLIST.gstreamer}lib/baresip/modules/gst1.so
 ${PLIST.gstreamer}lib/baresip/modules/gst_video1.so
 ${PLIST.gtk}lib/baresip/modules/gtk.so
-${PLIST.x265}lib/baresip/modules/h265.so
 lib/baresip/modules/httpd.so
 lib/baresip/modules/ice.so
 ${PLIST.ilbc}lib/baresip/modules/ilbc.so
@@ -30,7 +30,6 @@ ${PLIST.jack}lib/baresip/modules/jack.so
 lib/baresip/modules/l16.so
 lib/baresip/modules/menu.so
 lib/baresip/modules/mwi.so
-lib/baresip/modules/natbd.so
 lib/baresip/modules/natpmp.so
 ${PLIST.opus}lib/baresip/modules/opus.so
 ${PLIST.oss}lib/baresip/modules/oss.so
@@ -38,11 +37,9 @@ lib/baresip/modules/plc.so
 ${PLIST.portaudio}lib/baresip/modules/portaudio.so
 lib/baresip/modules/presence.so
 ${PLIST.pulseaudio}lib/baresip/modules/pulse.so
-${PLIST.sdl}lib/baresip/modules/sdl.so
-${PLIST.sdl2}lib/baresip/modules/sdl2.so
+${PLIST.sdl2}lib/baresip/modules/sdl.so
 lib/baresip/modules/selfview.so
 ${PLIST.sndfile}lib/baresip/modules/sndfile.so
-${PLIST.speex}lib/baresip/modules/speex_aec.so
 ${PLIST.speex}lib/baresip/modules/speex_pp.so
 lib/baresip/modules/srtp.so
 lib/baresip/modules/stdio.so
@@ -52,7 +49,7 @@ lib/baresip/modules/uuid.so
 ${PLIST.v4l2}lib/baresip/modules/v4l2.so
 ${PLIST.v4l2}lib/baresip/modules/v4l2_codec.so
 lib/baresip/modules/vidbridge.so
-${PLIST.cairo}lib/baresip/modules/vidinfo.so
+lib/baresip/modules/vidinfo.so
 lib/baresip/modules/vidloop.so
 ${PLIST.libvpx}lib/baresip/modules/vp8.so
 ${PLIST.libvpx}lib/baresip/modules/vp9.so

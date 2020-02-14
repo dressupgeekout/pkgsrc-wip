@@ -1,29 +1,47 @@
-# $NetBSD: Makefile,v 1.9 2015/05/30 01:49:33 krytarowski Exp $
+# $NetBSD$
 
-.include "../../wip/liblxqt/Makefile.common"
-
-DISTNAME=	lxqt-panel-0.9.0
+DISTNAME=	lxqt-panel-0.14.1
 CATEGORIES=	x11
+MASTER_SITES=	https://downloads.lxqt.org/downloads/lxqt-panel/0.14.1/
+EXTRACT_SUFX=	.tar.xz
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	voidpin@protonmail.com
+HOMEPAGE=	https://lxqt.org/
 COMMENT=	Desktop panel
 LICENSE=	gnu-lgpl-v2.1
 
-EGDIR=		${PREFIX}/share/examples/lxqt-panel
+USE_CMAKE=	yes
+USE_TOOLS+=	pkg-config
+USE_LANGUAGES=	c c++
 
-OWN_DIRS=	${PKG_SYSCONFDIR}/xdg/lxqt
+CONFIGURE_DIRS=	build
+CMAKE_ARG_PATH=	..
 
-CONF_FILES+=	${EGDIR}/xdg/lxqt/panel.conf ${PKG_SYSCONFDIR}/xdg/lxqt/panel.conf
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == "NetBSD" || ${OPSYS} == "OpenBSD"
+CMAKE_ARGS+=	-DCPULOAD_PLUGIN=No
+CMAKE_ARGS+=	-DKBINDICATOR_PLUGIN=No
+CMAKE_ARGS+=	-DMOUNT_PLUGIN=No
+CMAKE_ARGS+=	-DSENSORS_PLUGIN=No
+CMAKE_ARGS+=	-DNETWORKMONITOR_PLUGIN=No
+CMAKE_ARGS+=	-DSYSSTAT_PLUGIN=No
+CMAKE_ARGS+=	-DVOLUME_USE_ALSA=No
+.endif
 
-SUBST_CLASSES+=		confdir
-SUBST_FILES.confdir=	panel/CMakeLists.txt
-SUBST_SED.confdir=	-e 's,$${LXQT_ETC_XDG_DIR}/,${EGDIR}/xdg/,'
-SUBST_STAGE.confdir=	post-patch
+pre-configure:
+	${MKDIR} -p ${WRKSRC}/build
 
-.include "../../audio/alsa-lib/buildlink3.mk"
+TOOL_DEPENDS+=	lxqt-build-tools-[0-9]*:../../wip/lxqt-build-tools
+TOOL_DEPENDS+=	qt5-qttools-[0-9]*:../../x11/qt5-qttools
+DEPENDS+=	lxmenu-data-[0-9]*:../../sysutils/lxmenu-data
+
+.include "../../x11/qt5-qtbase/buildlink3.mk"
+.include "../../x11/libXcomposite/buildlink3.mk"
+.include "../../devel/libdbusmenu-qt5/buildlink3.mk"
 .include "../../wip/lxqt-globalkeys/buildlink3.mk"
-.include "../../sysutils/menu-cache/buildlink3.mk"
-.include "../../wip/liblxqt/buildlink3.mk"
-.include "../../wip/libsysstat/buildlink3.mk"
+.include "../../audio/pulseaudio/buildlink3.mk"
+.include "../../sysutils/solid/buildlink3.mk"
+.include "../../x11/kwindowsystem/buildlink3.mk"
 .include "../../x11/kguiaddons/buildlink3.mk"
+.include "../../sysutils/menu-cache/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

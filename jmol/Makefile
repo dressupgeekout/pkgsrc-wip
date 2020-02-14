@@ -17,7 +17,7 @@ WRKSRC=		${WRKDIR}/jmol-12.0.12
 ONLY_FOR_PLATFORM=	NetBSD-*-i386 Linux-*-*
 
 USE_JAVA2=		yes
-PKG_JVMS_ACCEPTED=	sun-jdk6 sun-jdk15 sun-jdk14
+PKG_JVMS_ACCEPTED=	sun-jdk7
 
 JMOL_HOME=	${PREFIX}/share/jmol
 JMOL_FILES=	Jmol.jar JmolApplet.jar           \
@@ -27,9 +27,7 @@ JMOL_FILES=	Jmol.jar JmolApplet.jar           \
 			JmolData.jar Jmol.js
 
 INSTALLATION_DIRS=	bin ${JMOL_HOME}
-
-do-build:
-	printf "#! ${SH}\\nexec ${PKG_JAVA_HOME}/bin/java -Djmol.home=${JMOL_HOME} -jar ${JMOL_HOME}/Jmol.jar  \"\$$@\"\\n" > ${WRKSRC}/jmol.sh
+ME}/Jmol.jar  \"\$$@\"\\n" > ${WRKSRC}/jmol.sh
 
 do-install:
 	${INSTALL_SCRIPT}  ${WRKSRC}/jmol.sh ${DESTDIR}${PREFIX}/bin/jmol

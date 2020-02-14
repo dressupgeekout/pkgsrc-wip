@@ -4,7 +4,7 @@ DISTNAME=	calypso-1.5
 CATEGORIES=	net
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://keithp.com/blogs/calypso/
+HOMEPAGE=	https://keithp.com/blogs/calypso/
 COMMENT=	CardDAV/CalDAV server (git version)
 LICENSE=	gnu-gpl-v3
 
@@ -18,7 +18,7 @@ WRKSRC=		${WRKDIR}/calypso
 
 INSTALLATION_DIRS=	share/examples/calypso
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # as of 20160824
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 20160824
 REPLACE_PYTHON=	calypso.py
 
 post-install:

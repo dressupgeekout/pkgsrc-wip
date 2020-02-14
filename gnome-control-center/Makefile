@@ -2,6 +2,7 @@
 #
 
 DISTNAME=	gnome-control-center-3.16.3
+PKGREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gnome-control-center/3.16/}
 EXTRACT_SUFX=	.tar.xz
@@ -52,7 +53,6 @@ CONF_FILES+=		${EGDIR}/gnomecc.menu \
 .include "../../x11/libXcursor/buildlink3.mk"
 BUILDLINK_API_DEPENDS.Xft2+=	Xft2>=2.1.2
 .include "../../x11/libXft/buildlink3.mk"
-.include "../../x11/libXxf86misc/buildlink3.mk"
 .include "../../security/polkit/buildlink3.mk"
 .include "../../net/gnome-online-accounts/buildlink3.mk"
 .include "../../net/grilo/buildlink3.mk"

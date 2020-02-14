@@ -1,14 +1,14 @@
 # $NetBSD$
 
-VERSION=	1.4.1
-PKGNAME=	php-composer-${VERSION}
+VERSION=	1.8.4
+PKGNAME=	${PHP_PKG_PREFIX}-composer-${VERSION}
 DISTNAME=	composer
 CATEGORIES=	devel
 MASTER_SITES=	https://getcomposer.org/download/${VERSION}/
 DIST_SUBDIR=	php-composer/${VERSION}
 EXTRACT_SUFX=	.phar
 
-MAINTAINER=	khorben@defora.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://getcomposer.org/
 COMMENT=	Dependency Manager for PHP
 LICENSE=	modified-bsd
@@ -17,7 +17,9 @@ NO_CONFIGURE=	yes
 NO_BUILD=	yes
 AUTO_MKDIRS=	yes
 
-DEPENDS+=	php-[0-9]*:../../lang/php
+DEPENDS+=	${PHP_PKG_PREFIX}-mbstring-[0-9]*:../../converters/php-mbstring
+DEPENDS+=	${PHP_PKG_PREFIX}-json-[0-9]*:../../textproc/php-json
+DEPENDS+=	${PHP_PKG_PREFIX}-zip-[0-9]*:../../archivers/php-zip
 
 do-extract:
 	${MKDIR} -m 0755 ${WRKSRC}
@@ -32,6 +34,9 @@ SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		post-extract
 SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
 SUBST_FILES.fix-paths=		composer
-SUBST_SED.fix-paths=		-e 's,@PREFIX@,${PREFIX},g'
+SUBST_VARS.fix-paths=		PREFIX
+
+.include "../../lang/php/phpversion.mk"
+.include "../../lang/python/application.mk"
 
 .include "../../mk/bsd.pkg.mk"

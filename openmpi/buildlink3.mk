@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.7 2013/06/21 17:07:52 outpaddling Exp $
+# $NetBSD: buildlink3.mk,v 1.3 2012/10/24 05:49:26 asau Exp $
 
 BUILDLINK_TREE+=	openmpi
 
@@ -6,9 +6,7 @@ BUILDLINK_TREE+=	openmpi
 OPENMPI_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.openmpi+=	openmpi>=1.5.1
-BUILDLINK_PKGSRCDIR.openmpi?=	../../wip/openmpi
-BUILDLINK_PASSTHRU_DIRS+=	${PREFIX}/openmpi/lib
-BUILDLINK_PASSTHRU_RPATHDIRS+=	${PREFIX}/openmpi/lib
+BUILDLINK_PKGSRCDIR.openmpi?=	../../parallel/openmpi
 
 .include "../../parallel/hwloc/buildlink3.mk"
 .endif # OPENMPI_BUILDLINK3_MK

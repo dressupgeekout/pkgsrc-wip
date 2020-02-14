@@ -1,4 +1,4 @@
-# $NetBSD: builtin.mk,v 1.21 2018/01/14 14:58:38 rillig Exp $
+# $NetBSD: builtin.mk,v 1.1 2018/10/07 23:49:31 ryoon Exp $
 
 BUILTIN_PKG:=	MesaLib
 

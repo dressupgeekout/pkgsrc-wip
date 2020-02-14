@@ -1,13 +1,14 @@
 # $NetBSD: Makefile,v 1.14 2018/03/04 15:52:20 bsiegert Exp $
 
 DISTNAME=		vgo-20180220
+PKGREVISION=		11
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_GITHUB:=golang/}
 GITHUB_PROJECT=		vgo
 GITHUB_TAG=		085872f6d9
 
 MAINTAINER=		bsiegert@NetBSD.org
-HOMEPAGE=		http://godoc.org/golang.org/x/vgo
+HOMEPAGE=		https://godoc.org/golang.org/x/vgo
 COMMENT=		Versioned Go prototype
 LICENSE=		modified-bsd
 

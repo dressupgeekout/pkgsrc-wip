@@ -6,7 +6,7 @@ CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_PYPI:=P/Pylons/}
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://pylonshq.com/
+HOMEPAGE=	https://pylonshq.com/
 COMMENT=	Pylons Web Framework
 LICENSE=	modified-bsd
 
@@ -19,7 +19,7 @@ DEPENDS+=	${PYPKGPREFIX}-Paste>=1.7.2:../../www/py-paste
 USE_PKGLOCALEDIR=		yes
 USE_TOOLS+=			intltool msgfmt
 USE_LANGUAGES=			# none
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-cheetah
+PYTHON_VERSIONS_ACCEPTED=	27 # py-cheetah
 
 do-test:
 	cd ${WRKSRC} && ${PYTHONBIN} tests/conftest.py

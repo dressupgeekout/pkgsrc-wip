@@ -79,7 +79,7 @@ SUBST_CLASSES+=			conf-path
 SUBST_STAGE.conf-path=		pre-configure
 SUBST_FILES.conf-path=		inc/always.php.in dba/update-davical-database
 SUBST_FILES.conf-path+=		inc/davical_configuration_missing.php
-SUBST_SED.conf-path+=		-e "s|@PKG_SYSCONFDIR@|${PKG_SYSCONFDIR}|g"
+SUBST_VARS.conf-path=		PKG_SYSCONFDIR
 SUBST_MESSAGE.conf-path=	Fixing configuration path.
 
 # See ../../devel/php-libawl/Makefile.common for the LIBAWLDIR value
@@ -100,7 +100,7 @@ SUBST_MESSAGE.examples=	Fixing config examples path.
 SUBST_CLASSES+=		files
 SUBST_STAGE.files=	pre-configure
 SUBST_FILES.files=	davical.conf
-SUBST_SED.files+=	-e "s|@DAVICALDIR@|${DAVICALDIR}|g"
+SUBST_VARS.files=	DAVICALDIR
 SUBST_MESSAGE.files=	Fixing DAViCal configuration file for Apache.
 
 post-extract:
@@ -119,14 +119,14 @@ do-install:
 		pax -rwpam . ${DESTDIR}${DOCDIR}
 
 .for f in COPYING CREDITS ChangeLog INSTALL README TODO VERSION
-		cd ${WRKSRC} && \
+	cd ${WRKSRC} && \
 		${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${DOCDIR}
 .endfor
 
 .for d in ${PAXDIRS}
-		${INSTALL_DATA_DIR} ${DESTDIR}${DAVICALDIR}/${d}
-		cd ${WRKSRC}/${d} && find . -name .gitignore -exec rm -f \{\} \;
-		cd ${WRKSRC}/${d} && pax -rwpam . ${DESTDIR}${DAVICALDIR}/${d}
+	${INSTALL_DATA_DIR} ${DESTDIR}${DAVICALDIR}/${d}
+	cd ${WRKSRC}/${d} && find . -name .gitignore -exec rm -f \{\} \;
+	cd ${WRKSRC}/${d} && pax -rwpam . ${DESTDIR}${DAVICALDIR}/${d}
 .endfor
 
 	cd ${WRKSRC}/config && for f in *; do				\

@@ -14,8 +14,8 @@ DEPENDS+=	bfgminer>=3.9.0:../../wip/bfgminer
 
 SUBST_CLASSES+=		path
 SUBST_STAGE.path=	post-patch
-SUBST_FILES.path=	multiminer	
-SUBST_SED.path=		-e "s|@PREFIX@|${PREFIX}|g"
+SUBST_FILES.path=	multiminer
+SUBST_VARS.path=	PREFIX
 SUBST_MESSAGE.path=	"Fixing path."
 
 post-extract:

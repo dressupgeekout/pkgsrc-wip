@@ -6,7 +6,7 @@ CATEGORIES=	biology
 MASTER_SITES=	http://www.bioinformatics.org/ghemical/download/release20090911/
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://www.bioinformatics.org/ghemical/ghemical/
+HOMEPAGE=	https://www.bioinformatics.org/ghemical/ghemical/
 COMMENT=	Support libraries of science/ghemical port
 LICENSE=	gnu-gpl-v2
 
@@ -17,5 +17,5 @@ USE_LANGUAGES=	c c++
 
 PKGCONFIG_OVERRIDE+=	liboglappth.pc.in
 
-.include "../../graphics/glut/buildlink3.mk"
+.include "../../graphics/freeglut/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

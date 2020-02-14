@@ -7,7 +7,7 @@ CATEGORIES=	www
 MASTER_SITES=	http://bitbucket.org/ariya/phantomjs/downloads/
 EXTRACT_SUFX=	.zip
 
-MAINTAINER=	filip@joyent.com
+MAINTAINER=	fhajny@NetBSD.org
 HOMEPAGE=	http://www.phantomjs.org/
 COMMENT=	Headless WebKit with JavaScript API
 LICENSE=	modified-bsd
@@ -31,7 +31,7 @@ CHECK_PORTABILITY_SKIP+=	src/breakpad/src/third_party/protobuf/protobuf/post_pro
 
 NOT_FOR_PLATFORM+=	SunOS-*-x86_64
 
-CONFIGURE_ARGS+=	--qtdeps=system -no-rpath 
+CONFIGURE_ARGS+=	--qtdeps=system -no-rpath
 CONFIGURE_ENV+=		MACHINE_ARCH=${MACHINE_ARCH}
 
 CFLAGS.NetBSD+=		-D_NETBSD_SOURCE
@@ -50,7 +50,7 @@ PHANTOMJS_WEBKIT_DISABLE+=	video
 PHANTOMJS_WEBKIT_DISABLE+=	gamepad
 
 pre-configure:
-	${SED}	-e 's:@LOCALBASE@:${LOCALBASE}:g' \
+	${SED}	-e 's:@LOCALBASE@:${PREFIX}:g' \
 		-e 's:@X11BASE@:${X11BASE}:g' \
 		-e 's:@X11PREFIX@:${X11PREFIX}:g' \
 		-e 's:@LIBTOOL@:${LIBTOOL:Q}:g' \

@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.25 2016/02/25 08:27:03 jperkin Exp $
-#
+
 DISTNAME=	scite375
 PKGNAME=	scite-3.7.5
-#PKGREVISION=	0
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=scintilla/}
 EXTRACT_SUFX=	.tgz
@@ -19,12 +18,7 @@ USE_TOOLS+=		gmake pkg-config
 MAKE_FILE=		makefile
 INSTALLATION_DIRS=	share/applications share/pixmaps
 
-.include "../../mk/bsd.prefs.mk"
-
-.if ${OPSYS} == "SunOS"
-BUILDLINK_TRANSFORM+=	rm:-Wl,--version-script=lua.vers
-#BUILDLINK_FNAME_TRANSFORM.SunOS+=	rm:-Wl,--version-script=lua.vers
-.endif
+BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--version-script=lua.vers
 
 post-extract:
 	${RM} -r ${WRKDIR}/scintilla

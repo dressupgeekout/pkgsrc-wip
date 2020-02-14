@@ -8,7 +8,7 @@ EXTRACT_SUFX=		.tar.bz2
 LICENSE=		gnu-gpl-v2
 
 MAINTAINER=		reed@reedmedia.net
-HOMEPAGE=		http://www.netfilter.org/
+HOMEPAGE=		https://www.netfilter.org/
 COMMENT=		Interface to Linux netfilter firewalling subsystem
 
 # This package requires a Linux 2.4.4 kernel, or above.
@@ -21,13 +21,13 @@ PKGMANDIR?=		man  # until this in official pkgsrc
 
 do-build:
 	cd ${WRKSRC} && \
-	${GMAKE} BINDIR=${LOCALBASE}/bin LIBDIR=${LOCALBASE}/lib \
-		MANDIR=${LOCALBASE}/${PKGMANDIR}
+	${GMAKE} BINDIR=${PREFIX}/bin LIBDIR=${PREFIX}/lib \
+		MANDIR=${PREFIX}/${PKGMANDIR}
 
 do-install:
 	cd ${WRKSRC} && \
-	${GMAKE} BINDIR=${LOCALBASE}/bin LIBDIR=${LOCALBASE}/lib \
-		MANDIR=${LOCALBASE}/${PKGMANDIR} install
+	${GMAKE} BINDIR=${PREFIX}/bin LIBDIR=${PREFIX}/lib \
+		MANDIR=${PREFIX}/${PKGMANDIR} install
 
 # If you are a developer, you can install the headers, development libraries
 # and associated development man pages, with:

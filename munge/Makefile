@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.18 2018/02/28 09:20:29 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2020/01/18 21:50:41 jperkin Exp $
 
-DISTNAME=	munge-0.5.13
+DISTNAME=	munge-0.5.14
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GITHUB:=dun/}
 GITHUB_RELEASE=	${DISTNAME}
 EXTRACT_SUFX=	.tar.xz
-LICENSE=	gnu-gpl-v3 AND gnu-lgpl-v3
 
 MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://dun.github.io/munge/
 COMMENT=	Authentication service for creating and validating credentials
+LICENSE=	gnu-gpl-v3
 
 USE_TOOLS+=		perl pkg-config
 GNU_CONFIGURE=		yes
@@ -27,11 +27,16 @@ BUILD_DEFS+=	VARBASE
 RCD_SCRIPTS+=	munge
 
 SUBST_CLASSES+=		init
-SUBST_STAGE.init=	post-build
-SUBST_FILES.init=	${WRKSRC}/src/etc/munge.init
-SUBST_FILES.init+=	${WRKSRC}/src/etc/munge.sysconfig
+SUBST_STAGE.init=	post-patch
+SUBST_FILES.init=	${WRKSRC}/src/etc/munge.sysvinit.init.in
 SUBST_SED.init=		-e 's|USER="munge"|USER="daemon"|g'
 SUBST_SED.init+=	-e 's|GROUP="munge"|GROUP="daemon"|g'
+
+SUBST_CLASSES+=		systemd
+SUBST_STAGE.systemd=	post-patch
+SUBST_FILES.systemd=	${WRKSRC}/src/etc/munge.systemd.service.in
+SUBST_SED.systemd=	-e 's|User=munge|User=daemon|g'
+SUBST_SED.systemd+=	-e 's|Group=munge|Group=daemon|g'
 
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

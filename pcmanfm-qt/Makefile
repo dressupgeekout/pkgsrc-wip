@@ -1,21 +1,31 @@
-# $NetBSD: Makefile,v 1.4 2015/05/30 02:01:35 krytarowski Exp $
+# $NetBSD$
 
-.include "../../wip/liblxqt/Makefile.common"
-
-DISTNAME=	pcmanfm-qt-0.9.0
+DISTNAME=	pcmanfm-qt-0.14.1
 CATEGORIES=	sysutils
+MASTER_SITES=	https://downloads.lxqt.org/downloads/pcmanfm-qt/0.14.1/
+EXTRACT_SUFX=	.tar.xz
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
-COMMENT=	File manager + desktop manager
+MAINTAINER=	voidpin@protonmail.com
+HOMEPAGE=	https://lxqt.org/
+COMMENT=	LXQt pcmanfm Qt frontend
 LICENSE=	gnu-lgpl-v2.1
 
+USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
+USE_LANGUAGES=	c c++
 
-PKGCONFIG_OVERRIDE+=	libfm-qt/libfm-qt.pc.in
+CONFIGURE_DIRS=	build
+CMAKE_ARG_PATH=	..
 
-.include "../../sysutils/menu-cache/buildlink3.mk"
-.include "../../sysutils/libfm/buildlink3.mk"
+pre-configure:
+	${MKDIR} -p ${WRKSRC}/build
+
+TOOL_DEPENDS+=	lxqt-build-tools-[0-9]*:../../wip/lxqt-build-tools
+TOOL_DEPENDS+=	qt5-qttools-[0-9]*:../../x11/qt5-qttools
+DEPENDS+=	lxmenu-data-[0-9]*:../../sysutils/lxmenu-data
+
 .include "../../x11/qt5-qtbase/buildlink3.mk"
-.include "../../x11/qt5-qttools/buildlink3.mk"
 .include "../../x11/qt5-qtx11extras/buildlink3.mk"
+.include "../../wip/liblxqt/buildlink3.mk"
+.include "../../wip/libfm-qt/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

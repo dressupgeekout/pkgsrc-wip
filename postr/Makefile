@@ -8,14 +8,14 @@ EXTRACT_SUFX=	.tar.bz2
 LICENSE=	gnu-gpl-v2
 
 MAINTAINER=	pkgsrc.gnome@gmail.com
-HOMEPAGE=	http://projects.gnome.org/postr/
+HOMEPAGE=	https://projects.gnome.org/postr/
 COMMENT=	GNOME flickr uploader
 
 DEPENDS+=	${PYPKGPREFIX}-twisted-[0-9]*:../../net/py-twisted
 
 USE_LANGUAGES=	# none
 PYDISTUTILSPKG=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-ORBit via py-gnome2, py-gobject, py-elementtree
+PYTHON_VERSIONS_ACCEPTED=	27 # py-ORBit via py-gnome2, py-gobject, py-elementtree
 
 .include "../../databases/py-bsddb3/buildlink3.mk"
 .include "../../devel/pango/buildlink3.mk"

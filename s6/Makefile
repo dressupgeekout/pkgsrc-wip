@@ -1,11 +1,12 @@
 # $NetBSD$
 
-DISTNAME=	s6-2.6.1.1
+DISTNAME=	s6-2.7.2.2
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://skarnet.org/software/s6/
 
 MAINTAINER=	cfkoch@edgebsd.org
-HOMEPAGE=	http://skarnet.org/software/s6/
+HOMEPAGE=	https://skarnet.org/software/s6/
 COMMENT=	The s6 supervision suite
 LICENSE=	isc
 

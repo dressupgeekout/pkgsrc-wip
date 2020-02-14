@@ -7,7 +7,7 @@ MASTER_SITES=	http://xpra.org/src/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://xpra.org/
+HOMEPAGE=	https://xpra.org/
 COMMENT=	screen(1) for X
 LICENSE=	gnu-gpl-v2
 
@@ -17,7 +17,7 @@ DEPENDS+=	${PYPKGPREFIX}-cython>=0.14:../../devel/py-cython
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2
 
 REPLACE_PYTHON+=	cups/xpraforwarder
 REPLACE_PYTHON+=	*/*.py

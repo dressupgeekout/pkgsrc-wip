@@ -1,4 +1,4 @@
-$NetBSD: patch-src_mesa_main_context.c,v 1.3 2015/09/26 08:45:02 tnn Exp $
+$NetBSD: patch-src_mesa_main_context.c,v 1.1 2018/10/07 23:49:31 ryoon Exp $
 
 * Fix exit time segfault of qt5 application with modular xorg
 

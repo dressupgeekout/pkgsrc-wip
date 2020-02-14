@@ -10,7 +10,7 @@ HOMEPAGE=	http://live.gnome.org/Empathy
 COMMENT=	Gnome instant messenger client
 LICENSE=	gnu-gpl-v2
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37
+PYTHON_VERSIONS_ACCEPTED=	27
 
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		gawk gmake gsed intltool msgfmt pkg-config
@@ -27,7 +27,7 @@ CONFIGURE_ARGS+=	--with-ca-file=/etc/ssl/certs/ca-certificates.crt
 BUILDLINK_TRANSFORM+=	rm:-Werror
 
 # with --nonet, xsltproc needs a helping hand finding some dtds
-XSLTPROC_PATH=		${LOCALBASE}/share/doc/dbus
+XSLTPROC_PATH=		${PREFIX}/share/doc/dbus
 
 # notyet
 #CONFIGURE_ARGS+=	--enable-meego
@@ -43,19 +43,19 @@ XSLTPROC_PATH=		${LOCALBASE}/share/doc/dbus
 .include "../../chat/telepathy-farstream/buildlink3.mk"
 .include "../../wip/telepathy-logger/buildlink3.mk"
 .include "../../wip/libfolks/buildlink3.mk"
-.include "../../wip/gcr/buildlink3.mk"
+.include "../../security/gcr/buildlink3.mk"
 BUILDLINK_API_DEPENDS.glib2+=		glib2>=2.37.6
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/glib2/schemas.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../lang/python/application.mk"
-BUILDLINK_API_DEPENDS.enchant+=		enchant>=1.2.0
-.include "../../wip/evolution-data-server/buildlink3.mk"
+.include "../../mail/evolution-data-server/buildlink3.mk"
 .include "../../wip/gnome-keyring/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../sysutils/libnotify/buildlink3.mk"
+BUILDLINK_API_DEPENDS.enchant+=		enchant>=1.2.0
 .include "../../textproc/enchant/buildlink3.mk"
 .include "../../textproc/gnome-doc-utils/buildlink3.mk"
 .include "../../textproc/gtk-doc/buildlink3.mk"

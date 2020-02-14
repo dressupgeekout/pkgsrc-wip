@@ -7,7 +7,7 @@ CATEGORIES=	x11
 MASTER_SITES=	https://launchpad.net/lightdm/1.3/1.3.3/+download/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.freedesktop.org/wiki/Software/LightDM
+HOMEPAGE=	https://www.freedesktop.org/wiki/Software/LightDM
 COMMENT=	Light cross-desktop display manager
 LICENSE=	gnu-gpl-v3
 
@@ -40,23 +40,23 @@ CONF_FILES+=		${EGDIR}/pam.d/lightdm-autologin ${PKG_SYSCONFDIR}/pam.d/lightdm-a
 CONF_FILES+=		${EGDIR}/pam.d/lightdm-greeter ${PKG_SYSCONFDIR}/pam.d/lightdm-greeter
 
 pre-install:
-			cd ${WRKSRC}/data && \
-			${INSTALL_DATA} guest-session.apparmor ${DESTDIR}${EGDIR}/apparmor.d/lightdm-guest-session && \
-			${INSTALL_DATA} org.freedesktop.DisplayManager.conf ${DESTDIR}${EGDIR}/dbus/system.d/org.freedesktop.DisplayManager.conf && \
-			${INSTALL_DATA} lightdm.conf ${DESTDIR}${EGDIR}/lightdm/lightdm.conf && \
-			${INSTALL_DATA} keys.conf ${DESTDIR}${EGDIR}/lightdm/keys.conf && \
-			${INSTALL_DATA} users.conf ${DESTDIR}${EGDIR}/lightdm/users.conf;
-			cd ${WRKSRC}/data/pam && \
-			${INSTALL_DATA} lightdm ${DESTDIR}${EGDIR}/pam.d/lightdm && \
-			${INSTALL_DATA} lightdm-autologin ${DESTDIR}${EGDIR}/pam.d/lightdm-autologin && \
-			${INSTALL_DATA} lightdm-greeter ${DESTDIR}${EGDIR}/pam.d/lightdm-greeter
+	cd ${WRKSRC}/data && \
+		${INSTALL_DATA} guest-session.apparmor ${DESTDIR}${EGDIR}/apparmor.d/lightdm-guest-session && \
+		${INSTALL_DATA} org.freedesktop.DisplayManager.conf ${DESTDIR}${EGDIR}/dbus/system.d/org.freedesktop.DisplayManager.conf && \
+		${INSTALL_DATA} lightdm.conf ${DESTDIR}${EGDIR}/lightdm/lightdm.conf && \
+		${INSTALL_DATA} keys.conf ${DESTDIR}${EGDIR}/lightdm/keys.conf && \
+		${INSTALL_DATA} users.conf ${DESTDIR}${EGDIR}/lightdm/users.conf;
+	cd ${WRKSRC}/data/pam && \
+		${INSTALL_DATA} lightdm ${DESTDIR}${EGDIR}/pam.d/lightdm && \
+		${INSTALL_DATA} lightdm-autologin ${DESTDIR}${EGDIR}/pam.d/lightdm-autologin && \
+		${INSTALL_DATA} lightdm-greeter ${DESTDIR}${EGDIR}/pam.d/lightdm-greeter
 
 post-install:
-			${RM} ${DESTDIR}${PKG_SYSCONFDIR}/apparmor.d/lightdm-guest-session
-			${RM} ${DESTDIR}${PKG_SYSCONFDIR}/dbus-1/system.d/org.freedesktop.DisplayManager.conf
-			${RM} ${DESTDIR}${PKG_SYSCONFDIR}/init/lightdm.conf
-			${RM} -rf ${DESTDIR}${PKG_SYSCONFDIR}/lightdm
-			${RM} ${DESTDIR}${PKG_SYSCONFDIR}/pam.d/lightdm*
+	${RM} ${DESTDIR}${PKG_SYSCONFDIR}/apparmor.d/lightdm-guest-session
+	${RM} ${DESTDIR}${PKG_SYSCONFDIR}/dbus-1/system.d/org.freedesktop.DisplayManager.conf
+	${RM} ${DESTDIR}${PKG_SYSCONFDIR}/init/lightdm.conf
+	${RM} -rf ${DESTDIR}${PKG_SYSCONFDIR}/lightdm
+	${RM} ${DESTDIR}${PKG_SYSCONFDIR}/pam.d/lightdm*
 
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/gobject-introspection/buildlink3.mk"

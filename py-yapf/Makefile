@@ -1,14 +1,12 @@
 # $NetBSD: Makefile,v 1.1 2015/04/23 09:49:45 ahp-nils Exp $
 
-DISTNAME=	yapf-0.16.2
+DISTNAME=	yapf-0.29.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel textproc
-MASTER_SITES=	${MASTER_SITE_GITHUB:=google/}
-GITHUB_PROJECT=	yapf
-GITHUB_TAG=	v${PKGVERSION_NOREV}
+MASTER_SITES=	${MASTER_SITE_PYPI:=y/yapf/}
 
 MAINTAINER=	nils@NetBSD.org
-HOMEPAGE=	https://github.com/google/
+HOMEPAGE=	https://github.com/google/yapf/
 COMMENT=	Python files formatter
 LICENSE=	apache-2.0
 

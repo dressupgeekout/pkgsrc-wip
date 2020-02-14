@@ -1,6 +1,7 @@
 # $NetBSD: Makefile,v 0.3 2018/09/07 20:03:10 andyb Exp $
 
 DISTNAME=	efl-1.21.0
+PKGREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	https://download.enlightenment.org/rel/libs/efl/
 EXTRACT_SUFX=	.tar.xz
@@ -10,7 +11,7 @@ HOMEPAGE=	https://download.enlightenment.org/rel/libs/efl/
 COMMENT=	Enlightenment foundation libraries
 LICENSE=	2-clause-bsd
 
-DEPENDS+= 		xz-[0-9]*:../../archivers/xz
+DEPENDS+=		xz-[0-9]*:../../archivers/xz
 DEPENDS+=		glib2-[0-9]*:../../devel/glib2
 DEPENDS+=		gstreamer1-[0-9]*:../../multimedia/gstreamer1
 DEPENDS+=		LuaJIT2-[0-9]*:../../lang/LuaJIT2
@@ -20,7 +21,7 @@ DEPENDS+=		fribidi-[0-9]*:../../converters/fribidi
 DEPENDS+=		png-[0-9]*:../../graphics/png
 DEPENDS+=		poppler-cpp-[0-9]*:../../print/poppler-cpp
 DEPENDS+=		libspectre-[0-9]*:../../print/libspectre
-DEPENDS+= 		MesaLib-[0-9]*:../../graphics/MesaLib
+DEPENDS+=		MesaLib-[0-9]*:../../graphics/MesaLib
 DEPENDS+=		giflib-[0-9]*:../../graphics/giflib
 DEPENDS+=		tiff-[0-9]*:../../graphics/tiff
 DEPENDS+=		libraw-[0-9]*:../../graphics/libraw
@@ -42,6 +43,7 @@ USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++
 USE_TOOLS=		gmake pkg-config automake autoconf
+LDFLAGS+=		-lcompat
 ICON_THEMES=		yes
 
 .include "../../converters/libiconv/buildlink3.mk"
@@ -51,7 +53,6 @@ ICON_THEMES=		yes
 .include "../../x11/libXcursor/buildlink3.mk"
 .include "../../x11/libXdamage/buildlink3.mk"
 .include "../../x11/libXinerama/buildlink3.mk"
-.include "../../x11/libXp/buildlink3.mk"
 .include "../../x11/libXrandr/buildlink3.mk"
 .include "../../x11/libXrender/buildlink3.mk"
 .include "../../x11/libXtst/buildlink3.mk"

@@ -7,7 +7,7 @@ CATEGORIES=	databases  java
 MASTER_SITES=	http://mirror.cloudera.com/apache//commons/dbcp/binaries/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://commons.apache.org/dbcp/
+HOMEPAGE=	https://commons.apache.org/dbcp/
 COMMENT=	Database Connection Pooling Services
 LICENSE=	apache-2.0
 
@@ -22,7 +22,7 @@ USE_TOOLS+=	pax
 
 USE_JAVA=		yes
 USE_JAVA2=		yes
-PKG_JVMS_ACCEPTED=	sun-jdk6
+PKG_JVMS_ACCEPTED=	sun-jdk7
 
 INSTALLATION_DIRS=	lib/java share/doc/apache-commons-dbcp
 

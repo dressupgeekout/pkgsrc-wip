@@ -7,15 +7,15 @@ MASTER_SITES=	http://www.donhopkins.com/home/micropolis/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.donhopkins.com/home/micropolis/
+HOMEPAGE=	https://www.donhopkins.com/home/micropolis/
 COMMENT=	City-building simulation
 LICENSE=	gnu-gpl-v3
 
 USE_TOOLS+=	bash:run pkg-config
 
-PATCH_SITES=	http://git.zerfleddert.de/micropolis/patches/
-PATCHFILES=	micropolis_git-1530263971-cc31822e4ebe54c0109623ac0c5cdf0e3acad755.patch
-PATCH_DIST_STRIP=       -p1
+PATCH_SITES=		http://git.zerfleddert.de/micropolis/patches/
+PATCHFILES=		micropolis_git-1530263971-cc31822e4ebe54c0109623ac0c5cdf0e3acad755.patch
+PATCH_DIST_STRIP=	-p1
 
 WRKSRC=		${WRKDIR}/micropolis-activity
 

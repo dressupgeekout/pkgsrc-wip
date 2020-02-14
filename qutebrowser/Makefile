@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	qutebrowser-1.5.1
+DISTNAME=	qutebrowser-1.5.2
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=qutebrowser/}
-GITHUB_TAG=	v1.5.1
+GITHUB_TAG=	v1.5.2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://qutebrowser.org/
@@ -21,7 +21,7 @@ DEPENDS+=	${PYPKGPREFIX}-jinja2-[0-9]*:../../textproc/py-jinja2
 DEPENDS+=	${PYPKGPREFIX}-pygments-[0-9]*:../../textproc/py-pygments
 DEPENDS+=	${PYPKGPREFIX}-yaml-[0-9]*:../../textproc/py-yaml
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27 33
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"

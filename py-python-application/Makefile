@@ -6,13 +6,13 @@ CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/python-application/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ag-projects.com/
+HOMEPAGE=	https://ag-projects.com/
 COMMENT=	Basic building blocks for python applications
 LICENSE=	gnu-lgpl-v2
 
 DEPENDS+=	${PYPKGPREFIX}-ZopeInterface-[0-9]*:../../devel/py-ZopeInterface
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 1.4.1
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 1.4.1
 
 USE_LANGUAGES=	# none
 

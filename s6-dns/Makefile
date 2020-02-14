@@ -1,11 +1,12 @@
 # $NetBSD$
 
-DISTNAME=	s6-dns-2.1.0.0
+DISTNAME=	s6-dns-2.3.0.1
+PKGREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	http://www.skarnet.org/software/s6-dns/
 
 MAINTAINER=	cfkoch@edgebsd.org
-HOMEPAGE=	http://www.skarnet.org/software/s6-dns/
+HOMEPAGE=	https://www.skarnet.org/software/s6-dns/
 COMMENT=	Suite of DNS client programs and libraries
 LICENSE=	isc
 

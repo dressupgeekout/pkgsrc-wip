@@ -6,7 +6,7 @@ CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=h/hyperspy/}
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://hyperspy.org/
+HOMEPAGE=	https://hyperspy.org/
 COMMENT=	Multidimensional data analysis toolbox
 LICENSE=	gnu-gpl-v3
 
@@ -16,7 +16,7 @@ DEPENDS+=	${PYPKGPREFIX}-scipy>=0.12.1:../../math/py-scipy
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # as of 0.7.2
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 0.7.2
 
 post-extract:
 	${MV} ${WRKSRC}/bin/hyperspy ${WRKSRC}/bin/hyperspy${PYVERSSUFFIX}

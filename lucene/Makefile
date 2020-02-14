@@ -7,7 +7,7 @@ MASTER_SITES=	http://apache.cyberuse.com/lucene/java/
 EXTRACT_SUFX=	.zip
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://lucene.apache.org/
+HOMEPAGE=	https://lucene.apache.org/
 COMMENT=	Full-text search engine for Java
 LICENSE=	apache-2.0
 
@@ -18,7 +18,7 @@ AUTO_MKDIRS=	yes
 USE_JAVA=	yes
 USE_JAVA2=	yes
 
-PKG_JVMS_ACCEPTED=	sun-jdk6 sun-jdk15
+PKG_JVMS_ACCEPTED=	sun-jdk7
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/*.jar ${DESTDIR}${PREFIX}/lib/java/lucene

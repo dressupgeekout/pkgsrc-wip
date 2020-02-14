@@ -1,13 +1,16 @@
 # $NetBSD: Makefile,v 1.6 2012/10/07 20:11:07 asau Exp $
 
-DISTNAME=		workrave-1.8.5
+DISTNAME=		workrave-1.10.34
 CATEGORIES=		x11
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=workrave/}
+MASTER_SITES=		${MASTER_SITE_GITHUB:=rcaelers/}
+GITHUB_TAG=		v${PKGVERSION_NOREV:C/\./_/g}
 
 MAINTAINER=		bsd@cs.ubc.ca
 HOMEPAGE=		http://www.workrave.org/
 COMMENT=		Wrist break reminder program for prevention of RSI
 LICENSE=		gnu-gpl-v3
+
+PYTHON_VERSIONS_ACCEPTED= 27 # 1.10.1
 
 USE_LIBTOOL=		YES
 USE_TOOLS+=		gmake pkg-config intltool
@@ -29,6 +32,12 @@ EGDIR=			${PREFIX}/share/examples/${PKGBASE}
 CONF_FILES+=		${EGDIR}/sound/events/workrave.soundlist \
 			${PKG_SYSCONFDIR}/sound/events/workrave.soundlist
 
-.include "options.mk"
+DEPENDS+=	${PYPKGPREFIX}-cheetah-[0-9]*:../../devel/py-cheetah
 
+.include "../../x11/gtkmm/buildlink3.mk"
+.include "../../devel/libsigc++/buildlink3.mk"
+.include "../../lang/python/application.mk"
+.include "../../x11/libXtst/buildlink3.mk"
+.include "../../x11/libSM/buildlink3.mk"
+.include "../../devel/glib2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -15,7 +15,7 @@ DEPENDS+=	${PYPKGPREFIX}-cairo-[0-9]*:../../graphics/py-cairo
 USE_PKGLOCALEDIR=		yes
 USE_LANGUAGES=			# none
 BUILD_OPTIONS=			# blank
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2, py-EditObj2
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2, py-EditObj2
 
 #INSTALLATION_DIRS+=	share/doc/${PKGBASE} share/locale/en/LC_MESSAGES/
 #INSTALLATION_DIRS+=	share/locale/fr/LC_MESSAGES share/${PKGBASE}
@@ -36,7 +36,7 @@ do-install:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHONBIN} setup.py install --root=${DESTDIR} --prefix=${PREFIX}
 	${INSTALL_MAN} ${WRKSRC}/manpage/man1/songwrite2.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 
-.include "../../print/evince/buildlink3.mk"
+.include "../../print/evince3/buildlink3.mk"
 DEPENDS+=	timidity-[0-9]*:../../audio/timidity
 DEPENDS+=	tex-latex-[0-9]*:../../print/tex-latex
 .include "../../graphics/cairo/buildlink3.mk"

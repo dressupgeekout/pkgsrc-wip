@@ -1,7 +1,8 @@
 # $NetBSD$
 
-DISTNAME=	mackerel-agent-plugins-0.51.0
+DISTNAME=	mackerel-agent-plugins-0.60.0
 GITHUB_TAG=	v${PKGVERSION_NOREV}
+PKGREVISION=	11
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mackerelio/}
 
@@ -18,7 +19,7 @@ USE_TOOLS+=	gmake perl
 INSTALLATION_DIRS+=	libexec/mackerelagent
 
 do-build:
-	cd ${WRKSRC} && GOPATH=${GOPATH} PATH=${PATH:Q}:${GOPATH}/bin ${MAKE_PROGRAM} build
+	cd ${WRKSRC} && ${MAKE_PROGRAM} build
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/build/${LOWER_OPSYS}/${GOARCH}/* \

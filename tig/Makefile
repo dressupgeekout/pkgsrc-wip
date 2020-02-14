@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.15 2017/01/04 18:16:32 roy Exp $
 
-DISTNAME=	tig-2.4.0
+DISTNAME=	tig-2.5.0
 CATEGORIES=	devel scm
 MASTER_SITES=	${MASTER_SITE_GITHUB:=jonas/}
 GITHUB_RELEASE=	${DISTNAME}
@@ -10,8 +10,8 @@ HOMEPAGE=	https://jonas.github.io/tig/
 COMMENT=	Ncurses-based GIT repository tool
 LICENSE=	gnu-gpl-v2
 
-BUILD_DEPENDS+=	asciidoc-[0-9]*:../../textproc/asciidoc
-BUILD_DEPENDS+=	xmlto-[0-9]*:../../textproc/xmlto
+TOOL_DEPENDS+=	asciidoc-[0-9]*:../../textproc/asciidoc
+TOOL_DEPENDS+=	xmlto-[0-9]*:../../textproc/xmlto
 DEPENDS+=	git-base-[0-9]*:../../devel/git-base
 
 GNU_CONFIGURE=	yes
@@ -39,12 +39,15 @@ CFLAGS+=	-D_BSD_SOURCE
 
 BUILD_TARGET=	all doc
 INSTALL_TARGET=	install install-doc
+TEST_TARGET=	test
 
 post-install:
 	${INSTALL_DATA_DIR} ${DESTDIR}/${EGDIR} && \
 	${INSTALL_DATA} ${WRKSRC}/tigrc ${DESTDIR}/${EGDIR}
 
-.include "options.mk"
+USE_CURSES=		getsyx
 
 .include "../../converters/libiconv/buildlink3.mk"
+.include "../../devel/readline/buildlink3.mk"
+.include "../../mk/curses.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

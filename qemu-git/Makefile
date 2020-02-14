@@ -66,7 +66,6 @@ NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-moxie
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-or1k
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-ppc
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-ppc64
-NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-ppcemb
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-s390x
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-sh4
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-sh4eb
@@ -91,14 +90,14 @@ UE_ARCHS+=		sparc64 x86_64 microblazeel s390x unicore32
 .if ${OPSYS} == "NetBSD"
 USER_EMUL=		i386 x86_64 sparc sparc64
 PLIST.nbd=		YES
-.elif !empty(OPSYS:M*BSD) || !empty(OPSYS:MDragonFly)
+.elif !empty(OPSYS:M*BSD) || (${OPSYS} == DragonFly)
 USER_EMUL=		i386 x86_64 sparc sparc64
 PLIST.nbd=		YES
-.elif !empty(OPSYS:MDarwin)
+.elif ${OPSYS} == Darwin
 USER_EMUL=
 CONFIGURE_ARGS+=	--disable-bsd-user
 PLIST.nbd=		YES
-.elif !empty(OPSYS:MLinux)
+.elif ${OPSYS} == Linux
 USER_EMUL=		${UE_ARCHS}
 PLIST.nbd=		YES
 PLIST.ivshmem=		YES
@@ -121,7 +120,7 @@ post-install:
 .include "../../wip/mk/git-package.mk"
 
 # On Darwin, qemu uses Cocoa and CoreAudio
-.if empty(OPSYS:MDarwin)
+.if ${OPSYS} != Darwin
 .include "../../mk/oss.buildlink3.mk"
 .endif
 .include "../../archivers/lzo/buildlink3.mk"

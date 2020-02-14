@@ -7,7 +7,7 @@ MASTER_SITES=	http://download.reinteract.org/sources/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://www.reinteract.org/
+HOMEPAGE=	https://www.reinteract.org/
 COMMENT=	Reinteract is a system for interactive experimentation with Python
 LICENSE=	2-clause-bsd
 
@@ -18,7 +18,7 @@ GNU_CONFIGURE=	yes
 
 REPLACE_PYTHON+=		bin/reinteract.in
 PY_PATCHPLIST=			yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gobject
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gobject
 
 .include "../../devel/py-gobject/buildlink3.mk"
 .include "../../devel/pango/buildlink3.mk"

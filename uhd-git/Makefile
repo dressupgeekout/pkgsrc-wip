@@ -74,7 +74,7 @@ post-patch:
 	done)
 
 do-configure:
-	(cd $(WRKSRC) ; \
+	(cd ${WRKSRC} ; \
 	cmake \
 	-DCMAKE_BUILD_WITH_INSTALL_RPATH=TRUE \
 	-DCMAKE_INSTALL_PREFIX=${PREFIX} \
@@ -85,7 +85,7 @@ do-configure:
 post-install:
 	for i in firmware fpga images ; do \
 	  ${CP} -r ${WRKSRC}/uhd-$$i/* ${DESTDIR}${PREFIX}/share/uhd/$$i/;\
-	done	
+	done
 
 .include "../../lang/python/application.mk"
 .include "../../devel/boost-libs/buildlink3.mk"

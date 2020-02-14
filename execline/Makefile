@@ -1,12 +1,12 @@
 # $NetBSD$
 
-DISTNAME=	execline-2.3.0.3
+DISTNAME=	execline-2.5.0.1
 PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://skarnet.org/software/execline/
 
 MAINTAINER=	cfkoch@edgebsd.org
-HOMEPAGE=	http://skarnet.org/software/execline/
+HOMEPAGE=	https://skarnet.org/software/execline/
 COMMENT=	The execline scripting language
 LICENSE=	isc
 

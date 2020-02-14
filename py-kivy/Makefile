@@ -8,7 +8,7 @@ CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=K/Kivy/}
 
 MAINTAINER=	kamel.derouiche@gmail.com
-HOMEPAGE=	http://kivy.org/#home
+HOMEPAGE=	https://kivy.org/#home
 COMMENT=	Innovative user interfaces made easy
 LICENSE=	gnu-lgpl-v3
 
@@ -19,7 +19,7 @@ DEPENDS+=	${PYPKGPREFIX}-enchant>=1.6.5:../../textproc/py-enchant
 USE_LANGUAGES=	c
 
 PYDISTUTILSPKG=		yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-imaging, py-gstreamer0.10, py-gobject
+PYTHON_VERSIONS_ACCEPTED=	27 # py-imaging, py-gstreamer0.10, py-gobject
 
 .include "../../devel/py-cython/buildlink3.mk"
 .include "../../devel/py-game/buildlink3.mk"

@@ -1,12 +1,13 @@
 # $NetBSD: Makefile,v 1.3 2012/12/29 14:54:37 othyro Exp $
 
-DISTNAME=	tipp10_source_v2-1-0
-EXTRACT_SUFFIX=	.zip
-DISTFILES=	${DISTNAME}${EXTRACT_SUFFIX}
-PKGVERSION=	2.1.0
-PKGNAME=	tipp10-${PKGVERSION}
+DISTNAME=	tipp10_2.1.0.orig
+PKGNAME=	${DISTNAME:S/_/-/:S/.orig//}
 CATEGORIES=	games
-MASTER_SITES=	http://2pktfkt.de/pkgsrc/
+# \todo: https://www.tipp10.com/de/download/getfile/3/ is the
+# real source. We need a webbrowser user-agent string to get
+# this, otherwise we get a 0 length gzip file. This is why we
+# are using Debian as a source.
+MASTER_SITES=	${MASTER_SITE_DEBIAN:=pool/main/t/tipp10/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.tipp10.com/
@@ -15,17 +16,23 @@ LICENSE=	gnu-gpl-v2
 
 USE_LANGUAGES+=	c++
 
+WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
+
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	pre-configure
 SUBST_MESSAGE.paths=	Fixing data directory paths
 SUBST_FILES.paths=	main.cpp sql/connection.h sql/lessontablesql.cpp \
-    			widget/downloaddialog.cpp widget/fingerwidget.cpp widget/helpbrowser.cpp \
-			widget/illustrationdialog.cpp widget/keyboard.cpp widget/lessonresult.cpp \
-			widget/licensedialog.cpp widget/mainwindow.cpp widget/numpad.cpp \
-			widget/progressionwidget.cpp widget/regexpdialog.cpp widget/settingsdialog.cpp \
-			widget/settingsdialogx.cpp widget/settingspages.cpp widget/startwidget.cpp \
-			widget/tickerboard.cpp widget/trainingwidget.cpp widget/txtmessagedialog.cpp \
-			widget/updatedialog.cpp
+			widget/downloaddialog.cpp widget/fingerwidget.cpp \
+			widget/helpbrowser.cpp \
+			widget/illustrationdialog.cpp \
+			widget/keyboard.cpp widget/lessonresult.cpp \
+			widget/licensedialog.cpp widget/mainwindow.cpp \
+			widget/numpad.cpp widget/progressionwidget.cpp \
+			widget/regexpdialog.cpp widget/settingsdialog.cpp \
+			widget/settingsdialogx.cpp widget/settingspages.cpp \
+			widget/startwidget.cpp \
+			widget/tickerboard.cpp widget/trainingwidget.cpp \
+			widget/txtmessagedialog.cpp widget/updatedialog.cpp
 SUBST_SED.paths=	-e 's,QCoreApplication::applicationDirPath(),QString("${PREFIX}/share/tipp10"),g'
 
 INSTALLATION_DIRS+=	bin share/tipp10/help/de/content
@@ -33,7 +40,7 @@ INSTALLATION_DIRS+=	share/tipp10/help/de/img share/tipp10/help/en/content
 INSTALLATION_DIRS+=	share/tipp10/help/en/img share/tipp10/img
 
 do-configure:
-	cd ${WRKSRC}; ${SETENV} ${CONFIGURE_ENV} ${QTDIR}/bin/qmake
+	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${QTDIR}/bin/qmake
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/tipp10 ${DESTDIR}${PREFIX}/bin/tipp10

@@ -7,7 +7,7 @@ CATEGORIES=	math
 MASTER_SITES=	http://www.stecf.org/software/PYTHONtools/astroasciidata/source/
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://www.stecf.org/software/PYTHONtools/astroasciidata/
+HOMEPAGE=	https://www.stecf.org/software/PYTHONtools/astroasciidata/
 COMMENT=	Asciidata , to handle (read/modify/write) ASCII tables
 LICENSE=	gnu-lgpl-v3
 
@@ -15,7 +15,7 @@ DEPENDS+=	${PYPKGPREFIX}-fits>=2.3.1:../../graphics/py-fits
 
 USE_LANGUAGES=	# none
 PYDISTUTILSPKG=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-numarray
+PYTHON_VERSIONS_ACCEPTED=	27 # py-numarray
 
 .include "../../lang/python/extension.mk"
 .include "../../math/py-numpy/buildlink3.mk"

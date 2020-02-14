@@ -22,11 +22,11 @@ USE_LIBTOOL=			YES
 PKGCONFIG_OVERRIDE+=		bonobo/libpanel-applet/libpanelapplet-2.0.pc.in
 PKGCONFIG_OVERRIDE+=		libpanel-applet/libpanelapplet-3.0.pc.in
 CONFIGURE_ENV+=			PYTHON=${PYTHONBIN}
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-ORBit via py-gnome2
+PYTHON_VERSIONS_ACCEPTED=	27 # py-ORBit via py-gnome2
 
 
 # Horrible hack because the package uses libgweather wrong
-# error "gweather-timezone.h must not be included individually, 
+# error "gweather-timezone.h must not be included individually,
 # include gweather.h instead"
 CFLAGS+=	-DGWEATHER_COMPILATION
 
@@ -85,7 +85,7 @@ SUBST_SED.noundef=	-e 's/ -no-undefined//g'
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/librsvg/buildlink3.mk"
 .if !empty(PKG_OPTIONS:Mevolution)
-.include "../../wip/evolution-data-server/buildlink3.mk"
+.include "../../mail/evolution-data-server/buildlink3.mk"
 .endif
 .include "../../net/ORBit2/buildlink3.mk"
 # pkgsrc policykit is too old

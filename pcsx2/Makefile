@@ -5,9 +5,10 @@ DISTNAME=	v1.0
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=PCSX2/}
 DIST_SUBDIR=	${GITHUB_PROJECT}
+PKGREVISION=	1
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://pcsx2.net/
+HOMEPAGE=	https://pcsx2.net/
 COMMENT=	Playstation 2 Emulator
 LICENSE=	gnu-gpl-v3 AND modified-bsd AND mit AND gnu-gpl-v2 AND gnu-lgpl-v2.1 AND gnu-lgpl-v3 AND public-domain AND sgi-free-software-b-v2.0
 
@@ -24,7 +25,7 @@ CMAKE_ARGS+=	-DX11_ICE_INCLUDE_PATH=${BUILDLINK_PREFIX.libICE}/include/X11/ICE
 
 .include "../../mk/bsd.prefs.mk"
 
-.if $(OPSYS) != "Linux"
+.if ${OPSYS} != "Linux"
 BUILDLINK_TRANSFORM=	rm:-ldl
 CMAKE_ARGS+=		-Dlibdl=NO
 .else

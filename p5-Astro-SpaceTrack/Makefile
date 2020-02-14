@@ -1,12 +1,12 @@
 # $NetBSD: Makefile,v 1.3 2015/03/11 15:06:47 uccwen Exp $
 
-DISTNAME=	Astro-SpaceTrack-0.116
+DISTNAME=	Astro-SpaceTrack-0.128
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	geography
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Astro/}
 
-MAINTAINER=	wenheping@gmail.com
-HOMEPAGE=	http://search.cpan.org/dist/Astro-SpaceTrack
+MAINTAINER=	wen@NetBSD.org
+HOMEPAGE=	https://metacpan.org/release/Astro-SpaceTrack
 COMMENT=	Retrieve orbital data from www.space-track.org
 LICENSE=	${PERL5_LICENSE}
 

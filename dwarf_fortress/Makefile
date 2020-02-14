@@ -1,20 +1,20 @@
 # $NetBSD$
 
-DISTNAME=	df_44_10_linux
-PKGNAME=	dwarf_fortress-44.10
+DISTNAME=	df_44_12_linux
+PKGNAME=	dwarf_fortress-44.12
 CATEGORIES=	games
 MASTER_SITES=	http://www.bay12games.com/dwarves/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.bay12games.com/dwarves/
+HOMEPAGE=	https://www.bay12games.com/dwarves/
 COMMENT=	Single-player fantasy game in a randomly generated, persistent world
 LICENSE=	unlicense
 
 #UNPRIVILEGED=	yes
 
 EMUL_PLATFORMS=		linux-i386 linux-x86_64
-EMUL_MODULES.linux=	base compat expat gtk2 png libSDL glx x11 locale
+EMUL_MODULES.linux=	base compat expat gtk2 png libSDL drm glx x11 locale
 
 NO_BUILD=	yes
 USE_TOOLS+=	pax

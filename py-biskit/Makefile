@@ -7,7 +7,7 @@ CATEGORIES=	biology python
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=biskit/}
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://biskit.pasteur.fr/
+HOMEPAGE=	https://biskit.pasteur.fr/
 COMMENT=	Python platform for structural bioinformatics
 LICENSE=	gnu-gpl-v2
 
@@ -22,7 +22,7 @@ USE_LANGUAGES=	# none
 REPLACE_PERL+=		Biskit/data/spectrum.pl
 REPLACE_PYTHON+=	scripts/Biskit/bis2.6 Biskit/data/pdb/remediator_python.1.56.080328.py
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-Numeric
+PYTHON_VERSIONS_ACCEPTED=	27 # py-Numeric
 
 post-extract:
 	${MV} ${WRKSRC}/scripts/Biskit/bis.py ${WRKSRC}/scripts/Biskit/bis${PYVERSSUFFIX}

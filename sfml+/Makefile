@@ -1,17 +1,17 @@
 # $NetBSD: Makefile,v 1.6 2015/02/24 17:25:10 blef Exp $
 
-DISTNAME=	SFML-2.4.2-sources
-PKGNAME=	sfml+-2.4.2
+DISTNAME=	SFML-2.5.1-sources
+PKGNAME=	sfml+-2.5.1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.sfml-dev.org/files/
 EXTRACT_SUFX=	.zip
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.sfml-dev.org/
+HOMEPAGE=	https://www.sfml-dev.org/
 COMMENT=	Free multimedia C++ API
 LICENSE=	zlib
 
-WRKSRC=			${WRKDIR}/SFML-2.4.2
+WRKSRC=			${WRKDIR}/SFML-2.5.1
 USE_CMAKE=		yes
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		rm

@@ -7,7 +7,7 @@ CATEGORIES=	www
 MASTER_SITES=	http://bitbucket.org/ariya/phantomjs/downloads/
 EXTRACT_SUFX=	.zip
 
-MAINTAINER=	filip@joyent.com
+MAINTAINER=	fhajny@NetBSD.org
 HOMEPAGE=	http://www.phantomjs.org/
 COMMENT=	Headless WebKit with JavaScript API
 LICENSE=	modified-bsd
@@ -36,7 +36,7 @@ post-extract:
 	${INSTALL_DATA} ${FILESDIR}/qplatformdefs.h ${WRKSRC}/src/qt/mkspecs/solaris-g++
 
 pre-configure:
-	sed	-e 's:@LOCALBASE@:${LOCALBASE}:g' \
+	sed	-e 's:@LOCALBASE@:${PREFIX}:g' \
 		-e 's:@X11BASE@:${X11BASE}:g' \
 		-e 's:@X11PREFIX@:${X11PREFIX}:g' \
 		-e 's:@LIBTOOL@:${LIBTOOL:Q}:g' \

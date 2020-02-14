@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.2 2015/02/19 18:01:20 jihbed Exp $
 
-DISTNAME=	cinnamon-screensaver-3.8.1
+DISTNAME=	cinnamon-screensaver-4.0.3
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=linuxmint/}
 GITHUB_PROJECT=	cinnamon-screensaver
@@ -22,7 +22,7 @@ PLIST_VARS+=	pam
 .include "../../mk/bsd.prefs.mk"
 
 .if ${OPSYS} == "Darwin" || ${OPSYS} == "SunOS"
-CONFIGURE_ARGS+=        --disable-pam
+CONFIGURE_ARGS+=	--disable-pam
 .else
 PLIST.pam=		yes
 CONFIGURE_ARGS+=	--with-pam-prefix=/etc/pam.d \

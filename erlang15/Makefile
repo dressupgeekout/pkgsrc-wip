@@ -7,14 +7,14 @@ CATEGORIES=		lang
 MASTER_SITES=		http://www.erlang.org/download/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.erlang.org/
+HOMEPAGE=		https://www.erlang.org/
 COMMENT=		Concurrent functional programming language
 LICENSE=		erlang-public-license
 
 CONFLICTS+=		erlang-[0-9]*
 
 DIST_SUBDIR=		erlang
-WRKSRC=			$(WRKDIR)/otp_src_${DIST_VERSION_MAJOR}
+WRKSRC=			${WRKDIR}/otp_src_${DIST_VERSION_MAJOR}
 
 MAKE_JOBS_SAFE=		no
 
@@ -32,7 +32,7 @@ MAKE_ENV+=		DESTDIR=${DESTDIR}
 
 REPLACE_INTERPRETER+=	escript
 REPLACE.escript.old=	.*escript
-REPLACE.escript.new=	${LOCALBASE}/bin/escript
+REPLACE.escript.new=	${PREFIX}/bin/escript
 REPLACE_FILES.escript=	\
 	lib/reltool/examples/display_args \
 	lib/reltool/examples/mnesia_core_dump_viewer \

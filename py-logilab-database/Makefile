@@ -6,12 +6,12 @@ CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_PYPI:=l/logilab-database/}
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://www.logilab.org/project/logilab-database
+HOMEPAGE=	https://www.logilab.org/project/logilab-database
 COMMENT=	Logilab utilities for database manipulation
 LICENSE=	gnu-lgpl-v2.1
 
 USE_LANGUAGES=	# none
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-mxDateTime
+PYTHON_VERSIONS_ACCEPTED=	27 # py-mxDateTime
 
 .include "options.mk"
 

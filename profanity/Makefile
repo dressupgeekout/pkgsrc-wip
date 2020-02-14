@@ -1,12 +1,11 @@
 # $NetBSD$
 
-DISTNAME=	profanity-0.5.1
-PKGREVISION=	2
+DISTNAME=	profanity-0.7.1
 CATEGORIES=	chat
-MASTER_SITES=	http://www.profanity.im/
+MASTER_SITES=	http://profanity-im.github.io/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.profanity.im/
+HOMEPAGE=	https://profanity-im.github.io/
 COMMENT=	Console based XMPP client inspired by irssi
 LICENSE=	gnu-gpl-v3
 
@@ -16,14 +15,20 @@ AUTOCONF_REQD=	2.69
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config
 
+CONFIGURE_ARGS+=	--enable-plugins 	\
+			--enable-c-plugins	\
+			--enable-python-plugins	\
+			--enable-omemo
+
 pre-configure:
-		cd ${WRKSRC} && autoconf
+	cd ${WRKSRC} && autoconf
 
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/libuuid/buildlink3.mk"
 .include "../../devel/readline/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libmesode+=	libmesode>=0.9.1
 .include "../../wip/libmesode/buildlink3.mk"
+.include "../../wip/libsignal-protocol-c/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../lang/python/pyversion.mk"

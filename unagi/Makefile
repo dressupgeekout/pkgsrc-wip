@@ -21,15 +21,15 @@ CONF_FILES+=		${EGDIR}/unagi.conf ${PKG_SYSCONFDIR}/xdg/unagi.conf
 
 .include "options.mk"
 
-.if $(OPSYS) != "Linux"
+.if ${OPSYS} != "Linux"
 BUILDLINK_TRANSFORM=	rm:-ldl
 .endif
 
 post-install:
-		cd ${WRKSRC} && \
-			${INSTALL_DATA} unagi.conf \
-				${DESTDIR}${PREFIX}/${EGDIR}/unagi.conf
-		${RM} ${DESTDIR}${PKG_SYSCONFDIR}/xdg/unagi.conf
+	cd ${WRKSRC} && \
+		${INSTALL_DATA} unagi.conf \
+			${DESTDIR}${PREFIX}/${EGDIR}/unagi.conf
+	${RM} ${DESTDIR}${PKG_SYSCONFDIR}/xdg/unagi.conf
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../x11/xorgproto/buildlink3.mk"

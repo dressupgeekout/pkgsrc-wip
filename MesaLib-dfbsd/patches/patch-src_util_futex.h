@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-src_util_futex.h,v 1.1 2018/10/07 23:49:31 ryoon Exp $
 
 Implement futex_wake() and futex_wait() via _umtx_op()
 

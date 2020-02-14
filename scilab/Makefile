@@ -7,7 +7,7 @@ CATEGORIES=	math
 MASTER_SITES=	http://www.scilab.org/download/5.5.2/
 
 MAINTAINER=	dmcmahill@NetBSD.org
-HOMEPAGE=	http://www.scilab.org/
+HOMEPAGE=	https://www.scilab.org/
 COMMENT=	High-level scientific math programming environment with graphics
 LICENSE=	cecill-2.1 AND modified-bsd
 
@@ -38,7 +38,7 @@ CONFIGURE_ENV+=		FC_LDFLAGS=${X11_LDFLAGS:Q}\ ${COMPILER_RPATH_FLAG}${BUILDLINK_
 # override HOME to avoid picking up a bad ${HOME}/.scilab during the build
 MAKE_ENV+=		HOME=${WRKSRC}
 MAKE_ENV+=		PVM_ROOT=${PVM_ROOT:Q}
-CONFIGURE_ENV+=		LOCALBASE=${LOCALBASE}
+CONFIGURE_ENV+=		LOCALBASE=${PREFIX}
 
 # FIXME -- this ugly hack will go away on newer versions of scilab where the build
 # system has been improved significantly see:
@@ -46,11 +46,11 @@ CONFIGURE_ENV+=		LOCALBASE=${LOCALBASE}
 #   scilab-4.1/routines/os_specific/getarg.c
 #
 .include "../../mk/compiler.mk"
-.if !empty(FC:Mgfortran) || (defined(PKGSRC_FORTRAN) && !empty(PKGSRC_FORTRAN:Mg95))
+.if (${FC} == gfortran) || (defined(PKGSRC_FORTRAN) && (${PKGSRC_FORTRAN} == g95))
 CFLAGS+=		-DG95_FORTRAN=1
 .endif
 
-PVM_ROOT?=		${LOCALBASE}/pvm3
+PVM_ROOT?=		${PREFIX}/pvm3
 CONFIGURE_ENV+=		PVM_ROOT=${PVM_ROOT:Q}
 CONFIGURE_ENV+=		X11BASE=${X11BASE}
 PLIST_SUBST+=		SCIBASE=${SCIBASE:Q}
@@ -110,7 +110,7 @@ post-install:
 	${RM} -f ${DESTDIR}${PREFIX}/lib/${SCIBASE}/util/scidem.orig
 	${RM} -f ${DESTDIR}${PREFIX}/lib/${SCIBASE}/util/scidoc.orig
 	${RM} -f ${DESTDIR}${PREFIX}/lib/${SCIBASE}/libtool
-	${LN} -s ${LOCALBASE}/bin/libtool ${DESTDIR}${PREFIX}/lib/${SCIBASE}/libtool
+	${LN} -s ${PREFIX}/bin/libtool ${DESTDIR}${PREFIX}/lib/${SCIBASE}/libtool
 	${RM} -f ${DESTDIR}${PREFIX}/lib/${SCIBASE}/bin/dold
 	${RM} -f ${DESTDIR}${PREFIX}/lib/${SCIBASE}/config/*.subst.sav
 	${RM} -f ${DESTDIR}${PREFIX}/lib/${SCIBASE}/config/config.guess

@@ -6,7 +6,7 @@ CATEGORIES=	net
 MASTER_SITES=	http://download.ag-projects.com/BlinkQt/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ag-projects.com/blink-products-283
+HOMEPAGE=	https://ag-projects.com/blink-products-283
 COMMENT=	Qt version of Blink, a state of the art, easy to use SIP client
 LICENSE=	gnu-gpl-v3
 
@@ -22,7 +22,7 @@ USE_LANGUAGES=	c
 REPLACE_PYTHON+=		resources/chat/styles/Smooth\ Operator/test/view.py
 REPLACE_PYTHON+=		resources/chat/styles/Stockholm/test/view.py
 PY_PATCHPLIST=			yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-python-application, py-python-gnutls
+PYTHON_VERSIONS_ACCEPTED=	27 # py-python-application, py-python-gnutls
 
 post-install:
 	${MV} ${DESTDIR}${PREFIX}/bin/blink \

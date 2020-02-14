@@ -7,7 +7,7 @@ CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=A/Astropysics/}
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://www.physics.uci.edu/~etolleru/software.html#astropysics
+HOMEPAGE=	https://www.physics.uci.edu/~etolleru/software.html#astropysics
 COMMENT=	Astrophysics libraries for Python
 LICENSE=	apache-2.0
 
@@ -18,7 +18,7 @@ DEPENDS+=	${PYPKGPREFIX}-scipy>=0.7.0:../../math/py-scipy
 
 EGG_NAME=	${DISTNAME:S/-r596//}0
 USE_LANGUAGES=	# none
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # as of 0.1dev-r596
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 0.1dev-r596
 
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../lang/python/egg.mk"
