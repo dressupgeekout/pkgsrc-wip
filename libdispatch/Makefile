@@ -11,6 +11,10 @@ HOMEPAGE=	https://apple.github.io/swift-corelibs-libdispatch/
 COMMENT=	The libdispatch project, for concurrency on multicore hardware
 LICENSE=	apache
 
+PKGSRC_COMPILER=	clang
+
 USE_CMAKE=	yes
+
+USE_LANGUAGES+=	c c++
 
 .include "../../mk/bsd.pkg.mk"

@@ -1,0 +1,9 @@
+--- ./CMakeLists.txt.orig	2020-02-28 15:55:15.007342326 -0800
++++ ./CMakeLists.txt	2020-02-28 15:55:23.429358108 -0800
+@@ -1,5 +1,5 @@
+ 
+-cmake_minimum_required(VERSION 3.15.1)
++cmake_minimum_required(VERSION 3.12.2)
+ 
+ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
+ 
