@@ -5,9 +5,11 @@ CATEGORIES=	games
 
 HG_REPOSITORIES=	ryzom-core
 #HG_REPOSITORIES+=	ryzom-data
-#HG_REPO.ryzom-core=	https://bitbucket.org/ryzom/ryzomcore
-HG_REPO.ryzom-core=	/home/charlotte/devel/ryzomcore
+HG_REPO.ryzom-core=	https://bitbucket.org/ryzom/ryzomcore
+#HG_REPO.ryzom-data=	https://bitbucket.org/ryzom/ryzomdata
+#HG_REPO.ryzom-core=	/home/charlotte/devel/ryzomcore
 HG_TAG.ryzom-core=	ryzomcore/v0.12.0
+LICENSE=		mit # XXX FIXME
 
 WRKSRC=		${WRKDIR}/ryzom-core/code/build
 BUILD_DIRS=	build
