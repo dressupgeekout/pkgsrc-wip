@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.1 2015/08/19 19:06:08 yhardy Exp $
 
-DISTNAME=	dxx-rebirth_20191018-src
-PKGNAME=	d2x-rebirth-20191018
+DISTNAME=	dxx-rebirth_20200630-src
+PKGNAME=	d2x-rebirth-20200630
 CATEGORIES=	games
 MASTER_SITES=	https://www.dxx-rebirth.com/download/dxx/rebirth/
 EXTRACT_SUFX=	.tar.xz
@@ -37,5 +37,6 @@ do-install:
 .include "../../devel/SDL/buildlink3.mk"
 .include "../../devel/physfs/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
+.include "../../graphics/SDL_image/buildlink3.mk"
 .include "../../lang/python/pyversion.mk"
 .include "../../mk/bsd.pkg.mk"
