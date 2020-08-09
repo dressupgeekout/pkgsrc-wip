@@ -4,5 +4,7 @@ SHA1 (zesarux-8.2-21052020.tar.gz) = 00664609d03bd4725b279a303bc3285042f8e173
 RMD160 (zesarux-8.2-21052020.tar.gz) = a24d487716c9c0adbc1aaa0dfff30ae86cc29b71
 SHA512 (zesarux-8.2-21052020.tar.gz) = 6d91b4ff4a7649a3c6aaa992a7342f68016bd6159fde86a71910613768dc4b1484cbf9354ecb697e24d6d8b805e57021a9aaed5e5aceec628eb88173486635c4
 Size (zesarux-8.2-21052020.tar.gz) = 31969551 bytes
+SHA1 (patch-src_configure) = 48b63acd4fa11edfcf74b33ca76fb83895184ad3
+SHA1 (patch-src_generate_install_sh.sh) = 34149a4b7a2fd9ac1f9d2bbd7bc092c5e77ef850
 SHA1 (patch-src_menu.h) = c0149243c8e806e29cba81d7525ac6576c471cfd
 SHA1 (patch-src_network.h) = d8a56d63655b27901fa437a3e1d3cc6f2ba5d2b7

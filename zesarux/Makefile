@@ -13,8 +13,21 @@ LICENSE=	apache-2.0 # XXX
 
 EXTRACT_USING=	gtar
 
+USE_TOOLS+=	bash
 CONFIG_SHELL=	bash
 HAS_CONFIGURE=	yes
+
+REPLACE_BASH+=	configure
+REPLACE_BASH+=	speech_filters/espeak_linux_filter.sh
+REPLACE_BASH+=	speech_filters/festival_filter.sh
+REPLACE_BASH+=	speech_filters/festival_filter_alsa.sh
+REPLACE_BASH+=	speech_filters/festival_filter_pulse.sh
+REPLACE_BASH+=	speech_filters/festival_spanish_filter.sh
+REPLACE_BASH+=	speech_filters/festival_wave_filter.sh
+REPLACE_BASH+=	speech_filters/macos_say_filter.sh
+REPLACE_BASH+=	speech_filters/stop_espeak_linux_filter.sh
+REPLACE_BASH+=	speech_filters/stop_festival_filter.sh
+REPLACE_BASH+=	speech_filters/stop_macos_say_filter.sh
 
 WRKSRC=	${WRKDIR}/${GITHUB_PROJECT}-${GITHUB_TAG}/src
 

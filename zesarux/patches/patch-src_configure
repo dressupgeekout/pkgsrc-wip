@@ -1,0 +1,11 @@
+--- configure.orig	2020-08-09 15:13:47.825821460 -0700
++++ configure	2020-08-09 15:13:58.579928216 -0700
+@@ -1619,7 +1619,7 @@
+ 
+ install: all
+ 	./generate_install_sh.sh
+-	./install.sh
++	DESTDIR=\$(DESTDIR) ./install.sh
+ 
+ #utilities: \$(UTILITIES)
+ utilities: smpatap sp_z80 tapabin leezx81 file_to_eprom bmp_to_prism_4_planar bmp_to_sprite spedtotxt bin_sprite_to_c 
