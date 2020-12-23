@@ -27,7 +27,7 @@ USE_LANGUAGES=	c c++
 #.include "../../audio/libvorbis/buildlink3.mk"
 #.include "../../audio/openal-soft/buildlink3.mk"
 #.include "../../devel/SDL2/buildlink3.mk"
-#.include "../../devel/glib2/buildlink3.mk"
+.include "../../devel/glib2/buildlink3.mk"
 #.include "../../devel/readline/buildlink3.mk"
 #.include "../../devel/zlib/buildlink3.mk"
 #.include "../../graphics/freetype2/buildlink3.mk"
