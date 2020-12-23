@@ -4,4 +4,4 @@ SHA1 (zrythm-1.0.0-alpha.6.0.1.tar.xz) = 8aae245135a65208fb8059cc3a64e91d544a438
 RMD160 (zrythm-1.0.0-alpha.6.0.1.tar.xz) = b7ad0c8aa1bf43a302ee5a6098594c7d69bce6a8
 SHA512 (zrythm-1.0.0-alpha.6.0.1.tar.xz) = 1b5bfe364daed231146e5662a3f5e8eec37154e6e2e1a3686513e7cc12e96edc79331d3661d0a7d8bae8723cb176d10766dbf3a9077dbe93bc2ef676d512601c
 Size (zrythm-1.0.0-alpha.6.0.1.tar.xz) = 11240156 bytes
-SHA1 (patch-meson.build) = e1e31990e91415cd53320e671d89ae79b64d1163
+SHA1 (patch-meson.build) = cc7b57e36890e4e74ceeaa0120c3a0c70cdb6612

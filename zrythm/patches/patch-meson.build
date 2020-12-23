@@ -1,6 +1,5 @@
-Add NetBSD support.
 --- meson.build.orig	2020-12-12 12:11:34.042032700 -0800
-+++ meson.build	2020-12-22 18:17:20.233086502 -0800
++++ meson.build	2020-12-22 18:42:21.787942427 -0800
 @@ -96,6 +96,7 @@
  os_darwin = false
  os_gnu = false
@@ -74,3 +73,24 @@ Add NetBSD support.
        cdata.set('HAVE_CARLA_BRIDGE_' + bridge_type.underscorify().to_upper(), 1)
        install_data (
          carla_bridge.full_path(),
+@@ -953,7 +956,6 @@
+   dependency (
+     'rubberband'),
+   dependency ('libpcre'),
+-  cc.find_library ('dl', static: all_static),
+   lv2_dep,
+   chromaprint_dep,
+   fftw3_deps,
+@@ -963,6 +965,12 @@
+   libm,
+ ]
+ 
++if not os_netbsd
++  zrythm_deps += [
++    cc.find_library ('dl', static: all_static)
++  ]
++endif
++
+ if all_static
+   zrythm_deps += [
+     # provided by bzip2

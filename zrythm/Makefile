@@ -11,37 +11,22 @@ HOMEPAGE=	https://www.zrythm.org
 COMMENT=	XXX FIXME
 LICENSE=	isc
 
-FETCH_USE_IPV4_ONLY=	yes
-
 USE_LANGUAGES=	c c++
 
-#WRKSRC=		${WRKDIR}/openclonk-release-${PKGVERSION_NOREV}-src
-#EXTRACT_USING=	gtar
+# AFAICT, cmake(1) is used as a "driver" for pkg-config(1), if that makes
+# any sense
 USE_CMAKE=	yes
-#USE_LANGUAGES=	c c++
-#USE_TOOLS+=	pkg-config
-#GCC_REQD+=	4.9
-
-#.include "../../audio/SDL2_mixer/buildlink3.mk"
-#.include "../../audio/freealut/buildlink3.mk"
-#.include "../../audio/libvorbis/buildlink3.mk"
-#.include "../../audio/openal-soft/buildlink3.mk"
-#.include "../../devel/readline/buildlink3.mk"
-#.include "../../devel/zlib/buildlink3.mk"
-#.include "../../graphics/freetype2/buildlink3.mk"
-#.include "../../graphics/glew/buildlink3.mk"
-#.include "../../graphics/png/buildlink3.mk"
-#.include "../../multimedia/libogg/buildlink3.mk"
-#.include "../../mk/jpeg.buildlink3.mk"
 
 .include "../../archivers/zstd/buildlink3.mk"
 .include "../../audio/libsamplerate/buildlink3.mk"
 .include "../../audio/lilv/buildlink3.mk"
+.include "../../audio/rubberband/buildlink3.mk"
 .include "../../devel/SDL2/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../lang/guile22/buildlink3.mk"
 .include "../../math/fftw/buildlink3.mk"
 .include "../../math/fftwf/buildlink3.mk"
+.include "../../textproc/libyaml/buildlink3.mk"
 .include "../../wip/libaudec/buildlink3.mk"
 .include "../../wip/libcyaml/buildlink3.mk"
 .include "../../wip/reproc/buildlink3.mk"
