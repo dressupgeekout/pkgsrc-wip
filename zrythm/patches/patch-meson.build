@@ -1,5 +1,6 @@
---- meson.build.orig	2020-12-22 16:46:19.000836189 -0800
-+++ meson.build	2020-12-22 16:47:35.777719980 -0800
+Add NetBSD support.
+--- meson.build.orig	2020-12-12 12:11:34.042032700 -0800
++++ meson.build	2020-12-22 18:17:20.233086502 -0800
 @@ -96,6 +96,7 @@
  os_darwin = false
  os_gnu = false
@@ -44,7 +45,7 @@
    common_ldflags += [
      '-L' + libdir,
      '-lexecinfo',
-@@ -709,7 +712,7 @@
+@@ -709,16 +712,16 @@
      'fftw3f_threads', required: false,
      static: all_static),
    ]
@@ -53,6 +54,17 @@
    fftw3_deps += [
      cc.find_library (
        'fftw3_threads', required: true,
+       static: all_static,
+-      dirs: [ '/usr/lib', '/usr/local/lib' ]),
++      dirs: [ '/usr/lib', '/usr/local/lib', '/usr/pkg/lib' ]), # XXX hardcoded PREFIX
+     cc.find_library (
+       'fftw3f_threads', required: true,
+       static: all_static,
+-      dirs: [ '/usr/lib', '/usr/local/lib' ])
++      dirs: [ '/usr/lib', '/usr/local/lib', '/usr/pkg/lib' ]) # XXX hardcoded PREFIX
+     ]
+ else
+   fftw3_deps += [
 @@ -838,7 +841,7 @@
      carla_bridge = find_program (
          carla_bins_dir / 'carla-bridge-' + bridge_type,
