@@ -1,0 +1,64 @@
+--- meson.build.orig	2020-12-22 16:46:19.000836189 -0800
++++ meson.build	2020-12-22 16:47:35.777719980 -0800
+@@ -96,6 +96,7 @@
+ os_darwin = false
+ os_gnu = false
+ os_freebsd = false
++os_netbsd = false
+ os_windows = false
+ bin_suffix = ''
+ lib_suffix = '.so'
+@@ -107,6 +108,8 @@
+   os_gnu = true
+ elif host_machine.system() == 'freebsd'
+   os_freebsd = true
++elif host_machine.system() == 'netbsd'
++  os_netbsd = true
+ elif host_machine.system() == 'windows'
+   os_windows = true
+   bin_suffix = '.exe'
+@@ -312,7 +315,7 @@
+ endif
+ 
+ # find command to open a directory
+-if os_gnu or os_freebsd
++if os_gnu or os_freebsd or os_netbsd
+   open_dir_cmd = find_program ('xdg-open').full_path ()
+ elif os_darwin
+   open_dir_cmd = 'open'
+@@ -502,7 +505,7 @@
+ common_cflags = cc.get_supported_arguments (
+   test_cflags)
+ 
+-if os_freebsd
++if os_freebsd or os_netbsd
+   common_cflags += [
+     '-I' + includedir,
+     ]
+@@ -611,7 +614,7 @@
+ common_ldflags = cc.get_supported_link_arguments (
+   test_ldflags)
+ 
+-if os_freebsd
++if os_freebsd or os_netbsd
+   common_ldflags += [
+     '-L' + libdir,
+     '-lexecinfo',
+@@ -709,7 +712,7 @@
+     'fftw3f_threads', required: false,
+     static: all_static),
+   ]
+-if os_darwin or os_freebsd
++if os_darwin or os_freebsd or os_netbsd
+   fftw3_deps += [
+     cc.find_library (
+       'fftw3_threads', required: true,
+@@ -838,7 +841,7 @@
+     carla_bridge = find_program (
+         carla_bins_dir / 'carla-bridge-' + bridge_type,
+         required: false)
+-    if carla_bridge.found() and (os_gnu or os_freebsd)
++    if carla_bridge.found() and (os_gnu or os_freebsd or os_netbsd)
+       cdata.set('HAVE_CARLA_BRIDGE_' + bridge_type.underscorify().to_upper(), 1)
+       install_data (
+         carla_bridge.full_path(),
