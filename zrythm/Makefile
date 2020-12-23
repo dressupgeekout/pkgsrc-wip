@@ -44,6 +44,7 @@ USE_CMAKE=	yes
 .include "../../math/fftwf/buildlink3.mk"
 .include "../../wip/libaudec/buildlink3.mk"
 .include "../../wip/libcyaml/buildlink3.mk"
+.include "../../wip/reproc/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../x11/gtksourceview4/buildlink3.mk"
 
