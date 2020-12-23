@@ -39,6 +39,7 @@ USE_LANGUAGES=	c c++
 #.include "../../mk/jpeg.buildlink3.mk"
 
 
+.include "../../wip/libcyaml/buildlink3.mk"
 .include "../../lang/guile22/buildlink3.mk"
 .include "../../devel/meson/build.mk"
 .include "../../mk/bsd.pkg.mk"
