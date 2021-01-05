@@ -1,0 +1,10 @@
+openage is a free (as in freedom) cross-platform RTS game engine that
+provides the mechanics of Age of Empires.
+
+Using modern technologies as C++17, OpenGL/GLSL, Python, Qt5 and CMake
+allows people using GNU/Linux, BSD, macOS or Windows to play the game
+natively.
+
+Our aim is to make openage a platform for the original Age of Empires games
+providing the same look and feel, but with more features for modding and
+multiplayer.
