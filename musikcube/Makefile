@@ -11,6 +11,8 @@ LICENSE=	modified-bsd
 USE_LANGUAGES+=	c c++
 
 USE_CMAKE=	yes
+CMAKE_ARGS+=	-DENABLE_PULSEAUDIO:BOOL=OFF # XXX should be an option
+CMAKE_ARGS+=	-DENABLE_FFMPEG:BOOL=OFF # XXX should be an option
 
 .include "../../devel/boost-headers/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
