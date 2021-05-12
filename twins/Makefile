@@ -15,6 +15,7 @@ LICENSE=	mit
 
 #GO_BUILD_PATTERN=	--ldflags '-X github.com/minio/minio/cmd.Version=${GITHUB_TAG} -X github.com/minio/minio/cmd.ReleaseTag=${GITHUB_TAG}' .
 
+
 GO_MODULE_FILES+=	code.rocketnine.space/tslocum/gmitohtml/@v/v1.0.4.mod
 GO_MODULE_FILES+=	code.rocketnine.space/tslocum/gmitohtml/@v/v1.0.4.zip
 GO_MODULE_FILES+=	github.com/go-restit/lzjson/@v/v0.0.0-20161206095556-efe3c53acc68.mod
@@ -64,6 +65,10 @@ GO_MODULE_FILES+=	gopkg.in/ini.v1/@v/v1.38.2.mod
 GO_MODULE_FILES+=	gopkg.in/yaml.v3/@v/v3.0.0-20210105161348-2e78108cf5f8.mod
 GO_MODULE_FILES+=	gopkg.in/yaml.v3/@v/v3.0.0-20210107192922-496545a6307b.mod
 GO_MODULE_FILES+=	gopkg.in/yaml.v3/@v/v3.0.0-20210107192922-496545a6307b.zip
+
+#GO_MODULE_FILES+=	github.com/yookoala/gofast/tools/phpfpm/@v/v0.6.0.zip
+#GO_MODULE_FILES+=	golang.org/x/tools/go/expect/@v0.1.0
+
 
 .include "../../lang/go/go-module.mk"
 .include "../../wip/mk/git-package.mk"
