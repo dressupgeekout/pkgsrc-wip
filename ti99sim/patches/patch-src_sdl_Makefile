@@ -1,0 +1,24 @@
+--- src/sdl/Makefile.orig	2021-08-06 23:18:54.181988504 -0700
++++ src/sdl/Makefile	2021-08-06 23:19:08.120489858 -0700
+@@ -2,11 +2,6 @@
+ 
+ include ../../rules.mak
+ 
+-ifeq ($(OS),OS_LINUX)
+-CFLAGS	+= `sdl2-config --cflags | sed 's|-I/|-isystem/|g'`
+-XLIBS	+= `sdl2-config --libs`
+-endif
+-
+ XLIBS	+= -lpthread
+ XLIBS	+= -lrt
+ XLIBS	+= `pkg-config --libs openssl`
+@@ -16,6 +11,9 @@
+ XLIBS	+= -F ~/Library/Frameworks -framework SDL
+ XLIBS	+= -lobjc -framework Cocoa
+ OBJS	+= $(CFG)/SDLMain.o
++else
++CFLAGS	+= `sdl2-config --cflags | sed 's|-I/|-isystem/|g'`
++XLIBS	+= `sdl2-config --libs`
+ endif
+ 
+ FILES	+= main.cpp
