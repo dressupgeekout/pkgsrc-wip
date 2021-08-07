@@ -21,4 +21,5 @@ MAKE_FILE=	Makefile.linux
 BUILD_TARGET=	ti99sim
 
 .include "../../devel/SDL2/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
