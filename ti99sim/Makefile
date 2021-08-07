@@ -15,6 +15,7 @@ LICENSE=	gnu-lgpl-v2
 WRKSRC=		${WRKDIR}/ti99sim-${PKGVERSION_NOREV}
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	gmake
+GCC_REQD+=	9.3 # for -std=c++2a
 
 MAKE_FILE=	Makefile.linux
 BUILD_TARGET=	ti99sim

@@ -4,3 +4,4 @@ SHA1 (ti99sim-0.16.0.src.tar.xz) = cb0277af46db62a6765429e211e6a92faed3f11c
 RMD160 (ti99sim-0.16.0.src.tar.xz) = 0e7f888a6845ea0e2140ca53fff3c3193cf17a6b
 SHA512 (ti99sim-0.16.0.src.tar.xz) = 5636b1ecbaf7da10ecaea2d59aac0d84f03934065c02d3441576e4675a6d818ca21e3af80caddfa9fef640f6e0bef093a09082ec0d453df87b67431d7f5c0fec
 Size (ti99sim-0.16.0.src.tar.xz) = 193760 bytes
+SHA1 (patch-include_common.hpp) = 489654752c547fd192ee8c9c61814d29311413b8
