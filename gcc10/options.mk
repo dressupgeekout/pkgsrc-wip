@@ -1,7 +1,7 @@
 # $NetBSD: options.mk,v 1.2 2021/10/01 11:56:13 nia Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.${GCC_PKGNAME}
-PKG_SUPPORTED_OPTIONS=	nls gcc-inplace-math gcc-c++ gcc-fortran \
+PKG_SUPPORTED_OPTIONS=	nls gcc-inplace-math gcc-c++ gcc-d gcc-fortran \
 			gcc-go gcc-objc gcc-objc++ gcc-graphite \
 			always-libgcc
 PKG_SUGGESTED_OPTIONS=	gcc-c++ gcc-fortran gcc-objc gcc-objc++ \
@@ -141,6 +141,10 @@ LANGS+=			obj-c++
 
 .if !empty(PKG_OPTIONS:Mgcc-objc)
 LANGS+=			objc
+.endif
+
+.if !empty(PKG_OPTIONS:Mgcc-d)
+LANGS+=			d
 .endif
 
 .if !empty(PKG_OPTIONS:Mgcc-go)
