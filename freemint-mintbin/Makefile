@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.3 2018/10/31 11:37:35 jperkin Exp $
 
-DISTNAME=	mintbin-CVS-20110527
-PKGNAME=	cross-freemint-${DISTNAME:S/CVS-//}
-PKGREVISION=	1
+DISTNAME=	mintbin-Git-20201129
+PKGNAME=	cross-freemint-${DISTNAME:S/Git-//}
 CATEGORIES=	cross
 MASTER_SITES=	http://vincent.riviere.free.fr/soft/m68k-atari-mint/archives/
 
@@ -22,6 +21,7 @@ CONFIGURE_SCRIPT=	${WRKSRC}/configure
 GNU_CONFIGURE_PREFIX=	${FREEMINT_PREFIX}
 
 CONFIGURE_ARGS+=	--target=m68k-atari-mint
+CONFIGURE_ARGS+=	--with-included-gettext
 INFO_FILES=		yes
 
 # Used in macro tests but never actually set anywhere

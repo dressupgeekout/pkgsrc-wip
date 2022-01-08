@@ -1,0 +1,25 @@
+--- src/Makefile.am.orig	2022-01-08 14:33:31.987595913 -0800
++++ src/Makefile.am	2022-01-08 14:34:56.083629013 -0800
+@@ -19,14 +19,14 @@
+ 
+ bin_PROGRAMS = arconv cnm csize cstrip flags mintbin stack symex
+ 
+-arconv_SOURCES = arconv.c targets.c version.c
+-cnm_SOURCES = cnm.c symbols.c targets.c version.c
+-csize_SOURCES = csize.c targets.c version.c
+-cstrip_SOURCES = cstrip.c symbols.c targets.c tempname.c version.c
+-flags_SOURCES = flags.c targets.c version.c
+-mintbin_SOURCES = mintbin.c targets.c version.c
+-stack_SOURCES = stack.c symbols.c targets.c version.c
+-symex_SOURCES = symex.c targets.c version.c
++arconv_SOURCES = arconv.c error.c targets.c version.c
++cnm_SOURCES = cnm.c symbols.c error.c targets.c version.c
++csize_SOURCES = csize.c error.c targets.c version.c
++cstrip_SOURCES = cstrip.c symbols.c error.c targets.c tempname.c version.c
++flags_SOURCES = flags.c error.c targets.c version.c
++mintbin_SOURCES = mintbin.c error.c targets.c version.c
++stack_SOURCES = stack.c symbols.c error.c targets.c version.c
++symex_SOURCES = symex.c error.c targets.c version.c
+ 
+ install-exec-local:
+ 	@$(NORMAL_INSTALL)
