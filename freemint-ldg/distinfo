@@ -1,0 +1,10 @@
+$NetBSD: distinfo,v 1.5 2021/10/26 10:07:53 nia Exp $
+
+BLAKE2s (ldg-SVN-20131104.tar.bz2) = 6b7fb1e71a943bcf2ebc1cfc0c6e06ddd38e98cd80ae7bf9c11b637836b14220
+SHA512 (ldg-SVN-20131104.tar.bz2) = b4066b412d41497fc717acd96606378fc780fec8934a199484ad58a456d8764d10c1567b889c7e8b1a15e28728b671705dff2eb80db9e024a829b2cb2593e343
+Size (ldg-SVN-20131104.tar.bz2) = 142828 bytes
+SHA1 (patch-src_devel_gcc.mak) = 7730c5657ca8343bd7fcffee859d3611311ae208
+SHA1 (patch-src_devel_gccm5475.mak) = 1074b3855e4e5266b3804e42f68e4fc4b09eb303
+SHA1 (patch-src_devel_gccm68020-60.mak) = 6c7701a7b2963d442d18ab9b46ff77fec578b48e
+SHA1 (patch-src_ldgd_gcc.mak) = 55df9f0ee030420cdd82cee5d3200949cfcb81cd
+SHA1 (patch-src_ldgmgr_gcc.mak) = d9732699efbefb0ca987247e9c0687d980ce2df9
