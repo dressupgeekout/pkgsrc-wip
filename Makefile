@@ -3251,6 +3251,7 @@ SUBDIR+=	pop3.proxy
 SUBDIR+=	popup-el-current
 SUBDIR+=	portablexdr
 SUBDIR+=	portfwd
+SUBDIR+=	portmidi
 SUBDIR+=	portscout
 SUBDIR+=	posh
 SUBDIR+=	postal2-mpdemo-bin
