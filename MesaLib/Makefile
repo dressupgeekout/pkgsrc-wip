@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.197 2021/04/25 07:51:26 mrg Exp $
 
-DISTNAME=	mesa-21.3.3
+DISTNAME=	mesa-21.3.4
 PKGNAME=	${DISTNAME:S/mesa/MesaLib/}
 CATEGORIES=	graphics
 MASTER_SITES=	https://mesa.freedesktop.org/archive/
@@ -94,7 +94,7 @@ PLIST.r100=		yes
 PLIST.r200=		yes
 PLIST.r300=		yes
 .  endif
-.  include "../../wip/libva/available.mk"
+.  include "../../multimedia/libva/available.mk"
 .  if ${VAAPI_AVAILABLE} == "yes" && \
       !(empty(GALLIUM_DRIVERS:Mr600) && empty(GALLIUM_DRIVERS:Mradeonsi) && \
         empty(GALLIUM_DRIVERS:Mnouveau))

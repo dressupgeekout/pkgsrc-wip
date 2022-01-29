@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	virtualenv-20.12.1
+DISTNAME=	virtualenv-20.13.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=v/virtualenv/}
@@ -20,16 +20,16 @@ DEPENDS+=	${PYPKGPREFIX}-six>=1.9.0<2:../../lang/py-six
 .if ${_PYTHON_VERSION} < 38
 DEPENDS+=	${PYPKGPREFIX}-importlib-metadata>=0.12:../../devel/py-importlib-metadata
 .endif
-.if ${_PYTHON_VERSION} < 37
-DEPENDS+=	${PYPKGPREFIX}-importlib-resources>=1.0:../../devel/py-importlib-resources
-.endif
 .if ${_PYTHON_VERSION} == 27
 DEPENDS+=	${PYPKGPREFIX}-pathlib2>=2.3.3<3:../../devel/py-pathlib2
+DEPENDS+=	${PYPKGPREFIX}-importlib-resources>=1.0:../../devel/py-importlib-resources
 .endif
 
 USE_LANGUAGES=	# none
 
 REPLACE_PYTHON=	virtualenv.py
+
+PYTHON_VERSIONED_DEPENDENCIES+=	setuptools_scm:build
 
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && \
@@ -37,4 +37,5 @@ post-install:
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"
