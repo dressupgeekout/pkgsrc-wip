@@ -2721,6 +2721,7 @@ SUBDIR+=	oggfwd
 SUBDIR+=	ogmrip
 SUBDIR+=	ogre
 SUBDIR+=	okteta
+SUBDIR+=	olive-editor-git
 SUBDIR+=	olsrd
 SUBDIR+=	omega
 SUBDIR+=	omnispeak
