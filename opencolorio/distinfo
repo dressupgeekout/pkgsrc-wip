@@ -1,0 +1,9 @@
+$NetBSD: distinfo,v 1.4 2019/09/18 22:30:49 nia Exp $
+
+SHA1 (OpenColorIO-2.1.1.tar.gz) = 02e84e33ccc9286a3a39cd12fa703f5605247416
+RMD160 (OpenColorIO-2.1.1.tar.gz) = 87b9f822841dab551e82d46e959521c98ecc028a
+SHA512 (OpenColorIO-2.1.1.tar.gz) = 86585ec860d460b158f24efb82f202deced7ce96a6bfefd42f39cad9c112add68cca6935f383f5d718c07fe1c121d8ed8b0d2069321f1dafb8ce68b49bc75194
+Size (OpenColorIO-2.1.1.tar.gz) = 11013141 bytes
+SHA1 (patch-export_OpenColorIO_OpenColorABI.h.in) = cc1bae24995365513ca16dc41be21a7c52d59b5c
+SHA1 (patch-src_core_OCIOYaml.cpp) = 853b28ad6673cb703c286b88c2f1c0cf1a87cccb
+SHA1 (patch-src_core_Platform.h) = ff731e912354126992e30fbdc2a6ce39da6df082
