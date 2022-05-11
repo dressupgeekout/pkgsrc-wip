@@ -4,31 +4,31 @@ man/man8/zabbix_server.8
 sbin/zabbix_server
 share/examples/${PKGBASE}/zabbix_server.conf
 share/${PKGBASE}/data.sql
-share/${PKGBASE}/images.sql
-share/${PKGBASE}/schema.sql
 share/${PKGBASE}/double.sql
-${PLIST.pgsql}share/${PKGBASE}/timescaledb.sql
-share/${PKGBASE}/misc/images/png_classic/Hub_small.png
+share/${PKGBASE}/history_pk_prepare.sql
+share/${PKGBASE}/images.sql
+share/${PKGBASE}/misc/images/README
 share/${PKGBASE}/misc/images/png_classic/Hub.png
-share/${PKGBASE}/misc/images/png_classic/Network_small.png
+share/${PKGBASE}/misc/images/png_classic/Hub_small.png
 share/${PKGBASE}/misc/images/png_classic/Network.png
-share/${PKGBASE}/misc/images/png_classic/Notebook_small.png
+share/${PKGBASE}/misc/images/png_classic/Network_small.png
 share/${PKGBASE}/misc/images/png_classic/Notebook.png
-share/${PKGBASE}/misc/images/png_classic/Phone_small.png
+share/${PKGBASE}/misc/images/png_classic/Notebook_small.png
 share/${PKGBASE}/misc/images/png_classic/Phone.png
-share/${PKGBASE}/misc/images/png_classic/Printer_small.png
+share/${PKGBASE}/misc/images/png_classic/Phone_small.png
 share/${PKGBASE}/misc/images/png_classic/Printer.png
+share/${PKGBASE}/misc/images/png_classic/Printer_small.png
 share/${PKGBASE}/misc/images/png_classic/README
-share/${PKGBASE}/misc/images/png_classic/Router_small.png
 share/${PKGBASE}/misc/images/png_classic/Router.png
-share/${PKGBASE}/misc/images/png_classic/Satellite_small.png
+share/${PKGBASE}/misc/images/png_classic/Router_small.png
 share/${PKGBASE}/misc/images/png_classic/Satellite.png
-share/${PKGBASE}/misc/images/png_classic/Server_small.png
+share/${PKGBASE}/misc/images/png_classic/Satellite_small.png
 share/${PKGBASE}/misc/images/png_classic/Server.png
-share/${PKGBASE}/misc/images/png_classic/UPS_small.png
+share/${PKGBASE}/misc/images/png_classic/Server_small.png
 share/${PKGBASE}/misc/images/png_classic/UPS.png
-share/${PKGBASE}/misc/images/png_classic/Workstation_small.png
+share/${PKGBASE}/misc/images/png_classic/UPS_small.png
 share/${PKGBASE}/misc/images/png_classic/Workstation.png
+share/${PKGBASE}/misc/images/png_classic/Workstation_small.png
 share/${PKGBASE}/misc/images/png_modern/Cloud_(128).png
 share/${PKGBASE}/misc/images/png_modern/Cloud_(24).png
 share/${PKGBASE}/misc/images/png_modern/Cloud_(48).png
@@ -217,10 +217,11 @@ share/${PKGBASE}/misc/images/png_modern/Zabbix_server_3D_(128).png
 share/${PKGBASE}/misc/images/png_modern/Zabbix_server_3D_(64).png
 share/${PKGBASE}/misc/images/png_modern/Zabbix_server_3D_(96).png
 share/${PKGBASE}/misc/images/png_to_xml.sh
-share/${PKGBASE}/misc/images/README
 share/${PKGBASE}/misc/snmptrap/snmptrap.sh
 share/${PKGBASE}/misc/snmptrap/zabbix_trap_receiver.pl
-@pkgdir share/${PKGBASE}/externalscripts
-@pkgdir share/${PKGBASE}/alertscripts
+share/${PKGBASE}/schema.sql
+${PLIST.pgsql}share/${PKGBASE}/timescaledb.sql
+@pkgdir share/${PKGBASE}/zabbix/externalscripts
+@pkgdir share/${PKGBASE}/zabbix/alertscripts
 @pkgdir lib/modules
 @pkgdir etc/zabbix_server.conf.d

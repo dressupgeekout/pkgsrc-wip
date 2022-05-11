@@ -1,8 +1,8 @@
 # $NetBSD: Makefile,v 1.18 2015/09/13 07:33:05 thomasklausner Exp $
 
-DISTNAME=	lgogdownloader-3.7
+DISTNAME=	lgogdownloader-3.9
 CATEGORIES=	games
-GIT_REPO=	git://github.com/Sude-/lgogdownloader.git
+GIT_REPO=	https://github.com/Sude-/lgogdownloader.git
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/Sude-/lgogdownloader

@@ -2,7 +2,7 @@ $NetBSD$
 
 Use GTK3, since that's how we build wxWidgets.
 
---- CMakeLists.txt.orig	2021-12-17 14:00:02.000000000 +0000
+--- CMakeLists.txt.orig	2022-04-22 11:01:19.000000000 +0000
 +++ CMakeLists.txt
 @@ -38,7 +38,7 @@ CMAKE_DEPENDENT_OPTION(SLIC3R_DESKTOP_IN
  
