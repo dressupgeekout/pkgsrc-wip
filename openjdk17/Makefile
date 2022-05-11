@@ -2,11 +2,10 @@
 
 DISTNAME=	jdk17u-${GITHUB_TAG:C/\+/-/}
 PKGNAME=	openjdk17-1.${GITHUB_TAG:C/\+/./:C/jdk-([.0-9]+).*/\1/}
-PKGREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GITHUB:=battleblow/}
 GITHUB_PROJECT=	jdk17u
-GITHUB_TAG=	jdk-17.0.2+8-1
+GITHUB_TAG=	jdk-17.0.3+7-1
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://openjdk.java.net/
@@ -35,7 +34,7 @@ BUILDLINK_TRANSFORM.NetBSD+=	rm:-ldl
 .include "../../mk/bsd.prefs.mk"
 
 # -Wl,--hash-style=gnu is not supported by NetBSD 9.
-.if !empty(MACHINE_PLATFORM:MNetBSD-[1-9].[0-8]*.*-*)
+.if ${OPSYS} == "NetBSD" && ${OPSYS_VERSION} < 099900
 BUILDLINK_TRANSFORM+=	opt:-Wl,--hash-style=gnu:-Wl,--hash-style=sysv
 .endif
 
@@ -86,8 +85,7 @@ CONFIGURE_ARGS+=	USER=pkgsrc
 # Avoid build errors when JAVA_HOME and CLASSPATH are defined by user.
 MAKE_ENV+=	JAVA_HOME=
 MAKE_ENV+=	CLASSPATH=
-.if !empty(MACHINE_PLATFORM:MNetBSD-9.99.8[1-9]-*) || \
-    !empty(MACHINE_PLATFORM:MNetBSD-9.99.9[0-9]-*)
+.if ${OPSYS} == "NetBSD" && ${OPSYS_VERSION} > 099980
 ALL_ENV+=	SED="sed -g"
 .endif
 
