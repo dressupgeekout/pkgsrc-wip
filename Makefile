@@ -2808,6 +2808,7 @@ SUBDIR+=	ots
 SUBDIR+=	ottomatic
 SUBDIR+=	outguess
 SUBDIR+=	overgod
+SUBDIR+=	overgrowth
 SUBDIR+=	owamp
 SUBDIR+=	owl
 SUBDIR+=	oww-nox11
