@@ -45,6 +45,7 @@ post-install:
 	${MV} ${DESTDIR}${PREFIX}/cmake/*.cmake ${DESTDIR}${PREFIX}/lib/cmake/OpenColorIO
 
 .include "../../devel/boost-headers/buildlink3.mk"
+.include "../../graphics/freeglut/buildlink3.mk"
 .include "../../graphics/lcms2/buildlink3.mk"
 .include "../../textproc/tinyxml/buildlink3.mk"
 .include "../../textproc/yaml-cpp/buildlink3.mk"
