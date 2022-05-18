@@ -9,7 +9,7 @@ HOMEPAGE=		https://github.com/bsdphk/Ntimed
 COMMENT=		Network Time Synchronization
 
 GIT_REPOSITORIES=	Ntimed
-GIT_REPO.Ntimed= 	git://github.com/bsdphk/Ntimed.git
+GIT_REPO.Ntimed=	https://github.com/bsdphk/Ntimed.git
 
 WRKSRC=			${WRKDIR}/Ntimed
 GNU_CONFIGURE=		yes
@@ -17,8 +17,7 @@ GNU_CONFIGURE=		yes
 # https://github.com/bsdphk/Ntimed/issues/25
 USE_TOOLS+=		gmake
 
-REPLACE_PYTHON+=	plotgen.py
-#PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # as of 20150109
+REPLACE_PYTHON+=		plotgen.py
 
 INSTALLATION_DIRS+=	sbin share/doc/ntimed
 

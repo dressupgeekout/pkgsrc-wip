@@ -9,11 +9,11 @@ MASTER_SITES=	${MASTER_SITE_PYPI:=W/Wally/}
 MAINTAINER=	pkgsrc.gnome@gmail.com
 HOMEPAGE=	http://pypi.python.org/pypi/Wally/
 COMMENT=	Tool for managing desktop backgrounds
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	apache-2.0
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-gtk2
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2
 
 .include "../../lang/python/egg.mk"
 .include "../../x11/py-gtk2/buildlink3.mk"

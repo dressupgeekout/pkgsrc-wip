@@ -6,7 +6,7 @@ PKGNAME=	lua-lbn-${LBN_VERSION}
 CATEGORIES=	math
 MASTER_SITES=	http://www.tecgraf.puc-rio.br/~lhf/ftp/lua/${LVER}/
 
-MAINTAINER=	alnsn@NetBSD.org
+MAINTAINER=	alnsn@yandex.ru
 HOMEPAGE=	http://www.tecgraf.puc-rio.br/~lhf/ftp/lua/#lbn
 COMMENT=	Arbitrary precision library for Lua based on OpenSSL bn
 LICENSE=	public-domain
@@ -24,7 +24,7 @@ TEST_TARGET=	test
 
 WRKSRC=			${WRKDIR}/bn
 MAKEFLAGS+=		G=-fPIC
-LBN_README_DIR=		 share/doc/${PKGBASE}
+LBN_README_DIR=		share/doc/${PKGBASE}
 INSTALLATION_DIRS+=	${LUA_CDIR} ${LBN_README_DIR}
 
 .include "../../lang/lua/module.mk"

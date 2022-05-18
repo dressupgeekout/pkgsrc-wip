@@ -4,11 +4,11 @@ DISTNAME=	xf86-video-intel-0
 CATEGORIES=	x11
 
 GIT_REPOSITORIES=		xf86-video-intel
-GIT_REPO.xf86-video-intel=	git://anongit.freedesktop.org/xorg/driver/xf86-video-intel
-WRKSRC=			${WRKDIR}/${PKGBASE}
+GIT_REPO.xf86-video-intel=	https://gitlab.freedesktop.org/xorg/driver/xf86-video-intel.git
+WRKSRC=				${WRKDIR}/${PKGBASE}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://xorg.freedesktop.org/
+HOMEPAGE=	https://xorg.freedesktop.org/
 COMMENT=	Modular Xorg Intel video driver
 
 CONFLICTS+=	xf86-video-i810-[0-9]*
@@ -32,10 +32,12 @@ pre-configure:
 
 BUILDLINK_API_DEPENDS.libdrm+=	libdrm>=2.4.7
 
+.include "../../devel/xorg-util-macros/buildlink3.mk"
 .include "../../x11/modular-xorg-server/buildlink3.mk"
 .include "../../x11/libdrm/buildlink3.mk"
 .include "../../x11/libXvMC/buildlink3.mk"
 .include "../../x11/xcb-util/buildlink3.mk"
+.include "../../x11/xorgproto/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../wip/mk/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

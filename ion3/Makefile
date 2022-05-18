@@ -6,9 +6,10 @@ PKGNAME=	ion3-20090110
 PKGREVISION=	1
 CATEGORIES=	wm x11
 MASTER_SITES=	http://iki.fi/tuomov/dl/
+LICENSE=	gnu-lgpl-v2.1
 
 MAINTAINER=	matias@dotbsd.org
-HOMEPAGE=	http://tuomov.iki.fi/software/
+HOMEPAGE=	https://tuomov.iki.fi/software/
 COMMENT=	Tiling tabbed window manager
 
 

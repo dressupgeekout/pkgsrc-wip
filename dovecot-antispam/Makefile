@@ -9,9 +9,7 @@ EXTRACT_SUFX=	.tar.bz2
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://johannes.sipsolutions.net/Projects/dovecot-antispam
 COMMENT=	Antispam plugin for Dovecot
-
 LICENSE=	gnu-gpl-v2
-
 
 USE_TOOLS+=		gmake
 #MAKE_DIRS+=		lib/dovecot/imap
@@ -19,9 +17,9 @@ USE_TOOLS+=		gmake
 SUBST_CLASSES+=		pkgsrc
 SUBST_STAGE.pkgsrc=	post-patch
 SUBST_FILES.pkgsrc=	defconfig
-SUBST_SED.pkgsrc=	-e "s|@PREFIX@|${PREFIX}|g"
-SUBST_SED.pkgsrc+=	-e "s|@ROOT_USER@|${ROOT_USER}|g"
-SUBST_SED.pkgsrc+=	-e "s|@ROOT_GROUP@|${ROOT_GROUP}|g"
+SUBST_VARS.pkgsrc=	PREFIX
+SUBST_VARS.pkgsrc+=	ROOT_USER
+SUBST_VARS.pkgsrc+=	ROOT_GROUP
 
 pre-configure:
 	cp ${WRKSRC}/defconfig ${WRKSRC}/.config

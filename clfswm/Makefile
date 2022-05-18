@@ -4,10 +4,10 @@
 DISTNAME=		clfswm-1106-2
 PKGNAME=		${DISTNAME:S/-2/.2/}
 CATEGORIES=		wm
-MASTER_SITES=		${HOMEPAGE:Q}
+MASTER_SITES=		${HOMEPAGE}
 
 MAINTAINER=		lomka@gero.in
-HOMEPAGE=		http://common-lisp.net/project/clfswm/
+HOMEPAGE=		https://common-lisp.net/project/clfswm/
 COMMENT=		A(nother) Common Lisp FullScreen Window Manager
 LICENSE=		gnu-gpl-v3
 

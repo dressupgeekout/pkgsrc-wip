@@ -4,9 +4,10 @@
 DISTNAME=		ecasound-2.4.1
 CATEGORIES=		audio
 MASTER_SITES=		http://ecasound.seul.org/download/
+LICENSE=		gnu-gpl-v2 AND gnu-lgpl-v2.1
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://ecasound.seul.org/
+HOMEPAGE=		https://ecasound.seul.org/
 COMMENT=		Multitrack audio processor
 
 

@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.4 2014/05/09 07:38:50 thomasklausner Exp $
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-wxWidgets
+PYTHON_VERSIONS_ACCEPTED=	27 # py-wxWidgets
 
 .include "../../wip/py-traits/Makefile.version"
 
@@ -9,7 +9,7 @@ PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/T/t/S/GUI/gui/}
 
 HOMEPAGE=	http://code.enthought.com/projects/traits_gui/
 
-COMMENT=	 	Traits-capable windowing framework
+COMMENT=		Traits-capable windowing framework
 
 .include "../../wip/py-traits/Makefile.common"
 

@@ -2,12 +2,12 @@
 
 DISTNAME=	climate-0.4.6
 # py-climate is already reserved
-PKGNAME=        ${PYPKGPREFIX}-${DISTNAME:S/mate//}
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/mate//}
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_PYPI:=c/climate/}
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://github.com/lmjohns3/py-cli/
+HOMEPAGE=	https://github.com/lmjohns3/py-cli/
 COMMENT=	Command-line utilities
 LICENSE=	mit
 

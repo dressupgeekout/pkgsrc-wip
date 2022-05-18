@@ -9,8 +9,8 @@ GIT_REPOSITORIES=	lizardfs
 GIT_REPO.lizardfs=	https://github.com/christiank/lizardfs.git
 GIT_BRANCH.lizardfs=	cfkoch_netbsdrefuse
 
-MAINTANER=	cfkoch@edgebsd.org
-HOMEPAGE=	http://lizardfs.com/
+MAINTANER=	charlotte@NetBSD.org
+HOMEPAGE=	https://lizardfs.com/
 COMMENT=	Open source, distributed file system
 LICENSE=	gnu-gpl-v3
 

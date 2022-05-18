@@ -5,7 +5,7 @@ CATEGORIES=	multimedia
 MASTER_SITES=	-https://github.com/mpv-player/mpv/archive/v${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://mpv.io/
+HOMEPAGE=	https://mpv.io/
 COMMENT=	Video player based on MPlayer and mplayer2 (git version)
 LICENSE=	gnu-gpl-v2
 
@@ -14,11 +14,11 @@ BUILD_DEPENDS+=	${PYPKGPREFIX}-docutils>=0.12:../../textproc/py-docutils
 BUILD_DEPENDS+=	waf>=1.8.4:../../devel/waf
 
 GIT_REPOSITORIES=	mpv
-GIT_REPO.mpv=		git://github.com/mpv-player/mpv.git
+GIT_REPO.mpv=		https://github.com/mpv-player/mpv.git
 WRKSRC=			${WRKDIR}/mpv
 
-PYTHON_FOR_BUILD_ONLY=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-docutils
+PYTHON_FOR_BUILD_ONLY=		yes
+PYTHON_VERSIONS_ACCEPTED=	27 # py-docutils
 
 USE_TOOLS+=	perl pkg-config
 

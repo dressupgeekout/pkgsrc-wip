@@ -14,9 +14,11 @@ DEPENDS+=	${PYPKGPREFIX}-decorator>=3.4.0:../../devel/py-decorator
 DEPENDS+=	${PYPKGPREFIX}-six>=1.9.0:../../lang/py-six
 DEPENDS+=	${PYPKGPREFIX}-twisted-[0-9]*:../../net/py-twisted
 DEPENDS+=	${PYPKGPREFIX}-pytz-[0-9]*:../../time/py-pytz
-DEPENDS+=	${PYPKGPREFIX}-kitchen>=1.2.1:../../wip/py-kitchen
+DEPENDS+=	${PYPKGPREFIX}-kitchen>=1.2.1:../../devel/py-kitchen
 
 USE_LANGUAGES=	# none
+
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 1.2.3
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

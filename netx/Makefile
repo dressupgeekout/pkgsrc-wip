@@ -6,6 +6,7 @@ CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=jnlp/}
 EXTRACT_SUFX=	.jar
 VERSION=	0.5
+LICENSE=	gnu-lgpl-v2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://jnlp.sourceforge.net/netx/
@@ -13,11 +14,11 @@ COMMENT=	Free JNLP implementation
 
 NO_BUILD=	yes
 
-JAVA_APP_TARGETS=	jnlp
-JAVA_APP_BIN.jnlp=	netx
-JAVA_APP_MAIN.jnlp=	netx.jnlp.runtime.Boot13
+JAVA_APP_TARGETS=		jnlp
+JAVA_APP_BIN.jnlp=		netx
+JAVA_APP_MAIN.jnlp=		netx.jnlp.runtime.Boot13
 JAVA_APP_CLASSPATH.jnlp=	${JAR_PREFIX}/netx-${VERSION}.jar
-JAVA_APP_PATH=		${DESTDIR}${PREFIX}/bin
+JAVA_APP_PATH=			${DESTDIR}${PREFIX}/bin
 
 INSTALLATION_DIRS+=	bin share/classpath
 

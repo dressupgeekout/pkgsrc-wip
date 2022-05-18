@@ -1,14 +1,13 @@
 # $NetBSD: Makefile,v 1.4 2014/06/01 12:49:37 thomasklausner Exp $
 #
 
-DISTNAME=	mlocate-0.24
-PKGREVISION=	2
+DISTNAME=	mlocate-0.26
 CATEGORIES=	sysutils
-MASTER_SITES=	https://fedorahosted.org/releases/m/l/mlocate/
+MASTER_SITES=	https://releases.pagure.org/mlocate/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	esg@sdf.lonestar.org
-HOMEPAGE=	https://fedorahosted.org/releases/m/l/mlocate/
+HOMEPAGE=	https://pagure.io/mlocate
 COMMENT=	Merging 'locate' implementation
 LICENSE=	gnu-gpl-v2
 
@@ -28,7 +27,7 @@ SPECIAL_PERMS+=	bin/locate root mlocate 2755
 
 BUILD_DEFS+=	VARBASE
 
-CONFIGURE_ARGS+=--localstatedir=${VARBASE}
+CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 
 OWN_DIRS+=	${VARBASE}/mlocate
 

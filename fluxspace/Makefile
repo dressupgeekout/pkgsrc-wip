@@ -4,6 +4,7 @@ DISTNAME=		fluxspace-0.0.3
 PKGREVISION=		2
 CATEGORIES=		x11
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=fluxspace/}
+LICENSE=		gnu-gpl-v3
 
 MAINTAINER=		poff@sixbit.org
 HOMEPAGE=		http://fluxspace.sourceforge.net/
@@ -19,8 +20,8 @@ PY_PATCHPLIST=		YES
 # Ensure we export symbols in the linked shared object.
 LDFLAGS+=	${EXPORT_SYMBOLS_LDFLAGS}
 
-CONFIGURE_ENV+= PYTHON=${PYTHONBIN:Q}
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-xml
+CONFIGURE_ENV+=	PYTHON=${PYTHONBIN:Q}
+PYTHON_VERSIONS_ACCEPTED=	27 # py-xml
 
 .include "../../textproc/py-xml/buildlink3.mk"
 .include "../../devel/swig/buildlink3.mk"

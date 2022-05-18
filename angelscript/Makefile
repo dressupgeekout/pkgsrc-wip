@@ -2,13 +2,13 @@
 
 PKGNAME=	angelscript-${VERSION}
 DISTNAME=	angelscript_${VERSION}
-VERSION=	2.30.2
+VERSION=	2.32.0
 CATEGORIES=	lang
 MASTER_SITES=	http://angelcode.com/angelscript/sdk/files/
 EXTRACT_SUFX=	.zip
 
-MAINTAINER=	cfkoch@edgebsd.org
-HOMEPAGE=	http://angelcode.com/angelscript/
+MAINTAINER=	charlotte@NetBSD.org
+HOMEPAGE=	https://angelcode.com/angelscript/
 COMMENT=	The AngelScript programming language
 LICENSE=	zlib
 
@@ -19,11 +19,11 @@ NO_CONFIGURE=	yes
 AUTO_MKDIRS=	yes
 
 REAL_SOURCE_DIR=	${WRKSRC}/angelscript/projects/gnuc
-BUILD_DIRS+=	${REAL_SOURCE_DIR}
-INSTALL_DIRS+=	${REAL_SOURCE_DIR}
+BUILD_DIRS+=		${REAL_SOURCE_DIR}
+INSTALL_DIRS+=		${REAL_SOURCE_DIR}
 
-INSTALL_MAKE_FLAGS+=	PREFIX=${LOCALBASE}
+INSTALL_MAKE_FLAGS+=	PREFIX=${PREFIX}
 INSTALL_MAKE_FLAGS+=	DESTDIR=${DESTDIR}
-INSTALL_TARGET=	install install_shared
+INSTALL_TARGET=		install install_shared
 
 .include "../../mk/bsd.pkg.mk"

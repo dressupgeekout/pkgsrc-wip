@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	uzbl-0.9.0
+DISTNAME=	uzbl-0.9.1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=uzbl/}
 
@@ -10,7 +10,7 @@ GIT_BRANCH.uzbl=	next
 WRKSRC=			${WRKDIR}/uzbl
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.uzbl.org/
+HOMEPAGE=	https://www.uzbl.org/
 COMMENT=	Web interface tools which adhere to the UNIX philosophy
 LICENSE=	gnu-gpl-v3
 
@@ -21,6 +21,7 @@ PY_PATCHPLIST=		yes
 .include "../../lang/python/extension.mk"
 MAKE_ENV+=	PYTHON=${PYTHONBIN}
 MAKE_ENV+=	MANDIR=${DESTDIR}/${PREFIX}/${PKGMANDIR}
+INSTALL_ENV+=	PIP=pip${PYVERSSUFFIX}
 
 SUBST_CLASSES+=			fix-share
 SUBST_STAGE.fix-share=		pre-configure
@@ -41,10 +42,11 @@ REPLACE_PYTHON+=	examples/data/scripts/per-site-settings.py
 REPLACE_PYTHON+=	examples/data/scripts/scheme.py
 .include "../../lang/python/application.mk"
 
+BUILD_DEPENDS+=	${PYPKGPREFIX}-pip-[0-9]*:../../devel/py-pip
+BUILD_DEPENDS+=	${PYPKGPREFIX}-wheel-[0-9]*:../../devel/py-wheel
 # for uzbl-browser
 DEPENDS+=	${PYPKGPREFIX}-six-[0-9]*:../../lang/py-six
-# for uzbl-tabbed with GTK+ 2
-#DEPENDS+=	${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
+DEPENDS+=	${PYPKGPREFIX}-gobject3-[0-9]*:../../devel/py-gobject3
 
 .include "../../www/webkit-gtk/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"

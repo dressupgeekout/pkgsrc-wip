@@ -1,5 +1,5 @@
 $NetBSD: distinfo,v 1.1 2014/03/10 07:18:56 jgoamakf Exp $
 
-SHA1 (Test-Fake-HTTPD-0.06.tar.gz) = 72315e7d2396d83dadc74ed8b0430113c3f19456
-RMD160 (Test-Fake-HTTPD-0.06.tar.gz) = 62d52367fe4f93e34865d1460ffe7c703e50e39f
-Size (Test-Fake-HTTPD-0.06.tar.gz) = 25401 bytes
+RMD160 (Test-Fake-HTTPD-0.09.tar.gz) = 7f28385629e11721c6b3c16879fc981588a15e9c
+SHA512 (Test-Fake-HTTPD-0.09.tar.gz) = 228edf36e7d7ecbba9e594f1bce417b1795e8f03502f8b16b86cec3770a880c89cd490e89573490315398e8f5cf35bfe786c2101dfd112b84006acc930034ab7
+Size (Test-Fake-HTTPD-0.09.tar.gz) = 15787 bytes

@@ -1,9 +1,9 @@
 # $NetBSD$
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.baresip
-PKG_SUPPORTED_OPTIONS=		alsa cairo ffmpeg gstreamer gtk x265 ilbc jack
+PKG_SUPPORTED_OPTIONS=		alsa cairo ffmpeg gstreamer gtk ilbc jack
 PKG_SUPPORTED_OPTIONS+=		libvpx oss opencore-amr opus portaudio
-PKG_SUPPORTED_OPTIONS+=		pulseaudio sdl sdl2 sndfile sndio speex v4l2
+PKG_SUPPORTED_OPTIONS+=		pulseaudio sdl2 sndfile sndio speex v4l2
 PKG_SUPPORTED_OPTIONS+=		x11
 PKG_SUGGESTED_OPTIONS=		oss ilbc speex
 
@@ -60,29 +60,15 @@ MAKE_FLAGS+=	USE_GTK=
 .endif
 
 ###
-### H265 support (video codec)
-###
-.if !empty(PKG_OPTIONS:Mx265)
-PLIST.x265=	yes
-MAKE_FLAGS+=	USE_H265=yes
-LFLAGS+=	${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.ffmpeg3}/${BUILDLINK_LIBDIRS.ffmpeg3}
-LFLAGS+=	-L${BUILDLINK_PREFIX.ffmpeg3}/${BUILDLINK_LIBDIRS.ffmpeg3}
-.include "../../multimedia/ffmpeg3/buildlink3.mk"
-.include "../../multimedia/x265/buildlink3.mk"
-.else
-MAKE_FLAGS+=	USE_H265=
-.endif
-
-###
 ### ffmpeg support (video input)
 ###
 .if !empty(PKG_OPTIONS:Mffmpeg)
 PLIST.ffmpeg=	yes
 MAKE_FLAGS+=	USE_AVCODEC=yes
 MAKE_FLAGS+=	USE_AVFORMAT=yes
-LFLAGS+=	${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.ffmpeg3}/${BUILDLINK_LIBDIRS.ffmpeg3}
-LFLAGS+=	-L${BUILDLINK_PREFIX.ffmpeg3}/${BUILDLINK_LIBDIRS.ffmpeg3}
-.include "../../multimedia/ffmpeg3/buildlink3.mk"
+LFLAGS+=	${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.ffmpeg4}/${BUILDLINK_LIBDIRS.ffmpeg4}
+LFLAGS+=	-L${BUILDLINK_PREFIX.ffmpeg4}/${BUILDLINK_LIBDIRS.ffmpeg4}
+.include "../../multimedia/ffmpeg4/buildlink3.mk"
 .include "../../multimedia/x264-devel/buildlink3.mk"
 .else
 MAKE_FLAGS+=	USE_AVCODEC=
@@ -178,25 +164,14 @@ MAKE_FLAGS+=	USE_PULSE=
 .endif
 
 ###
-### SDL support (video output)
-###
-.if !empty(PKG_OPTIONS:Msdl)
-PLIST.sdl=	yes
-MAKE_FLAGS+=	USE_SDL=yes
-.include "../../devel/SDL/buildlink3.mk"
-.else
-MAKE_FLAGS+=	USE_SDL=
-.endif
-
-###
 ### SDL2 support (video output)
 ###
 .if !empty(PKG_OPTIONS:Msdl2)
 PLIST.sdl2=	yes
-MAKE_FLAGS+=	USE_SDL2=yes
+MAKE_FLAGS+=	USE_SDL=yes
 .include "../../devel/SDL2/buildlink3.mk"
 .else
-MAKE_FLAGS+=	USE_SDL2=
+MAKE_FLAGS+=	USE_SDL=
 .endif
 
 ###
@@ -228,14 +203,11 @@ MAKE_FLAGS+=	USE_SNDIO=
 .if !empty(PKG_OPTIONS:Mspeex)
 PLIST.speex=	yes
 MAKE_FLAGS+=	HAVE_SPEEXDSP=yes
-MAKE_FLAGS+=	USE_SPEEX=yes
 MAKE_FLAGS+=	USE_SPEEX_AEC=yes
 MAKE_FLAGS+=	USE_SPEEX_PP=yes
-.include "../../audio/speex/buildlink3.mk"
 .include "../../audio/speexdsp/buildlink3.mk"
 .else
 MAKE_FLAGS+=	HAVE_SPEEXDSP=
-MAKE_FLAGS+=	USE_SPEEX=
 MAKE_FLAGS+=	USE_SPEEX_AEC=
 MAKE_FLAGS+=	USE_SPEEX_PP=
 .endif

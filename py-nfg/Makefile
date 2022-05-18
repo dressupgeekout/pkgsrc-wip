@@ -10,18 +10,18 @@ HOMEPAGE=	https://files.pythonhosted.org/packages/source/P/PyNFG/
 COMMENT=	Python package for implementing and solving Network form games
 LICENSE=	gnu-agpl-v3
 
+DEPENDS+=	${PYPKGPREFIX}-matplotlib-[0-9]*:../../graphics/py-matplotlib
 DEPENDS+=	${PYPKGPREFIX}-networkx>=1.8.1:../../math/py-networkx
 DEPENDS+=	${PYPKGPREFIX}-scipy>=0.12.0:../../math/py-scipy
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # as of 0.1.2
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 0.1.2
 
 post-extract:
 	${MV} ${WRKSRC}/bin/hideandseek.py ${WRKSRC}/bin/hideandseek.py${PYVERSSUFFIX}
 	${MV} ${WRKSRC}/bin/stackelberg.py ${WRKSRC}/bin/stackelberg.py${PYVERSSUFFIX}
 
-.include "../../graphics/py-matplotlib/buildlink3.mk"
 .include "../../lang/python/egg.mk"
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

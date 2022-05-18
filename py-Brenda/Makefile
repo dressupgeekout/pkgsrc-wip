@@ -2,13 +2,14 @@
 #
 
 DISTNAME=	PyBrenda041-tar
-PKGNAME=		${PYPKGPREFIX}-Brenda-0.4.1
-CATEGORIES=		devel
+PKGNAME=	${PYPKGPREFIX}-Brenda-0.4.1
+CATEGORIES=	devel
 MASTER_SITES=	http://xml.coverpages.org/
 EXTRACT_SUFX=	.gz
+LICENSE=	artistic
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://wiki.python.org/moin/PyBrenda
+HOMEPAGE=		https://wiki.python.org/moin/PyBrenda
 COMMENT=		Parallel computation system
 
 WRKSRC=	${WRKDIR}/PyBrenda-0.4.1
@@ -16,7 +17,7 @@ WRKSRC=	${WRKDIR}/PyBrenda-0.4.1
 PY_PATCHPLIST=		yes
 NO_BUILD=		yes
 
-PLIST_SUBST+=		PYPKGPREFIX=${PYPKGPREFIX:Q}
+PLIST_SUBST+=		PYPKGPREFIX=${PYPKGPREFIX}
 
 BRENDA_FILES=		Brenda.py einRpc.py myMath.py niftySocket.py
 BRENDA_SHARE=		INSTALL LICENSE NEWS QuickStart README TODO examples/hello.py

@@ -1,20 +1,19 @@
 # $NetBSD: Makefile,v 1.5 2012/10/01 21:52:41 asau Exp $
 
 DISTNAME=	koha-2.2.9
-#PKGREVISION=	0
+PKGREVISION=	2
 CATEGORIES=	databases
 MASTER_SITES=	http://download.savannah.nongnu.org/releases/koha/
 
 MAINTAINER=	phil@cs.wwu.edu
 HOMEPAGE=	http://koha.org/
 COMMENT=	Koha is an integrated library system
+LICENSE=	gnu-gpl-v2
 
 DEPENDS+=	mysql-client>=5.5:../../databases/mysql55-client
-DEPENDS+=	apache>=2.2:../../www/apache22
-
+DEPENDS+=	apache>=2.4:../../www/apache24
 DEPENDS+=	p5-Date-Calc>=5.4:../../devel/p5-Date-Calc
 DEPENDS+=	p5-Date-Manip>=5.44:../../devel/p5-Date-Manip
-DEPENDS+=	p5-Digest-MD5>=2.35:../../security/p5-Digest-MD5
 DEPENDS+=	p5-DBD-mysql>=3.0002:../../databases/p5-DBD-mysql
 DEPENDS+=	p5-DBI>=1.56:../../databases/p5-DBI
 DEPENDS+=	p5-Event>=1.06:../../devel/p5-Event
@@ -23,7 +22,6 @@ DEPENDS+=	p5-Mail-Sendmail>=0.79:../../mail/p5-Mail-Sendmail
 DEPENDS+=	p5-PDF-API2>=0.65:../../textproc/p5-PDF-API2
 DEPENDS+=	p5-XML-Simple>=2.18:../../textproc/p5-XML-Simple
 DEPENDS+=	p5-libwww>=5.808:../../www/p5-libwww
-
 DEPENDS+=	p5-Data-Random>=0.05:../../devel/p5-Data-Random
 DEPENDS+=	p5-GD-Barcode>=1.15:../../graphics/p5-GD-Barcode
 DEPENDS+=	p5-MARC-Record>=2.0.0:../../databases/p5-MARC-Record

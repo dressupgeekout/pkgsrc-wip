@@ -1,13 +1,13 @@
-$NetBSD: patch-media_base_media__switches.h,v 1.1 2011/05/27 13:23:09 rxg Exp $
+$NetBSD$
 
---- media/base/media_switches.h.orig	2011-05-24 08:01:03.000000000 +0000
+--- media/base/media_switches.h.orig	2020-07-15 18:56:47.000000000 +0000
 +++ media/base/media_switches.h
-@@ -11,7 +11,7 @@
+@@ -35,7 +35,7 @@ MEDIA_EXPORT extern const char kDisableB
  
- namespace switches {
+ MEDIA_EXPORT extern const char kReportVp9AsAnUnsupportedMimeType[];
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_FREEBSD) || defined(OS_DRAGONFLY)
- extern const char kAlsaOutputDevice[];
- extern const char kAlsaInputDevice[];
+-#if defined(OS_LINUX) || defined(OS_FREEBSD) || defined(OS_SOLARIS)
++#if defined(OS_LINUX) || defined(OS_BSD) || defined(OS_SOLARIS)
+ MEDIA_EXPORT extern const char kAlsaInputDevice[];
+ MEDIA_EXPORT extern const char kAlsaOutputDevice[];
  #endif

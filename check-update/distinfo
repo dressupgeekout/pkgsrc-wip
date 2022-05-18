@@ -1,0 +1,6 @@
+$NetBSD$
+
+BLAKE2s (check-update-0.9.20.tar.gz) = a35adb7ab97868466366cbc9af70764f568cb90d79ff26e81b405c5abde1625c
+SHA512 (check-update-0.9.20.tar.gz) = 7757f2e084cfe7938294cf448ba4463b449f6ba971b11737d6c05ad987fbab50c7bb3d01700cc28e9a604b7600ddd32e9f76cfb2b31c84816afb1eb8860cd369
+Size (check-update-0.9.20.tar.gz) = 80189 bytes
+SHA1 (patch-check-update) = 84ccdda9d9c81952dea8cbd615e0d63adc8b0b59

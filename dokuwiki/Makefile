@@ -26,7 +26,7 @@ WWW_GROUP?=	${APACHE_GROUP}
 
 PKG_GROUPS_VARS+=	WWW_GROUP
 PKG_USERS_VARS=		WWW_USER
-BUILD_DEFS+=	WWW_USER WWW_GROUP APACHE_USER APACHE_GROUP VARBASE
+BUILD_DEFS+=		WWW_USER WWW_GROUP APACHE_USER APACHE_GROUP VARBASE
 
 DOKUDIR=	${PREFIX}/share/dokuwiki
 DOCDIR=		${PREFIX}/share/doc/dokuwiki
@@ -93,7 +93,7 @@ SUBST_FILES.files+=	conf/dokuwiki.php
 SUBST_FILES.files+=	apache.conf.dist
 SUBST_FILES.files+=	dokuser
 SUBST_SED.files+=	-e "s|@DATADIR@|${VARBASE}/dokuwiki|g"
-SUBST_SED.files+=	-e "s|@DOKUDIR@|${DOKUDIR}|g"
+SUBST_VARS.files=	DOKUDIR
 SUBST_MESSAGE.files=	Fixing configuration files.
 
 MESSAGE_SUBST+=		DOKUDIR=${DOKUDIR}

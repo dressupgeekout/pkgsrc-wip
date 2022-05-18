@@ -5,13 +5,14 @@ DISTNAME=	ggz-gtk-games-0.0.14
 PKGREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	http://mirrors.ibiblio.org/pub/mirrors/ggzgamingzone/ggz/0.0.14/
+LICENSE=	gnu-gpl-v2
 
 MAINTAINER=	mrohrer@users.sourceforge.net
 HOMEPAGE=	http://www.ggzgamingzone.org
 COMMENT=	GGZ Gaming Zone libraries
 
 
-CONFIGURE_ARGS+= --enable-debug-gdb
+CONFIGURE_ARGS+=	--enable-debug-gdb
 
 GNU_CONFIGURE=	yes
 

@@ -4,6 +4,7 @@ DISTNAME=	googlecalendarsync-0.4
 PKGNAME=	${PYPKGPREFIX}-gcalendarsync-0.4
 CATEGORIES=	www python
 MASTER_SITES=	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/googlecalendarsync/
+LICENSE=	gnu-gpl-v2
 
 MAINTAINER=	pkgsrc-users@netbsd.org
 HOMEPAGE=	http://code.google.com/p/googlecalendarsync/
@@ -13,8 +14,8 @@ DEPENDS+=	${PYPKGPREFIX}-vobject-[0-9]*:../../textproc/py-vobject
 DEPENDS+=	${PYPKGPREFIX}-httplib2-[0-9]*:../../www/py-httplib2
 
 USE_LANGUAGES=	# none
-PYDISTUTILSPKG=		yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-gdata, py-elementtree
+PYDISTUTILSPKG=	yes
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gdata, py-elementtree
 
 DOCDIR=	${PREFIX}/share/doc/${PKGNAME}
 

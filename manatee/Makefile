@@ -6,7 +6,7 @@ CATEGORIES=		biology
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=manatee/}
 
 MAINTAINER=		hdp@cs.nmsu.edu
-HOMEPAGE=		http://sourceforge.net/projects/manatee/
+HOMEPAGE=		https://sourceforge.net/projects/manatee/
 COMMENT=		Web-based gene evaluation and genome annotation tool
 
 WRKSRC=			${WRKDIR}/manatee
@@ -25,7 +25,7 @@ DEPENDS+=		p5-Tree-DAG_Node>=1.04:../../devel/p5-Tree-DAG_Node
 DEPENDS+=		p5-DBD-Sybase>=0.94:../../databases/p5-DBD-Sybase
 
 # Depend on default MySQL server:
-DEPENDS+=		mysql-server>=5.0:../../databases/mysql$(MYSQL_VERSION_DEFAULT)-server
+DEPENDS+=		mysql-server>=5.0:../../databases/mysql${MYSQL_VERSION_DEFAULT}-server
 
 
 USE_PKGLOCALEDIR=	yes

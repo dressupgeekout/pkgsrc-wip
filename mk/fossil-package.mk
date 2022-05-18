@@ -1,147 +1,177 @@
+# $NetBSD$
+#
 # This file provides simple access to Fossil repositories, so that packages
-# can be created from Fossil instead of from released tarballs.
+# can be created from Fossil instead of from released tarballs. Whenever a
+# repository is fetched from Fossil, a copy of it is saved below ${DISTDIR},
+# to save bandwidth.
 #
-# A package using this file shall define the following variables:
+# User-settable variables:
 #
-#	FOSSIL_REPOSITORIES
-#		A list of unique identifiers /id/ for which appropriate
-#		FOSSIL_REPO must be defined.
+# CHECKOUT_DATE (optional)
+#	Date to check out in ISO format (YYYY-MM-DD).
 #
-#	FOSSIL_REPO.${id}
-#		The fossil repository
+#	When a package doesn't specify a FOSSIL_VERSION, the latest commit
+#	is used, and the PKGREVISION is set based on the current date.
+#	To keep this date stable during a bulk build (which may span
+#	one or more midnights), this can be set to a fixed date.
 #
-# It may define the following variables:
+# Package-settable variables:
 #
-#	FOSSIL_BRANCH.${id}
-#		The branch to check out.
+# FOSSIL_REPO (required)
+#	The URL of the Fossil repository.
 #
-#	FOSSIL_REVISION.${id}
-#		The revision to check out.
+#	If the package needs more than one repository, see
+#	FOSSIL_REPOSITORIES below.
 #
-#	FOSSIL_TAG.${id}
-#		Overridable FOSSIL tag for a repository.
+# FOSSIL_EXTRACTDIR (optional)
+#	The directory where the files are extracted, relative to WRKDIR.
 #
-#	FOSSIL_ENV.${id}
-#		The environment for fossil, to set e.g. FOSSIL_SSL_NO_VERIFY=true
-
-.if !defined(_PKG_MK_FOSSIL_PACKAGE_MK)
-_PKG_MK_FOSSIL_PACKAGE_MK=	# defined
+#	Default: ${DISTNAME} without the version number
+#
+# FOSSIL_VERSION (optional)
+#	The revision, tag, date or branch to check out.
+#
+#	Default: --latest
+#
+# FOSSIL_REPOSITORIES (optional)
+#	If the package needs multiple Fossil repositories, this
+#	is the list of repository IDs. For each of these repositories,
+#	parameterized variants of the above variables are defined.
+#
+#	The default value for FOSSIL_EXTRACTDIR.${repo} is ${repo},
+#	the repository ID.
+#
+#	Example:
+#	FOSSIL_REPOSITORIES=	stable latest
+#	FOSSIL_REPO.stable=	http://core.tcl.tk/tcl/
+#	FOSSIL_VERSION.stable=	v1.2.3
+#	FOSSIL_REPO.latest=	http://core.tcl.tk/tcl/
+#
+# Variables set by this file:
+#
+# DISTFILES
+#	Defaults to an empty list.
+#	This means that MASTER_SITES does not need to be defined.
+#
+# PKGREVISION
+#	If the package doesn't set a specific FOSSIL_VERSION, this defaults
+#	to today in the format yyyymmdd, e.g. 20180225.
+#	This keeps the packages distinguishable since the HEAD might
+#	change anytime.
+#
+# Keywords: fossil
 
 BUILD_DEPENDS+=		fossil-[0-9]*:../../devel/fossil
 
-#
-# defaults for user-visible input variables
-#
-
 DISTFILES?=		# empty
-PKGREVISION?=		${_FOSSIL_PKGVERSION:S/.//g}
-
-#
-# End of the interface part. Start of the implementation part.
-#
-
-#
-# Input validation
-#
-
-.if !defined(FOSSIL_REPOSITORIES)
-PKG_FAIL_REASON+=	"[fossil-package.mk] FOSSIL_REPOSITORIES must be set."
-FOSSIL_REPOSITORIES?=	# none
+.if defined(CHECKOUT_DATE)
+PKGREVISION?=		${CHECKOUT_DATE:S/-//g}
+FOSSIL_VERSION?=	${CHECKOUT_DATE}
+.else
+PKGREVISION?=		${${DATE} -u +'%Y%m%d':L:sh}
 .endif
 
-.for _repo_ in ${FOSSIL_REPOSITORIES}
-.  if !defined(FOSSIL_REPO.${_repo_})
-PKG_FAIL_REASON+=	"[fossil-package.mk] FOSSIL_REPO."${_repo_:Q}" must be set."
+.if defined(FOSSIL_REPO)
+FOSSIL_REPOSITORIES+=		default
+FOSSIL_REPO.default=		${FOSSIL_REPO}
+FOSSIL_EXTRACTDIR.default=	${DISTNAME:U${PKGNAME}:C,-[0-9].*,,}
+.  if defined(FOSSIL_VERSION)
+FOSSIL_VERSION.default=		${FOSSIL_VERSION}
 .  endif
-.endfor
+WRKSRC?=			${WRKDIR}/${FOSSIL_EXTRACTDIR.default}
+.endif
 
-#
-# Internal variables
-#
+FOSSIL_REPOSITORIES?=	# none
+.if empty(FOSSIL_REPOSITORIES)
+PKG_FAIL_REASON+=	"[fossil-package.mk] FOSSIL_REPOSITORIES must be set."
+.endif
+
+.for repo in ${FOSSIL_REPOSITORIES}
+.  if empty(FOSSIL_REPO.${repo})
+PKG_FAIL_REASON+=	"[fossil-package.mk] FOSSIL_REPO."${repo:Q}" must be set."
+.  endif
+.  for varbase in FOSSIL_BRANCH FOSSIL_REVISION FOSSIL_TAG # To be removed after 2019-01-01
+.    if defined(${varbase}.${repo})
+WARNINGS+=		"[fossil-package.mk] ${varbase}.* is obsolete; use FOSSIL_VERSION.${repo} instead."
+FOSSIL_VERSION.${repo}?= ${${varbase}.${repo}}
+.    endif
+.  endfor
+.  for varbase in FOSSIL_ENV # To be removed after 2019-01-01
+.    if defined(${varbase}.${repo})
+WARNINGS+=		"[fossil-package.mk] ${varbase}.* is obsolete."
+.    endif
+.  endfor
+.endfor
 
 USE_TOOLS+=		date pax
 
-_FOSSIL_CMD=		fossil
-_FOSSIL_PKGVERSION_CMD=	${DATE} -u +'%Y.%m.%d'
-_FOSSIL_PKGVERSION=	${_FOSSIL_PKGVERSION_CMD:sh}
+_FOSSIL_CMD=		${PREFIX}/bin/fossil
 _FOSSIL_DISTDIR=	${DISTDIR}/fossil-packages
 
-#
-# Generation of repository-specific variables
-#
-
 .for repo in ${FOSSIL_REPOSITORIES}
-FOSSIL_MODULE.${repo}?=	${repo}
-_FOSSIL_ENV.${repo}=	${FOSSIL_ENV.${repo}}
+FOSSIL_EXTRACTDIR.${repo}?=	${repo}
+FOSSIL_VERSION.${repo}?=	--latest
 
-# In reality there is no difference for fossil
-.  if defined(FOSSIL_BRANCH.${repo})
-_FOSSIL_VERSION.${repo}=	${FOSSIL_BRANCH.${repo}}
-.  elif defined(FOSSIL_REVISION.${repo})
-_FOSSIL_VERSION.${repo}=	${FOSSIL_REVISION.${repo}}
-.  elif defined(FOSSIL_TAG.${repo})
-_FOSSIL_VERSION.${repo}=	${FOSSIL_TAG.${repo}}
-.  else
-_FOSSIL_VERSION.${repo}=	--latest
-.  endif
+# The cached archive
+_FOSSIL_DISTFILE.${repo}=	${PKGBASE}-${repo}.clone
 
-# Ignore modified files in the current checkout
-_FOSSIL_FLAG.${repo}=	--force ${_FOSSIL_VERSION.${repo}}
+# Define the shell variables used by the following commands
+_FOSSIL_CMD.vars.${repo}= \
+	repo=${FOSSIL_REPO.${repo}:Q}; \
+	extractdir=${FOSSIL_EXTRACTDIR.${repo}:Q}; \
+	archive=${_FOSSIL_DISTDIR}/${_FOSSIL_DISTFILE.${repo}:Q}; \
+	version=${FOSSIL_VERSION.${repo}:Q}
 
-# Cache support:
-#   cache file name
-_FOSSIL_DISTFILE.${repo}=	${PKGBASE}-${FOSSIL_MODULE.${repo}}.clone
-_FOSSIL_CLONE.${repo}=		${_FOSSIL_DISTDIR:Q}/${_FOSSIL_DISTFILE.${repo}:Q}
-
-#   clone remote repository and save it in directory with distfiles
-_FOSSIL_CLONE_REPO.${repo}=	\
-	if [ ! -f ${_FOSSIL_DISTDIR}/${_FOSSIL_DISTFILE.${repo}:Q} ]; then	\
-	  ${STEP_MSG} "Cloning FOSSIL archive "${_FOSSIL_DISTFILE.${repo}:Q}".";\
-	  ${SETENV} ${_FOSSIL_ENV.${repo}} ${_FOSSIL_CMD}			\
-	    clone ${_FOSSIL_CLONE_FLAGS.${repo}}				\
-	    ${FOSSIL_REPO.${repo}:Q} ${_FOSSIL_CLONE.${repo}};			\
+# Clone remote repository and save it in directory with distfiles
+_FOSSIL_CMD.clone_repo.${repo}= \
+	if [ ! -f "$$archive" ]; then					\
+	  ${STEP_MSG} "Cloning Fossil repository $$repo.";		\
+	  ${_FOSSIL_CMD} clone "$$repo" "$$archive";			\
 	fi
 
-#   open cloned repository
-_FOSSIL_OPEN_REPO.${repo}=	\
-	${MKDIR} -p ${FOSSIL_MODULE.${repo}:Q};					\
-	(									\
-		${STEP_MSG} "Opening FOSSIL repo "${_FOSSIL_DISTFILE.${repo}:Q}".";\
-		cd ${FOSSIL_MODULE.${repo}:Q}; 					\
-		${SETENV} ${_FOSSIL_ENV.${repo}} ${_FOSSIL_CMD}			\
-		  open ${_FOSSIL_CLONE.${repo}};				\
-	)
+# Open the cloned repository
+_FOSSIL_CMD.open_repo.${repo}= \
+	${STEP_MSG} "Opening Fossil repo $${archive\#\#*/}.";		\
+	${MKDIR} "$$extractdir";					\
+	cd "$$extractdir";						\
+	${_FOSSIL_CMD} open --nested "$$archive"
 
-#   pull changs from remote repository, save in local clone and checkout it
-_FOSSIL_PULL_VERSION.${repo}=	\
-	if [ ! -d ${FOSSIL_MODULE.${repo}:Q} ]; then				\
-	  ${STEP_MSG} "Cannot pull changes. Missing "${FOSSIL_MODULE.${repo}:Q}".";	\
-	fi;									\
-	(									\
-		cd ${FOSSIL_MODULE.${repo}:Q};					\
-		${STEP_MSG} "Pulling changes from "${_FOSSIL_FLAG.${repo}:Q}".";\
-		${SETENV} ${_FOSSIL_ENV.${repo}} ${_FOSSIL_CMD}			\
-		  pull ${FOSSIL_REPO.${repo}:Q};				\
-		${STEP_MSG} "Checkout "${_FOSSIL_VERSION.${repo}:Q}".";		\
-		${SETENV} ${_FOSSIL_ENV.${repo}} ${_FOSSIL_CMD}			\
-		  checkout ${_FOSSIL_FLAG.${repo}}				\
-	)
+# Pull changes from remote repository and save them in local repository
+_FOSSIL_CMD.pull.${repo}= \
+	${STEP_MSG} "Pulling changes from $$repo.";			\
+	${_FOSSIL_CMD} pull "$$repo"
 
+# Check out the desired version from the local repository
+_FOSSIL_CMD.checkout.${repo}= \
+	${STEP_MSG} "Checking out $$version.";				\
+	${_FOSSIL_CMD} checkout --force "$$version"
 .endfor
 
 pre-extract: do-fossil-extract
 
-.PHONY: do-fossil-extract
-do-fossil-extract:
-.for _repo_ in ${FOSSIL_REPOSITORIES}
-	${RUN} cd ${WRKDIR};							\
-	if [ ! -d ${_FOSSIL_DISTDIR:Q} ]; then 					\
-		mkdir -p ${_FOSSIL_DISTDIR:Q};					\
-	fi;									\
-	${_FOSSIL_CLONE_REPO.${_repo_}};					\
-	${_FOSSIL_OPEN_REPO.${_repo_}};						\
-	${_FOSSIL_PULL_VERSION.${_repo_}};
-
+do-fossil-extract: .PHONY
+.for repo in ${FOSSIL_REPOSITORIES}
+	${RUN} cd ${WRKDIR};						\
+	${MKDIR} ${_FOSSIL_DISTDIR:Q};					\
+	${_FOSSIL_CMD.vars.${repo}};					\
+	${_FOSSIL_CMD.clone_repo.${repo}};				\
+	${_FOSSIL_CMD.open_repo.${repo}};				\
+	${_FOSSIL_CMD.pull.${repo}};					\
+	${_FOSSIL_CMD.checkout.${repo}};
 .endfor
 
-.endif
+# Debug info for show-all and show-all-fossil
+_VARGROUPS+=		fossil
+_USER_VARS.fossil+=	CHECKOUT_DATE
+_PKG_VARS.fossil+=	FOSSIL_REPO FOSSIL_EXTRACTDIR FOSSIL_VERSION FOSSIL_REPOSITORIES
+_SYS_VARS.fossil+=	DISTFILES PKGREVISION WRKSRC
+_SYS_VARS.fossil+=	_FOSSIL_DISTDIR
+.for repo in ${FOSSIL_REPOSITORIES}
+.  for varbase in FOSSIL_REPO FOSSIL_EXTRACTDIR FOSSIL_VERSION
+_PKG_VARS.fossil+=	${varbase}.${repo}
+.  endfor
+.  for varbase in _FOSSIL_DISTFILE
+_SYS_VARS.fossil+=	${varbase}.${repo}
+.  endfor
+.endfor
+_USE_VARS.fossil+=	DISTNAME PKGNAME

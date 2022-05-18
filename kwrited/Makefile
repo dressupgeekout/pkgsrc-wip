@@ -3,11 +3,11 @@
 DISTNAME=	kwrited-${PLASMAVER}
 CATEGORIES=	misc
 
-HOMEPAGE=	https://www.kde.org/workspaces/plasmadesktop/
+HOMEPAGE=	https://kde.org/plasma-desktop/
 COMMENT=	Plasma5 daemon listening for wall and write messages
 LICENSE=	gnu-gpl-v2
 
-.include "../../wip/kde5/plasma.mk"
+.include "../../meta-pkgs/kde/plasma5.mk"
 
 BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
@@ -15,15 +15,21 @@ USE_TOOLS+=	msgmerge
 
 .include "../../mk/bsd.prefs.mk"
 
-PLIST_VARS+=	utempter noutempter
+SUBST_CLASSES+=		xdg
+SUBST_STAGE.xdg=	post-patch
+SUBST_MESSAGE.xdg=	Install via examples dir.
+SUBST_FILES.xdg=	CMakeLists.txt
+SUBST_SED.xdg=		-e 's:{AUTOSTART_INSTALL_DIR}:{KDE_INSTALL_AUTOSTARTEXDIR}:'
+
+PLIST_VARS+=		utempter noutempter
 .if ${OPSYS} == "Linux" && exists(/usr/include/utempter.h)
 PLIST.utempter=		yes
 .elif ${OPSYS} == "FreeBSD" && exists(/usr/include/utempter.h)
 PLIST.utempter=		yes
 .else
 PLIST.noutempter=	yes
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/autostart/kwrited-autostart.desktop \
-		${PKG_SYSCONFDIR}/xdg/autostart/kwrited-autostart.desktop
+CONF_FILES+=		${PREFIX}/share/examples/kde-xdg/autostart/kwrited-autostart.desktop \
+			${PKG_SYSCONFDIR}/xdg/autostart/kwrited-autostart.desktop
 .endif
 
 .include "../../sysutils/kdbusaddons/buildlink3.mk"

@@ -8,21 +8,21 @@ COMMENT=	Simple and extensible shell script for managing your todo.txt file
 LICENSE=	gnu-gpl-v3
 
 GIT_REPOSITORIES=	todo.txt-cli
-GIT_REPO.todo.txt-cli=	git://github.com/ginatrapani/todo.txt-cli.git
+GIT_REPO.todo.txt-cli=	https://github.com/ginatrapani/todo.txt-cli.git
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://todotxt.com/
 
 PKG_DESTDIR_SUPPORT=	user-destdir
-DEPENDS=	bash>=4.3:../../shells/bash
-DEPENDS+=	bash-completion>=2.1:../../shells/bash-completion
+DEPENDS=		bash>=4.3:../../shells/bash
+DEPENDS+=		bash-completion>=2.1:../../shells/bash-completion
 
 WRKSRC=		${WRKDIR}/todo.txt-cli
 
 SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	pre-configure
 SUBST_FILES.prefix+=	todo.sh
-SUBST_SED.prefix+=	-e "s,@PKG_SYSCONFDIR@,${PKG_SYSCONFDIR},"
+SUBST_VARS.prefix=	PKG_SYSCONFDIR
 
 USE_TOOLS+=	bash
 REPLACE_BASH=	todo.sh
@@ -34,7 +34,7 @@ NO_BUILD=	yes
 EGDIR=		share/examples/todotxt
 DOCDIR=		share/doc/todotxt
 
-INSTALLATION_DIRS= bin ${DOCDIR} ${EGDIR}
+INSTALLATION_DIRS=	bin ${DOCDIR} ${EGDIR}
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/todo.sh ${DESTDIR}${PREFIX}/bin

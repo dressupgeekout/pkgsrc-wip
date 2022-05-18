@@ -6,9 +6,10 @@ PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 PKGREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	http://www.object-craft.com.au/projects/albatross/download/
+LICENSE=	modified-bsd
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.object-craft.com.au/projects/albatross/
+HOMEPAGE=	https://www.object-craft.com.au/projects/albatross/
 COMMENT=	Toolkit for Stateful Web Applications
 
 
@@ -23,8 +24,8 @@ EXAMPLEDIR=	${DESTDIR}${PREFIX}/share/examples/albatross
 LOGFILE?=	${LOGDIR}/al-session-daemon.log
 PIDFILE?=	${RUNTIME_DIR}/session-daemon.pid
 
-ALBATROSS_USER=	albatross
-ALBATROSS_GROUP=albatross
+ALBATROSS_USER=		albatross
+ALBATROSS_GROUP=	albatross
 
 FILES_SUBST+=	ALBATROSS_USER=${ALBATROSS_USER:Q}
 FILES_SUBST+=	ALBATROSS_GROUP=${ALBATROSS_GROUP:Q}
@@ -37,10 +38,10 @@ RCD_SCRIPTS=	al_session_daemon
 PKG_GROUPS=	${ALBATROSS_USER}
 PKG_USERS=	${ALBATROSS_USER}:${ALBATROSS_GROUP}
 
-OWN_DIRS_PERMS=	${RUNTIME_DIR} ${ALBATROSS_USER} ${ALBATROSS_GROUP} 0750
-OWN_DIRS_PERMS+=${LOGDIR} ${ALBATROSS_USER} ${ALBATROSS_GROUP} 0750
+OWN_DIRS_PERMS=		${RUNTIME_DIR} ${ALBATROSS_USER} ${ALBATROSS_GROUP} 0750
+OWN_DIRS_PERMS+=	${LOGDIR} ${ALBATROSS_USER} ${ALBATROSS_GROUP} 0750
 
-REPLACE_PYTHON=	samples/extension/cal.py
+REPLACE_PYTHON=		samples/extension/cal.py
 REPLACE_PYTHON+=	samples/form4/form.py
 REPLACE_PYTHON+=	samples/paginate/paginate.py
 REPLACE_PYTHON+=	samples/popview1/popview.py

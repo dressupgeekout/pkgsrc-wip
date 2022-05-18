@@ -6,7 +6,7 @@ PKGNAME=	${DISTNAME:S/mysql/mysql${_MYSQL_VERSION}/}
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL:=MySQL-Proxy/}
 
-MAINTAINER=	filip@joyent.com
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://dev.mysql.com/downloads/mysql-proxy/
 COMMENT=	Monitor, analyze, or transform the communication of MySQL
 LICENSE=	gnu-gpl-v2
@@ -14,7 +14,7 @@ LICENSE=	gnu-gpl-v2
 PKG_DESTDIR_SUPPORT=	user-destdir
 
 LUA_VERSIONS_ACCEPTED=		51
-MYSQL_VERSIONS_ACCEPTED=	56 55 51
+MYSQL_VERSIONS_ACCEPTED=	56 55
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes

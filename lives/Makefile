@@ -4,7 +4,7 @@
 DISTNAME=	lives-0.9.9.9
 LIVESVERS=	0.9.9.9
 PKGNAME=	lives-${LIVESVERS}
-PKGREVISION=	4
+PKGREVISION=	6
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=lives/}
 EXTRACT_SUFX=	.tar.bz2
@@ -22,7 +22,7 @@ WRKSRC=			${WRKDIR}/${DISTNAME}
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
-USE_TOOLS+=	pkg-config perl gmake intltool msgfmt
+USE_TOOLS+=		pkg-config perl gmake intltool msgfmt
 
 REPLACE_PERL+=	build-lives-rfx-plugin-multi build-lives-rfx-plugin \
 		tools/autolives.pl \

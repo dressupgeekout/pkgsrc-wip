@@ -2,10 +2,10 @@
 #
 
 DISTNAME=		pal-0.4.3
-#PKGREVISION=		1
 CATEGORIES=		time
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=palcal/}
 EXTRACT_SUFX=		.tgz
+LICENSE=		gnu-gpl-v2
 
 MAINTAINER=		esg@sdf.lonestar.org
 HOMEPAGE=		http://palcal.sourceforge.net/
@@ -23,14 +23,14 @@ SUBST_CLASSES+=		path
 SUBST_STAGE.path=	pre-configure
 SUBST_MESSAGE.path=	Fixing hardcoded paths
 SUBST_FILES.path=	Makefile.defs Makefile input.c ../pal.conf
-SUBST_SED.path=		-e 's,@PKG_SYSCONFDIR@,${PKG_SYSCONFDIR},g'
-SUBST_SED.path+=	-e 's,@PKGMANDIR@,${PKGMANDIR},g'
-SUBST_SED.path+=	-e 's,@PREFIX@,${PREFIX},g'
-SUBST_SED.path+=	-e 's,@EGDIR@,${EGDIR},g'
+SUBST_VARS.path=	PKG_SYSCONFDIR
+SUBST_VARS.path+=	PKGMANDIR
+SUBST_VARS.path+=	PREFIX
+SUBST_VARS.path+=	EGDIR
 
 EGDIR=			${PREFIX}/share/examples/pal
 
-CONF_FILES=		${EGDIR:Q}/pal.conf ${PKG_SYSCONFDIR:Q}/pal.conf
+CONF_FILES=		${EGDIR}/pal.conf ${PKG_SYSCONFDIR}/pal.conf
 
 MAKE_JOBS_SAFE=		no
 
@@ -39,10 +39,10 @@ USE_NCURSES=		yes
 CFLAGS+=		-DCURSES
 
 do-build:
-	cd ${WRKSRC:Q} && make
+	cd ${WRKSRC} && make
 
 do-install:
-	cd ${WRKSRC:Q} && make install-no-rm
+	cd ${WRKSRC} && make install-no-rm
 
 
 .include "../../devel/ncurses/buildlink3.mk"

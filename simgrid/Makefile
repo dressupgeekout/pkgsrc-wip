@@ -3,13 +3,13 @@
 GITHUB_PROJECT=	simgrid
 DISTNAME=	v3_13
 PKGNAME=	${GITHUB_PROJECT}-${DISTNAME}
-CATEGORIES=	wip
+CATEGORIES=	math net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=simgrid/}
 EXTRACT_SUFX=	.zip
 DIST_SUBDIR=	${GITHUB_PROJECT}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://simgrid.org/
+HOMEPAGE=	https://simgrid.org/
 COMMENT=	Simulator of distributed applications
 LICENSE=	gnu-lgpl-v2.1
 

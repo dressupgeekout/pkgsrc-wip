@@ -7,14 +7,14 @@ MASTER_SITES=	http://zork.net/~nick/
 EXTRACT_SUFX=	.zip
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://zork.net/~nick/
+HOMEPAGE=	https://zork.net/~nick/
 COMMENT=	Strange Adventures in Infinite Space engine (SDL port) (demo data files)
 LICENSE=	sais-demo-data-license
 
 LICENSE_FILE=	${FILESDIR}/sais-demo-data-license
 RESTRICTED=	${LICENSE}
 
-USE_LANGUAGES=	#
+USE_LANGUAGES=		#
 INSTALLATION_DIRS=	bin share/doc/sais-demo-data share/sais-demo-data
 INSTALLATION_DIRS+=	share/sais-demo-data/gamedata
 INSTALLATION_DIRS+=	share/sais-demo-data/graphics

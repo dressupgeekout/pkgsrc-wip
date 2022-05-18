@@ -5,20 +5,20 @@ CATEGORIES=		graphics
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=wings/}
 EXTRACT_SUFX=		.tar.bz2
 
-MAINTAIER=		ghen@NetBSD.org
+MAINTAINER=		ghen@NetBSD.org
 HOMEPAGE=		http://www.wings3d.com/
 COMMENT=		3D modeling program with a friendly interface
-
+#LICENSE=		gnu-gpl-v2 AND Tcl/Tk-License
 
 USE_TOOLS+=		gmake
 
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	post-patch
 SUBST_FILES.paths=	unix/install_wings.src
-SUBST_SED.paths=	-e 's,%%LOCALBASE%%,${LOCALBASE},'
+SUBST_SED.paths=	-e 's,%%LOCALBASE%%,${PREFIX},'
 
 ESDL_VERSION=		0.95.0630
-ESDL_PATH=		${LOCALBASE}/lib/erlang/lib/esdl-${ESDL_VERSION}
+ESDL_PATH=		${PREFIX}/lib/erlang/lib/esdl-${ESDL_VERSION}
 
 REPLACE_INTERPRETER+=	bash
 REPLACE.bash.old=	/bin/bash
@@ -30,7 +30,7 @@ post-build:
 
 do-install:
 	cd ${WRKSRC}/wings-0.98.29b-netbsd && ${SH} install_wings
-	${INSTALL} -lsr ${LOCALBASE}/lib/erlang/lib/${PKGNAME}/wings ${LOCALBASE}/bin
+	${INSTALL} -lsr ${PREFIX}/lib/erlang/lib/${PKGNAME}/wings ${PREFIX}/bin
 
 .include "../../lang/erlang/buildlink3.mk"
 BUILDLINK_API_DEPENDS.erlang+=	erlang>=10

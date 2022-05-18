@@ -10,7 +10,7 @@ EXTRACT_SUFX=		.tar.bz2
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://zapping.sourceforge.net/Zapping/
 COMMENT=		TV viewer for the Gnome desktop
-
+LICENSE=		gnu-gpl-v2
 
 USE_PKGLOCALEDIR=	yes
 USE_LIBTOOL=		yes
@@ -21,8 +21,8 @@ USE_TOOLS+=		gmake intltool perl
 CONFIGURE_ARGS+=	--disable-rebuild-man
 CONFIGURE_ENV+=		PYTHON=${PYTHONBIN:Q}
 
-CONFIGURE_ENV+=		GCONF_SCHEMA_FILE_DIR=${PREFIX:Q}/share/gconf/schemas/
-MAKE_ENV+=		GCONF_SCHEMA_FILE_DIR=${PREFIX:Q}/share/gconf/schemas/
+CONFIGURE_ENV+=		GCONF_SCHEMA_FILE_DIR=${PREFIX}/share/gconf/schemas/
+MAKE_ENV+=		GCONF_SCHEMA_FILE_DIR=${PREFIX}/share/gconf/schemas/
 
 GCONF_SCHEMAS+=	zapping.schemas
 

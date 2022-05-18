@@ -1,15 +1,39 @@
 $NetBSD$
 
 Use appropriate options for dlopen.
+Link pkgsrc libdumb, libaldmb and freetype2.
 
---- ./Engine/Makefile-defs.linux.orig	2016-06-03 17:47:02.000000000 +0000
-+++ ./Engine/Makefile-defs.linux
-@@ -16,7 +16,11 @@ else
+--- Engine/Makefile-defs.linux.orig	2021-06-04 16:22:11.000000000 +0000
++++ Engine/Makefile-defs.linux
+@@ -1,7 +1,7 @@
+ USE_BUILT_IN_LIBSRC = 0
+ USE_MIDI_PATCH = 1
+ 
+-include Makefile-defs.freetype
++#include Makefile-defs.freetype
+ 
+ INCDIR = ../Engine ../Common ../Common/libinclude ../Common/libsrc/alfont-2.0.9 ../Plugins ../Engine/libsrc/glad/include
+ LIBDIR =
+@@ -24,6 +24,8 @@ LIBS += $(shell pkg-config --libs allegr
+ LIBS += $(shell pkg-config --libs x11)
+ LIBS += $(shell pkg-config --libs ogg)
+ LIBS += $(shell pkg-config --libs theora)
++LIBS += $(shell pkg-config --libs freetype2)
++CFLAGS += $(shell pkg-config --cflags freetype2)
+ 
+ ifeq ($(USE_TREMOR), 1)
+   LIBS += -lvorbisidec
+@@ -35,10 +37,15 @@ LIBS += $(shell pkg-config --libs vorbis
+ 
+ ifneq ($(USE_BUILT_IN_LIBSRC), 1)
+ ALDUMB :=
+-LIBS += -laldmb -ldumb
++LIBS += $(shell pkg-config --libs dumb)
++LIBS += -laldmb
  endif
- LIBS += $(shell pkg-config --libs vorbisfile)
- LIBS += $(shell pkg-config --libs freetype2)
--LIBS += -ldl -lpthread -lc -lm -lstdc++
-+LIBS += -lpthread -lc -lm -lstdc++
+ 
+-LIBS += -ldl -lpthread -lm
++LIBS += -lpthread -lm
 +
 +CFLAGS += $(DL_CFLAGS)
 +LDFLAGS += $(DL_LDFLAGS)

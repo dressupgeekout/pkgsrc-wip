@@ -7,8 +7,8 @@ PKGREVISION=		4
 CATEGORIES=		games
 MASTER_SITES=		http://offload1.icculus.org/pyddr/
 
-MAINTAINER=		shattered@NetBSD.org
-HOMEPAGE=		http://icculus.org/pyddr/
+MAINTAINER=		pkgsrc-users@NetBSD.org
+HOMEPAGE=		https://icculus.org/pyddr/
 COMMENT=		Simulator of Dance Dance Revolution and similar games
 LICENSE=		mit
 

@@ -4,9 +4,10 @@ DISTNAME=		man-db-2.7.5
 CATEGORIES=		misc
 MASTER_SITES=		http://download.savannah.gnu.org/releases/man-db/
 EXTRACT_SUFX=		.tar.xz
+LICENSE=		gnu-gpl-v2 # or later
 
 MAINTAINER=		reed@reedmedia.net
-HOMEPAGE=		http://www.chiark.greenend.org.uk/~cjwatson/code/man-db/
+HOMEPAGE=		https://www.chiark.greenend.org.uk/~cjwatson/code/man-db/
 COMMENT=		Manual pager and related man page utilities
 
 CONFLICTS+=		man-[0-9]*
@@ -36,7 +37,7 @@ GNU_CONFIGURE=		YES
 USE_TOOLS+=		gmake
 MAKE_FILE=		GNUmakefile
 CONFIGURE_ARGS+=	--mandir=${PREFIX}/man
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--enable-setuid=${MAN_DB_USER:Q}
 
 CONF_FILES=		${PREFIX}/share/examples/man-db/man_db.conf ${PKG_SYSCONFDIR}/man_db.conf
@@ -52,7 +53,7 @@ pre-install:
 USE_DB185=	YES
 .include "../../mk/bdb.buildlink3.mk"
 .if ${BDB_TYPE} != "native"
-CONFIGURE_ARGS+=	--with-db=${BDB_TYPE:Q}
+CONFIGURE_ARGS+=	--with-db=${BDB_TYPE}
 .endif
 
 .include "../../devel/gettext-lib/buildlink3.mk"

@@ -7,8 +7,8 @@ CATEGORIES=	finance
 MASTER_SITES=	https://github.com/FeatherCoin/Feathercoin/archive/
 DIST_SUBDIR=	${PKGBASE}
 
-MAINTAINER=	pkgsrc-users@users.sourceforge.net
-HOMEPAGE=	http://feathercoin.com/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://feathercoin.com/
 COMMENT=	Open source Internet currency
 LICENSE=	mit
 
@@ -18,9 +18,9 @@ USE_LANGUAGES=	c c++
 WRKSRC=		${WRKDIR}/${PKGNAME_NOREV:S/f/F/1}
 AUTO_MKDIRS=	yes
 
-#CXXFLAGS+=	-std=c++0x -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED 
-CXXFLAGS+=	-DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED 
-CXXFLAGS+=	-DBOOST_SYSTEM_NO_DEPRECATED 
+#CXXFLAGS+=	-std=c++0x -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED
+CXXFLAGS+=	-DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED
+CXXFLAGS+=	-DBOOST_SYSTEM_NO_DEPRECATED
 CXXFLAGS+=	-Wall -g -I${PREFIX}/include/boost
 #CXXFLAGS+=	-std=c++0x -Wall -g -I${PREFIX}/include/boost
 
@@ -33,17 +33,17 @@ QMAKE_OPTIONS+=	BDB_LIB_PATH=${PREFIX}/lib
 QMAKE_OPTIONS+=	OPENSSL_LIB_PATH=${PREFIX}/lib
 QMAKE_OPTIONS+=	LIB_RPATH=${PREFIX}/lib
 
-QMAKE_MOC += 	QMAKE_MOC -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED
+QMAKE_MOC+=	QMAKE_MOC -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED
 
-RCD_SCRIPTS=	feathercoind
-OWN_DIRS=	${VARBASE}/feathercoin
-EGDIR=		${PREFIX}/share/examples/feathercoin
-CONF_FILES=	${EGDIR}/feathercoin.conf ${PKG_SYSCONFDIR}/feathercoin.conf
+RCD_SCRIPTS=		feathercoind
+OWN_DIRS=		${VARBASE}/feathercoin
+EGDIR=			${PREFIX}/share/examples/feathercoin
+CONF_FILES=		${EGDIR}/feathercoin.conf ${PKG_SYSCONFDIR}/feathercoin.conf
 CONF_FILES_PERMS=	${EGDIR}/feathercoin.conf ${PKG_SYSCONFDIR}/feathercoin.conf ${ROOT_USER} ${ROOT_GROUP} 0600
 
-CONFIGURE_ARGS+=       		 --without-gui
-CONFIGURE_ARGS+=                --with-boost=${BUILDLINK_PREFIX.boost-libs}
-BUILDLINK_TRANSFORM+=           l:db_cxx:db4_cxx
+CONFIGURE_ARGS+=	--without-gui
+CONFIGURE_ARGS+=	--with-boost=${BUILDLINK_PREFIX.boost-libs}
+BUILDLINK_TRANSFORM+=	l:db_cxx:db4_cxx
 
 do-configure:
 	(cd ${WRKSRC} && env ${CONFIGURE_ENV} ${QTDIR}/bin/qmake "PREFIX=${PREFIX}" "QMAKE_CXXFLAGS=${CXXFLAGS}" ${QMAKE_OPTIONS} feathercoin-qt.pro)

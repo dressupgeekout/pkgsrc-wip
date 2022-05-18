@@ -1,30 +1,32 @@
 # $NetBSD: Makefile,v 1.2 2015/09/06 20:10:45 yhardy Exp $
 
-GITHUB_PROJECT=	Commander-Genius
-DISTNAME=	${GITHUB_TAG}
-PKGNAME=	${GITHUB_PROJECT}-1822
+DISTNAME=	Commander-Genius-v${PKGVERSION_NOREV}
+PKGNAME=	Commander-Genius-3.0.2
 CATEGORIES=	games
-MASTER_SITES=	${MASTER_SITE_GITHUB:=gerstrong/}
-DIST_SUBDIR=	${GITHUB_PROJECT}
-EXTRACT_USING=	gtar
-GITHUB_TAG=	v${PKGVERSION_NOREV}release
+MASTER_SITES=	https://gitlab.com/Dringgstein/Commander-Genius/-/archive/v${PKGVERSION_NOREV}/
+EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://clonekeenplus.sourceforge.net/
 COMMENT=	The ultimate Commander Keen interpreter
 LICENSE=	gnu-gpl-v2
 
-WRKSRC=		${WRKDIR}/Commander-Genius-${PKGVERSION_NOREV}release
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config
 
+CMAKE_ARGS+=	-DAPPDIR=${PREFIX}/bin
 CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=LINUX64
-CMAKE_ARGS+=	-DGAMES_SHAREDIR=${PREFIX}/share
 CMAKE_ARGS+=	-DDOCDIR=${PREFIX}/share/doc/commandergenius
+CMAKE_ARGS+=	-DGAMES_SHAREDIR=${PREFIX}/share
+# segmentation fault on startup
+CMAKE_ARGS+=	-DUSE_OPENGL=NO
+# make an option for SDL1 ?
 #CMAKE_ARGS+=	-DUSE_SDL2=NO
 
 INSTALLATION_DIRS=	bin share/doc/commandergenius
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 post-install:
 	cd ${WRKSRC}/vfsroot && ${FIND} . -type d | while read d; do \
@@ -35,9 +37,13 @@ post-install:
 	done
 
 .include "options.mk"
-
+.include "../../audio/SDL2_mixer/buildlink3.mk"
 .include "../../devel/SDL2/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
+.include "../../devel/zlib/buildlink3.mk"
+.include "../../fonts/SDL2_ttf/buildlink3.mk"
 .include "../../graphics/SDL2_image/buildlink3.mk"
+.include "../../lang/python/tool.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
+.include "../../www/curl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

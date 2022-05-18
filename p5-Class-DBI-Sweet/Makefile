@@ -6,7 +6,7 @@ CATEGORIES=	databases perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../by-authors/id/P/PH/PHRED/}
 
 MAINTAINER=	kuli0020@umn.edu
-HOMEPAGE=	http://search.cpan.org/dist/Class-DBI-Sweet/
+HOMEPAGE=	https://metacpan.org/release/Class-DBI-Sweet
 COMMENT=	Extra sweet features for Class::DBI
 LICENSE=	${PERL5_LICENSE}
 
@@ -20,7 +20,7 @@ DEPENDS+=	p5-DBD-SQLite>=1.08:../../databases/p5-DBD-SQLite
 CHECK_PORTABILITY_SKIP+=	script/import-cdbi-tests.sh
 
 PERL5_MODULE_TYPE=	Module::Build
-PERL5_PACKLIST= auto/Class/DBI/Sweet/.packlist
+PERL5_PACKLIST=		auto/Class/DBI/Sweet/.packlist
 
 .include "../../lang/perl5/module.mk"
 .include "../../mk/bsd.pkg.mk"

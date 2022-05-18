@@ -1,5 +1,5 @@
 @comment $NetBSD$
 bin/edbrowse
-bin/edbrowse-js
 man/man1/edbrowse.1
+share/doc/edbrowse/sample.ebrc
 share/doc/edbrowse/usersguide.html

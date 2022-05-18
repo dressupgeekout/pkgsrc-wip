@@ -1,8 +1,10 @@
 $NetBSD$
 
-SHA1 (kinfocenter-5.6.3.tar.xz) = 6a21c1c6400106d07d67d123bcfbf75abccfa73b
-RMD160 (kinfocenter-5.6.3.tar.xz) = 8571b1b104557199a9fa014da03296f843ee6ef0
-SHA512 (kinfocenter-5.6.3.tar.xz) = 8b3d6506427bdf5e170751bf82c0dd8d1fed374a5decd82ffcdffae611dddbe004ac38736e29a6614529128b319f7a96353e443674fcba5244e7398590b2e2c8
-Size (kinfocenter-5.6.3.tar.xz) = 1320396 bytes
+RMD160 (kinfocenter-5.18.5.tar.xz) = 442b6bb1e9fa18bfb9e253e3155bc9d3862e8903
+SHA512 (kinfocenter-5.18.5.tar.xz) = c9896870a92b3349c262698c4902b98f6aa12523c1757890367d1e277954b0ac7b040bbff0095f7a6abf47e6a31b008070e3a461713c7cf4a591617b76c37886
+Size (kinfocenter-5.18.5.tar.xz) = 1256744 bytes
+SHA1 (patch-Modules_about-distro_src_Module.cpp) = 6fce0f9ce9681deb7bf4f1017104d48c536ff70e
+SHA1 (patch-Modules_base_info__netbsd.cpp) = a762f3043ec6a7a1bab1afdb68581d474ef7f9aa
+SHA1 (patch-Modules_memory_base.h) = 6db972a12e7ba9d0cc59a483e2565042907be340
 SHA1 (patch-Modules_nics_nic.cpp) = d759de60f074d8e35d759cef3426c2f84ad9768e
-SHA1 (patch-kcontrol_menus_CMakeLists.txt) = d55591620116acf72649026f7eaab878838621e9
+SHA1 (patch-cmake_FindPCIUTILS.cmake) = adf08e8d69e9f34e3f5367485d03625a17b00c29

@@ -1,27 +1,24 @@
-# $NetBSD: Makefile,v 1.7 2012/09/29 00:50:35 asau Exp $
+# $NetBSD$
 #
 
-DISTNAME=	glista-0.4
-PKGREVISION=	1
+DISTNAME=	glista-0.3
 CATEGORIES=	time gnome
-MASTER_SITES=	http://glista.googlecode.com/files/
+MASTER_SITES=	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/glista/
 
-MAINTAINER=	pkgsrc-users@netbsd.org
+MAINTAINER=	kamel.derouiche@gmail.com
 HOMEPAGE=	http://prematureoptimization.org/glista/
 COMMENT=	Simple task list management utility
 
+PKG_DESTDIR_SUPPORT=	user-destdir
+
+USE_DIRS+=	xdg-1.4
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config
 
-CONFIGURE_ARGS+=	--disable-linkify-urls
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 
 .include "../../devel/glib2/buildlink3.mk"
-.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../textproc/gtkspell/buildlink3.mk"
-CONFIGURE_ARGS+=		--with-gtkspell
-BUILDLINK_API_DEPENDS.libxml2+=	libxml2>=2.6.2
 .include "../../textproc/libxml2/buildlink3.mk"
-.include "../../x11/libunique/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

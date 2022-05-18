@@ -13,10 +13,10 @@ HOMEPAGE=	http://speedmodem50b.berlios.de/
 COMMENT=	Speed Modem 50B/50B+/200/Cellpipe CELL 19A-BX utility
 LICENSE=	gnu-gpl-v2
 
-WRKSRC=		${WRKDIR}/${PKGBASE}/src
-NO_CONFIGURE=	YES
-USE_TOOLS+=	gmake
-USE_LANGUAGES=	c++
+WRKSRC=			${WRKDIR}/${PKGBASE}/src
+NO_CONFIGURE=		YES
+USE_TOOLS+=		gmake
+USE_LANGUAGES=		c++
 INSTALLATION_DIRS=	bin
 
 CXXFLAGS.Linux+=	-DCSTDLIB
@@ -24,6 +24,6 @@ CXXFLAGS.Linux+=	-DCSTDLIB
 BUILD_TARGET=	tctool
 
 do-install:
-		${INSTALL_PROGRAM} ${WRKSRC}/tctool ${DESTDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/tctool ${DESTDIR}${PREFIX}/bin
 
 .include "../../mk/bsd.pkg.mk"

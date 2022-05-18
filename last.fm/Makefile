@@ -7,9 +7,10 @@ PKGREVISION=	2
 CATEGORIES=	audio net
 MASTER_SITES=	http://cdn.last.fm/client/src/
 EXTRACT_SUFX=	.tar.bz2
+LICENSE=	gnu-gpl-v3
 
 MAINTAINER=	jfranz@bsdprojects.net
-HOMEPAGE=	http://www.last.fm/
+HOMEPAGE=	https://www.last.fm/
 COMMENT=	Official last.fm radio player
 
 BROKEN=		FIXME: I build fine now, but fail to load some libs.

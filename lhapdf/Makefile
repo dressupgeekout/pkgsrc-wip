@@ -6,7 +6,7 @@ CATEGORIES=	math
 MASTER_SITES=	http://www.hepforge.org/archive/lhapdf/
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://lhapdf.hepforge.org/
+HOMEPAGE=	https://lhapdf.hepforge.org/
 COMMENT=	Les Houches Accord PDF library and interface
 LICENSE=	gnu-gpl-v3
 
@@ -16,7 +16,7 @@ USE_LANGUAGES=	c c++ fortran
 
 PKGCONFIG_OVERRIDE+=	lhapdf.pc.in
 
-REPLACE_BASH+=  lhapdf-config.in
+REPLACE_BASH+=	lhapdf-config.in
 
 .include "options.mk"
 

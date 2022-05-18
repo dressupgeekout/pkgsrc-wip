@@ -6,9 +6,10 @@ PKGNAME=		png2ico-20021208
 PKGREVISION=		1
 CATEGORIES=		graphics
 MASTER_SITES=		http://www.winterdrache.de/freeware/png2ico/data/
+LICENSE=		gnu-gpl-v2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.winterdrache.de/freeware/png2ico/
+HOMEPAGE=		https://www.winterdrache.de/freeware/png2ico/
 COMMENT=		PNG to icon converter
 
 USE_LANGUAGES=		c++

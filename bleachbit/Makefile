@@ -16,10 +16,10 @@ DEPENDS+=	${PYPKGPREFIX}-notify>=0.2.1:../../sysutils/py-notify
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-gtk2
-REPLACE_PYTHON+=	bleachbit.py
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2
+REPLACE_PYTHON+=		bleachbit.py
 
-INSTALLATION_DIRS+=  bin share/applications share/pixmaps
+INSTALLATION_DIRS+=	bin share/applications share/pixmaps
 
 
 post-install:
@@ -32,7 +32,7 @@ post-install:
 
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../x11/py-gtk2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

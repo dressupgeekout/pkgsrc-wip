@@ -1,0 +1,43 @@
+$NetBSD$
+
+Fix installation directories, and use of install command.
+
+--- Makefile.orig	2021-11-16 17:17:14.000000000 +0000
++++ Makefile
+@@ -12,7 +12,8 @@ shaderFolder := shader
+ imgFolder := img
+ soundFolder := sounds
+ 
+-prefix ?= /usr
++prefix := ${DESTDIR}${PREFIX}
++#prefix ?= /usr
+ #prefix ?= $(HOME)/.local
+ 
+ include data/Makefile
+@@ -271,17 +272,17 @@ install:
+ 	mkdir -p $(prefix)/share/$(loname)/$(shaderFolder)/
+ 
+ 	if [ -d $(prefix)/local ]; then	\
+-	    install -D -m 755 out/$(name) $(prefix)/local/bin/$(name);	\
++	    install -m 755 out/$(name) $(prefix)/local/bin/$(name);	\
+ 	else	\
+-	    install -D -m 755 out/$(name) $(prefix)/bin/$(name);	\
++	    install -m 755 out/$(name) $(prefix)/bin/$(name);	\
+ 	fi
+-	install -D -m 644 data/img/$(loname).png $(prefix)/share/icons/$(loname).png
+-	install -D -m 644 data/$(loname).desktop $(prefix)/share/applications/$(loname).desktop
+-	install -D -m 644 data/application-x-$(loname).xml $(prefix)/share/mime/packages/application-x-$(loname).xml
+-	install -D -m 644 data/$(translationFolder)/* $(prefix)/share/$(loname)/$(translationFolder)
+-	install -D -m 644 data/$(dataFolder)/* $(prefix)/share/$(loname)/$(dataFolder)
+-	install -D -m 644 data/$(fontFolder)/*.ttf $(prefix)/share/$(loname)/$(fontFolder)
+-	install -D -m 644 data/$(imgFolder)/bundle/* $(prefix)/share/$(loname)/$(imgFolder)
++	install -m 644 data/img/$(loname).png $(prefix)/share/icons/$(loname).png
++	install -m 644 data/$(loname).desktop $(prefix)/share/applications/$(loname).desktop
++	install -m 644 data/application-x-$(loname).xml $(prefix)/share/mime/packages/application-x-$(loname).xml
++	install -m 644 data/$(translationFolder)/* $(prefix)/share/$(loname)/$(translationFolder)
++	install -m 644 data/$(dataFolder)/* $(prefix)/share/$(loname)/$(dataFolder)
++	install -m 644 data/$(fontFolder)/*.ttf $(prefix)/share/$(loname)/$(fontFolder)
++	install -m 644 data/$(imgFolder)/bundle/* $(prefix)/share/$(loname)/$(imgFolder)
+ 	cp -r data/$(soundFolder)/* $(prefix)/share/$(loname)/$(soundFolder)/
+ 	cp -r data/$(shaderFolder)/* $(prefix)/share/$(loname)/$(shaderFolder)/
+     endif

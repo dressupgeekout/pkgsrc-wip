@@ -1,16 +1,17 @@
 # $NetBSD: Makefile,v 1.68 2015/11/23 10:30:16 wiz Exp $
 
 DISTNAME=	libreoffice
+PKGREVISION=	2
 CATEGORIES=	misc
 
-GIT_REPOSITORIES= core
-GIT_REPO.core=    git://gerrit.libreoffice.org/core.git
+GIT_REPOSITORIES=	core
+GIT_REPO.core=		git://gerrit.libreoffice.org/core.git
 
 #MASTER_SITES=	http://dev-www.libreoffice.org/bundles/
 
 #EXTRACT_SUFX=	.tar.bz2
 
-HOMEPAGE=	http://www.libreoffice.org/
+HOMEPAGE=	https://www.libreoffice.org/
 COMMENT=	Office productivity suite from The Document Foundation
 LICENSE=	gnu-lgpl-v3
 
@@ -24,7 +25,7 @@ GCC_REQD+=	4.6
 
 CHECK_SHLIBS_SUPPORTED=	no
 # configure will be regenerated.
-CHECK_PORTABILITY_SKIP=configure
+CHECK_PORTABILITY_SKIP=	configure
 
 DIST_SUBDIR=	libreoffice
 
@@ -84,11 +85,11 @@ DIST_SUBDIR=	libreoffice
 #SITES.${md}=		http://dev-www.libreoffice.org/src/
 #.endfor
 
-#DISTFILES+=e7a384790b13c29113e22e596ade9687-LinLibertineG-20120116.zip
-#SITES.e7a384790b13c29113e22e596ade9687-LinLibertineG-20120116.zip=http://www.numbertext.org/linux/
+#DISTFILES+=	e7a384790b13c29113e22e596ade9687-LinLibertineG-20120116.zip
+#SITES.e7a384790b13c29113e22e596ade9687-LinLibertineG-20120116.zip= http://www.numbertext.org/linux/
 
-#DISTFILES+=185d60944ea767075d27247c3162b3bc-unowinreg.dll
-#SITES.185d60944ea767075d27247c3162b3bc-unowinreg.dll=http://download.go-oo.org/extern/
+#DISTFILES+=	185d60944ea767075d27247c3162b3bc-unowinreg.dll
+#SITES.185d60944ea767075d27247c3162b3bc-unowinreg.dll= http://download.go-oo.org/extern/
 
 .include "options.mk"
 
@@ -107,7 +108,7 @@ DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 # is a no-go with normal pkgsrc wrappers.
 # dmake is slowly beeing removed from the LibreOffice build process
 # and this option will hopefully become unneeded in the future
-WRAPPER_SKIP_TRANSFORM=yes
+WRAPPER_SKIP_TRANSFORM=	yes
 
 USE_LANGUAGES+=		c c++
 
@@ -195,8 +196,8 @@ LO_PROGRAMS=		sbase scalc sdraw simpress smath soffice swriter
 LO_DESKTOP_FILES=	calc.desktop draw.desktop impress.desktop math.desktop \
 			startcenter.desktop writer.desktop
 
-#OBJDIR=			pkgsrcbuild
-#CONFIGURE_DIRS=		${OBJDIR}
+#OBJDIR=		pkgsrcbuild
+#CONFIGURE_DIRS=	${OBJDIR}
 CONFIGURE_SCRIPT=	${WRKSRC}core/autogen.sh
 
 #LD_LIBRARY_PATH+=	${WRKSRC}/instdir/sdk/lib:${WRKSRC}/instdir/ure/lib:${WRKSRC}/instdir/program
@@ -256,7 +257,7 @@ BUILDLINK_API_DEPENDS.libetonyek+=	libetonyek>=0.1.4
 .include "../../converters/libwpg/buildlink3.mk"
 .include "../../converters/libwps/buildlink3.mk"
 .include "../../converters/libmwaw/buildlink3.mk"
-.include "../../converters/orcus0.8/buildlink3.mk"
+.include "../../converters/orcus/buildlink3.mk"
 .include "../../databases/db4/buildlink3.mk"
 .include "../../databases/openldap-client/buildlink3.mk"
 .include "../../databases/shared-mime-info/buildlink3.mk"
@@ -292,7 +293,7 @@ BUILDLINK_API_DEPENDS.libetonyek+=	libetonyek>=0.1.4
 .include "../../multimedia/gstreamer1/buildlink3.mk"
 .include "../../multimedia/gst-plugins1-base/buildlink3.mk"
 .include "../../net/libcmis/buildlink3.mk"
-.include "../../print/cups/buildlink3.mk"
+.include "../../print/cups-base/buildlink3.mk"
 .include "../../print/poppler-cpp/buildlink3.mk"
 .include "../../print/poppler-includes/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"

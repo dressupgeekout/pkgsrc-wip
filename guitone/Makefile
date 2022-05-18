@@ -10,7 +10,7 @@ MASTER_SITES=	ftp://ftp.NetBSD.org/pub/NetBSD/misc/bjs/distfiles/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://guitone.thomaskeller.biz/
+HOMEPAGE=	https://guitone.thomaskeller.biz/
 COMMENT=	Graphical Monotone VCS Tool
 
 ###
@@ -19,7 +19,7 @@ COMMENT=	Graphical Monotone VCS Tool
 ###
 NOT_FOR_PLATFORM=	Darwin-*-*
 
-USE_LANGUAGES=          c c++
+USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 
 do-configure:

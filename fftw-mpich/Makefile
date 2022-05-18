@@ -6,7 +6,7 @@ CATEGORIES=		math
 MASTER_SITES=		ftp://ftp.fftw.org/pub/fftw/ \
 			http://www.fftw.org/
 
-MAINTAINER=		bacon4000@gmail.com
+MAINTAINER=		bacon@NetBSD.org
 HOMEPAGE=		http://www.fftw.org/
 COMMENT=		Collection of fast C routines to compute DFTs
 LICENSE=		gnu-gpl-v2
@@ -37,5 +37,5 @@ USE_TOOLS+=		perl
 TEST_MAKE_FLAGS+=	MPIRUN=$(PREFIX}/mpich/bin/mpirun
 .endif
 
-.include "../../wip/mpi-ch/buildlink3.mk"
+.include "../../parallel/mpi-ch/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

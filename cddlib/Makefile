@@ -1,13 +1,14 @@
 # $NetBSD: Makefile,v 1.3 2015/01/31 20:03:00 jihbed Exp $
 
-DISTNAME=	cddlib-094g
-CATEGORIES=	wip
-MASTER_SITES=	ftp://ftp.ifor.math.ethz.ch/pub/fukuda/cdd/
+DISTNAME=	cddlib-0.94j
+CATEGORIES=	math
+MASTER_SITES=	${MASTER_SITE_GITHUB:=cddlib/}
+GITHUB_RELEASE=	0.94j
 
-MAINTAINER=	INSERT_YOUR_MAIL_ADDRESS_HERE
-HOMEPAGE=	ftp://ftp.ifor.math.ethz.ch/pub/fukuda/cdd/
-COMMENT=	TODO: Short description of the package
-#LICENSE=	# TODO: (see mk/license.mk)
+MAINTAINER=	jihbed.research@gmail.com
+HOMEPAGE=	https://github.com/cddlib/cddlib
+COMMENT=	Efficient implementation of the Double Description Method
+LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	gmake

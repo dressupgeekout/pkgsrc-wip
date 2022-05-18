@@ -6,7 +6,7 @@ CATEGORIES=	x11
 MASTER_SITES=	http://download.savannah.gnu.org/releases/libqtlua/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.nongnu.org/libqtlua/
+HOMEPAGE=	https://www.nongnu.org/libqtlua/
 COMMENT=	Lua alternative to the Qt5Script module
 LICENSE=	gnu-gpl-v3 OR gnu-lgpl-v3
 
@@ -14,7 +14,7 @@ USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 
 CMAKE_ARGS+=	-DINSTALL_BIN=${QTDIR}/bin
-CMAKE_ARGS+=    -DINSTALL_INC=${QTDIR}/include
+CMAKE_ARGS+=	-DINSTALL_INC=${QTDIR}/include
 CMAKE_ARGS+=	-DINSTALL_LIB=${QTDIR}/lib
 
 .include "../../lang/lua51/buildlink3.mk"

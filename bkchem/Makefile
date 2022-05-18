@@ -15,13 +15,13 @@ DEPENDS+=	${PYPKGPREFIX}-Tk-[0-9]*:../../x11/py-Tk
 PYTHON_VERSIONED_DEPENDENCIES=	Pmw
 
 USE_PKGLOCALEDIR=	yes
-USE_TOOLS+=	intltool msgfmt
+USE_TOOLS+=		intltool msgfmt
 USE_LANGUAGES=		# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # as of 0.13.0
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 0.13.0
 
-PY_EXEC=${PREFIX}/bin/python${PYVERSSUFFIX}
-PY_APPAPATH=${PREFIX}/${PYSITELIB}/bkchem/bkchem.py
+PY_EXEC=	${PREFIX}/bin/python${PYVERSSUFFIX}
+PY_APPAPATH=	${PREFIX}/${PYSITELIB}/bkchem/bkchem.py
 
 post-extract:
 	    ${CP} ${FILESDIR}/bkchem.desktop ${WRKSRC}
@@ -30,7 +30,7 @@ post-extract:
 	    ${ECHO} exec ${PY_EXEC} -OO  ${PY_APPAPATH} >> ${WRKSRC}/bkchem${PYVERSSUFFIX}
 
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../lang/python/versioned_dependencies.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

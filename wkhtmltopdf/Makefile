@@ -3,12 +3,12 @@
 DISTNAME=	wkhtmltox-0.12.2.1
 PKGNAME=	${DISTNAME:S/tox/topdf/}
 CATEGORIES=	textproc
-MASTER_SITES=   ${MASTER_SITE_GITHUB:=wkhtmltopdf/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=wkhtmltopdf/}
 MASTER_SITES=	http://download.gna.org/wkhtmltopdf/0.12/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	zecrazytux@zecrazytux.net
-HOMEPAGE=	http://wkhtmltopdf.org/
+HOMEPAGE=	https://wkhtmltopdf.org/
 COMMENT=	Render HTML into PDF and image formats using QT Webkit
 LICENSE=	gnu-lgpl-v3
 

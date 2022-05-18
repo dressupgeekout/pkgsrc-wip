@@ -6,13 +6,13 @@ CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_PYPI:=d/distob/}
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://github.com/mattja/distob/
+HOMEPAGE=	https://github.com/mattja/distob/
 COMMENT=	Distributed computing made easier, using remote objects
 LICENSE=	gnu-gpl-v3
 
 DEPENDS+=	${PYPKGPREFIX}-ipython>=3.2.1:../../devel/py-ipython
 DEPENDS+=	${PYPKGPREFIX}-zmq>=14.4.1:../../net/py-zmq
-DEPENDS+=	${PYPKGPREFIX}-dill>=0.2.4:../../wip/py-dill
+DEPENDS+=	${PYPKGPREFIX}-dill>=0.2.4:../../textproc/py-dill
 
 USE_LANGUAGES=	# none
 

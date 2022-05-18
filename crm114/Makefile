@@ -1,17 +1,16 @@
 # $NetBSD: Makefile,v 1.10 2012/09/24 18:26:55 asau Exp $
 
-PKGNAME=		crm114-20070810
 DISTNAME=		${PKGNAME}-BlameTheSegfault.src
+PKGNAME=		crm114-20070810
 CATEGORIES=		mail
+# For some reason, later versions are just being placed on the home page
+#   MASTER_SITES=		${MASTER_SITE_SOURCEFORGET:=crm114/}
+MASTER_SITES=		http://crm114.sourceforge.net/tarballs/
 
 MAINTAINER=		bsd@cs.ubc.ca
 HOMEPAGE=		http://crm114.sourceforge.net/
 COMMENT=		Fast and accurate learning classifier, good for spam
 LICENSE=		gnu-gpl-v2
-
-# For some reason, later versions are just being placed on the home page
-#   MASTER_SITES=		${MASTER_SITE_SOURCEFORGET:=crm114/}
-MASTER_SITES=		http://crm114.sourceforge.net/tarballs/
 
 USE_TOOLS+=		msgfmt
 
@@ -41,7 +40,7 @@ SUBST_CLASSES+=		crmdirs
 SUBST_STAGE.crmdirs=	pre-configure
 SUBST_MESSAGE.crmdirs=	Fixing script references
 SUBST_FILES.crmdirs=	${SCRIPTS}
-SUBST_SED.crmdirs=	-e 's,@SCRIPTSDIR@,${SCRIPTSDIR},g'
+SUBST_VARS.crmdirs=	SCRIPTSDIR
 
 # Several differences will be shown in `make test':
 #   * userdirtest.crm: output depends on locale collation ordering

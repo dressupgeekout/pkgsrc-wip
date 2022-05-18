@@ -4,11 +4,7 @@ DISTNAME=	util-linux-2.12r
 PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SUNSITE:=system/misc/} \
-		http://www.kernel.org/pub/linux/utils/util-linux/ \
-		ftp://ftp.fr.kernel.org/pub/linux/utils/util-linux/ \
-		ftp://ftp.cn.kernel.org/pub/linux/utils/util-linux/ \
-		ftp://ftp.win.tue.nl/pub/linux-local/utils/util-linux/
-# old: ftp://ftp.cwi.nl/pub/aeb/util-linux/
+		http://www.kernel.org/pub/linux/utils/util-linux/
 #EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	reed@reedmedia.net
@@ -22,11 +18,11 @@ ONLY_FOR_PLATFORM=	Linux-*-* # Uses Linux kernel headers
 
 USE_TOOLS+=		gmake
 GNU_CONFIGURE=		YES
-MAKE_ENV+=		DESTDIR=${PREFIX:Q}
-MAKE_ENV+=		ETCDIR=${PREFIX:Q}/share/examples/util-linux
-MAKE_ENV+=		FDPRMFILE=${PKG_SYSCONFDIR:Q}/fdprm
-MAKE_ENV+=		INFO_DIR=/${PKGINFODIR:Q}
-MAKE_ENV+=		MAN_DIR=/${PKGMANDIR:Q}
+MAKE_ENV+=		DESTDIR=${PREFIX}
+MAKE_ENV+=		ETCDIR=${PREFIX}/share/examples/util-linux
+MAKE_ENV+=		FDPRMFILE=${PKG_SYSCONFDIR}/fdprm
+MAKE_ENV+=		INFO_DIR=/${PKGINFODIR}
+MAKE_ENV+=		MAN_DIR=/${PKGMANDIR}
 
 INFO_FILES=		# PLIST
 

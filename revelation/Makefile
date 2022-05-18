@@ -6,7 +6,7 @@ MASTER_SITES=	https://bitbucket.org/erikg/revelation/downloads/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://revelation.olasagasti.info/
+HOMEPAGE=	https://revelation.olasagasti.info/
 COMMENT=	Password manager for the GNOME desktop
 LICENSE=	gnu-gpl-v2
 
@@ -14,12 +14,12 @@ DEPENDS+=	${PYPKGPREFIX}-crypto-[0-9]*:../../security/py-crypto
 DEPENDS+=	${PYPKGPREFIX}-dbus-[0-9]*:../../sysutils/py-dbus
 DEPENDS+=	${PYPKGPREFIX}-cracklib-[0-9]*:../../wip/py-cracklib
 
-GNU_CONFIGURE=	yes
-USE_LANGUAGES=	c
-USE_TOOLS+=	gmake intltool pkg-config
-CONFIGURE_ARGS+=	GCONFTOOL=${GCONFTOOL2}
-PY_PATCHPLIST=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-ORBit via py-gnome2, py-gtk2
+GNU_CONFIGURE=			yes
+USE_LANGUAGES=			c
+USE_TOOLS+=			gmake intltool pkg-config
+CONFIGURE_ARGS+=		GCONFTOOL=${GCONFTOOL2}
+PY_PATCHPLIST=			yes
+PYTHON_VERSIONS_ACCEPTED=	27 # py-ORBit via py-gnome2, py-gtk2
 
 GCONF_SCHEMAS=	revelation.schemas
 

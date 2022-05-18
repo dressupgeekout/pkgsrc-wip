@@ -5,6 +5,7 @@
 # The naming scheme allows it to be installed multiple times simultaneously
 PKGNAME=	linux-kernel${LINUX_VERSION}-${LINUX_VERSION}
 COMMENT=	The Linux kernel
+LICENSE=	gnu-gpl-v2
 
 BUILD_DEPENDS+=		linux-module-init-tools-[0-9]*:../../wip/linux-module-init-tools
 # This means that old linux-modutils aren't available for other kernel
@@ -24,7 +25,7 @@ LINUXBASE?=	${PREFIX}
 # XXX can not  set LOCALBASE because
 #  PREFIX is used in patch for depmod
 #  PKG_TOOLS_BIN is changed
-#LOCALBASE=		/
+#LOCALBASE=	/
 
 NO_MTREE=	YES
 

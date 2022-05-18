@@ -1,14 +1,14 @@
 # $NetBSD: Makefile,v 1.3 2014/10/09 14:06:26 thomasklausner Exp $
 #
 
-DISTNAME=	bonnie++-1.96
+DISTNAME=	bonnie++-1.98
 PKGREVISION=	1
 CATEGORIES=	benchmarks
-MASTER_SITES=	http://www.coker.com.au/bonnie++/experimental/
+MASTER_SITES=	https://www.coker.com.au/bonnie++/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.coker.com.au/bonnie++/experimental/
+HOMEPAGE=	https://doc.coker.com.au/projects/bonnie/
 COMMENT=	Enhanced performance Test of Filesystem I/O
 
 USE_LANGUAGES=		c c++
@@ -29,6 +29,6 @@ benchmark: build
 .PHONY: results
 results: build
 	@${MKDIR} /tmp/benches/`domainname`
-	${CP} ${WRKSRC:Q}/bonnie.out /tmp/benches/`domainname`/bonnie++.`uname`-`uname -m`-`uname -r`.`hostname`
+	${CP} ${WRKSRC}/bonnie.out /tmp/benches/`domainname`/bonnie++.`uname`-`uname -m`-`uname -r`.`hostname`
 
 .include "../../mk/bsd.pkg.mk"

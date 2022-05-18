@@ -1,5 +1,5 @@
 $NetBSD$
 
-SHA1 (pioneer-20160205.tar.gz) = 5a18ea18bd854bd91762c26779c350423ec472d9
-RMD160 (pioneer-20160205.tar.gz) = a1c40f14dcb480bf42eaa6375050195ccfae26e8
-Size (pioneer-20160205.tar.gz) = 187188185 bytes
+RMD160 (pioneer-20200203-20200203.tar.gz) = 237afd0fe00f1d1f1f8d1a4db3e4fd3a1b883b2d
+SHA512 (pioneer-20200203-20200203.tar.gz) = 0e4a0dc968ecdf065dccd747215d97da371c80b58639aaf10b08ae8200c4bd2e7c929fcadcbefa6a27aa91432c03e4ca1ed87c6dd9b4edd0010b194a736c53bb
+Size (pioneer-20200203-20200203.tar.gz) = 368497493 bytes

@@ -9,12 +9,12 @@ MASTER_SITES=	http://www.gupnp.org/sources/gupnp-ui/
 MAINTAINER=	pkgsrc.gnome@gmail.com
 HOMEPAGE=	http://www.gupnp.org/
 COMMENT=	GTK+ widgets for use with GUPnP
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	gnu-lgpl-v2
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config intltool msgfmt
-USE_LANGUAGES= c c++
+USE_LANGUAGES=	c c++
 
 PKGCONFIG_OVERRIDE+=	gupnp-ui-1.0.pc.in
 

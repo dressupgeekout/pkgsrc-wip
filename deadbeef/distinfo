@@ -1,9 +1,6 @@
 $NetBSD: distinfo,v 1.2 2012/04/29 15:06:26 roelants Exp $
 
-SHA1 (deadbeef-0.5.2.tar.bz2) = 8567d36a55651717ada752781cda42f9a60cc63b
-RMD160 (deadbeef-0.5.2.tar.bz2) = 661e6351a0b1e2c30466beff596a75986d5b73c4
-Size (deadbeef-0.5.2.tar.bz2) = 2872396 bytes
-SHA1 (patch-configure) = 7e3d79309cb585421694739b7c59380145aff305
-SHA1 (patch-plugins_dumb_dumb-kode54_src_it_itrender.c) = 8c0afc9063091a17dc5b68572a37aa4e3687406a
-SHA1 (patch-plugins_oss_Makefile.in) = 0c1cada50afc904555fbe79c9bb9bea9abf89634
-SHA1 (patch-yasmwrapper.sh) = 0299a667ec6f7cefc48fa99a24ee6f7904cf5aa3
+RMD160 (deadbeef-1.8.3.tar.gz) = 35ce1636fb3614a9a17099caaefb6607dcc11db9
+SHA512 (deadbeef-1.8.3.tar.gz) = d0101b730fc8504b990929fa255d88010c544c1d2090ec12c79106a2b1dbb9613d03f06f8a872ec7c2d61faab4c23993b7a7fcb4b3b8dbc91dc4a065a1c459a3
+Size (deadbeef-1.8.3.tar.gz) = 12963204 bytes
+SHA1 (patch-intl_Makefile.in) = ae9496182c112bd14377adca7bfa191b37cabd2e

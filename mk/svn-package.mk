@@ -1,137 +1,184 @@
-# This file provides simple access to svn repositories, so that packages
-# can be created from svn instead of from released tarballs.
+# $NetBSD$
 #
-# A package using this file shall define the following variables:
+# This file provides simple access to Subversion repositories, so that
+# packages can be created from Subversion instead of from released
+# tarballs. Whenever a package is fetched from Subversion, an archive
+# is created from it and saved below ${DISTDIR}, to save bandwidth.
 #
-#	SVN_REPOSITORIES
-#		A list of unique identifiers /id/ for which appropriate
-#		SVN_REPO must be defined.
+# User-settable variables:
 #
-#	SVN_REPO.${id}
-#		The svn repository
+# CHECKOUT_DATE (optional)
+#	Date to check out in ISO format (YYYY-MM-DD).
 #
-#	SVN_MODULE.${id}
-#		The svn module to check out.
+#	When a package doesn't specify a SVN_REVISION, it is checked out from
+#	the HEAD revision, and the PKGREVISION is set based on the date.
+#	To keep this date stable during a bulk build (which may span
+#	one or more midnights), this can be set to a fixed date.
 #
-#               Default value: ${id}
+# Package-settable variables:
 #
-# It may define the following variables:
+# SVN_REPO (required)
+#	The URL of the Subversion repository.
 #
-#	SVN_BRANCH.${id}
-#		The branch to check out.
+#	Example: https://svn.code.sf.net/p/projectname/code/trunk
 #
-#	SVN_REVISION.${id}
-#		The revision to check out.
+# SVN_EXTRACTDIR (optional)
+#	The directory where the repository is checked out, relative to
+#	${WRKDIR}.
 #
-#	SVN_ENV.${id}
-#		The environment for svn
-
-.if !defined(_PKG_MK_SVN_PACKAGE_MK)
-_PKG_MK_SVN_PACKAGE_MK=	# defined
+#	Default:
+#		For SVN_EXTRACTDIR, the default value is derived from SVN_REPO
+#		(so for https://svn.example.org/repos/project/trunk, it becomes
+#		project).
+#
+#		For SVN_EXTRACTDIR.${repo}, the default is ${repo}.
+#
+# SVN_REVISION (optional)
+#	The revision to check out.
+#
+#	Example: 12345
+#
+# SVN_REPOSITORIES (optional)
+#	If the package needs multiple Subversion repositories, this
+#	is the list of repository IDs. For each of these repositories,
+#	parameterized variants of the above variables are defined.
+#
+#	Example:
+#	SVN_REPOSITORIES=	stable latest
+#	SVN_REPO.stable=	https://svn.code.sf.net/p/project/code/tag/1.0.0
+#	SVN_REPO.latest=	https://svn.code.sf.net/p/project/code/trunk
+#
+# Keywords: svn subversion
 
 BUILD_DEPENDS+=		subversion-base-[0-9]*:../../devel/subversion-base
 
-#
-# defaults for user-visible input variables
-#
-
+# Defaults for package-settable variables
 DISTFILES?=		# empty
-PKGREVISION?=		${_SVN_PKGVERSION:S/.//g}
-
-#
-# End of the interface part. Start of the implementation part.
-#
-
-#
-# Input validation
-#
-
-.if !defined(SVN_REPOSITORIES)
-PKG_FAIL_REASON+=	"[svn-package.mk] SVN_REPOSITORIES must be set."
-SVN_REPOSITORIES?=	# none
+.if defined(CHECKOUT_DATE)
+PKGREVISION?=		${CHECKOUT_DATE:S/-//g}
+.else
+PKGREVISION?=		${_SVN_PKGREVISION_CMD:sh}
 .endif
 
-.for _repo_ in ${SVN_REPOSITORIES}
-.  if !defined(SVN_REPO.${_repo_})
-PKG_FAIL_REASON+=	"[svn-package.mk] SVN_REPO."${_repo_:Q}" must be set."
+# The common case of a single repository
+.if defined(SVN_REPO)
+SVN_EXTRACTDIR?=	${SVN_REPO:S,/$,,:S,/trunk$,,:S,/code$,,:T}
+SVN_REPOSITORIES+=	default
+SVN_REPO.default=	${SVN_REPO}
+SVN_EXTRACTDIR.default=	${SVN_EXTRACTDIR}
+.  for varbase in SVN_REVISION
+.    if defined(${varbase})
+${varbase}.default=	${${varbase}}
+.    endif
+.  endfor
+WRKSRC?=		${WRKDIR}/${SVN_EXTRACTDIR}
+.endif
+
+SVN_REPOSITORIES?=	# none
+.if empty(SVN_REPOSITORIES)
+PKG_FAIL_REASON+=	"[svn-package.mk] SVN_REPOSITORIES must be set."
+.endif
+
+.for repo in ${SVN_REPOSITORIES}
+.  if empty(SVN_REPO.${repo})
+PKG_FAIL_REASON+=	"[svn-package.mk] SVN_REPO."${repo:Q}" must be set."
+.  endif
+.  if defined(SVN_MODULE.${repo}) # To be removed after 2019-01-01
+WARNINGS+=		"[svn-package.mk] SVN_MODULE.* is obsolete; use SVN_EXTRACTDIR.${repo} instead."
+SVN_EXTRACTDIR.${repo}?= ${SVN_MODULE.${repo}}
+.  endif
+.  if defined(SVN_ENV.${repo}) # To be removed after 2019-01-01
+WARNINGS+=		"[svn-package.mk] SVN_ENV.* is obsolete."
 .  endif
 .endfor
 
-#
-# Internal variables
-#
+USE_TOOLS+=		date gzip pax
 
-USE_TOOLS+=		date pax
-
-_SVN_CMD=		svn
+_SVN_CMD=		${PREFIX}/bin/svn
 _SVN_CONFIG_DIR=	${WRKDIR}/.subversion
 _SVN_CHECKOUT_FLAGS=	--config-dir=${_SVN_CONFIG_DIR} --non-interactive
-_SVN_PKGVERSION_CMD=	${DATE} -u +'%Y.%m.%d'
-_SVN_PKGVERSION=	${_SVN_PKGVERSION_CMD:sh}
+_SVN_PKGREVISION_CMD=	${DATE} -u +'%Y%m%d'
 _SVN_DISTDIR=		${DISTDIR}/svn-packages
 
-#
-# Generation of repository-specific variables
-
-
+# Definition of repository-specific variables
 .for repo in ${SVN_REPOSITORIES}
-SVN_MODULE.${repo}?=	${repo}
-_SVN_ENV.${repo}=	${SVN_ENV.${repo}}
-
-# determine appropriate checkout option
-.  if defined(SVN_REVISION.${repo})
-_SVN_FLAG.${repo}=	-r ${SVN_REVISION.${repo}}
+SVN_EXTRACTDIR.${repo}?=	${repo}
+.  if defined(CHECKOUT_DATE)
+SVN_REVISION.${repo}?=		{${CHECKOUT_DATE}T00:00:00Z}
 .  else
-_SVN_FLAG.${repo}=	-r HEAD
+SVN_REVISION.${repo}?=		HEAD
 .  endif
 
-# Cache support:
-#   cache file name
-_SVN_DISTFILE.${repo}=	${PKGBASE}-${SVN_MODULE.${repo}}-svnarchive.tar.gz
+# The cached archive
+_SVN_DISTFILE.${repo}=	${PKGBASE}-${repo}-svnarchive.tar.gz
 
-#   command to extract cache file
-_SVN_EXTRACT_CACHED.${repo}=	\
-	if [ -f ${_SVN_DISTDIR}/${_SVN_DISTFILE.${repo}:Q} ]; then		\
-	  ${STEP_MSG} "Extracting cached SVN archive "${_SVN_DISTFILE.${repo}:Q}"."; \
-	  gzip -d -c ${_SVN_DISTDIR}/${_SVN_DISTFILE.${repo}:Q} | pax -r;	\
+# Define the shell variables used by the following commands
+_SVN_CMD.vars.${repo}= \
+	repo=${SVN_REPO.${repo}:Q}; \
+	extractdir=${SVN_EXTRACTDIR.${repo}:Q}; \
+	archive=${_SVN_DISTDIR}/${_SVN_DISTFILE.${repo}:Q}; \
+	revision=${SVN_REVISION.${repo}:Q}
+
+# Extract the cached archive
+_SVN_CMD.extract_archive.${repo}= \
+	if [ -f "$$archive" ]; then					\
+	  ${STEP_MSG} "Extracting cached Subversion archive $${archive\#\#*/}."; \
+	  gzip -d -c "$$archive" | pax -r;				\
 	fi
 
-#   create cache archive
-_SVN_CREATE_CACHE.${repo}=	\
-	${STEP_MSG} "Creating cached SVN archive "${_SVN_DISTFILE.${repo}:Q}"."; \
-	${MKDIR} ${_SVN_DISTDIR:Q};					\
-	pax -w ${SVN_MODULE.${repo}:Q} | gzip > ${_SVN_DISTDIR}/${_SVN_DISTFILE.${repo}:Q}.tmp;	\
-	${MV} '${_SVN_DISTDIR}/${_SVN_DISTFILE.${repo}:Q}.tmp' '${_SVN_DISTDIR}/${_SVN_DISTFILE.${repo}:Q}'
+# Install client certificates for authentication
+.  if !empty(SVN_CERTS.${repo})
+_SVN_CMD.install_certs.${repo}= \
+	${MKDIR} ${_SVN_CONFIG_DIR}/auth/svn.ssl.server;		\
+	${CP} ${SVN_CERTS.${repo}} ${_SVN_CONFIG_DIR}/auth/svn.ssl.server
+.  else
+_SVN_CMD.install_certs.${repo}= \
+	${DO_NADA}
+.  endif
 
-#   fetch svn repo or update cached one
-_SVN_FETCH_REPO.${repo}=	\
-	if [ ! -d ${SVN_MODULE.${repo}:Q} ]; then				\
-	  ${STEP_MSG} "Cloning SVN repository "${SVN_MODULE.${repo}:Q}".";	\
-	  ${SETENV} ${_SVN_ENV.${repo}} ${_SVN_CMD}				\
-	    checkout ${_SVN_FLAG.${repo}} ${SVN_CHECKOUT_FLAGS}			\
-	    ${SVN_REPO.${repo}:Q} ${SVN_MODULE.${repo}:Q};			\
-	else									\
-	  ${STEP_MSG} "Updating SVN repository "${_SVN_FLAG.${repo}:Q}".";	\
-	  ${SETENV} ${_SVN_ENV.${repo}} ${_SVN_CMD}				\
-	    update ${_SVN_FLAG.${repo}} ${SVN_CHECKOUT_FLAGS}			\
-	    ${SVN_MODULE.${repo}:Q};						\
+# Check out the repository or update the cached one
+_SVN_CMD.fetch_repo.${repo}= \
+	if [ ! -d "$$extractdir" ]; then				\
+	  ${STEP_MSG} "Checking out revision $$revision from repository $$repo."; \
+	  ${_SVN_CMD} checkout -r "$$revision" ${SVN_CHECKOUT_FLAGS}	\
+	    "$$repo" "$$extractdir";					\
+	else								\
+	  ${STEP_MSG} "Updating to revision $$revision."; \
+	  ${_SVN_CMD} update -r "$$revision" ${SVN_CHECKOUT_FLAGS} "$$extractdir"; \
 	fi
+
+# Create the cached archive from the checked out repository
+_SVN_CMD.create_archive.${repo}= \
+	${STEP_MSG} "Creating cached Subversion archive $${archive\#\#*/}."; \
+	${MKDIR} "$${archive%/*}";					\
+	pax -w "$$extractdir" | gzip > "$$archive.tmp";			\
+	${MV} "$$archive.tmp" "$$archive"
 .endfor
 
 pre-extract: do-svn-extract
 
-.PHONY: do-svn-extract
-do-svn-extract:
-.for _repo_ in ${SVN_REPOSITORIES}
-.if defined(SVN_CERTS.${_repo_}) && !empty(SVN_CERTS.${_repo_})
-	${RUN}${MKDIR} -p ${_SVN_CONFIG_DIR}/auth/svn.ssl.server
-	${RUN}${CP} ${SVN_CERTS.${_repo_}} ${_SVN_CONFIG_DIR}/auth/svn.ssl.server
-.endif
-	${RUN} cd ${WRKDIR};							\
-	if [ ! -d ${_SVN_DISTDIR:Q} ]; then mkdir -p ${_SVN_DISTDIR:Q}; fi;	\
-	${_SVN_EXTRACT_CACHED.${_repo_}};					\
-	${_SVN_FETCH_REPO.${_repo_}};						\
-	${_SVN_CREATE_CACHE.${_repo_}};
+do-svn-extract: .PHONY
+.for repo in ${SVN_REPOSITORIES}
+	${RUN} \
+	cd ${WRKDIR}; \
+	${_SVN_CMD.vars.${repo}}; \
+	${_SVN_CMD.install_certs.${repo}}; \
+	${_SVN_CMD.extract_archive.${repo}}; \
+	${_SVN_CMD.fetch_repo.${repo}}; \
+	${_SVN_CMD.create_archive.${repo}}
 .endfor
 
-.endif
+# Debug info for show-all and show-all-svn
+_VARGROUPS+=		svn
+_USER_VARS.svn+=	CHECKOUT_DATE
+_PKG_VARS.svn+=		SVN_REPO SVN_REVISION SVN_EXTRACTDIR SVN_REPOSITORIES
+_SYS_VARS.svn+=		DISTFILES PKGREVISION
+_SYS_VARS.svn+=		_SVN_DISTDIR
+.for repo in ${SVN_REPOSITORIES}
+.  for varbase in SVN_REPO SVN_EXTRACTDIR SVN_REVISION SVN_CERTS
+_PKG_VARS.svn+=		${varbase}.${repo}
+.  endfor
+.  for varbase in _SVN_DISTFILE
+_SYS_VARS.svn+=		${varbase}.${repo}
+.  endfor
+.endfor

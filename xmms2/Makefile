@@ -2,7 +2,7 @@
 
 DISTNAME=	xmms2-0.8DrO_o
 PKGNAME=	${DISTNAME:S/DrO_o//1}
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=xmms2/}
 EXTRACT_SUFX=	.tar.bz2
@@ -25,19 +25,19 @@ WITHOUT_PLUGINS=	nms sc68 # XXX Someone, package these!
 
 PLIST_SUBST+=		PERL5_SUB_INSTALLSITEARCHLIB=${PERL5_SUB_INSTALLARCHLIB:S|perl5/|perl5/site_perl/|1}
 
-PY_PATCHPLIST=          yes
+PY_PATCHPLIST=		yes
 
 .include "options.mk"
 
 do-configure:
-	cd ${WRKSRC:Q} && \
+	cd ${WRKSRC} && \
 		${SETENV} ${CONFIGURE_ENV} ${PYTHONBIN} ./waf configure \
 			--destdir=${DESTDIR} --prefix=${PREFIX} \
 			--conf-prefix="${EXTRA_INCLUDES}" \
 			--with-default-output-plugin=oss \
 			--mandir=${PREFIX}/${PKGMANDIR} \
 			--boost-includes=${BOOST_INCLUDES}
-			# --without-plugins=${WITHOUT_PLUGINS} # space clobbered
+	# --without-plugins=${WITHOUT_PLUGINS} # space clobbered
 
 do-build:
 	cd ${WRKSRC} && \

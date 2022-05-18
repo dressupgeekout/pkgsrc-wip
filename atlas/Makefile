@@ -2,6 +2,7 @@
 
 DISTNAME=	atlas3.10.2
 PKGNAME=	${DISTNAME:C/atlas/atlas-/}
+PKGREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=math-atlas/}
 EXTRACT_SUFX=	.tar.bz2
@@ -38,7 +39,7 @@ CONFIGURE_ARGS+=	-Ss flapack ${PREFIX}/lib/liblapack.a
 # atlas requires distfiles from lapack
 #.include "../../math/lapack/Makefile.version"
 #CONFIGURE_ARGS+=	--with-netlib-lapack-tarfile=${DISTDIR}/${LAPACK_NAME}-${LAPACK_VERSION}${LAPACK_SUFX}
-CONFIGURE_ARGS+=       --with-netlib-lapack-tarfile=${DISTDIR}/lapack-3.5.0.tgz
+CONFIGURE_ARGS+=	--with-netlib-lapack-tarfile=${DISTDIR}/lapack-3.5.0.tgz
 
 TEST_TARGET=	check
 BUILD_TARGET=	build shared ptshared
@@ -51,5 +52,5 @@ pre-configure:
 #   find:: not found
 # Atlas iterates over all paths from PATH and executes find(1)
 
-.include "../../math/lapack/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

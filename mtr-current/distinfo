@@ -1,5 +1,5 @@
-$NetBSD: distinfo,v 1.19 2015/03/24 14:03:21 yvs4sf Exp $
+$NetBSD$
 
-Size (mtr-effef18.tar.gz) = 84124 bytes
-SHA1 (mtr-effef18.tar.gz) = a29fc14129c0628d70bd482174e2da46e9ab6531
-RMD160 (mtr-effef18.tar.gz) = 073b4fb716bd454ccb56e56dd3caba832392fc51
+RMD160 (mtr-e6d0a7e.tar.gz) = 17164c61877058773ad08c02b7d581d870117096
+SHA512 (mtr-e6d0a7e.tar.gz) = 340c111bbdc1aea0b0117602969f0ac7f61924740f759a74b3e13b54f4edfbb8c1a4d056a5d928857ed0c159053ad7fa49f7c364c7171e7b8c12c60fbd73ba46
+Size (mtr-e6d0a7e.tar.gz) = 129100 bytes

@@ -1,15 +1,13 @@
 # $NetBSD$
 
-DISTNAME=	boinc-7.6
-CATEGORIES=	wip
+DISTNAME=	boinc-7.9.0
+CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=BOINC/}
 
-GIT_REPOSITORIES=	boinc
-GIT_REPO.boinc=		https://github.com/BOINC/boinc.git
-WRKSRC=			${WRKDIR}/boinc
+GIT_REPO=	https://github.com/BOINC/boinc.git
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.boinc.berkeley.edu/
+HOMEPAGE=	https://boinc.berkeley.edu/
 COMMENT=	Open-source software for volunteer computing
 LICENSE=	gnu-gpl-v3
 
@@ -19,7 +17,8 @@ USE_TOOLS+=	gmake	# seems to be required only by ${WRKSRC}/_autosetup
 
 USE_LANGUAGES=	c c++ fortran
 
-GNU_CONFIGURE=	yes
+GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--disable-manager
 
 pre-configure:
 	${RUN} cd ${WRKSRC} && ./_autosetup

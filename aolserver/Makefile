@@ -5,14 +5,15 @@ DISTNAME=		aolserver-4.01-src
 PKGNAME=		${DISTNAME:S/-src//}
 CATEGORIES=		www
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=aolserver/}
+LICENSE=		mpl-1.1
 
 MAINTAINER=		iharding@destinydata.com
 HOMEPAGE=		http://www.aolserver.com/
 COMMENT=		America Online's open source web server
 
 
-MAKE_FLAGS+=		NSHOME=${WRKSRC:Q}
-CONFIGURE_ARGS+=	--with-tcl=${LOCALBASE}/lib
+MAKE_FLAGS+=		NSHOME=${WRKSRC}
+CONFIGURE_ARGS+=	--with-tcl=${PREFIX}/lib
 
 WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
 USE_PKGLOCALEDIR=	yes

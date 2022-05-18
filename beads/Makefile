@@ -2,14 +2,16 @@
 #
 
 DISTNAME=	beads-1.1.13
+PKGREVISION=	2
 CATEGORIES=	biology
 MASTER_SITES=	http://pappso.inra.fr//downloads/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://pappso.inra.fr/bioinfo/beads/
 COMMENT=	BEADS is a program for spot detection on 2-D gel images
+LICENSE=	cecill-2.1
 
-USE_CMAKE= yes
+USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 
 SUBST_CLASSES+=		paths

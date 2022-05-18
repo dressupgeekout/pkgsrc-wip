@@ -8,13 +8,14 @@ MASTER_SITES=	http://s3funnel.googlecode.com/files/
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://code.google.com/p/s3funnel/
 COMMENT=	Multithreaded tool for performing operations on Amazon S3
+LICENSE=	mit
 
-DEPENDS+=       ${PYPKGPREFIX}-boto>=1.9:../../net/py-boto
+DEPENDS+=	${PYPKGPREFIX}-boto>=1.9:../../net/py-boto
 DEPENDS+=	${PYPKGPREFIX}-workerpool-[0-9]*:../../wip/py-workerpool
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 0.5.2
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 0.5.2
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

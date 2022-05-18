@@ -1,12 +1,16 @@
 # $NetBSD$
-PKGNAME=	lumina-1.1.0
-DISTNAME=	lumina-qt5-1.1.0
+VERSION=	1.2.0-p1
+PKGREVISION=	3
+PKGNAME=	lumina-1.2.0
+DISTNAME=	lumina-${VERSION}
+DIST_SUBDIR=	lumina
 CATEGORIES=	x11
+GITHUB_PROJECT=	lumina
 MASTER_SITES=	${MASTER_SITE_GITHUB:=trueos/}
-GITHUB_TAG=	v${PKGVERSION_NOREV}
+GITHUB_TAG=	v${VERSION}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://lumina-desktop.org/
+HOMEPAGE=	https://lumina-desktop.org/
 COMMENT=	Lumina Desktop Environment
 LICENSE=	modified-bsd
 
@@ -26,8 +30,13 @@ DEPENDS+=	libXdamage-[0-9]*:../../x11/libXdamage
 
 INSTALL_MAKE_FLAGS=		INSTALL_ROOT=${DESTDIR}
 
+MAKE_ENV+=	LFLAGS=${LDFLAGS:Q}
+
+.include "options.mk"
+
+
 pre-build:
-	${RUN} cd ${WRKSRC} && ${QTDIR}/bin/qmake PREFIX=${PREFIX} CONFIG+="configure WITH_I18N"
+	${RUN} cd ${WRKSRC} && ${QTDIR}/bin/qmake PREFIX=${PREFIX} CONFIG+="configure WITH_I18N" ${EXTRA}
 
 pre-install:
 	${RUN} ${INSTALL_DATA_DIR} ${DESTDIR}${EGDIR}
@@ -37,6 +46,8 @@ post-install:
 	${RM} -f ${DESTDIR}${PREFIX}/share/lumina-desktop/menu-scripts/ls.json.sh.orig
 
 .include "../../x11/libXdamage/buildlink3.mk"
+# for libxcb-xinput
+BUILDLINK_ABI_DEPENDS.libxcb+=	libxcb>=1.12nb1
 .include "../../x11/libxcb/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../x11/qt5-qttools/buildlink3.mk"

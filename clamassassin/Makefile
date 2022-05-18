@@ -5,7 +5,7 @@ CATEGORIES=	mail
 MASTER_SITES=	http://jameslick.com/clamassassin/
 
 MAINTAINER=	ura@jp.NetBSD.org
-HOMEPAGE=	http://jameslick.com/clamassassin/
+HOMEPAGE=	https://jameslick.com/clamassassin/
 COMMENT=	Simple virus filter wrapper for ClamAV
 
 DEPENDS+=	clamav>=0.84:../../security/clamav
@@ -16,7 +16,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	CONF_RM=${RM:Q}
 CONFIGURE_ENV+=	CONF_CAT=${CAT:Q}
 CONFIGURE_ENV+=	CONF_SED=${SED:Q}
-CONFIGURE_ENV+=	CONF_ECHO=${TOOLS_ECHO:Q}
+CONFIGURE_ENV+=	CONF_ECHO=${TOOLS_ECHO}
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.clamassassin
 PKG_SUPPORTED_OPTIONS=	clamdscan subject_rewrite

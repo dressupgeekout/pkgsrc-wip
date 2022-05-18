@@ -15,6 +15,7 @@ EXTRACT_SUFX=	.zip
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.swiss.ai.mit.edu/~jaffer/SCM.html
 COMMENT=	Portable scheme interpreter
+LICENSE=	gnu-gpl-v3 AND gnu-lgpl-v3
 
 DEPENDS+=	slib>=2.4.4:../../devel/slib
 
@@ -48,13 +49,13 @@ BUILD_SCRIPT=	${FILESDIR}/buildscm.sh
 .endif
 
 post-patch:
-	${SED} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+	${SED} -e 's|%%LOCALBASE%%|${PREFIX}|g' \
 		< ${FILESDIR}/require.scm > ${WRKSRC}/require.scm
 
 post-build:
 	${CAT} ${BUILD_SCRIPT} \
 		| ${SED} -e 's|%%PREFIX%%|${PREFIX}|g' \
-		| ${SED} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		| ${SED} -e 's|%%LOCALBASE%%|${PREFIX}|g' \
 		> ${WRKSRC}/buildscm.sh
 	cd ${WRKSRC} && ${SH} ./buildscm.sh
 

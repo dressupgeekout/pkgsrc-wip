@@ -1,12 +1,12 @@
 # $NetBSD: Makefile,v 1.6 2015/01/18 07:38:34 makoto Exp $
 
-DISTNAME=	libftdi1-1.2
+DISTNAME=	libftdi1-1.4
 CATEGORIES=	devel
-MASTER_SITES=	http://www.intra2net.com/en/developer/libftdi/download/
+MASTER_SITES=	https://www.intra2net.com/en/developer/libftdi/download/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.intra2net.com/en/developer/libftdi/
+HOMEPAGE=	https://www.intra2net.com/en/developer/libftdi/
 COMMENT=	Userland driver library for FTDI USB chips
 LICENSE=	gnu-lgpl-v2.1
 
@@ -16,10 +16,12 @@ USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config #cmake
 USE_LANGUAGES=	c c++
 
-BUILD_DEPENDS+=libusb1-[0-9]*:../../devel/libusb1
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 1.4
+
+BUILD_DEPENDS+=		libusb1-[0-9]*:../../devel/libusb1
 # It is better off to have doxygen, but
 # clang segfaults while packaging print/luatex
-#BUILD_DEPENDS+=doxygen-[0-9]*:../../devel/doxygen
+#BUILD_DEPENDS+=	doxygen-[0-9]*:../../devel/doxygen
 
 #CONFIGURE_ARGS+=	--without-examples
 #CONFIGURE_ARGS+=	--without-docs
@@ -27,15 +29,15 @@ BUILD_DEPENDS+=libusb1-[0-9]*:../../devel/libusb1
 PKGCONFIG_OVERRIDE+=	libftdi1.pc.in
 PKGCONFIG_OVERRIDE+=	libftdipp1.pc.in
 
-PLIST_SUBST+=   PYSITELIB=${PYSITELIB}
+PLIST_SUBST+=	PYSITELIB=${PYSITELIB}
 
-CMAKE_USE_GNU_INSTALL_DIRS=no
+CMAKE_USE_GNU_INSTALL_DIRS=	no
 
-CMAKE_ARGS+=		-DCMAKE_BUILD_WITH_INSTALL_RPATH=TRUE \
-CMAKE_ARGS+=		-DCMAKE_INSTALL_PREFIX=${PREFIX} \
-CMAKE_ARGS+=		-DCMAKE_INSTALL_RPATH=${PREFIX}/lib \
-#CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=FALSE \
-CMAKE_ARGS+=		-DLIBUSB_INCLUDE_DIR=${PREFIX}/include/libusb-1.0
+CMAKE_ARGS+=	-DCMAKE_BUILD_WITH_INSTALL_RPATH=TRUE
+CMAKE_ARGS+=	-DCMAKE_INSTALL_PREFIX=${PREFIX}
+CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH=${PREFIX}/lib
+#CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=FALSE
+CMAKE_ARGS+=	-DLIBUSB_INCLUDE_DIR=${PREFIX}/include/libusb-1.0
 
 REPLACE_PYTHON=		python/examples/*.py
 
@@ -43,7 +45,7 @@ REPLACE_PYTHON=		python/examples/*.py
 .include "../../devel/boost-headers/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/confuse/buildlink3.mk"
-.include "../../devel/libusb/buildlink3.mk"
+.include "../../mk/libusb.buildlink3.mk"
 .include "../../devel/libusb1/buildlink3.mk"
 .include "../../devel/swig/buildlink3.mk"
 .include "../../lang/python/application.mk"

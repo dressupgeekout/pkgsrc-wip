@@ -6,14 +6,14 @@ CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=m/msumastro/}
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://github.com/mwcraig/msumastro
+HOMEPAGE=	https://github.com/mwcraig/msumastro
 COMMENT=	Process FITS files
 LICENSE=	2-clause-bsd
 
-DEPENDS+=	${PYPKGPREFIX}-astropy>=0.4.6:../../wip/py-astropy
-DEPENDS+=      ${PYPKGPREFIX}-ccdproc>=0.3.1:../../wip/py-ccdproc
+DEPENDS+=	${PYPKGPREFIX}-astropy>=0.4.6:../../math/py-astropy
+DEPENDS+=	${PYPKGPREFIX}-ccdproc>=0.3.1:../../wip/py-ccdproc
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-astropy
+PYTHON_VERSIONS_ACCEPTED=	27 # py-astropy
 
 USE_LANGUAGES=	# none
 

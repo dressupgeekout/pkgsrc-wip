@@ -6,7 +6,7 @@ CATEGORIES=	x11
 MASTER_SITES=	http://xorg.freedesktop.org/archive/individual/driver/
 
 MAINTAINER=	rga@sdf.lonestar.org
-HOMEPAGE=	http://xorg.freedesktop.org/
+HOMEPAGE=	https://xorg.freedesktop.org/
 COMMENT=	Synaptics touchpad driver for X.Org
 LICENSE=	mit
 
@@ -16,7 +16,7 @@ USE_TOOLS+=	pkg-config
 
 PKGCONFIG_OVERRIDE+=	xorg-synaptics.pc.in
 
-ONLY_FOR_PLATFORM= Linux-*-*
+ONLY_FOR_PLATFORM=	Linux-*-*
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/fdi/11-x11-synaptics.fdi \

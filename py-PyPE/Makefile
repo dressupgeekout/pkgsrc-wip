@@ -7,6 +7,7 @@ WRKSRC=			${WRKDIR}
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=pype/}
 EXTRACT_SUFX=		.zip
+LICENSE=		gnu-gpl-v2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://pype.sourceforge.net/
@@ -15,9 +16,9 @@ COMMENT=		Lightweight, but powerful editor for Python
 DEPENDS=	${PYPKGPREFIX}-wxWidgets>=2.4.2.4:../../x11/py-wxWidgets
 
 REPLACE_PYTHON=	pype.py
-NO_BUILD=		yes
-PY_PATCHPLIST=		yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-wxWidgets
+NO_BUILD=	yes
+PY_PATCHPLIST=	yes
+PYTHON_VERSIONS_ACCEPTED=	27 # py-wxWidgets
 
 do-install:
 	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/${PYSITELIB}/pype

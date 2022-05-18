@@ -3,9 +3,9 @@
 DISTNAME=		yahoo-transport-0.4.90
 PKGNAME=		${PYPKGPREFIX}-jabber-${DISTNAME}
 CATEGORIES=		chat python
-MASTER_SITES=		ftp://ftp.cirr.com/pub/eric/
+#MASTER_SITES=		ftp://ftp.cirr.com/pub/eric/
 
-MAINTAINER=		eric@cirr.com
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://xmpppy.sourceforge.net/
 COMMENT=		Transport connecting Jabber to the Yahoo! IM network
 LICENSE=		gnu-gpl-v2
@@ -20,7 +20,7 @@ DEPENDS+=	${PYPKGPREFIX}-dns-[0-9]*:../../net/py-dns
 DEPENDS+=	${PYPKGPREFIX}-expat>=0nb4:../../textproc/py-expat
 DEPENDS+=	${PYPKGPREFIX}-xmpppy>=0.4.1:../../chat/py-xmpppy
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-xmpppy
+PYTHON_VERSIONS_ACCEPTED=	27 # py-xmpppy
 
 # Fifth paragraph - all build definitions that describe things used by
 # the package.  These include: WRKSRC, GNU_CONFIGURE,
@@ -38,7 +38,7 @@ TRANSPORTDIR=		${JABBER_TRANSDIR}/yahoo
 FILES_SUBST+=		TRANSPORTDIR=${TRANSPORTDIR:Q}
 FILES_SUBST+=		PYTHONBIN=${PYTHONBIN:Q}
 PLIST_SUBST+=		TRANSPORTDIR=${TRANSPORTDIR:Q}
-MESSAGE_SUBST+=		PKG_SYSCONFDIR=${PKG_SYSCONFDIR:Q}
+MESSAGE_SUBST+=		PKG_SYSCONFDIR=${PKG_SYSCONFDIR}
 MESSAGE_SUBST+=		HOMEPAGE=${HOMEPAGE:Q}
 
 .include "../../wip/jabberd/transports.mk"
@@ -71,15 +71,15 @@ SUBST_MESSAGE.paths=	Localizing Paths
 SUBST_STAGE.paths=	post-patch
 SUBST_FILES.paths=	config_example.xml
 SUBST_FILES.paths+=	config.py
-SUBST_SED.paths+=	-e 's,@PKG_SYSCONFDIR@,${PKG_SYSCONFDIR},g'
-SUBST_SED.paths+=	-e 's,@TRANSPORTDIR@,${TRANSPORTDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_SPOOLDIR@,${JABBER_SPOOLDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_TRANSDIR@,${JABBER_TRANSDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_GROUP@,${JABBER_GROUP},g'
-SUBST_SED.paths+=	-e 's,@JABBER_USER@,${JABBER_USER},g'
-SUBST_SED.paths+=	-e 's,@JABBER_LOGDIR@,${JABBER_LOGDIR},g'
-SUBST_SED.paths+=	-e 's,@PREFIX@,${PREFIX},g'
-SUBST_SED.paths+=	-e 's,@JABBER_PIDDIR@,${JABBER_PIDDIR},g'
+SUBST_VARS.paths=	PKG_SYSCONFDIR
+SUBST_VARS.paths+=	TRANSPORTDIR
+SUBST_VARS.paths+=	JABBER_SPOOLDIR
+SUBST_VARS.paths+=	JABBER_TRANSDIR
+SUBST_VARS.paths+=	JABBER_GROUP
+SUBST_VARS.paths+=	JABBER_USER
+SUBST_VARS.paths+=	JABBER_LOGDIR
+SUBST_VARS.paths+=	PREFIX
+SUBST_VARS.paths+=	JABBER_PIDDIR
 
 .include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"

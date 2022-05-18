@@ -7,7 +7,7 @@ MASTER_SITES=	http://coryk.afraid.org/downloads/CLICS/source/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://www.swag.uwaterloo.ca/
+HOMEPAGE=	https://www.swag.uwaterloo.ca/
 COMMENT=	Clone detector and GUI
 #LICENSE=	# TODO: (see mk/license.mk)
 
@@ -15,10 +15,10 @@ DEPENDS+=	${PYPKGPREFIX}-psycopg2>=2.2.2:../../databases/py-psycopg2
 
 WRKSRC=			${WRKDIR}/CLICS-d93a40ceebaa
 
-USE_PKGLOCALEDIR=	yes
-USE_LANGUAGES=		c c++
-PYDISTUTILSPKG=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-wxWidgets
+USE_PKGLOCALEDIR=		yes
+USE_LANGUAGES=			c c++
+PYDISTUTILSPKG=			yes
+PYTHON_VERSIONS_ACCEPTED=	27 # py-wxWidgets
 
 INSTALLATION_DIRS=	# blank
 

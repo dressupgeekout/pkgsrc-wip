@@ -1,22 +1,31 @@
-$NetBSD: patch-content_browser_renderer__host_render__message__filter.cc,v 1.1 2011/05/27 13:23:09 rxg Exp $
+$NetBSD$
 
---- content/browser/renderer_host/render_message_filter.cc.orig	2011-05-24 08:01:07.000000000 +0000
+--- content/browser/renderer_host/render_message_filter.cc.orig	2020-07-08 21:40:42.000000000 +0000
 +++ content/browser/renderer_host/render_message_filter.cc
-@@ -416,7 +416,7 @@ bool RenderMessageFilter::OnMessageRecei
-     IPC_MESSAGE_HANDLER(ViewHostMsg_V8HeapStats, OnV8HeapStats)
-     IPC_MESSAGE_HANDLER(ViewHostMsg_DidZoomURL, OnDidZoomURL)
-     IPC_MESSAGE_HANDLER_DELAY_REPLY(ViewHostMsg_ResolveProxy, OnResolveProxy)
--#if defined(OS_MACOSX)
-+#if defined(OS_MACOSX) || defined(OS_BSD)
-     IPC_MESSAGE_HANDLER(ViewHostMsg_AllocTransportDIB, OnAllocTransportDIB)
-     IPC_MESSAGE_HANDLER(ViewHostMsg_FreeTransportDIB, OnFreeTransportDIB)
+@@ -70,7 +70,7 @@
+ #if defined(OS_MACOSX)
+ #include "ui/accelerated_widget_mac/window_resize_helper_mac.h"
  #endif
-@@ -1111,7 +1111,7 @@ void RenderMessageFilter::OnRendererHist
-   HistogramSynchronizer::DeserializeHistogramList(sequence_number, histograms);
+-#if defined(OS_LINUX)
++#if defined(OS_LINUX) || defined(OS_BSD)
+ #include "base/linux_util.h"
+ #include "base/threading/platform_thread.h"
+ #endif
+@@ -117,7 +117,7 @@ void RenderMessageFilter::GenerateRoutin
+   std::move(callback).Run(render_widget_helper_->GetNextRoutingID());
  }
  
--#if defined(OS_MACOSX)
-+#if defined(OS_MACOSX) || defined(OS_BSD)
- void RenderMessageFilter::OnAllocTransportDIB(
-     size_t size, bool cache_in_browser, TransportDIB::Handle* handle) {
-   render_widget_helper_->AllocTransportDIB(size, cache_in_browser, handle);
+-#if defined(OS_LINUX)
++#if defined(OS_LINUX) || defined(OS_BSD)
+ void RenderMessageFilter::SetThreadPriorityOnFileThread(
+     base::PlatformThreadId ns_tid,
+     base::ThreadPriority priority) {
+@@ -138,7 +138,7 @@ void RenderMessageFilter::SetThreadPrior
+ }
+ #endif
+ 
+-#if defined(OS_LINUX)
++#if defined(OS_LINUX) || defined(OS_BSD)
+ void RenderMessageFilter::SetThreadPriority(int32_t ns_tid,
+                                             base::ThreadPriority priority) {
+   constexpr base::TaskTraits kTraits = {

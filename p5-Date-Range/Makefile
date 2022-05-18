@@ -6,11 +6,11 @@ CATEGORIES=	time perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Date/}
 
 MAINTAINER=	kuli0020@umn.edu
-HOMEPAGE=	http://search.cpan.org/dist/Date-Range/
+HOMEPAGE=	https://metacpan.org/release/Date-Range
 COMMENT=	Date::Range - deal with a range of dates
 LICENSE=	gnu-gpl-v2
 
-DEPENDS+=	p5-Date-Simple>=0.03:../../devel/p5-Date-Simple
+DEPENDS+=		p5-Date-Simple>=0.03:../../devel/p5-Date-Simple
 #BUILD_DEPENDS+=	{perl>=5.7.3,p5-Test-Simple>=0.4}:../../devel/p5-Test-Simple
 
 USE_LANGUAGES=	# empty

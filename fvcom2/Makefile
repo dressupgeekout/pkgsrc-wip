@@ -1,12 +1,12 @@
 # $NetBSD: Makefile,v 1.7 2013/01/27 22:12:38 outpaddling Exp $
 #
 
-PKGNAME=	fvcom-2.7.1
 DISTNAME=	sourcecode1
-CATEGORIES=	math
+PKGNAME=	fvcom-2.7.1
+CATEGORIES=	science
 MASTER_SITES=	http://fvcom.smast.umassd.edu/FVCOM/password_required/t2/
 
-MAINTAINER=	bacon4000@gmail.com
+MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	http://fvcom.smast.umassd.edu/FVCOM/password_required/t2/
 COMMENT=	Prognostic coastal ocean circulation model
 #LICENSE=	fvcom-license
@@ -22,9 +22,9 @@ USE_LANGUAGES=	c fortran77
 
 AUTO_MKDIRS=	yes
 
-FETCH_MESSAGE=  "Please download the files"
-FETCH_MESSAGE+= "    "${DISTFILES:Q}
-FETCH_MESSAGE+= "manually from "${MASTER_SITES:Q}"."
+FETCH_MESSAGE=	"Please download the files"
+FETCH_MESSAGE+=	"    "${DISTFILES:Q}
+FETCH_MESSAGE+=	"manually from "${MASTER_SITES:Q}"."
 
 SUBST_CLASSES+=		log2
 SUBST_FILES.log2=	METIS_source/coarsen.c \

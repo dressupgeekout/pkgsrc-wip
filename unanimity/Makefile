@@ -15,7 +15,7 @@ MASTER_SITES=	${MASTER_SITE_GITHUB:=PacificBiosciences/}
 GITHUB_PROJECT=	unanimity
 GITHUB_TAG=	054c59530f7ee7c3ce0adde4524f367e8d0244cd
 
-MAINTAINER=	bacon4000@gmail.com
+MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://github.com/PacificBiosciences/unanimity
 COMMENT=	Consensus library and applications
 LICENSE=	modified-bsd
@@ -24,7 +24,7 @@ MAKE_JOBS_SAFE=	yes
 
 USE_LANGUAGES=	c c++
 USE_CMAKE=	yes
-GCC_REQD=	4.9	# pbcopper requires 4.9 due to use of json
+GCC_REQD=	4.9	# 4.8 would do, but pbcopper requires 4.9 for json
 CMAKE_ARGS=	-DHTSLIB_INCLUDE_DIRS:STRING=${PREFIX}/include/htslib \
 		-DHTSLIB_LIBRARIES:STRING="-L${PREFIX}/lib -lhts" \
 		-DPacBioBAM_INCLUDE_DIRS:STRING=${PREFIX}/include/pbbam \
@@ -45,7 +45,7 @@ PORTVERSION=	2016.09.13
 .include "../../wip/pbseqan/buildlink3.mk"
 .include "../../wip/pbbam/buildlink3.mk"
 .include "../../wip/pbcopper/buildlink3.mk"
-.include "../../wip/htslib/buildlink3.mk"
+.include "../../biology/htslib/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../lang/python/application.mk"

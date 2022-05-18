@@ -1,9 +1,11 @@
 # $NetBSD: Makefile,v 1.2 2015/04/30 06:46:46 gschwarz Exp $
 
-PKGNAME=	smap-0.6.0
 DISTNAME=	smap-20081016
+PKGNAME=	smap-0.6.0
 CATEGORIES=	security
-MASTER_SITES=	https://downloads.openwrt.org/sources/
+MASTER_SITES=	http://dev.gateworks.com/sources/
+MASTER_SITES+=	https://github.com/jslink/openwrt-trunk-dl/raw/master/
+MASTER_SITES+=	http://pandorabox.tuuz.cc:8000/sources/
 MASTER_SITES+=	http://mirror2.openwrt.org/sources/
 
 MAINTAINER=	schwarz@NetBSD.org
@@ -21,7 +23,7 @@ LDFLAGS+=	-lm
 LDFLAGS+=	${PTHREAD_LDFLAGS}
 LDFLAGS+=	${PTHREAD_LIBS}
 
-SUBST_CLASSES+=	cflags
+SUBST_CLASSES+=		cflags
 SUBST_FILES.cflags=	Makefile
 SUBST_SED.cflags=	-e 's/^CFLAGS=/CFLAGS?=/g'
 SUBST_SED.cflags+=	-e 's/^LDFLAGS=/LDFLAGS?=/g'

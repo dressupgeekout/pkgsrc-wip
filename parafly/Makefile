@@ -11,8 +11,8 @@ CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=parafly/}
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	bacon4000@gmail.com
-HOMEPAGE=	http://sourceforge.net/projects/parafly/
+MAINTAINER=	bacon@NetBSD.org
+HOMEPAGE=	https://sourceforge.net/projects/parafly/
 COMMENT=	Process the commands in parallel on a single server
 LICENSE=	modified-bsd
 

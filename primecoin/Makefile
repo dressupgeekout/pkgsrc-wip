@@ -5,8 +5,8 @@ PKGNAME=	${DISTNAME:S/-linux//1}
 CATEGORIES=	finance
 MASTER_SITES=	http://sourceforge.net/projects/primecoin/files/0.1.2/
 
-MAINTAINER=	pkgsrc-users@users.sourceforge.net
-HOMEPAGE=	http://primecoin.io/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://primecoin.io/
 COMMENT=	Cryptocurrency based on searching for prime numbers
 LICENSE=	mit
 
@@ -27,10 +27,10 @@ QMAKE_OPTIONS+=	BDB_LIB_PATH=${PREFIX}/lib
 QMAKE_OPTIONS+=	OPENSSL_LIB_PATH=${PREFIX}/lib
 QMAKE_OPTIONS+=	LIB_RPATH=${PREFIX}/lib
 
-RCD_SCRIPTS=	primecoind
-OWN_DIRS=	${VARBASE}/primecoin
-EGDIR=		${PREFIX}/share/examples/primecoin
-CONF_FILES=	${EGDIR}/primecoin.conf ${PKG_SYSCONFDIR}/primecoin.conf
+RCD_SCRIPTS=		primecoind
+OWN_DIRS=		${VARBASE}/primecoin
+EGDIR=			${PREFIX}/share/examples/primecoin
+CONF_FILES=		${EGDIR}/primecoin.conf ${PKG_SYSCONFDIR}/primecoin.conf
 CONF_FILES_PERMS=	${EGDIR}/primecoin.conf ${PKG_SYSCONFDIR}/primecoin.conf ${ROOT_USER} ${ROOT_GROUP} 0600
 INSTALLATION_DIRS+=	share/examples/primecoin
 

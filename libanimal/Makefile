@@ -3,10 +3,11 @@
 
 DISTNAME=	animal-0.15.0
 PKGNAME=	lib${DISTNAME}
-PKGREVISION=	3
+PKGREVISION=	5
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=siptoolbox/}
 EXTRACT_SUFX=	.tar.bz2
+LICENSE=	gnu-gpl-v2
 
 MAINTAINER=	matias@dotbsd.org
 HOMEPAGE=	http://siptoolbox.sourceforge.net/

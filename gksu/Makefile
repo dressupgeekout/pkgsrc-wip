@@ -11,13 +11,13 @@ COMMENT=	Authorization dialog library
 LICENSE=	gnu-gpl-v2
 
 USE_PKGLOCALEDIR=	yes
-USE_LIBTOOL=	yes
-USE_LANGUAGES+=	c c++ fortran
-USE_TOOLS+=	bash:run gmake gsed intltool msgfmt msgmerge perl:build
-USE_TOOLS+=	pkg-config xgettext
-GNU_CONFIGURE=	yes
+USE_LIBTOOL=		yes
+USE_LANGUAGES+=		c c++ fortran
+USE_TOOLS+=		bash:run gmake gsed intltool msgfmt msgmerge perl:build
+USE_TOOLS+=		pkg-config xgettext
+GNU_CONFIGURE=		yes
 
-USE_X11=YES
+USE_X11=	YES
 
 CONFIGURE_ENV+=	GCONF_SCHEMA_FILE_DIR="${PREFIX}/share/gconf/schemas/"
 MAKE_ENV+=	GCONF_SCHEMA_FILE_DIR="${PREFIX}/share/gconf/schemas/"
@@ -44,14 +44,14 @@ SUBST_STAGE.gksu=	post-configure
 
 SUBST_CLASSES+=		term
 SUBST_FILES.term=	gksu.desktop
-.if $(OPSYS) != "Linux"
+.if ${OPSYS} != "Linux"
 SUBST_SED.term=		-e 's,/usr/bin/x-terminal-emulator,${PREFIX}/bin/gnome-terminal,g'
 .endif
 SUBST_STAGE.term=	post-configure
 
 REPLACE_BASH+=		gksu-migrate-conf.sh
 
-.if $(OPSYS) != "Linux"
+.if ${OPSYS} != "Linux"
 DEPENDS+=		gnome-terminal>=2.32.1:../../x11/gnome-terminal
 .endif
 

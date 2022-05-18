@@ -6,13 +6,14 @@ CATEGORIES=	parallel
 MASTER_SITES=	http://www.open-mpi.org/software/ompi/v1.6/downloads/ \
 		http://www.open-mpi.org/nightly/v1.6/
 EXTRACT_SUFX=	.tar.bz2
+LICENSE=	modified-bsd
 
 MAINTAINER=	asau@inbox.ru
-HOMEPAGE=	http://www.open-mpi.org/
+HOMEPAGE=	https://www.open-mpi.org/
 COMMENT=	Open source MPI-2 implementation
 
 MPI_SUBPREFIX=		openmpi
-MPI_PREFIX=		$(LOCALBASE)/$(MPI_SUBPREFIX)
+MPI_PREFIX=		${LOCALBASE}/${MPI_SUBPREFIX}
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -36,7 +37,7 @@ LIBTOOL_OVERRIDE=	${WRKSRC}/libtool \
 SHLIBTOOL_OVERRIDE=	${WRKSRC}/config/libtool.m4 \
 			${WRKSRC}/opal/libltdl/m4/libtool.m4
 
-GNU_CONFIGURE_PREFIX=	$(MPI_PREFIX)
+GNU_CONFIGURE_PREFIX=	${MPI_PREFIX}
 .if ${OPSYS} != Darwin && ${OPSYS} != Linux
 CONFIGURE_ARGS+=	--disable-mpi-fortran
 .endif
@@ -44,8 +45,8 @@ CONFIGURE_ARGS+=	--without-sge
 # CONFIGURE_ARGS+=	--without-slurm
 CONFIGURE_ARGS+=	--enable-contrib-no-build=vt # in separate package
 CONFIGURE_ARGS+=	--with-libltdl=external # use our libltdl
-CONFIGURE_ARGS+=	--with-hwloc=$(BUILDLINK_PREFIX.hwloc:Q) #external
-CONFIGURE_ARGS+=	--with-wrapper-ldflags="-L$(MPI_PREFIX)/lib $(COMPILER_RPATH_FLAG)$(MPI_PREFIX)/lib"
+CONFIGURE_ARGS+=	--with-hwloc=${BUILDLINK_PREFIX.hwloc:Q} #external
+CONFIGURE_ARGS+=	--with-wrapper-ldflags="-L$(MPI_PREFIX)/lib ${COMPILER_RPATH_FLAG}$(MPI_PREFIX)/lib"
 CONFIGURE_ENV+=		ompi_cv_f77_have_INTEGERp8=no	# no "INTEGER*8"??
 CONFIGURE_ARGS+=	OPAL_HAVE_LTDL_ADVISE=0
 # Suppress regeneration:
@@ -65,7 +66,7 @@ REPLACE_PERL+=		ompi/tools/wrappers/mpijavac.pl.in
 # The same -R appears on Linux, but does not cause problems.
 # SUBST refused to edit binary files, so do it manually.
 .if ${OPSYS} == "Darwin" || ${OPSYS} == "Linux"
-SUBST_CLASSES+=	opal
+SUBST_CLASSES+=		opal
 SUBST_STAGE.opal=	post-build
 SUBST_FILES.opal=	${WRKSRC}/opal/tools/wrappers/.libs/opal_wrapper
 SUBST_SED.opal=		-e 's|-R|-L|g'

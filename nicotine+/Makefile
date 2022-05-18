@@ -5,6 +5,7 @@ PKGREVISION=	2
 CATEGORIES=	net audio x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=nicotine-plus/}
 EXTRACT_SUFX=	.tar.bz2
+LICENSE=	gnu-gpl-v3
 
 MAINTAINER=	jfranz@bsdprojects.net
 HOMEPAGE=	http://www.nicotine-plus.org/
@@ -18,8 +19,8 @@ DEPENDS+=	${PYPKGPREFIX}-GeoIP>=0:../../net/py-GeoIP
 
 
 PY_PATCHPLIST=	yes
-PYDISTUTILSPKG= yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-vorbis, py-gtk2
+PYDISTUTILSPKG=	yes
+PYTHON_VERSIONS_ACCEPTED=	27 # py-vorbis, py-gtk2
 REPLACE_PYTHON=	pynicotine/gtkgui/glade2py.py
 
 SUBST_CLASSES+=		man

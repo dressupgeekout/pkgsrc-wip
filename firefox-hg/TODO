@@ -1,7 +1,13 @@
-At runtime, it warns about:
+Upstream pending patches:
 
-(process:28642): GLib-CRITICAL **: g_path_get_basename: assertion 'file_name != NULL' failed
-[Child 28642] ###!!! ABORT: Aborting on channel error.: file /scratch/wip/firefox-hg/work/mozilla/ipc/glue/MessageChannel.cpp, line 2046
-[Child 28642] ###!!! ABORT: Aborting on channel error.: file /scratch/wip/firefox-hg/work/mozilla/ipc/glue/MessageChannel.cpp, line 2046
+patch-servo_components_style_build__gecko.rs:
+	https://bugzilla.mozilla.org/show_bug.cgi?id=1453304
+	https://github.com/servo/servo/pull/20622
 
--- wiz 20160430
+patch-modules_pdfium_update.sh:
+	https://bugzilla.mozilla.org/show_bug.cgi?id=1453285
+
+OSS audio support:
+	https://github.com/kinetiknz/cubeb/pull/440
+	old: https://bugzilla.mozilla.org/show_bug.cgi?id=1021761
+

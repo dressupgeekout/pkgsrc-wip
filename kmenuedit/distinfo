@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (kmenuedit-5.6.3.tar.xz) = 2f11cac04485d189a058119a604afd0cbd19c0d6
-RMD160 (kmenuedit-5.6.3.tar.xz) = 121a6d21647fa6a6a2b78997b069f4ccefc23a02
-SHA512 (kmenuedit-5.6.3.tar.xz) = cebb6ff323bd4506fc28414fa1f7bacef6cb273fff30230a0e43d82b0bfcf796b8a42ee1a1450ab9fb681508a463b954ce5ea59fce27693063a05995d16d3c54
-Size (kmenuedit-5.6.3.tar.xz) = 480056 bytes
+RMD160 (kmenuedit-5.18.5.tar.xz) = a867287594e0f0a352f1b61a960ffc2f79d4650e
+SHA512 (kmenuedit-5.18.5.tar.xz) = 647aed82a3190e2c27bac4e50eec681684dac08c6f3f7e8e0d2d02b8667e58b367a35a66b830083037570999655652a94f26ae063e253ceedd0db1df00ef834f
+Size (kmenuedit-5.18.5.tar.xz) = 813952 bytes

@@ -1,0 +1,8 @@
+#! /bin/sh
+. "${0%/*}/test.subr"
+
+set_up_package "cvs-show-all.mk"
+set_up_repository cvs
+
+step "Testing show-all-cvs"
+package_make show-all-cvs

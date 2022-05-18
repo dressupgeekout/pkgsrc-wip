@@ -1,34 +1,43 @@
-$NetBSD: patch-base_debug_stack__trace__posix.cc,v 1.2 2011/05/27 13:23:09 rxg Exp $
+$NetBSD$
 
---- base/debug/stack_trace_posix.cc.orig	2011-05-24 08:01:33.000000000 +0000
+--- base/debug/stack_trace_posix.cc.orig	2020-06-25 09:31:18.000000000 +0000
 +++ base/debug/stack_trace_posix.cc
-@@ -5,11 +5,16 @@
- #include "base/debug/stack_trace.h"
- 
- #include <errno.h>
-+#if !defined(OS_NETBSD) && !defined(OS_DRAGONFLY)
- #include <execinfo.h>
-+#endif
- #include <fcntl.h>
- #include <stdio.h>
- #include <stdlib.h>
- #include <sys/stat.h>
-+#if defined(OS_BSD)
-+#include <sys/param.h>
-+#endif
- #include <sys/sysctl.h>
- #include <sys/types.h>
- #include <unistd.h>
-@@ -158,7 +163,12 @@ StackTrace::StackTrace() {
+@@ -35,7 +35,7 @@
+ #include <AvailabilityMacros.h>
  #endif
-   // Though the backtrace API man page does not list any possible negative
-   // return values, we take no chance.
-+#if !defined(OS_NETBSD) && !defined(OS_DRAGONFLY)
-   count_ = std::max(backtrace(trace_, arraysize(trace_)), 0);
-+#else
-+  count_ = 0;
-+  return;
-+#endif
- }
  
- void StackTrace::PrintBacktrace() {
+-#if defined(OS_LINUX)
++#if defined(OS_LINUX) || defined(OS_BSD)
+ #include "base/debug/proc_maps_linux.h"
+ #endif
+ 
+@@ -657,6 +657,9 @@ class SandboxSymbolizeHelper {
+   // for the modules that are loaded in the current process.
+   // Returns true on success.
+   bool CacheMemoryRegions() {
++#if defined(OS_BSD)
++    return false;
++#else
+     // Reads /proc/self/maps.
+     std::string contents;
+     if (!ReadProcMaps(&contents)) {
+@@ -674,6 +677,7 @@ class SandboxSymbolizeHelper {
+ 
+     is_initialized_ = true;
+     return true;
++#endif
+   }
+ 
+   // Opens all object files and caches their file descriptors.
+@@ -697,7 +701,11 @@ class SandboxSymbolizeHelper {
+           // Skip regions with empty file names.
+           continue;
+         }
++#if defined(OS_BSD)
+         if (region.path[0] == '[') {
++#else
++        if (region.path[0] == '[') {
++#endif
+           // Skip pseudo-paths, like [stack], [vdso], [heap], etc ...
+           continue;
+         }

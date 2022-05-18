@@ -7,18 +7,17 @@
 ###########################################################
 # Unconverted and partially converted FreeBSD port syntax:
 
-#CONFLICTS=	pccts-[0-9]*
-#USE_JAVA=	yes
-#JAVA_VERSION=	1.6+
+#CONFLICTS=		pccts-[0-9]*
+#USE_JAVA=		yes
+#JAVA_VERSION=		1.6+
 #PORT_CLASSPATH=	${WRKSRC}/antlrall.jar:.
-#SUB_FILES=	antlr.sh
+#SUB_FILES=		antlr.sh
 #OPTIONS_DEFINE=	PYTHON DOCS
-#OPTIONS_SUB=	yes
-#.include <bsd.port.options.mk>
+#OPTIONS_SUB=		yes
 #.if ${PORT_OPTIONS:MPYTHON}
 # Unknown tool: USE_TOOLS=	python
-#PORTDOCS+=	python-runtime.html
-#ANTLR_PYTHON=	${WRKSRC}/lib/python
+#PORTDOCS+=		python-runtime.html
+#ANTLR_PYTHON=		${WRKSRC}/lib/python
 #.endif
 #post-configure:
 #.if ${PORT_OPTIONS:MPYTHON}
@@ -42,11 +41,11 @@ DISTNAME=	antlr-${PORTVERSION}
 CATEGORIES=	devel
 MASTER_SITES=	http://www.antlr2.org/download/
 
-MAINTAINER=	bacon4000@gmail.com
-HOMEPAGE=	http://www.antlr2.org
+MAINTAINER=	bacon@NetBSD.org
+HOMEPAGE=	https://www.antlr2.org/
 
 COMMENT=	ANother Tool for Language Recognition
-#LICENSE=	
+LICENSE=	public-domain
 
 HAS_CONFIGURE=	yes
 # Needs java and javac or gcj?
@@ -55,10 +54,7 @@ HAS_CONFIGURE=	yes
 # FIXME: Add a check here to notify users trying to install
 USE_JAVA=	yes
 
-# Pessimistic assumption.  Test and change if possible.
-MAKE_JOBS_SAFE=	no
-
-#ONLY_FOR_PLATFORM=	
+CHECK_PORTABILITY_SKIP=	configure.in
 
 # Just assuming C and C++: Adjust this!
 USE_LANGUAGES=	c c++
@@ -69,7 +65,6 @@ CONFIGURE_ENV=	JAVAC="${JAVAC}" JAR="${JAR}" JAVA="${JAVA}" CLASSPATH="${PORT_CL
 CONFIGURE_ARGS=	--disable-csharp --prefix=${PREFIX}
 
 PORTVERSION=	2.7.7
-DATADIR=	${PREFIX}/share/antlr
 DOCSDIR=	${PREFIX}/share/doc/antlr
 PORTDOCS=	ANTLRException.gif closure.gif cpp-runtime.html \
 		csharp-runtime.html err.html glossary.html hidden.stream.gif \
@@ -89,31 +84,22 @@ JAVA_VERSION=	1.6
 SUBST_CLASSES+=	sh
 SUBST_FILES.sh=	${WRKDIR}/antlr.sh
 SUBST_STAGE.sh=	post-patch
-SUBST_SED.sh=	-e 's|%%JAVA_VERSION%%|${JAVA_VERSION}|' \
-		-e 's|%%LOCALBASE%%/bin/java|java|' \
-		-e 's|%%JAVAJARDIR%%|${JAVAJARDIR}|'
+SUBST_SED.sh=	-e 's|%%JAVA_VERSION%%|${JAVA_VERSION}|'
+SUBST_SED.sh+=	-e 's|%%LOCALBASE%%/bin/java|java|'
+SUBST_SED.sh+=	-e 's|%%JAVAJARDIR%%|${JAVAJARDIR}|'
 
-# Keep this if there are user-selectable options.
-#.include "options.mk"
-
-# Note: Depends on PLIST.
-#AUTO_MKDIRS=	yes
+INSTALLATION_DIRS=	${JAVAJARDIR} bin include/antlr lib ${DOCSDIR}
 
 post-extract:
 	(cd ${WRKSRC} && ${CP} antlr.jar antlrall.jar)
 	cp ${FILESDIR}/antlr.sh.in ${WRKDIR}/antlr.sh
 
 do-install:
-	@${MKDIR} ${DESTDIR}${JAVAJARDIR}
-	@${MKDIR} ${DESTDIR}${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/antlr.jar ${DESTDIR}${JAVAJARDIR}
 	${INSTALL_SCRIPT} ${WRKDIR}/antlr.sh ${DESTDIR}${PREFIX}/bin/antlr
-	@${MKDIR} ${DESTDIR}${PREFIX}/include/antlr
 	${INSTALL_DATA} ${WRKSRC}/lib/cpp/antlr/*.hpp \
 		${DESTDIR}${PREFIX}/include/antlr
-	@${MKDIR} ${DESTDIR}${PREFIX}/lib
 	${INSTALL_DATA} ${WRKSRC}/lib/cpp/src/libantlr.a ${DESTDIR}${PREFIX}/lib
-	@${MKDIR} ${DESTDIR}${DOCSDIR}
 	(cd ${WRKSRC}/doc && ${INSTALL_DATA} ${PORTDOCS} ${DESTDIR}${DOCSDIR})
 
 .include "../../lang/python/application.mk"

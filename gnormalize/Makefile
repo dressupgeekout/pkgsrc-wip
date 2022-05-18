@@ -4,6 +4,7 @@
 DISTNAME=		gnormalize-0.35
 CATEGORIES=		audio
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=gnormalize/}
+LICENSE=		gnu-gpl-v2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://gnormalize.sourceforge.net/
@@ -15,7 +16,7 @@ DEPENDS+=	p5-MP3-Info>=1:../../audio/p5-MP3-Info
 
 USE_TOOLS+=	perl
 NO_BUILD=	YES
-REPLACE_PERL=${WRKSRC}/gnormalize
+REPLACE_PERL=	${WRKSRC}/gnormalize
 
 INSTALLATION_DIRS=	bin
 

@@ -6,9 +6,10 @@ PKGREVISION=	2
 CATEGORIES=	x11 python
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=wxpython/}
 EXTRACT_SUFX=	.tar.bz2
+#LICENSE=	wxWindows Library Licence
 
 MAINTAINER=	milos.negovanovic@googlemail.com
-HOMEPAGE=	http://wxpython.org/
+HOMEPAGE=	https://wxpython.org/
 COMMENT=	Python bindings for wxWidgets (unicode version)
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/wxPython
@@ -25,11 +26,11 @@ WXARG=	WXPORT=gtk2 \
 	CONTRIBS_INC="../contrib/include" \
 	UNICODE=1
 
-PYDISTUTILSPKG=	yes
+PYDISTUTILSPKG=		yes
 # no scripts to avoid conflicts
 PYSETUPBUILDARGS=	NO_SCRIPTS=1 ${WXARG}
 PYSETUPINSTALLARGS=	NO_SCRIPTS=1 ${WXARG}
-PYBINMODULE=	yes
+PYBINMODULE=		yes
 
 PLIST_SUBST+=		GTKVER=2
 
