@@ -1,31 +1,31 @@
 # $NetBSD: Makefile,v 1.4 2012/10/03 21:32:46 asau Exp $
 
-DISTNAME=	oolite-1.65
-PKGREVISION=	2
+DISTNAME=	oolite-source-1.90
+PKGNAME=	${DISTNAME:S/source-//}
 CATEGORIES=	games
-MASTER_SITES=	http://download.berlios.de/oolite-linux/ \
-		http://download2.berlios.de/oolite-linux/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=OoliteProject/}
+GITHUB_RELEASE=	${PKGVERSION_NOREV}
 LICENSE=	gnu-gpl-v2
-
-DISTFILES=	${DISTNAME}-src${EXTRACT_SUFX}
-DISTFILES+=	${DISTNAME}-data${EXTRACT_SUFX}
-
-WRKSRC=		${WRKDIR}/${DISTNAME}-src
+EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@pkgsrc.org
 COMMENT=	Space sim game, inspired by Elite
-HOMEPAGE=	http://oolite.aegidian.org/
-
+HOMEPAGE=	http://www.oolite.org/
 
 USE_LANGUAGES=	objc
-USE_TOOLS+=	gmake
+USE_TOOLS+=	bash gmake
 NO_CONFIGURE=	yes
 
 MAKE_FILE=	GNUmakefile
-MAKE_JOBS_SAFE=	no
+#MAKE_JOBS_SAFE=	no
 
-.include "../../devel/gnustep-base/buildlink3.mk"
+#.include "../../audio/SDL_mixer/buildlink3.mk"
+.include "../../audio/espeak/buildlink3.mk"
+.include "../../audio/libvorbis/buildlink3.mk"
+.include "../../audio/openal-soft/buildlink3.mk"
 .include "../../devel/SDL/buildlink3.mk"
-.include "../../graphics/SDL_image/buildlink3.mk"
-.include "../../audio/SDL_mixer/buildlink3.mk"
+.include "../../devel/gnustep-base/buildlink3.mk"
+#.include "../../graphics/SDL_image/buildlink3.mk"
+.include "../../graphics/png/buildlink3.mk"
+.include "../../multimedia/libogg/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
