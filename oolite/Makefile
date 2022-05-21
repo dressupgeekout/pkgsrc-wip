@@ -15,17 +15,14 @@ HOMEPAGE=	http://www.oolite.org/
 USE_LANGUAGES=	objc
 USE_TOOLS+=	bash gmake
 NO_CONFIGURE=	yes
-
 MAKE_FILE=	GNUmakefile
-#MAKE_JOBS_SAFE=	no
 
-#.include "../../audio/SDL_mixer/buildlink3.mk"
 .include "../../audio/espeak/buildlink3.mk"
 .include "../../audio/libvorbis/buildlink3.mk"
 .include "../../audio/openal-soft/buildlink3.mk"
 .include "../../devel/SDL/buildlink3.mk"
 .include "../../devel/gnustep-base/buildlink3.mk"
-#.include "../../graphics/SDL_image/buildlink3.mk"
+.include "../../devel/nspr/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../multimedia/libogg/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
