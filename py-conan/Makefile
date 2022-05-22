@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	conan-1.32.1
+DISTNAME=	conan-1.45.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	pkgtools
 MASTER_SITES=	${MASTER_SITE_PYPI:=c/conan/}
@@ -17,7 +17,7 @@ post-install:
           do ${MV} $$b $$b-${PYVERSSUFFIX}; \
         done
 
-DEPENDS+=	${PYPKGPREFIX}-JWT>=1.4.0<2.0.0:../../textproc/py-JWT
+DEPENDS+=	${PYPKGPREFIX}-JWT>=1.4.0<3.0.0:../../textproc/py-JWT
 DEPENDS+=	${PYPKGPREFIX}-requests>=2.8.1<3.0.0:../../devel/py-requests
 DEPENDS+=	${PYPKGPREFIX}-colorama>=0.3.3<0.5.0:../../comms/py-colorama
 DEPENDS+=	${PYPKGPREFIX}-yaml>=3.11<6.0:../../textproc/py-yaml
@@ -44,6 +44,8 @@ DEPENDS+=	${PYPKGPREFIX}-dateutil>=2.7.0<3.0.0:../../time/py-dateutil
 #DEPENDS+=   ${PYPKGPREFIX}-cryptography>=1.3.4<2.4.0:../../security/py-cryptography
 #DEPENDS+=   ${PYPKGPREFIX}-OpenSSL>=16.0.0<19.0.0:../../security/py-OpenSSL
 .endif
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

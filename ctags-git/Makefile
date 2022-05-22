@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	ctags-2712201801
+DISTNAME=	ctags-5.9.20220116.0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=universal-ctags/}
-GITHUB_TAG=	5728abe4112092437a517e94e30e139ccda63d5a
+GITHUB_TAG=	p${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://ctags.io/
@@ -15,7 +15,7 @@ USE_TOOLS=		aclocal autoreconf autoconf automake autoheader
 USE_TOOLS+=		bash gmake perl pkg-config
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	RST2MAN=${PREFIX}/bin/rst2man-${PYVERSSUFFIX}.py
+CONFIGURE_ARGS+=	RST2MAN=${PREFIX}/bin/rst2man-${PYVERSSUFFIX}
 CONFIGURE_ARGS+=	--enable-macro-patterns
 CONFIGURE_ARGS+=	--enable-readlib
 CONFIGURE_ARGS+=	--disable-readcmd

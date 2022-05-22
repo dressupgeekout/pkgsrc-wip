@@ -1,10 +1,9 @@
 # $NetBSD: Makefile,v 1.25 2016/01/10 20:01:05 markd Exp $
 
 DISTNAME=	ksshaskpass-${PLASMAVER}
-PKGREVISION=	1
 CATEGORIES=	security
 
-HOMEPAGE=	https://www.kde.org/workspaces/plasmadesktop/
+HOMEPAGE=	https://kde.org/plasma-desktop/
 COMMENT=	ssh-add helper that uses kwallet and kpassworddialog
 LICENSE=	gnu-gpl-v2
 

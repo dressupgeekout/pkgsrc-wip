@@ -1,7 +1,7 @@
 # $NetBSD$
 
-PKGNAME=	iosevka-ttf-4.1.1
-DISTNAME=	ttc-${PKGNAME:S/-ttf//}
+PKGNAME=	iosevka-ttf-15.3.1
+DISTNAME=	super-ttc-${PKGNAME:S/-ttf//}
 CATEGORIES=	fonts
 MASTER_SITES=	${MASTER_SITE_GITHUB:=be5invis/}
 GITHUB_PROJECT=	Iosevka

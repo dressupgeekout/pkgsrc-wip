@@ -8,18 +8,23 @@ MODNAME=	${LANG}${PHP_VERSION}
 
 MAINTAINER=	osa@FreeBSD.org
 
-PHP_VERSIONS_ACCEPTED?=	56 72 73 74
+PHP_VERSIONS_ACCEPTED?=	56 73 74 80
 
 .include "../../lang/php/phpversion.mk"
 
-#.if empty(PKG_BUILD_OPTIONS.${PHP_PKG_PREFIX}:Mphp-embed)
+#PHP_BUILD_OPTIONS!=	${RUN} ${PKG_INFO} -Bn php | ${GREP} PKG_OPTIONS
+#.if empty(PHP_BUILD_OPTIONS:Mphp-embed)
 #BROKEN=		"Requires the php-embed option enabled in PHP."
 #.endif
 
+BROKEN=		"Requires the php-embed option enabled in PHP but there is no code to check if this is so."
+
 post-configure:
-	cd ${WRKSRC} && \
-	./configure ${LANG} --lib-path=${PREFIX}/lib \
-		--module=${MODNAME}
+	${RUN} cd ${WRKSRC} && ${SETENV} ${_CONFIGURE_SCRIPT_ENV}	\
+		${CONFIG_SHELL} ${CONFIG_SHELL_FLAGS} 			\
+			${CONFIGURE_SCRIPT} ${LANG}			\
+				--lib-path=${PREFIX}/lib		\
+				--module=${MODNAME}
 
 .include "${PHPPKGSRCDIR}/buildlink3.mk"
 .include "../../wip/unit/ext.mk"

@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (HackGenNerd_v2.2.2.zip) = f60ce585f089f80efc343344c155030ebd1a87e6
-RMD160 (HackGenNerd_v2.2.2.zip) = 8ff8f1303f7a5c96c3465a969bafa8f6a1ea92f1
-SHA512 (HackGenNerd_v2.2.2.zip) = 6bba03d1ad12986e47c6078806477a9c660db0dcbbb13298752b07a16b8d979263cff08982541b292ac1d0684ea985b49c464d88c2a8a5676ee9228913a09b7e
-Size (HackGenNerd_v2.2.2.zip) = 44009229 bytes
+BLAKE2s (HackGenNerd_v2.6.3.zip) = 11d9adc6370896d448d539e79eb31550a91dd4b0ed1936c5b7aec1d189804221
+SHA512 (HackGenNerd_v2.6.3.zip) = f3fe66f0796e8aba4233b25b17eafb3bdf3baf1a0a64cc59c2fa4a40c232443244c9b80a4b2d08324e6dd7466693408aa1128359bd68ff4fe68fdc29caba12d9
+Size (HackGenNerd_v2.6.3.zip) = 44042691 bytes

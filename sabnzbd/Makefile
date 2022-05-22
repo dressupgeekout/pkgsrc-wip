@@ -1,7 +1,8 @@
 # $NetBSD: Makefile,v 1.6 2015/02/04 10:10:53 thomasklausner Exp $
 
 DISTNAME=	sabnzbd-${DISTVERSION}
-DISTVERSION=	3.1.1
+DISTVERSION=	3.5.3
+PKGREVISION=	1
 CATEGORIES=	news
 MASTER_SITES=	${MASTER_SITE_GITHUB:=sabnzbd/}
 GITHUB_PROJECT=	sabnzbd
@@ -21,6 +22,8 @@ DEPENDS+=	${PYPKGPREFIX}-chardet-[0-9]*:../../converters/py-chardet
 DEPENDS+=	${PYPKGPREFIX}-configobj-[0-9]*:../../devel/py-configobj
 DEPENDS+=	${PYPKGPREFIX}-portend-[0-9]*:../../net/py-portend
 DEPENDS+=	${PYPKGPREFIX}-cherrypy>=18.2:../../www/py-cherrypy
+DEPENDS+=	${PYPKGPREFIX}-guessit>=3.1.1:../../textproc/py-guessit
+DEPENDS+=	${PYPKGPREFIX}-puremagic>=1.11:../../wip/py-puremagic
 DEPENDS+=	par2-[0-9]*:../../archivers/par2
 DEPENDS+=	unrar-[0-9]*:../../archivers/unrar
 DEPENDS+=	unzip-[0-9]*:../../archivers/unzip
@@ -30,7 +33,7 @@ NO_BUILD=		yes
 USE_TOOLS=		pax
 USE_LANGUAGES+=		c
 
-PYTHON_VERSIONS_ACCEPTED=	38 37 36
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "options.mk"
 
@@ -56,12 +59,13 @@ do-install:
 	cd ${WRKSRC} && pax -rw SABnzbd.py ${DESTDIR}/${PREFIX}/bin/
 	${MKDIR} ${DESTDIR}/${PREFIX}/${PYSITELIB}/
 	cd ${WRKSRC} && pax -rw -pmp sabnzbd ${DESTDIR}/${PREFIX}/${PYSITELIB}/
-.for i in ${INSTALLATION_DIRS}
 	${MKDIR} ${DESTDIR}/${PREFIX}/share/sabnzbd
+.for i in ${INSTALLATION_DIRS}
 	cd ${WRKSRC} && pax -rw -pmp ${i} ${DESTDIR}/${PREFIX}/share/sabnzbd
 .endfor
 	cd ${.CURDIR}/files && pax -rw -pmp sabnzbd.xml ${DESTDIR}/${PREFIX}/share/sabnzbd
-	${CHMOD} a-x ${DESTDIR}${PREFIX}/share/sabnzbd/interfaces/Plush/templates/static/stylesheets/jqueryui/overcast/images/*.png
+	${CHMOD} -R go-w ${DESTDIR}${PREFIX}
+	${CHMOD} a-x ${DESTDIR}${PREFIX}/share/sabnzbd/interfaces/Glitter/templates/static/javascripts/momentjs_locale/*.js
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"

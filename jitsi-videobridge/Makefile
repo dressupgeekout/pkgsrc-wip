@@ -8,12 +8,14 @@ COMMENT=	WebRTC compatible video router or SFU
 
 DISTINFO_FILE=	${.CURDIR}/../../wip/jitsi-videobridge/distinfo
 
-USE_TOOLS=	bash:run unzip
+USE_TOOLS+=	bash:run unzip
 USE_JAVA2=	8
 
 REPLACE_BASH=	jvb/resources/jvb.sh
 
 TOOL_DEPENDS+=	apache-maven-[0-9]*:../../devel/apache-maven
+
+WRKSRC=		${WRKDIR}/${GITHUB_PROJECT}-stable-${DISTNAME}
 
 MAVEN_FLAGS+=	-DskipTests
 MAVEN_FLAGS+=	-Djavax.net.ssl.trustStore=${WRKDIR}/keystore
@@ -42,11 +44,13 @@ do-build:
 		mvn package ${MAVEN_FLAGS}
 
 do-install:
+	${RM} -rf ${DESTDIR}${PREFIX}/share/jitsi-videobridge-2.1-SNAPSHOT \
+		${DESTDIR}${PREFIX}/share/jitsi-videobridge
 	cd ${DESTDIR}${PREFIX}/share && \
 		${UNZIP_CMD} ${WRKSRC}/jvb/target/jitsi-videobridge-2.1-SNAPSHOT-archive.zip
 	${MV} ${DESTDIR}${PREFIX}/share/jitsi-videobridge-2.1-SNAPSHOT \
 		${DESTDIR}${PREFIX}/share/jitsi-videobridge
-	${LN} -s ../share/jitsi-videobridge/jvb.sh \
+	${LN} -sf ../share/jitsi-videobridge/jvb.sh \
 		${DESTDIR}${PREFIX}/bin/jvb
 
 .include "../../wip/jitsi-meet/Makefile.common"

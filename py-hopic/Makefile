@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	hopic-1.24.0
+DISTNAME=	hopic-1.32.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel sysutils
 MASTER_SITES=	${MASTER_SITE_PYPI:=h/hopic/}
@@ -15,14 +15,15 @@ BUILD_DEPENDS+=	${PYPKGPREFIX}-setuptools_scm_git_archive:../../devel/py-setupto
 DEPENDS+=	${PYPKGPREFIX}-click>=7.0<8.0:../../devel/py-click
 DEPENDS+=	${PYPKGPREFIX}-click-log:../../devel/py-click-log
 DEPENDS+=	${PYPKGPREFIX}-commisery>=0.5<1:../../wip/py-commisery
-DEPENDS+=	${PYPKGPREFIX}-git>=3<4:../../wip/py-git
+DEPENDS+=	${PYPKGPREFIX}-gitpython>=3<4:../../devel/py-gitpython
 DEPENDS+=	${PYPKGPREFIX}-importlib-metadata<3.8:../../devel/py-importlib-metadata
 DEPENDS+=	${PYPKGPREFIX}-dateutil:../../time/py-dateutil
 DEPENDS+=	${PYPKGPREFIX}-yaml:../../textproc/py-yaml
 DEPENDS+=	${PYPKGPREFIX}-stemming>=1<2:../../wip/py-stemming
 DEPENDS+=	${PYPKGPREFIX}-regex:../../textproc/py-regex
+DEPENDS+=	${PYPKGPREFIX}-typeguard>=2.10<3:../../devel/py-typeguard
 
-WRKSRC=		${WRKDIR}/hopic-1.24.0
+WRKSRC=		${WRKDIR}/hopic-${PKGVERSION}
 USE_LANGUAGES=	# none
 
 post-install:

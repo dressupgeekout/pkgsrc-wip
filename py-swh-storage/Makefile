@@ -16,14 +16,14 @@ DEPENDS+=	${PYPKGPREFIX}-flask>=1.1.2:../../www/py-flask
 #DEPENDS+=	${PYPKGPREFIX}-psycopg2>=0:../../databases/py-psycopg2
 DEPENDS+=	${PYPKGPREFIX}-aiohttp>=3.7.3:../../www/py-aiohttp
 DEPENDS+=	${PYPKGPREFIX}-cassandra-driver>=3.15.1:../../databases/py-cassandra-driver
-DEPENDS+=	${PYPKGPREFIX}-Deprecated>=1.2.7:../../devel/py-Deprecated
+DEPENDS+=	${PYPKGPREFIX}-deprecated>=1.2.7:../../devel/py-deprecated
 DEPENDS+=	${PYPKGPREFIX}-typing-extensions>=3.7.4.3:../../devel/py-typing-extensions
 DEPENDS+=	${PYPKGPREFIX}-mypy_extensions>=0.4.3:../../lang/py-mypy_extensions
 DEPENDS+=	${PYPKGPREFIX}-iso8601>=0.1.13:../../time/py-iso8601
 DEPENDS+=	${PYPKGPREFIX}-swh-core>=0.10.0:../../wip/py-swh-core
 DEPENDS+=	${PYPKGPREFIX}-swh-model>=0.7.2:../../wip/py-swh-model
 DEPENDS+=	${PYPKGPREFIX}-swh-objstorage>=0.2.2:../../wip/py-swh-objstorage
-DEPENDS+=	${PYPKGPREFIX}-tenacity>=6.2.0:../../wip/py-tenacity
+DEPENDS+=	${PYPKGPREFIX}-tenacity>=6.2.0:../../devel/py-tenacity
 
 USE_LANGUAGES=	# none
 

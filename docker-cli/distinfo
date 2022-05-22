@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (cli/v20.10.0-rc1.tar.gz) = a9de25d78db0a874aae7e554f087c47207f5130e
-RMD160 (cli/v20.10.0-rc1.tar.gz) = 9cb15d5e8102162bfd1d56c1b346e9f72b0c3048
-SHA512 (cli/v20.10.0-rc1.tar.gz) = a0602ec6780925df0aefedf1b7f0bb33b0ab97dae5c8d0689ec689c1008b32a200cf9bac216be4c619269cb0d8ad6550d1825a39c8347445d6e2972e72ab7ff7
-Size (cli/v20.10.0-rc1.tar.gz) = 7663899 bytes
+RMD160 (docker-cli-20.10.9.tar.gz) = d0026ed88b78cbab8cf9e30d5c153fa97d0e818f
+SHA512 (docker-cli-20.10.9.tar.gz) = 0a9bd36c139bb5e1cd4a975913aa5429ffce8c746d2104aa2a54d937c67073ddaa2a8a5e93d71d2d435459af58168de0e7e3a44fd452da535f3995738da206df
+Size (docker-cli-20.10.9.tar.gz) = 7525889 bytes
+SHA1 (patch-vendor_github.com_docker_docker_pkg_system_rm.go) = b9b220f90afdead624184b4121e25b80d27c4420

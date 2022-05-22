@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (terminology-1.8.1.tar.xz) = 6749f267c65260a33c7311e701ee8e4b37ba9020
-RMD160 (terminology-1.8.1.tar.xz) = 7a9c8981451e580810e9b0ab4469391cb36a97f6
-SHA512 (terminology-1.8.1.tar.xz) = 9b12540d0e907ee1499c3249f1e2dbf7786f401e2154856a804dc0a1afbe389cb297b237fdc1c38aff8b81ba1f65d70cf3a27c986ec8cccef6f03894feadf14f
-Size (terminology-1.8.1.tar.xz) = 4939080 bytes
+RMD160 (terminology-1.10.0.tar.xz) = b789cfcb68a157cb77b578224a1f67ec09f2f1f8
+SHA512 (terminology-1.10.0.tar.xz) = 2afd253da27a49bf4d306bcc92fb14148c7f2df1116de8422a60be128be8483042ae61457805ce446d863b5671c6d1613d77efc811167a786f3968f68964dae1
+Size (terminology-1.10.0.tar.xz) = 4984496 bytes

@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.11 2019/08/11 13:18:00 wiz Exp $
 
-DISTNAME=	ncbi-blast-2.8.1+-src
+DISTNAME=	ncbi-blast-2.13.0+-src
 PKGNAME=	${DISTNAME:S/+-src//:S/blast/blast+/}
-PKGREVISION=	5
 CATEGORIES=	biology
 MASTER_SITES=	https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ \
 		https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/${PKGVERSION_NOREV}/
@@ -19,7 +18,7 @@ SUBST_STAGE.configure=	pre-configure
 SUBST_SED.configure+=	-e 's|-D_THREAD_SAFE|-D_THREAD_SAFE -D__RUNETYPE_INTERNAL|'
 SUBST_SED.configure+=	-e '/--infodir=DIR/d'
 SUBST_SED.configure+=	-e '/--mandir=DIR/d'
-SUBST_FILES.configure+=	${WRKSRC}/src/build-system/configure
+SUBST_FILES.configure+=	src/build-system/configure
 
 USE_TOOLS+=		bash gmake perl
 USE_LANGUAGES=		c c++
@@ -29,6 +28,8 @@ REPLACE_BASH=		scripts/common/impl/define_random_macros.sh
 REPLACE_BASH+=		src/app/blast/get_species_taxids.sh
 REPLACE_PERL=		src/app/blast/legacy_blast.pl src/app/blast/update_blastdb.pl
 REPLACE_PYTHON=		src/app/winmasker/windowmasker_2.2.22_adapter.py
+REPLACE_PYTHON+=	src/app/blast/cleanup-blastdb-volumes.py
+MKPIE_SUPPORTED=	no	# Temporary fix
 
 # The test for amq can hang, but amq is not needed so just avoid the test
 # configure chooses /usr/local/bin/ar with no flags
@@ -45,6 +46,16 @@ WRKSRC=			${WRKDIR}/${DISTNAME}/c++
 # configure checks only for undefined reference, not for usability
 CONFIGURE_ENV+=		ac_cv_func_statfs=no
 .endif
+
+.if ${OPSYS} == Darwin
+CONFIGURE_ARGS+=	--without-openmp
+.endif
+
+# c++/src/objtools/edit/seq_entry_edit.cpp: In member function 'void ncbi::objects::edit::{anonymous}::CSeqdescSortMap::Init()':
+# c++/src/objtools/edit/seq_entry_edit.cpp:172:44: error: array subscript has type 'char' [-Werror=char-subscripts]
+#              while (descr_insert_order[index] != 0)
+# Maybe fix this later.
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
 
 post-install:
 	${RM} ${DESTDIR}${PREFIX}/include/ncbi-tools++/*/*/.cvsignore.extra

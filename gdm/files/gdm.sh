@@ -4,7 +4,7 @@
 #
 
 # PROVIDE: gdm
-# REQUIRE: DAEMON LOGIN wscons
+# REQUIRE: DAEMON LOGIN wscons dbus
 # KEYWORD: shutdown
 
 if [ -f /etc/rc.subr ]; then
@@ -22,7 +22,7 @@ extra_commands="reload"
 
 if [ -f /etc/rc.subr ]; then
 	load_rc_config ${name}
-	PATH=@PREFIX@/bin:$PATH run_rc_command "$1"
+	run_rc_command "$1"
 else
 	echo -n " ${name}"
 	${command} ${gdm_flags} ${command_args}

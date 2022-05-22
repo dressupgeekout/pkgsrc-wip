@@ -5,17 +5,32 @@
 #              Wed May 20 07:41:36 CDT 2020               #
 ###########################################################
 
-DISTNAME=	basic-stats-0.0.0.8
+DISTNAME=	basic-stats-0.1.0.38
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_GITHUB:=auerlab/}
-GITHUB_TAG=	a519b6ee22e7c0c4054c2332a56d1b1b4e19f829
+GITHUB_TAG=	c7214de8ac7705a1fff0e7b7315ef0c7acf0fc1a
 
 MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://github.com/auerlab/basic-stats
 COMMENT=	Command-line tool to perform basic statistics on tabular data
 LICENSE=	2-clause-bsd
 
+.include "../../mk/bsd.prefs.mk"
+
+.if ${OPSYS} == Darwin
+INSTALL_TARGET=	apple-install
+.else
+INSTALL_TARGET=	install-strip
+PLIST.cs=	yes
+.endif
+
+PLIST_VARS=	cs
+
+pre-build:
+	cd ${WRKSRC} && ${MAKE} LOCALBASE=${LOCALBASE} depend
+
 post-install:
 	${STRIP} ${DESTDIR}${PREFIX}/bin/basic-stats
 
+.include "../../wip/libxtend/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

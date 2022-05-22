@@ -1,6 +1,7 @@
 $NetBSD$
 
-SHA1 (jitsi-meet/jitsi-meet_5142.tar.gz) = 1987b5487c84379b5502e44e5cae3e79505c45d1
-RMD160 (jitsi-meet/jitsi-meet_5142.tar.gz) = fd19ea1599f80f9c92d9fe0c2c4a4a205de3a70f
-SHA512 (jitsi-meet/jitsi-meet_5142.tar.gz) = 62f202719c233dc6a0c4e45503643783beeb3d7b2a541b0de0d3127b2b629af5c69eb8d3a63c8df234fd1c2dba15b70dbd28ba59cc30eace7b96575fd1807308
-Size (jitsi-meet/jitsi-meet_5142.tar.gz) = 105775320 bytes
+BLAKE2s (jitsi-meet/jitsi-meet_7210.tar.gz) = e1eda66fcc014a21522065c504548ab78b591ce34c4a06aee25ef6eff3db4274
+SHA512 (jitsi-meet/jitsi-meet_7210.tar.gz) = 9291c60b81909a639a639a88b9173ba41afddb0c7636360a8dcd36b6b5f46dc077bf664b7dbe612d2acb0f7537a89102bb3024b5d01d8534e2240d5275242889
+Size (jitsi-meet/jitsi-meet_7210.tar.gz) = 116919824 bytes
+SHA1 (patch-Makefile) = 49e25f52670ca6d069c53a6b1277141623e5e046
+SHA1 (patch-package-lock.json) = 9b40e2f0728473e16e154162c4fb3f10aba41abe

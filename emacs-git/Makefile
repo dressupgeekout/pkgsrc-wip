@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.74 2015/04/24 01:19:04 makoto Exp $
+# $NetBSD$
 
 .include	"version.mk"
 DISTNAME=	emacs-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
-PKGNAME=	emacs28-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
-PKGREVISION=	1
+PKGNAME=	emacs29-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
 CATEGORIES=	editors
 GIT_REPO=	git://git.savannah.gnu.org/emacs.git
 
@@ -59,6 +58,12 @@ post-extract:
 
 pre-configure:
 	(cd ${WRKSRC}; ${PKGSRC_SETENV} ${CONFIGURE_ENV} ${CONFIG_SHELL} ./autogen.sh)
+
+# by default the filename of the emacs dump contains a fingerprint of the corresponding emacs version
+# but this is not needed and makes the PLIST more simple
+post-install:
+	cd ${DESTDIR}${PREFIX}/libexec/emacs/${PKGVERSION_NOREV}/${MACHINE_GNU_PLATFORM} && \
+		mv emacs-*.pdmp emacs.pdmp
 
 .include "../../wip/mk/git-package.mk"
 .include "../../fonts/harfbuzz/buildlink3.mk"

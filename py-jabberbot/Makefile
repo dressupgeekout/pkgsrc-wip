@@ -5,7 +5,7 @@ PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	chat python
 MASTER_SITES=	http://thp.io/2007/python-jabberbot/
 
-MAINTAINER=	eric@cirr.com
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	${MASTER_SITES}
 COMMENT=	Module to enable easy creation of XMPP bots in Python
 LICENSE=	gnu-gpl-v3
@@ -25,5 +25,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/examples/* \
 		${DESTDIR}${EXDIR}
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

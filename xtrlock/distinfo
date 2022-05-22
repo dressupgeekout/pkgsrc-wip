@@ -1,7 +1,6 @@
 $NetBSD$
 
-SHA1 (xtrlock_2.13.tar.xz) = 36f6b6192462b17fb9335a2412474091442e5855
-RMD160 (xtrlock_2.13.tar.xz) = 09df9c836e04758fde3bdb0a4e2a967682ece74f
-SHA512 (xtrlock_2.13.tar.xz) = 656e1e77194b816b04260a88c8046b8ef25d6df0405de6fe1ee1dfb2ebfa528a329c1b67be70eaac5ce4ee6a4159d728d363bf8a59232941b76b1e6d14aa91aa
-Size (xtrlock_2.13.tar.xz) = 21156 bytes
+BLAKE2s (xtrlock_2.15.tar.xz) = 78fa4bbc9f0ab0999db7fc6cb5330aabff241f2b8c0e6c2f5189640adf8034c0
+SHA512 (xtrlock_2.15.tar.xz) = 3047ca57f04c58426c55c68cf711dffe124ba6c221a3659112339b01ec0f1a411d965277bb366bd39d8155fd82f8e49cb00e728a911aa67b4e46fcfcc489f0b1
+Size (xtrlock_2.15.tar.xz) = 21316 bytes
 SHA1 (patch-aa) = b8b3393cdb17253ec285def7ade91461bbd632ad

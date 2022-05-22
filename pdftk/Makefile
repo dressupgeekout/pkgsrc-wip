@@ -7,7 +7,7 @@ CATEGORIES=	print
 MASTER_SITES=	https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 EXTRACT_SUFX=	.zip
 
-MAINTAINER=	mwicks@kettering.edu
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.pdflabs.com/tools/pdftk-server/
 COMMENT=	Swiss army knife for PDF files
 LICENSE=	gnu-gpl-v2
@@ -37,8 +37,8 @@ post-install:
 .include "../../mk/bsd.prefs.mk"
 
 pre-configure:
-.include "../../lang/gcc34/preconfigure.mk"
+#.include "../../lang/gcc34/preconfigure.mk"
 
-.include "../../lang/gcc34/buildlink3.mk"
+#.include "../../lang/gcc34/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

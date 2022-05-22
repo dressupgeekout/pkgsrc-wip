@@ -1,10 +1,9 @@
 # $NetBSD: Makefile,v 1.25 2016/01/10 20:01:05 markd Exp $
 
 DISTNAME=	oxygen-${PLASMAVER}
-PKGREVISION=	1
 CATEGORIES=	graphics
 
-HOMEPAGE=	https://www.kde.org/workspaces/plasmadesktop/
+HOMEPAGE=	https://kde.org/plasma-desktop/
 COMMENT=	KDE Oxygen style
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 

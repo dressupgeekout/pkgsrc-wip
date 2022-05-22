@@ -8,7 +8,7 @@ GIT_REPOSITORIES=	trelby
 GIT_REPO.trelby=	https://github.com/christiank/trelby.git
 GIT_BRANCH.trelby=	pkgsrc_netbsd
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 COMMENT=	Screenplay writing program
 LICENSE=	gnu-gpl-v2
 
@@ -30,7 +30,7 @@ post-build:
 DEPENDS+=	py27-lxml>=3:../../textproc/py-lxml
 
 .include "../../lang/python/application.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../lang/python/pyversion.mk"
 .include "../../x11/py-wxWidgets/buildlink3.mk"
 .include "../../x11/wxGTK28/buildlink3.mk"

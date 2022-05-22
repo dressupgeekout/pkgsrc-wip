@@ -2,7 +2,7 @@
 
 DISTNAME=	efl-1.25.1
 CATEGORIES=	x11
-PKGREVISION=	3
+PKGREVISION=	5
 MASTER_SITES=	https://download.enlightenment.org/rel/libs/efl/
 EXTRACT_SUFX=	.tar.xz
 
@@ -59,7 +59,6 @@ MESON_ARGS+=	-Dsystemd=false
 PLIST.linux=	yes
 .endif
 MESON_ARGS+=	-Deeze=false
-MESON_ARGS+=	-Dbuild-tests=false
 MESON_ARGS+=	-Dbuild-examples=false
 MESON_ARGS+=	-Dphysics=true
 
@@ -71,7 +70,8 @@ SUBST_STAGE.fix-options=	pre-configure
 SUBST_FILES.fix-options=	meson_options.txt
 SUBST_SED.fix-options=		-e "s|'es-egl', 'none'|'es-egl', 'base', 'none'|g"
 
-MESON_ARGS+=	-Dopengl=base
+MESON_ARGS+=	-Dopengl=base -Dlua-interpreter=lua
+LUA_VERSIONS_ACCEPTED=		52 51
 
 .else
 
@@ -82,7 +82,7 @@ MESON_ARGS+=	-Dopengl=base
 
 .endif
 
-.include "../../audio/pulseaudio/buildlink3.mk"
+.include "../../audio/libsndfile/buildlink3.mk"
 .include "../../converters/fribidi/buildlink3.mk"
 .include "../../devel/bullet/buildlink3.mk"
 .include "../../devel/meson/build.mk"
@@ -93,11 +93,13 @@ MESON_ARGS+=	-Dopengl=base
 .include "../../graphics/libwebp/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
 .include "../../inputmethod/scim/buildlink3.mk"
-.include "../../lang/LuaJIT2/buildlink3.mk"
+#.include "../../lang/LuaJIT2/buildlink3.mk"
+.include "../../lang/lua/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../multimedia/gst-plugins1-base/buildlink3.mk"
 .include "../../print/libspectre/buildlink3.mk"
 .include "../../print/poppler-cpp/buildlink3.mk"
+.include "../../sysutils/dbus/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../x11/libXau/buildlink3.mk"
 .include "../../x11/libXcomposite/buildlink3.mk"

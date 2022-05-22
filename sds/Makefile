@@ -1,25 +1,30 @@
 # $NetBSD$
 
-PKGNAME=	sds-2.0.0.974b5d1
+PKGNAME=	sds-2.0.0
 CATEGORIES=	devel
-GHCOMMIT=	974b5d11f9e17a6659f591bcc07a8bd981acdfd0
-DISTNAME=	${GHCOMMIT}
-MASTER_SITES=	${MASTER_SITE_GITHUB:=antirez/sds/archive/}
-DIST_SUBDIR=	sds
-WRKSRC=		${WRKDIR}/sds-${GHCOMMIT}
+GIT_REPO=	https://github.com/antirez/sds
+GIT_REVISION=	fb463145c9c245636feb28b5aac0fc897e16f67e
 
-MAINTAINER=	tpaul@NetBSD.org
+MAINTAINER=	micha@NetBSD.org
 HOMEPAGE=	https://github.com/antirez/sds/
 COMMENT=	Simple dynamic strings library for C
 LICENSE=	2-clause-bsd
 
-INSTALLATION_DIRS=	lib include
+USE_LANGUAGES=	c99
+USE_LIBTOOL=	yes
 
-do-install:
-	${INSTALL_LIB} ${WRKSRC}/libsds.so ${DESTDIR}${PREFIX}/lib/libsds.so
-	${INSTALL_DATA} ${WRKSRC}/sds.h ${DESTDIR}${PREFIX}/include/sds.h
+TEST_TARGET=	test
 
-do-test:
-	${WRKSRC}/sds-test
+INSTALLATION_DIRS=	lib/pkgconfig
 
+post-extract:
+	${CP} ${FILESDIR}/libsds-2.pc.in ${WRKDIR}
+	cd ${WRKDIR} && ${SED} -e "s,@prefix@,${PREFIX},g" \
+            -e "s,@release@,${PKGVERSION_NOREV},g" <libsds-2.pc.in >libsds-2.pc
+
+post-install:
+	cd ${WRKDIR} && ${INSTALL_DATA} libsds-2.pc \
+            ${DESTDIR}${PREFIX}/lib/pkgconfig/libsds-2.pc
+
+.include "../../wip/mk/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

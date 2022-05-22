@@ -1,10 +1,5 @@
-## Todo
-
-1. In the Makefile there is this todo item:
-
-		# TODO investigate why this is needed
-		CHECK_WRKREF_SKIP+=	bin/spotifyd
-
+This package has known vulnerabilities, please investigate and fix if possible:
+  CVE-2020-35711
 
 ## Done
 

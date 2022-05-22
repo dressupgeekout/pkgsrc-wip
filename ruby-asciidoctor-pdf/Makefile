@@ -3,12 +3,12 @@
 DISTNAME=	asciidoctor-pdf-1.5.3
 CATEGORIES=	print
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://asciidoctor.org/
 COMMENT=	PDF extension for Asciidoctor
 LICENSE=	mit
 
-DEPENDS+=	${RUBY_PKGPREFIX}-asciidoctor>=2.0.0:../../wip/ruby-asciidoctor
+DEPENDS+=	${RUBY_PKGPREFIX}-asciidoctor>=2.0.0:../../textproc/ruby-asciidoctor
 DEPENDS+=	${RUBY_PKGPREFIX}-concurrent-ruby>=1.1.0:../../devel/ruby-concurrent-ruby
 DEPENDS+=	${RUBY_PKGPREFIX}-prawn-icon>=2.5.0:../../wip/ruby-prawn-icon
 DEPENDS+=	${RUBY_PKGPREFIX}-prawn-svg>=0.30.0:../../wip/ruby-prawn-svg

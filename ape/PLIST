@@ -5,7 +5,6 @@ bin/ascii
 bin/runjava
 bin/search_headers
 bin/search_libs
-bin/xape
 man/man1/ape.1
 man/man1/apeascii.1
 man/man1/apekeys.1
@@ -45,6 +44,10 @@ share/APE/Languages/Csh/Macros/macros
 share/APE/Languages/Csh/Macros/menu.txt
 share/APE/Languages/Csh/language_opts
 share/APE/Languages/Csh/syntax_highlighting
+share/APE/Languages/D/Macros/macros
+share/APE/Languages/D/Macros/menu.txt
+share/APE/Languages/D/language_opts
+share/APE/Languages/D/syntax_highlighting
 share/APE/Languages/DocBook/Macros/macros
 share/APE/Languages/DocBook/Macros/menu.txt
 share/APE/Languages/DocBook/language_opts
@@ -73,6 +76,10 @@ share/APE/Languages/Java/Macros/macros
 share/APE/Languages/Java/Macros/menu.txt
 share/APE/Languages/Java/language_opts
 share/APE/Languages/Java/syntax_highlighting
+share/APE/Languages/Julia/Macros/macros
+share/APE/Languages/Julia/Macros/menu.txt
+share/APE/Languages/Julia/language_opts
+share/APE/Languages/Julia/syntax_highlighting
 share/APE/Languages/Ksh/Macros/macros
 share/APE/Languages/Ksh/Macros/menu.txt
 share/APE/Languages/Ksh/language_opts
@@ -103,6 +110,10 @@ share/APE/Languages/Makefile/Macros/macros
 share/APE/Languages/Makefile/Macros/menu.txt
 share/APE/Languages/Makefile/language_opts
 share/APE/Languages/Makefile/syntax_highlighting
+share/APE/Languages/Markdown/Macros/macros
+share/APE/Languages/Markdown/Macros/menu.txt
+share/APE/Languages/Markdown/language_opts
+share/APE/Languages/Markdown/syntax_highlighting
 share/APE/Languages/NQC/Macros/macros
 share/APE/Languages/NQC/Macros/menu.txt
 share/APE/Languages/NQC/language_opts
@@ -141,6 +152,8 @@ share/APE/Languages/R/Macros/macros
 share/APE/Languages/R/Macros/menu.txt
 share/APE/Languages/R/language_opts
 share/APE/Languages/R/syntax_highlighting
+share/APE/Languages/Rust/Macros/macros
+share/APE/Languages/Rust/Macros/menu.txt
 share/APE/Languages/Rust/language_opts
 share/APE/Languages/Rust/syntax_highlighting
 share/APE/Languages/SAL/Macros/macros

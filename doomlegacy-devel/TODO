@@ -1,80 +1,8 @@
 
-Part 7: Import final release
-============================
-[X] Import version 1.48.4 to pkgsrc
-    Parts 1 to 6 are now available in games/doomlegacy
-
-
-Part 8: Support for extended nodes
-==================================
-[X] Add patch to support DeeP and ZDoom extended nodes
-    This code is based on woof 1.2.0
-    Fixes Bug #657
-[X] Created upstream feature request #95
-    => Deferred (not considered for 1.48 release)
-[X] Add optional zlib dependency for build system
-[X] Add support for compressed ZDoom extended nodes
-    Use "zdbsp -z" to create test map with compressed ZDoom extended nodes
-    => Works as expected
-
-
-Part 9: Support for internal blockmap creation
-==============================================
-Make it possible to play maps with broken blockmaps (or no blockmaps at all).
-
-[X] Add patch to support internal blockmap creation
-    This code is based on Crispy Doom 5.8.0
-[X] Add command line option "-blockmap" like in PrBoom+
-[X] Document option "-blockmap" in man page
-[X] Test as workaround for NOVA II
-    Blockmap load error, Bug #658
-    => Works as expected (needs Feature #95 too)
-[X] Test as as workaround for NOVA III
-    Blockmaps missing completely (needs Feature #95 too)
-    => Works as expected
-[X] Test as workaround for Lost Civilization
-    It's unclear whether the blockmaps are broken or not imported correctly
-    => Works as expected
-[X] Created upstream feature request #96
-[X] Added patch from Altazimuth for Eternity Engine
-    Blockmap size calculation is wrong if first vertex has the largest x or y
-    (bug in original MBF code)
-[X] Updated upstream feature request #96
-
-
-Part 14: Import final release
+Part 23: Import final release
 =============================
-[X] Import version 1.48.6 to pkgsrc
-    Parts 10 to 13 are now available in games/doomlegacy
-
-
-Part 15: Savegame buffer overflow
-=================================
-[X] Created upstream bug report #667
-[X] Investigate crash with Antaresian Reliquary (Maps 4 and 6)
-    https://doomworld.com/idgames/levels/doom2/Ports/a-c/anta_req
-    Fixed in SVN revision 1553
-    => Works as expected
-
-
-Part 16: Sky is not rendered correctly
-======================================
-[X] Created upstream bug report #668
-    Fixed in SVN revision 1560
-    => Works as expected
-
-
-Part 17: Undefined behaviour
-============================
-GCC 10 produce several warnings while compiling the code.
-[X] Created upstream bug report #671
-    Fixed in SVN revisions 1561 and 1564
-    => Works as expected
-
-
-Part 18: Import final release
-=============================
-[ ] Import version 1.48.8 to pkgsrc
+[X] Import version 1.48.10 to pkgsrc
+    Parts 8 to 22 are now available in games/doomlegacy
 
 
 EOF

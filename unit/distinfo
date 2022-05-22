@@ -1,15 +1,11 @@
 $NetBSD$
 
-SHA1 (unit-1.21.0.tar.gz) = 19278761d3104ff8509422f55207b1daa45a4d14
-RMD160 (unit-1.21.0.tar.gz) = 91c24ed9e8eac402a170c8b02b5633cd892fb017
-SHA512 (unit-1.21.0.tar.gz) = 12e9e8b221ffe8014931fe46c7faa9398de6ad08bbc07e5f8e50f086e4a22419960522d33bece493e17ae544b499acb4ba29cb6cb731c0bb7fbdc6cdc44bf210
-Size (unit-1.21.0.tar.gz) = 802826 bytes
+BLAKE2s (unit-1.26.1.tar.gz) = 0f04392b663019aadd40213b0cc6342e9077c3324f9348e9f59a909db31a1d3c
+SHA512 (unit-1.26.1.tar.gz) = 1caadb35cb208067a5d437e1f649c9f9a833a39c4344b2c3a5ae94d9fcd811913e2f23114cf8d7886030306e036da18c55f09044b8a575c1616568321b8d84ec
+Size (unit-1.26.1.tar.gz) = 865811 bytes
+SHA1 (patch-auto_events) = 0347dfefbedaacd206c8c2bfd8ea38b18995dd9f
 SHA1 (patch-auto_os_conf) = 6d1cd7aef662a60d4288014eb6fadbe8c1268e55
-SHA1 (patch-src_nxt__cert.c) = c91e45f148a079b543a0d3cb277388bffb3e2854
-SHA1 (patch-src_nxt__conf__validation.c) = 99662fc0d975604fea0708a810e916991d0bf578
-SHA1 (patch-src_nxt__file.c) = 4321feeb6724378009cefacfe23470932faf35ef
-SHA1 (patch-src_nxt__router.c) = 366241f155bccf6a3291e37fef5993eb1c364b99
-SHA1 (patch-src_nxt__service.c) = 99964c1cee98b2c7965bb3b4c2691de6b768650b
-SHA1 (patch-src_nxt__unit.c) = d76768c55cd1176b83fefa2a0ccf7e7027d66331
+SHA1 (patch-src_nxt__kqueue__engine.c) = c341425f4b21d4cff6e003958f88a04b53dc4ee1
+SHA1 (patch-src_nxt__php__sapi.c) = 2d5e557ff2066bec78f5bfbca6a64688f60da01b
 SHA1 (patch-src_nxt__unix.h) = c0db5bc4d9c45a3ead48627567284d8b3041b0a0
 SHA1 (patch-src_nxt__websocket__header.h) = 1b50405b187cc8a662372a1c20ab7737278135ae

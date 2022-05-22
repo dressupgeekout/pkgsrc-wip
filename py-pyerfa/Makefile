@@ -1,6 +1,6 @@
-# $NetBSD$
+# $NetBSD: Makefile,v 1.3 2022/01/04 20:54:16 wiz Exp $
 
-DISTNAME=	pyerfa-1.7.1.1
+DISTNAME=	pyerfa-2.0.0.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pyerfa/}
@@ -15,16 +15,15 @@ MAKE_ENV+=	PYERFA_USE_SYSTEM_LIBERFA=1
 USE_LIBTOOL=	yes
 USE_LANGUAGES=	c
 
-PYTHON_VERSIONS_INCOMPATIBLE+=	27
-PYTHON_VERSIONS_INCOMPATIBLE+=	36
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
-DEPENDS+=	${PYPKGPREFIX}-numpy>=1.17.0:../../math/py-numpy
+DEPENDS+=	${PYPKGPREFIX}-numpy>=1.18.0:../../math/py-numpy
 DEPENDS+=	${PYPKGPREFIX}-jinja2>=2.10.3:../../textproc/py-jinja2
 DEPENDS+=	${PYPKGPREFIX}-packaging>=20.4:../../devel/py-packaging
 DEPENDS+=	${PYPKGPREFIX}-setuptools_scm>=4.1.2:../../devel/py-setuptools_scm
-DEPENDS+=	erfa>=1.7.1:../../wip/erfa
+DEPENDS+=	erfa>=2.0.0:../../wip/erfa
 
 .include "../../lang/python/egg.mk"
 .include "../../math/py-numpy/buildlink3.mk"
-.include "../../wip/erfa/buildlink3.mk"
+.include "../../math/erfa/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

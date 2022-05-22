@@ -1,7 +1,0 @@
-$NetBSD$
-
-SHA1 (ATS2-Postiats-0.4.0.tgz) = f9a734b6d7040633d16a11c73f06175afe04482f
-RMD160 (ATS2-Postiats-0.4.0.tgz) = 5de96881e7a4f69617fe161e5e192df38fef68e9
-SHA512 (ATS2-Postiats-0.4.0.tgz) = 8bd2fcd66686844950dbaeb68bb0f420a12f829621d2e20e1fd9bcc4bda9b958c1a0b1f6e0558d673a4a50bf599a02489700bc09f2c9b76f10e2a2f46d78e0bc
-Size (ATS2-Postiats-0.4.0.tgz) = 4518542 bytes
-SHA1 (patch-Makefile) = 6695c27284c2e5f765439f0d2b77c3bda3c2a5ed
