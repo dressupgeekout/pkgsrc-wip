@@ -5413,6 +5413,7 @@ SUBDIR+=	stress-ng
 SUBDIR+=	strongswan
 SUBDIR+=	structure
 SUBDIR+=	stumpwm
+SUBDIR+=	stuntrally
 SUBDIR+=	subread
 SUBDIR+=	subsync
 SUBDIR+=	suitesparse
