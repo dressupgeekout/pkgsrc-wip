@@ -6,7 +6,7 @@ VERSION=	3.1
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=squirrel/}
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	http://squirrel-lang.org/
 COMMENT=	The Squirrel programming language
 LICENSE=	mit
