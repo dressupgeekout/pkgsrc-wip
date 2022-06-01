@@ -1,13 +1,13 @@
 # $NetBSD$
-# used by wip/zabbix54-agent/Makefile
-# used by wip/zabbix54-proxy/Makefile
-# used by wip/zabbix54-server/Makefile
-# used by wip/zabbix54-frontend/Makefile
-# used by wip/zabbix54-java/Makefile
+# used by wip/zabbix60-agent/Makefile
+# used by wip/zabbix60-proxy/Makefile
+# used by wip/zabbix60-server/Makefile
+# used by wip/zabbix60-frontend/Makefile
+# used by wip/zabbix60-java/Makefile
 
-DISTNAME=	zabbix-6.0.0beta2
+DISTNAME=	zabbix-6.0.4
 CATEGORIES=	sysutils
-MASTER_SITES=	https://cdn.zabbix.com/zabbix/sources/development/6.0/
+MASTER_SITES=	https://cdn.zabbix.com/zabbix/sources/stable/6.0/
 
 MAINTAINER?=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.zabbix.com/

@@ -1,12 +1,12 @@
 # $NetBSD$
 
-DISTNAME=	clock-signal-20211219
+DISTNAME=	clock-signal-20220417
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=TomHarte/}
 GITHUB_PROJECT=	CLK
-GITHUB_TAG=	2021-12-19
+GITHUB_TAG=	2022-04-17
 
-MAINTAINER=	dressupgeekout@gmail.com
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://github.com/TomHarte/CLK
 COMMENT=	Emulator of 8- and 16-bit platforms
 LICENSE=	mit

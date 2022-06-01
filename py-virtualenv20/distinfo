@@ -1,5 +1,0 @@
-$NetBSD$
-
-BLAKE2s (virtualenv-20.13.0.tar.gz) = 286d6252f09c5fd32cf9785e51c62cd4383abff0f47416c2498c97ceb48df114
-SHA512 (virtualenv-20.13.0.tar.gz) = 72aa8cffe92551479ad4ec93395597cd9f77ddaf2063e36d5836277199a96ab2d57236d94b99b7038a60ada103a2d8a37ae4b13ffaaa6ed8e786245d9fbbf6d6
-Size (virtualenv-20.13.0.tar.gz) = 9957090 bytes

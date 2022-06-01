@@ -5,15 +5,17 @@
 #              Fri Jan  7 09:05:08 CST 2022               #
 ###########################################################
 
-DISTNAME=	fastq-trim-0.1.0.38
+DISTNAME=	fastq-trim-0.1.1.4
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
-GITHUB_TAG=	e37a9c6b1aff5d27760579140317540257defff5
+GITHUB_TAG=	7e3c5ffe71cc685f44d85becc1136a879f03a0b0
 
 MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://github.com/outpaddling/Fastq-trim
 COMMENT=	Lightening fast sequence read trimmer
 LICENSE=	2-clause-bsd
+
+MAKE_ENV=	VERSION=${PKGVERSION}
 
 pre-build:
 	(cd ${WRKSRC} && ${MAKE} PREFIX=${PREFIX} depend)

@@ -16,9 +16,17 @@ USE_GNU_CONFIGURE_HOST=	no
 #USE_GCC_RUNTIME=	yes
 
 .include "options.mk"
-###
-### PLIST components
-###
+.include "native.mk"
+
+# Options
+
+.if ${OCAML_USE_OPT_COMPILER} == "yes"
+CONFIGURE_ARGS+=	--enable-native-compiler
+BUILD_TARGET=		world.opt
+.else
+CONFIGURE_ARGS+=	--disable-native-compiler
+BUILD_TARGET=		world
+.endif
 
 # This is needed because ${WRKSRC}/build/partial-install.sh uses
 # $PWD as part of its script.  However, with /bin/sh on SunOS
@@ -31,7 +39,7 @@ USE_GNU_CONFIGURE_HOST=	no
 INSTALL_MAKE_FLAGS+=	SHELL=${SH:Q}
 .endif
 
-#INSTALLATION_DIRS=	${PKGMANDIR}/man1
+INSTALLATION_DIRS=	share/doc/ocaml
 
 OPSYSVARS+=		EXTRA_RT_LIBS
 EXTRA_RT_LIBS.NetBSD=	-lcurses
