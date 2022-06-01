@@ -5,7 +5,7 @@ MASTER_SITES=	http://www.libimobiledevice.org/downloads/
 CATEGORIES=	misc
 EXTRACT_SUFX=	.tar.bz2
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://www.libimobiledevice.org/
 COMMENT=	Libraries and tools to communicate with iOS devices
 LICENSE=	gnu-gpl-v2

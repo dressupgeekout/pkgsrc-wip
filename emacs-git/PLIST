@@ -2404,6 +2404,8 @@ share/emacs/${PKGVERSION}/lisp/language/ind-util.el.gz
 share/emacs/${PKGVERSION}/lisp/language/ind-util.elc
 share/emacs/${PKGVERSION}/lisp/language/indian.el.gz
 share/emacs/${PKGVERSION}/lisp/language/indian.elc
+share/emacs/${PKGVERSION}/lisp/language/indonesian.el.gz
+share/emacs/${PKGVERSION}/lisp/language/indonesian.elc
 share/emacs/${PKGVERSION}/lisp/language/japan-util.el.gz
 share/emacs/${PKGVERSION}/lisp/language/japan-util.elc
 share/emacs/${PKGVERSION}/lisp/language/japanese.el.gz
@@ -2420,6 +2422,8 @@ share/emacs/${PKGVERSION}/lisp/language/lao.el.gz
 share/emacs/${PKGVERSION}/lisp/language/lao.elc
 share/emacs/${PKGVERSION}/lisp/language/misc-lang.el.gz
 share/emacs/${PKGVERSION}/lisp/language/misc-lang.elc
+share/emacs/${PKGVERSION}/lisp/language/philippine.el.gz
+share/emacs/${PKGVERSION}/lisp/language/philippine.elc
 share/emacs/${PKGVERSION}/lisp/language/pinyin.el.gz
 share/emacs/${PKGVERSION}/lisp/language/pinyin.elc
 share/emacs/${PKGVERSION}/lisp/language/romanian.el.gz
@@ -2520,6 +2524,8 @@ share/emacs/${PKGVERSION}/lisp/leim/quail/hebrew.el.gz
 share/emacs/${PKGVERSION}/lisp/leim/quail/hebrew.elc
 share/emacs/${PKGVERSION}/lisp/leim/quail/indian.el.gz
 share/emacs/${PKGVERSION}/lisp/leim/quail/indian.elc
+share/emacs/${PKGVERSION}/lisp/leim/quail/indonesian.el.gz
+share/emacs/${PKGVERSION}/lisp/leim/quail/indonesian.elc
 share/emacs/${PKGVERSION}/lisp/leim/quail/ipa-praat.el.gz
 share/emacs/${PKGVERSION}/lisp/leim/quail/ipa-praat.elc
 share/emacs/${PKGVERSION}/lisp/leim/quail/ipa.el.gz
@@ -2540,6 +2546,8 @@ share/emacs/${PKGVERSION}/lisp/leim/quail/lrt.el.gz
 share/emacs/${PKGVERSION}/lisp/leim/quail/lrt.elc
 share/emacs/${PKGVERSION}/lisp/leim/quail/persian.el.gz
 share/emacs/${PKGVERSION}/lisp/leim/quail/persian.elc
+share/emacs/${PKGVERSION}/lisp/leim/quail/philippine.el.gz
+share/emacs/${PKGVERSION}/lisp/leim/quail/philippine.elc
 share/emacs/${PKGVERSION}/lisp/leim/quail/programmer-dvorak.el.gz
 share/emacs/${PKGVERSION}/lisp/leim/quail/programmer-dvorak.elc
 share/emacs/${PKGVERSION}/lisp/leim/quail/py-punct.el.gz
@@ -2782,6 +2790,8 @@ share/emacs/${PKGVERSION}/lisp/net/dns.el.gz
 share/emacs/${PKGVERSION}/lisp/net/dns.elc
 share/emacs/${PKGVERSION}/lisp/net/eudc-bob.el.gz
 share/emacs/${PKGVERSION}/lisp/net/eudc-bob.elc
+share/emacs/${PKGVERSION}/lisp/net/eudc-capf.el.gz
+share/emacs/${PKGVERSION}/lisp/net/eudc-capf.elc
 share/emacs/${PKGVERSION}/lisp/net/eudc-export.el.gz
 share/emacs/${PKGVERSION}/lisp/net/eudc-export.elc
 share/emacs/${PKGVERSION}/lisp/net/eudc-hotlist.el.gz

@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	pydantic-1.8.2
+DISTNAME=	pydantic-1.9.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pydantic/}
@@ -10,9 +10,9 @@ HOMEPAGE=	https://github.com/samuelcolvin/pydantic
 COMMENT=	Data validation and settings management
 LICENSE=	mit
 
+DEPENDS+=	${PYPKGPREFIX}-typing-extensions-[0-9]*:../../devel/py-typing-extensions
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-mock-[0-9]*:../../devel/py-test-mock
-TEST_DEPENDS+=	${PYPKGPREFIX}-typing-extensions-[0-9]*:../../devel/py-typing-extensions
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
