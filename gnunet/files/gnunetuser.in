@@ -30,18 +30,19 @@ fi
 
 command_args="-c ${gnunetuser_user_home}/.config/gnunet.conf"
 required_files="${gnunetuser_user_home}/.config/gnunet.conf"
-pidfile="/dev/null"
+pidfile="/tmp/gnunet-${gnunetuser_user}-runtime/gnunet-service-arm.sock"
 
 start_cmd="gnunet_start"
 start_precmd="gnunet_precmd"
+restart_cmd="gnunet_restart"
 stop_cmd="gnunet_stop"
 
 gnunet_env="HOME=${gnunetuser_user_home} USER=${gnunetuser_user} TMP=/tmp GNUNET_PREFIX=@PREFIX@"
 
 check_pidfile()
 {
-    pid=$(pgrep -U "$gnunetuser_user" "${command}"$)
-    echo -n "${pid}"
+	pid=$(pgrep -U "$gnunetuser_user" "${command}"$)
+	echo -n "${pid}"
 }
 
 gnunet_precmd()
@@ -60,10 +61,20 @@ gnunet_start()
 	eval $doit
 }
 
+gnunet_restart()
+{
+	@ECHO@ "Restarting ${name}."
+	doit="@SU@ -m ${gnunetuser_user} -c '${gnunet_env} ${command} ${command_args} -r'"
+	eval $doit
+}
+
+# stopping this is broken (with one service hanging around until you KILL it).
 gnunet_stop()
 {
 	@ECHO@ "Stopping ${name}."
 	doit="@SU@ -m ${gnunetuser_user} -c '${gnunet_env} ${command} ${command_args} -e'"
+	pkill -f gnunet-rest-server
+	kill -9 $(pgrep -f gnunet-rest-server)
 	eval $doit
 }
 

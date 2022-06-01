@@ -1,8 +1,8 @@
-$NetBSD: patch-src_CMakeLists.txt,v 1.1 2018/12/21 19:00:56 bacon Exp $
+$NetBSD$
 
 # Unbundle htslib
 
---- src/CMakeLists.txt.orig	2018-10-17 23:58:22 UTC
+--- src/CMakeLists.txt.orig	2022-02-26 16:35:26.912550601 +0000
 +++ src/CMakeLists.txt
 @@ -3,15 +3,13 @@ file(GLOB headers *.h *.hpp)
  
@@ -21,7 +21,7 @@ $NetBSD: patch-src_CMakeLists.txt,v 1.1 2018/12/21 19:00:56 bacon Exp $
  
  if(LINK MATCHES static)
      set(BUILD_SHARED_LIBS OFF)
-@@ -56,4 +54,4 @@ else()
+@@ -62,4 +60,4 @@ else()
  endif(LINK MATCHES static)
  
  

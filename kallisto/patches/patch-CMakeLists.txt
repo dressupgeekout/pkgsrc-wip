@@ -1,14 +1,13 @@
-$NetBSD: patch-CMakeLists.txt,v 1.1 2018/12/21 19:00:56 bacon Exp $
+$NetBSD$
 
 # Unbundle htslib
 
---- CMakeLists.txt.orig	2018-12-19 17:13:04.000000000 +0000
+--- CMakeLists.txt.orig	2022-02-26 16:36:13.527572702 +0000
 +++ CMakeLists.txt
-@@ -35,21 +35,6 @@ ELSE(LINK MATCHES shared)
- ENDIF(LINK MATCHES static)
+@@ -43,15 +43,6 @@ ENDIF(LINK MATCHES static)
  
  
--include(ExternalProject)
+ include(ExternalProject)
 -ExternalProject_Add(htslib
 -    PREFIX ${PROJECT_SOURCE_DIR}/ext/htslib
 -    SOURCE_DIR ${PROJECT_SOURCE_DIR}/ext/htslib
@@ -18,11 +17,6 @@ $NetBSD: patch-CMakeLists.txt,v 1.1 2018/12/21 19:00:56 bacon Exp $
 -    BUILD_COMMAND make lib-static
 -    INSTALL_COMMAND ""
 -)
--
--include_directories(${htslib_PREFIX}/src/htslib)
--
--
--
- # add_compile_options(-Wdeprecated-register)
  
- add_subdirectory(src)
+ include_directories(${htslib_PREFIX}/src/htslib)
+ 

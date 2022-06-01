@@ -15,6 +15,7 @@
 
 DISTNAME=	macs2-${PORTVERSION}
 PKGNAME=	${PYPKGPREFIX}-macs2-${PORTVERSION}
+PKGREVISION=	1
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=taoliu/}
 GITHUB_PROJECT=	MACS
@@ -40,6 +41,6 @@ post-patch:
 
 .include "../../lang/python/egg.mk"
 .include "../../math/py-numpy/buildlink3.mk"
-.include "../../wip/mk/blas.buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../devel/py-cython/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

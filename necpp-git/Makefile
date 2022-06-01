@@ -1,6 +1,7 @@
 # $NetBSD: Makefile,v 1.3 2014/06/15 02:02:05 makoto Exp $
 
 DISTNAME=		necpp-git-1
+PKGREVISION=	1
 CATEGORIES=		news
 MASTER_SITES=		https://github.com/tmolteno/necpp/
 
@@ -10,7 +11,7 @@ COMMENT=		C++ rewrite of the Numerical Electromagnetics Code
 LICENSE=		gnu-gpl-v2
 
 GIT_REPOSITORIES=	necpp
-GIT_REPO.necpp=		git://github.com/tmolteno/necpp.git
+GIT_REPO.necpp=		https://github.com/tmolteno/necpp.git
 WRKSRC=			${WRKDIR}/necpp
 
 GNU_CONFIGURE=		yes
@@ -30,6 +31,6 @@ SUBST_STAGE.test=	pre-configure
 post-patch:
 	cd ${WRKSRC} && make -f Makefile.git
 
-#.include "../../math/lapack/buildlink3.mk"
 .include "../../wip/mk/git-package.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

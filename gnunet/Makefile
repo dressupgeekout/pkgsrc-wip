@@ -1,10 +1,10 @@
 # $NetBSD$
 
-DISTNAME=		gnunet-0.11.8
+DISTNAME=		gnunet-0.16.3
 CATEGORIES=		net
 MASTER_SITES=		${MASTER_SITE_GNU:=gnunet/}
 
-MAINTAINER=		ng0@NetBSD.org
+MAINTAINER=		nikita@NetBSD.org
 HOMEPAGE=		https://gnunet.org/
 COMMENT=		Framework for secure P2P networking
 LICENSE=		gnu-agpl-v3
@@ -27,9 +27,12 @@ CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--with-extractor=${BUILDLINK_PREFIX.libextractor}
 CONFIGURE_ARGS+=	--with-gnunetdns=gnunetdns
+CONFIGURE_ARGS+=	--with-jansson=${BUILDLINK_PREFIX.jansson}
+CONFIGURE_ARGS+=	--with-microhttpd=${BUILDLINK_PREFIX.libmicrohttpd}
+CONFIGURE_ARGS+=	--with-libgcrypt-prefix=${BUILDLINK_PREFIX.libgcrypt}
 
+GNUNET_LOG_DIR=		${VARBASE}/chroot/gnunet/cache
 GNUNET_DIR=		${VARBASE}/chroot/gnunet
-GNUNET_LOG_DIR?=	${VARBASE}/log/gnunet
 GNUNET_USER=		gnunet
 GNUNET_GROUP=		gnunet
 GNUNETDNS_GROUP=	gnunetdns
@@ -49,26 +52,29 @@ OWN_DIRS_PERMS+=	${PKG_HOME.gnunet} ${GNUNET_USER} ${GNUNET_GROUP} 0700
 OWN_DIRS_PERMS+=	${GNUNET_LOG_DIR} ${GNUNET_USER} ${GNUNET_GROUP} 0755
 OWN_DIRS_PERMS+=	${GNUNET_DIR}/data ${GNUNET_USER} ${GNUNET_GROUP} 0700
 
-MAKE_DIRS+=		${PKG_SYSCONFDIR}
 MAKE_DIRS+=		${GNUNET_DIR}
-MAKE_DIRS+=		${GNUNET_LOG_DIR}
 MAKE_DIRS+=		${GNUNET_DIR}/data
 AUTO_MKDIRS=		YES
-CONF_FILES+=		${FILESDIR}/gnunet.conf \
-			${PKG_SYSCONFDIR}/gnunet.conf
-CONF_FILES+=		${FILESDIR}/gnunet_user.conf \
-			${PKG_SYSCONFDIR}/gnunet_user.conf
 
 FILES_SUBST+=		PKG_HOME=${GNUNET_DIR}
 
+post-extract:
+	${CP} ${FILESDIR}/gnunet.conf ${WRKSRC}/gnunet.conf
+	${CP} ${FILESDIR}/gnunet_user.conf ${WRKSRC}/gnunet_user.conf
+
 SUBST_CLASSES+=			sysconfdir
-SUBST_STAGE.sysconfdir=		post-build
+SUBST_STAGE.sysconfdir=		pre-configure
 SUBST_MESSAGE.sysconfdir=	Fixing paths in gnunet.conf
-SUBST_FILES.sysconfdir=		${FILESDIR}/gnunet.conf
+SUBST_FILES.sysconfdir=		gnunet.conf
 SUBST_SED.sysconfdir+=		-e 's,^DEFAULTCONFIG.*,DEFAULTCONFIG = ${PKG_SYSCONFDIR}/gnunet.conf,g'
 SUBST_SED.sysconfdir+=		-e 's,^GNUNET_DATA_HOME.*,GNUNET_DATA_HOME = ${GNUNET_DIR}/data,g'
 SUBST_SED.sysconfdir+=		-e 's,^GNUNET_RUNTIME_DIR.*,GNUNET_RUNTIME_DIR = ${GNUNET_DIR},g'
 SUBST_SED.sysconfdir+=		-e 's,^GNUNET_HOME.*,GNUNET_HOME = ${GNUNET_DIR},g'
+
+post-configure:
+	${MKDIR} ${DESTDIR}${PKG_SYSCONFDIR}
+	${INSTALL_DATA} ${WRKSRC}/gnunet.conf ${DESTDIR}${PKG_SYSCONFDIR}/gnunet.conf
+	${INSTALL_DATA} ${WRKSRC}/gnunet_user.conf ${DESTDIR}${PKG_SYSCONFDIR}/gnunet_user.conf
 
 # All helpers have to be suid. fs helper must not be suid.
 # Some helpers and functionalities are only supported on
@@ -90,6 +96,9 @@ SPECIAL_PERMS+=	${PREFIX}/lib/gnunet/libexec/gnunet-helper-nat-client ${SETUID_R
 SPECIAL_PERMS+=	${PREFIX}/lib/gnunet/libexec/gnunet-helper-nat-server ${SETUID_ROOT_PERMS}
 .endif
 
+# openssl is currently required by:
+# src/transport/gnunet-transport-certificate-creation
+# src/gns/gnunet-gns-proxy-setup-ca
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/gmp/buildlink3.mk"
@@ -101,8 +110,11 @@ SPECIAL_PERMS+=	${PREFIX}/lib/gnunet/libexec/gnunet-helper-nat-server ${SETUID_R
 .include "../../net/miniupnpc/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
+.include "../../security/libsodium/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
+.include "../../textproc/jansson/buildlink3.mk"
 .include "../../textproc/libunistring/buildlink3.mk"
-.include "../../www/gnurl/buildlink3.mk"
+.include "../../wip/gnurl/buildlink3.mk"
 .include "../../www/libmicrohttpd/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

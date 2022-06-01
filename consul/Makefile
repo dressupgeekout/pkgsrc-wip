@@ -1,7 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	consul-1.6.2
-PKGREVISION=	3
+DISTNAME=	consul-1.12.1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=hashicorp/}
 
@@ -14,16 +13,15 @@ EXTRACT_USING=	bsdtar
 
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-GO_DIST_BASE=	${DISTNAME}
-GO_SRCPATH=	github.com/hashicorp/consul
+.include "go-modules.mk"
 
-USE_LANGUAGES=		c c99
-USE_TOOLS+=		bash gmake
+GO_BUILD_PATTERN=	.
+CHECK_RELRO_SKIP+=	bin/consul
 
 INSTALLATION_DIRS+=	bin
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKDIR}/bin/consul ${DESTDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKDIR}/.gopath/bin/consul ${DESTDIR}${PREFIX}/bin
 
-.include "../../lang/go/go-package.mk"
+.include "../../lang/go/go-module.mk"
 .include "../../mk/bsd.pkg.mk"

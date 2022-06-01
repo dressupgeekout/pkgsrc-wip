@@ -1,26 +1,36 @@
 # $NetBSD$
 
-DISTNAME=	lua-luv-1.32.0
-PKGNAME=	${DISTNAME:S/lua/${LUA_PKGPREFIX}/}
+DISTNAME=	luv-1.43.0-0
+PKGNAME=	${LUA_PKGPREFIX}-${DISTNAME:S/-0$//1}
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=luvit/}
 GITHUB_PROJECT=	luv
-GITHUB_TAG=	${PKGVERSION_NOREV}-0
+GITHUB_TAG=	${DISTNAME:S/^luv-//1}
 
-HOMEPAGE=	https://github.com/luvit/luv/
+MAINTAINER=	nia@NetBSD.org
+HOMEPAGE=	https://github.com/luvit/luv
 COMMENT=	Bare libuv bindings for Lua
 LICENSE=	apache-2.0
+
+.include "../../lang/lua/luaversion.mk"
+
+.if ${_LUA_VERSION} == "51" || ${_LUA_VERSION} == "52"
+DEPENDS+=	${LUA_PKGPREFIX}-compat53-[0-9]*:../../devel/lua-compat53
+.endif
 
 USE_CMAKE=	yes
 
 CMAKE_ARGS+=	-DWITH_SHARED_LIBUV=ON
-CMAKE_ARGS+=	-DBUILD_SHARED_LIBS=ON
 CMAKE_ARGS+=	-DBUILD_MODULE=ON
+CMAKE_ARGS+=	-DBUILD_SHARED_LIBS=ON
 CMAKE_ARGS+=	-DLUA_BUILD_TYPE=System
-CMAKE_ARGS+=	-DLUA_COMPAT53_DIR=${PREFIX}/${LUA_LDIR}/compat53/
-CMAKE_ARGS+=	-DCMAKE_C_FLAGS="-I${PREFIX}/${LUA_INCDIR} -I${PREFIX}/${LUA_LDIR}/compat53"
+CMAKE_ARGS+=	-DWITH_LUA_ENGINE=Lua
 
-.include "../../wip/lua-compat53/buildlink3.mk"
-.include "../../devel/libuv/buildlink3.mk"
+pre-configure:
+.if ${_LUA_VERSION} == "51" || ${_LUA_VERSION} == "52"
+	${CP} ${PREFIX}/${LUA_INCDIR}/compat-5.3.* ${WRKSRC}/src
+.endif
+
 .include "../../lang/lua/module.mk"
+.include "../../devel/libuv/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

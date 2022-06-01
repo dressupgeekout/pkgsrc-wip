@@ -1,10 +1,10 @@
 # $NetBSD$
 
-DISTNAME=	divecmd-0.1.2
+DISTNAME=	divecmd-0.1.5
 CATEGORIES=	misc
 MASTER_SITES=	https://kristaps.bsd.lv/divecmd/snapshots/
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://kristaps.bsd.lv/divecmd/
 COMMENT=	Download and process dive computer data
 LICENSE=	gnu-lgpl-v2.1

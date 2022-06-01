@@ -3,6 +3,7 @@
 VERSION=	0.21
 DISTNAME=	PyLapack
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/Py//S/L/l/}-${VERSION}
+PKGREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	http://kochanski.org/gpk/misc/
 
@@ -21,7 +22,6 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/TUTORIAL  ${DESTDIR}${PREFIX}/share/doc/py-lapack
 
 .include "../../lang/python/extension.mk"
-.include "../../math/blas/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../math/py-Numeric/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

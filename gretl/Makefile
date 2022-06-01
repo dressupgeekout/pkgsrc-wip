@@ -2,7 +2,7 @@
 #
 
 DISTNAME=	gretl-1.9.0
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=gretl/}
 EXTRACT_SUFX=	.tar.bz2
@@ -35,8 +35,7 @@ DEPENDS+=	gnuplot-[0-9]*:../../graphics/gnuplot
 # Skip checks temporarily:
 CHECK_PORTABILITY_SKIP=	osx/script
 
-.include "../../math/blas/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../math/fftw/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"

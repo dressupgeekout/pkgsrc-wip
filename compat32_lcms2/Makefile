@@ -6,7 +6,7 @@ CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=lcms/}
 PKGNAME=	compat${ABI}_${DISTNAME}
 
-MAINTAINER=	gdt@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.littlecms.com/
 COMMENT=	Little Color Management System - a color management library
 LICENSE=	mit
@@ -15,6 +15,8 @@ USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 TEST_TARGET=		check
 GNU_CONFIGURE_PREFIX=	${PREFIX}/emul/netbsd32/
+
+BUILDLINK_PASSTHRU_DIRS+=	${PREFIX}/emul/netbsd32
 
 # lcms does not need zlib, but will look for it and link it to tifficc
 # if present.  Therefore, we don't enjoin lcms from finding zlib, but

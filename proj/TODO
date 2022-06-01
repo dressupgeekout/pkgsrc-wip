@@ -1,4 +1,4 @@
-Do not bring into pkgsrc proper yet, because too many depending
-packages will break. -gdt
+Add COMMIT_MSG.
+Add proj-data package.
+Figure out CDN download location/permission issues.
 
-Add manual.  Howver, it is not at the same MASTER_SITE.

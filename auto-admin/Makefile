@@ -1,48 +1,17 @@
 # $NetBSD$
 
-DISTNAME=	auto-admin-0.4.0
-CATEGORIES=	pkgtools
-MASTER_SITES=	http://acadix.biz/Ports/distfiles/
-EXTRACT_SUFX=	.tar.xz
+DISTNAME=	auto-admin-0.7.10.17
+CATEGORIES=	sysutils
+MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
+GITHUB_TAG=	2c02f6ba5ab6fa83daf2cc9d1baa85c3e8f83e2a
 
 MAINTAINER=	bacon@NetBSD.org
-HOMEPAGE=	http://acadix.biz/Ports/distfiles/
-COMMENT=	Automate common systems administration tasks
+HOMEPAGE=	https://github.com/outpaddling/auto-admin
+COMMENT=	Portable tools for automating systems management
 LICENSE=	2-clause-bsd
 
 USE_LANGUAGES=	# none
 
 NO_BUILD=	yes
-REPLACE_SH=	*/Scripts/*
-
-SUBST_CLASSES+=		prefix
-SUBST_STAGE.prefix=	post-patch
-SUBST_FILES.prefix+=	${WRKSRC}/Common/Scripts/auto-denyhosts-setup
-SUBST_FILES.prefix+=	${WRKSRC}/Common/Scripts/auto-denyhosts-remove-ip
-SUBST_FILES.prefix+=	${WRKSRC}/Common/Scripts/auto-pkgsrc-add-license
-SUBST_SED.prefix+=	-e "s|/usr/local|${PREFIX}|g"
-SUBST_SED.prefix+=	-e "s|/usr/pkg|${PREFIX}|g"
-
-SUBST_CLASSES+=		pkgsrc
-SUBST_STAGE.pkgsrc=	post-patch
-SUBST_SED.pkgsrc=	-e 's|/usr/pkgsrc|${BUILD_DIR}/../..|g'
-SUBST_FILES.pkgsrc+=	${WRKSRC}/Common/Scripts/auto-clean-pkgsrc
-SUBST_FILES.pkgsrc+=	${WRKSRC}/Common/Scripts/auto-print-make-variable
-
-INSTALLATION_DIRS=	sbin
-
-REDHAT_RELEASE=		/etc/redhat-release
-
-do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/Common/Scripts/* \
-		${DESTDIR}${PREFIX}/sbin
-	if ${TEST} -e ${WRKSRC}/${OPSYS}/Scripts; then \
-	    ${INSTALL_SCRIPT} ${WRKSRC}/${OPSYS}/Scripts/* \
-		${DESTDIR}${PREFIX}/sbin; \
-	fi
-	if ${TEST} -e ${REDHAT_RELEASE}; then \
-	    ${INSTALL_SCRIPT} ${WRKSRC}/CentOS/Scripts/* \
-		${DESTDIR}${PREFIX}/sbin; \
-	fi
 
 .include "../../mk/bsd.pkg.mk"

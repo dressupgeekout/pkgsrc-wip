@@ -1,6 +1,5 @@
 $NetBSD: distinfo,v 1.2 2009/11/09 19:40:18 tnn2 Exp $
 
-SHA1 (fonttosfnt-1.1.0.tar.bz2) = 0e0ea8c92941bf9126b87fae5bb723c8e1035ae2
-RMD160 (fonttosfnt-1.1.0.tar.bz2) = 18f89adf7a178a0a473513973e697a0dd6d7d42e
-SHA512 (fonttosfnt-1.1.0.tar.bz2) = f4fb9814c23bfd6f83771959444d2c37eb4ba32edee43c37cf21f0181be80c6e278307641b0f4dae4ee5d10db3289e95194f99757ea4bbca343fff15498e7173
-Size (fonttosfnt-1.1.0.tar.bz2) = 143545 bytes
+RMD160 (fonttosfnt-1.2.2.tar.bz2) = fa217e660bc12759b59c24043718add9bd910ac2
+SHA512 (fonttosfnt-1.2.2.tar.bz2) = ceac6ccb064043d46f9f16f31fb89c6cbf7f026d049f7b5325d6af97e809b4cd068e6149413bb328c0af601a98b5070e21d469888a6853f6cabecd5b46f60240
+Size (fonttosfnt-1.2.2.tar.bz2) = 146855 bytes

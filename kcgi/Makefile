@@ -1,11 +1,11 @@
 # $NetBSD$
 
-DISTNAME=	kcgi-0.10.7
+DISTNAME=	kcgi-0.13.0
 CATEGORIES=	www
 MASTER_SITES=	https://kristaps.bsd.lv/kcgi/snapshots/
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://kristaps.bsd.lv/kcgi/
 COMMENT=	CGI/FCGI library for C/C++ web apps
 LICENSE=	isc
@@ -20,8 +20,5 @@ SUBST_STAGE.install=	pre-configure
 SUBST_MESSAGE.install=	Fixing installation path.
 
 HAS_CONFIGURE=	yes
-
-USE_TOOLS+=	gmake
-MAKE_FILE=	GNUmakefile
 
 .include "../../mk/bsd.pkg.mk"

@@ -3,7 +3,7 @@
 DISTNAME=	powerdevil-${PLASMAVER}
 CATEGORIES=	x11
 
-HOMEPAGE=	https://www.kde.org/workspaces/plasmadesktop/
+HOMEPAGE=	https://kde.org/plasma-desktop/
 COMMENT=	Manages the power consumption settings of a Plasma Shell
 LICENSE=	gnu-lgpl-v2
 
@@ -34,7 +34,7 @@ INSTALLATION_DIRS+=	share/examples/powerdevil
 
 .include "../../devel/kidletime/buildlink3.mk"
 .include "../../devel/knotifyconfig/buildlink3.mk"
-.include "../../wip/libkscreen/buildlink3.mk"
+.include "../../x11/libkscreen/buildlink3.mk"
 .include "../../wip/plasma-workspace/buildlink3.mk"
 .include "../../x11/kactivities5/buildlink3.mk"
 #.include "../../x11/kdelibs4support/buildlink3.mk"

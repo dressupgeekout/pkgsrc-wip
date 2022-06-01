@@ -10,12 +10,12 @@ COMMENT=	JonoF's Shadow Warrior port
 LICENSE=	gnu-gpl-v2
 
 WRKSRC=		${WRKDIR}/jfsw
-USE_TOOLS+=	gmake pkg-config
+USE_TOOLS+=	gmake perl pkg-config
 USE_LANGUAGES=	c c++
 
 BUILD_MAKE_FLAGS+=	LDFLAGS="${X11_LDFLAGS}"
 GIT_REPOSITORIES=	jfsw
-GIT_REPO.jfsw=		git://github.com/jonof/jfsw.git
+GIT_REPO.jfsw=		https://github.com/jonof/jfsw.git
 INSTALLATION_DIRS+=	bin share/doc/jfsw
 PKGCONFIG_OVERRIDE+=	jfbuild/libsquish/libsquish.pc.in
 

@@ -6,13 +6,12 @@ CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=FNA-XNA/}
 GITHUB_TAG=	${PKGVERSION_NOREV}
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://github.com/FNA-XNA/Theorafile
 COMMENT=	Ogg Theora video decoder library 
 LICENSE=	zlib
 
 EXTRACT_USING=	gtar
-GNU_MAKE=	yes
 USE_TOOLS+=	gmake
 
 do-install:

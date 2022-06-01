@@ -8,7 +8,7 @@ $NetBSD$
  sharedstatedir = @sharedstatedir@
  srcdir = @srcdir@
  sysconfdir = @sysconfdir@
-+sysconfexampledir = $(prefix)/share/examples/munge
++sysconfexampledir = $(prefix)/share/examples
  sysconfigdir = @sysconfigdir@
  systemdunitdir = @systemdunitdir@
  sysvinitddir = @sysvinitddir@

@@ -1,6 +1,7 @@
 # $NetBSD$
 
 DISTNAME=	adept-2.0.5
+PKGREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	http://www.met.reading.ac.uk/clouds/adept/
 
@@ -14,7 +15,6 @@ USE_LIBTOOL=	yes
 USE_TOOLS+=	gmake intltool msgfmt
 USE_LANGUAGES=	c c++ fortran
 
-.include "../../math/blas/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../math/gsl/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

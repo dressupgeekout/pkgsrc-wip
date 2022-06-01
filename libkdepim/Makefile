@@ -11,9 +11,9 @@ LICENSE=	gnu-lgpl-v2
 
 USE_TOOLS+=	msgmerge
 
-.include "../../devel/boost-libs/buildlink3.mk"
+.include "../../databases/kldap/buildlink3.mk"
+.include "../../devel/boost-headers/buildlink3.mk"
 .include "../../wip/akonadi-contacts/buildlink3.mk"
 .include "../../wip/akonadi-search/buildlink3.mk"
-.include "../../databases/kldap/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -4,7 +4,7 @@ DISTNAME=		riak-1.4.10
 CATEGORIES=		databases
 MASTER_SITES=		http://s3.amazonaws.com/downloads.basho.com/riak/1.4/${PKGVERSION}/
 
-MAINTAINER=		fhajny@NetBSD.org
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.basho.com/products_riak_overview.php
 COMMENT=		Distributed, highly available data store
 LICENSE=		apache-2.0
@@ -19,7 +19,7 @@ MAKE_JOBS_SAFE=		no
 
 .include "../../mk/bsd.prefs.mk"
 
-.include "../../wip/erlang15/Makefile.versions"
+.include "../../wip/erlang-basho/Makefile.versions"
 .include "Makefile.versions"
 
 .for depname depver in ${RIAK_VERSIONS}
@@ -119,5 +119,5 @@ do-install:
 
 .include "../../devel/ncurses/buildlink3.mk"
 BUILDLINK_DEPMETHOD.erlang=	build
-.include "../../wip/erlang15/buildlink3.mk"
+.include "../../wip/erlang-basho/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

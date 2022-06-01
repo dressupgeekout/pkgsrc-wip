@@ -11,9 +11,9 @@ COMMENT=	Docutils-compatibility bridge to CommonMark
 LICENSE=	mit
 
 DEPENDS+=	${PYPKGPREFIX}-docutils>=0.12:../../textproc/py-docutils
-DEPENDS+=	${PYPKGPREFIX}-commonmark>=0.7.2:../../wip/py-commonmark
+DEPENDS+=	${PYPKGPREFIX}-commonmark>=0.7.2:../../textproc/py-commonmark
 
 USE_LANGUAGES=	# none
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

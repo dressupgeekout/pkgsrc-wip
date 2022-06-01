@@ -5,7 +5,7 @@ PKGNAME=	${PYPKGPREFIX}-jabber-${DISTNAME}
 CATEGORIES=	chat python
 MASTER_SITES=	http://code.stanziq.com/cgit/palaver/palaver/snapshot/
 
-MAINTAINER=	eric@cirr.com
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://code.stanziq.com/palaver
 COMMENT=	XEP-0045 + XEP-0128 Multi-User Conferencing package
 LICENSE=	mit
@@ -63,5 +63,5 @@ SUBST_VARS.paths+=	PKG_SYSCONFDIR
 SUBST_VARS.paths+=	PREFIX
 SUBST_VARS.paths+=	TRANSPORTDIR
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

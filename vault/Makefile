@@ -1,7 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	vault-1.3.2
-PKGREVISION=	1
+DISTNAME=	vault-1.10.3
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GITHUB:=hashicorp/}
 
@@ -14,22 +13,15 @@ EXTRACT_USING=	bsdtar
 
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-GO_DIST_BASE=	${DISTNAME}
-GO_SRCPATH=	github.com/hashicorp/vault
-
-USE_TOOLS+=		bash gmake
-
 INSTALLATION_DIRS+=	bin
 
-# Clumsy workaround for https://github.com/golang/go/issues/22409
-pre-build:
-	${RM} -rf ${WRKSRC}/vault/external_tests
+.include "go-modules.mk"
+
+GO_BUILD_PATTERN=	.
+CHECK_RELRO_SKIP+=	bin/vault
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKDIR}/bin/vault ${DESTDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKDIR}/.gopath/bin/vault ${DESTDIR}${PREFIX}/bin
 
-do-test:
-	cd ${WRKSRC} && ${SETENV} GOPATH=${WRKDIR}:${BUILDLINK_DIR}/gopkg ${GO} test -v ./vault
-
-.include "../../lang/go/go-package.mk"
+.include "../../lang/go/go-module.mk"
 .include "../../mk/bsd.pkg.mk"

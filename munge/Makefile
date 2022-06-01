@@ -27,16 +27,33 @@ BUILD_DEFS+=	VARBASE
 RCD_SCRIPTS+=	munge
 
 SUBST_CLASSES+=		init
-SUBST_STAGE.init=	post-patch
-SUBST_FILES.init=	${WRKSRC}/src/etc/munge.sysvinit.init.in
+SUBST_STAGE.init=	pre-configure
+SUBST_FILES.init=	src/etc/munge.sysvinit.init.in
 SUBST_SED.init=		-e 's|USER="munge"|USER="daemon"|g'
 SUBST_SED.init+=	-e 's|GROUP="munge"|GROUP="daemon"|g'
 
 SUBST_CLASSES+=		systemd
-SUBST_STAGE.systemd=	post-patch
-SUBST_FILES.systemd=	${WRKSRC}/src/etc/munge.systemd.service.in
+SUBST_STAGE.systemd=	pre-configure
+SUBST_FILES.systemd=	src/etc/munge.systemd.service.in
 SUBST_SED.systemd=	-e 's|User=munge|User=daemon|g'
 SUBST_SED.systemd+=	-e 's|Group=munge|Group=daemon|g'
+
+.include "../../mk/bsd.prefs.mk"
+
+.if ${OPSYS} == Linux
+EGDIR=			${PREFIX}/share/examples/munge
+PKG_SYSCONFSUBDIR=	sysconfig
+CONF_FILES=		${EGDIR}/systemd.sysconfig ${PKG_SYSCONFDIR}/munge
+CONF_FILES+=		${EGDIR}/logrotate.conf ${PREFIX}/etc/logrotate.d/munge
+
+INSTALLATION_DIRS+=	${EGDIR} etc/logrotate.d
+
+post-install:
+	${MV} ${DESTDIR}${PREFIX}/etc/logrotate.d/munge \
+		${DESTDIR}${PREFIX}/share/examples/munge/logrotate.conf
+	${MV} ${DESTDIR}${PREFIX}/etc/sysconfig/munge \
+		${DESTDIR}${PREFIX}/share/examples/munge/systemd.sysconfig
+.endif
 
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

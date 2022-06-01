@@ -7,6 +7,7 @@
 
 PKGNAME=	bolt-lmm-2.3.2
 DISTNAME=	BOLT-LMM_v${PKGVERSION_NOREV}
+PKGREVISION=	1
 CATEGORIES=	biology
 MASTER_SITES=	https://data.broadinstitute.org/alkesgroup/BOLT-LMM/downloads/ \
 		https://data.broadinstitute.org/alkesgroup/BOLT-LMM/downloads/old/
@@ -48,7 +49,7 @@ do-install:
 	${CHMOD} a+x ${DESTDIR}${PREFIX}/${EXAMPLESDIR}/*.sh
 	${CHMOD} g-w ${DESTDIR}${PREFIX}/${EXAMPLESDIR}/*
 
-.include "../../wip/mk/blas.buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../math/nlopt/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

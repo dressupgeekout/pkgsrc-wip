@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	bandit-1.6.2
+DISTNAME=	bandit-1.7.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	security python
 MASTER_SITES=	${MASTER_SITE_PYPI:=b/bandit/}
@@ -10,10 +10,10 @@ HOMEPAGE=	https://github.com/PyCQA/bandit
 COMMENT=	Security oriented static analyser for python code
 LICENSE=	apache-2.0
 
-DEPENDS+=	${PYPKGPREFIX}-git>=1.0.1:../../wip/py-git
+DEPENDS+=	${PYPKGPREFIX}-gitpython>=1.0.1:../../devel/py-gitpython
 DEPENDS+=	${PYPKGPREFIX}-six>=1.10.0:../../lang/py-six
 DEPENDS+=	${PYPKGPREFIX}-stevedore>=1.20.0:../../devel/py-stevedore
-DEPENDS+=	${PYPKGPREFIX}-yaml>=3.13:../../textproc/py-yaml
+DEPENDS+=	${PYPKGPREFIX}-yaml>=5.3.1:../../textproc/py-yaml
 
 USE_LANGUAGES=	# none
 

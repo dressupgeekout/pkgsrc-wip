@@ -2,6 +2,7 @@
 #
 
 DISTNAME=	mpb-1.4.2
+PKGREVISION=	1
 CATEGORIES=	science
 MASTER_SITES=	http://ab-initio.mit.edu/mpb/
 
@@ -20,8 +21,7 @@ CONFIGURE_ARGS+=	--with-libctl=${BUILDLINK_PREFIX.libctl}/share/libctl
 CONFIGURE_ENV+=		SH_JOB=${TOOLS_PATH.sh}
 CFLAGS+=		-DH5_USE_16_API=1
 
-.include "../../math/blas/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../devel/hdf5/buildlink3.mk"
 .include "../../math/fftw2/buildlink3.mk"
 .include "../../devel/readline/buildlink3.mk"

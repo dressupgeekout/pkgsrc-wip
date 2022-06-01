@@ -3,7 +3,7 @@
 DISTNAME=	meka-0.80alpha0
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ocornut/}
-GIT_REPO=	git://github.com/ocornut/meka
+GIT_REPO=	https://github.com/ocornut/meka
 
 MAINTAINER=	amoibos@gmail.com
 HOMEPAGE=	http://smspower.org/
@@ -40,6 +40,6 @@ do-install:
 
 #.include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
-.include "../../wip/allegro52/buildlink3.mk"
+.include "../../devel/allegro5/buildlink3.mk"
 .include "../../wip/mk/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

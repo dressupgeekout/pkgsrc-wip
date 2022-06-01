@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (unidecode-1.1.1.tar.gz) = 40bb7804964cde290d6b11e65c53f5f1a8d557c5
-RMD160 (unidecode-1.1.1.tar.gz) = 492bc06efe24e2d27735caf6786f2cb794228dbf
-SHA512 (unidecode-1.1.1.tar.gz) = 7b23ba1683f9566ce29c91e5af0b46370a56c298b65d1683c5ad40077ac85c3ef4abfc8fd6b10eb6af94602ee94bd6d6b840e606620ff52b28e9be8f6d6e8c5b
-Size (unidecode-1.1.1.tar.gz) = 195140 bytes
+RMD160 (Unidecode-1.2.0.tar.gz) = ea53ed4b2322cc7f0f47461c268170bcae518893
+SHA512 (Unidecode-1.2.0.tar.gz) = aedc16be1b676dbde7e45444e297be916b1ca2874a76f07316e2df3aff9687dcf73def24b2441e147c94641f4407cc745ac35937508e09c670f8aa1473977859
+Size (Unidecode-1.2.0.tar.gz) = 216042 bytes

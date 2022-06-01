@@ -1,9 +1,9 @@
 # $NetBSD: Makefile,v 1.3 2013/12/15 04:12:49 makoto Exp $
 
 DISTNAME=	hasida-table-0.8
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	inputmethod
-MASTER_SITES=	ftp://ftp.ki.nu/pub/
+MASTER_SITES=	http://www.ki.nu/pub/
 
 MAINTAINER=	makoto@ki.nu
 HOMEPAGE=	http://www.ki.nu/~makoto/tcode/

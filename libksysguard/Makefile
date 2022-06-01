@@ -1,6 +1,7 @@
 # $NetBSD: Makefile,v 1.25 2016/01/10 20:01:05 markd Exp $
 
 DISTNAME=	libksysguard-${PLASMAVER}
+PKGREVISION=	1
 CATEGORIES=	x11
 
 HOMEPAGE=	https://userbase.kde.org/KSysGuard
@@ -23,12 +24,6 @@ CMAKE_ARGS+=	-DRT_LIB_SCHED=${RT_LIB_SCHED}
 CMAKE_ARGS.NetBSD+=	-DKVM_LIB=kvm
 
 CMAKE_ARGS+=	-DKAUTH_DBUS_DIR=${PREFIX}/share/examples/libksysguard
-
-SUBST_CLASSES+=		qlc
-SUBST_STAGE.qlc=	pre-configure
-SUBST_MESSAGE.qlc=	Move to new KDE location
-SUBST_FILES.qlc=	CMakeLists.txt
-SUBST_SED.qlc=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_LOGGINGCATEGORIESDIR}:'
 
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/dbus-1/system.d
 CONF_FILES+=	${PREFIX}/share/examples/libksysguard/org.kde.ksysguard.processlisthelper.conf \

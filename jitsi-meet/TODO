@@ -1,0 +1,4 @@
+- Place configuration files in $SYSCONFDIR/jitsi-meet (config.js,
+  interface_config.js, branding.json...)
+- Provide installation instructions
+- No longer pull data from the network (see www/gitea)

@@ -1,8 +1,8 @@
 # $NetBSD$
 
-VERS=		1.47.2
+VERS=		1.48.10
 #PKGNAME=	doomlegacy-${VERS}
-SVNVERS=	1498
+SVNVERS=	1625
 DISTNAME=	doomlegacy-devel-0r${SVNVERS}
 CATEGORIES=	games
 
@@ -19,6 +19,8 @@ COMMENT=		The legacy of Doom
 LICENSE=		gnu-gpl-v2
 
 CONFLICTS+=		doomlegacy-[0-9]*
+
+#GCC_REQD+=		10
 
 # Tested on Linux/ppc (32bit Big Endian) and NetBSD/amd64 (64bit Little Endian)
 # Untested: In general the source code has support for the other listed OS too
@@ -43,6 +45,8 @@ MAKE_FLAGS+=		OS=MAC
 .else
 # Other Unix (should work for GNU/Linux, OpenBSD and SunOS)
 MAKE_FLAGS+=		OS=LINUX
+CFLAGS.SunOS+=		-DSOLARIS
+LDFLAGS.SunOS+=		-lresolv -lsocket -lnsl
 .endif
 
 .if ${MACHINE_ENDIAN} == "big"
@@ -50,16 +54,31 @@ MAKE_FLAGS+=		OS=LINUX
 CFLAGS+=		-D__BIG_ENDIAN__
 .endif
 
+# Required by extended node patch for ZDoom compressed node format
+CFLAGS+=		-DHAVE_ZLIB
+LDFLAGS+=		-lz
+
 # DOOMWADDIR is intentionally shared with other Doom packages
 DOOMWADDIR=		share/doom
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man6 share/doc/doomlegacy ${DOOMWADDIR}
 
-# Configure to honor environment
+# Configure to honor environment and disable ZIP support on GNU/Linux
+# Use native CPU architecture
 SUBST_CLASSES+=		makeopt
 SUBST_STAGE.makeopt=	do-configure
 SUBST_MESSAGE.makeopt=	Preparing make_options file ...
 SUBST_FILES.makeopt=	make_options
-SUBST_SED.makeopt=	-e 's,\#COMP_ENVIRONMENT,COMP_ENVIRONMENT,'
+SUBST_SED.makeopt=	-e 's,\#[ ]*COMP_ENVIRONMENT,COMP_ENVIRONMENT,'
+SUBST_SED.makeopt+=	-e 's,HAVE_LIBZIP,\# HAVE_LIBZIP,'
+SUBST_SED.makeopt+=	-e 's,HAVE_DLOPEN,\# HAVE_DLOPEN,'
+SUBST_SED.makeopt+=	-e 's,\# ARCH=-march=native,ARCH=-march=native,'
+SUBST_SED.makeopt+=	-e 's,ARCH=-march=i686,\# ARCH=-march=native,'
+# Enable debug build
+#SUBST_SED.makeopt+=	-e 's,\# DEBUG=1,DEBUG=1,'
+
+# Add debug symbols only (less performance impact than DEBUG build above)
+CFLAGS+=		-g
+INSTALL_UNSTRIPPED=	yes
 
 # Configure defaults for LEGACYWADDIR and DOOMWADDIR
 SUBST_CLASSES+=		doomdef
@@ -96,6 +115,8 @@ do-install:
 		${DESTDIR}${PREFIX}/bin/doomlegacy.bin
 	${INSTALL_SCRIPT} ${WRKDIR}/doomlegacy				\
 		${DESTDIR}${PREFIX}/bin/doomlegacy
+	${INSTALL_DATA} ${WRKDIR}/doomlegacy_${VERS}/dogs.wad		\
+		${DESTDIR}${PREFIX}/${DOOMWADDIR}/dogs.wad
 	${INSTALL_DATA} ${WRKDIR}/doomlegacy_${VERS}/legacy.wad		\
 		${DESTDIR}${PREFIX}/${DOOMWADDIR}/legacy.wad
 	cd ${WRKSRC} &&							\
@@ -110,6 +131,8 @@ do-install:
 # Ensure that at least the shareware Episode 1 of Doom is available
 DEPENDS+=		doom1-[0-9]*:../../games/doom1
 
+BUILDLINK_API_DEPENDS.zlib+=		zlib>=1.2.3
+.include "../../devel/zlib/buildlink3.mk"
 BUILDLINK_API_DEPENDS.SDL_mixer+=	SDL_mixer>=1.2.7
 .include "../../audio/SDL_mixer/buildlink3.mk"
 BUILDLINK_API_DEPENDS.SDL+=		SDL>=1.2.10

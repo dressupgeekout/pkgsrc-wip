@@ -1,0 +1,10 @@
+TODO
+====
+
+This package should provide the Web UI for Bareos. It is currently in 
+work and not yet finished. Parts of it were taken from the Nextcloud 
+package. 
+
+Open items:
+
+- testing

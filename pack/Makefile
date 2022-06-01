@@ -5,7 +5,7 @@ CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=maralla/}
 GITHUB_TAG=	v0.2.5
 
-MAINTAINER=	ng0@NetBSD.org
+MAINTAINER=	nikita@NetBSD.org
 HOMEPAGE=	https://github.com/maralla/pack
 COMMENT=	Vim package manager
 LICENSE=	mit
@@ -91,9 +91,6 @@ CARGO_CRATE_DEPENDS+=	yaml-rust-0.3.5
 INSTALLATION_DIRS=	bin
 
 MAKE_ENV+=		OPENSSL_DIR=${BUILDLINK_PREFIX.openssl:Q}
-
-do-build:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${PREFIX}/bin/cargo build --release -j${_MAKE_JOBS_N}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/target/release/pack ${DESTDIR}${PREFIX}/bin

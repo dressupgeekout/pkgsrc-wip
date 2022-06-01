@@ -1,11 +1,12 @@
 # $NetBSD: Makefile,v 1.2 2014/09/05 08:06:00 thomasklausner Exp $
 
-DISTNAME=	baresip-0.6.5
+DISTNAME=	baresip-1.1.0
 CATEGORIES=	net audio
-MASTER_SITES=	http://www.creytiv.com/pub/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=baresip/}
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.creytiv.com/baresip.html
+HOMEPAGE=	https://github.com/baresip/baresip/
 COMMENT=	SIP User-Agent with audio and video support
 LICENSE=	modified-bsd
 
@@ -17,7 +18,7 @@ SUBST_CLASSES+=		prefix
 SUBST_FILES.prefix=	Makefile
 SUBST_MESSAGE.prefix=	Fixing PREFIX path.
 SUBST_SED.prefix=	-e "s|/usr/local|${PREFIX}|1"
-SUBST_STAGE.prefix=	post-patch
+SUBST_STAGE.prefix=	post-extract
 
 INSTALLATION_DIRS=	share/examples/baresip
 

@@ -12,7 +12,7 @@ COMMENT=	screen(1) for X
 LICENSE=	gnu-gpl-v2
 
 DEPENDS+=	${PYPKGPREFIX}-cython>=0.14:../../devel/py-cython
-#DEPENDS+=	${PYPKGPREFIX}-cairo-[0-9]*:../../graphics/py-cairo
+#DEPENDS+=	${PYPKGPREFIX}-cairo-[0-9]*:../../graphics/py-cairo118
 
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config
@@ -54,5 +54,5 @@ post-install:
 .include "../../x11/libxkbfile/buildlink3.mk"
 #.include "../../x11/gtk3/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

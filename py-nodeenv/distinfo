@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (nodeenv-1.3.3.tar.gz) = 80437d9c023757cd8b44665ad3ad7784c1cd6584
-RMD160 (nodeenv-1.3.3.tar.gz) = 4e787086262ad12ff934d59796c92bf496517fc6
-SHA512 (nodeenv-1.3.3.tar.gz) = 4ed6084d83c28beccd5e4326d122ac4d84b70c3107fd3569ce85d6a2927abfc10c792150f01ac46aae7941899d91b3048dfa069421b805a43fa83427a62380ba
-Size (nodeenv-1.3.3.tar.gz) = 34015 bytes
+RMD160 (nodeenv-1.6.0.tar.gz) = 8f87f44e4075983d38d88a56128b2d2072ad2ac2
+SHA512 (nodeenv-1.6.0.tar.gz) = abf4fe55ba478570a32ff3bb24fc3c60ba2d100822f8295c4c55c301ccdff2dc2d20ef76990ea3ac203e30db8a1e85f3ef2df671f87c0cf7305cf1aeb788efdd
+Size (nodeenv-1.6.0.tar.gz) = 35407 bytes

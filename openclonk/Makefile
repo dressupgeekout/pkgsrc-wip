@@ -7,7 +7,7 @@ CATEGORIES=	games
 MASTER_SITES=	http://www.openclonk.org/builds/release/${VERSION}/
 EXTRACT_SUFX=	.tar.bz2
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	http://www.openclonk.org/
 COMMENT=	Open source successor of the Clonk gaming series
 LICENSE=	isc
@@ -31,6 +31,8 @@ GCC_REQD+=	4.9
 .include "../../graphics/glew/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../multimedia/libogg/buildlink3.mk"
+.include "../../net/miniupnpc/buildlink3.mk"
+.include "../../textproc/tinyxml/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../x11/gtksourceview3/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"

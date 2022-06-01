@@ -1,20 +1,16 @@
 # $NetBSD$
 
-DISTNAME=	${GITHUB_PROJECT}-1.1.1
-PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-CATEGORIES=	python textproc
-MASTER_SITES=	${MASTER_SITE_GITHUB:=avian2/}
-GITHUB_PROJECT=	unidecode
-GITHUB_TAG=	${GITHUB_PROJECT}-${PKGVERSION_NOREV}
+DISTNAME=	Unidecode-1.2.0
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
+CATEGORIES=	converts python
+MASTER_SITES=	${MASTER_SITE_PYPI:=U/Unidecode/}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://www.tablix.org/~avian/git/
+MAINTAINER=	kamelderouiche@yahoo.com
+HOMEPAGE=	https://pypi.org/project/Unidecode/
 COMMENT=	ASCII transliterations of Unicode text
-LICENSE=	gnu-gpl-v2
+LICENSE=	gnu-gpl-v1 OR gnu-gpl-v2 OR gnu-gpl-v3
 
 USE_LANGUAGES=	# none
-
-EGG_NAME=	Unidecode-${PKGVERSION_NOREV}
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

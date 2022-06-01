@@ -12,8 +12,8 @@ LICENSE=	gnu-gpl-v3
 
 USE_LANGUAGES=	# none
 
-DEPENDS+=	${PYPKGPREFIX}-unidecode>=0.04.14:../../wip/py-unidecode
+DEPENDS+=	${PYPKGPREFIX}-Unidecode>=0.04.14:../../textproc/py-Unidecode
 
 .include "../../lang/python/application.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
