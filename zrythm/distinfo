@@ -1,7 +1,7 @@
 $NetBSD$
 
-SHA1 (zrythm-1.0.0-alpha.6.0.1.tar.xz) = 8aae245135a65208fb8059cc3a64e91d544a438e
-RMD160 (zrythm-1.0.0-alpha.6.0.1.tar.xz) = b7ad0c8aa1bf43a302ee5a6098594c7d69bce6a8
-SHA512 (zrythm-1.0.0-alpha.6.0.1.tar.xz) = 1b5bfe364daed231146e5662a3f5e8eec37154e6e2e1a3686513e7cc12e96edc79331d3661d0a7d8bae8723cb176d10766dbf3a9077dbe93bc2ef676d512601c
-Size (zrythm-1.0.0-alpha.6.0.1.tar.xz) = 11240156 bytes
+SHA1 (zrythm-1.0.0-beta.2.1.1.tar.xz) = e10a84c5e9521ff6f5c0a65adfafdd7c22591936
+RMD160 (zrythm-1.0.0-beta.2.1.1.tar.xz) = 9dcadb002aac959332cd9edf172a589a12e0c8e8
+SHA512 (zrythm-1.0.0-beta.2.1.1.tar.xz) = 02acc0ed542b30279c291cc4c641208bfd405f5362c084379ec9ea98471725954b11d3b72fa2c04c415ae9479f4c33ab787cac46bc7e4f8128eaba5dc8b7e69e
+Size (zrythm-1.0.0-beta.2.1.1.tar.xz) = 9626792 bytes
 SHA1 (patch-meson.build) = cc7b57e36890e4e74ceeaa0120c3a0c70cdb6612
