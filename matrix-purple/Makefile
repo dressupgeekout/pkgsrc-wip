@@ -1,24 +1,23 @@
 # $NetBSD$
 
-DISTNAME=	purple-matrix-git
-PKGNAME=	matrix-purple-1d23385e6c22f63591fcbfc85c09999953c388ed
+DISTNAME=	purple-matrix-0.1.0
 CATEGORIES=	chat
 MASTER_SITES=	${MASTER_SITE_GITHUB:=matrix-org/}
-GITHUB_PROJECT=	love
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://www.matrix.org/
 COMMENT=	Libpurple protocol plugin for Matrix 
 LICENSE=	gnu-gpl-v2
 
-#WRKSRC=		${WRKDIR}/${DISTNAME:S/-linux-src//}
 NO_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
 
-USE_TOOLS+=	pkg-config
-#USE_LIBTOOL=	yes
+USE_TOOLS+=	gmake pkg-config
 
 .include "../../chat/libpurple/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
+.include "../../security/olm/buildlink3.mk"
+.include "../../textproc/json-glib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
