@@ -20,11 +20,12 @@ CMAKE_ARG_PATH=	${WRKSRC}
 pre-configure:
 	${MKDIR} ${WRKDIR}/build
 
+.include "../../audio/openal-soft/buildlink3.mk"
 .include "../../devel/SDL2/buildlink3.mk"
 .include "../../devel/boost-headers/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/bullet/buildlink3.mk"
 .include "../../devel/ogre/buildlink3.mk"
-.include "../../graphics/mygui/buildlink3.mk"
 .include "../../net/enet/buildlink3.mk"
+.include "../../wip/mygui-ogre/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

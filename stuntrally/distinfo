@@ -4,3 +4,4 @@ SHA1 (stuntrally-2.6.2.tar.gz) = f5c188d020c80d869e809383dc1cad226cad7921
 RMD160 (stuntrally-2.6.2.tar.gz) = 852d152183407be4658227b9a61ede15b4959a9e
 SHA512 (stuntrally-2.6.2.tar.gz) = 6976dcaece2bf73851ebe713821be58e5aca27dd5b45470d485a3280760fe87b1356f181a990e6d0937a8f6f06b0e116535f6f23337b316ece081f5e719fd8f7
 Size (stuntrally-2.6.2.tar.gz) = 651633552 bytes
+SHA1 (patch-source_vdrift_numprocessors.h) = 61f97fc61dbd2ea6b86341a0ee426087e4a45085
