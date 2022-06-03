@@ -5418,6 +5418,7 @@ SUBDIR+=	strongswan
 SUBDIR+=	structure
 SUBDIR+=	stumpwm
 SUBDIR+=	stuntrally
+SUBDIR+=	stuntrally-tracks
 SUBDIR+=	subread
 SUBDIR+=	subsync
 SUBDIR+=	suitesparse

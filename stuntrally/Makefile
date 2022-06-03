@@ -12,6 +12,8 @@ LICENSE=	gnu-gpl-v3
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 
+DEPENDS+=	stuntrally-tracks>=${PKGVERSION_NOREV}:../../wip/stuntrally-tracks
+
 # Out-of-tree build is required.
 CONFIGURE_DIRS+=	${WRKDIR}/build
 
