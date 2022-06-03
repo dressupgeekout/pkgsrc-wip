@@ -2548,6 +2548,7 @@ SUBDIR+=	muttvcquery
 SUBDIR+=	mvsis
 SUBDIR+=	mxallowd
 SUBDIR+=	myfitter
+SUBDIR+=	mygui-ogre
 SUBDIR+=	mysql++
 SUBDIR+=	mysql-docs
 SUBDIR+=	mysql-proxy
