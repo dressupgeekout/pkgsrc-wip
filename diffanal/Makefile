@@ -5,10 +5,10 @@
 #              Tue May 17 17:34:20 CDT 2022               #
 ###########################################################
 
-DISTNAME=	diffanal-0.1.0.14
+DISTNAME=	diffanal-0.1.0.18
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=auerlab/}
-GITHUB_TAG=	84aa6573cb6ce9947a1c70c6064f5b91eb649c73
+GITHUB_TAG=	bd01dc2ee6957b6e4670c5eec905b9267c2491e0
 
 MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://github.com/auerlab/diffanal
