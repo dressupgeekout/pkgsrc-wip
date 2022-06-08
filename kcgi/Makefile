@@ -1,11 +1,11 @@
 # $NetBSD$
 
-DISTNAME=	kcgi-0.12.2
+DISTNAME=	kcgi-0.13.0
 CATEGORIES=	www
 MASTER_SITES=	https://kristaps.bsd.lv/kcgi/snapshots/
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	dressupgeekout@gmail.com
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://kristaps.bsd.lv/kcgi/
 COMMENT=	CGI/FCGI library for C/C++ web apps
 LICENSE=	isc

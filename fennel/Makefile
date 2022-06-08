@@ -5,7 +5,7 @@ PKGNAME=	fennel-1.1.0
 CATEGORIES=	lang
 MASTER_SITES=	https://git.sr.ht/~technomancy/fennel/archive/
 
-MAINTAINER=	dressupgeekout@gmail.com
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://fennel-lang.org/
 COMMENT=	The Fennel programming language
 LICENSE=	mit
@@ -15,6 +15,8 @@ USE_TOOLS+=	gmake
 NO_CONFIGURE=	yes
 
 WRKSRC=		${WRKDIR}/${PKGNAME}
+
+DEPENDS+=	${LUA_BASEDEPENDS}
 
 BUILD_TARGET=	build
 
@@ -31,4 +33,5 @@ INSTALL_MAKE_FLAGS+=	PREFIX=${PREFIX}
 INSTALL_MAKE_FLAGS+=	MAN_DIR=${PREFIX}/${PKGMANDIR}/man1
 
 .include "../../lang/lua/application.mk"
+.include "../../lang/lua/tool.mk"
 .include "../../mk/bsd.pkg.mk"
