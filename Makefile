@@ -5690,6 +5690,7 @@ SUBDIR+=	threadingbuildingblocks
 SUBDIR+=	thrift
 SUBDIR+=	thunderbird68-enigmail
 SUBDIR+=	tilda
+SUBDIR+=	tiled
 SUBDIR+=	tilix
 SUBDIR+=	timewarrior
 SUBDIR+=	timg
