@@ -1,19 +1,11 @@
-- Create COMMIT_MSG for use in updating pkgsrc
+- In patch-configure:
 
-- Resolve "lib/libexpect5454.so.@SHLIB_VERSION@" in PLIST.  Somehow in
-  DESTDIR there is libexpect5454.so.@SHLIB_VERSION@ and that seems
-  like an error that should be fixed, rather than teaching PLIST about
-  the error.
+   - Check "avoid regenerating within pkgsrc", which is labeled as
+     from the previous version but does not appear there.  This is no
+     longer present, but if someone thinks it belongs we should
+     discuss.
 
-- In patch-configure, somehow make it comprehensible what has changed
-  vs what is in pkgsrc.
-
-- In patch-tclconfig_tcl.m4, explain migration of things from pkgsrc
-  patch-configure.  Or perhaps don't migrate.
-
-- For things mailed upstream in 2019, one would expect they've been
-  applied and are in a new release.  Explain somehow what's going on.
-  It sort of seems like "This program is not maintained upstream."
-
-- Consider patching configure.ac and regenerating instead of
-  configure.
+- The package patches an m4 file and configure, and this doesn't
+  really make sense, as either we are regenerating configure or we
+  aren't.  At the moment we are not regenerating configure, so the m4
+  patch has no effect.  Explain/fix.
