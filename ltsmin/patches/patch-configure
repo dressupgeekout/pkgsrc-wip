@@ -1,0 +1,49 @@
+$NetBSD$
+
+1. = preferred instead of == as the latter breaks compatibility on some
+platforms and former is more portable.
+
+2. As of NetBSD 9.2 pthread_*_setpshared aren't supported, hence the check is
+skipped for NetBSD
+
+Upstream: https://github.com/utwente-fmt/ltsmin/issues/203
+
+--- configure.orig	2018-07-03 19:29:06.000000000 +0000
++++ configure
+@@ -17303,7 +17303,7 @@ ac_try='"$LEX" --stdout conftest.lex >/d
+ eval ac_try_echo="\":$LINENO: $ac_try\""
+ echo "$ac_try_echo" >&5
+ (eval "$ac_try") 2>&5
+-if test $? == 0; then
++if test $? = 0; then
+     ax_cv_check_flex_compat=yes
+ else
+     ax_cv_check_flex_compat=no
+@@ -17358,7 +17358,8 @@ $as_echo "no" >&6; }
+ fi
+ 
+ 
+-
++if [ `uname` != NetBSD ]
++then
+ 
+ ac_ext=c
+ ac_cpp='$CPP $CPPFLAGS'
+@@ -17410,6 +17411,8 @@ rm -f core *.core core.conftest.* gmon.o
+   conftest.$ac_objext conftest.beam conftest.$ac_ext
+ fi
+ 
++fi
++
+ ac_ext=c
+ ac_cpp='$CPP $CPPFLAGS'
+ ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+@@ -28956,7 +28959,7 @@ as_fn_error $? "no acceptable atomic ope
+ See \`config.log' for more details" "$LINENO" 5; }
+ fi
+ 
+-if test "x$have_libspg" == xyes; then
++if test "x$have_libspg" = xyes; then
+ 
+ $as_echo "#define HAVE_LIBSPG /**/" >>confdefs.h
+ 
