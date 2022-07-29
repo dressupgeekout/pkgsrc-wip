@@ -263,6 +263,7 @@ share/emacs/${PKGVERSION}/etc/emacs.desktop
 share/emacs/${PKGVERSION}/etc/emacs.icon
 share/emacs/${PKGVERSION}/etc/emacs.metainfo.xml
 share/emacs/${PKGVERSION}/etc/emacs.service
+share/emacs/${PKGVERSION}/etc/emacs_lldb.py
 share/emacs/${PKGVERSION}/etc/emacsclient-mail.desktop
 share/emacs/${PKGVERSION}/etc/emacsclient.desktop
 share/emacs/${PKGVERSION}/etc/enriched.txt
@@ -1617,7 +1618,6 @@ share/emacs/${PKGVERSION}/lisp/emacs-lisp/eieio-custom.el.gz
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/eieio-custom.elc
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/eieio-datadebug.el.gz
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/eieio-datadebug.elc
-share/emacs/${PKGVERSION}/lisp/emacs-lisp/eieio-loaddefs.el
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/eieio-opt.el.gz
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/eieio-opt.elc
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/eieio-speedbar.el.gz
@@ -2607,8 +2607,6 @@ share/emacs/${PKGVERSION}/lisp/loadhist.elc
 share/emacs/${PKGVERSION}/lisp/loadup.el
 share/emacs/${PKGVERSION}/lisp/locate.el.gz
 share/emacs/${PKGVERSION}/lisp/locate.elc
-share/emacs/${PKGVERSION}/lisp/longlines.el.gz
-share/emacs/${PKGVERSION}/lisp/longlines.elc
 share/emacs/${PKGVERSION}/lisp/lpr.el.gz
 share/emacs/${PKGVERSION}/lisp/lpr.elc
 share/emacs/${PKGVERSION}/lisp/ls-lisp.el.gz
@@ -2666,7 +2664,6 @@ share/emacs/${PKGVERSION}/lisp/mail/rfc6068.el.gz
 share/emacs/${PKGVERSION}/lisp/mail/rfc6068.elc
 share/emacs/${PKGVERSION}/lisp/mail/rfc822.el.gz
 share/emacs/${PKGVERSION}/lisp/mail/rfc822.elc
-share/emacs/${PKGVERSION}/lisp/mail/rmail-loaddefs.el
 share/emacs/${PKGVERSION}/lisp/mail/rmail-spam-filter.el.gz
 share/emacs/${PKGVERSION}/lisp/mail/rmail-spam-filter.elc
 share/emacs/${PKGVERSION}/lisp/mail/rmail.el.gz
@@ -2867,8 +2864,6 @@ share/emacs/${PKGVERSION}/lisp/net/rcirc.el.gz
 share/emacs/${PKGVERSION}/lisp/net/rcirc.elc
 share/emacs/${PKGVERSION}/lisp/net/rfc2104.el.gz
 share/emacs/${PKGVERSION}/lisp/net/rfc2104.elc
-share/emacs/${PKGVERSION}/lisp/net/rlogin.el.gz
-share/emacs/${PKGVERSION}/lisp/net/rlogin.elc
 share/emacs/${PKGVERSION}/lisp/net/sasl-cram.el.gz
 share/emacs/${PKGVERSION}/lisp/net/sasl-cram.elc
 share/emacs/${PKGVERSION}/lisp/net/sasl-digest.el.gz
@@ -3030,6 +3025,8 @@ share/emacs/${PKGVERSION}/lisp/obsolete/landmark.el.gz
 share/emacs/${PKGVERSION}/lisp/obsolete/landmark.elc
 share/emacs/${PKGVERSION}/lisp/obsolete/lazy-lock.el.gz
 share/emacs/${PKGVERSION}/lisp/obsolete/lazy-lock.elc
+share/emacs/${PKGVERSION}/lisp/obsolete/longlines.el.gz
+share/emacs/${PKGVERSION}/lisp/obsolete/longlines.elc
 share/emacs/${PKGVERSION}/lisp/obsolete/mantemp.el.gz
 share/emacs/${PKGVERSION}/lisp/obsolete/mantemp.elc
 share/emacs/${PKGVERSION}/lisp/obsolete/meese.el.gz
@@ -3057,6 +3054,8 @@ share/emacs/${PKGVERSION}/lisp/obsolete/rcompile.el.gz
 share/emacs/${PKGVERSION}/lisp/obsolete/rcompile.elc
 share/emacs/${PKGVERSION}/lisp/obsolete/rfc2368.el.gz
 share/emacs/${PKGVERSION}/lisp/obsolete/rfc2368.elc
+share/emacs/${PKGVERSION}/lisp/obsolete/rlogin.el.gz
+share/emacs/${PKGVERSION}/lisp/obsolete/rlogin.elc
 share/emacs/${PKGVERSION}/lisp/obsolete/sb-image.el.gz
 share/emacs/${PKGVERSION}/lisp/obsolete/sb-image.elc
 share/emacs/${PKGVERSION}/lisp/obsolete/starttls.el.gz
