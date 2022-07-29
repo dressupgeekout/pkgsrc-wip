@@ -1,0 +1,13 @@
+$NetBSD$
+
+--- src/tools/xmlversion/CMakeLists.txt.orig	2022-07-28 18:18:41.793490529 -0700
++++ src/tools/xmlversion/CMakeLists.txt	2022-07-28 18:18:48.789278365 -0700
+@@ -13,7 +13,7 @@
+ 
+ IF(CMAKE_SKIP_RPATH OR CMAKE_SKIP_BUILD_RPATH)
+ 	#WARNING: the order of the library in the line below matters! First tgf, then txml!!!
+-	ADD_SDLIB_LIBRARY(xmlversion portability tgf txml STATIC)
++	ADD_SDLIB_LIBRARY(xmlversion portability tgf txml)
+ 	IF(OPTION_SDL2)
+ 	ADD_SDL2_LIBRARY(xmlversion)
+ ELSE(OPTION_SDL2)

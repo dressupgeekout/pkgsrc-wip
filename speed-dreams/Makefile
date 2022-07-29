@@ -12,6 +12,7 @@ USE_CMAKE=	yes
 USE_LANGUAGES+=	c c++
 
 .include "../../audio/libvorbis/buildlink3.mk"
+.include "../../audio/openal-soft/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/SDL2/buildlink3.mk"
 .include "../../games/plib/buildlink3.mk"
