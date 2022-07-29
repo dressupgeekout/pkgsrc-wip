@@ -1,3 +1,0 @@
-- build fails early because it looks like it's trying to look up the number
-  of CPUs by means of sysctl, but of course the mibs are different between
-  linux and BSD :(

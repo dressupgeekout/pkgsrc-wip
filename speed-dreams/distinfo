@@ -4,3 +4,4 @@ SHA1 (speed-dreams-src-base-2.2.3-r7616.tar.xz) = b994a0dff12cb0ae774d83f10ac0f3
 RMD160 (speed-dreams-src-base-2.2.3-r7616.tar.xz) = 89b1b8a9d7f4313bac0e5373e32e0826ee50c686
 SHA512 (speed-dreams-src-base-2.2.3-r7616.tar.xz) = 19da190034f416a9a378b401884bd98d6e2302439fdf6c34d48277fa251aba3ba451a230298bbb09ca59d5a6be941225654d71154000cefb27e91c922c5527fc
 Size (speed-dreams-src-base-2.2.3-r7616.tar.xz) = 237940148 bytes
+SHA1 (patch-src_libs_tgf_linuxspec.cpp) = 901ea14e961c0758e7a9a9af3ce9eed0831424ec
