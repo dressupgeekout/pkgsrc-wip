@@ -1,2 +1,2 @@
-This package has known vulnerabilities, please investigate and fix if possible:
-  CVE-2022-34000
+Some dependencies need to be packaged and used before this can be
+imported.

@@ -1,9 +1,8 @@
 # $NetBSD$
 
-DISTNAME=	983d44d72ca4def1c26ef74f69543313e3176b31
+DISTNAME=	c22fe1e8698a5a1ce97cb4bd7624f73b0bd7aa6b
 PKGNAME=	got-portable-${PKGVER}
-PKGVER=		0.70
-PKGREVISION=	1
+PKGVER=		0.71
 CATEGORIES=	devel
 MASTER_SITES=	https://repo.or.cz/got-portable.git/snapshot/
 
@@ -14,33 +13,44 @@ LICENSE=	isc
 
 CONFLICTS+=		got-[0-9]*
 
+ONLY_FOR_PLATFORM+=	NetBSD-*-*
+ONLY_FOR_PLATFORM+=	Darwin-*-*
+ONLY_FOR_PLATFORM+=	Linux-*-*
+ONLY_FOR_PLATFORM+=	FreeBSD-*-*
+ONLY_FOR_PLATFORM+=	DragonFly-*-*
+
 USE_TOOLS+=		pkg-config autoconf automake autoreconf
 GNU_CONFIGURE=		yes
+
 INSTALLATION_DIRS=	bin libexec ${PKGMANDIR}/man1 ${PKGMANDIR}/man5
 
-WRKSRC=	${WRKDIR}/got-portable-983d44d
+shortdist=	"`${ECHO} ${DISTNAME} | ${CUT} -c 1-7`"
+WRKSRC=		${WRKDIR}/got-portable-${shortdist}
 
 .include "../../mk/bsd.prefs.mk"
 
 pre-configure:
 	set -e; cd ${WRKSRC} && autoreconf -fiv
 
-post-patch:
-.if ${OPSYS} == "NetBSD"
-	# NetBSD has sha1.h.
-	${RM} -f ${WRKSRC}/openbsd-compat/sha1.h
-.endif
-
 .if ${OPSYS} == "Linux"
 # compatibility macros and functions for Linux.
 .include "../../devel/libbsd/buildlink3.mk"
-.include "../../wip/libmd/buildlink3.mk"
+.include "../../devel/libmd/buildlink3.mk"
 .endif
 
-# For set_panel_userptr(3)'s second argument and waddwstr(3).
+.if ${OPSYS} == "Darwin"
+# define uuid library to use
+.include "../../devel/ossp-uuid/buildlink3.mk"
+.else
+.include "../../devel/libuuid/buildlink3.mk"
+.endif
+
+# need libcrypto.so.1.1
+BUILDLINK_API_DEPENDS.openssl+=   openssl>=1.1.1n
+.include "../../security/openssl/buildlink3.mk"
+
+# required for set_panel_userptr(3) and waddwstr(3).
 .include "../../devel/ncursesw/buildlink3.mk"
 
-.include "../../devel/libuuid/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
