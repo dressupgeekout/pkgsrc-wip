@@ -1,7 +1,8 @@
 $NetBSD$
 
-BLAKE2s (qttools-everywhere-src-6.3.0.tar.xz) = 176bb3b3b750a071c472fc2651ece1c28feb8b2bb7b8b1fb8c893338211b9ccb
-SHA512 (qttools-everywhere-src-6.3.0.tar.xz) = 027db897817811f8e8003551ed95d4078311b6324284dd3d4149e636227c57a3b7fc0ebf9bc2b7d381c10080deb89074bcc198d54e15ecef73a7cf41e8ecdb1e
-Size (qttools-everywhere-src-6.3.0.tar.xz) = 8625544 bytes
-SHA1 (patch-src_assistant_CMakeLists.txt) = 41e1a4eb77337f52f2b6b37a01d3217c83a29bc8
+BLAKE2s (qttools-everywhere-src-6.3.2.tar.xz) = 9316a8e78300127ead77359ee88983079b6cdfd6c23937b1c2f65fa359bee14b
+SHA512 (qttools-everywhere-src-6.3.2.tar.xz) = ca8b11dac82027979ff9b17b8beb50ea316cba6d8f422a291caa63a4f7c345942bf852733fd7243a27bcf46b1ca6a5af30e283377a8c6b73193004e3aa3837f1
+Size (qttools-everywhere-src-6.3.2.tar.xz) = 8629400 bytes
+SHA1 (patch-src_assistant_qlitehtml_src_container__qpainter.cpp) = b2f9fb7e30af8bd8e42e1ba65289d56590595493
+SHA1 (patch-src_assistant_qlitehtml_src_container__qpainter__p.h) = a478ef2748d2baf7cfb9e3a064a334d079a5c042
 SHA1 (patch-src_linguist_lupdate_CMakeLists.txt) = d70ea348c3ba7f64bcc245de9445becefecf3a9c
