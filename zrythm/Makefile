@@ -21,6 +21,7 @@ USE_CMAKE=	yes
 DEPENDS+=	xdg-utils>=0:../../misc/xdg-utils
 
 .include "../../archivers/zstd/buildlink3.mk"
+.include "../../audio/libaudec/buildlink3.mk"
 .include "../../audio/libsamplerate/buildlink3.mk"
 .include "../../audio/lilv/buildlink3.mk"
 .include "../../audio/rubberband/buildlink3.mk"
@@ -33,9 +34,9 @@ DEPENDS+=	xdg-utils>=0:../../misc/xdg-utils
 .include "../../math/fftwf/buildlink3.mk"
 .include "../../textproc/libcyaml/buildlink3.mk"
 .include "../../textproc/libyaml/buildlink3.mk"
-.include "../../wip/libaudec/buildlink3.mk"
 .include "../../wip/reproc/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../x11/gtksourceview4/buildlink3.mk"
+
 .include "../../devel/meson/build.mk"
 .include "../../mk/bsd.pkg.mk"
