@@ -15,10 +15,10 @@ MAINTAINER=	bacon@NetBSD.org
 COMMENT=	Python library for RDF manipulation
 LICENSE=	modified-bsd
 
-DEPENDS+=	${PYPKGPREFIX}-pyparsing>=2.0.1:../../devel/py-pyparsing
 DEPENDS+=	${PYPKGPREFIX}-html5lib>=0:../../textproc/py-html5lib
 DEPENDS+=	${PYPKGPREFIX}-sparqlwrapper:../../www/py-sparqlwrapper
 DEPENDS+=	${PYPKGPREFIX}-isodate:../../time/py-isodate
+DEPENDS+=	${PYPKGPREFIX}-pyparsing-[0-9]*:../../devel/py-pyparsing
 
 PORTVERSION=	3.4.0
 

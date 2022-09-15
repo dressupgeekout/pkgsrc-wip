@@ -10,14 +10,13 @@ HOMEPAGE=	https://github.com/lebinh/
 COMMENT=	real-time metrics for nginx server
 LICENSE=	mit
 
-WRKSRC=         ${WRKDIR}/${DISTNAME}-${GITHUB_TAG}
-
 DEPENDS+=       ${PYPKGPREFIX}-docopt>=0.6.2:../../devel/py-docopt
 DEPENDS+=       ${PYPKGPREFIX}-tabulate>=0.8.3:../../textproc/py-tabulate
-DEPENDS+=       ${PYPKGPREFIX}-pyparsing>=2.3.1:../../devel/py-pyparsing
 DEPENDS+=       ${PYPKGPREFIX}-curses>=2.7.16:../../devel/py-curses
 DEPENDS+=       ${PYPKGPREFIX}-sqlite3>=2.7.16:../../databases/py-sqlite3
+DEPENDS+=	${PYPKGPREFIX}-pyparsing-[0-9]*:../../devel/py-pyparsing
 
+WRKSRC=         ${WRKDIR}/${DISTNAME}-${GITHUB_TAG}
 
 post-install:
 	${CP} -r ${WRKDIR}/.destdir/usr/pkg/bin/ngxtop ${PREFIX}/bin

@@ -11,9 +11,9 @@ COMMENT=	Clock-driven simulator for spiking neural networks
 #LICENSE=	# TODO: (see mk/license.mk)
 
 DEPENDS+=       ${PYPKGPREFIX}-future>=0.18.2:../../devel/py-future
-DEPENDS+=       ${PYPKGPREFIX}-pyparsing>=2.4.7:../../devel/py-pyparsing
 DEPENDS+=       ${PYPKGPREFIX}-sympy>=1.5.1:../../math/py-sympy
 DEPENDS+=       ${PYPKGPREFIX}-jinja2>=2.11.2:../../textproc/py-jinja2
+DEPENDS+=	${PYPKGPREFIX}-pyparsing-[0-9]*:../../devel/py-pyparsing
 
 USE_LANGUAGES=	c c++
 

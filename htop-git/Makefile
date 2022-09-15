@@ -1,31 +1,33 @@
 # $NetBSD$
 
-DISTNAME=	htop-3.0.5.20210428
+DISTNAME=	htop-3.1.2.20220118
 CATEGORIES=	sysutils
-MASTER_SITES=	${MASTER_SITE_GITHUB:=fraggerfox/}
-GITHUB_PROJECT=	htop-dev
-GITHUB_TAG=	ababf2e49b7eb50f67713913d286493df202495c
-EXTRACT_USING=	bsdtar
+MASTER_SITES=	${MASTER_SITE_GITHUB:=htop-dev/}
+GITHUB_PROJECT=	htop
+GITHUB_TAG=     3e1a27a98110d31c42397562490150247dd7dc6a
 
 MAINTAINER=	fox@NetBSD.org
-HOMEPAGE=	https://github.com/fraggerfox/htop/tree/netbsd-no-procfs/netbsd
+HOMEPAGE=	https://htop.dev/
 COMMENT=	Enhanced version of top utility
 LICENSE=	gnu-gpl-v2
 
-# This version does not need procfs mount in NetBSD
-# Report bugs to fox@NetBSD.org
 CONFLICTS=	htop-[0-9]*
 
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	autoreconf automake
 USE_LANGUAGES=	c c++
 USE_LIBTOOL=	yes
-USE_NCURSES=	yes # uses ncurses mouse definitions
+
+.include "../../mk/curses.buildlink3.mk"
+
+.if ${CURSES_TYPE} != "ncursesw"
+# See netbsd/README.md
+CONFIGURE_ARGS+=	--disable-unicode
+.endif
 
 pre-configure:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ./autogen.sh
 
-.include "../../devel/ncursesw/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

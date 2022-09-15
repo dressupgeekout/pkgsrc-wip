@@ -29,7 +29,7 @@ post-extract:
 
 #optional dependency:
 #DEPENDS+=			${PYPKGPREFIX}-scipy>=0.7.0:../../math/py-scipy
-#PYTHON_VERSIONED_DEPENDENCIES=	Pmw X
+#PYTHON_VERSIONED_DEPENDENCIES=	X
 #.include "../../lang/python/versioned_dependencies.mk"
 #PYTHON_VERSIONS_INCOMPATIBLE=	36 35  34 # py-Numeric
 #.include "../../math/py-Numeric/buildlink3.mk"
@@ -38,5 +38,5 @@ post-extract:
 #.include "../../graphics/vtk/buildlink3.mk"
 
 .include "../../math/py-numpy/buildlink3.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

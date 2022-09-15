@@ -3,6 +3,7 @@
 DISTNAME=	mu-cite-202011031127
 CATEGORIES=	mail
 MASTER_SITES=	http://www.jpl.org/elips/mu/snapshots/
+PKGREVISION=	1
 
 MAINTAINER=	packages@ki.nu
 HOMEPAGE=	http://emacs-21.ki.nu/application/mu-cite.html
@@ -18,7 +19,7 @@ SUBST_FILES.dest+=	Makefile
 .include "../../wip/emacs-git/modules.mk"
 
 DEPENDS+=		flim-[0-9]*:../../devel/flim
-DEPENDS+=		bbdb-[0-9]*:../../misc/bbdb
+DEPENDS+=		bbdb2-[0-9]*:../../misc/bbdb2
 MAKE_DIRS+=		${PREFIX}/share/doc/mu-cite
 AUTO_MKDIRS=		yes
 

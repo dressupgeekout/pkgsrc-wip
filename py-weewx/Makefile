@@ -3,21 +3,18 @@
 DISTNAME=	weewx-4.5.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
 CATEGORIES=	misc
-MASTER_SITES=	http://weewx.com/downloads/released_versions/
+MASTER_SITES=	https://weewx.com/downloads/released_versions/
 
 # See also
 # https://reviews.freebsd.org/file/data/wxlggqqqglli6l66usac/PHID-FILE-kucs3bj4stbb6iw4zpy5/D6324.diff
 
 # Do not make this package installable; email me if questions.
 MAINTAINER=	gdt@NetBSD.org
-HOMEPAGE=	http://weewx.com/
+HOMEPAGE=	https://weewx.com/
 COMMENT=	Python-powered template engine and code-generator
 LICENSE=	gnu-gpl-v3
 
 USE_LANGUAGES=
-
-# \todo Allow python 3
-PYTHON_VERSIONS_ACCEPTED=	27 # not yet tested
 
 SUBST_CLASSES+=		paths
 SUBST_MESSAGE.paths=	Substituting pkgsrc paths
@@ -25,11 +22,15 @@ SUBST_STAGE.paths=	pre-configure
 SUBST_FILES.paths=	setup.cfg
 SUBST_VARS.paths=	PREFIX
 
+# 27 is still ok; see cheetsh comment
+PYTHON_VERSIONS_INCOMPATIBLE=	27
+
 # These versions are probably higher than necessary, but there is little value
 # in testing with versions older than are in pkgsrc.
 DEPENDS+=	${PYPKGPREFIX}-sqlite3>=2.7.16:../../databases/py-sqlite3
 DEPENDS+=	${PYPKGPREFIX}-Pillow>=6.0.0:../../graphics/py-Pillow6
-DEPENDS+=	${PYPKGPREFIX}-cheetah>=2.4.4:../../devel/py-cheetah
+# cheetah lacks versioned dependencies; omit 2.7 as unhelpful
+DEPENDS+=	${PYPKGPREFIX}-cheetah>=3.0.0:../../devel/py-cheetah3
 DEPENDS+=	${PYPKGPREFIX}-configobj>=5.0.6:../../devel/py-configobj
 DEPENDS+=	${PYPKGPREFIX}-ephem>=3.7.6.0:../../math/py-ephem
 DEPENDS+=	${PYPKGPREFIX}-serial>=3.4:../../comms/py-serial
@@ -58,5 +59,5 @@ CONF_FILES+=	${PREFIX}/weewx/weewx.conf.DIST ${PREFIX}/weewx/weewx.conf
 # and sort of config files.
 
 .include "../../lang/python/application.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

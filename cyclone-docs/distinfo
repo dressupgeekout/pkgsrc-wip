@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (cyclone/v0.28.0.tar.gz) = e61b9c70d0e0ef1f89bae3640e1b68361f2bf1d9
-RMD160 (cyclone/v0.28.0.tar.gz) = ead9e540630e0c698e1b0253fddd784043d44d1f
-SHA512 (cyclone/v0.28.0.tar.gz) = eb01e39e0af167ac9fb2d956af5987bf7a7a755f5c021ededf938900be1e03ce0e5acd6ba6b2d0e83afae71901fb2837519e5f18c95e6ce3a0fcec3357323b56
-Size (cyclone/v0.28.0.tar.gz) = 4078200 bytes
+BLAKE2s (cyclone/v0.35.0.tar.gz) = 50fbe2904c77f41c445d5ac6ed403e54ef2c5d32b66135f6b92bc8d54720bff2
+SHA512 (cyclone/v0.35.0.tar.gz) = 14226071fa503519b671593d8c67799f6bb730b33c9208bb47e9f91e17e65940765660a69c47b148fb0ecbf6ecb09b71870d8199e9bef30c930eae5bfa5d3f70
+Size (cyclone/v0.35.0.tar.gz) = 5012654 bytes

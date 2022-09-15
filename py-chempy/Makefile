@@ -14,10 +14,9 @@ LICENSE=	modified-bsd
 DEPENDS+=	${PYPKGPREFIX}-matplotlib>=2.2.3:../../graphics/py-matplotlib
 DEPENDS+=	${PYPKGPREFIX}-sympy>=1.6.2:../../math/py-sympy
 DEPENDS+=	${PYPKGPREFIX}-quantities>=0.12.4:../../wip/py-quantities
-DEPENDS+=	${PYPKGPREFIX}-pyparsing>=2.0.3:../../devel/py-pyparsing
 DEPENDS+=	${PYPKGPREFIX}-sym>=0.3.4:../../wip/py-sym
 DEPENDS+=	${PYPKGPREFIX}-jupyter_client>=6.1.7:../../devel/py-jupyter_client
-
+DEPENDS+=	${PYPKGPREFIX}-pyparsing-[0-9]*:../../devel/py-pyparsing
 
 USE_LANGUAGES=	# none
 

@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	bcftools-1.12
+DISTNAME=	bcftools-1.15
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=samtools/}
 
@@ -48,7 +48,6 @@ post-install:
 	${MV} ${DESTDIR}${PREFIX}/bin/vcfutils.pl \
 		${DESTDIR}${PREFIX}/bin/vcfutils
 
-BUILDLINK_API_DEPENDS.htslib+=	htslib>=1.10.2
 .include "../../biology/htslib/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/application.mk"

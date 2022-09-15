@@ -1,8 +1,8 @@
 # $NetBSD$
 
-VERS=		1.48.8
+VERS=		1.48.10
 #PKGNAME=	doomlegacy-${VERS}
-SVNVERS=	1576
+SVNVERS=	1628
 DISTNAME=	doomlegacy-devel-0r${SVNVERS}
 CATEGORIES=	games
 
@@ -99,10 +99,6 @@ pre-configure:
 	${CP} ${FILESDIR}/INSTALL.pkgsrc ${WRKDIR}
 	${CP} ${FILESDIR}/doomlegacy.sh ${WRKDIR}
 	${CP} ${FILESDIR}/doomlegacy.6.in ${WRKDIR}
-	${CP} ${FILESDIR}/p_blockmap.c ${WRKSRC}/src
-	${CP} ${FILESDIR}/p_blockmap.h ${WRKSRC}/src
-	${CP} ${FILESDIR}/p_extnodes.c ${WRKSRC}/src
-	${CP} ${FILESDIR}/p_extnodes.h ${WRKSRC}/src
 	cd ${WRKSRC} && ${CP} make_options_nix make_options
 
 # Move configure options and process manpage template
@@ -119,6 +115,8 @@ do-install:
 		${DESTDIR}${PREFIX}/bin/doomlegacy.bin
 	${INSTALL_SCRIPT} ${WRKDIR}/doomlegacy				\
 		${DESTDIR}${PREFIX}/bin/doomlegacy
+	${INSTALL_DATA} ${WRKDIR}/doomlegacy_${VERS}/dogs.wad		\
+		${DESTDIR}${PREFIX}/${DOOMWADDIR}/dogs.wad
 	${INSTALL_DATA} ${WRKDIR}/doomlegacy_${VERS}/legacy.wad		\
 		${DESTDIR}${PREFIX}/${DOOMWADDIR}/legacy.wad
 	cd ${WRKSRC} &&							\

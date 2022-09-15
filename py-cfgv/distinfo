@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (cfgv-3.2.0.tar.gz) = 49df798e9b4c5c4fa14a8902ecf5bf972775f750
-RMD160 (cfgv-3.2.0.tar.gz) = 5ae7eeee0a9750af3d5b82d0da086d4da30c1702
-SHA512 (cfgv-3.2.0.tar.gz) = 435b2db4fa969cb3d4db4c94db0f6a1b97411785506994ca927cb08d104a26690bb4afe5d3d3ee7eef38be2c180777b81e53fb910d9d14a7021937dee3eadd75
-Size (cfgv-3.2.0.tar.gz) = 7851 bytes
+RMD160 (cfgv-3.3.1.tar.gz) = 765c8714502f3f13f9e144097f100a6e7b4e5fe9
+SHA512 (cfgv-3.3.1.tar.gz) = b9b81e6d3d280102deba2a503ca98b3e4fa1a666d5519733fc16426e4e832b3dddfc27f70aa4d9e996bc5a4f40c5ec984f1711a1fe87d12e57733736ee6e9a26
+Size (cfgv-3.3.1.tar.gz) = 7864 bytes

@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (qtquick3d-everywhere-src-6.0.4.tar.xz) = 570d0172206e9625b1ffac97b54af3e1ac95c095
-RMD160 (qtquick3d-everywhere-src-6.0.4.tar.xz) = d69a59a528c77e2162ba5649a09adf775c0c3abc
-SHA512 (qtquick3d-everywhere-src-6.0.4.tar.xz) = b83b594e37a229080a348f6eb6d499f83dd1d216f91e984043f47063c6e419daaafcfcbacfac3fe94a41f57c87eed482bf67761218db78bd0e4019fe19e57196
-Size (qtquick3d-everywhere-src-6.0.4.tar.xz) = 47230476 bytes
+BLAKE2s (qtquick3d-everywhere-src-6.3.2.tar.xz) = bedbc6ea967e4998cf1c254470bbba769e0332570a17dc20aeaed1b8410c7867
+SHA512 (qtquick3d-everywhere-src-6.3.2.tar.xz) = ffe2ff5f64278640c1cc543737cf4fe3d814630fef24602ffd1d166e32dee5d5e929d029abb7573cb28502bd00e1b6217998dc54a3ab4606d053809ff12acf20
+Size (qtquick3d-everywhere-src-6.3.2.tar.xz) = 37291276 bytes

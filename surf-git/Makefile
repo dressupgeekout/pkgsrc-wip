@@ -1,7 +1,8 @@
 # $NetBSD: Makefile,v 1.6 2015/07/13 11:10:36 leot1990 Exp $
 
-DISTNAME=	surf-2.0
+DISTNAME=	surf-2.1
 CATEGORIES=	www
+MASTER_SITES=	https://dl.suckless.org/surf/
 
 MAINTAINER=	leot@NetBSD.org
 HOMEPAGE=	https://surf.suckless.org/
@@ -23,8 +24,8 @@ SUBST_SED.configmk+=	-e 's,^CFLAGS *= ,CFLAGS += ,'
 SUBST_SED.configmk+=	-e 's,^LDFLAGS *= ,LDFLAGS += ,'
 SUBST_SED.configmk+=	-e 's/cc/${CC:Q}/'
 
+.include "../../security/gcr/buildlink3.mk"
 .include "../../www/webkit-gtk/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
-.include "../../security/gcr/buildlink3.mk"
 .include "../../wip/mk/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

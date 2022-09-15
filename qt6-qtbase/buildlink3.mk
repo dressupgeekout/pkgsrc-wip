@@ -5,13 +5,14 @@ BUILDLINK_TREE+=	qt6-qtbase
 .if !defined(QT6_QTBASE_BUILDLINK3_MK)
 QT6_QTBASE_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.qt6-qtbase+=	qt6-qtbase>=6.0.0
+BUILDLINK_API_DEPENDS.qt6-qtbase+=	qt6-qtbase>=6.3.1
 BUILDLINK_PKGSRCDIR.qt6-qtbase?=	../../wip/qt6-qtbase
 
 BUILDLINK_INCDIRS.qt6-qtbase+=	qt6/include
 BUILDLINK_LIBDIRS.qt6-qtbase+=	qt6/lib
 BUILDLINK_LIBDIRS.qt6-qtbase+=	qt6/plugins
 
+# \todo Fix duplication with prefix coded in Makefile.common
 QTDIR=		${BUILDLINK_PREFIX.qt6-qtbase}/qt6
 CMAKE_PREFIX_PATH+=	${QTDIR}
 

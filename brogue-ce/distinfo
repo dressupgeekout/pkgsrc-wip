@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (BrogueCE/v1.9.3.tar.gz) = c3661ff05dc9eb7e2ad178db03411743d8308744
-RMD160 (BrogueCE/v1.9.3.tar.gz) = 5851a25c7c4f50fcdbedb862664d5a1e18f05d83
-SHA512 (BrogueCE/v1.9.3.tar.gz) = 29b627a290cef48583109ee1ee46d04b1baa1d09fa3c3d222f63a6845ee3b35455ed17f17f4eb2a4ee455040456dec7022e30693e6d12cdec8a3e681bf1c4d40
-Size (BrogueCE/v1.9.3.tar.gz) = 1147071 bytes
+RMD160 (BrogueCE/v1.10.1.tar.gz) = 72f0817e2d62e395c3c98743f19dc051c86e0ac7
+SHA512 (BrogueCE/v1.10.1.tar.gz) = ffbfaea1a1dc09d363432dd36ae78d1c82ef2497e9160d599f0e67b0b9b98a6dcbff19c2c9963f51759684a7acccf3c5a5ffd5f6af262b0d9daa9a748246796d
+Size (BrogueCE/v1.10.1.tar.gz) = 1159248 bytes

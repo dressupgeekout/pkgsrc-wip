@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	litehtml-0.4.0.20170407
+DISTNAME=	litehtml-0.6
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=litehtml/}
-GITHUB_TAG=	d7cc6abfe1141770718404aaf9b17db80ed3f196
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.litehtml.com/
@@ -13,11 +13,9 @@ LICENSE=	modified-bsd
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 
-INSTALLATION_DIRS=	include/litehtml/litehtml include/litehtml/src lib
+CMAKE_ARGS+=	-DEXTERNAL_GUMBO=ON
+# Turn off testing since it installs gtest
+CMAKE_ARGS+=	-DBUILD_TESTING:BOOL=OFF
 
-do-install:
-	${INSTALL_DATA} ${WRKSRC}/include/litehtml.h ${DESTDIR}${PREFIX}/include/litehtml/litehtml
-	${INSTALL_DATA} ${WRKSRC}/src/*.h ${DESTDIR}${PREFIX}/include/litehtml/src
-	${INSTALL_LIB} ${WRKSRC}/liblitehtml.a ${DESTDIR}${PREFIX}/lib
-
+.include "../../www/gumbo-parser/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

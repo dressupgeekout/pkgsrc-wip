@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (fastparquet-0.8.2.tar.gz) = dfd7da6f1f990a53da72e28fcb6844c7a803be085cfd4626df2414d8c02db010
+SHA512 (fastparquet-0.8.2.tar.gz) = 6891bbefe301d247267225a70046a671cd20102537c723a89149eb21bc59c385fc2d39848258df2c55f13546ec07523e2d166eca61ae35e720e51e814b3e0971
+Size (fastparquet-0.8.2.tar.gz) = 29210887 bytes

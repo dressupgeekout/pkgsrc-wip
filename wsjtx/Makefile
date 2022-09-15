@@ -1,7 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	wsjtx-2.3.0
-PKGREVISION=	1
+DISTNAME=	wsjtx-2.3.1
 CATEGORIES=	ham
 MASTER_SITES=	https://physics.princeton.edu/pulsar/k1jt/
 EXTRACT_SUFX=	.tgz
@@ -27,8 +26,8 @@ CMAKE_ARGS+=	-DLDFLAGS='-lusb-1.0 -L${PREFIX}/lib'
 CMAKE_ARGS+=	-DFortran_FLAGS+='-L${PREFIX}/lib'
 CMAKE_ARGS+=	-DLDFLAGS=-'Wl,-rpath-link=-lusb-1.0 -L${PREFIX}/lib'
 CMAKE_ARGS+=	-DLIBUSB_CFLAGS='-I ${PREFIX}/include/libusb-1.0 -lusb-1.0 -L${PREFIX}/lib'
-CMAKE_ARGS+=	-DLIBUSB_LIBS=-Wl,-rpath-link=-lusb-1.0 -L${PREFIX}/lib
-CMAKE_ARGS+=	-DLIBS=-Wl,-rpath-link=-lusb-1.0 -L${PREFIX}/lib
+CMAKE_ARGS+=	-DLIBUSB_LIBS='-Wl,-rpath-link=-lusb-1.0 -L${PREFIX}/lib'
+CMAKE_ARGS+=	-DLIBS='-Wl,-rpath-link=-lusb-1.0 -L${PREFIX}/lib'
 CMAKE_ARGS+=	-DQt5Test_DIR=${PREFIX}/qt5/lib/cmake/Qt5Test
 
 #IBUSB_CFLAGS+=	-lusb-1.0 -L${PREFIX}/lib
@@ -51,6 +50,7 @@ SUBST_VARS.hamlib=	PREFIX
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtserialport/buildlink3.mk"
 .include "../../x11/qt5-qtmultimedia/buildlink3.mk"
+.include "../../x11/qt5-qttools/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

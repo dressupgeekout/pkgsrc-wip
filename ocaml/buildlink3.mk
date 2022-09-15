@@ -1,13 +1,14 @@
 # $NetBSD: buildlink3.mk,v 1.56 2021/03/08 08:08:43 jaapb Exp $
+# Should only be used through ocaml.mk, not directly.
 
 BUILDLINK_TREE+=	ocaml
 
 .if !defined(OCAML_BUILDLINK3_MK)
 OCAML_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.ocaml+=	ocaml>=4.12.0
-BUILDLINK_ABI_DEPENDS.ocaml+=	ocaml>=4.12.0
-BUILDLINK_PKGSRCDIR.ocaml?=	../../lang/ocaml
+BUILDLINK_API_DEPENDS.ocaml+=	ocaml>=4.14.0
+BUILDLINK_ABI_DEPENDS.ocaml+=	ocaml>=4.14.0
+BUILDLINK_PKGSRCDIR.ocaml?=	../../wip/ocaml
 #BUILDLINK_DEPMETHOD.ocaml?=	build
 
 BUILDLINK_PASSTHRU_DIRS+=	${BUILDLINK_PREFIX.ocaml}/lib/ocaml

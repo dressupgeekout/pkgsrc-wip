@@ -1,8 +1,8 @@
 # $NetBSD$
 
-DISTNAME=	gnome-builder-3.40.0
+DISTNAME=	gnome-builder-41.3
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gnome-builder/3.40/}
+MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gnome-builder/41/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	dan@alt.md
@@ -12,15 +12,15 @@ LICENSE=	gnu-gpl-v3
 
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++
-USE_TOOLS+=		pkg-config
+USE_TOOLS+=		pkg-config xgettext
 
-MESON_ARGS+=		-Dfusermount_wrapper=false
 MESON_ARGS+=		-Dplugin_flatpak=false
 MESON_ARGS+=		-Dplugin_git=false
 MESON_ARGS+=		-Dplugin_sysprof=false
 MESON_ARGS+=		-Dplugin_update_manager=false
 MESON_ARGS+=		-Dplugin_color_picker=false
 MESON_ARGS+=		-Dplugin_dspy=false
+MESON_ARGS+=		-Dplugin_devhelp=false
 
 CFLAGS+=		-Wno-error=shadow
 
@@ -36,8 +36,10 @@ SUBST_STAGE.pymod=	pre-configure
 SUBST_FILES.pymod=	src/libide/meson.build
 SUBST_SED.pymod=	-e 's,python3,${PREFIX}/bin/python${PYVERSSUFFIX},g'
 
-PLIST_SUBST+=		PYVERSSUFFIX=${PYVERSSUFFIX}
+PLIST_SUBST+=		PYSITELIB=${PYSITELIB}
 
+.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
+.include "../../textproc/cmark/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../lang/clang/buildlink3.mk"

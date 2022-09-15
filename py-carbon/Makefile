@@ -12,7 +12,7 @@ COMMENT=	Backend storage application for graphite
 LICENSE=	apache-2.0
 
 DEPENDS+=	${PYPKGPREFIX}-twisted-[0-9]*:../../net/py-twisted
-DEPENDS+=	${PYPKGPREFIX}-whisper>=${PKGVERSION_NOREV}:../../wip/py-whisper
+DEPENDS+=	${PYPKGPREFIX}-whisper>=${PKGVERSION_NOREV}:../../databases/py-whisper
 
 USE_LANGUAGES=	# none
 
@@ -70,5 +70,5 @@ PYSETUPINSTALLARGS=	--prefix=${PREFIX} \
 INSTALLATION_DIRS+=	share/examples/graphite
 
 .include "../../databases/py-carbon/Makefile.common"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

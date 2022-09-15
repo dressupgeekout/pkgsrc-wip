@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	pkg-dev-0.3.0.9
+DISTNAME=	pkg-dev-0.3.0.19
 CATEGORIES=	pkgtools
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
-GITHUB_TAG=	43e75fd0dd590b59adc698c6bfda01decd31dc13
+GITHUB_TAG=	2599dc1cbe64e54d4bdec8413209d0c9b7529248
 
 MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://github.com/outpaddling/pkg-dev
@@ -19,9 +19,9 @@ DEPENDS+=	auto-admin>0:../../wip/auto-admin
 
 NO_BUILD=	yes
 
-INSTALLATION_DIRS=	sbin
+INSTALLATION_DIRS=	bin
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/Scripts/* ${DESTDIR}${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKSRC}/Scripts/* ${DESTDIR}${PREFIX}/bin
 
 .include "../../mk/bsd.pkg.mk"

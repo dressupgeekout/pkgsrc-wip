@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	tor-0.4.6.3-rc
+DISTNAME=	tor-0.4.6.5
 PKGNAME=	${DISTNAME:S/tor/tordev/:S/-alpha//:S/-rc/rc0/}
 CATEGORIES=	net security
 MASTER_SITES=	https://dist.torproject.org/
@@ -21,18 +21,14 @@ CONFIGURE_ARGS+=	--docdir=${PREFIX}/share/doc/tordev
 CONFIGURE_ENV+=		CPP=${CPP:Q}
 CONFIGURE_ENV+=		CONFDIR=${PKG_SYSCONFDIR}
 
-# as of 0.4.5.2-alpha:
-# FAIL: src/test/unittest_part2.sh
-# FAIL: src/test/unittest_part8.sh
-# FAIL: src/test/test_include.sh
 #============================================================================
-#Testsuite summary for tor 0.4.5.2-alpha
+#Testsuite summary for tor 0.4.6.5
 #============================================================================
 ## TOTAL: 33
-## PASS:  26
+## PASS:  29
 ## SKIP:  4
 ## XFAIL: 0
-## FAIL:  3
+## FAIL:  0
 ## XPASS: 0
 ## ERROR: 0
 TEST_TARGET=		check
@@ -55,7 +51,7 @@ USER_GROUP=		${TOR_USER} ${TOR_GROUP}
 
 OWN_DIRS_PERMS+=	${PKG_HOME.${TOR_USER}} ${USER_GROUP} 0700
 
-CONF_FILES+=		${PREFIX}/share/examples/tordev/torrc.sample	\
+CONF_FILES+=		${PREFIX}/share/examples/tordev/torrc.sample \
 			${PKG_SYSCONFDIR}/torrc
 
 PRINT_PLIST_AWK+=	/^man\/man/ { $$0 = "$${PLIST.doc}" $$0 }

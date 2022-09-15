@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (tarlz-0.17.tar.lz) = 8befda3125af163dbee3a441c120a6d461bb209c
-RMD160 (tarlz-0.17.tar.lz) = e3f0142216405f6553bb02f02c863d3ba4730c60
-SHA512 (tarlz-0.17.tar.lz) = 68afe18ac20067b32a1480f0375543adfbf26e78d81c915a62e2e173efaf71c88c3faff2a1cb09e368645ab36f5d41b51837e3ef10717a84f8602929360a72b0
-Size (tarlz-0.17.tar.lz) = 98722 bytes
+BLAKE2s (tarlz-0.22.tar.lz) = 741239eb594d6f61cfefe8915881738b1b766d5194cc726cfacdc90958ea90bf
+SHA512 (tarlz-0.22.tar.lz) = 4e241ea0571e421c93fbeeb54a20e73fd4a7e9c85dc3b24295caec1a52e156cdcf5e85f4ee41f5dfae712b851d17fe0e96955380bb86306d8002f4187d0c60ec
+Size (tarlz-0.22.tar.lz) = 105724 bytes

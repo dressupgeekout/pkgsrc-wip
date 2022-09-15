@@ -1,23 +1,25 @@
-# $NetBSD: Makefile,v 1.1 2015/03/20 16:56:17 nros Exp $
+# $NetBSD$
 
-PREMAKE5_VERSION=	5.0
-DISTNAME=		premake-${PREMAKE5_VERSION}-alpha1-src
+PREMAKE5_VERSION=	5.0.0
+DISTNAME=		premake-${PREMAKE5_VERSION}-beta1-src
 PKGNAME=		premake5-${PREMAKE5_VERSION}
 CATEGORIES=		devel
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=premake/}
+MASTER_SITES=		${MASTER_SITE_GITHUB:=premake/}
+GITHUB_PROJECT=		premake-core
+GITHUB_RELEASE=		v${PREMAKE5_VERSION}-beta1
 EXTRACT_SUFX=		.zip
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://premake.bitbucket.org/
+HOMEPAGE=		https://premake.github.io/
 COMMENT=		Build script generator
 LICENSE=		modified-bsd
 
 USE_TOOLS+=		gmake
-WRKSRC=			${WRKDIR}/premake-${PREMAKE5_VERSION}-alpha1
+WRKSRC=			${WRKDIR}/premake-${PREMAKE5_VERSION}-beta1-src
 
 BUILDLINK_TRANSFORM+=	opt:-ldl:${BUILDLINK_LDADD.dl:M*}
 
-BUILD_DIRS+=		build/gmake.unix
+BUILD_DIRS+=		build/gmake2.unix
 
 INSTALLATION_DIRS=	bin
 

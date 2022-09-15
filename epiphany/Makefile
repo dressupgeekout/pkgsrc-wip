@@ -1,8 +1,8 @@
 # $NetBSD: Makefile,v 1.201 2020/11/05 09:09:20 ryoon Exp $
 
-DISTNAME=	epiphany-40.0
+DISTNAME=	epiphany-42.2
 CATEGORIES=	www gnome
-MASTER_SITES=	${MASTER_SITE_GNOME:=sources/epiphany/40/}
+MASTER_SITES=	${MASTER_SITE_GNOME:=sources/epiphany/42/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -10,10 +10,7 @@ HOMEPAGE=	https://wiki.gnome.org/Apps/Web
 COMMENT=	Web browser for the GNOME desktop
 LICENSE=	gnu-gpl-v2
 
-TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
-
-USE_TOOLS+=	pkg-config msgfmt xgettext
+USE_TOOLS+=	pkg-config msgfmt xgettext gdbus-codegen itstool
 
 MESON_ARGS+=	-Dunit_tests=disabled
 MESON_ARGS+=	-Dlibportal=disabled
@@ -21,9 +18,6 @@ MESON_ARGS+=	-Dlibportal=disabled
 LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib/epiphany
 
 PYTHON_FOR_BUILD_ONLY=	tool
-
-# XXX msgfmt: unknown option -- desktop
-_TOOLS_USE_PKGSRC.msgfmt=	yes
 
 .include "../../devel/meson/build.mk"
 .include "../../archivers/libarchive/buildlink3.mk"

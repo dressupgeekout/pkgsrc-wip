@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2015/02/04 10:10:53 thomasklausner Exp $
+# $NetBSD$
 
 DISTNAME=	sabnzbd-${DISTVERSION}
-DISTVERSION=	3.2.1
+DISTVERSION=	3.6.1
 CATEGORIES=	news
 MASTER_SITES=	${MASTER_SITE_GITHUB:=sabnzbd/}
 GITHUB_PROJECT=	sabnzbd
@@ -15,12 +15,14 @@ LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND modified-bsd AND mit
 
 DEPENDS+=	${PYPKGPREFIX}-cheetah-[0-9]*:../../devel/py-cheetah3
 DEPENDS+=	${PYPKGPREFIX}-cryptography-[0-9]*:../../security/py-cryptography
-DEPENDS+=	${PYPKGPREFIX}-sabyenc3-[0-9]*:../../wip/py-sabyenc3
+DEPENDS+=	${PYPKGPREFIX}-sabyenc3>=5.4.2:../../wip/py-sabyenc3
 DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
 DEPENDS+=	${PYPKGPREFIX}-chardet-[0-9]*:../../converters/py-chardet
 DEPENDS+=	${PYPKGPREFIX}-configobj-[0-9]*:../../devel/py-configobj
 DEPENDS+=	${PYPKGPREFIX}-portend-[0-9]*:../../net/py-portend
 DEPENDS+=	${PYPKGPREFIX}-cherrypy>=18.2:../../www/py-cherrypy
+DEPENDS+=	${PYPKGPREFIX}-guessit>=3.1.1:../../textproc/py-guessit
+DEPENDS+=	${PYPKGPREFIX}-puremagic>=1.11:../../wip/py-puremagic
 DEPENDS+=	par2-[0-9]*:../../archivers/par2
 DEPENDS+=	unrar-[0-9]*:../../archivers/unrar
 DEPENDS+=	unzip-[0-9]*:../../archivers/unzip
@@ -40,8 +42,6 @@ PKG_HOME.sabnzbd=	${PREFIX}/sabnzbd
 
 OWN_DIRS_PERMS=	${PREFIX}/sabnzbd sabnzbd sabnzbd 0755
 
-INSTALLATION_DIRS+=	email icons interfaces po sabnzbd scripts tools
-
 PY_PATCHPLIST=		yes
 REPLACE_PYTHON=		*.py */*.py */*/*.py
 
@@ -56,12 +56,13 @@ do-install:
 	cd ${WRKSRC} && pax -rw SABnzbd.py ${DESTDIR}/${PREFIX}/bin/
 	${MKDIR} ${DESTDIR}/${PREFIX}/${PYSITELIB}/
 	cd ${WRKSRC} && pax -rw -pmp sabnzbd ${DESTDIR}/${PREFIX}/${PYSITELIB}/
-.for i in ${INSTALLATION_DIRS}
 	${MKDIR} ${DESTDIR}/${PREFIX}/share/sabnzbd
+.for i in email icons interfaces po scripts tools
 	cd ${WRKSRC} && pax -rw -pmp ${i} ${DESTDIR}/${PREFIX}/share/sabnzbd
 .endfor
 	cd ${.CURDIR}/files && pax -rw -pmp sabnzbd.xml ${DESTDIR}/${PREFIX}/share/sabnzbd
-	${CHMOD} a-x ${DESTDIR}${PREFIX}/share/sabnzbd/interfaces/Plush/templates/static/stylesheets/jqueryui/overcast/images/*.png
+	${CHMOD} -R go-w ${DESTDIR}${PREFIX}
+	${CHMOD} a-x ${DESTDIR}${PREFIX}/share/sabnzbd/interfaces/Glitter/templates/static/javascripts/momentjs_locale/*.js
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
