@@ -1,8 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	apache-arrow-7.0.0
+
+DISTNAME=	apache-arrow-${APACHE_ARROW_VERSION}
 CATEGORIES=	devel
-MASTER_SITES=	https://dlcdn.apache.org/arrow/arrow-7.0.0/
+MASTER_SITES=	https://dlcdn.apache.org/arrow/arrow-${APACHE_ARROW_VERSION}/
 
 
 MAINTAINER=	matthewd@fastmail.us
@@ -12,14 +13,15 @@ LICENSE=	apache-2.0
 
 # These packages are built within arrow, and it
 # looks difficult to decouple them
-XSIMD=		aeec9c872c8b475dedd7781336710f2dd2666cb2.tar.gz
-JEMALLOC=	jemalloc-5.2.1.tar.bz2
+# They come from ./cpp/thirdparty/versions.txt
+XSIMD=		8.1.0.tar.gz
+JEMALLOC=	jemalloc-5.3.0.tar.bz2
 
 DISTFILES+=		${DISTNAME}${EXTRACT_SUFX}
 DISTFILES+=		${XSIMD}
 DISTFILES+=		${JEMALLOC}
 SITES.${XSIMD}=		https://github.com/xtensor-stack/xsimd/archive/
-SITES.${JEMALLOC}=	${MASTER_SITE_GITHUB:=jemalloc/}
+SITES.${JEMALLOC}=	${MASTER_SITE_GITHUB:=jemalloc/jemalloc/releases/download/5.3.0/}
 
 .include "../../mk/bsd.prefs.mk"
 .include "options.mk"
@@ -34,11 +36,15 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
 CMAKE_ARGS+=	-DARROW_DEPENDENCY_SOURCE=SYSTEM
 # Not yet for Gandiva
 CMAKE_ARGS+=	-DARROW_GANDIVA=OFF
+CMAKE_ARGS+=	-DARROW_CUDA=OFF
 # These seem OK
 CMAKE_ARGS+=	-DARROW_FILESYSTEM=ON
 CMAKE_ARGS+=	-DARROW_BUILD_UTILITIES=ON
 CMAKE_ARGS+=	-DARROW_CSV=ON
 CMAKE_ARGS+=	-DARROW_DATASET=ON
+
+# For finding deps
+CMAKE_ARGS+=	-Dxsimd_SOURCE=BUNDLED
 
 # Set environment variable to find the extra source packages
 CONFIGURE_ENV+=	ARROW_JEMALLOC_URL=/${DISTDIR}/${JEMALLOC}
@@ -49,6 +55,7 @@ CMAKE_ARGS+=	-DARROW_BUILD_TESTS=OFF
 
 BUILD_DEPENDS+=	cmake-[0-9]*:../../devel/cmake
 
+.include "../../wip/apache-arrow/version.mk"
 .include "../../converters/utf8proc/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/cmake/buildlink3.mk"

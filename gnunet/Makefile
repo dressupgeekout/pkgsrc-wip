@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=		gnunet-0.17.1
+DISTNAME=		gnunet-0.17.5
 CATEGORIES=		net
 MASTER_SITES=		${MASTER_SITE_GNU:=gnunet/}
 
@@ -9,7 +9,7 @@ HOMEPAGE=		https://gnunet.org/
 COMMENT=		Framework for secure P2P networking
 LICENSE=		gnu-agpl-v3
 
-USE_TOOLS+=		msgfmt pkg-config # gmake
+USE_TOOLS+=		msgfmt pkg-config gmake
 USE_LANGUAGES=		c
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
