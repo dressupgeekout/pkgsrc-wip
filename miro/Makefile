@@ -6,7 +6,7 @@ CATEGORIES=	multimedia net
 MASTER_SITES=	http://ftp.osuosl.org/pub/pculture.org/miro/src/
 
 MAINTAINER=	ryoon@NetBSD.org
-HOMEPAGE=	http://www.getmiro.com/
+HOMEPAGE=	https://www.getmiro.com/
 COMMENT=	Miro is a integrated video downloader and player
 LICENSE=	gnu-gpl-v2
 
@@ -29,7 +29,7 @@ SUBST_SED.fix-paths+=		-e 's,/usr/X11R6/lib,${X11BASE}/lib,g'
 
 PYDISTUTILSPKG=	yes
 PYSETUPSUBDIR=	linux
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-pyrex, py-gtk2, py-gobject
+PYTHON_VERSIONS_ACCEPTED=	27 # py-pyrex, py-gtk2, py-gobject
 
 .include "../../devel/py-gobject/buildlink3.mk"
 .include "../../www/webkit24-gtk/buildlink3.mk"

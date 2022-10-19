@@ -14,12 +14,12 @@ DEPENDS+=	Hack-ttf-[0-9]*:../../fonts/Hack-ttf
 DEPENDS+=	breeze-[0-9]*:../../wip/breeze
 DEPENDS+=	qqc2-desktop-style-[0-9]*:../../x11/qqc2-desktop-style
 
-USE_TOOLS+=	msgmerge
+USE_TOOLS+=	msgmerge pkg-config
 
 REPLACE_PERL+=	src/platformtheme/*.pl
 
 .include "../../devel/kio/buildlink3.mk"
-.include "../../wip/kwayland/buildlink3.mk"
+.include "../../devel/kwayland/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtquickcontrols2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

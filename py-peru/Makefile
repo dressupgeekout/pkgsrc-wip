@@ -16,7 +16,7 @@ DEPENDS+=	${PYPKGPREFIX}-yaml>=3.11:../../textproc/py-yaml
 USE_TOOLS+=	bash
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_ACCEPTED=	34 35 36 37
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 REPLACE_BASH+=		peru/resources/plugins/rsync/rsync_plugin.sh
 
@@ -25,9 +25,9 @@ REPLACE_PYTHON+=	peru/resources/plugins/curl/curl_plugin.py\
 			peru/resources/plugins/empty/empty_plugin.py \
 			peru/resources/plugins/git/git_plugin.py \
 			peru/resources/plugins/hg/hg_plugin.py   \
-		    	peru/resources/plugins/noop_cache/noop_cache_plugin.py \
-		    	peru/resources/plugins/print/print_plugin.py \
-		    	peru/resources/plugins/svn/svn_plugin.py		
+			peru/resources/plugins/noop_cache/noop_cache_plugin.py \
+			peru/resources/plugins/print/print_plugin.py \
+			peru/resources/plugins/svn/svn_plugin.py
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"

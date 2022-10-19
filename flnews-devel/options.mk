@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.1 2018/08/20 12:57:34 wiz Exp $
+# $NetBSD$
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.flnews
 PKG_SUPPORTED_OPTIONS=	inet6 nls xdbe xdg-utils
@@ -21,9 +21,9 @@ FLNEWS_OPT_DISABLE_IP6=		1
 # nls: Optional support for National Language Support (NLS)
 # Requires an OS with X/Open XSI extension API (SUSv2) and the gencat utility
 # Note: Only locales with UTF-8, ISO-8859-1 or US-ASCII codeset are supported!
-PLIST_VARS+=	nls
+PLIST_VARS+=			nls
 .if !empty(PKG_OPTIONS:Mnls)
-PLIST.nls=	yes
+PLIST.nls=			yes
 FLNEWS_OPT_DISABLE_NLS=		0
 .else
 FLNEWS_OPT_DISABLE_NLS=		1
@@ -37,8 +37,23 @@ FLNEWS_OPT_DISABLE_XDBE=	0
 FLNEWS_OPT_DISABLE_XDBE=	1
 .endif
 
-# xdg-utils: Create dependency for xdg-utils (Portland project)
-# xdg-utils are used for WWW-Browser and eMail redirection
+# xdg: Optional support for XDG (Cross-Desktop Group, now freedesktop.org)
+# - Install desktop file
+# - Install icon-theme
+# - xdg-utils (Portland project) dependency
+#   Used for WWW browser and e-mail redirection
+PLIST_VARS+=			xdg
 .if !empty(PKG_OPTIONS:Mxdg-utils)
+PLIST.xdg=			yes
+FLNEWS_OPT_DISABLE_XDG=		0
 DEPENDS+=	xdg-utils>=1.1:../../misc/xdg-utils
+.  include "../../graphics/hicolor-icon-theme/buildlink3.mk"
+# Quoted from comment:
+# | This Makefile fragment is intended to be included by packages that install
+# | desktop entries.
+# There is a desktop entry, but no MIME types are associated with this program.
+# Is this nevertheless required?
+.  include "../../sysutils/desktop-file-utils/desktopdb.mk"
+.else
+FLNEWS_OPT_DISABLE_XDG=		1
 .endif

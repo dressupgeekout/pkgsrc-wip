@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (tinyarray-1.2.4.tar.gz) = 792b0214d51f7b10c757c0e1b329a6b434a807a3aa0354bd0f6ac2a19edc7adb
+SHA512 (tinyarray-1.2.4.tar.gz) = 9bf3d1050cb0e0332ac494fd5e4fb3c063cfb4973ec2b62e9f96202c2800159b8f3774059791e462a1ebfdf5de806f597a953ea0804cc4d6dab3a32bd34bfd3b
+Size (tinyarray-1.2.4.tar.gz) = 37980 bytes

@@ -1,12 +1,12 @@
 # $NetBSD: Makefile,v 1.6 2014/10/09 14:06:30 thomasklausner Exp $
 
-DISTNAME=		URI-Title-1.901
+DISTNAME=		URI-Title-1.902
 PKGNAME=		p5-${DISTNAME}
 CATEGORIES=		www perl5
 MASTER_SITES=		${MASTER_SITE_PERL_CPAN:=URI/}
 
 MAINTAINER=		hiramatu@boreas.dti.ne.jp
-HOMEPAGE=		http://search.cpan.org/dist/URI-Title/
+HOMEPAGE=		https://metacpan.org/release/URI-Title
 COMMENT=		Get the titles of things on the web in a sensible way
 LICENSE=		${PERL5_LICENSE}
 

@@ -4,12 +4,12 @@ PKGNAME=	edb-debugger-0.9.21
 CATEGORIES=	devel
 
 GIT_REPOSITORIES=	edb
-GIT_REPO.edb=		git://github.com/eteran/edb-debugger.git
+GIT_REPO.edb=		https://github.com/eteran/edb-debugger.git
 
 WRKSRC=		${WRKDIR}/edb
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://codef00.com/projects#debugger
+HOMEPAGE=	https://codef00.com/projects#debugger
 COMMENT=	Cross platform x86/x86-64 debugger
 LICENSE=	gnu-gpl-v2
 

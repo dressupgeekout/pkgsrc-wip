@@ -10,13 +10,12 @@ HOMEPAGE=	https://files.pythonhosted.org/packages/source/S/SQLAlchemy-Searchable
 COMMENT=	Provides fulltext search capabilities
 LICENSE=	modified-bsd # TODO: (see mk/license.mk)
 
-USE_LANGUAGES=	# none
-EGG_NAME=	${DISTNAME:S/-/_/1}
-
-DEPENDS+=	${PYPKGPREFIX}-pyparsing-[0-9]*:../../devel/py-pyparsing
 DEPENDS+=	${PYPKGPREFIX}-sqlalchemy-[0-9]*:../../databases/py-sqlalchemy
 DEPENDS+=	${PYPKGPREFIX}-sqlalchemy-utils-[0-9]*:../../databases/py-sqlalchemy-utils
 DEPENDS+=	${PYPKGPREFIX}-validators-[0-9]*:../../textproc/py-validators
+DEPENDS+=	${PYPKGPREFIX}-pyparsing-[0-9]*:../../devel/py-pyparsing
+
+USE_LANGUAGES=	# none
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -10,18 +10,18 @@ HOMEPAGE=	http://www.openerp.com/
 COMMENT=	Open source application ERP & CRM in Python using Postgresql
 LICENSE=	gnu-agpl-v3
 
-DEPENDS +=	${PYPKGPREFIX}-psycopg2>0:../../databases/py-psycopg2
-DEPENDS +=	${PYPKGPREFIX}-babel>0:../../devel/py-babel
-DEPENDS +=	${PYPKGPREFIX}-simplejson>0:../../converters/py-simplejson
-DEPENDS +=	${PYPKGPREFIX}-chart>0:../../graphics/py-chart
-DEPENDS +=	${PYPKGPREFIX}-dot>0:../../graphics/py-dot
-DEPENDS +=	${PYPKGPREFIX}-libxslt>0:../../textproc/py-libxslt
-DEPENDS +=	${PYPKGPREFIX}-lxml>0:../../textproc/py-lxml
-DEPENDS +=	${PYPKGPREFIX}-yaml>0:../../textproc/py-yaml
-DEPENDS +=	${PYPKGPREFIX}-mako>0:../../devel/py-mako
-DEPENDS +=	${PYPKGPREFIX}-werkzeug>0:../../www/py-werkzeug
-DEPENDS +=	${PYPKGPREFIX}-dateutil>0:../../time/py-dateutil
-DEPENDS +=	${PYPKGPREFIX}-reportlab-[0-9]*:../../print/py-reportlab
+DEPENDS+=	${PYPKGPREFIX}-psycopg2>0:../../databases/py-psycopg2
+DEPENDS+=	${PYPKGPREFIX}-babel>0:../../devel/py-babel
+DEPENDS+=	${PYPKGPREFIX}-simplejson>0:../../converters/py-simplejson
+DEPENDS+=	${PYPKGPREFIX}-chart>0:../../graphics/py-chart
+DEPENDS+=	${PYPKGPREFIX}-dot>0:../../graphics/py-dot
+DEPENDS+=	${PYPKGPREFIX}-libxslt>0:../../textproc/py-libxslt
+DEPENDS+=	${PYPKGPREFIX}-lxml>0:../../textproc/py-lxml
+DEPENDS+=	${PYPKGPREFIX}-yaml>0:../../textproc/py-yaml
+DEPENDS+=	${PYPKGPREFIX}-mako>0:../../devel/py-mako
+DEPENDS+=	${PYPKGPREFIX}-werkzeug>0:../../www/py-werkzeug
+DEPENDS+=	${PYPKGPREFIX}-dateutil>0:../../time/py-dateutil
+DEPENDS+=	${PYPKGPREFIX}-reportlab-[0-9]*:../../print/py-reportlab
 
 NIGHTLY=	20140115-002435
 WRKSRC=		${WRKDIR}/${DISTNAME}
@@ -47,7 +47,7 @@ post-build:
 	${SED} -e "s#@PYSITELIB@#${PREFIX}/${PYSITELIB}#g" < \
 		${FILESDIR}/openerp-server.conf.in > ${PREFIX}/etc/openerp-server.conf.sample
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../graphics/py-imaging/buildlink3.mk"
 .include "../../textproc/py-libxml2/buildlink3.mk"
 .include "../../textproc/py-xml/buildlink3.mk"

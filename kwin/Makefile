@@ -7,6 +7,7 @@ HOMEPAGE=	https://www.kde.org/workspaces/plasmadesktop/
 COMMENT=	KDE Window manager
 LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
+PLASMAVER=	5.12.5
 .include "../../meta-pkgs/kde/plasma5.mk"
 
 BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
@@ -18,12 +19,13 @@ USE_TOOLS+=	msgmerge pkg-config
 SUBST_CLASSES+=		fix-moc
 SUBST_STAGE.fix-moc=	post-configure
 SUBST_MESSAGE.fix-moc=	Cleaning up MOC includes
-SUBST_FILES.fix-moc=	_KDE_build/kcmkwin/kwinscripts/CMakeFiles/kcm_kwin_scripts_autogen.dir/AutogenInfo.cmake
-SUBST_FILES.fix-moc+=	_KDE_build/kcmkwin/kwincompositing/CMakeFiles/kwincompositing_autogen.dir/AutogenInfo.cmake
-SUBST_FILES.fix-moc+=	_KDE_build/kcmkwin/kwinscreenedges/CMakeFiles/kcm_kwinscreenedges_autogen.dir/AutogenInfo.cmake
-SUBST_FILES.fix-moc+=	_KDE_build/kcmkwin/kwinscreenedges/CMakeFiles/kcm_kwintouchscreen_autogen.dir/AutogenInfo.cmake
-SUBST_FILES.fix-moc+=	_KDE_build/CMakeFiles/kwin_autogen.dir/AutogenInfo.cmake
-SUBST_SED.fix-moc=	-e 's,;${PREFIX}/include;,;,g'
+SUBST_FILES.fix-moc=	_KDE_build/*/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_FILES.fix-moc+=	_KDE_build/*/*/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_FILES.fix-moc+=	_KDE_build/*/*/*/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_FILES.fix-moc+=	_KDE_build/plugins/*/*/*/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_FILES.fix-moc+=	_KDE_build/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_NOOP_OK.fix-moc=	yes
+SUBST_SED.fix-moc=	-e 's;"${PREFIX}/include",;;g'
 
 SUBST_CLASSES+=		xdg
 SUBST_STAGE.xdg=	pre-configure

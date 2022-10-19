@@ -6,12 +6,12 @@ MASTER_SITES=	${MASTER_SITE_GITHUB:=andrejv/}
 GITHUB_TAG=	Version-${PKGVERSION_NOREV}
 
 MAINTAINER=	helgoman@users.sourceforge.net
-HOMEPAGE=	http://andrejv.github.io/wxmaxima/
+HOMEPAGE=	https://andrejv.github.io/wxmaxima/
 COMMENT=	Graphical UI for maxima
 LICENSE=	gnu-gpl-v2
 
 GIT_REPOSITORIES=	wxmaxima
-GIT_REPO.wxmaxima=	git://github.com/andrejv/wxmaxima.git
+GIT_REPO.wxmaxima=	https://github.com/andrejv/wxmaxima.git
 WRKSRC=			${WRKDIR}/wxmaxima
 
 DEPENDS+=	maxima>=5.15.0:../../math/maxima

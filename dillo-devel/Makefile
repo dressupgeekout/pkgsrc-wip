@@ -6,7 +6,7 @@ CATEGORIES=	www
 MASTER_SITES=	https://www.dillo.org/download/
 EXTRACT_SUFX=	.tar.bz2
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	micha@NetBSD.org
 HOMEPAGE=	https://www.dillo.org/
 COMMENT=	Very small and fast graphical web-browser
 LICENSE=	gnu-gpl-v3
@@ -19,11 +19,11 @@ REPLACE_PERL+=	dpid/dpidc dillo-install-hyphenation
 USE_TOOLS+=	autoconf perl:run wget:run
 
 PKG_SYSCONFSUBDIR=	dillo
-EGDIR=		${PREFIX}/share/examples/dillo
-CONF_FILES=	${EGDIR}/dillorc ${PKG_SYSCONFDIR}/dillorc
-CONF_FILES+=	${EGDIR}/dpidrc ${PKG_SYSCONFDIR}/dpidrc
-CONF_FILES+=	${EGDIR}/keysrc ${PKG_SYSCONFDIR}/keysrc
-CONF_FILES+=	${EGDIR}/domainrc ${PKG_SYSCONFDIR}/domainrc
+EGDIR=			${PREFIX}/share/examples/dillo
+CONF_FILES=		${EGDIR}/dillorc ${PKG_SYSCONFDIR}/dillorc
+CONF_FILES+=		${EGDIR}/dpidrc ${PKG_SYSCONFDIR}/dpidrc
+CONF_FILES+=		${EGDIR}/keysrc ${PKG_SYSCONFDIR}/keysrc
+CONF_FILES+=		${EGDIR}/domainrc ${PKG_SYSCONFDIR}/domainrc
 
 INSTALLATION_DIRS=	share/doc/dillo ${EGDIR}
 

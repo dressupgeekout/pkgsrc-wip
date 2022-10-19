@@ -10,7 +10,7 @@ COMMENT=	Meta-package for the GNOME desktop
 
 META_PACKAGE=	yes
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-ORBit via py-gnome2, py-gtk2 via py-gtksourceview
+PYTHON_VERSIONS_ACCEPTED=	27 # py-ORBit via py-gnome2, py-gtk2 via py-gtksourceview
 
 .include "../../lang/python/pyversion.mk"
 
@@ -58,7 +58,7 @@ DEPENDS+=	gnome-desktop>=2.26.2:../../x11/gnome-desktop
 DEPENDS+=	gnome-desktop-sharp>=2.26.0:../../x11/gnome-desktop-sharp
 .endif
 DEPENDS+=	gnome-doc-utils>=0.16.1:../../textproc/gnome-doc-utils
-DEPENDS+=	gnome-games>=2.26.2:../../games/gnome-games
+#DEPENDS+=	gnome-games>=2.26.2:../../games/gnome-games
 DEPENDS+=	gnome-icon-theme>=2.26.0:../../graphics/gnome-icon-theme
 DEPENDS+=	gnome-keyring>=2.26.1:../../security/gnome-keyring
 .if ${X11_TYPE} != "native" || exists(${X11BASE}/lib/libXdamage.so)
@@ -73,7 +73,6 @@ DEPENDS+=	gnome-panel>=2.26.2:../../x11/gnome-panel
 #DEPENDS+=	gnome-power-manager>=2.26.1:../../sysutils/gnome-power-manager
 DEPENDS+=	gnome-power-manager>=2.24.2:../../sysutils/gnome-power-manager
 .endif
-DEPENDS+=	${PYPKGPREFIX}-gnome2-desktop>=2.26.0:../../x11/py-gnome2-desktop
 DEPENDS+=	gnome-screensaver>=2.26.1:../../x11/gnome-screensaver
 DEPENDS+=	gnome-session>=2.26.1:../../x11/gnome-session
 DEPENDS+=	gnome-settings-daemon>=2.26.1:../../sysutils/gnome-settings-daemon

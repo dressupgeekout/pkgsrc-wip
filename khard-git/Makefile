@@ -10,7 +10,7 @@ COMMENT=		Console carddav client
 LICENSE=		gnu-gpl-v3
 
 GIT_REPOSITORIES=	khard
-GIT_REPO.khard=		git://github.com/scheibler/khard.git
+GIT_REPO.khard=		https://github.com/scheibler/khard.git
 
 WRKSRC=			${WRKDIR}/khard
 
@@ -22,7 +22,7 @@ DEPENDS+=		${PYPKGPREFIX}-vdirsyncer-[0-9]*:../../time/py-vdirsyncer
 REPLACE_PYTHON+=	davcontroller/*.py
 REPLACE_PYTHON+=	khard/*.py
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # as of 20150204
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 20150204
 
 INSTALLATION_DIRS+=	share/examples/khard
 

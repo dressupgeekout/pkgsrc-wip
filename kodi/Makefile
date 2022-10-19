@@ -2,6 +2,7 @@
 
 PKGNAME=	kodi-17.3
 DISTNAME=	17.3-Krypton
+PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://mirrors.kodi.tv/releases/source/
 
@@ -34,7 +35,7 @@ CMAKE_ARGS+=		-DENABLE_DVDCSS=no
 # XXX does not work?
 CMAKE_ARGS+=		-DKODI_DEPENDSBUILD=0
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # insists on < 3.0 as of 15.2
+PYTHON_VERSIONS_ACCEPTED=	27 # insists on < 3.0 as of 15.2
 
 PLIST_SUBST+=		MACHINE_CPU=${MACHINE_CPU}
 
@@ -110,7 +111,7 @@ do-build:
 .include "../../net/avahi/buildlink3.mk"
 # builtin for now
 #.include "../../net/libupnp/buildlink3.mk"
-.include "../../archivers/libunrar/buildlink3.mk" # XXX new bl3
+.include "../../archivers/libunrar/buildlink3.mk"
 .include "../../multimedia/libdvdread/buildlink3.mk"
 
 # XXX still builtin, still undefined reference

@@ -7,7 +7,7 @@ CATEGORIES=	devel java
 MASTER_SITES=	http://archive.apache.org/dist/commons/codec/binaries/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://commons.apache.org/codec/
+HOMEPAGE=	https://commons.apache.org/codec/
 COMMENT=	Encoder and decoders such as Base64 and hexadecimal codec
 LICENSE=	apache-2.0
 
@@ -18,7 +18,7 @@ USE_TOOLS+=	pax
 USE_LANGUAGES=	# none
 
 USE_JAVA=		yes
-PKG_JVMS_ACCEPTED=	sun-jdk6 sun-jdk15
+PKG_JVMS_ACCEPTED=	sun-jdk7
 
 INSTALLATION_DIRS=	lib/java share/doc/apache-commons-codec
 

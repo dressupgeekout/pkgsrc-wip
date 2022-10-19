@@ -1,11 +1,11 @@
-$NetBSD: patch-aa,v 1.2 2018/07/13 04:24:39 dbj Exp $
+$NetBSD$
 
 Remove tests from directory list.
-Added makeinclude as dependency for test target.
+Add target "test" to build test programs.
 
 --- Makefile.orig	2016-09-30 11:33:14.000000000 +0000
 +++ Makefile
-@@ -18,7 +18,7 @@
+@@ -16,7 +16,7 @@
  
  include makeinclude
  
@@ -14,7 +14,7 @@ Added makeinclude as dependency for test target.
  
  all: makeinclude fltk-config
  	for dir in $(DIRS); do\
-@@ -26,6 +26,14 @@ all: makeinclude fltk-config
+@@ -24,6 +24,14 @@ all: makeinclude fltk-config
  		(cd $$dir; $(MAKE) $(MFLAGS)) || exit 1;\
  	done
  

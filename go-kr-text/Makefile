@@ -1,6 +1,7 @@
 # $NetBSD$
 
 DISTNAME=	go-kr-text-0.1.0
+PKGREVISION=	13
 CATEGORIES=	textproc devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=kr/}
 GITHUB_PROJECT=	text
@@ -15,6 +16,6 @@ EXTRACT_USING=	bsdtar
 GO_SRCPATH=	github.com/kr/text/
 GO_DIST_BASE=	text-${PKGVERSION_NOREV}
 
-.include "../../wip/go-pty/buildlink3.mk" # XXX
+.include "../../devel/go-pty/buildlink3.mk"
 .include "../../lang/go/go-package.mk"
 .include "../../mk/bsd.pkg.mk"

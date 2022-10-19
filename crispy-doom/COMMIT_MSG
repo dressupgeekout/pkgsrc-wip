@@ -1,0 +1,6 @@
+games/crispy-doom: Import version 5.12.0
+
+Crispy Doom is a friendly fork of Chocolate Doom that provides a higher
+display resolution, removes the static limits of the Doom engine and offers
+further optional visual, tactical and physical enhancements while remaining
+entirely config file, savegame, netplay and demo compatible with the original.

@@ -9,7 +9,7 @@ MASTER_SITES=	${MASTER_SITE_GITHUB:=aircrack-ng/}
 GITHUB_TAG=	caa946dad310ce6bf53b08ba5fc98a2d7c7a8053
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.aircrack-ng.org/
+HOMEPAGE=	https://www.aircrack-ng.org/
 COMMENT=	Tools for auditing wireless networks
 LICENSE=	gnu-gpl-v3
 
@@ -25,9 +25,7 @@ SUBST_STAGE.paths=	post-patch
 SUBST_MESSAGE.paths=	Fixing hard-coded paths
 SUBST_FILES.paths=	src/airodump-ng.h
 SUBST_FILES.paths+=	scripts/*
-SUBST_FILES.paths+=	scripts/*/*
 SUBST_FILES.paths+=	scripts/*/*/*
-SUBST_FILES.paths+=	scripts/*/*/*/*
 SUBST_SED.paths=	-e 's,/usr/local/etc,${PKG_SYSCONFDIR},g'
 
 pre-configure:

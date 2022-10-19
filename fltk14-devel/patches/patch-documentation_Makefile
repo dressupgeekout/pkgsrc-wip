@@ -1,10 +1,10 @@
-$NetBSD: patch-ad,v 1.2 2018/07/13 04:24:39 dbj Exp $
+$NetBSD$
 
 Do not install manpages to cat1/cat3 directories.
 
 --- documentation/Makefile.orig	2015-06-16 13:18:28.000000000 +0000
 +++ documentation/Makefile
-@@ -88,11 +88,6 @@ install: $(MANPAGES)
+@@ -86,11 +86,6 @@ install: $(MANPAGES)
  	  $(INSTALL_DATA) fltk.pdf $(DESTDIR)$(docdir); \
  	fi
  	echo "Installing man pages in $(DESTDIR)$(mandir) ..."

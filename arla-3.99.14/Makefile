@@ -6,7 +6,7 @@ CATEGORIES=		net security
 MASTER_SITES=		ftp://ftp.stacken.kth.se/pub/arla/
 
 MAINTAINER=		ola@mreriksson.net
-HOMEPAGE=		http://www.stacken.kth.se/project/arla/
+HOMEPAGE=		https://www.stacken.kth.se/project/arla/
 COMMENT=		Free AFS implementation from KTH
 
 
@@ -46,7 +46,7 @@ FILES_SUBST+=		ARLA_CACHE=${ARLA_CACHE:Q}
 
 SUBST_CLASSES+=		paths
 SUBST_FILES.paths=	${WRKDIR}/lkm.conf
-SUBST_SED.paths+=	-e 's,@PREFIX@,${PREFIX},g'
+SUBST_VARS.paths=	PREFIX
 SUBST_STAGE.paths=	post-patch
 
 INSTALL_MAKE_FLAGS+=	${MAKE_FLAGS}

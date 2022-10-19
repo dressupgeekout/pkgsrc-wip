@@ -1,14 +1,14 @@
 # $NetBSD$
 
 GITHUB_PROJECT=	OpenSubdiv
-DISTNAME=	OpenSubdiv-3.1.0.RC2
+DISTNAME=	OpenSubdiv-3.4.4
 PKGNAME=	${DISTNAME:tl}
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=PixarAnimationStudios/}
 GITHUB_TAG=	v${PKGVERSION_NOREV:S/./_/g:tu}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://graphics.pixar.com/opensubdiv/docs/intro.html
+HOMEPAGE=	https://graphics.pixar.com/opensubdiv/docs/intro.html
 COMMENT=	High performance subdivision surface for parallel architectures
 LICENSE=	apache-2.0
 
@@ -25,5 +25,7 @@ CMAKE_ARGS+=	-DNO_CUDA:BOOL=ON
 TEST_TARGET=	test
 
 .include "options.mk"
+
+.include "../../parallel/threadingbuildingblocks/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

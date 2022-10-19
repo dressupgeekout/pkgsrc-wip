@@ -6,7 +6,7 @@ CATEGORIES=		games
 MASTER_SITES=		${MASTER_SITE_IFARCHIVE:=programming/glk/implementations/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.ifarchive.org/indexes/if-archiveXprogrammingXglkXimplementations.html
+HOMEPAGE=		https://www.ifarchive.org/indexes/if-archiveXprogrammingXglkXimplementations.html
 COMMENT=		Glk library that loads real glk implementation at runtime
 
 DEPENDS+=		glkterm-[0-9]*:../../wip/glkterm
@@ -19,7 +19,7 @@ EGDIR=		${DOCDIR}/samples
 CONF_FILES=	${EGDIR}/glkloaderrc ${PKG_SYSCONFDIR}/glkloaderrc
 
 post-install:
-	${INSTALL_DATA} ${FILESDIR}/glkstart.h ${LOCALBASE}/include/glkloader
+	${INSTALL_DATA} ${FILESDIR}/glkstart.h ${PREFIX}/include/glkloader
 	${INSTALL_DATA_DIR} ${EGDIR}
 	${INSTALL_DATA} ${FILESDIR}/glkloaderrc ${EGDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${DOCDIR}

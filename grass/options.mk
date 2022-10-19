@@ -16,7 +16,7 @@ PKG_SUGGESTED_OPTIONS+=	opengl pgsql python sqlite
 CONFIGURE_ARGS+=	--with-ffmpeg
 CONFIGURE_ARGS+=	--with-ffmpeg-includes=${PREFIX}/include/libavcodec
 CONFIGURE_ARGS+=	--with-ffmpeg-libs=${PREFIX}/lib
-.include "../../multimedia/ffmpeg1/buildlink3.mk"
+.include "../../multimedia/ffmpeg2/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-ffmpeg
 .endif
@@ -53,8 +53,7 @@ USE_LANGUAGES+=		fortran
 CONFIGURE_ARGS+=	--with-blas
 CONFIGURE_ARGS+=	--with-blas-libs=${PREFIX}/lib
 CONFIGURE_ARGS+=	--with-lapack
-.include "../../math/blas/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-blas
 CONFIGURE_ARGS+=	--without-lapack
@@ -87,7 +86,7 @@ CONFIGURE_ARGS+=	--without-mysql
 .if !empty(PKG_OPTIONS:Mopengl)
 CONFIGURE_ARGS+=	--with-opengl
 PLIST.opengl=		yes
-.include "../../graphics/Mesa/buildlink3.mk"
+.include "../../graphics/MesaLib/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-opengl
 .endif
@@ -128,7 +127,7 @@ CONFIGURE_ARGS+=	--without-odbc
 # XXX - requires new version of wxWidgets
 .if !empty(PKG_OPTIONS:MwxWidgets)
 CONFIGURE_ARGS+=	--with-wxwidgets=${PREFIX}/bin/wx-config
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-wxWidgets
+PYTHON_VERSIONS_ACCEPTED=	27 # py-wxWidgets
 .include "../../x11/py-wxWidgets/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-wxwidgets

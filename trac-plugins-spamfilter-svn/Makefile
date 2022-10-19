@@ -8,13 +8,13 @@ PKGREVISION=	1
 CATEGORIES=	www
 
 MAINTAINER=	roy@NetBSD.org
-HOMEPAGE=	http://trac.edgewall.org/wiki/SpamFilter
+HOMEPAGE=	https://trac.edgewall.org/wiki/SpamFilter
 COMMENT=	Spam Filter plugin for Trac
 
 DEPENDS+=	trac>=0.12:../../www/trac
 DEPENDS+=	${PYPKGPREFIX}-dns-[0-9]*:../../net/py-dns
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 0.3.2dev/9935
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 0.3.2dev/9935
 
 SVN_REPOSITORIES=		spamfilter
 SVN_REPO.spamfilter=		https://svn.edgewall.org/repos/trac/plugins/0.12/spam-filter-captcha

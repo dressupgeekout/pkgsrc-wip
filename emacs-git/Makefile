@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.74 2015/04/24 01:19:04 makoto Exp $
+# $NetBSD$
 
 .include	"version.mk"
 DISTNAME=	emacs-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
-PKGNAME=	emacs27-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
+PKGNAME=	emacs29-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
 CATEGORIES=	editors
-GIT_REPO=	git://git.sv.gnu.org/emacs.git
+GIT_REPO=	git://git.savannah.gnu.org/emacs.git
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.gnu.org/software/emacs/
@@ -46,6 +46,7 @@ CONF_FILES_PERMS+=	/dev/null ${VARBASE}/games/emacs/tetris-scores \
 # build PATH in the dumped emacs is not a problem
 CHECK_WRKREF_SKIP+=	bin/emacs
 CHECK_WRKREF_SKIP+=	bin/emacs-${PKGVERSION_NOREV}
+CHECK_WRKREF_SKIP+=	libexec/emacs/${PKGVERSION_NOREV}/${MACHINE_GNU_PLATFORM}/emacs.pdmp
 
 PRINT_PLIST_AWK+=	{ gsub(/${PKGVERSION_NOREV}/, "$${PKGVERSION}"); \
 			gsub(/${MACHINE_GNU_PLATFORM}/, "$${MACHINE_GNU_PLATFORM}"); \
@@ -58,7 +59,14 @@ post-extract:
 pre-configure:
 	(cd ${WRKSRC}; ${PKGSRC_SETENV} ${CONFIGURE_ENV} ${CONFIG_SHELL} ./autogen.sh)
 
+# by default the filename of the emacs dump contains a fingerprint of the corresponding emacs version
+# but this is not needed and makes the PLIST more simple
+post-install:
+	cd ${DESTDIR}${PREFIX}/libexec/emacs/${PKGVERSION_NOREV}/${MACHINE_GNU_PLATFORM} && \
+		mv emacs-*.pdmp emacs.pdmp
+
 .include "../../wip/mk/git-package.mk"
+.include "../../fonts/harfbuzz/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/libimagequant/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"

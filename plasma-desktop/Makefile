@@ -3,14 +3,14 @@
 DISTNAME=	plasma-desktop-${PLASMAVER}
 CATEGORIES=	x11
 
-HOMEPAGE=	https://www.kde.org/workspaces/plasmadesktop/
+HOMEPAGE=	https://kde.org/plasma-desktop/
 COMMENT=	KDE Plasma Desktop
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/plasma5.mk"
 
 BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
-DEPENDS+=	ksysguard>=${PLASMAVER}:../../wip/ksysguard
+#DEPENDS+=	ksysguard>=${PLASMAVER}:../../wip/ksysguard
 DEPENDS+=	kmenuedit>=${PLASMAVER}:../../wip/kmenuedit
 DEPENDS+=	polkit-kde-agent>=${PLASMAVER}:../../wip/polkit-kde-agent
 DEPENDS+=	qt5-qtgraphicaleffects-[0-9]*:../../x11/qt5-qtgraphicaleffects
@@ -19,36 +19,19 @@ USE_TOOLS+=	msgmerge pkg-config
 
 CMAKE_ARGS+=	-DKAUTH_DBUS_DIR=${PREFIX}/share/examples/plasma-desktop
 
-SUBST_CLASSES+=		xdg
-SUBST_STAGE.xdg=	pre-configure
-SUBST_MESSAGE.xdg=	Install via examples dir.
-SUBST_FILES.xdg=	kcms/colors/CMakeLists.txt
-SUBST_FILES.xdg+=	kcms/cursortheme/CMakeLists.txt
-SUBST_FILES.xdg+=	kcms/desktoptheme/CMakeLists.txt
-SUBST_FILES.xdg+=	kcms/emoticons/CMakeLists.txt
-SUBST_FILES.xdg+=	kcms/icons/CMakeLists.txt
-SUBST_FILES.xdg+=	kcms/kfontinst/kcmfontinst/CMakeLists.txt
-SUBST_FILES.xdg+=	kcms/lookandfeel/CMakeLists.txt
-SUBST_SED.xdg=		-e 's:{CONFIG_INSTALL_DIR}:{KDE_INSTALL_XDG_EX_DIR}:'
-SUBST_SED.xdg+=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_XDG_EX_DIR}:'
+#REPLACE_PYTHON+=	kcms/ksmserver/kconf_update/ksmserver_update_loginMode_value.py
+CHECK_INTERPRETER_SKIP+=	share/kconf_update/*
 
-MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/colorschemes.knsrc \
-		${PKG_SYSCONFDIR}/xdg/colorschemes.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/emoticons.knsrc \
-		${PKG_SYSCONFDIR}/xdg/emoticons.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/icons.knsrc \
-		${PKG_SYSCONFDIR}/xdg/icons.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/kfontinst.knsrc \
-		${PKG_SYSCONFDIR}/xdg/kfontinst.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/lookandfeel.knsrc \
-		${PKG_SYSCONFDIR}/xdg/lookandfeel.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/plasma-themes.knsrc \
-		${PKG_SYSCONFDIR}/xdg/plasma-themes.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/xcursor.knsrc \
-		${PKG_SYSCONFDIR}/xdg/xcursor.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/plasma-desktop/org.kde.fontinst.conf \
-		${PKG_SYSCONFDIR}/dbus-1/system.d/org.kde.fontinst.conf
+SUBST_CLASSES+=		fix-moc
+SUBST_STAGE.fix-moc=	post-configure
+SUBST_MESSAGE.fix-moc=	Cleaning up MOC includes
+SUBST_FILES.fix-moc=	_KDE_build/*/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_FILES.fix-moc+=	_KDE_build/*/*/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_FILES.fix-moc+=	_KDE_build/*/*/*/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_FILES.fix-moc+=	_KDE_build/*/*/*/*/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_NOOP_OK.fix-moc=	yes
+SUBST_SED.fix-moc=	-e 's;"${PREFIX}/include",;;g'
+
 CONF_FILES+=	${PREFIX}/share/examples/plasma-desktop/org.kde.kcontrol.kcmclock.conf \
 		${PKG_SYSCONFDIR}/dbus-1/system.d/org.kde.kcontrol.kcmclock.conf
 
@@ -71,10 +54,12 @@ pre-configure:
 .include "../../fonts/fontconfig/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../inputmethod/ibus/buildlink3.mk"
+PYTHON_VERSIONS_INCOMPATIBLE=	27
+.include "../../lang/python/application.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../sysutils/baloo5/buildlink3.mk"
+.include "../../wip/libksysguard/buildlink3.mk"
 .include "../../wip/systemsettings/buildlink3.mk"
-.include "../../x11/kactivities-stats/buildlink3.mk"
 .include "../../x11/kdelibs4support/buildlink3.mk"
 .include "../../x11/libxkbfile/buildlink3.mk"
 .include "../../x11/plasma-framework/buildlink3.mk"

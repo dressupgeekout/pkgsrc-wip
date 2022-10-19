@@ -1,18 +1,18 @@
 # $NetBSD$
 
-DISTNAME=	obnc_0.12.0
+DISTNAME=	obnc_0.14.2
 PKGNAME=	${DISTNAME:S/_/-/}
 CATEGORIES=	lang
 MASTER_SITES=	http://miasap.se/obnc/downloads/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://miasap.se/obnc/
-COMMENT=	a compiler for the Oberon programming language
+HOMEPAGE=	https://miasap.se/obnc/
+COMMENT=	Compiler for the Oberon programming language
 LICENSE=	gnu-gpl-v3
 
 WRKSRC=	${WRKDIR}/${PKGNAME_NOREV}
 
-USE_LANGUAGE=	c
+USE_LANGUAGES=	c
 
 do-build:
 	cd ${WRKSRC} && \
@@ -22,6 +22,7 @@ do-build:
 
 do-install:
 	cd ${WRKSRC} && \
+		${PKGSRC_SETENV} ${MAKE_ENV} \
 		./install \
 			--destdir=${DESTDIR}
 

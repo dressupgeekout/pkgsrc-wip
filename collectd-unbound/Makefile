@@ -1,5 +1,4 @@
 # $NetBSD$
-#
 
 DISTNAME=		collectd-unbound
 PKGNAME=		${DISTNAME}-20150830

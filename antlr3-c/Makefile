@@ -7,7 +7,7 @@ CATEGORIES=	textproc
 MASTER_SITES=	http://www.antlr3.org/download/C/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.antlr3.org/
+HOMEPAGE=	https://www.antlr3.org/
 COMMENT=	ANother Tool for Language Recognition, C bindings
 LICENSE=	modified-bsd
 
@@ -17,6 +17,6 @@ USE_TOOLS+=	gmake
 
 # Would enable -m32 on a 64 bit system if it does get the compiler
 # version wrong.
-CONFIGURE_ARGS +=	--disable-abiflags
+CONFIGURE_ARGS+=	--disable-abiflags
 
 .include "../../mk/bsd.pkg.mk"

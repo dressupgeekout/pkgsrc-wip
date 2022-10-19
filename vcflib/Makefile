@@ -19,10 +19,10 @@ SUBST_STAGE.ldflags=	post-patch
 SUBST_SED.ldflags=	-e "s|LDFLAGS =|LDFLAGS = ${COMPILER_RPATH_FLAG}${PREFIX}/lib|g"
 
 CXXFLAGS+=	-I${PREFIX}/include/smithwaterman \
- 		-I${PREFIX}/include/multichoose \
- 		-I${PREFIX}/include/filevercmp \
- 		-I${PREFIX}/include/fastahack \
- 		-I${PREFIX}/include/intervaltree \
+		-I${PREFIX}/include/multichoose \
+		-I${PREFIX}/include/filevercmp \
+		-I${PREFIX}/include/fastahack \
+		-I${PREFIX}/include/intervaltree \
 		-DVERSION='"${PORTVERSION}"'
 LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib
 MAKE_FLAGS=	LIB_PATH+=${COMPILER_RPATH_FLAG}${PREFIX}/lib
@@ -44,7 +44,7 @@ pre-configure:
 post-install:
 	cd ${DESTDIR}${PREFIX}/lib && ${LN} -s libvcflib.so.1 libvcflib.so
 
-.include "../../wip/htslib/buildlink3.mk"
+.include "../../biology/htslib/buildlink3.mk"
 .include "../../wip/tabixpp/buildlink3.mk"
 .include "../../wip/smithwaterman/buildlink3.mk"
 .include "../../wip/fastahack/buildlink3.mk"

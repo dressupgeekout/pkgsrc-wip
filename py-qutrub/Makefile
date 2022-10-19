@@ -6,7 +6,7 @@ CATEGORIES=	textproc python
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=arabeyes/}
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://qutrub.arabeyes.org/index
+HOMEPAGE=	https://qutrub.arabeyes.org/index
 COMMENT=	Qutrub is an Arabic verb conjugator
 LICENSE=	gnu-gpl-v2
 
@@ -18,7 +18,7 @@ USE_LANGUAGES=	# none
 QUTRUB_FILES=	ar_ctype.py arabic_const.py classverb.py mosaref_main.py  conjugate.py conjugatedisplay.py  index.py verb_const.py
 
 PLIST_SUBST+=	PYSITELIB=${PYSITELIB}
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-sqlite2
+PYTHON_VERSIONS_ACCEPTED=	27 # py-sqlite2
 PY_EXEC=	${PREFIX}/bin/python${PYVERSSUFFIX}
 QUTRUBDIR=	${PREFIX}/${PYSITELIB}/py-qutrub
 

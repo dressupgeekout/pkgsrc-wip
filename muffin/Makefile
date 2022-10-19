@@ -1,29 +1,36 @@
 # $NetBSD: Makefile,v 1.17 2013/06/17 12:45:12 thomasklausner Exp $
 
-DISTNAME=	muffin-3.8.1
+DISTNAME=	muffin-5.2.0
+PKGREVISION=	1
 CATEGORIES=	wm
 MASTER_SITES=	${MASTER_SITE_GITHUB:=linuxmint/}
 GITHUB_PROJECT=	muffin
 GITHUB_TAG=	${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://github.com/linuxmin/muffin
+HOMEPAGE=	https://github.com/linuxmint/muffin
 COMMENT=	Cinnamon window manager
 LICENSE=	gnu-gpl-v2
 
-GNU_CONFIGURE=		yes
+WRKSRC=			${WRKDIR}/muffin-5.2.0
 USE_LIBTOOL=		yes
-USE_TOOLS+=		gmake intltool automake msgfmt pkg-config autoreconf
+GNU_CONFIGURE=		yes
+USE_TOOLS+=		pkg-config gmake automake intltool autoreconf
+USE_PKGLOCALEDIR=	yes
 
-BUILD_DEPENDS+=		autoconf-archive-[0-9]*:../../devel/autoconf-archive
-BUILD_DEPENDS+=		gettext-m4-[0-9]*:../../devel/gettext-m4
-DEPENDS+=		zenity-[0-9]*:../../x11/zenity
+PKGCONFIG_OVERRIDE+=	clutter/clutter/muffin-clutter.pc.in
+PKGCONFIG_OVERRIDE+=	cogl/cogl-gles2/muffin-cogl-gles2.pc.in
+PKGCONFIG_OVERRIDE+=	cogl/cogl-pango/muffin-cogl-pango.pc.in
+PKGCONFIG_OVERRIDE+=	cogl/cogl-path/muffin-cogl-path.pc.in
+PKGCONFIG_OVERRIDE+=	cogl/cogl/muffin-cogl.pc.in
+PKGCONFIG_OVERRIDE+=	src/libmuffin.pc.in
+PKGCONFIG_OVERRIDE+=	src/muffin-plugins.pc.in
 
 pre-configure:
 	cd ${WRKSRC} && NOCONFIGURE=1 ./autogen.sh
 
 .include "../../audio/libcanberra/buildlink3.mk"
-.include "../../graphics/clutter/buildlink3.mk"
+#.include "../../graphics/clutter/buildlink3.mk"
 .include "../../textproc/gnome-doc-utils/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../x11/startup-notification/buildlink3.mk"
@@ -31,7 +38,7 @@ pre-configure:
 .include "../../devel/gobject-introspection/buildlink3.mk"
 .include "../../sysutils/accountsservice/buildlink3.mk"
 .include "../../textproc/gtk-doc/buildlink3.mk"
-
+.include "../../textproc/json-glib/buildlink3.mk"
 .include "../../wip/cinnamon-desktop/buildlink3.mk"
-
+.include "../../x11/zenity/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -2,10 +2,10 @@
 
 DISTNAME=	Net-SMS-Clickatell-0.05
 CATEGORIES=	comms perl5
-MASTER_SITES=	http://search.cpan.org/CPAN/authors/id/R/RA/RALAMOSM/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/R/RA/RALAMOSM/}
 
 MAINTAINER=	kethzer.dr@gmail.com
-HOMEPAGE=	http://search.cpan.org/~ralamosm/Net-SMS-Clickatell/
+HOMEPAGE=	https://metacpan.org/release/Net-SMS-Clickatell
 COMMENT=	Access to Clickatell SMS messaging service
 LICENSE=	${PERL5_LICENSE}
 

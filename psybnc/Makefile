@@ -17,11 +17,11 @@ BUILD_DEPENDS+=		glib-[0-9]*:../../devel/glib
 USE_TOOLS+=	gmake
 
 CONF_FILES=		share/examples/psybnc/psybnc.conf \
-                        ${PKG_SYSCONFDIR}/psybnc.conf
+			${PKG_SYSCONFDIR}/psybnc.conf
 
 SUBST_CLASSES+=		prefix
 SUBST_FILES.prefix=	tools/autoconf.c
-SUBST_SED.prefix=	-e "s|@PREFIX@|${PREFIX}|g"
+SUBST_VARS.prefix=	PREFIX
 SUBST_STAGE.prefix=	post-patch
 SUBST_CLASSES+=		openssl
 SUBST_FILES.openssl=	makefile.out

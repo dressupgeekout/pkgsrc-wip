@@ -2,6 +2,7 @@
 #
 
 DISTNAME=	dolfin-${MMVERSION}.0
+PKGREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	http://launchpad.net/dolfin/${MMVERSION}.x/${MMVERSION}.0/+download/
 
@@ -22,7 +23,7 @@ REPLACE_PYTHON+=	scripts/dolfin-convert/dolfin-convert
 
 CMAKE_ARGS+=	-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
 		-DDOLFIN_ENABLE_MPI:BOOL=OFF \
-		-DLOCALBASE=${LOCALBASE}
+		-DLOCALBASE=${PREFIX}
 
 # CHOLMOD_DIR, UMFPACK_DIR, etc. will default to .buildlink.  See CMakeCache.txt
 # Installed dolfin-config.cmake contains .buildlink where it should use
@@ -40,7 +41,7 @@ CMAKE_ARGS+=	-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
 CXXFLAGS+=	-fpermissive
 
 .if ${OPSYS} == "Darwin"
-CXXFLAGS+=	-I${LOCALBASE}/${PYINC}
+CXXFLAGS+=	-I${PREFIX}/${PYINC}
 .endif
 
 # Fix for variadic template warnings, but causes make_pair() error
@@ -93,8 +94,7 @@ MMVERSION=	1.2
 .include "../../wip/py-instant/buildlink3.mk"
 .include "../../wip/py-ufl/buildlink3.mk"
 .include "../../wip/py-viper/buildlink3.mk"
-.include "../../math/blas/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 # cgal requires qt4-libs and qt4-tools, which don't currently build on Linux or Mac
 #.include "../../math/cgal/buildlink3.mk"
 .include "../../math/py-numpy/buildlink3.mk"

@@ -35,19 +35,11 @@ MAKEFLAGS.xemacs+=	XEMACS=${EMACS_BIN} \
 EMACS_MODULES=		base
 EMACS_BUILDLINK=	# empty
 
-# string-to-int to string-to-number
-SUBST_CLASSES+=		s2i
-SUBST_MESSAGE.s2i=	string-to-int is an obsolete function; use `string-to-number' instead
-SUBST_STAGE.s2i=	post-patch
-SUBST_FILES.s2i=	mime-parse.el
-SUBST_SED.s2i=		-e s/string-to-int/string-to-number/g
-
-
 post-build:
 	cd ${WRKSRC}; for i in mime-en mime-ja; do			\
 		${RM} -f $${i}.info*;					\
 		${CP} $${i}.texi $${i}.texi.orig;			\
-		${LOCALBASE}/bin/qkc -Oeu $${i}.texi.orig >$${i}.texi;	\
+		${PREFIX}/bin/qkc -Oeu $${i}.texi.orig >$${i}.texi;	\
 		makeinfo --force --no-validate $${i}.texi;		\
 	done
 

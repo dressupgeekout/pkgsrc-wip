@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.7 2014/04/20 14:53:47 rhialto Exp $
+# $NetBSD$
 #
 
-DISTNAME=	unnethack-5.1.0-20131208
-#PKGREVISION=	0
+DISTNAME=	unnethack-5.2.0
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=unnethack/}
-VER=		510
+VER=		520
 
 MAINTAINER=	rhialto@falu.nl
 HOMEPAGE=	http://sourceforge.net/apps/trac/unnethack/
@@ -33,7 +32,7 @@ BUILD_TARGET+=		datastuff
 INSTALL_TARGET+=	manpages install-dat
 INSTALLATION_DIRS=	${PKGMANDIR}/man6 ${GAMEDIR}
 
-PLIST_SUBST+=	VER=$(VER)
+PLIST_SUBST+=	VER=${VER}
 PLIST_VARS=	x11
 
 USE_LANGUAGES=	c
@@ -50,8 +49,8 @@ BUILD_DEFS+=		GAMES_USER GAMES_GROUP
 GAMEPERM=		${NETHACK_USER} ${NETHACK_GROUP} 2555
 
 GAMEDIR=		${PREFIX}/share/${NETHACK_DIR}
-NETHACK_DIR=		unnethackdir$(VER)
-VARDIR=			/var/games/unnethack$(VER)
+NETHACK_DIR=		unnethackdir${VER}
+VARDIR=			/var/games/unnethack${VER}
 MAN6DIR=		${PREFIX}/${PKGMANDIR}/man6
 #MAKE_ENV+=		GAMEDIR=${GAMEDIR:Q}
 MAKE_ENV+=		MANDIR=${MAN6DIR:Q}

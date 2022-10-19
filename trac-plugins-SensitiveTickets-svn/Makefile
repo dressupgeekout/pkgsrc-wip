@@ -7,14 +7,14 @@ SVN_VERSION=		12834
 DISTNAME=	TracSensitiveTickets-${VERSION}
 PKGNAME=	trac-plugins-SensitiveTickets-${VERSION}
 # Empty PKGREVISION because svn-package by default sets one.
-PKGREVISION=	
+PKGREVISION=
 CATEGORIES=	www
 MASTER_SITES=	# not defined
 
 # setup.py says "GPL".
 LICENSE=	gnu-gpl-v2
 
-MAINTAINER=	gdt@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://trac-hacks.org/wiki/SensitiveTicketsPlugin
 COMMENT=	Ticket dependency plugin for Trac
 

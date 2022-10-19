@@ -7,7 +7,7 @@ CATEGORIES=	devel java
 MASTER_SITES=	http://archive.apache.org/dist/commons/lang/binaries/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://commons.apache.org/lang/
+HOMEPAGE=	https://commons.apache.org/lang/
 COMMENT=	Extension of the java.lang package
 LICENSE=	apache-2.0
 
@@ -17,7 +17,7 @@ NO_BUILD=	yes
 USE_LANGUAGES=	# none
 
 USE_JAVA=		yes
-PKG_JVMS_ACCEPTED=	sun-jdk6 sun-jdk15 sun-jdk14
+PKG_JVMS_ACCEPTED=	sun-jdk7
 
 INSTALLATION_DIRS=	lib/java
 

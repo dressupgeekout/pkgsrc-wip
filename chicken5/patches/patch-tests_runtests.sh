@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-tests_runtests.sh,v 1.1 2018/12/21 12:35:38 leot Exp $
 
 `export -p' also exports make(1) variables that contains `.', e.g.
 `.MAKE.ENV.LEVEL'.  As part of `. ./env.out' this lead to failure because

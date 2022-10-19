@@ -8,7 +8,7 @@ PKGNAME=	mono-0.0.0
 CATEGORIES=	lang
 
 MAINTAINER=	kamil@NetBSD.org
-HOMEPAGE=	http://www.mono-project.com/
+HOMEPAGE=	https://www.mono-project.com/
 COMMENT=	Open source ECMA CLI, C# and .NET implementation
 LICENSE=	mit AND gnu-gpl-v2 AND gnu-lgpl-v2 AND apache-2.0
 
@@ -134,7 +134,7 @@ SUBST_CLASSES+=			fix-libx11
 SUBST_STAGE.fix-libx11=		pre-configure
 SUBST_MESSAGE.fix-libx11=	Fixing libX11 search path configuration
 SUBST_FILES.fix-libx11=		configure
-SUBST_SED.fix-libx11=		-e 's,@X11BASE@,${X11BASE},g'
+SUBST_VARS.fix-libx11=		X11BASE
 
 PLIST_VARS=	monodoc
 

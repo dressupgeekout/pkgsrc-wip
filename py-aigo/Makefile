@@ -14,7 +14,7 @@ LICENSE=	gnu-gpl-v3
 CONFLICTS=	${PYPKGPREFIX}-creole-[0-9]*
 DEPENDS+=	${PYPKGPREFIX}-matplotlib-[0-9]*:../../graphics/py-matplotlib
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-wxWidgets
+PYTHON_VERSIONS_ACCEPTED=	27 # py-wxWidgets
 
 post-extract:
 	${MV} ${WRKSRC}/bin/AIGO-gui.py ${WRKSRC}/bin/AIGO-gui.py${PYVERSSUFFIX}
@@ -22,7 +22,7 @@ post-extract:
 do-test:
 	${RUN} cd ${WRKSRC}/tests; ${SETENV} ${TEST_ENV} ${PYTHONBIN} testAIGO.py
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../x11/py-wxWidgets/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

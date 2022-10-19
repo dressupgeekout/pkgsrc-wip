@@ -1,18 +1,14 @@
 # $NetBSD: Makefile,v 1.1 2013/04/13 08:39:13 jgoamakf Exp $
 
-DISTNAME=	PerlIO-Layers-0.011
+DISTNAME=	PerlIO-Layers-0.012
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=PerlIO/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Querying your filehandle's capabilities
-HOMEPAGE=	http://search.cpan.org/dist/PerlIO-Layers/
+HOMEPAGE=	https://metacpan.org/release/PerlIO-Layers
 LICENSE=	${PERL5_LICENSE}
-
-USE_LANGUAGES+=	c
-
-DEPENDS+=	p5-XSLoader-[0-9]*:../../devel/p5-XSLoader
 
 PERL5_MODULE_TYPE=	Module::Build
 

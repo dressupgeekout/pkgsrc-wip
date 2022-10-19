@@ -2,6 +2,7 @@
 #
 
 DISTNAME=	spai-3.2
+PKGREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	http://www.computational.unibas.ch/software/spai/
 EXTRACT_SUFX=	.tar.bz2
@@ -21,7 +22,6 @@ USE_LANGUAGES=	c fortran
 
 CONFIGURE_ARGS+=	--with-mpi=${BUILDLINK_PREFIX.mpi}
 
-.include "../../math/blas/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../mk/mpi.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

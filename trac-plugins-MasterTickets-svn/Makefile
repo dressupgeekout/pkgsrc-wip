@@ -9,14 +9,14 @@ PKGREVISION=
 CATEGORIES=		www
 MASTER_SITES=		# not defined
 
-MAINTAINER=	gdt@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://trac-hacks.org/wiki/MasterTicketsPlugin
 COMMENT=	Ticket dependency plugin for Trac
 LICENSE=	modified-bsd
 
 DEPENDS+=	trac>=1.0:../../www/trac
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 3.0.4/r12946
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 3.0.4/r12946
 
 SVN_REPOSITORIES=		mastertickets
 SVN_REPO.mastertickets=		https://trac-hacks.org/svn/masterticketsplugin/trunk

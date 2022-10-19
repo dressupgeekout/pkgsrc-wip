@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (plasma-desktop-5.12.4.tar.xz) = 6fa92090acac258d1296cc715309d92c14a85b1f
-RMD160 (plasma-desktop-5.12.4.tar.xz) = e1b1878dfbd509a0fd9be6786bf3ab1e2936738a
-SHA512 (plasma-desktop-5.12.4.tar.xz) = 1aaecdddfd373512eaabea2c1c2e172c058b4aac52144feb14c8c0bc096db0e8242f7f712e228fc4f9188877e045cfd4d1e9890578234c61f6b408f8c3cfb660
-Size (plasma-desktop-5.12.4.tar.xz) = 8532112 bytes
+BLAKE2s (plasma-desktop-5.24.6.tar.xz) = 3c65e93e72f265d1b56181ad690b286f91a6b63905e59fa713a45b9a3ec5458b
+SHA512 (plasma-desktop-5.24.6.tar.xz) = 5a9324473fbb78b804c2311c223e97f66a0a00a91848818de47eb92167af6e86db22c4323a9709642a4fc58818c2a451b2afebeda35c203ad8136f119fa40023
+Size (plasma-desktop-5.24.6.tar.xz) = 6246924 bytes
+SHA1 (patch-kcms_CMakeLists.txt) = b4c9de8c0c45f420ea603e1a1ce31bfb0c62e3df

@@ -2,7 +2,7 @@
 
 DISTNAME=	xmms2-0.8DrO_o
 PKGNAME=	${DISTNAME:S/DrO_o//1}
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=xmms2/}
 EXTRACT_SUFX=	.tar.bz2
@@ -37,7 +37,7 @@ do-configure:
 			--with-default-output-plugin=oss \
 			--mandir=${PREFIX}/${PKGMANDIR} \
 			--boost-includes=${BOOST_INCLUDES}
-			# --without-plugins=${WITHOUT_PLUGINS} # space clobbered
+	# --without-plugins=${WITHOUT_PLUGINS} # space clobbered
 
 do-build:
 	cd ${WRKSRC} && \

@@ -6,7 +6,7 @@ CATEGORIES=		math
 MASTER_SITES=		ftp://ftp.fftw.org/pub/fftw/ \
 			http://www.fftw.org/
 
-MAINTAINER=		bacon@NetBSD.org
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.fftw.org/
 COMMENT=		Collection of fast C routines to compute DFTs
 LICENSE=		gnu-gpl-v2
@@ -34,7 +34,7 @@ CONFIGURE_ARGS+=	--enable-mpi
 
 .if defined(PKGSRC_RUN_TEST) && !empty(PKGSRC_RUN_TEST:M[Yy][Ee][Ss])
 USE_TOOLS+=		perl
-TEST_MAKE_FLAGS+=	MPIRUN=$(MPI_PREFIX)/bin/mpirun
+TEST_MAKE_FLAGS+=	MPIRUN=${MPI_PREFIX}/bin/mpirun
 .endif
 
 .include "../../devel/libltdl/buildlink3.mk"

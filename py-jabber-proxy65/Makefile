@@ -5,7 +5,7 @@ PKGNAME=	${PYPKGPREFIX}-jabber-${DISTNAME:S/P/p/}
 CATEGORIES=	chat python
 MASTER_SITES=	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/proxy65/
 
-MAINTAINER=	eric@cirr.com
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://proxy65.googlecode.com/
 COMMENT=	XEP-0065 proxy transport for XMPP
 LICENSE=	mit
@@ -20,7 +20,7 @@ DEPENDS+=	${PYPKGPREFIX}-twisted>=8.1.0:../../net/py-twisted
 DEPENDS+=	${PYPKGPREFIX}-automat-[0-9]*:../../devel/py-automat
 DEPENDS+=	${PYPKGPREFIX}-OpenSSL>=0.6:../../security/py-OpenSSL
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # as of 1.2.0
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 1.2.0
 
 # always include bsd.prefs.mk before any .if or .ifdef statements
 .include "../../mk/bsd.prefs.mk"
@@ -46,5 +46,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCDIR}
 .endfor
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,6 +1,7 @@
-$NetBSD: distinfo,v 1.55 2015/11/04 02:46:53 agc Exp $
+$NetBSD: distinfo,v 1.58 2020/06/10 19:45:51 nia Exp $
 
-SHA1 (epiphany-3.16.3.tar.xz) = f5d7ad0ee302496f59945ff9034758d775dbb78f
-RMD160 (epiphany-3.16.3.tar.xz) = 270f4b7018e7000813d26f80ea3832642b0e25c0
-SHA512 (epiphany-3.16.3.tar.xz) = 68f4dc0e299b929f244818d93a9af14f48ef2c3a93813fe5457c11d37ddb5a5e2b5ae3f93f0d41e8095590f87d8679d2cee5b6298c128475a9ad9eb6aa3c8bae
-Size (epiphany-3.16.3.tar.xz) = 3082680 bytes
+BLAKE2s (epiphany-42.2.tar.xz) = aa79f16800242149bd12e6b20c6cec04063ca47ca415f2a4372ab924df3b589a
+SHA512 (epiphany-42.2.tar.xz) = 3b7bcd9225f06caca547e8d822818e7d9b5a178028cd97b17b8e2474fec7337c4d6b4d718b3cf014784939d0b2f36e84305d6e9115521fdf762af178e5fc07d3
+Size (epiphany-42.2.tar.xz) = 6101892 bytes
+SHA1 (patch-lib_contrib_gnome-languages.c) = b28bae5aa9951f4e016cd8a8cab188136a2fe583
+SHA1 (patch-lib_ephy-sync-utils.c) = 15b7f2aa909190225b987c036497941ac1c82505

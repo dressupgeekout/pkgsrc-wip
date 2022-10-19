@@ -3,10 +3,10 @@
 DISTNAME=	Exception-Class-TryCatch-1.13
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	devel perl5
-MASTER_SITES=	http://search.cpan.org/CPAN/authors/id/D/DA/DAGOLDEN/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/D/DA/DAGOLDEN/}
 
 MAINTAINER=	ficovh@yahoo.com
-HOMEPAGE=	http://search.cpan.org/CPAN/authors/id/D/DA/DAGOLDEN/
+HOMEPAGE=	https://metacpan.org/pod/Exception::Class::TryCatch
 COMMENT=	Syntactic try/catch sugar for use with Exception::Class
 
 DEPENDS+=	p5-Exception-Class>=0:../../devel/p5-Exception-Class

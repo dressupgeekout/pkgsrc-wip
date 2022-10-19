@@ -12,7 +12,7 @@ MAINTAINER=	pkgsrc-users@netbsd.org
 HOMEPAGE=	http://microtetris.sourceforge.net/
 COMMENT=	MicroTetris is a simple and compact popular game Tetris
 
-DEPENDS+=	${PYPKGPREFIX}-cairo-[0-9]*:../../graphics/py-cairo
+DEPENDS+=	${PYPKGPREFIX}-cairo-[0-9]*:../../graphics/py-cairo118
 
 WRKSRC=		${WRKDIR}
 USE_LANGUAGES=	# none
@@ -21,7 +21,7 @@ NO_BUILD=	yes
 INSTALLATION_DIRS=	bin
 
 REPLACE_PYTHON+=		${DISTNAME}.py
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2, py-gobject
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2, py-gobject
 
 do-install:
 	${CHMOD} +x ${WRKSRC}/${DISTNAME}.py

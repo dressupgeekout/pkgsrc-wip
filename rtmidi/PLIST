@@ -1,0 +1,11 @@
+@comment $NetBSD$
+include/rtmidi/RtMidi.h
+include/rtmidi/rtmidi_c.h
+lib/librtmidi.so
+lib/librtmidi.so.6
+lib/librtmidi.so.6.0.0
+lib/pkgconfig/rtmidi.pc
+share/rtmidi/RtMidiTargets-noconfig.cmake
+share/rtmidi/RtMidiTargets.cmake
+share/rtmidi/rtmidi-config-version.cmake
+share/rtmidi/rtmidi-config.cmake

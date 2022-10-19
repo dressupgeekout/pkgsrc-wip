@@ -2,13 +2,13 @@
 
 PKGNAME=	angelscript-${VERSION}
 DISTNAME=	angelscript_${VERSION}
-VERSION=	2.32.0
+VERSION=	2.36.0
 CATEGORIES=	lang
 MASTER_SITES=	http://angelcode.com/angelscript/sdk/files/
 EXTRACT_SUFX=	.zip
 
-MAINTAINER=	cfkoch@edgebsd.org
-HOMEPAGE=	http://angelcode.com/angelscript/
+MAINTAINER=	charlotte@NetBSD.org
+HOMEPAGE=	https://angelcode.com/angelscript/
 COMMENT=	The AngelScript programming language
 LICENSE=	zlib
 

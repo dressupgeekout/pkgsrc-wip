@@ -7,13 +7,13 @@ MASTER_SITES=	${MASTER_SITE_GNOME:=sources/d-feet/0.1/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-gnome@gmail.com
-HOMEPAGE=	http://live.gnome.org/d-feet/
+HOMEPAGE=	https://live.gnome.org/d-feet/
 COMMENT=	D-Feet is a powerful dbus debugger
 LICENSE=	gnu-gpl-v2
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2, py-gobject
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2, py-gobject
 
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	pre-configure

@@ -15,8 +15,10 @@ USE_TOOLS+=	msgmerge pkg-config
 SUBST_CLASSES+=		fix-moc
 SUBST_STAGE.fix-moc=	post-configure
 SUBST_MESSAGE.fix-moc=	Cleaning up MOC includes
-SUBST_FILES.fix-moc=	_KDE_build/src/service/plugins/*/CMakeFiles/*_autogen.dir/AutogenInfo.cmake
-SUBST_SED.fix-moc=	-e 's,;${PREFIX}/include;,;,g'
+SUBST_FILES.fix-moc=	_KDE_build/src/service/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_FILES.fix-moc+=	_KDE_build/src/service/plugins/*/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_NOOP_OK.fix-moc=	yes
+SUBST_SED.fix-moc=	-e 's;"${PREFIX}/include",;;g'
 
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/kio/buildlink3.mk"

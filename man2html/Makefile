@@ -5,11 +5,11 @@ PKGNAME=	${DISTNAME:S/html/html-/}
 CATEGORIES=	textproc
 MASTER_SITES+=	https://acadix.biz/Ports/distfiles/
 MASTER_SITES+=	http://hydra.nac.uci.edu/indiv/ehood/tar/
-MASTER_SITES+=	ftp://ftp.cpan.org/pub/CPAN/modules/by-authors/Earl_Hood/
+MASTER_SITES+=	${MASTER_SITE_PERL_CPAN:=../../authors/Earl_Hood/}
 MASTER_SITES+=	http://people.freebsd.org/~demon/
 
 MAINTAINER=	bacon@NetBSD.org
-HOMEPAGE=	http://www.nongnu.org/man2html/
+HOMEPAGE=	https://www.nongnu.org/man2html/
 COMMENT=	Convert nroff(1) man pages to HTML
 LICENSE=	gnu-gpl-v2
 

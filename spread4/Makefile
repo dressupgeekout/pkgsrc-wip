@@ -1,12 +1,12 @@
 # $NetBSD: Makefile,v 1.4 2014/07/18 11:10:22 fhajny Exp $
 #
 
-DISTNAME=	spread-src-4.4.0
+DISTNAME=	spread-src-4.4.1
 PKGNAME=	${DISTNAME:S/-src//}
 CATEGORIES=	net
-MASTER_SITES=	ftp://ftp.NetBSD.org/pub/NetBSD/misc/fhajny/
+MASTER_SITES=	${MASTER_SITE_LOCAL}
 
-MAINTAINER=	filip@joyent.com
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.spread.org/
 COMMENT=	Group communication system providing a number of messaging services
 
@@ -54,6 +54,13 @@ SUBST_VARS.spread=	SPREAD_USER SPREAD_GROUP SPREAD_DIR PKG_SYSCONFDIR
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/docs/sample.spread.access_ip ${DESTDIR}${EXAMPLEDIR}/spread.access_ip
+
+.include "../../mk/dlopen.buildlink3.mk"
+# Work around upstream bug where -ldl is added on NetBSD.  Per POSIX,
+# the use of -ldl is irregular:
+#  https://pubs.opengroup.org/onlinepubs/9699919799/functions/dlopen.html
+# Reported to contact address on 20200830, with no response.
+BUILDLINK_TRANSFORM+=   opt:-ldl:${BUILDLINK_LDADD.dl:M*}
 
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

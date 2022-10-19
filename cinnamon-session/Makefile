@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.1 2015/02/19 21:21:12 jihbed Exp $
 
-DISTNAME=	cinnamon-session-3.8.1
+DISTNAME=	cinnamon-session-5.2.0
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=linuxmint/}
 GITHUB_PROJECT=	cinnamon-session
@@ -11,7 +11,7 @@ HOMEPAGE=	https://github.com/linuxmint/cinnamon-session
 COMMENT=	Cinnamon session
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2
 
-USE_TOOLS+=	gmake pkg-config intltool msgfmt
+USE_TOOLS+=	pkg-config intltool msgfmt
 
 BUILD_DEPENDS+=	autoconf-archive-[0-9]*:../../devel/autoconf-archive
 BUILD_DEPENDS+=	xmlto-[0-9]*:../../textproc/xmlto
@@ -21,7 +21,7 @@ LDFLAGS.SunOS+=	-lsocket
 .include "../../wip/xapps/buildlink3.mk"
 
 .include "../../audio/libcanberra/buildlink3.mk"
-.include "../../devel/py-meson/build.mk"
+.include "../../devel/meson/build.mk"
 .include "../../devel/GConf/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/glib2/schemas.mk"

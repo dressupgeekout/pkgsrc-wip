@@ -1,12 +1,12 @@
 # $NetBSD: Makefile,v 1.8 2014/12/31 14:14:16 thomasklausner Exp $
 
-DISTNAME=	fslsfonts-1.0.5
+DISTNAME=	fslsfonts-1.0.6
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_XORG:=app/}
-EXTRACT_SUFX=	.tar.bz2
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	blair.sadewitz@gmail.com
-HOMEPAGE=	http://xorg.freedesktop.org/
+HOMEPAGE=	https://xorg.freedesktop.org/
 COMMENT=	Lists fonts served by the X server using pattern-matching
 
 USE_TOOLS+=	pkg-config

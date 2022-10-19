@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	check-update-0.9.7
+DISTNAME=	check-update-0.9.20
 CATEGORIES=	pkgtools
 MASTER_SITES=	${MASTER_SITE_GITHUB:=makoto-fujiwara/}
 
@@ -17,6 +17,7 @@ DEPENDS+=	p5-Algorithm-Diff-[0-9]*:../../devel/p5-Algorithm-Diff
 DEPENDS+=	ruby[0-9]*-base-[0-9]*:../../lang/${RUBY_PKGPREFIX}-base
 DEPENDS+=	p5-Algorithm-Diff-[0-9]*:../../devel/p5-Algorithm-Diff
 DEPENDS+=	p5-Mozilla-CA-[0-9]*:../../security/p5-Mozilla-CA
+DEPENDS+=	git-base-[0-9]*:../../devel/git-base
 
 USE_TOOLS+=	perl:run
 NO_BUILD=	YES
@@ -50,7 +51,7 @@ SUBST_FILES.path=	check-update
 #SUBST_SED.path=	-e 's,@@CHECK_UPDATE_DIR@@,${PREFIX}/${CHECK_UPDATE_DIR},'
 SUBST_VARS.path=	CHECK_UPDATE_DIR PREFIX
 
-REPLACE_PERL+=	${INSTALLATION_SCRIPT}
+REPLACE_PERL+=	${INSTALLATION_SCRIPT} check-update
 
 do-install:
 	(cd ${WRKSRC};  ${INSTALL_SCRIPT} check-update ${DESTDIR}${PREFIX}/sbin )

@@ -7,7 +7,7 @@ EXTRACT_SUFX=	.tar.bz2
 LICENSE=	gnu-gpl-v3
 
 MAINTAINER=	splitscreen@users.sourceforge.net
-HOMEPAGE=	http://sourceforge.net/projects/bashdb/
+HOMEPAGE=	https://sourceforge.net/projects/bashdb/
 COMMENT=	The Extended Python Debugger
 
 DEPENDS+=	${PYPKGPREFIX}-ipython-[0-9]*:../../devel/py-ipython
@@ -27,7 +27,7 @@ CONFIGURE_ARGS+=	--enable-pyreadline
 .endif
 
 PY_PATCHPLIST=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-ipython
+PYTHON_VERSIONS_ACCEPTED=	27 # py-ipython
 
 .include "../../lang/python/extension.mk"
 .include "../../lang/python/pyversion.mk"

@@ -12,11 +12,11 @@ LICENSE=	apache-2.0
 
 USE_LANGUAGES=	c++
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # 0.5.13.4 includes and installs old scons version
+PYTHON_VERSIONS_ACCEPTED=	27 # 0.5.13.4 includes and installs old scons version
 
 post-extract:
 	${MV} ${WRKSRC}/bin/nuitka  ${WRKSRC}/bin/nuitka${PYVERSSUFFIX}
 
 .include "../../devel/py-cython/buildlink3.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

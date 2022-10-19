@@ -7,14 +7,14 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=mk-configure/} \
 		http://mova.org/~cheusov/pub/mk-configure/
 
 MAINTAINER=	cheusov@NetBSD.org
-HOMEPAGE=	http://sourceforge.net/projects/mk-configure
+HOMEPAGE=	https://sourceforge.net/projects/mk-configure
 COMMENT=	Lightweight but powerful replacement for GNU autotools
 LICENSE=	modified-bsd
 
 DEPENDS+=	bmake-[0-9]*:../../devel/bmake
 
 GIT_REPOSITORIES=		mk-configure
-GIT_REPO.mk-configure=	git://github.com/cheusov/mk-configure.git
+GIT_REPO.mk-configure=	https://github.com/cheusov/mk-configure.git
 .include "../../wip/mk/git-package.mk"
 
 USE_LANGUAGES=		c

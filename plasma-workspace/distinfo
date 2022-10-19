@@ -1,7 +1,6 @@
 $NetBSD$
 
-SHA1 (plasma-workspace-5.12.4.tar.xz) = 1440b91bfda3e3aae9bfa3d586e1491da7cbb818
-RMD160 (plasma-workspace-5.12.4.tar.xz) = d1c3ea7ee4ec036f204203e441f62e6971635ab3
-SHA512 (plasma-workspace-5.12.4.tar.xz) = 629f0286fffd1e90cf68611a3b14a8934e9770dd821b4c6de25549af00fefd305c848342f55559a9223199433ed8f180975ceac38765904de95179d1980fc3f5
-Size (plasma-workspace-5.12.4.tar.xz) = 4556108 bytes
-SHA1 (patch-startkde_startkde.cmake) = 49e9f3a5a3d0eb76865c1120d8aa3fee3a886030
+BLAKE2s (plasma-workspace-5.24.6.tar.xz) = 67a8cdf40839a1d19cb38686407ab83b384eec2f87e901a7c2758d337c178635
+SHA512 (plasma-workspace-5.24.6.tar.xz) = 4e49f59d565e0b84951122155158966a54c05a6999ff99503bfff667c780fac6cfc076326f0cac7d53629bfc1d81599b30e919848168f6beb79a4dc7cf7c5560
+Size (plasma-workspace-5.24.6.tar.xz) = 18500752 bytes
+SHA1 (patch-components_CMakeLists.txt) = bfd03b37aacf39e2ab6e04e8087c5e7f17c5540f

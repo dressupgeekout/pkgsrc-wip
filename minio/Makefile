@@ -1,28 +1,25 @@
 # $NetBSD$
 
 DISTNAME=	minio-${GITHUB_TAG}
-PKGNAME=	minio-20180912184956
+PKGNAME=	minio-20220813
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=minio/}
 GITHUB_PROJECT=	minio
-GITHUB_TAG=	RELEASE.2018-09-12T18-49-56Z
+GITHUB_TAG=	RELEASE.2022-08-13T21-54-44Z
 
-MAINTAINER=	cfkoch@edgebsd.org
-HOMEPAGE=	https://minio.io
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://minio.io/
 COMMENT=	High performance distributed object storage server
-LICENSE=	apache-2.0
+LICENSE=	gnu-agpl-v3
 
-EXTRACT_USING=	gtar
+CHECK_RELRO_SKIP=	bin/minio
+GO_BUILD_PATTERN=	--ldflags '-X github.com/minio/minio/cmd.Version=${GITHUB_TAG} -X github.com/minio/minio/cmd.ReleaseTag=${GITHUB_TAG}' .
+INSTALLATION_DIRS+=	bin
 
-GO_DIST_BASE=	${DISTNAME}
-GO_SRCPATH=	github.com/minio/minio
-
-# XXX Only because I personally don't see the point installing all, like,
-# 3000+ files of this package's source... all of the vendor/'d stuff, you
-# know what I mean?
 do-install:
-	${INSTALL_PROGRAM_DIR} ${DESTDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKDIR}/bin/minio ${DESTDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKDIR}/.gopath/bin/minio ${DESTDIR}${PREFIX}/bin
 
-.include "../../lang/go/go-package.mk"
+.include "go-modules.mk"
+
+.include "../../lang/go/go-module.mk"
 .include "../../mk/bsd.pkg.mk"
