@@ -1,11 +1,14 @@
-$NetBSD: distinfo,v 1.34 2022/02/03 20:38:39 adam Exp $
+$NetBSD: distinfo,v 1.36 2022/08/14 20:22:44 tnn Exp $
 
-BLAKE2s (llvm-14.0.6.src.tar.xz) = 2d44946453add45426569fd4187654f83881341c5c0109e4ffacc60e8f73af60
-SHA512 (llvm-14.0.6.src.tar.xz) = 6461bdde27aac17fa44c3e99a85ec47ffb181d0d4e5c3ef1c4286a59583e3b0c51af3c8081a300f45b99524340773a3011380059e3b3a571c3b0a8733e96fc1d
-Size (llvm-14.0.6.src.tar.xz) = 49660136 bytes
-SHA1 (patch-CMakeLists.txt) = 78e2dab2bf73f7e466ca2788fe6444e39b4ebd80
-SHA1 (patch-cmake_config-ix.cmake) = bd4ad5b56f49c356f162994524e6e708005dace8
-SHA1 (patch-cmake_modules_AddLLVM.cmake) = 148897aeba8c29b9cf55eade62554710ae0f63f3
-SHA1 (patch-include_llvm-c_DataTypes.h) = 790c9458d6590a0d6985fdcbd8785da340b9779b
-SHA1 (patch-include_llvm_Analysis_ConstantFolding.h) = 56b9374da236c346565897977040255b9766cab8
-SHA1 (patch-tools_llvm-shlib_CMakeLists.txt) = 97b9c7c3487989c2909dd0294a67a5328d9ef309
+BLAKE2s (cmake-15.0.1.src.tar.xz) = 1f7fb68a1c7c05b82a72137f3edf4a9b8dfb9e2fae277af1643e4bc545db6f75
+SHA512 (cmake-15.0.1.src.tar.xz) = fbb29395a337be4e591567cc0f990857a2663cb2335b5ef30945c6b516dbc65e86f022ef3acc1dc572cf6791e1cd20f6754256e00b60cdbf579c04ed74460522
+Size (cmake-15.0.1.src.tar.xz) = 6976 bytes
+BLAKE2s (llvm-15.0.1.src.tar.xz) = ed1e687e9fc2c529180f7352d3f8dcaa9a0de1bf4edc9c128f1fb85575afe31f
+SHA512 (llvm-15.0.1.src.tar.xz) = ec61b6d061ba71e00f6e9c1042705ab3512ff71a823e18ce75a3b8fd2ef40efff186b42d4be6ef948019e5bb5b3fb28f0c615ebb7872ec89f7643261eadf276a
+Size (llvm-15.0.1.src.tar.xz) = 53522984 bytes
+SHA1 (patch-CMakeLists.txt) = c53cef61bdaeaf5216b78330992357a632a2b0b2
+SHA1 (patch-cmake_config-ix.cmake) = f5cd0c949d35020d1051f95417e7944aa71a3d54
+SHA1 (patch-cmake_modules_AddLLVM.cmake) = 4e6668e0c3e13423ce3e19304f4ad60f66d41562
+SHA1 (patch-include_llvm-c_DataTypes.h) = ff547cae5bdf90c5a1371b9eb196e7537a03b18d
+SHA1 (patch-include_llvm_Analysis_ConstantFolding.h) = 0a8db4d876b749dd492fced6fbc8c4faf3ff2450
+SHA1 (patch-tools_llvm-shlib_CMakeLists.txt) = be0f3fd2a020f634a5f8ec972275e52dc92d36a5

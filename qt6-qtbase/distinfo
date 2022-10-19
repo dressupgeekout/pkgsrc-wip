@@ -1,9 +1,8 @@
 $NetBSD$
 
-BLAKE2s (qtbase-everywhere-src-6.3.1.tar.xz) = 01486b876bd6ed1e9fd2c0063772d3122980d8d628311a1d1033f19efb9e8407
-SHA512 (qtbase-everywhere-src-6.3.1.tar.xz) = 5c4304dc1f5fa80201b61c9c8dbf4c3449506a243ea1f87e336dc3641a37b9d40c2aa4a93190cc69ddde0f349c74e327c35de5f46de888ddfd49616903e8a7b5
-Size (qtbase-everywhere-src-6.3.1.tar.xz) = 47118260 bytes
-SHA1 (patch-cmake_FindGSSAPI.cmake) = af72f4a2f11652f61275a95b6e7e22566e549eaa
+BLAKE2s (qtbase-everywhere-src-6.4.0.tar.xz) = f21b823fd591a92f5e62ccb997ec8ba44df012e27b723f5c849bdd470a39c86b
+SHA512 (qtbase-everywhere-src-6.4.0.tar.xz) = 7c9430da115529fa5697d134bf53d185259de23529d6db17398d91d48a0b7a95acd1fbe55189a2d2b3a2ecdafb27065ea99f29f7022110c95a45d6c04ebf46a3
+Size (qtbase-everywhere-src-6.4.0.tar.xz) = 47957680 bytes
 SHA1 (patch-cmake_QtBaseGlobalTargets.cmake) = 015e6bbd049445832d6494209badc1c1a140b9a0
 SHA1 (patch-cmake_QtBuildInternals_QtBuildInternalsConfig.cmake) = f58e8e445c73444d7f0c015dd8fda64a5a662ef7
 SHA1 (patch-cmake_QtFeature.cmake) = a8e83d33467205ce39fb6df70d6dd5fcd4172d89
@@ -15,9 +14,9 @@ SHA1 (patch-qmake_generators_unix_unixmake2.cpp) = 6ea4efd2ce88d7cf3c73e1dc2cdf9
 SHA1 (patch-src_corelib_global_qglobal.cpp) = 6368692c2d5d64633d956a89c6b4607667c121a7
 SHA1 (patch-src_corelib_io_qstandardpaths_unix.cpp) = b12a41da19b25e34e12fdf80714a37e8c46278f9
 SHA1 (patch-src_corelib_io_qstorageinfo_unix.cpp) = 9919194e9f6b47f1f311b8f8223a6a7519152073
+SHA1 (patch-src_corelib_plugin_qelfparser__p.cpp) = 2a8c7b052472afaeb3b0e797625615072e1b4abf
 SHA1 (patch-src_corelib_qt__cmdline.cmake) = 25fe89821ba1e1323edae87ca1ee0bd5ccf0e407
 SHA1 (patch-src_corelib_thread_qmutex__p.h) = 47047f5af4383b622c59c3969145e44c6ac4bf18
-SHA1 (patch-src_corelib_thread_qthread__unix.cpp) = 41f9db4f26660641e1269287c37622ab6e21b504
 SHA1 (patch-src_corelib_thread_qwaitcondition__unix.cpp) = 9dffdbfc81bc7d3259020cd32b4039b7be6ee2bd
 SHA1 (patch-src_network_configure.cmake) = 754461c21574b99232efc95af3a80765b2edbecc
 SHA1 (patch-src_plugins_platforms_cocoa_qiosurfacegraphicsbuffer.mm) = 01afb2aef1d14370308c897c1d077b05c5e3f0a9

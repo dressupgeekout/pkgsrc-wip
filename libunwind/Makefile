@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2021/07/12 18:46:07 adam Exp $
+# $NetBSD: Makefile,v 1.28 2022/08/14 13:52:27 tnn Exp $
 
 .include "../../wip/llvm/version.mk"
 
@@ -12,22 +12,29 @@ COMMENT=	LLVM libunwind
 LICENSE=	apache-2.0
 
 # libunwind requires llvm and libcxx source code to build
+# As of v15.0.0 it also requires cmake source code
 LIBCXX=		libcxx-${LLVM_VERSION}.src
 LLVMDIST=	llvm-${LLVM_VERSION}.src
-_EXTRA_DIST=	${LIBCXX}${EXTRACT_SUFX} ${LLVMDIST}${EXTRACT_SUFX}
-SITES.${LIBCXX}${EXTRACT_SUFX}=		${MASTER_SITES:=${GITHUB_PROJECT}/releases/download/${GITHUB_RELEASE}/}
-SITES.${LLLVMDIST}${EXTRACT_SUFX}=	${MASTER_SITES:=${GITHUB_PROJECT}/releases/download/${GITHUB_RELEASE}/}
+CMAKE=		cmake-${LLVM_VERSION}.src
+EXTRA_DIST=	${LIBCXX}${EXTRACT_SUFX} ${LLVMDIST}${EXTRACT_SUFX} ${CMAKE}${EXTRACT_SUFX}
 
-DISTFILES=	${DEFAULT_DISTFILES} ${_EXTRA_DIST}
+SITES.${LIBCXX}${EXTRACT_SUFX}=	\
+	${MASTER_SITES:=${GITHUB_PROJECT}/releases/download/${GITHUB_RELEASE}/}
+SITES.${LLLVMDIST}${EXTRACT_SUFX}=	\
+	${MASTER_SITES:=${GITHUB_PROJECT}/releases/download/${GITHUB_RELEASE}/}
+SITES.${CMAKE}${EXTRACT_SUFX}=	\
+	${MASTER_SITES:=${GITHUB_PROJECT}/releases/download/${GITHUB_RELEASE}/}
 
-CONFIGURE_DIRS=	${WRKDIR}/build
+DISTFILES=	${DEFAULT_DISTFILES} ${EXTRA_DIST}
+
+CONFIGURE_DIRS=	build
 CMAKE_ARG_PATH=	${WRKSRC}
 
 USE_CMAKE=		yes
 USE_LANGUAGES=		c c++11
 USE_TOOLS+=		pax
-GCC_REQD+=		12
 SSP_SUPPORTED=		no
+GCC_REQD+=		10	# must be in sync with libcxx
 
 CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
 CMAKE_ARGS+=	-DCMAKE_C_COMPILER=${CC:Q}
@@ -36,12 +43,12 @@ CMAKE_ARGS+=	-DCMAKE_CXX_COMPILER=${CXX:Q}
 INSTALLATION_DIRS=	include
 
 post-extract:
-	${MKDIR} ${WRKDIR}/build
+	${MKDIR} ${WRKSRC}/build
 	${LN} -f -s ${WRKDIR}/${LIBCXX} ${WRKDIR}/libcxx
 	${LN} -f -s ${WRKDIR}/${LLVMDIST} ${WRKDIR}/llvm
+	${LN} -f -s ${WRKDIR}/${CMAKE} ${WRKDIR}/cmake
 
 post-install:
-	${RM} -f ${WRKSRC}/include/__libunwind_config.h.orig
 	cd ${WRKSRC}/include && ${PAX} -rw . ${DESTDIR}${PREFIX}/include
 
 BUILDLINK_DEPMETHOD.llvm=	build
