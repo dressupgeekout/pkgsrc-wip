@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	wyrmsun-5.3.5
+DISTNAME=	wyrmsun-5.3.6
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Andrettin/}
 GITHUB_PROJECT=	Wyrmsun
@@ -13,6 +13,6 @@ LICENSE=	gnu-gpl-v2
 
 USE_CMAKE=	yes
 
-DEPENDS+=	wyrmgus>=5.3.5:../../wip/wyrmgus
+DEPENDS+=	wyrmgus>=5.3.6:../../wip/wyrmgus
 
 .include "../../mk/bsd.pkg.mk"

@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (wyrmgus-5.3.5.tar.gz) = ee96ac461b811fb3bcbfba98b668f257bcfaa873
-RMD160 (wyrmgus-5.3.5.tar.gz) = 869df43a56a9614346200032d64c5e7a7166c059
-SHA512 (wyrmgus-5.3.5.tar.gz) = b489195669d463048d8c26a2cd6bad3d1871323735e7be3981c39bc311c18c133de6e3593ec6d3186cb34aebbdb8d4f62212450b061cb2372bb74619bbca342a
-Size (wyrmgus-5.3.5.tar.gz) = 1632599 bytes
+SHA1 (wyrmgus-5.3.6.tar.gz) = 928912cc8e1cab4c1142ab30a496ddb0becec003
+RMD160 (wyrmgus-5.3.6.tar.gz) = 878d52ea29aba7eec47b42a2669cb2bddc6d6937
+SHA512 (wyrmgus-5.3.6.tar.gz) = 719de6c136bdf0d6d8d04b6e5350e06fd109932bca7ae6da0d721b529564d27a46def69a502f9fe1d9e76a6b1ac5343ac05dcf77c51f88ba847bfefef06492c5
+Size (wyrmgus-5.3.6.tar.gz) = 1631729 bytes
