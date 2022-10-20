@@ -21,6 +21,10 @@ CFG_PREFIX="@PREFIX@"
 # report IPv6 option (IP6) as available
 CFG_IP6_DISABLE=@IP6@
 
+# User defined TCP connection timeout in seconds
+# The value 0 uses the default timeout of the operating system
+CFG_TCP_CONNECT_TIMEOUT=0
+
 # Disable compression
 # Set this to 1 if NNTP COMPRESS extension should never be used, even if the
 # required libraries (currently libz) are installed and usable
@@ -80,6 +84,12 @@ CFG_FORCE_TMR=1
 # Set this to 1 if your system report no sufficient THR extension, but you want
 # to try anyway
 CFG_FORCE_THR=1
+
+# Force usage of POSIX.1c thread-safe functions (TSF) option even if system
+# reports TSF option as not available
+# Set this to 1 if your system report no sufficient TSF extension, but you want
+# to try anyway
+CFG_FORCE_TSF=1
 
 # Force usage of POSIX.2a user portability (UP) utilities even if system reports
 # UP extension as not available
@@ -165,7 +175,7 @@ CFG_MAINTAINER="mailto:@MAINT@"
 
 # Installation path for man page
 # (must be an absolute path without trailing slash)
-# The FHS defines "/usr[/local]/share/man". The location "/usr/local/man" is
+# The FHS 3.0 defines "/usr[/local]/share/man". The location "/usr/local/man" is
 # explicitly marked deprecated.
 CFG_MAN_PATH="@MAN_PATH@/man1"
 
@@ -175,7 +185,7 @@ CFG_LICENSE_PATH="$CFG_PREFIX/share/$CFG_NAME"
 
 # Installation path for National Language Support (NLS) catalogs
 # (must be an absolute path without trailing slash)
-# The FHS defines "/usr[/local]/share/nls" for NLS catalogs but the whole
+# The FHS 3.0 defines "/usr[/local]/share/nls" for NLS catalogs but the whole
 # hierarchy below "share" is dedicated to files that are portable between
 # architectures - what our NLS catalogs are not!
 CFG_NLS_PATH="$CFG_PREFIX/lib/$CFG_NAME/nls"

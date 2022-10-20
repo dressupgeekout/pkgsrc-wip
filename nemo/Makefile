@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.1 2015/02/19 21:21:12 jihbed Exp $
 
-DISTNAME=	nemo-4.0.6
+DISTNAME=	nemo-5.2.2
 PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=linuxmint/}
@@ -13,15 +13,16 @@ COMMENT=	File Manager for Cinnamon
 LICENSE=	gnu-gpl-v2
 
 USE_LIBTOOL=		yes
-USE_TOOLS+=		pkg-config intltool
-MESON_ARGS+=		--buildtype=debug
+USE_TOOLS+=		pkg-config intltool msgfmt
+#MESON_ARGS+=		--buildtype=debug
+USE_CMAKE=		yes
 
-SUBST_CLASSES=		prefix
-SUBST_MESSAGE.prefix=	Fix prefix references
-SUBST_FILES.prefix=	src/nemo-interesting-folder-bar.c
-SUBST_FILES.prefix+=	src/nemo-properties-window.c
-SUBST_STAGE.prefix=	pre-configure
-SUBST_SED.prefix=	-e 's,/usr/share,${PREFIX}/share,g'
+#SUBST_CLASSES=		prefix
+#SUBST_MESSAGE.prefix=	Fix prefix references
+#SUBST_FILES.prefix=	src/nemo-interesting-folder-bar.c
+#SUBST_FILES.prefix+=	src/nemo-properties-window.c
+#SUBST_STAGE.prefix=	pre-configure
+#SUBST_SED.prefix=	-e 's,/usr/share,${PREFIX}/share,g'
 
 DEPENDS+=	${PYPKGPREFIX}-polib-[0-9]*:../../devel/py-polib
 DEPENDS+=	gvfs-[0-9]*:../../sysutils/gvfs
@@ -41,6 +42,7 @@ REPLACE_PYTHON=	data/merge_action_strings \
 MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/libcvc:${WRKSRC}/output/libnemo-private
 MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/libcvc:${WRKSRC}/output/libnemo-extension
 
+.include "../../devel/libgsf/buildlink3.mk"
 .include "../../devel/meson/build.mk"
 .include "../../lang/python/application.mk"
 .include "../../devel/glib2/buildlink3.mk"

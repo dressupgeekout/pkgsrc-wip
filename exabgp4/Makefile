@@ -58,7 +58,7 @@ REPLACE_PYTHON+=	etc/exabgp/examples/stderr-1.py
 REPLACE_PYTHON+=	etc/exabgp/examples/syslog-1.py
 REPLACE_PYTHON+=	etc/exabgp/examples/watchdog.run
 
-PYTHON_VERSIONS_ACCEPTED=	39 38 37 36
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 USE_LANGUAGES=		# none
 
@@ -83,7 +83,7 @@ post-install:
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man5
 	${INSTALL_DATA} ${FILESDIR}/exabgp.env ${DESTDIR}${PREFIX}/share/examples/exabgp/
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/pyversion.mk"
 .include "../../lang/python/versioned_dependencies.mk"

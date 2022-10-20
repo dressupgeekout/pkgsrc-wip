@@ -1,6 +1,6 @@
 $NetBSD$
 
---- libraries/source/fcollada/include/FUtils/FUCriticalSection.h.orig	2012-06-04 21:33:15.000000000 +0000
+--- libraries/source/fcollada/include/FUtils/FUCriticalSection.h.orig	2021-08-25 14:44:15.000000000 +0000
 +++ libraries/source/fcollada/include/FUtils/FUCriticalSection.h
 @@ -33,7 +33,7 @@ private:
  #elif defined(__APPLE__)

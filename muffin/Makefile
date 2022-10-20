@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.17 2013/06/17 12:45:12 thomasklausner Exp $
 
-DISTNAME=	muffin-5.0.0
+DISTNAME=	muffin-5.2.0
 PKGREVISION=	1
 CATEGORIES=	wm
 MASTER_SITES=	${MASTER_SITE_GITHUB:=linuxmint/}
@@ -12,7 +12,7 @@ HOMEPAGE=	https://github.com/linuxmint/muffin
 COMMENT=	Cinnamon window manager
 LICENSE=	gnu-gpl-v2
 
-WRKSRC=			${WRKDIR}/muffin-5.0.0
+WRKSRC=			${WRKDIR}/muffin-5.2.0
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		pkg-config gmake automake intltool autoreconf
@@ -40,5 +40,5 @@ pre-configure:
 .include "../../textproc/gtk-doc/buildlink3.mk"
 .include "../../textproc/json-glib/buildlink3.mk"
 .include "../../wip/cinnamon-desktop/buildlink3.mk"
-
+.include "../../x11/zenity/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

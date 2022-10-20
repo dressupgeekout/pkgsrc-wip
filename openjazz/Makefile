@@ -6,7 +6,7 @@ MASTER_SITES=	${MASTER_SITE_GITHUB:=AlisterT/}
 GITHUB_PROJECT=	openjazz
 GITHUB_TAG=	${PKGVERSION_NOREV}
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 COMMENT=	Open source reimplementation of the Jazz Jackrabbit games
 LICENSE=	gnu-gpl-v2
 
@@ -22,4 +22,5 @@ pre-configure:
 .include "../../audio/libxmp/buildlink3.mk"
 .include "../../devel/SDL/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

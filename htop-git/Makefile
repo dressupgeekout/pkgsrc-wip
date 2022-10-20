@@ -1,18 +1,16 @@
 # $NetBSD$
 
-DISTNAME=	htop-3.1.1.20211104
+DISTNAME=	htop-3.1.2.20220118
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=htop-dev/}
 GITHUB_PROJECT=	htop
-GITHUB_TAG=     e7a8d14cbd7bbb896e64effed5bc6fb023777d36
+GITHUB_TAG=     3e1a27a98110d31c42397562490150247dd7dc6a
 
 MAINTAINER=	fox@NetBSD.org
 HOMEPAGE=	https://htop.dev/
 COMMENT=	Enhanced version of top utility
 LICENSE=	gnu-gpl-v2
 
-# This version does not need procfs mount in NetBSD
-# Report bugs to fox@NetBSD.org
 CONFLICTS=	htop-[0-9]*
 
 GNU_CONFIGURE=	yes

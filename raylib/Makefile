@@ -4,11 +4,11 @@ DISTNAME=	raylib-4.0.0
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GITHUB:=raysan5/}
 
-MAINTAINER=	dressupgeekout@gmail.com
+MAINTAINER=	charlotte@NetBSD.org
+HOMEPAGE=	https://www.raylib.com/
 COMMENT=	Simple library to enjoy videogames programming
 LICENSE=	zlib
 
-EXTRACT_USING=	gtar
 USE_LANGUAGES=	c c++
 USE_CMAKE=	yes
 

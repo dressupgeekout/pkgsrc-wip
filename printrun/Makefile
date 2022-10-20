@@ -11,7 +11,6 @@ HOMEPAGE=	https://www.pronterface.com/
 COMMENT=	3D printing host suite
 LICENSE=	gnu-gpl-v3
 
-#PYTHON_VERSIONS_ACCEPTED=	36 27
 PYTHON_VERSIONS_ACCEPTED=	27
 
 DEPENDS+=	${PYPKGPREFIX}-readline>=1.0:../../devel/py-readline
@@ -38,7 +37,7 @@ PYTHON_VERSIONED_DEPENDENCIES+=	setuptools
 .include "../../x11/py-wxWidgets/buildlink3.mk"
 .include "../../devel/py-cython/buildlink3.mk"
 #.include "../../lang/python/egg.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 #.include "../../lang/python/application.mk"
 .include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

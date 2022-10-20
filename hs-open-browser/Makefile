@@ -3,7 +3,7 @@
 DISTNAME=	open-browser-0.2.1.0
 CATEGORIES=	devel
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 COMMENT=	Open a web browser from Haskell
 LICENSE=	modified-bsd
 

@@ -30,7 +30,7 @@ DEPENDS+=	${PYPKGPREFIX}-hpack>=4.0.0:../../net/py-hpack
 DEPENDS+=	${PYPKGPREFIX}-netaddr>=0.8.0:../../net/py-netaddr
 DEPENDS+=	${PYPKGPREFIX}-txtorcon>=1.15.0:../../net/py-txtorcon
 DEPENDS+=	${PYPKGPREFIX}-twisted-[0-9]*:../../net/py-twisted
-DEPENDS+=	${PYPKGPREFIX}-scour>=0.38.2:../../wip/py-scour
+DEPENDS+=	${PYPKGPREFIX}-scour>=0.38.2:../../graphics/py-scour
 DEPENDS+=	${PYPKGPREFIX}-passlib>=0.14.3:../../security/py-passlib
 DEPENDS+=	${PYPKGPREFIX}-watchdog>=0.10.4:../../sysutils/py-watchdog
 DEPENDS+=	${PYPKGPREFIX}-priority>=1.0.3:../../www/py-priority
@@ -55,5 +55,5 @@ DEPENDS+=	${PYPKGPREFIX}-werkzeug>=1.0.1:../../www/py-werkzeug
 
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../security/libsodium/buildlink3.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

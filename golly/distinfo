@@ -1,7 +1,8 @@
 $NetBSD$
 
-RMD160 (golly-4.0-src.tar.gz) = 08e02803fc6737d3dc38b6319a3993cf0f46fffa
-SHA512 (golly-4.0-src.tar.gz) = 3a39e170ceddfa4f8c261a81f7b45039e9cc2aef901915d83d3227231514bf66e254d307802cb0afddd7458722b8cbf2ce527cb9ee84a2710b52bf5bdb15484d
-Size (golly-4.0-src.tar.gz) = 5579026 bytes
-SHA1 (patch-cmdline_bgolly.cpp) = 3b1fa67e7fedfcab1e4a4dab8ee1335c2c18458f
-SHA1 (patch-gui-wx_makefile-gtk) = 1e31c3c0a9e56bb6246271e5abb8280e06240d94
+BLAKE2s (golly-4.2-src.tar.gz) = ce39513ef95a0c9f9e390214a378555a8c29c031414ce8c8ff332aa09b94fa9d
+SHA512 (golly-4.2-src.tar.gz) = b9f5cfdfe9b96590411695805dd8b875329c81027fef98dff3f16b832018be2ad3a06583bb64e12fb305268feba2347ef63c4586ff0e645721a8085f04ab382a
+Size (golly-4.2-src.tar.gz) = 15348982 bytes
+SHA1 (patch-cmdline_bgolly.cpp) = 32266c2befcb059a3fde5944d55c4809aafbe8a4
+SHA1 (patch-gui-wx_makefile-gtk) = fb37c843b99276b5457a464faac15e39dc6ba5bd
+SHA1 (patch-sound_cute__sound.h) = 60a365f7c85fbca58e034dba007eb6941fac5093

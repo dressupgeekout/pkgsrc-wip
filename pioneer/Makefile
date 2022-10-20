@@ -1,12 +1,11 @@
 # $NetBSD$
 
-DISTNAME=	pioneer-${VERSION}
-VERSION=	${GITHUB_TAG}
+DISTNAME=	pioneer-20220203
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=pioneerspacesim/}
-GITHUB_TAG=	20200203
+GITHUB_TAG=	${PKGVERSION_NOREV}
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://pioneerspacesim.net/
 COMMENT=	Game of lonely space adventure
 LICENSE=	gnu-gpl-v3

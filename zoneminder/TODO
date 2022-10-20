@@ -1,16 +1,18 @@
-Get rid of MESSAGE in favor of installed documentation if needed, or
-just delete if it's duplicative with upstream docs.
+1) for (some subset of final point releases):
 
-for (some subset of final point releases):
-
-  update to newer upstream, which requires cmake
+  update to newer upstream
 
   validate that it actually runs
 
   push to pkgsrc
 
-Investigate mysql and php compat requirements.  It seems modern php
-might somehow include mysql bindings and thus we don't need to require
-5.6.
+2) evaluate patches and push upstream
 
+3) 1.32 notes:
 
+  https://github.com/ZoneMinder/zoneminder/releases/tag/1.32.0
+  https://github.com/ZoneMinder/zoneminder/issues/2078#issuecomment-395094624
+
+  new deps: pecl-apcu, file-slurp, format-human-bytes
+
+  merge apache config

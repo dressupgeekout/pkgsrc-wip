@@ -11,7 +11,7 @@ COMMENT=	Classic Tomb Raider open-source engine
 LICENSE=	2-clause-bsd
 
 GIT_REPOSITORIES=	OpenLara
-GIT_REPO.OpenLara=	git://github.com/XProger/OpenLara.git
+GIT_REPO.OpenLara=	https://github.com/XProger/OpenLara.git
 NO_CONFIGURE=		yes
 WRKSRC=			${WRKDIR}/OpenLara
 
@@ -34,6 +34,7 @@ do-build:
 		../../libs/minimp3/minimp3.cpp \
 		../../libs/tinf/tinflate.c \
 		-I../../ \
+		${LDFLAGS} \
 		`sdl2-config --libs` -lGL -lm -lrt \
 		${PTHREAD_LIBS}
 
@@ -41,6 +42,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/OpenLara ${DESTDIR}${PREFIX}/bin/
 
 .include "../../devel/SDL2/buildlink3.mk"
+.include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../wip/mk/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

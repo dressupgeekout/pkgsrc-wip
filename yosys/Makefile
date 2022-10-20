@@ -2,12 +2,12 @@
 
 GITHUB_PROJECT=	yosys
 GITHUB_TAG=	refs/tags/${DISTNAME}
-DISTNAME=	yosys-0.10
+DISTNAME=	yosys-0.12
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=YosysHQ/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://github.com/cliffordwolf/
+HOMEPAGE=	https://yosyshq.net/yosys/
 COMMENT=	Framework for Verilog RTL synthesis
 LICENSE=	isc
 
@@ -23,7 +23,6 @@ SUBST_MESSAGE.python3=	Fixing non-shellbang references to python3.
 SUBST_STAGE.python3=	pre-configure
 SUBST_SED.python3=	-e 's,python3,${PYTHONBIN},g'
 SUBST_FILES.python3+=	Makefile
-SUBST_FILES.python3+=	backends/smt2/Makefile.inc
 SUBST_FILES.python3+=	techlibs/gowin/Makefile.inc
 SUBST_FILES.python3+=	tests/bram/run-test.sh
 SUBST_FILES.python3+=	tests/fsm/run-test.sh

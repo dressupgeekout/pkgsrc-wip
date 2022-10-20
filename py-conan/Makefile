@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	conan-1.39.0
+DISTNAME=	conan-1.45.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	pkgtools
 MASTER_SITES=	${MASTER_SITE_PYPI:=c/conan/}
@@ -44,6 +44,8 @@ DEPENDS+=	${PYPKGPREFIX}-dateutil>=2.7.0<3.0.0:../../time/py-dateutil
 #DEPENDS+=   ${PYPKGPREFIX}-cryptography>=1.3.4<2.4.0:../../security/py-cryptography
 #DEPENDS+=   ${PYPKGPREFIX}-OpenSSL>=16.0.0<19.0.0:../../security/py-OpenSSL
 .endif
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

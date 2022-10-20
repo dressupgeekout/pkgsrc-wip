@@ -45,6 +45,7 @@ CONFIGURE_ARGS+=	-system-pcre
 CONFIGURE_ARGS+=	-system-sqlite
 CONFIGURE_ARGS+=	-system-zlib
 CONFIGURE_ARGS+=	-avoid_cmake_archiving_api
+CONFIGURE_ARGS+=	-no-bundled-xcb-xinput
 .if defined(MAKE_JOBS)
 .  if !defined(MAKE_JOBS_SAFE) || empty(MAKE_JOBS_SAFE:M[nN][oO])
 CONFIGURE_ENV+=		MAKEFLAGS=-j${MAKE_JOBS}
@@ -102,7 +103,7 @@ CONFIGURE_ARGS+=		-no-framework
 # so give it a direct path to them if they aren't installed
 # in /usr/include
 .  if !exists(/usr/include)
-CONFIGURE_ARGS+=	-I ${OSX_SDK_PATH}/usr/include
+CONFIGURE_ARGS+=		-I ${OSX_SDK_PATH}/usr/include
 .  endif
 .  if exists(/usr/lib/libresolv.dylib)
 LDFLAGS+=			-lresolv
@@ -123,16 +124,12 @@ LDFLAGS.FreeBSD+=		-lutil
 REPLACE_PERL+=		libexec/syncqt.pl
 REPLACE_PERL+=		mkspecs/features/data/unix/findclasslist.pl
 REPLACE_BASH+=		util/android/android_emulator_launcher.sh
+REPLACE_PYTHON+=	util/testrunner/qt-testrunner.py
 
 PTHREAD_OPTS+=		require
 UNLIMIT_RESOURCES=	datasize
 
 BUILDLINK_PASSTHRU_DIRS+=	${QTPREFIX}
-
-# pkgsrc does not set rapth during build
-# but qdbuscpp2xml and qdbuscpp2xml are
-# executed during build
-MAKE_ENV+=		LD_LIBRARY_PATH=${WRKSRC}/lib
 
 CHECK_INTERPRETER_SKIP+=	qt6/mkspecs/features/data/mac/objc_namespace.sh
 CHECK_INTERPRETER_SKIP+=	qt6/mkspecs/features/uikit/device_destinations.sh
@@ -155,7 +152,12 @@ SUBST_MESSAGE.path=	Add to default XDG path.
 SUBST_FILES.path=	src/corelib/io/qstandardpaths_unix.cpp
 SUBST_VARS.path=	PREFIX
 
-BROKEN_FILES=		qt6/mkspecs/qmodule.pri
+# The pri file has WRKSRC in it.
+SUBST_CLASSES+=		pkgconf
+SUBST_STAGE.pkgconf=	post-build
+SUBST_MESSAGE.pkgconf=	Fixing pkg-config WRKSRC path.
+SUBST_FILES.pkgconf=	mkspecs/qmodule.pri
+SUBST_SED.pkgconf=	-e 's,PKG_CONFIG_EXECUTABLE = .*,PKG_CONFIG_EXECUTABLE = ${TOOLS_PATH.pkg-config},'
 
 .if ${OPSYS} == "Linux"
 QMAKE_EXTRA=		QMAKE_PLATFORM += linux
@@ -200,20 +202,24 @@ pre-configure:
 .include "options.mk"
 
 .if ${OPSYS} != "Darwin"
-CONFIGURE_ARGS+= -- -DQT_DISABLE_RPATH:BOOL=ON
-CONFIGURE_ARGS+= -DCMAKE_SKIP_RPATH:BOOL=ON
-LDFLAGS+=${COMPILER_RPATH_FLAG}${QTPREFIX}/lib
+CONFIGURE_ARGS+=	-- -DQT_DISABLE_RPATH:BOOL=ON
+CONFIGURE_ARGS+=	-DCMAKE_SKIP_RPATH:BOOL=ON
+LDFLAGS+=		${COMPILER_RPATH_FLAG}${QTPREFIX}/lib
 .endif
 
-post-install:
-# The pri file has WRKSRC in it.
-	${SED} -e 's,PKG_CONFIG_EXECUTABLE = .*,PKG_CONFIG_EXECUTABLE = ${TOOLS_PATH.pkg-config},' \
-		${DESTDIR}${PREFIX}/${BROKEN_FILES} \
-		> ${DESTDIR}${PREFIX}/${BROKEN_FILES}.1
-	${MV} -f ${DESTDIR}${PREFIX}/${BROKEN_FILES}.1 \
-		${DESTDIR}${PREFIX}/${BROKEN_FILES}
-
 TOOL_DEPENDS+=	xmlstarlet-[0-9]*:../../textproc/xmlstarlet
+
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6Concurrent.pc
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6Core.pc
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6Gui.pc
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6Network.pc
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6OpenGL.pc
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6OpenGLWidgets.pc
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6PrintSupport.pc
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6Sql.pc
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6Test.pc
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6Widgets.pc
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6Xml.pc
 
 .include "../../archivers/brotli/buildlink3.mk"
 .include "../../archivers/zstd/buildlink3.mk"
@@ -227,6 +233,7 @@ TOOL_DEPENDS+=	xmlstarlet-[0-9]*:../../textproc/xmlstarlet
 .include "../../fonts/harfbuzz/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
+.include "../../lang/python/application.mk"
 .include "../../math/double-conversion/buildlink3.mk"
 .include "../../security/libb2/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"

@@ -3,10 +3,10 @@
 # Don't bother committing this.  I'm adding new features almost every
 # time I convert a port.
 
-DISTNAME=	fbsd2pkg-0.6.0.1
+DISTNAME=	fbsd2pkg-0.6.0.3
 CATEGORIES=	pkgtools
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
-GITHUB_TAG=	fdd2e0d1cf19cd734909a759bce7a907d9f7a4b8
+GITHUB_TAG=	c00239d877962ec3ada264df4aaace78c36876d9
 
 MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	http://acadix.biz/Ports/distfiles/
@@ -19,9 +19,8 @@ NO_BUILD=	yes
 
 SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	pre-configure
-SUBST_FILES.prefix=	${WRKSRC}/fbsd2pkg
-SUBST_SED.prefix=	\
-	-e 's|fbsd2pkg.awk|${PREFIX}/libexec/fbsd2pkg/fbsd2pkg.awk|g'
+SUBST_FILES.prefix=	fbsd2pkg
+SUBST_SED.prefix=	-e 's|fbsd2pkg.awk|${PREFIX}/libexec/fbsd2pkg/fbsd2pkg.awk|g'
 
 DEPENDS+=	createbuildlink>=0:../../pkgtools/createbuildlink \
 		pkglint>=0:../../pkgtools/pkglint

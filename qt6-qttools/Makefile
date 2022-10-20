@@ -8,6 +8,12 @@ LICENSE=	gnu-lgpl-v3 OR gnu-gpl-v2 OR gnu-gpl-v3
 
 .include "../../wip/qt6-qtbase/Makefile.common"
 
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6Designer.pc
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6Help.pc
+PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6UiTools.pc
+
+PLIST_VARS=		dbus
+
 .include "../../lang/clang/buildlink3.mk"
 .include "../../wip/litehtml/buildlink3.mk"
 .include "../../wip/qt6-qtbase/buildlink3.mk"

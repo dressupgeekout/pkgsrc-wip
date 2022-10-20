@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	lumina-1.6.0
+DISTNAME=	lumina-1.6.2
 PKGREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=lumina-desktop/}
@@ -12,7 +12,7 @@ COMMENT=	Lightweight desktop for Unix-like operating systems
 LICENSE=	modified-bsd
 
 USE_LANGUAGES=	c c++
-
+USE_TOOLS+=	msgfmt
 USE_LIBTOOL=	yes
 
 INSTALL_MAKE_FLAGS+=	INSTALL_ROOT=${DESTDIR}

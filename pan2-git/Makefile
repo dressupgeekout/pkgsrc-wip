@@ -31,13 +31,12 @@ pre-configure:
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
-.include "../../devel/pcre/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../mail/gmime3/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"			# optional
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../textproc/gtkspell/buildlink3.mk"		# optional
-.include "../../textproc/enchant/buildlink3.mk"			# optional; why not pulled in by gtkspell?
+.include "../../textproc/gtkspell3/buildlink3.mk"		# optional
+.include "../../textproc/enchant2/buildlink3.mk"		# optional; why not pulled in by gtkspell?
 .include "../../wip/mk/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

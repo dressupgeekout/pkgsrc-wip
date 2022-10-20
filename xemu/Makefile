@@ -1,18 +1,18 @@
 # $NetBSD: Makefile,v 1.1 2021/11/06 16:40:06 rhialto Exp $
 
-DISTNAME=	xemu-0.0.2021.11.02
+DISTNAME=	xemu-0.0.2022.06.13
 PKGREVISION=	1
-CATEGORIES=	math
+CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=lgblgblgb/}
 GITHUB_PROJECT=	xemu
-GITHUB_TAG=	71f085f15c1761b1bf03e0f215cd742705d196d1
+GITHUB_TAG=	e6cd11f51fe6356dfb1cf569e6d4fe7906eb95b3
 
 MAINTAINER=	rhialto@NetBSD.org
 HOMEPAGE=	https://github.com/lgblgblgb/xemu
 COMMENT=	Emulators of various machines, incl the MEGA65
 LICENSE=	gnu-gpl-v2
 
-USE_TOOLS+=	bash gmake
+USE_TOOLS+=	bash gmake pkg-config
 USE_LANGUAGES+=	c
 
 REPLACE_BASH+=	build/configure/configure
@@ -20,7 +20,7 @@ REPLACE_BASH+=	build/configure/configure
 MAKE_ENV+=	DESTDIR=${DESTDIR}
 MAKE_ENV+=	SDL2_RPATH=${COMPILER_RPATH_FLAG},${BUILDLINK_PREFIX.SDL2}/lib
 
-INSTALLATION_DIRS+= 	share/xemu-lgb
+INSTALLATION_DIRS+=	share/xemu-lgb
 
 # This subst only for NetBSD?
 SUBST_CLASSES+=		rl
