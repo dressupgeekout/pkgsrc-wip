@@ -15,8 +15,9 @@ LICENSE=	gnu-gpl-v3
 
 #REPLACE_BASH=	gradlew
 
-USE_JAVA=	yes
-#USE_JAVA2=	yes
+USE_JAVA=		yes
+#USE_JAVA2=		yes
+PKG_JVM_DEFAULT=	openjdk17
 
 MAKE_ENV+=	JAVA_HOME=${PKG_JAVA_HOME}
 
