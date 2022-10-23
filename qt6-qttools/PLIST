@@ -1,4 +1,9 @@
 @comment $NetBSD$
+lib/pkgconfig/Qt6Designer.pc
+lib/pkgconfig/Qt6Help.pc
+lib/pkgconfig/Qt6Linguist.pc
+lib/pkgconfig/Qt6UiPlugin.pc
+lib/pkgconfig/Qt6UiTools.pc
 qt6/bin/assistant
 qt6/bin/designer
 qt6/bin/lconvert
@@ -6,8 +11,8 @@ qt6/bin/linguist
 qt6/bin/lrelease
 qt6/bin/lupdate
 qt6/bin/pixeltool
-qt6/bin/qdbus
-qt6/bin/qdbusviewer
+${PLIST.dbus}qt6/bin/qdbus
+${PLIST.dbus}qt6/bin/qdbusviewer
 qt6/bin/qdistancefieldgenerator
 qt6/bin/qdoc
 qt6/bin/qtdiag
@@ -264,6 +269,7 @@ qt6/lib/cmake/Qt6Designer/Qt6DesignerConfig.cmake
 qt6/lib/cmake/Qt6Designer/Qt6DesignerConfigVersion.cmake
 qt6/lib/cmake/Qt6Designer/Qt6DesignerConfigVersionImpl.cmake
 qt6/lib/cmake/Qt6Designer/Qt6DesignerDependencies.cmake
+qt6/lib/cmake/Qt6Designer/Qt6DesignerPlugins.cmake
 qt6/lib/cmake/Qt6Designer/Qt6DesignerTargets-release.cmake
 qt6/lib/cmake/Qt6Designer/Qt6DesignerTargets.cmake
 qt6/lib/cmake/Qt6Designer/Qt6DesignerVersionlessTargets.cmake
@@ -356,6 +362,11 @@ qt6/lib/metatypes/qt6designer_release_metatypes.json
 qt6/lib/metatypes/qt6designercomponentsprivate_release_metatypes.json
 qt6/lib/metatypes/qt6help_release_metatypes.json
 qt6/lib/metatypes/qt6uitools_release_metatypes.json
+qt6/lib/pkgconfig/Qt6Designer.pc
+qt6/lib/pkgconfig/Qt6Help.pc
+qt6/lib/pkgconfig/Qt6Linguist.pc
+qt6/lib/pkgconfig/Qt6UiPlugin.pc
+qt6/lib/pkgconfig/Qt6UiTools.pc
 qt6/libexec/lprodump
 qt6/libexec/lrelease-pro
 qt6/libexec/lupdate-pro

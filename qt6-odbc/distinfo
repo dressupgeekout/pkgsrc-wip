@@ -1,5 +1,5 @@
 $NetBSD$
 
-BLAKE2s (qtbase-everywhere-src-6.3.0.tar.xz) = 885be9dc2793d8d7d91f8d2b92dc54cc686edab17a6a1c4ee16ea5fb2e871e06
-SHA512 (qtbase-everywhere-src-6.3.0.tar.xz) = aec9f7cee0c195178a282ab3efa6b3dd09dbe3317ec25c8f748c6cc0ea1ffe37dc62d3b062129d2458179620059e8bb694aacd1e331cbf49838075fa3381ee81
-Size (qtbase-everywhere-src-6.3.0.tar.xz) = 47004304 bytes
+BLAKE2s (qtbase-everywhere-src-6.4.0.tar.xz) = f21b823fd591a92f5e62ccb997ec8ba44df012e27b723f5c849bdd470a39c86b
+SHA512 (qtbase-everywhere-src-6.4.0.tar.xz) = 7c9430da115529fa5697d134bf53d185259de23529d6db17398d91d48a0b7a95acd1fbe55189a2d2b3a2ecdafb27065ea99f29f7022110c95a45d6c04ebf46a3
+Size (qtbase-everywhere-src-6.4.0.tar.xz) = 47957680 bytes

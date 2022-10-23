@@ -1,14 +1,9 @@
-   Compiling zbus v1.9.1
-error[E0432]: unresolved import `nix::sys::socket::sockopt::PeerCredentials`
-   --> /scratch/wip/pika-backup/work/vendor/zbus-1.9.1/src/connection.rs:163:44
-    |
-163 |         use nix::sys::socket::{getsockopt, sockopt::PeerCredentials};
-    |                                            ^^^^^^^^^^^^^^^^^^^^^^^^ no `PeerCredentials` in `sys::socket::sockopt`
+Builds fine, but when I try to start it I see:
 
-error[E0432]: unresolved import `nix::sys::socket::sockopt::PeerCredentials`
-   --> /scratch/wip/pika-backup/work/vendor/zbus-1.9.1/src/azync/connection.rs:180:44
-    |
-180 |         use nix::sys::socket::{getsockopt, sockopt::PeerCredentials};
-    |                                            ^^^^^^^^^^^^^^^^^^^^^^^^ no `PeerCredentials` in `sys::socket::sockopt`
+thread 'main' panicked at 'Failed to create ZBus session connection.: Io(Os { code 2, Kind: NotFound, message: "No such file or directory" })', src/globals.rs:12:14
 
-For more information about this error, try `rustc --explain E0432`.
+I ktraced it and see that this error message after the program tries to access "/run/user/1000/bus".
+
+Reported upstream:
+
+https://gitlab.gnome.org/World/pika-backup/-/issues/269
