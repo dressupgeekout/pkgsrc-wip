@@ -1,19 +1,19 @@
 # $NetBSD$
 
-GITHUB_TAG=	b975f8a0571797ee527d534d337b1b1063619d38
-DISTNAME=	nq-${GITHUB_TAG}
-CATEGORIES=	misc
-MASTER_SITES=	${MASTER_SITE_GITHUB:=christiank/}
+DISTNAME=	nq-0.4
+CATEGORIES=	sysutils
+MASTER_SITES=	${MASTER_SITE_GITHUB:=leahneukirchen/}
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
+HOMEPAGE=	https://github.com/leahneukirchen/nq
 COMMENT=	Command line queueing utility
-HOMEPAGE=	https://github.com/chneukirchen/nq/
 LICENSE=	public-domain
 
-EXTRACT_USING=	gtar
+TEST_TARGET=		check
+# TEST_DEPENDS: perl's prove(1)
 
-WRKSRC=		${WRKDIR}/${PKGNAME}
-INSTALL_ENV+=	MANDIR=${PREFIX}/${PKGMANDIR}
+INSTALL_MAKE_FLAGS+=	PREFIX=${PREFIX}
+INSTALL_MAKE_FLAGS+=	MANDIR=${PREFIX}/${PKGMANDIR}
 
 .include "../../mk/bsd.pkg.mk"
-

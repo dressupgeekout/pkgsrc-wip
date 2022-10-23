@@ -1,0 +1,158 @@
+$NetBSD: patch-aa,v 1.10 2011/12/06 01:19:16 sbd Exp $
+
+* Don't override DESTDIR
+* Don't override prefix
+* Don't install the mysterious kermit-sshsub
+* Don't install kermit.ini in bindir, because it doesn't belong there
+  and because (yay!) it is empty, and people don't need empty templates
+* Use DESTDIR harder when installing
+* Get K5LIB, K5INC, SSLLIB and SSLINC from pkgsrc.
+* s/-lgssapi/-lgssapi_krb5/ on netbsd+krb5* 
+* Add $(LIBS) to link command on solaris2xg+openssl+zlib+pam+shadow
+* s@$(K5INC)/krb5@$(K5INC)/kerberosv5/ on solaris9g+krb5+ssl
+* On linux get HAVE_LIBCURSES and HAVE_CURSES from pkgsrc (with the 
+  curses include and library pathes coming from BUILDLINK_*FLAGS).
+
+Not yet sent upstream.
+
+--- makefile.orig	2022-06-02 14:59:50.000000000 +0000
++++ makefile
+@@ -824,19 +824,19 @@ CKVER= "10.0 Beta.03"
+ #
+ # The following symbols are used to specify library and header file locations:
+ # 
+-prefix  = /usr/local
++prefix  ?= /usr/local
+ srproot = $(prefix)
+ sslroot = $(prefix)
+ manroot = $(prefix)
+ 
+ K4LIB=-L/usr/kerberos/lib
+ K4INC=-I/usr/kerberos/include
+-K5LIB=-L/usr/kerberos/lib
+-K5INC=-I/usr/kerberos/include
++#K5LIB=-L/usr/kerberos/lib
++#K5INC=-I/usr/kerberos/include
+ SRPLIB=-L$(srproot)/lib
+ SRPINC=-I$(srproot)/include
+-SSLLIB=-L$(sslroot)/ssl/lib
+-SSLINC=-I$(sslroot)/ssl/include
++#SSLLIB=-L$(sslroot)/ssl/lib
++#SSLINC=-I$(sslroot)/ssl/include
+ 
+ # To override these assignments; for example, if your OpenSSL files are
+ # not in /usr/local/ssl, invoke the desired target like this:
+@@ -973,7 +973,7 @@ BOOTFILE=/edition7
+ #
+ WERMIT = makewhat
+ BINARY = wermit
+-DESTDIR =
++DESTDIR ?=
+ BINDIR = $(prefix)/bin
+ MANDIR = $(manroot)/man/man1
+ MANEXT = 1
+@@ -1088,13 +1088,9 @@ install:
+ 	rm -f $(DESTDIR)$(BINDIR)/kermit;\
+ 	cp $(BINARY) $(DESTDIR)$(BINDIR)/kermit || exit 1;\
+ 	chmod 755    $(DESTDIR)$(BINDIR)/kermit || exit 1;\
+-	rm -f        $(DESTDIR)$(BINDIR)/kermit-sshsub;\
+-	ln -s        $(DESTDIR)$(BINDIR)/kermit\
+-		     $(DESTDIR)$(BINDIR)/kermit-sshsub || exit 1;\
+ 	echo 'set flag=f\nPrC Removing binaries' >&3;\
+-	echo "RmF $(DESTDIR)$(BINDIR)/kermit-sshsub" >&3;\
+ 	echo "RmF $(DESTDIR)$(BINDIR)/kermit" >&3;\
+-	if test -f ckermit.ini; then\
++	if false && test -f ckermit.ini; then\
+ 		echo "#!$(BINDIR)/kermit" >\
+ 			$(DESTDIR)$(BINDIR)/_tmp.ini;\
+ 		cat ckermit.ini >> $(DESTDIR)$(BINDIR)/_tmp.ini;\
+@@ -1107,7 +1103,6 @@ install:
+ 	echo 'EfM' >&3;\
+ 	echo "Kermit binary installed:";\
+ 	ls -l $(DESTDIR)$(BINDIR)/kermit\
+-	      $(DESTDIR)$(BINDIR)/kermit-sshsub\
+ 	      $(DESTDIR)$(BINDIR)/ckermit.ini;\
+ 	echo;\
+ 	echo " WARNING: If C-Kermit is to be used for dialing out,";\
+@@ -1120,9 +1115,9 @@ install:
+ 		if test -d $(DESTDIR)$(MANDIR); then\
+ 			echo  "$(DESTDIR)$(MANDIR) exists...";\
+ 		else\
+-			echo "Creating $(MANDIR)...";\
+-			mkdir $(MANDIR) || exit 1;\
+-			chmod 755 $(MANDIR) || exit 1;\
++			echo "Creating $(DESTDIR)$(MANDIR)...";\
++			mkdir $(DESTDIR)$(MANDIR) || exit 1;\
++			chmod 755 $(DESTDIR)$(MANDIR) || exit 1;\
+ 		fi;\
+ 		rm -f $(DESTDIR)$(MANDIR)/kermit.$(MANEXT);\
+ 		cp ckuker.nr $(DESTDIR)$(MANDIR)/kermit.$(MANEXT) || exit 1;\
+@@ -1935,7 +1930,7 @@ netbsd+krb5:
+ 	-DCK_CAST $$HAVE_DES -DNOFTP_GSSAPI $(K5INC) $(K5INC)/krb5 \
+ 	$(KFLAGS)" \
+ 	"LIBS= $(K5LIB) -L/usr/pkg/lib -R/usr/pkg/lib -lcurses $$DES_LIB \
+-	-lcrypto -lgssapi -lkrb5 -lm -lutil $(LIBS)"
++	-lcrypto -lgssapi_krb5 -lkrb5 -lm -lutil $(LIBS)"
+ 
+ # NetBSD - With Kerberos 5 and SSL and Zlib.
+ # OK: 2011/08/21 on 5.1 with MIT Kerberos.
+@@ -1962,7 +1957,7 @@ netbsd+krb5+ssl netbsd+krb5+openssl+zlib
+ 	-DCK_SSL -DCK_PAM -DZLIB -DNO_DCL_INET_ATON $$OPENSSLOPTION \
+ 	$(KFLAGS)" "LNKFLAGS = $(LNKFLAGS)" \
+ 	"LIBS= $(K5LIB) -L/usr/pkg/lib -R/usr/pkg/lib -lssl $$DES_LIB \
+-	-lcrypto -lcrypt -lgssapi -lkrb5 -lz -lm -lpam -lutil -lcurses $(LIBS)"
++	-lcrypto -lcrypt -lgssapi_krb5 -lkrb5 -lz -lm -lpam -lutil -lcurses $(LIBS)"
+ 
+ #Special Security Enhanced NetBSD target with SRP, SSL, and zlib support.
+ #To build this, you need to BUILD the pkgsrc srp_client package.  After
+@@ -3673,7 +3668,7 @@ solaris2xg+openssl+zlib+pam+shadow:
+ 	-DCK_AUTHENTICATION -DCK_SSL -DCK_PAM -DCK_SHADOW  -DZLIB \
+ 	-DBIGBUFOK $(SSLINC) $(KFLAGS)" \
+ 	"LIBS= $(SSLLIB) -ltermlib \
+-	-lsocket -lnsl -lm -lresolv -lssl -lcrypto -lpam -lz"
++	-lsocket -lnsl -lm -lresolv -lssl -lcrypto -lpam -lz $(LIBS)"
+ 
+ #Ditto but with GCC 3.1 in which you have to specify 32-bit with -m32.
+ #In Solaris 9 (and maybe 8) you'll also need specifiy the Library path.
+@@ -4028,7 +4023,7 @@ solaris9g+krb5+ssl solaris10g+krb5+ssl s
+ 	-DCK_CURSES -DCK_NEWTERM -DDIRENT -DHDBUUCP -DTCPSOCKET  -DBIGBUFOK \
+ 	-DCK_AUTHENTICATION -DCK_SSL -DZLIB -DCK_KERBEROS -DKRB5 \
+ 	-DCK_ENCRYPTION -DCK_CAST $$OPENSSLOPTION \
+-	$$HAVE_DES $(SSLINC) $(K5INC) $(K5INC)/krb5 $(KFLAGS)" \
++	$$HAVE_DES $(SSLINC) $(K5INC) $(K5INC)/kerberosv5 $(KFLAGS)" \
+ 	"LIBS= $(SSLLIB) $(K5LIB) -lz -lssl -ltermlib -lsocket -lnsl -lm \
+ 	-lresolv -lcrypto \
+ 	$$GSSAPILIB -lkrb5 -lcom_err -lk5crypto $$DES_LIB $(LIBS)"
+@@ -6367,32 +6362,6 @@ linux-2015:
+ 	if test `grep openpty /usr/include/pty.h | wc -l` -gt 0; \
+ 	then HAVE_OPENPTY='-DHAVE_OPENPTY'; \
+ 	else HAVE_OPENPTY=''; fi ; \
+-	HAVE_LIBCURSES=''; \
+-	if test -f /lib64/libncurses.so.5 || \
+-	   test -f /lib64/libncurses.so || \
+-	   test -f /lib64/libncurses.a; then \
+-	   HAVE_LIBCURSES='-lncurses'; \
+-	else if test -f /usr/lib64/libncurses.so || \
+-	   test -f /usr/lib/libncurses.a  || \
+-	   test -f /usr/lib64/libncurses.so.5 || \
+-	   test -f /usr/lib/libncurses.so; then \
+-	   HAVE_LIBCURSES='-lncurses'; \
+-	else if test -f /usr/lib/$(MULTIARCH)/libncurses.so || \
+-	   test -f /usr/lib/$(MULTIARCH)/libncurses.a  || \
+-	   test -f /usr/lib/$(MULTIARCH)/libncurses.so; then \
+-	   HAVE_LIBCURSES='-lncurses'; \
+-	else if test -f /usr/lib64/libcurses.so || \
+-	   test -f /usr/lib/libcurses.a || \
+-	   test -f /usr/lib/libcurses.so; then \
+-	   HAVE_LIBCURSES='-lcurses'; fi; fi; fi; fi; \
+-	HAVE_CURSES=''; \
+-	if test -n '$$HAVE_LIBCURSES'; then \
+-	  if test -f /usr/include/ncurses.h; then \
+-	    HAVE_CURSES='-DCK_NCURSES  -I/usr/include/ncurses'; \
+-	  else if test -f /usr/include/curses.h; then \
+-	    HAVE_CURSES='-DCK_CURSES'; \
+-	  else HAVE_LIBCURSES=''; \
+-	fi; fi; fi; \
+ 	if test -f /usr/include/baudboy.h || test -f /usr/include/ttylock.h; \
+ 	then HAVE_LOCKDEV='-DHAVE_LOCKDEV' ; \
+ 	else HAVE_LOCKDEV='' ; fi ; \

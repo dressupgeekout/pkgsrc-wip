@@ -4,18 +4,17 @@ DISTNAME=	unicorn5hc
 PKGNAME=	unicorn5hc-5.7
 CATEGORIES=	games
 MASTER_SITES=	http://www.elf-emulation.com/rcs/unicorn5/
+DIST_SUBDIR=	${PKGNAME_NOREV}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.elf-emulation.com/rcs/unicorn5/index.html
+HOMEPAGE=	https://www.elf-emulation.com/rcs/unicorn5/index.html
 COMMENT=	Quest for the Unicorn version 5, a rogue-like game, Hard Core edition
 #LICENSE=	no-commercial-use
 
-DIST_SUBDIR=	${PKGNAME_NOREV}
-
-WRKSRC=		${WRKDIR}/unicorn5RL
-USE_LANGUAGES=	c
-BUILD_TARGET=	unicorn5
+WRKSRC=			${WRKDIR}/unicorn5RL
+USE_LANGUAGES=		c
+BUILD_TARGET=		unicorn5
 INSTALLATION_DIRS+=	bin share/doc/unicorn
 
 post-extract:

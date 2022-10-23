@@ -1,13 +1,14 @@
 # $NetBSD: Makefile,v 1.4 2013/02/13 12:21:15 makoto Exp $
-#
-DISTNAME=		scrc-2.1
 
+DISTNAME=		scrc-2.1
 CATEGORIES=		cad
-MASTER_SITES=		ftp://ftp.cecs.uci.edu/pub/specc/reference/
+MASTER_SITES=		http://www.cecs.uci.edu/~specc/ftp/reference/
 
 MAINTAINER=		makoto@ki.nu
 HOMEPAGE=		http://www.cecs.uci.edu/~specc/reference/
 COMMENT=		SpecC Reference Compiler
+LICENSE=		modified-bsd
+
 USE_LANGUAGES+=		c++
 USE_LANGUAGES+=		c
 

@@ -7,6 +7,7 @@ PKGNAME=	${PYPKGPREFIX}-peak-rules-0.5a1
 PKGREVISION=	2
 CATEGORIES=	www python
 MASTER_SITES=	http://peak.telecommunity.com/snapshots/
+LICENSE=	zpl-2.1
 
 MAINTAINER=	kamelderouiche@yahoo.com
 HOMEPAGE=	http://peak.telecommunity.com/snapshots/
@@ -21,7 +22,7 @@ USE_LANGUAGES=	# none
 
 INSTALLATION_DIRS+=	share/doc/py-peak-rules
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36
+PYTHON_VERSIONS_ACCEPTED=	27
 
 do-test:
 	cd ${WRKSRC} && ${PYTHONBIN} test_rules.py

@@ -2,13 +2,13 @@
 
 SVNVERSION=		13275
 UPSTREAM_VERSION=	0.7.7
-VERSION=	${UPSTREAM_VERSION}.${SVNVERSION}
-DISTNAME=	TracGraphViz-${VERSION}
-PKGNAME=	trac-plugins-GraphViz-${VERSION}
+VERSION=		${UPSTREAM_VERSION}.${SVNVERSION}
+DISTNAME=		TracGraphViz-${VERSION}
+PKGNAME=		trac-plugins-GraphViz-${VERSION}
 # Empty to avoid default setting.
-PKGREVISION=	1
-CATEGORIES=	www
-MASTER_SITES=	# not defined
+PKGREVISION=		1
+CATEGORIES=		www
+MASTER_SITES=		# not defined
 
 MAINTAINER=	pkgsrc-users@netbsd.org
 HOMEPAGE=	https://trac-hacks.org/wiki/GraphVizPlugin
@@ -22,7 +22,7 @@ SVN_REPOSITORIES=	graphviz
 SVN_REPO.graphviz=	https://trac-hacks.org/svn/graphvizplugin/trunk
 SVN_REVISION.graphviz=	${SVNVERSION}
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 13275/0.7.7
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 13275/0.7.7
 
 NO_CHECKSUM=	yes
 

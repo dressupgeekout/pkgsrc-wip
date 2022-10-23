@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.6 2015/08/10 05:51:35 devnexen Exp $
 
 EXTRACT_SUFX=	.zip
-DISTNAME=	deviceatlas-enterprise-c-2.1
+DISTNAME=	deviceatlas-enterprise-c-2.1.4
 PKGREVISION=	5
 CATEGORIES=	net devel
 MASTER_SITES=	#
@@ -27,10 +27,13 @@ PKG_DESTDIR_SUPPORT=	destdir
 
 INSTALLATION_DIRS=	lib include
 
-FETCH_MESSAGE=  "Please fetch ${DISTFILES} manually from"
-FETCH_MESSAGE+= "${HOMEPAGE}"
-FETCH_MESSAGE+= "and put into"
-FETCH_MESSAGE+= "${DISTDIR}"
+CMAKE_ARGS+=		-DSKIP_INSTALL_RPATH=ON \
+			-DBUILD_WITH_INSTALL_RPATH=ON
+
+FETCH_MESSAGE=	"Please fetch ${DISTFILES} manually from"
+FETCH_MESSAGE+=	"${HOMEPAGE}"
+FETCH_MESSAGE+=	"and put into"
+FETCH_MESSAGE+=	"${DISTDIR}"
 
 pre-build:
 	cd ${WRKSRC} && cmake -DINSTALL_PREFIX=${PREFIX}

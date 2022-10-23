@@ -6,9 +6,8 @@ CATEGORIES=		net
 MASTER_SITES=		http://opensips.org/pub/opensips/${VER}/src/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.opensips.org/
+HOMEPAGE=		https://www.opensips.org/
 COMMENT=		Open Source implementation of a SIP server
-
 LICENSE=		gnu-gpl-v2
 
 VER=			1.6.2
@@ -16,7 +15,7 @@ WRKSRC=			${WRKDIR}/opensips-${VER}-tls
 
 USE_TOOLS+=		gmake
 
-CHECK_INTERPRETER_SKIP+=lib/opensips/opensipsctl/dbtextdb/dbtextdb.py
+CHECK_INTERPRETER_SKIP+= lib/opensips/opensipsctl/dbtextdb/dbtextdb.py
 REPLACE_PERL+=		scripts/osipsconsole
 
 PKG_SYSCONFSUBDIR=	opensips

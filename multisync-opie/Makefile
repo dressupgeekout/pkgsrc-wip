@@ -5,13 +5,14 @@ PKGNAME=		multisync-opie-0.82
 PKGREVISION=		4
 
 COMMENT=		Module to sync Opie-devices with MultiSync
+LICENSE=		gnu-gpl-v2
 
 WRKSRC=			${WRKDIR}/multisync-0.82/plugins/opie_sync/
 
 DEPENDS+=		multisync>=0.82:../../wip/multisync
 
 BUILD_DEPENDS+=		libtool-base>=1.5.10:../../devel/libtool-base
-USE_TOOLS+=             aclocal autoconf autoheader automake
+USE_TOOLS+=		aclocal autoconf autoheader automake
 
 pre-configure:
 	cd ${WRKSRC}/../.. && \

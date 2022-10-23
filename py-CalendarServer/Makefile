@@ -16,13 +16,14 @@ LICENSE=	apache-2.0
 # pkgsrc
 
 DEPENDS+=	${PYPKGPREFIX}-CalDAVClientLibrary-[0-9]*:../../wip/py-CalDAVClientLibrary
-DEPENDS+=	${PYPKGPREFIX}-Kerberos-[0-9]*:../../security/py-Kerberos
+DEPENDS+=	${PYPKGPREFIX}-kerberos-[0-9]*:../../security/py-kerberos
 DEPENDS+=	${PYPKGPREFIX}-OpenSSL-[0-9]*:../../security/py-OpenSSL
 DEPENDS+=	${PYPKGPREFIX}-ZopeInterface>=4:../../devel/py-ZopeInterface
 DEPENDS+=	${PYPKGPREFIX}-asn1-[0-9]*:../../security/py-asn1
 DEPENDS+=	${PYPKGPREFIX}-cffi-[0-9]*:../../devel/py-cffi
 DEPENDS+=	${PYPKGPREFIX}-cparser-[0-9]*:../../devel/py-cparser
 DEPENDS+=	${PYPKGPREFIX}-crypto-[0-9]*:../../security/py-crypto
+DEPENDS+=	${PYPKGPREFIX}-dateutil-[0-9]*:../../time/py-dateutil
 DEPENDS+=	${PYPKGPREFIX}-doctor-[0-9]*:../../devel/py-doctor
 DEPENDS+=	${PYPKGPREFIX}-flakes>=0.6:../../devel/py-flakes
 DEPENDS+=	${PYPKGPREFIX}-ldap-[0-9]*:../../databases/py-ldap
@@ -37,9 +38,7 @@ DEPENDS+=	memcached-[0-9]*:../../devel/memcached
 DEPENDS+=	openldap-client-[0-9]*:../../databases/openldap-client
 DEPENDS+=	subversion-base-[0-9]*:../../devel/subversion-base
 
-PYTHON_VERSIONED_DEPENDENCIES=	dateutil
-
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-twisted, py-xml via py-nevow, py-psutil, py-Kerberos, py-ldap
+PYTHON_VERSIONS_ACCEPTED=	27 # py-xml via py-nevow, py-psutil, py-Kerberos, py-ldap
 
 USE_TOOLS+=	bash:run
 
@@ -57,5 +56,4 @@ REPLACE_PYTHON+=	txdav/common/datastore/upgrade/sql/upgrade.py
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
-.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

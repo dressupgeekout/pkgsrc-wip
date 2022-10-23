@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.4 2014/08/13 20:21:06 thomasklausner Exp $
-#
 
 DISTNAME=	logwatch-7.4.0
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=logwatch/}
 
@@ -10,7 +10,6 @@ HOMEPAGE=	http://logwatch.sourceforge.net/
 COMMENT=	Customizable log analysis system
 LICENSE=	mit
 
-DEPENDS=	p5-MIME-Base64>=3.13:../../converters/p5-MIME-Base64
 DEPENDS+=	p5-Sys-CPU>=0.54:../../sysutils/p5-Sys-CPU
 DEPENDS+=	p5-Sys-MemInfo>=0.91:../../wip/p5-Sys-MemInfo
 
@@ -25,7 +24,7 @@ REPLACE_PERL+=		lib/Logwatch.pm scripts/logwatch.pl \
 			scripts/services/spamassassin
 
 SUBST_CLASSES+=		path
-SUBST_STAGE.path= 	post-patch
+SUBST_STAGE.path=	post-patch
 SUBST_FILES.path=	logwatch.8 scripts/logwatch.pl \
 			HOWTO-Customize-LogWatch README \
 			scripts/services/clam-update

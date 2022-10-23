@@ -1,41 +1,17 @@
 # $NetBSD$
-#
 
-DISTNAME=	auto-admin-0.3.8
-CATEGORIES=	pkgtools
-MASTER_SITES=	http://acadix.biz/Ports/distfiles/
+DISTNAME=	auto-admin-0.7.13.3
+CATEGORIES=	sysutils
+MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
+GITHUB_TAG=	8a8eab165d7674bc101d8cd51cbb1e8d0f68115e
 
-MAINTAINER=	bacon4000@gmail.com
-HOMEPAGE=	http://acadix.biz/Ports/distfiles/
-COMMENT=	Automate common systems administration tasks
-#LICENSE=	original-bsd
-EXTRACT_SUFX=	.tar.xz
+MAINTAINER=	bacon@NetBSD.org
+HOMEPAGE=	https://github.com/outpaddling/auto-admin
+COMMENT=	Portable tools for automating systems management
+LICENSE=	2-clause-bsd
 
 USE_LANGUAGES=	# none
 
 NO_BUILD=	yes
-REPLACE_SH=	*/Scripts/*
-
-SUBST_CLASSES+=		prefix
-SUBST_STAGE.prefix=	post-patch
-SUBST_FILES.prefix=	${WRKSRC}/Common/Scripts/auto-denyhosts-remove-ip
-SUBST_SED.prefix=	-e "s|/usr/local|${PREFIX}|g"
-
-.include "../../mk/bsd.prefs.mk"
-
-do-install:
-	${MKDIR} ${DESTDIR}${PREFIX}/sbin
-	${INSTALL_SCRIPT} ${WRKSRC}/Common/Scripts/* \
-		${DESTDIR}${PREFIX}/sbin
-# Why doesn't this work?
-#.if exists(${WRKSRC}/Scripts/${OPSYS})
-.if ${OPSYS} == NetBSD
-	${INSTALL_SCRIPT} ${WRKSRC}/${OPSYS}/Scripts/* \
-		${DESTDIR}${PREFIX}/sbin
-.endif
-.if exists(/etc/redhat-release)
-	${INSTALL_SCRIPT} ${WRKSRC}/CentOS/Scripts/* \
-		${DESTDIR}${PREFIX}/sbin
-.endif
 
 .include "../../mk/bsd.pkg.mk"

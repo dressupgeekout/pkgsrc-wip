@@ -3,10 +3,10 @@
 DISTNAME=	quickfix-1.14.4
 CATEGORIES=	finance
 MASTER_SITES=	${MASTER_SITE_GITHUB:=quickfix/}
-GITHUB_TAG=	v.${PKGVERSION}
 GITHUB_PROJECT=	${DISTNAME:S/-${PKGVERSION}//}
+GITHUB_TAG=	v.${PKGVERSION}
 
-MAINTAINER=	alnsn@NetBSD.org
+MAINTAINER=	alnsn@yandex.ru
 HOMEPAGE=	http://www.quickfixengine.org/
 COMMENT=	FIX engine
 LICENSE=	quickfix
@@ -24,7 +24,7 @@ PTHREAD_OPTS+=		native
 PTHREAD_AUTO_VARS=	yes
 
 pre-configure:
-	cd ${WRKSRC:Q} && ./bootstrap
+	cd ${WRKSRC} && ./bootstrap
 
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

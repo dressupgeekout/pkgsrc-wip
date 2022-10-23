@@ -2,9 +2,10 @@
 #
 
 DISTNAME=		libopenmodeller-0.3.3
-PKGREVISION=		6
+PKGREVISION=		13
 CATEGORIES=		geography
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=openmodeller/}
+LICENSE=		gnu-gpl-v2
 
 MAINTAINER=		mchittur@cs.nmsu.edu
 HOMEPAGE=		http://openmodeller.sourceforge.net/

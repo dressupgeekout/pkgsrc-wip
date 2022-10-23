@@ -1,4 +1,4 @@
-@comment $Id: PLIST,v 1.1 2015/04/28 14:37:16 bartoszkuzma Exp $
+@comment $NetBSD$
 ${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/pygeoip/__init__.py
 ${PYSITELIB}/pygeoip/__init__.pyc

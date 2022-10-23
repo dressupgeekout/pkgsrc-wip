@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.3 2014/11/21 05:51:07 jgoamakf Exp $
 
-PKGNAME=	ocaml-${DISTNAME}
 DISTNAME=	easy-format-1.0.2
+PKGNAME=	ocaml-${DISTNAME}
 CATEGORIES=	textproc
 MASTER_SITES=	http://mjambon.com/releases/easy-format/
 
@@ -12,8 +12,8 @@ LICENSE=	modified-bsd
 
 USE_TOOLS+=	gmake
 
-OCAML_USE_FINDLIB=yes
-BUILD_TARGET+=	opt
+OCAML_USE_FINDLIB=	yes
+BUILD_TARGET+=		opt
 
 .include "../../mk/ocaml.mk"
 .include "../../mk/bsd.pkg.mk"

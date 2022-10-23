@@ -3,12 +3,12 @@
 DISTNAME=	bruce-3.2.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	graphics
-MASTER_SITES=	http://bruce-tpt.googlecode.com/files/
+MASTER_SITES=	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/bruce-tpt/
 
 MAINTAINER=	kamelderouiche@yahoo.com
 HOMEPAGE=	http://code.google.com/p/bruce-tpt/
-COMMENT= Bruce, the Presentation Tool, puts reStructuredText in your projector
-#LICENSE=	# TODO: (see mk/license.mk)
+COMMENT=	Bruce, the Presentation Tool, puts reStructuredText in your projector
+LICENSE=	modified-bsd
 
 DEPENDS+=	${PYPKGPREFIX}-docutils>=0.11:../../textproc/py-docutils
 DEPENDS+=	${PYPKGPREFIX}-pygments>=0.8:../../textproc/py-pygments

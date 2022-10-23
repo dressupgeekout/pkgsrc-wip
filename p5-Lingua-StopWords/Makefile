@@ -6,11 +6,11 @@ CATEGORIES=	textproc perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Lingua/}
 
 MAINTAINER=	kuli0020@umn.edu
-HOMEPAGE=	http://search.cpan.org/dist/Lingua-StopWords/
+HOMEPAGE=	https://metacpan.org/release/Lingua-StopWords
 COMMENT=	Lingua::StopWords - Stop words for several languages
 LICENSE=	${PERL5_LICENSE}
 
-PERL5_PACKLIST= auto/Lingua/StopWords/.packlist
+PERL5_PACKLIST=	auto/Lingua/StopWords/.packlist
 
 .include "../../lang/perl5/module.mk"
 .include "../../mk/bsd.pkg.mk"

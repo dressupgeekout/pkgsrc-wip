@@ -1,18 +1,18 @@
 # $NetBSD: Makefile,v 1.3 2014/05/09 07:38:45 thomasklausner Exp $
 
 DISTNAME=	asciimathml-0.9.4.1
-PKGNAME=        ${PYPKGPREFIX}-${DISTNAME}
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_PYPI:=a/asciimathml/}
 
 MAINTAINER=	kamel.derouiche@gmail.com
-HOMEPAGE=	http://github.com/favalex/python-asciimathml
+HOMEPAGE=	https://github.com/favalex/python-asciimathml
 COMMENT=	ASCIIMathML to MathML translator
 LICENSE=	gnu-gpl-v3
 
 USE_LANGUAGES=	# none
 PYDISTUTILSPKG=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-elementtree
+PYTHON_VERSIONS_ACCEPTED=	27 # py-elementtree
 
 .include "../../lang/python/extension.mk"
 .include "../../textproc/py-elementtree/buildlink3.mk"

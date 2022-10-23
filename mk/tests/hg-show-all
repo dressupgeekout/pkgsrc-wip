@@ -1,0 +1,8 @@
+#! /bin/sh
+. "${0%/*}/test.subr"
+
+set_up_package "hg-show-all.mk"
+set_up_repository hg
+
+step "Testing show-all-hg"
+package_make show-all-hg

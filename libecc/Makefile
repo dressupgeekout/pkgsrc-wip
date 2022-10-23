@@ -8,9 +8,9 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libecc/}
 MAINTAINER=	jihbed.research@gmail.com
 HOMEPAGE=	http://libecc.sourceforge.net/
 COMMENT=	C++ elliptic curve library
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	gnu-gpl-v2
 
-MAKE_JOBS_SAFE=NO
+MAKE_JOBS_SAFE=	NO
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes

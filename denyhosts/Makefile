@@ -4,7 +4,7 @@ DISTNAME=	DenyHosts-2.6
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=denyhosts/}
 
-MAINTAINER=	bacon4000@gmail.com
+MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	http://downloads.sourceforge.net/project/denyhosts/denyhosts/2.6/
 COMMENT=	Block hosts with too many failed login attempts
 LICENSE=	gnu-gpl-v2
@@ -54,7 +54,7 @@ SUBST_STAGE.env=	post-patch
 SUBST_FILES.env=	scripts/*.py
 SUBST_SED.env=		-e 's|/bin/env python|${PYTHONBIN}|g'
 
-DENIED_HOSTS_FILE=	${PREFIX}/etc/hosts.deniedssh
+DENIED_HOSTS_FILE=	/etc/hosts.deniedssh
 
 .include "../../mk/bsd.prefs.mk"
 

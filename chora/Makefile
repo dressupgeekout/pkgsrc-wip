@@ -1,13 +1,12 @@
 # $NetBSD: Makefile,v 1.10 2013/02/12 18:35:01 shattered Exp $
-#
 
 DISTNAME=	chora-h3-2.1.1
 PKGNAME=	${DISTNAME:S/h3-//1}
 CATEGORIES=	devel
-MASTER_SITES=	ftp://ftp.horde.org/pub/chora/
+#MASTER_SITES=	ftp://ftp.horde.org/pub/chora/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.horde.org/apps/chora/
+HOMEPAGE=	https://www.horde.org/apps/chora/
 COMMENT=	Another CVS-via-web system
 LICENSE=	gnu-gpl-v2
 
@@ -17,7 +16,7 @@ DEPENDS+=	horde>=2.2.4:../../www/horde
 USE_LANGUAGES=	# empty
 NO_BUILD=	YES
 
-CHORADIR=	${PREFIX}/share/chora
+CHORADIR=		${PREFIX}/share/chora
 INSTALLATION_DIRS+=	${CHORADIR}/config ${CHORADIR}/docs ${CHORADIR}/js/src
 INSTALLATION_DIRS+=	${CHORADIR}/lib/Block
 INSTALLATION_DIRS+=	${CHORADIR}/locale/cs_CZ/LC_MESSAGES

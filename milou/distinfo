@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (milou-5.6.3.tar.xz) = 12b3ce9f763154ca8e421d547a5d16e8721be2c4
-RMD160 (milou-5.6.3.tar.xz) = eb7ec6125565044e09a9ef3d87764e540dbac2df
-SHA512 (milou-5.6.3.tar.xz) = 915c5c3777aa42eb8665a95ef88b0cfc57eebc3a98178d4c6ce8deeea8ce9c6c86c8476b4f62b8f4f2e8750e0f8af6b6b3fd5d324d50f8230dc08cfc2b047282
-Size (milou-5.6.3.tar.xz) = 57292 bytes
+BLAKE2s (milou-5.24.6.tar.xz) = 9de7003e048a5587db4c00fb878dba251f4a628895b3e9503fab2b70b0435b08
+SHA512 (milou-5.24.6.tar.xz) = 5992808c7f9742b706c217fc6e9c36992a079d38459db704e9a911e5ff2a8c1eb645b8161049ddbfa9f4824eb3d5284c5c182b4c66a9e2b562d83412f2085d16
+Size (milou-5.24.6.tar.xz) = 48232 bytes

@@ -9,13 +9,13 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=arabeyes/}
 EXTRACT_SUFX=	.bz2
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://sourceforge.net/projects/arabeyes/files/
+HOMEPAGE=	https://sourceforge.net/projects/arabeyes/files/
 COMMENT=	This font was created by Sharif University
 
 WRKSRC=	${WRKDIR}
 
 USE_LANGUAGES=	# none
-NO_BUILD=		yes
+NO_BUILD=	yes
 
 FONTS_DIRS.ttf=		lib/X11/fonts/TTF
 

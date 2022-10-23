@@ -2,10 +2,11 @@
 
 DISTNAME=	openmx3.7
 PKGNAME=	openmx-openmpi-3.7
-CATEGORIES=	math
+PKGREVISION=	1
+CATEGORIES=	science
 MASTER_SITES=	http://www.openmx-square.org/
 
-MAINTAINER=	bacon4000@gmail.com
+MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	http://www.openmx-square.org/
 COMMENT=	Nano-scale material simulations based on DFT
 LICENSE=	gnu-gpl-v1
@@ -53,8 +54,7 @@ do-install:
 .endfor
 
 .include "../../wip/openmpi163/buildlink3.mk"
-.include "../../math/blas/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 # Investigate: Any advantage to using fftw-openmpi?
 .include "../../math/fftw/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

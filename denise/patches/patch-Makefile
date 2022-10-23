@@ -1,0 +1,39 @@
+$NetBSD$
+
+Fix installation directories, and use of install command.
+
+--- Makefile.orig	2022-06-27 19:02:54.000000000 +0000
++++ Makefile
+@@ -14,7 +14,8 @@ shaderFolder := shader
+ imgFolder := img
+ soundFolder := sounds
+ 
+-prefix ?= /usr
++prefix := ${DESTDIR}${PREFIX}
++#prefix ?= /usr
+ #prefix ?= $(HOME)/.local
+ 
+ include data/Makefile
+@@ -256,7 +258,7 @@ ifeq ($(platform),macosx)
+ else ifeq ($(platform),windows)
+ 	$(strip $(compiler) -o out/$(name) $(objects) $(link))
+ else ifeq ($(platform),BSD)
+-	@sed -i '' '1 s/$$(wildcard //g;1 s/.o:/.o: $$\(wildcard/g;$$ s/)//g;$$ s/$$/\)/g' obj/*.d
++	#@sed -i '' '1 s/$$(wildcard //g;1 s/.o:/.o: $$\(wildcard/g;$$ s/)//g;$$ s/$$/\)/g' obj/*.d
+ 
+ 	$(strip $(compiler) -o out/$(loname) $(objects) $(link))
+ else
+@@ -319,12 +321,7 @@ install: ## Install
+ 	fi
+ 	install -m 644 data/img/$(loname).png $(prefix)/share/icons/$(loname).png
+ 	install -m 644 data/$(loname).desktop $(prefix)/share/applications/$(loname).desktop
+-	@echo "Install file associations? [y/n]"; \
+-	read line; if [ $$line = "y" ]; then \
+-	    install -m 644 data/application-x-$(loname).xml $(prefix)/share/mime/packages/application-x-$(loname).xml; \
+-	    if [ $(shell which update-mime-database) ]; then update-mime-database $(prefix)/share/mime; fi; \
+-	    if [ $(shell which update-desktop-database) ]; then update-desktop-database $(prefix)/share/applications; fi; \
+-	fi
++	    install -m 644 data/application-x-$(loname).xml $(prefix)/share/mime/packages/application-x-$(loname).xml;
+ 	install -m 644 data/$(translationFolder)/* $(prefix)/share/$(loname)/$(translationFolder)
+ 	install -m 644 data/$(dataFolder)/* $(prefix)/share/$(loname)/$(dataFolder)
+ 	install -m 644 data/$(fontFolder)/*.ttf $(prefix)/share/$(loname)/$(fontFolder)

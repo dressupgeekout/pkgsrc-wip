@@ -1,14 +1,13 @@
 # $NetBSD$
 
-DISTNAME=	phaethon-${GITHUB_TAG}
-PKGNAME=	phaethon-${GITHUB_TAG:S/v//}
+DISTNAME=	phaethon-0.0.6
 CATEGORIES=	games devel
-GITHUB_TAG=	v0.0.4
 MASTER_SITES=	${MASTER_SITE_GITHUB:=xoreos/}
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	cfkoch@edgebsd.org
-COMMENT=	"A FLOSS resource explorer for BioWare's Aurora engine games"
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://xoreos.org/
+COMMENT=	Resource explorer for BioWare Aurora engine games
 LICENSE=	gnu-lgpl-v2.1
 
 EXTRACT_USING=	gtar
@@ -30,5 +29,5 @@ do-install:
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../multimedia/libogg/buildlink3.mk"
-.include "../../x11/wxGTK30/buildlink3.mk"
+.include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

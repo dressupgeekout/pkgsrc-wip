@@ -1,7 +1,7 @@
 # $NetBSD$
 
 GITHUB_PROJECT=	rmilter
-DISTNAME=	1.9.2
+DISTNAME=	1.10.0
 PKGNAME=	${GITHUB_PROJECT}-${DISTNAME}
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_GITHUB:=vstakhov/}
@@ -12,7 +12,7 @@ HOMEPAGE=	https://github.com/vstakhov/rmilter/
 COMMENT=	Milter for rspamd
 LICENSE=	2-clause-bsd
 
-WRKSRC=		${WRKDIR}/rmilter-1.9.2
+WRKSRC=		${WRKDIR}/rmilter-1.10.0
 USE_CMAKE=	yes
 
 BUILD_DEFS+=	VARBASE
@@ -44,10 +44,10 @@ OWN_DIRS_PERMS+=	${RUNDIR} ${RMILTER_USER} ${RMILTER_GROUP} 0755
 CONF_FILES=	${EGDIR}/rmilter.conf ${PKG_SYSCONFDIR}/rmilter.conf
 CONF_FILES+=	${EGDIR}/rmilter-grey.conf ${PKG_SYSCONFDIR}/rmilter-grey.conf
 
-SUBST_CLASSES+=         path
-SUBST_STAGE.path=       post-configure
-SUBST_FILES.path=       src/main.c
-SUBST_SED.path=         -e 's|/usr/local/etc/|${PKG_SYSCONFDIR}/|g'
+SUBST_CLASSES+=		path
+SUBST_STAGE.path=	post-configure
+SUBST_FILES.path=	src/main.c
+SUBST_SED.path=		-e 's|/usr/local/etc/|${PKG_SYSCONFDIR}/|g'
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/rmilter.conf.sample \

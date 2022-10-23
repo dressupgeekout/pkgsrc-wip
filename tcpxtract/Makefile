@@ -8,10 +8,11 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=tcpxtract/}
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://tcpxtract.sourceforge.net/
 COMMENT=		Extract files from network traffic based on file signatures
+LICENSE=		gnu-gpl-v2
 
 GNU_CONFIGURE=		yes
 CPPFLAGS+=		-DDEFAULT_CONFIG_FILE="\"${PKG_SYSCONFDIR}/tcpxtract.conf\""
-CONFIGURE_ARGS+=	--sysconfdir=${PREFIX:Q}/share/examples/tcpxtract
+CONFIGURE_ARGS+=	--sysconfdir=${PREFIX}/share/examples/tcpxtract
 
 CONF_FILES+=		${PREFIX}/share/examples/tcpxtract/tcpxtract.conf ${PKG_SYSCONFDIR}/tcpxtract.conf
 

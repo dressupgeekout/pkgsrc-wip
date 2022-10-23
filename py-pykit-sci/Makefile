@@ -6,14 +6,14 @@ CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pykit-sci/}
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://github.com/androomerrill/pykit-sci
+HOMEPAGE=	https://github.com/androomerrill/pykit-sci
 COMMENT=	Collection of python modules for science
 LICENSE=	2-clause-bsd
 
 DEPENDS+=	${PYPKGPREFIX}-scipy>=0.12.1:../../math/py-scipy
 DEPENDS+=	${PYPKGPREFIX}-pint>=0.5:../../wip/py-pint
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 0.1.8
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 0.1.8
 
 .include "../../lang/python/egg.mk"
 .include "../../math/py-numpy/buildlink3.mk"

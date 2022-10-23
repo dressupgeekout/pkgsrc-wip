@@ -3,9 +3,10 @@
 DISTNAME=	iisemulator-0.95
 CATEGORIES=	net www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=iisemul8/}
+LICENSE=	gnu-gpl-v2
 
 MAINTAINER=	adrianp@stindustries.net
-HOMEPAGE=	http://sourceforge.net/projects/iisemul8/
+HOMEPAGE=	https://sourceforge.net/projects/iisemul8/
 COMMENT=	IIS emulator
 
 IISEMUL8=	${PREFIX}/share/iisemulator

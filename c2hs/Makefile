@@ -1,35 +1,36 @@
 # $NetBSD: Makefile,v 1.8 2012/09/24 18:26:51 asau Exp $
 #
 
-DISTNAME=	c2hs-0.14.5
+DISTNAME=	c2hs-0.28.1
 PKGREVISION=	1
 CATEGORIES=	devel
-MASTER_SITES=	http://www.cse.unsw.edu.au/~chak/haskell/c2hs/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=haskell/}
+GITHUB_PROJECT=	c2hs
 
 MAINTAINER=	esg@sdf.lonestar.org
-HOMEPAGE=	http://www.cse.unsw.edu.au/~chak/haskell/c2hs/
+HOMEPAGE=	https://github.com/haskell/c2hs/
 COMMENT=	C->Haskell, an Interface Generator for Haskell
 LICENSE=	gnu-gpl-v2
 
 EGDIR=		${PREFIX}/share/examples/${PKGBASE}
 
 do-configure:
-	cd ${WRKSRC:Q} &&						\
+	cd ${WRKSRC} &&						\
 	runhaskell Setup.hs configure					\
 	  --ghc								\
-	  --prefix=${PREFIX:Q}						\
-	  --with-compiler=${PREFIX:Q}/bin/ghc				\
-	  --with-hc-pkg=${PREFIX:Q}/bin/ghc-pkg
+	  --prefix=${PREFIX}						\
+	  --with-compiler=${PREFIX}/bin/ghc				\
+	  --with-hc-pkg=${PREFIX}/bin/ghc-pkg
 
 do-build:
-	cd ${WRKSRC:Q} && runhaskell Setup.hs build
+	cd ${WRKSRC} && runhaskell Setup.hs build
 
 do-install:
-	cd ${WRKSRC:Q} && runhaskell Setup.hs install
+	cd ${WRKSRC} && runhaskell Setup.hs install
 
 post-install:
-	${INSTALL_DATA_DIR} ${EGDIR:Q}
-	cd ${WRKSRC:Q}/c2hs/tests && ${INSTALL_DATA} * ${EGDIR:Q}
+	${INSTALL_DATA_DIR} ${EGDIR}
+	cd ${WRKSRC}/c2hs/tests && ${INSTALL_DATA} * ${EGDIR}
 
 .include "../../lang/ghc/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -5,6 +5,7 @@ DISTNAME=	ggz-server-0.0.14
 PKGREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	http://mirrors.ibiblio.org/pub/mirrors/ggzgamingzone/ggz/0.0.14/
+LICENSE=	gnu-gpl-v2
 
 MAINTAINER=	mrohrer@users.sourceforge.net
 HOMEPAGE=	http://mirrors.ibiblio.org/pub/mirrors/ggzgamingzone/ggz/0.0.14/
@@ -15,7 +16,7 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_LANGUAGES=	c c++
 
-CONFIGURE_ARGS+= --enable-debug-gdb
+CONFIGURE_ARGS+=	--enable-debug-gdb
 
 .include "../../games/libggz/buildlink3.mk"
 .include "../../databases/db4/buildlink3.mk"

@@ -14,13 +14,13 @@ DEPENDS+=	${PYPKGPREFIX}-Tk-[0-9]*:../../x11/py-Tk
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # as of 1.2.2
-REPLACE_PYTHON+=	*.py
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 1.2.2
+REPLACE_PYTHON+=		*.py
 
 post-extract:
 	${MV} ${WRKSRC}/scripts/Gato ${WRKSRC}/scripts/Gato${PYVERSSUFFIX}
 	${MV} ${WRKSRC}/scripts/Gred ${WRKSRC}/scripts/Gred${PYVERSSUFFIX}
 
 .include "../../lang/python/application.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

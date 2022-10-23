@@ -11,11 +11,11 @@ HOMEPAGE=	https://github.com/dieterv/etk.docking/
 COMMENT=	PyGTK Docking Widgets
 LICENSE=	gnu-lgpl-v3 AND gnu-gpl-v3
 
-DEPENDS+=	${PYPKGPREFIX}-simplegeneric>=0.8:../../wip/py-simplegeneric
+DEPENDS+=	${PYPKGPREFIX}-simplegeneric>=0.8:../../devel/py-simplegeneric
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2, py-gobject
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2, py-gobject
 
 .include "../../devel/py-gobject/buildlink3.mk"
 .include "../../lang/python/egg.mk"

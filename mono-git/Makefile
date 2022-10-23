@@ -8,13 +8,13 @@ PKGNAME=	mono-0.0.0
 CATEGORIES=	lang
 
 MAINTAINER=	kamil@NetBSD.org
-HOMEPAGE=	http://www.mono-project.com/
+HOMEPAGE=	https://www.mono-project.com/
 COMMENT=	Open source ECMA CLI, C# and .NET implementation
 LICENSE=	mit AND gnu-gpl-v2 AND gnu-lgpl-v2 AND apache-2.0
 
 BUILD_DEPENDS+=	p5-XML-Parser-[0-9]*:../../textproc/p5-XML-Parser
 CONFLICTS=	pnet-[0-9]* mcsim-[0-9]* lc-[0-9]*
-ALL_ENV+=	MONO_SHARED_DIR=${WRKDIR:Q} PLATFORM=
+ALL_ENV+=	MONO_SHARED_DIR=${WRKDIR} PLATFORM=
 WRKSRC=		${WRKDIR}/mono
 
 USE_TOOLS+=	bash:run bison gmake gtar msgfmt perl:run pkg-config autoconf automake autoreconf gsed
@@ -23,7 +23,7 @@ USE_LANGUAGES+=	c c99 c++
 EXTRACT_USING=	gtar
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q} --with-icu=yes
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR} --with-icu=yes
 CONFIGURE_ARGS+=	--with-preview=yes --with-libgdiplus=installed
 CONFIGURE_ARGS+=	--disable-dtrace --with-gc=none
 
@@ -134,7 +134,7 @@ SUBST_CLASSES+=			fix-libx11
 SUBST_STAGE.fix-libx11=		pre-configure
 SUBST_MESSAGE.fix-libx11=	Fixing libX11 search path configuration
 SUBST_FILES.fix-libx11=		configure
-SUBST_SED.fix-libx11=		-e 's,@X11BASE@,${X11BASE},g'
+SUBST_VARS.fix-libx11=		X11BASE
 
 PLIST_VARS=	monodoc
 

@@ -4,9 +4,10 @@
 DISTNAME=	ices-0.2.3
 CATEGORIES=	audio
 MASTER_SITES=	http://www.icecast.org/releases/
+LICENSE=	gnu-gpl-v2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.icecast.org/
+HOMEPAGE=	https://www.icecast.org/
 COMMENT=	MP3/Vorbis encoder for icecast servers
 
 
@@ -14,7 +15,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-lame=${BUILDLINK_PREFIX.lame} \
 			--with-perl=${BUILDLINK_PREFIX.perl} \
 			--with-xml=${BUILDLINK_PREFIX.libxml2}/bin \
-			--with-docdir=${LOCALBASE}/share/doc/ices \
+			--with-docdir=${PREFIX}/share/doc/ices \
 			--with-libshout=${BUILDLINK_PREFIX.libshout}
 
 .include "../../audio/libshout/buildlink3.mk"
@@ -36,7 +37,7 @@ CONFIGURE_ARGS+=	--without-python
 #.endif
 
 .if defined(USE_VORBIS)
-.   include "../../audio/libvorbis/buildlink3.mk"
+.  include "../../audio/libvorbis/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-vorbis=${BUILDINK_PREFIX.libvorbis}
 .else
 CONFIGURE_ARGS+=	--without-vorbis

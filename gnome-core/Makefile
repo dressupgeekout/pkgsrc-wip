@@ -6,7 +6,7 @@ MASTER_SITES=	# empty
 DISTFILES=	# empty
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnome.org/
+HOMEPAGE=	https://www.gnome.org/
 COMMENT=	Meta-package for the GNOME core libraries
 
 META_PACKAGE=	yes
@@ -20,7 +20,7 @@ DEPENDS+=	atk-[0-9]*:../../devel/atk
 DEPENDS+=	atkmm-[0-9]*:../../devel/atkmm
 DEPENDS+=	bijiben-[0-9]*:../../wip/bijiben
 DEPENDS+=	cantarell-fonts-[0-9]*:../../fonts/cantarell-fonts
-DEPENDS+=	caribou-[0-9]*:../../wip/caribou
+DEPENDS+=	caribou-[0-9]*:../../x11/caribou
 DEPENDS+=	clutter-[0-9]*:../../graphics/clutter
 DEPENDS+=	clutter-gst-[0-9]*:../../wip/clutter-gst
 DEPENDS+=	clutter-gtk-[0-9]*:../../graphics/clutter-gtk
@@ -29,13 +29,13 @@ DEPENDS+=	dconf-[0-9]*:../../devel/dconf
 DEPENDS+=	dconf-editor-[0-9]*:../../devel/dconf-editor
 DEPENDS+=	epiphany-[0-9]*:../../wip/epiphany
 DEPENDS+=	evince3-[0-9]*:../../print/evince3
-DEPENDS+=	evolution-data-server-[0-9]*:../../wip/evolution-data-server
+DEPENDS+=	evolution-data-server-[0-9]*:../../mail/evolution-data-server
 DEPENDS+=	libfolks-[0-9]*:../../wip/libfolks
-DEPENDS+=	gcr-[0-9]*:../../wip/gcr
+DEPENDS+=	gcr-[0-9]*:../../security/gcr
 DEPENDS+=	gdk-pixbuf2-[0-9]*:../../graphics/gdk-pixbuf2 #TODO obsolete graphics/gdk-pixbuf?
 DEPENDS+=	gdm-[0-9]*:../../wip/gdm
 DEPENDS+=	geocode-glib-[0-9]*:../../wip/geocode-glib
-DEPENDS+=	gjs-[0-9]*:../../wip/gjs
+DEPENDS+=	gjs-[0-9]*:../../lang/gjs
 DEPENDS+=	glib2-[0-9]*:../../devel/glib2
 DEPENDS+=	glibmm-[0-9]*:../../devel/glibmm
 DEPENDS+=	gmime-[0-9]*:../../mail/gmime
@@ -89,7 +89,7 @@ DEPENDS+=	libgsf-[0-9]*:../../devel/libgsf
 # TODO libgsystem
 DEPENDS+=	libgtop-[0-9]*:../../sysutils/libgtop
 # TODO libgudev
-DEPENDS+=	libgweather-[0-9]*:../../wip/libgweather
+DEPENDS+=	libgweather-[0-9]*:../../devel/libgweather
 DEPENDS+=	libgxps-[0-9]*:../../print/libgxps
 # TODO libmediaart
 DEPENDS+=	libnotify-[0-9]*:../../sysutils/libnotify
@@ -116,11 +116,11 @@ DEPENDS+=	gnome-tracker-[0-9]*:../../wip/gnome-tracker # upstream name "tracker"
 DEPENDS+=	vala-[0-9]*:../../lang/vala
 # TODO valadoc
 DEPENDS+=	vino-[0-9]*:../../wip/vino
-DEPENDS+=	vte-[0-9]*:../../wip/vte # x11/vte029 ?
+DEPENDS+=	vte3-[0-9]*:../../x11/vte3
 # wing - Windows only
 DEPENDS+=	yelp3-[0-9]*:../../misc/yelp3
-DEPENDS+=	yelp-tools-[0-9]*:../../wip/yelp-tools
+DEPENDS+=	yelp-tools-[0-9]*:../../textproc/yelp-tools
 DEPENDS+=	yelp-xsl-[0-9]*:../../textproc/yelp-xsl
-DEPENDS+=	zenity-[0-9]*:../../wip/zenity
+DEPENDS+=	zenity-[0-9]*:../../x11/zenity
 
 .include "../../mk/bsd.pkg.mk"

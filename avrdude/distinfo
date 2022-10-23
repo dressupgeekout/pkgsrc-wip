@@ -1,12 +1,12 @@
-$NetBSD: distinfo,v 1.4 2015/01/18 07:50:32 makoto Exp $
+$NetBSD$
 
-SHA1 (avrdude-6.1.tar.gz) = 15525cbff5918568ef3955d871dbb94feaf83c79
-RMD160 (avrdude-6.1.tar.gz) = f2c31951c0941e86ff6deab6bd0348b54d05658c
-Size (avrdude-6.1.tar.gz) = 714595 bytes
-SHA1 (patch-aa) = 619f682af2e8eff36684993b331ba37cd1b446b6
-SHA1 (patch-ab) = a9105ae562c078eec5c87df6e7f27a80184bb6d4
-SHA1 (patch-ac) = df871808200e5732f77d50ef2d7fb51234173445
-SHA1 (patch-ad) = f9e7465b355f5b3feda8868287d6aaa5cd1dcd28
-SHA1 (patch-ae) = 4ad74b5abe90ddf29dd419043a2e6026f704d1c9
-SHA1 (patch-af) = 4ae54ce739ff41964fe56bc1b3e85611288a6e0c
-SHA1 (patch-fileio_c) = d0c01ae237bc5df0fd76d2362160d6946ef04846
+BLAKE2s (avrdude-7.0.tar.gz) = 9a7192749b61aaf0f296343799fab53307dd774bdbd07af55dc894d7974fe278
+SHA512 (avrdude-7.0.tar.gz) = 891c435d8f6d4529762d647c468c52b4c04c3a663b703af0ddd2c284aecfce92ce99502aed77f409f1afb4ab7d4e05d85f26d03de3624c7c14fcbc852d988d53
+Size (avrdude-7.0.tar.gz) = 943631 bytes
+SHA1 (patch-Makefile.am) = 67ce722ca28e8a2e23637880f010b3e6c0ddbe7c
+SHA1 (patch-configure.ac) = 48db97466c3a565f95ff6619cae4090b743d09b6
+SHA1 (patch-doc_Makefile.am) = f8c752921ded3de3c842a33f0dc88f3e3a3dd357
+SHA1 (patch-doc_Makefile.in) = 64442bcd59e053ee2b6bbe6c150848d54c540fef
+SHA1 (patch-freebsd__ppi.h) = 1dfcc1e510a4984f875753f183508bdcbd61c32d
+SHA1 (patch-ppi.c) = 524ed843a29e94fce67ce73f5615d64d2444bf66
+SHA1 (patch-usb__libusb.c) = 6e6c912f10e91c5d8c9f7264ee5db5161c963288

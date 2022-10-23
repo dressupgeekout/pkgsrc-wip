@@ -1,0 +1,8 @@
+$NetBSD$
+
+BLAKE2s (SuWidgets-0.2.0git-c45b2af3b24115335bf993671198f419fa3ed0f7.tar.gz) = eab1f8632b1abce89713fd7bcd295bef783f5875680ac7a75b06bb5caa575a35
+SHA512 (SuWidgets-0.2.0git-c45b2af3b24115335bf993671198f419fa3ed0f7.tar.gz) = e9eb4886084a57d793e080925e01dc82db087e8aab326b4e9d206b09f1f1b679fbc9c083acea5bfbfa58c3b868487e135e40ce41871ac3235ba95bd8ed125098
+Size (SuWidgets-0.2.0git-c45b2af3b24115335bf993671198f419fa3ed0f7.tar.gz) = 101082 bytes
+SHA1 (patch-Constellation.h) = 992c50a63b2905ce5fae9cb5918dd5d804f9c952
+SHA1 (patch-Histogram.h) = 0a2bcfc0f03f681f8cba1f4bef38bde8fa042cc5
+SHA1 (patch-TVDisplay.h) = 07e30700376baa170ddbe2229a00e63a887e10b5

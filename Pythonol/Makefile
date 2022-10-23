@@ -9,22 +9,22 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=pythonol/}
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.phrozensmoke.com/projects/pythonol/
+HOMEPAGE=		https://www.phrozensmoke.com/projects/pythonol/
 COMMENT=		Learn Spanish (with a little help of Python)
 
 DEPENDS+=		${PYPKGPREFIX}-sqlite>=0.4.3:../../databases/py-sqlite
 
 
 PY_PATCHPLIST=		yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2
 
 TARGET_DIR=		${PREFIX}/${PYSITELIB}/Pythonol
 SCRIPTNAME=		${PREFIX}/bin/pythonol
 USE_TOOLS+=		printf pax
 
 do-build:
-	${RM} -r ${WRKSRC:Q}/sqlite
-	${PYTHONBIN} ${WRKSRC:Q}/dictionary/makedb.py
+	${RM} -r ${WRKSRC}/sqlite
+	${PYTHONBIN} ${WRKSRC}/dictionary/makedb.py
 
 do-install:
 	${INSTALL_DATA_DIR} ${TARGET_DIR}

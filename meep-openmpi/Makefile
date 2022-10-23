@@ -3,10 +3,10 @@
 
 DISTNAME=	meep-1.2
 PKGNAME=	meep-openmpi-1.2
-CATEGORIES=	math
+CATEGORIES=	science
 MASTER_SITES=	http://ab-initio.mit.edu/meep/
 
-MAINTAINER=	bacon4000@gmail.com
+MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	http://ab-initio.mit.edu/meep/
 COMMENT=	FDTD simulation software to model electromagnetic systems
 LICENSE=	gnu-gpl-v3
@@ -18,12 +18,12 @@ HAS_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_LANGUAGES=	c c++ fortran77
 
-CONFIGURE_ARGS+=--with-libctl=${PREFIX}/share/libctl \
-		--with-mpi \
- 		--prefix=${MPI_PREFIX:Q} \
- 		--mandir=${MPI_PREFIX:Q}/man
+CONFIGURE_ARGS+=	--with-libctl=${PREFIX}/share/libctl \
+			--with-mpi \
+			--prefix=${MPI_PREFIX:Q} \
+			--mandir=${MPI_PREFIX:Q}/man
 
-MESSAGE_SUBST+=         PREFIX=${PREFIX:Q}
+MESSAGE_SUBST+=		PREFIX=${PREFIX}
 
 .include "../../wip/mpb-openmpi/buildlink3.mk"
 .include "../../math/gsl/buildlink3.mk"

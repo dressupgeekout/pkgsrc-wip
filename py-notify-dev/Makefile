@@ -6,12 +6,12 @@ CATEGORIES=	sysutils
 MASTER_SITES=	http://download.gna.org/py-notify/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://home.gna.org/py-notify/
+#HOMEPAGE=	https://pypi.python.org/pypi/py-notify/
 COMMENT=	Python bindings for libnotify - development branch
 LICENSE=	gnu-lgpl-v2.1
 
 PYDISTUTILSPKG=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2
 
 CONFLICTS+=	${PYPKGPREFIX}-notify-[0-9]*
 

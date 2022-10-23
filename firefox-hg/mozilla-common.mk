@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.7 2015/08/17 07:30:48 thomasklausner Exp $
+# $NetBSD: mozilla-common.mk,v 1.108 2018/03/21 16:06:29 taca Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -6,69 +6,76 @@
 # used by www/seamonkey/Makefile
 
 HAS_CONFIGURE=		yes
-# GNU_CONFIGURE does not work since the configure script doesn't like --build
-# and --mandir
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
-USE_TOOLS+=		pkg-config perl gmake unzip zip
+USE_TOOLS+=		pkg-config perl gmake autoconf213 unzip zip
 USE_LANGUAGES+=		c99 c++
 UNLIMIT_RESOURCES+=	datasize
 
 .include "../../mk/bsd.prefs.mk"
+
+.if ${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64"
+BUILD_DEPENDS+=		yasm>=1.1:../../devel/yasm
+
+# Enable Google widevine CDM. This requires external libwidevinecdm.so.
+#CONFIGURE_ARGS+=	--enable-eme=widevine
+.endif
+
+# For rustc/cargo detection
+CONFIGURE_ARGS+=	--target=${MACHINE_GNU_PLATFORM:Q}
+CONFIGURE_ARGS+=	--host=${MACHINE_GNU_PLATFORM:Q}
+
+CONFIGURE_ENV+=		BINDGEN_CFLAGS="-isystem${PREFIX}/include/nspr \
+			-isystem${X11BASE}/include/pixman-1"
+
+test:
+	cd ${WRKSRC}/${OBJDIR}/dist/bin &&	\
+	     ./run-mozilla.sh ${WRKSRC}/mach check-spidermonkey
+
 # tar(1) of OpenBSD 5.5 has no --exclude command line option.
 .if ${OPSYS} == "OpenBSD"
-TOOLS_PLATFORM.tar=	${TOOLS_PREFIX.bsdtar}/bin/bsdtar
+TOOLS_PLATFORM.tar=	${TOOLS_PATH.bsdtar}
 USE_TOOLS+=		bsdtar
 .endif
-# gcc45-4.5.3 of lang/gcc45 does not generate proper binary,
-# but gcc 4.5.4 of NetBSD 6.99 generates working binary.
-# gcc45 has no OpenBSD support, and gcc46 has it.
-.if !empty(MACHINE_PLATFORM:MNetBSD-5.*) || !empty(MACHINE_PLATFORM:MOpenBSD*)
-GCC_REQD+=		4.6
-.  if ${MACHINE_ARCH} == "i386"
+GCC_REQD+=		4.9
+.if ${MACHINE_ARCH} == "i386"
 # Fix for PR pkg/48152.
-CPPFLAGS+=		-march=i486
-.  endif
-.else
-GCC_REQD+=		4.5
+CXXFLAGS+=		-march=i586
+# This is required for SSE2 code under i386.
+CXXFLAGS+=		-mstackrealign
 .endif
 
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}js/src/tests/update-test262.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}intl/icu/source/configure
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}security/nss/tests/libpkix/libpkix.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}security/nss/tests/multinit/multinit.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}security/nss/tests/libpkix/libpkix.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}security/nss/tests/multinit/multinit.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}js/src/tests/update-test262.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}intl/icu/source/configure
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}browser/components/loop/run-all-loop-tests.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}browser/extensions/loop/run-all-loop-tests.sh
 
+CONFIGURE_ARGS+=	--enable-default-toolkit=cairo-gtk3
+CONFIGURE_ARGS+=	--enable-pie
 CONFIGURE_ARGS+=	--disable-tests
 CONFIGURE_ARGS+=	--with-pthreads
-CONFIGURE_ARGS+=	--enable-default-toolkit=cairo-gtk2
-CONFIGURE_ARGS+=	--enable-system-cairo
+# Mozilla Bug 1432751
+#CONFIGURE_ARGS+=	--enable-system-cairo
 CONFIGURE_ARGS+=	--enable-system-pixman
 CONFIGURE_ARGS+=	--with-system-libvpx
-CONFIGURE_ARGS+=	--enable-system-hunspell
+# textproc/hunspell 1.3 is too old
+#CONFIGURE_ARGS+=	--enable-system-hunspell
 CONFIGURE_ARGS+=	--enable-system-ffi
-# needs 58.1, but pkgsrc is stuck at 57
-#CONFIGURE_ARGS+=	--with-system-icu
-CONFIGURE_ARGS+=	--with-system-jpeg
+CONFIGURE_ARGS+=	--with-system-icu
+CONFIGURE_ARGS+=	--with-system-nss
+CONFIGURE_ARGS+=	--with-system-nspr
+#CONFIGURE_ARGS+=	--with-system-jpeg # XXX XXX XXX
 CONFIGURE_ARGS+=	--with-system-zlib
 CONFIGURE_ARGS+=	--with-system-bz2
 CONFIGURE_ARGS+=	--with-system-libevent=${BUILDLINK_PREFIX.libevent}
-#configure: error: System SQLite library is not compiled with SQLITE_ENABLE_DBSTAT_VTAB.
-#CONFIGURE_ARGS+=	--enable-system-sqlite
 CONFIGURE_ARGS+=	--disable-crashreporter
 CONFIGURE_ARGS+=	--disable-necko-wifi
 CONFIGURE_ARGS+=	--enable-chrome-format=flat
-CONFIGURE_ARGS+=	--disable-libjpeg-turbo
 
-CONFIGURE_ARGS+=	--disable-elf-hack
 CONFIGURE_ARGS+=	--disable-gconf
-CONFIGURE_ARGS+=	--enable-gio
-CONFIGURE_ARGS+=	--enable-extensions=gio
 #CONFIGURE_ARGS+=	--enable-readline
-CONFIGURE_ARGS+=	--enable-url-classifier
-#CONFIGURE_ARGS+=	--enable-startup-notification
-# Disabled from https://bugzilla.mozilla.org/show_bug.cgi?id=977400
-#CONFIGURE_ARGS+=	--enable-shared-js
 CONFIGURE_ARGS+=	--disable-icf
-CONFIGURE_ARGS+=	--disable-necko-wifi
 CONFIGURE_ARGS+=	--disable-updater
 
 SUBST_CLASSES+=			fix-paths
@@ -77,36 +84,44 @@ SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
 SUBST_FILES.fix-paths+=		${MOZILLA_DIR}xpcom/io/nsAppFileLocationProvider.cpp
 SUBST_SED.fix-paths+=		-e 's,/usr/lib/mozilla/plugins,${PREFIX}/lib/netscape/plugins,g'
 
-MOZ_OBJDIR=obj.${MACHINE_ARCH}
+SUBST_CLASSES+=			prefix
+SUBST_STAGE.prefix=		pre-configure
+SUBST_MESSAGE.prefix=		Setting PREFIX
+SUBST_FILES.prefix+=		${MOZILLA_DIR}xpcom/build/BinaryPath.h
+SUBST_VARS.prefix+=		PREFIX
 
-CONFIG_GUESS_OVERRIDE+=		${MOZILLA_DIR}${MOZ_OBJDIR}/autoconf/config.guess
+CONFIG_GUESS_OVERRIDE+=		${MOZILLA_DIR}build/autoconf/config.guess
 CONFIG_GUESS_OVERRIDE+=		${MOZILLA_DIR}js/src/build/autoconf/config.guess
 CONFIG_GUESS_OVERRIDE+=		${MOZILLA_DIR}nsprpub/build/autoconf/config.guess
 CONFIG_GUESS_OVERRIDE+=		${MOZILLA_DIR}/js/ctypes/libffi/config.guess
-CONFIG_SUB_OVERRIDE+=		${MOZILLA_DIR}${MOZ_OBJDIR}/autoconf/config.sub
+CONFIG_SUB_OVERRIDE+=		${MOZILLA_DIR}build/autoconf/config.sub
 CONFIG_SUB_OVERRIDE+=		${MOZILLA_DIR}js/src/build/autoconf/config.sub
 CONFIG_SUB_OVERRIDE+=		${MOZILLA_DIR}nsprpub/build/autoconf/config.sub
 CONFIG_SUB_OVERRIDE+=		${MOZILLA_DIR}/js/ctypes/libffi/config.sub
 
-PYTHON_VERSIONS_ACCEPTED=	27
-PYTHON_FOR_BUILD_ONLY=		yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-sqlite2
-.include "../../lang/python/application.mk"
-CONFIGURE_ENV+=		PYTHON=${PYTHONBIN:Q}
+CONFIGURE_ENV+=		CPP=${CPP}
 
-#BUILD_MAKE_FLAGS+=		MOZ_WEBRTC_IN_LIBXUL=1
+SUBST_CLASSES+=		python
+SUBST_STAGE.python=	pre-configure
+SUBST_MESSAGE.python=	Fixing path to python.
+SUBST_FILES.python+=	media/webrtc/trunk/build/common.gypi
+SUBST_SED.python+=	-e 's,<!(python,<!(${PYTHONBIN},'
 
 # Build outside ${WRKSRC}
 # Try to avoid conflict with config/makefiles/xpidl/Makefile.in
-OBJDIR=			../${MOZ_OBJDIR}
+OBJDIR=			../build
 CONFIGURE_DIRS=		${OBJDIR}
 CONFIGURE_SCRIPT=	${WRKSRC}/configure
 
-PLIST_VARS+=	sps glskia throwwrapper mozglue
+PLIST_VARS+=	sps vorbis tremor glskia throwwrapper mozglue avx86
 
 .include "../../mk/endian.mk"
 .if ${MACHINE_ENDIAN} == "little"
 PLIST.glskia=	yes
+.endif
+
+.if ${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64"
+PLIST.avx86=	yes	# see media/libav/README_MOZILLA: only used on x86
 .endif
 
 .if ${MACHINE_ARCH} != "sparc64"
@@ -120,19 +135,29 @@ PLIST.throwwrapper=	yes
 PLIST.sps=	yes
 .endif
 
+.if !empty(MACHINE_PLATFORM:MLinux-*-arm*)
+PLIST.tremor=	yes
+.else
+PLIST.vorbis=	yes
+.endif
+
 # See ${WRKSRC}/mozglue/build/moz.build: libmozglue is built and
 # installed as a shared library on these platforms.
 .if ${OPSYS} == "Cygwin" || ${OPSYS} == "Darwin" # or Android
 PLIST.mozglue=	yes
 .endif
 
-#
-# pysqlite2 is used by xulrunner's Python virtualenv.  If pysqlite2 isn't
-# installed at build time it will attempt to download it instead, so the
-# problem is stealthy in a networked environment, and obvious in an
-# offline environment.
-#
-BUILD_DEPENDS+=	${PYPKGPREFIX}-sqlite2-[0-9]*:../../databases/py-sqlite2
+# See ${WRKSRC}/security/sandbox/mac/Sandbox.mm: On Darwin, sandboxing
+# support is only available when the toolkit is cairo-cocoa.
+CONFIGURE_ARGS.Darwin+=	--disable-sandbox
+
+# See ${WRKSRC}/configure.in: It tries to use MacOS X 10.6 SDK by
+# default, which is not always possible.
+.if !empty(MACHINE_PLATFORM:MDarwin-8.*-*)
+CONFIGURE_ARGS+=	--enable-macos-target=10.4
+.elif !empty(MACHINE_PLATFORM:MDarwin-9.*-*)
+CONFIGURE_ARGS+=	--enable-macos-target=10.5
+.endif
 
 # Makefiles sometimes call "rm -f" without more arguments. Kludge around ...
 .PHONY: create-rm-wrapper
@@ -142,13 +167,9 @@ create-rm-wrapper:
 	  ${WRAPPER_DIR}/bin/rm
 	chmod +x ${WRAPPER_DIR}/bin/rm
 
-.include "../../mk/bsd.prefs.mk"
-
-.if ${OPSYS} == "NetBSD"
 # The configure test for __thread succeeds, but later we end up with:
 # dist/bin/libxul.so: undefined reference to `__tls_get_addr'
-CONFIGURE_ENV+=	ac_cv_thread_keyword=no
-.endif
+CONFIGURE_ENV.NetBSD+=	ac_cv_thread_keyword=no
 
 .if ${OPSYS} == "SunOS"
 # native libbz2.so hides BZ2_crc32Table
@@ -164,26 +185,32 @@ PLIST_SUBST+=	DLL_SUFFIX=".so"
 .endif
 
 .include "../../archivers/bzip2/buildlink3.mk"
-#BUILDLINK_API_DEPENDS.sqlite3+=	sqlite3>=3.8.8.2
-#CONFIGURE_ENV+=	ac_cv_sqlite_secure_delete=yes	# c.f. patches/patch-al
-#.include "../../databases/sqlite3/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libevent+=	libevent>=1.1
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../devel/libffi/buildlink3.mk"
-#.include "../../textproc/icu/buildlink3.mk"
+BUILDLINK_API_DEPENDS.nspr+=	nspr>=4.18
+.include "../../devel/nspr/buildlink3.mk"
+.include "../../textproc/icu/buildlink3.mk"
+BUILDLINK_API_DEPENDS.nss+=	nss>=3.36.1
+.include "../../devel/nss/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
-BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.10.2nb4
-.include "../../graphics/cairo/buildlink3.mk"
+#BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.10.2nb4
+#.include "../../graphics/cairo/buildlink3.mk"
+BUILDLINK_DEPMETHOD.clang=	build
+.include "../../lang/clang/buildlink3.mk"
+BUILDLINK_API_DEPENDS.rust+=	rust>=1.23.0
+BUILDLINK_DEPMETHOD.rust=	build
+.include "../../lang/rust/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libvpx+=	libvpx>=1.3.0
 .include "../../multimedia/libvpx/buildlink3.mk"
 .include "../../net/libIDL/buildlink3.mk"
-.include "../../textproc/hunspell/buildlink3.mk"
-BUILDLINK_API_DEPENDS.gtk2+=	gtk2+>=2.18.3nb1
-.include "../../x11/gtk2/buildlink3.mk"
-.include "../../multimedia/gstreamer1/buildlink3.mk"
-.include "../../multimedia/gst-plugins1-base/buildlink3.mk"
+# textproc/hunspell 1.3 is too old
+#.include "../../textproc/hunspell/buildlink3.mk"
+.include "../../multimedia/ffmpeg3/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
 BUILDLINK_API_DEPENDS.pixman+= pixman>=0.25.2
 .include "../../x11/pixman/buildlink3.mk"
+.include "../../x11/gtk2/buildlink3.mk"
+.include "../../x11/gtk3/buildlink3.mk"

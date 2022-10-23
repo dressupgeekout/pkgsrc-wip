@@ -18,10 +18,10 @@ WRKSRC=		${WRKDIR}/DrPython
 USE_LANGUAGES=	# none
 
 PYDISTUTILSPKG=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-wxWidgets
+PYTHON_VERSIONS_ACCEPTED=	27 # py-wxWidgets
 
-PY_EXEC=${PREFIX}/bin/python${PYVERSSUFFIX}
-PY_APPAPATH=${PREFIX}/${PYSITELIB}/drpython/drpython.py
+PY_EXEC=	${PREFIX}/bin/python${PYVERSSUFFIX}
+PY_APPAPATH=	${PREFIX}/${PYSITELIB}/drpython/drpython.py
 
 post-extract:
 	${CP} ${FILESDIR}/drpython.desktop ${WRKSRC}

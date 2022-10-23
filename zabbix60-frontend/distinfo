@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (zabbix-6.0.9.tar.gz) = a19b34c23caed60797c7f42a58e72aace2b11f72267be4cf98db469e453136ac
+SHA512 (zabbix-6.0.9.tar.gz) = 20211e2eab47d03a5de221f3a466aaff24c01b868208d4cbd7a10a16a10cd20172f009842c631169962c06e13ca8b0c6f0b6bd3cfd060b68b59f95a136a2e207
+Size (zabbix-6.0.9.tar.gz) = 34515806 bytes

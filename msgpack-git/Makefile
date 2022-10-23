@@ -8,11 +8,11 @@ GITHUB_RELEASE=	cpp-${PKGVERSION_NOREV}
 GITHUB_TYPE=	release
 
 # GIT_REPOSITORIES=	msgpack
-# GIT_REPO.msgpack=	git://github.com/msgpack/msgpack-c.git
+# GIT_REPO.msgpack=	https://github.com/msgpack/msgpack-c.git
 # GIT_MODULE.msgpack=	msgpack-c
 # WRKSRC=			${WRKDIR}/${GIT_MODULE.msgpack}
 
-HOMEPAGE=	http://msgpack.org/
+HOMEPAGE=	https://msgpack.org/
 COMMENT=	Binary-based efficient object serialization library
 LICENSE=	apache-2.0
 
@@ -29,11 +29,11 @@ PKGCONFIG_OVERRIDE=	msgpack.pc.in
 .include "../../mk/bsd.prefs.mk"
 
 .if ${_OPSYS_SHLIB_TYPE} == "dylib"
-SOEXT=          dylib
+SOEXT=		dylib
 .else
-SOEXT=          so
+SOEXT=		so
 .endif
-PLIST_SUBST+=   SOEXT=${SOEXT}
+PLIST_SUBST+=	SOEXT=${SOEXT}
 
 .include "options.mk"
 

@@ -1,11 +1,10 @@
 # $NetBSD: Makefile,v 1.13 2012/09/24 16:56:38 asau Exp $
-#
 
-DISTNAME=	ArgoUML-0.14
-PKGNAME=	argouml-0.14
-PKGREVISION=	1
+DISTNAME=	ArgoUML-0.34
+PKGNAME=	argouml-0.34
 CATEGORIES=	devel
-MASTER_SITES=	http://argouml.tigris.org/files/documents/4/0/argouml-0.14/
+MASTER_SITES=	http://argouml-downloads.tigris.org/nonav/argouml-0.34/
+LICENSE=	epl-v1.0
 
 MAINTAINER=	hdp@cs.nmsu.edu
 HOMEPAGE=	http://argouml.tigris.org/
@@ -15,9 +14,9 @@ COMMENT=	UML design tool environment with cognitive support
 DEPENDS+=	xerces-j>=1.2.0:../../textproc/xerces-j
 DEPENDS+=	jakarta-log4j-1.3a>=8:../../wip/jakarta-log4j
 
-USE_JAVA=		run
-NO_BUILD=		yes
-WRKSRC=		${WRKDIR}
+USE_JAVA=	run
+NO_BUILD=	yes
+WRKSRC=		${WRKDIR}/${PKGNAME}
 
 do-configure:
 	${SED} -e 's|@PREFIX@|${PREFIX}|g' \
@@ -27,10 +26,11 @@ do-configure:
 
 do-install:
 	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/lib/java/argouml
-	for f in antlrall argouml gef i18n nsuml ocl-argo; \
+	cd ${WRKSRC} && for f in `ls *.jar`; \
 	do \
-		${INSTALL_DATA} ${WRKSRC}/$${f}.jar ${DESTDIR}${PREFIX}/lib/java/argouml; \
+		${INSTALL_DATA} $${f} ${DESTDIR}${PREFIX}/lib/java/argouml; \
 	done
+	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/argouml ${DESTDIR}${PREFIX}/bin/
 
 .include "../../mk/java-vm.mk"

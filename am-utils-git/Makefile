@@ -3,16 +3,13 @@
 
 DISTNAME=	am-utils-6.2
 CATEGORIES=	sysutils
-#MASTER_SITES=	ftp://ftp.am-utils.org/pub/am-utils/
+GIT_REPO=	git://git.fsl.cs.sunysb.edu/am-utils-6.2.git
 
 MAINTAINER=		hauke@NetBSD.org
-HOMEPAGE=		http://www.am-utils.org/
+HOMEPAGE=		https://www.am-utils.org/
 COMMENT=		Berkeley automounter suite of utilities
 LICENSE=		original-bsd
 
-GIT_REPOSITORIES=       am-utils
-GIT_REPO.am-utils=	git://git.fsl.cs.sunysb.edu/am-utils-6.2.git
-GIT_MODULE.am-utils=	am-utils-6.2
 
 USE_TOOLS+=		yacc lex perl:run automake gettext-m4
 GNU_CONFIGURE=		yes
@@ -32,12 +29,12 @@ PKGDOCDIR=		${PREFIX}/share/doc/${PKGBASE}
 INSTALLATION_DIRS+=	${EGDIR} ${PKGDOCDIR} etc/amd
 
 EXTRA_DOC_FILES=	COPYING FAQ ChangeLog BUGS AUTHORS \
-                        README.attrcache README.autofs README.ldap \
-                        README.osx README.y2k NEWS README INSTALL
+			README.attrcache README.autofs README.ldap \
+			README.osx README.y2k NEWS README INSTALL
 EXAMPLE_CONF_FILES=	amd.conf lostaltmail.conf
 
 pre-configure:
-	( cd  ${WRKSRC} && ${SH} bootstrap )
+	cd ${WRKSRC} && ${SH} bootstrap
 
 post-install:
 .for i in ${EXTRA_DOC_FILES}

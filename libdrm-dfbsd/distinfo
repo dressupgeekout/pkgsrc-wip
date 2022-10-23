@@ -1,14 +1,16 @@
-$NetBSD: distinfo,v 1.67 2016/11/30 12:37:40 wiz Exp $
+$NetBSD: distinfo,v 1.93 2019/04/23 09:51:47 wiz Exp $
 
-SHA1 (libdrm-2.4.74.tar.bz2) = 0d9c02d5d2c6c2fac862cb687bf45bc20d129017
-RMD160 (libdrm-2.4.74.tar.bz2) = 8ebc6e850ab576928c011f7b2d1e67fc42d37209
-SHA512 (libdrm-2.4.74.tar.bz2) = 5b9784bf00bb8179ad59f2fbe5600b51ede3f79dd1ea2cb50485ffaabf74e83d766b2deb6833b99692a303e6780286ecce41b88a2d7c15f9e839bc7182a8879d
-Size (libdrm-2.4.74.tar.bz2) = 781730 bytes
-SHA1 (patch-ab) = 9e9db1e44618f0072e2dfcbb24fb3268c944ecdf
+RMD160 (libdrm-2.4.99.tar.bz2) = 6561915eeba4a5348d342620c2495dabed99d63f
+SHA512 (libdrm-2.4.99.tar.bz2) = 04702eebe8dca97fac61653623804fdcb0b8b3714bdc6f5e72f0dfdce9c9524cf16f69d37aa9feac79ddc1c11939be44a216484563a612414668ea5eaeadf191
+Size (libdrm-2.4.99.tar.bz2) = 853659 bytes
 SHA1 (patch-ac) = 67c998df7dfc0dabc86320ea6d015cede3e464ea
-SHA1 (patch-include_drm_drm.h) = 48a912f40bf2b2a1c23edbe4446fa7869212f17b
-SHA1 (patch-libkms_vmwgfx.c) = d2204c0b79098c6c36b7f282b486c58c6354bd1d
-SHA1 (patch-radeon_radeon__bo__gem.c) = 4924fde172b2a2a713d47bf7b60a6b52851d7a8f
-SHA1 (patch-radeon_radeon__cs__gem.c) = 516b5dd6408c10a4f33f2815b3719e34a16d863a
-SHA1 (patch-xf86drmMode.c) = 508a1e4bae40243c5445ec51084e760279d35ba6
-SHA1 (patch-xf86drmMode.h) = a28b02887389be8670193c119f711901af61a6b2
+SHA1 (patch-include_drm_drm.h) = 964d1af410469f8995a7be8c603e33ae3701c0d4
+SHA1 (patch-intel_intel__bufmgr__gem.c) = 29598cfacd6b6f7432001d0d884b4e4204c18d4a
+SHA1 (patch-intel_uthash.h) = fba0a7bb2437760b06640a3d69f1a44b62726a3a
+SHA1 (patch-libkms_vmwgfx.c) = de56a4f1724bef5f237f183eca889b8cef3b81af
+SHA1 (patch-libsync.h) = 1e0603e72a54a069fc9d2ab2c9559d22381a69d3
+SHA1 (patch-meson.build) = f010ba233e8a50ec59f323a8a6669758b3bdb7bf
+SHA1 (patch-xf86atomic.h) = e8af89dfefe0537e33dce16609b083261792b1ad
+SHA1 (patch-xf86drm.c) = 84aa5b4bd19a86ce449c9757db55e39e1fd61f73
+SHA1 (patch-xf86drmMode.c) = d7c6617ef54f76dc3dac00098adbb2f6fb02d685
+SHA1 (patch-xf86drmMode.h) = 265989e670cc7ead9bb5002e116e5ab56439ede6

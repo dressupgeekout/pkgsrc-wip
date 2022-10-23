@@ -7,13 +7,13 @@ CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=l/loggly/}
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://github.com/EA2D/loggly-python
+HOMEPAGE=	https://github.com/EA2D/loggly-python
 COMMENT=	Python interface to Loggly
 LICENSE=	apache-2.0
 
 DEPENDS+=	${PYPKGPREFIX}-simplejson>=2.6.1:../../converters/py-simplejson
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # as of 0.1.2 (uses urllib2)
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 0.1.2 (uses urllib2)
 
 USE_LANGUAGES=	# none
 

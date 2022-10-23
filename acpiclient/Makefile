@@ -5,14 +5,15 @@ DISTNAME=	acpi-1.5
 PKGREVISION=	1
 CATEGORIES=	linux sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=acpiclient/}
+LICENSE=	gnu-gpl-v2
 
 MAINTAINER=	rga@sdf.lonestar.org
 HOMEPAGE=	http://acpiclient.sourceforge.net/
-COMMENT=	This is an acpi client for Linux
+COMMENT=	Displays information about ACPI devices
 
 GNU_CONFIGURE=	yes
-USE_TOOLS+=     gmake
+USE_TOOLS+=	gmake
 
-ONLY_FOR_PLATFORM= Linux-*-*
+ONLY_FOR_PLATFORM=	Linux-*-*
 
 .include "../../mk/bsd.pkg.mk"

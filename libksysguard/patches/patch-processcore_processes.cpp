@@ -1,20 +1,35 @@
-$NetBSD: patch-libs_ksysguard_processcore_processes.cpp,v 1.1 2012/03/19 19:44:04 markd Exp $
+$NetBSD$
 
---- processcore/processes.cpp.orig	2016-04-19 11:13:53.000000000 +0000
+--- processcore/processes.cpp.orig	2022-07-11 10:53:39.000000000 +0000
 +++ processcore/processes.cpp
-@@ -206,6 +206,7 @@ bool Processes::updateProcessInfo(Proces
-         }
- #endif
-         if(d->mUpdateFlags.testFlag(Processes::IOStatistics)) {
+@@ -156,6 +156,7 @@ bool Processes::updateProcess(Process *p
+ 
+ bool Processes::updateProcessInfo(Process *ps)
+ {
 +#ifndef Q_OS_NETBSD
-             if( d->mHavePreviousIoValues ) {
-                 ps->setIoCharactersReadRate((ps->ioCharactersRead() - oldIoCharactersRead) * 1000.0 / elapsedTime);
-                 ps->setIoCharactersWrittenRate((ps->ioCharactersWritten() - oldIoCharactersWritten) * 1000.0 / elapsedTime);
-@@ -215,6 +216,7 @@ bool Processes::updateProcessInfo(Proces
-                 ps->setIoCharactersActuallyWrittenRate((ps->ioCharactersActuallyWritten() - oldIoCharactersActuallyWritten) * 1000.0 / elapsedTime);
-             } else
-                 d->mHavePreviousIoValues = true;
+     // Now we can actually get the process info
+     qlonglong oldUserTime = ps->userTime();
+     qlonglong oldSysTime = ps->sysTime();
+@@ -175,6 +176,7 @@ bool Processes::updateProcessInfo(Proces
+         oldIoCharactersActuallyRead = ps->ioCharactersActuallyRead();
+         oldIoCharactersActuallyWritten = ps->ioCharactersActuallyWritten();
+     }
 +#endif
-         } else if(d->mHavePreviousIoValues) {
-             d->mHavePreviousIoValues = false;
+ 
+     ps->setChanges(Process::Nothing);
+     bool success;
+@@ -208,12 +210,14 @@ bool Processes::updateProcessInfo(Proces
+         };
+ 
+         if (d->mUpdateFlags.testFlag(Processes::IOStatistics)) {
++#ifndef Q_OS_NETBSD
+             ps->setIoCharactersReadRate(calculateRate(ps->ioCharactersRead(), oldIoCharactersRead, elapsedTime));
+             ps->setIoCharactersWrittenRate(calculateRate(ps->ioCharactersWritten(), oldIoCharactersWritten, elapsedTime));
+             ps->setIoReadSyscallsRate(calculateRate(ps->ioReadSyscalls(), oldIoReadSyscalls, elapsedTime));
+             ps->setIoWriteSyscallsRate(calculateRate(ps->ioWriteSyscalls(), oldIoWriteSyscalls, elapsedTime));
+             ps->setIoCharactersActuallyReadRate(calculateRate(ps->ioCharactersActuallyRead(), oldIoCharactersActuallyRead, elapsedTime));
+             ps->setIoCharactersActuallyWrittenRate(calculateRate(ps->ioCharactersActuallyWritten(), oldIoCharactersActuallyWritten, elapsedTime));
++#endif
+         } else {
              ps->setIoCharactersReadRate(0);
+             ps->setIoCharactersWrittenRate(0);

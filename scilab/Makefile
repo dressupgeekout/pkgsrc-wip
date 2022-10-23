@@ -2,23 +2,21 @@
 #
 
 DISTNAME=	${SCIBASE}-src
-PKGREVISION=	19
 PKGNAME=	${SCIBASE}
 CATEGORIES=	math
-MASTER_SITES=	http://www.scilab.org/download/4.1/
+MASTER_SITES=	http://www.scilab.org/download/5.5.2/
 
 MAINTAINER=	dmcmahill@NetBSD.org
-HOMEPAGE=	http://www.scilab.org/
+HOMEPAGE=	https://www.scilab.org/
 COMMENT=	High-level scientific math programming environment with graphics
+LICENSE=	cecill-2.1 AND modified-bsd
 
 MAKE_JOBS_SAFE=	no
 
-SCIBASE=	scilab-4.1
+SCIBASE=	scilab-5.5.2
 # don't forget to update SCI and SCIVERSION in the buildlink3.mk file when
 # SCIBASE is updated.
 WRKSRC=		${WRKDIR}/${SCIBASE}
-
-BROKEN_ON_PLATFORM+=	${LP64PLATFORMS}
 
 USE_LANGUAGES=		c fortran77
 USE_LIBTOOL=		yes
@@ -34,13 +32,13 @@ CONFIGURE_ARGS+=	--with-tk-library=${BUILDLINK_PREFIX.tk}/lib
 CONFIGURE_ARGS+=	--with-tk-include=${BUILDLINK_PREFIX.tk}/include
 CONFIGURE_ENV+=		TCL_CONFIG_SH=${BUILDLINK_PREFIX.tcl}/lib/tclConfig.sh
 CONFIGURE_ENV+=		TK_CONFIG_SH=${BUILDLINK_PREFIX.tk}/lib/tkConfig.sh
-CONFIGURE_ENV+=		CC_LDFLAGS=${X11_LDFLAGS:Q}\ ${COMPILER_RPATH_FLAG:Q}${BUILDLINK_PREFIX.tk:Q}/lib
-CONFIGURE_ENV+=		FC_LDFLAGS=${X11_LDFLAGS:Q}\ ${COMPILER_RPATH_FLAG:Q}${BUILDLINK_PREFIX.tk:Q}/lib
+CONFIGURE_ENV+=		CC_LDFLAGS=${X11_LDFLAGS:Q}\ ${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.tk}/lib
+CONFIGURE_ENV+=		FC_LDFLAGS=${X11_LDFLAGS:Q}\ ${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.tk}/lib
 
 # override HOME to avoid picking up a bad ${HOME}/.scilab during the build
-MAKE_ENV+=		HOME=${WRKSRC:Q}
+MAKE_ENV+=		HOME=${WRKSRC}
 MAKE_ENV+=		PVM_ROOT=${PVM_ROOT:Q}
-CONFIGURE_ENV+=		LOCALBASE=${LOCALBASE:Q}
+CONFIGURE_ENV+=		LOCALBASE=${PREFIX}
 
 # FIXME -- this ugly hack will go away on newer versions of scilab where the build
 # system has been improved significantly see:
@@ -48,13 +46,13 @@ CONFIGURE_ENV+=		LOCALBASE=${LOCALBASE:Q}
 #   scilab-4.1/routines/os_specific/getarg.c
 #
 .include "../../mk/compiler.mk"
-.  if !empty(FC:Mgfortran) || (defined(PKGSRC_FORTRAN) && !empty(PKGSRC_FORTRAN:Mg95))
+.if (${FC} == gfortran) || (defined(PKGSRC_FORTRAN) && (${PKGSRC_FORTRAN} == g95))
 CFLAGS+=		-DG95_FORTRAN=1
 .endif
 
-PVM_ROOT?=		${LOCALBASE}/pvm3
+PVM_ROOT?=		${PREFIX}/pvm3
 CONFIGURE_ENV+=		PVM_ROOT=${PVM_ROOT:Q}
-CONFIGURE_ENV+=		X11BASE=${X11BASE:Q}
+CONFIGURE_ENV+=		X11BASE=${X11BASE}
 PLIST_SUBST+=		SCIBASE=${SCIBASE:Q}
 
 UNWRAP_FILES+=		Makemex config/configuration config/Makeso.incl
@@ -112,7 +110,7 @@ post-install:
 	${RM} -f ${DESTDIR}${PREFIX}/lib/${SCIBASE}/util/scidem.orig
 	${RM} -f ${DESTDIR}${PREFIX}/lib/${SCIBASE}/util/scidoc.orig
 	${RM} -f ${DESTDIR}${PREFIX}/lib/${SCIBASE}/libtool
-	${LN} -s ${LOCALBASE}/bin/libtool ${DESTDIR}${PREFIX}/lib/${SCIBASE}/libtool
+	${LN} -s ${PREFIX}/bin/libtool ${DESTDIR}${PREFIX}/lib/${SCIBASE}/libtool
 	${RM} -f ${DESTDIR}${PREFIX}/lib/${SCIBASE}/bin/dold
 	${RM} -f ${DESTDIR}${PREFIX}/lib/${SCIBASE}/config/*.subst.sav
 	${RM} -f ${DESTDIR}${PREFIX}/lib/${SCIBASE}/config/config.guess
@@ -128,7 +126,7 @@ GCC_REQD+=		2.95.3
 
 # the "SCI=0 && unset SCI" is done because some of the tests really will
 # fail if SCI is set to anything.
-MAKE_ENV+=	SCI=${WRKSRC:Q}
+MAKE_ENV+=	SCI=${WRKSRC}
 do-test:
 	cd ${WRKSRC}/examples && \
 		${MAKE_ENV} ${MAKE_PROGRAM} tests 2>&1 | \

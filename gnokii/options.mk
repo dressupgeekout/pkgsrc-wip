@@ -27,7 +27,7 @@ CONFIGURE_ARGS+=	--disable-libical
 .endif
 
 .if !empty(PKG_OPTIONS:Mlibusb)
-.include "../../devel/libusb/buildlink3.mk"
+.include "../../mk/libusb.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-libusb
 .endif
@@ -75,7 +75,7 @@ CONFIGURE_ARGS+=	--without-x
 .endif
 
 .if !empty(PKG_OPTIONS:Mxpm)
-.if empty(PKG_OPTIONS:Mx11)
+.  if empty(PKG_OPTIONS:Mx11)
 .include "../../x11/libXpm/buildlink3.mk"
-.endif
+.  endif
 .endif

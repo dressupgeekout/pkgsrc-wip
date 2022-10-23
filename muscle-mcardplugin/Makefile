@@ -8,14 +8,14 @@ MASTER_SITES=		http://alioth.debian.org/download.php/463/
 
 MAINTAINER=	evaldo@gardenali.biz
 HOMEPAGE=	http://www.linuxnet.com/
-COMMENT=		MuscleCard applet plugin for the MUSCLE framework
+COMMENT=	MuscleCard applet plugin for the MUSCLE framework
 
 WRKSRC=			${WRKDIR}/${DISTNAME}/MCardPlugin
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
 USE_TOOLS+=		gmake
 
-CPPFLAGS+=		-I${LOCALBASE}/include/PCSC
+CPPFLAGS+=		-I${PREFIX}/include/PCSC
 
 CONFIGURE_ARGS+=	--enable-callback
 

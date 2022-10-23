@@ -6,17 +6,17 @@ CATEGORIES=	math
 MASTER_SITES=	https://www.hepforge.org/archive/debinning/
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://debinning.hepforge.org/
+HOMEPAGE=	https://debinning.hepforge.org/
 COMMENT=	The bias inherent when binning data  into histograms
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	gnu-gpl-v3
 
 #DEPENDS+=	root>=:../../misc/root
+DEPENDS+=	${PYPKGPREFIX}-matplotlib-[0-9]*:../../graphics/py-matplotlib
 
 WRKSRC=		${WRKDIR}/debinning
 
 USE_LANGUAGES=	# none
 
 .include "../../lang/python/extension.mk"
-.include "../../graphics/py-matplotlib/buildlink3.mk"
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

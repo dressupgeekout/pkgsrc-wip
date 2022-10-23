@@ -1,5 +1,14 @@
-@comment $NetBSD: PLIST,v 1.5 2009/10/11 10:45:23 thomasklausner Exp $
+@comment $NetBSD$
 bin/twinkle
+bin/twinkle-console
+man/man1/twinkle.1
+share/applications/twinkle.desktop
+share/icons/hicolor/16x16/apps/twinkle.png
+share/icons/hicolor/24x24/apps/twinkle.png
+share/icons/hicolor/32x32/apps/twinkle.png
+share/icons/hicolor/48x48/apps/twinkle.png
+share/icons/hicolor/scalable/apps/twinkle.svg
+share/pixmaps/twinkle.png
 share/twinkle/lang/twinkle_cs.qm
 share/twinkle/lang/twinkle_de.qm
 share/twinkle/lang/twinkle_fr.qm

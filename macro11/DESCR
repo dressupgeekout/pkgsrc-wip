@@ -1,1 +1,2 @@
-A MACRO-11 assembler for the PDP-11 in portable C source code.
+PDP-11 cross-assembler. Generates either RSX-11M+ or RT11 object files.
+Also includes obj2bin.pl to convert to several nonrelocatable formats.

@@ -6,7 +6,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=brlcad/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://brlcad.org/
+HOMEPAGE=	https://brlcad.org/
 COMMENT=	Cross-platform solid modeling system
 LICENSE=	gnu-lgpl-v2.1 AND modified-bsd
 
@@ -31,7 +31,7 @@ LDFLAGS+=	${COMPILER_RPATH_FLAG}${BRLCAD_PREFIX:Q}/lib/libgcv_plugins
 
 # Allow RPATH out of standard prefix
 BUILDLINK_PASSTHRU_DIRS+=	${BRLCAD_PREFIX:Q}
-BUILDLINK_PASSTHRU_RPATHDIRS+=  ${BRLCAD_PREFIX:Q}
+BUILDLINK_PASSTHRU_RPATHDIRS+=	${BRLCAD_PREFIX:Q}
 
 PKGCONFIG_OVERRIDE+=	misc/pkgconfig/libanalyze.pc.in
 PKGCONFIG_OVERRIDE+=	misc/pkgconfig/librt.pc.in

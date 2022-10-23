@@ -1,4 +1,3 @@
-# $Id: Makefile,v 1.5 2013/10/01 20:52:48 tonnerre Exp $
 # $NetBSD: Makefile,v 1.5 2013/10/01 20:52:48 tonnerre Exp $
 
 DISTNAME=		serendipity-${VERSION}
@@ -10,6 +9,7 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=php-blog/}
 MAINTAINER=		tonnerre@NetBSD.org
 HOMEPAGE=		http://s9y.org/
 COMMENT=		Blogging tool written in php
+LICENSE=		modified-bsd
 
 USE_TOOLS+=		pax find rm
 
@@ -28,8 +28,8 @@ REPLACE_FILES.perl=	htmlarea/plugins/SpellChecker/spell-check-logic.cgi
 NO_BUILD=		yes
 WRKSRC=			${WRKDIR}/serendipity
 
-WWW_USER?=              ${APACHE_USER}
-WWW_GROUP?=             ${APACHE_GROUP}
+WWW_USER?=		${APACHE_USER}
+WWW_GROUP?=		${APACHE_GROUP}
 
 PKG_GROUPS_VARS+=	WWW_GROUP
 PKG_USERS_VARS+=	WWW_USER

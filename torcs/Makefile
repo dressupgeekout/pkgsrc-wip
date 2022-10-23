@@ -22,8 +22,8 @@ GNU_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS=	bash gmake
 
-CONFIGURE_ARGS+=	--x-includes=${X11BASE:Q}/include
-CONFIGURE_ARGS+=	--x-libraries=${X11BASE:Q}/lib${LIBABISUFFIX:Q}
+CONFIGURE_ARGS+=	--x-includes=${X11BASE}/include
+CONFIGURE_ARGS+=	--x-libraries=${X11BASE}/lib${LIBABISUFFIX:Q}
 
 REPLACE_BASH+=	robotgen
 REPLACE_BASH+=	src/linux/torcs.in
@@ -39,13 +39,13 @@ SUBST_CLASSES+=			fix-bash
 SUBST_STAGE.fix-bash=		pre-configure
 SUBST_MESSAGE.fix-bash=		Fixing path to bash interpreter.
 SUBST_FILES.fix-bash=		Make-default.mk src/linux/torcs.in
-SUBST_SED.fix-bash=		-e 's,@BASH@,${BASH},g'
+SUBST_VARS.fix-bash=		BASH
 
 SUBST_CLASSES+=			fix-mkdir
 SUBST_STAGE.fix-mkdir=		pre-configure
 SUBST_MESSAGE.fix-mkdir=	Fixing mkdir use in installation scripts.
 SUBST_FILES.fix-mkdir=		mkinstalldirs
-SUBST_SED.fix-mkdir=		-e 's,@INSTALL_DATA_DIR@,${INSTALL_DATA_DIR},g'
+SUBST_VARS.fix-mkdir=		INSTALL_DATA_DIR
 
 BUILD_TARGET=
 INSTALL_TARGET=		install datainstall

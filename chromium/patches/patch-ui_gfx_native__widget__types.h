@@ -1,13 +1,22 @@
-$NetBSD: patch-ui_gfx_native__widget__types.h,v 1.1 2011/05/27 13:23:09 rxg Exp $
+$NetBSD$
 
---- ui/gfx/native_widget_types.h.orig	2011-05-24 08:01:59.000000000 +0000
+--- ui/gfx/native_widget_types.h.orig	2020-07-15 18:56:49.000000000 +0000
 +++ ui/gfx/native_widget_types.h
-@@ -97,7 +97,7 @@ typedef GdkRegion* NativeRegion;
+@@ -103,7 +103,7 @@ class ViewAndroid;
+ #endif
+ class SkBitmap;
  
- #if defined(OS_MACOSX)
- typedef NSImage NativeImageType;
--#elif defined(OS_LINUX) && !defined(TOOLKIT_VIEWS)
-+#elif (defined(OS_LINUX) || defined(OS_BSD)) && !defined(TOOLKIT_VIEWS)
- typedef GdkPixbuf NativeImageType;
+-#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
++#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
+ extern "C" {
+ struct _AtkObject;
+ typedef struct _AtkObject AtkObject;
+@@ -210,7 +210,7 @@ typedef id NativeViewAccessible;
+ #elif defined(OS_MACOSX)
+ typedef NSFont* NativeFont;
+ typedef id NativeViewAccessible;
+-#elif defined(OS_LINUX) && !defined(OS_CHROMEOS)
++#elif (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
+ // Linux doesn't have a native font type.
+ typedef AtkObject* NativeViewAccessible;
  #else
- typedef SkBitmap NativeImageType;

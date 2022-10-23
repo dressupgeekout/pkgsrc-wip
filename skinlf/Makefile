@@ -3,22 +3,22 @@
 DISTNAME=	skinlf-1.2.3-20020729
 CATEGORIES=	devel
 MASTER_SITES=	http://sourceforge.net/projects/skinlf/files/SkinLF/1.2.3/
+EXTRACT_SUFX=	.zip
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://sourceforge.net/projects/skinlf/
+HOMEPAGE=	https://sourceforge.net/projects/skinlf/
 COMMENT=
 LICENSE=	skin-look-and-feel-license
-EXTRACT_SUFX=	.zip
 
 AUTO_MKDIRS=	yes
 WRKSRC=		${WRKDIR}/${PKGBASE}
 NO_BUILD=	yes
 
-INSTALLATION_DIRS= 			\
+INSTALLATION_DIRS= \
 	lib/java/skinlf
 
-JAR_FILES=				\
-	lib/nativeskin.jar		\
+JAR_FILES= \
+	lib/nativeskin.jar \
 	lib/skinlf.jar
 
 do-install:

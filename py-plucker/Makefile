@@ -7,7 +7,7 @@ MASTER_SITES=	http://www.unmetered.org.uk/plkr/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://www.plkr.org/
+HOMEPAGE=	https://www.plkr.org/
 COMMENT=	Set of tools converting web pages to Plucker format
 
 CONFLICTS=	py*-plucker-[0-9]*
@@ -28,7 +28,7 @@ SUBST_SED.paths=	-e 's,/usr/local,${PREFIX},g'
 
 REPLACE_PYTHON=	PyPlucker/Spider.py PyPlucker/PluckerDocs.py	\
 			PyPlucker/Decode.py
-PLIST_SUBST+=		PYSITELIB=${PYSITELIB:Q}
+PLIST_SUBST+=	PYSITELIB=${PYSITELIB:Q}
 
 .include "../../lang/python/application.mk"
 

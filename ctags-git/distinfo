@@ -1,1 +1,5 @@
-$NetBSD: distinfo,v 1.1 2015/04/27 21:17:15 jonthn Exp $
+$NetBSD$
+
+BLAKE2s (ctags-5.9.20220116.0.tar.gz) = f8f4960cfadecdc3851a3dbc503782a1f822b2bc46e4235f2e359aa90c4fe59c
+SHA512 (ctags-5.9.20220116.0.tar.gz) = ee843d35e773106f7e71467a45eec8cd6f1276f78a70a0ea90991b3f5dc7fdc2926bf8c89880a75100b9005529fc4bfb0b59269d52ae8cde9c8697215670553b
+Size (ctags-5.9.20220116.0.tar.gz) = 2824473 bytes

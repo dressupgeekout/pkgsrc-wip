@@ -1,5 +1,4 @@
 # $NetBSD$
-#
 
 DISTNAME=		collectd-unbound
 PKGNAME=		${DISTNAME}-20150830
@@ -16,9 +15,9 @@ LICENSE=		modified-bsd
 GO_SRCPATH=		github.com/falzm/collectd-unbound
 GO_DIST_BASE=		${DISTNAME}-${GITHUB_TAG}*
 
-DEPENDS+=		go-collectd-[0-9]*:../../sysutils/go-collectd
+DEPENDS+=		go-collectd-[0-9]*:../../wip/go-collectd
 DEPENDS+=		collectd-[0-9]*:../../sysutils/collectd
 
-.include "../../sysutils/go-collectd/buildlink3.mk"
+.include "../../wip/go-collectd/buildlink3.mk"
 .include "../../lang/go/go-package.mk"
 .include "../../mk/bsd.pkg.mk"

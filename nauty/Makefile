@@ -9,21 +9,21 @@ MASTER_SITES=	http://cs.anu.edu.au/~bdm/nauty/
 MAINTAINER=	jihbed.research@gmail.com
 HOMEPAGE=	http://cs.anu.edu.au/~bdm/nauty/
 COMMENT=	Brendan McKay's graph isomorphism tester
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	apache-2.0
 
-MAKE_JOBS_SAFE= no
+MAKE_JOBS_SAFE=	no
 
 GNU_CONFIGURE=	yes
 MAKE_FILE=	makefile
 USE_TOOLS+=	gmake
 USE_LANGUAGES=	c
 
-PROGFILES=  NRswitchg complg dreadnaut gentourng pickg 			\
-	    addedgeg copyg dretog labelg planarg amtog countg 		\
-	    genbg listg shortg biplabg deledgeg geng multig showg 	\
-	    arg directg genrang newedgeg
+PROGFILES=	NRswitchg complg dreadnaut gentourng pickg 		\
+		addedgeg copyg dretog labelg planarg amtog countg 	\
+		genbg listg shortg biplabg deledgeg geng multig showg 	\
+		arg directg genrang newedgeg
 
-INSTALLATION_DIRS= bin
+INSTALLATION_DIRS=	bin
 
 do-install:
 

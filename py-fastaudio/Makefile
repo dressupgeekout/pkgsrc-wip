@@ -8,6 +8,7 @@ CATEGORIES=		audio
 MASTER_SITES=		http://www.freenet.org.nz/python/pyPortAudio/ \
 			http://www.portaudio.com/archives/
 DISTFILES=		${DEFAULT_DISTFILES} portaudio_v18_1.zip
+LICENSE=		mit
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.freenet.org.nz/python/pyPortAudio/
@@ -17,7 +18,7 @@ BUILD_DEPENDS=		${PYPKGPREFIX}-pyrex>=0.8.1:../../lang/py-pyrex
 
 PY_PATCHPLIST=		yes
 PYDISTUTILSPKG=		yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-pyrex
+PYTHON_VERSIONS_ACCEPTED=	27 # py-pyrex
 
 MAKE_ENV+=		PTHREAD_LDFLAGS=${PTHREAD_LDFLAGS:Q}
 

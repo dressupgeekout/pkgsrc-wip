@@ -1,0 +1,6 @@
+$NetBSD$
+
+BLAKE2s (omnispeak/v1.1.tar.gz) = fc90d0f1bbedd406dfb1b632cd76c47ed99cf52f9db0ce3ddb5337ec5426b487
+SHA512 (omnispeak/v1.1.tar.gz) = e3138bfa6f15204365cd09cf061fcfd9909805a8c0054b8f2eb62acaa7ba619ef2c6d4bf444eb6310b17c129fef113800ca1acff67b7f2a989395b7da58828e0
+Size (omnispeak/v1.1.tar.gz) = 3402722 bytes
+SHA1 (patch-Makefile) = 08ac01bcfe30c22cddf501c83d2ddb737e21cc96

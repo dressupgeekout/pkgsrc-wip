@@ -3,13 +3,14 @@
 DISTNAME=		org-caldav-0.0
 CATEGORIES=		time net
 MASTER_SITES=		https://github.com/dengste/org-caldav
+LICENSE=		gnu-gpl-v3
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		https://github.com/dengste/org-caldav
 COMMENT=		Caldav sync for Emacs Orgmode
 
 GIT_REPOSITORIES=	org-caldav
-GIT_REPO.org-caldav= 		git://github.com/dengste/org-caldav.git
+GIT_REPO.org-caldav=	https://github.com/dengste/org-caldav.git
 
 WRKSRC=			${WRKDIR}/org-caldav
 EGG_NAME=		${DISTNAME}.dev

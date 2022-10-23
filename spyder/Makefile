@@ -7,13 +7,13 @@ EXTRACT_SUFX=	.zip
 
 MAINTAINER=	kamelderouiche@yahoo.com
 HOMEPAGE=	https://github.com/spyder-ide/spyder/wiki
-COMMENT= 	Scientific PYthon Development EnviRonment, alternative to IDLE
+COMMENT=	Scientific PYthon Development EnviRonment, alternative to IDLE
 LICENSE=	mit
 
-DEPENDS+= 	${PYPKGPREFIX}-rope>=0.9.3:../../devel/py-rope
-DEPENDS+= 	${PYPKGPREFIX}-sphinx>=1.2.3:../../textproc/py-sphinx
+DEPENDS+=	${PYPKGPREFIX}-rope>=0.9.3:../../devel/py-rope
+DEPENDS+=	${PYPKGPREFIX}-sphinx>=1.2.3:../../textproc/py-sphinx
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-rope
+PYTHON_VERSIONS_INCOMPATIBLE=	27 # py-sphinx
 
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		# none
@@ -23,7 +23,7 @@ post-extract:
 
 .include "options.mk"
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../x11/py-qt4/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

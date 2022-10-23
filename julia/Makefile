@@ -5,10 +5,10 @@ CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GITHUB:=JuliaLang/}
 GITHUB_PROJECT=	julia
 GITHUB_RELEASE=	v0.3.8
-WRKSRC=	${WRKDIR}/julia
+WRKSRC=		${WRKDIR}/julia
 
 MAINTAINER=	pkgsrc-users@netbsd.org
-HOMEPAGE=	http://julialang.org/
+HOMEPAGE=	https://julialang.org/
 COMMENT=	Julia is a high-level, high-performance dynamic programming language for technical computing
 LICENSE=	mit
 

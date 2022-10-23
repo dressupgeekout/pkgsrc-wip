@@ -3,12 +3,11 @@
 DISTNAME=	Probe-0.0.2
 PKGNAME=	deforaos-probe-0.0.2
 CATEGORIES=	net
-MASTER_SITES=	http://www.defora.org/os/download/download/3335/
+MASTER_SITES=	https://www.defora.org/os/download/download/3335/
 
 MAINTAINER=	khorben@defora.org
-HOMEPAGE=	http://www.defora.org/
+HOMEPAGE=	https://www.defora.org/
 COMMENT=	DeforaOS system monitoring infrastructure
-
 LICENSE=	gnu-gpl-v3
 
 MAKE_FLAGS+=	PREFIX=${PREFIX}
@@ -22,7 +21,7 @@ PKG_HOME.damon=	${VARBASE}/damon
 RCD_SCRIPTS+=	DaMon
 RCD_SCRIPTS+=	Probe
 
-SUBST_CLASSES+=	fix-paths
+SUBST_CLASSES+=		fix-paths
 SUBST_STAGE.fix-paths=	pre-install
 SUBST_MESSAGE.fix-path=	Fixing absolute paths.
 SUBST_FILES.fix-paths+=	../DaMon

@@ -14,7 +14,7 @@ MASTER_SITES=	${MASTER_SITE_GNU:=gcc/gcc-${GCC47_DIST_VERSION}/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	sbd@NetBSD.org
-HOMEPAGE=	http://gcc.gnu.org/
+HOMEPAGE=	https://gcc.gnu.org/
 COMMENT=	The GNU Compiler Collection (GCC) - 4.7 Release Series
 LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND gnu-lgpl-v3
 
@@ -75,9 +75,9 @@ CONFIGURE_ARGS+=	--disable-libstdcxx-pch
 
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-*)
 # on NetBSD, use the native SSP code in libc
-CONFIGURE_ARGS+=        --disable-libssp
+CONFIGURE_ARGS+=	--disable-libssp
 .else
-CONFIGURE_ARGS+=        --enable-libssp
+CONFIGURE_ARGS+=	--enable-libssp
 .endif
 
 CONFIGURE_ARGS+=	--enable-languages=${LANGS:Q}

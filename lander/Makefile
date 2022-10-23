@@ -1,11 +1,12 @@
 # $NetBSD$
 
 DISTNAME=	lander-0.6.4
+PKGREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	http://www.nickg.me.uk/files/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.doof.me.uk/lunar-lander/
+HOMEPAGE=	https://www.doof.me.uk/lunar-lander/
 COMMENT=	Lunar Lander clone
 LICENSE=	gnu-gpl-v3
 
@@ -16,7 +17,7 @@ USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		pkg-config xgettext
 
-CONFIGURE_ARGS+=	--with-boost="${PREFIX}"\
+CONFIGURE_ARGS+=	--with-boost="${PREFIX}" \
 			--with-boost-filesystem=boost_filesystem
 #LDFLAGS=		-L${LOCALBASE}/lib
 
@@ -28,5 +29,5 @@ CONFIGURE_ARGS+=	--with-boost="${PREFIX}"\
 .include "../../audio/SDL_sound/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
-.include "../../x11/xproto/buildlink3.mk"
+.include "../../x11/xorgproto/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

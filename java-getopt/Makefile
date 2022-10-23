@@ -5,9 +5,10 @@ DISTNAME=		java-getopt-1.0.9
 CATEGORIES=		devel
 MASTER_SITES=		ftp://ftp.urbanophile.com/pub/arenn/software/sources/
 EXTRACT_SUFX=		.jar
+LICENSE=		gnu-lgpl-v2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.urbanophile.com/arenn/hacking/download.html
+HOMEPAGE=		https://www.urbanophile.com/arenn/hacking/download.html
 COMMENT=		GNU getopt port for Java
 
 INSTALLATION_DIRS=	share/classpath

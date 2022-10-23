@@ -1,0 +1,248 @@
+#! /bin/sh
+#
+# This file contains helper functions for the SCM tests (CVS, Fossil,
+# Git, Mercurial, Subversion).  All these SCM systems share a common
+# structure:
+#
+#	* During the tests, a temporary directory is created in
+#	  ${PKGSRCDIR}, containing all files relevant to the tests.
+#
+#	* The "remote" repositories are created on-demand in $reposdir,
+#	  containing a few selected commits.  Code that modifies these
+#	  repositories works from $repoworkdir.
+#
+#	* Each SCM system is implemented via a few shell functions that are
+#	  called by set_up_repository and that may also be called directly.
+#
+#	* Since several SCM systems check out the code into a directory whose
+#	  name corresponds to the repository URL, the repositories are named
+#	  "pkgbase", which is the package name used in the various test cases.
+
+set -eu
+
+srcdir="${0%/*}"
+testname="${0##*/}"
+
+step() {
+	echo "" 1>&2
+	echo "T: $*" 1>&2
+}
+
+die() {
+	echo "E: $*" 1>&2
+	exit 1
+}
+
+set_up_package() {
+	trap clean_up EXIT
+
+	pkgsrcdir=`cd "$srcdir/../../.." && exec pwd`
+	test -f "$pkgsrcdir/mk/bsd.pkg.mk" || die "This test must be run from inside pkgsrc"
+
+	categorydir="$pkgsrcdir/00-wip-mk-tests-scm"
+	rm -rf "$categorydir"
+
+	pkgdir="$categorydir/$testname"
+	mkdir -p "$pkgdir"
+
+	cp "$srcdir/$1" "$pkgdir/Makefile"
+	echo "Dummy description." > "$pkgdir/DESCR"
+	echo "@comment \$""NetBSD""\$" > "$pkgdir/PLIST"
+	cd "$pkgdir"
+
+	reposdir="$categorydir/repos"
+	repoworkdir="$categorydir/repo-work"
+	distdir="$categorydir/distfiles"
+
+	# Install the VCS if necessary; needed by set_up_repository.
+	package_make depends
+	package_make clean
+
+	wrkdir=`package_make show-var VARNAME=WRKDIR`
+}
+
+clean_up() {
+	if [ $? -eq 0 ] && [ "${categorydir-}" ]; then
+		rm -rf "$categorydir"
+	fi
+}
+
+set_up_repository() {
+	step "Setting up $(scm_$1_name) repository"
+
+	scm_$1_init
+	cd "$repoworkdir"
+	> today
+	scm_$1_add 'today'
+	scm_$1_commit "2017-01-01"
+	scm_$1_tag v2017
+	scm_$1_commit "2018-01-01"
+	scm_$1_commit "2018-03-01"
+}
+
+scm_cvs_name() {
+	echo "CVS"
+}
+
+scm_cvs_init() {
+	cvs -d "$reposdir" init
+	mkdir "$reposdir/pkgbase"
+
+	cvs -d "$reposdir" checkout -d "$repoworkdir" "pkgbase"
+}
+
+scm_cvs_add() {
+	cvs add "$1"
+}
+
+scm_cvs_commit() {
+	echo "$1" > today
+	cvs commit -m "today is $1" today
+	cvs_admin_set_date "$reposdir/pkgbase/today,v" "$(tr -- - . < today).00.00.00"
+}
+
+scm_cvs_tag() {
+	cvs tag "$1" .
+}
+
+cvs_admin_set_date() {
+	# Adjust the date of the previous commit.
+	awk '
+		BEGIN { FS = "\t"; OFS = FS }
+		NR == 1 && $1 == "head" { rev = $2; sub(";", "", rev) }
+		now && $1 == "date" { now = 0; $2 = "'"$2"';" }
+		$0 == rev { now = 1 }
+		{ print }
+	' "$1" > "$1.tmp"
+	mv -f "$1.tmp" "$1"
+}
+
+scm_fossil_name() {
+	echo "Fossil"
+}
+
+scm_fossil_init() {
+	mkdir -p "$reposdir"
+	cd "$reposdir"
+	fossil init --date-override '2017-01-01' 'pkgbase.fossil'
+	fossil open --workdir "$repoworkdir" 'pkgbase.fossil'
+}
+
+scm_fossil_add() {
+	fossil add "$1"
+}
+
+scm_fossil_commit() {
+	echo "$1" > today
+	fossil commit -m "today is $1" --date-override "$1" --hash -- today
+}
+
+scm_fossil_tag() {
+	# XXX: Why 1 second after midnight?
+	fossil tag add --date-override "$(cat today) 00:00:01" "$1" tip
+}
+
+scm_git_name() {
+	echo "Git"
+}
+
+scm_git_init() {
+	# When cloning a Git repository, the name of the working directory
+	# is based on the repository name.
+	repodir="$reposdir/pkgbase"
+	git -c init.defaultBranch=master init "$repodir"
+	ln -s "$repodir" "$repoworkdir"
+}
+
+scm_git_add() {
+	git add "$1"
+}
+
+scm_git_commit() {
+	echo "$1" > today
+	GIT_AUTHOR_DATE="$1""T00:00:00Z" GIT_COMMITTER_DATE="$1""T00:00:00Z" \
+		git -c user.name="User" -c user.email="user@example.org" \
+			commit -m "today is $1" today
+}
+
+scm_git_tag() {
+	git tag "$1"
+}
+
+scm_hg_name() {
+	echo "Mercurial"
+}
+
+scm_hg_init() {
+	# When cloning a Mercurial repository, the name of the working
+	# directory is based on the repository name.
+	repodir="$reposdir/pkgbase"
+	hg init "$repodir"
+	ln -s "$repodir" "$repoworkdir"
+}
+
+scm_hg_add() {
+	hg add "$1"
+}
+
+scm_hg_commit() {
+	echo "$1" > today
+	hg commit -m "today is $1" -d "$1T00:00:00Z" -u "user" -- today
+}
+
+scm_hg_tag() {
+	hg tag -u "user" "$1"
+}
+
+scm_svn_name() {
+	echo "Subversion"
+}
+
+scm_svn_init() {
+	repodir="$reposdir/pkgbase"
+	mkdir "$reposdir"
+	svnadmin create "$repodir"
+
+	hook="$repodir/hooks/pre-revprop-change"
+	printf '%s\n' '#! /bin/sh' '# allow everything' > "$hook"
+	chmod +x "$hook"
+
+	svn checkout "file://$repodir" "$repoworkdir"
+
+	cd "$repoworkdir"
+	mkdir trunk tags branches
+	svn add trunk tags branches
+
+	repoworkdir="$repoworkdir/trunk"
+}
+
+scm_svn_add() {
+	svn add "$1"
+}
+
+scm_svn_commit() {
+	echo "$1" > today
+	svn commit -m "today is $1"
+	svn propset "svn:date" --revprop -r HEAD "$1T00:00:00.000000Z"
+}
+
+scm_svn_tag() {
+	svn -m "$1" --parents copy "file://$repodir/trunk" "file://$repodir/tags/$1"
+	svn propset "svn:date" --revprop -r HEAD "$(cat today)T00:00:00.000001Z"
+}
+
+package_make() {
+	cd "$pkgdir"
+	bmake=`type "bmake" 1>/dev/null 2>&1 && echo "bmake" || echo "make"`
+	DISTDIR="$distdir" "$bmake" "$@"
+}
+
+assert_that() {
+	case "${1-}${3+:}${3-}${5+:}${5-}${7+:}${7-}" in
+	("--file:--has-content")
+		actual=`cat "$2"`
+		[ "$4" = "$actual" ] || die "expected file $2 to contain \"$4\", but found \"$actual\"."
+		;;
+	(*)	die "assert_that called with invalid arguments: $*"
+	esac
+}

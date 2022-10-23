@@ -8,11 +8,11 @@ MASTER_SITES=	${MASTER_SITE_PYPI:=A/AQoPA/}
 MAINTAINER=	jihbed.research@gmail.com
 HOMEPAGE=	http://qopml.org/aqopa/
 COMMENT=	Automated Quality of Protection Analysis Tool for QoP-ML models
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	modified-bsd AND gnu-gpl-v2
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-wxWidgets
+PYTHON_VERSIONS_ACCEPTED=	27 # py-wxWidgets
 
 .include "../../lang/python/egg.mk"
 .include "../../math/py-numpy/buildlink3.mk"

@@ -7,12 +7,12 @@ MASTER_SITES=	#
 DISTNAME=	#
 
 MAINTAINER=	cheusov@NetBSD.org
-HOMEPAGE=	http://sourceforge.net/projects/lmdbg/
+HOMEPAGE=	https://sourceforge.net/projects/lmdbg/
 COMMENT=	Lightweight Modular malloc Debugger
 LICENSE=	mit
 
 GIT_REPOSITORIES=	lmdbg
-GIT_REPO.lmdbg=		git://github.com/cheusov/lmdbg.git
+GIT_REPO.lmdbg=		https://github.com/cheusov/lmdbg.git
 .include "../../wip/mk/git-package.mk"
 
 BUILD_DEPENDS+=		mk-configure>=0.20.0:../../devel/mk-configure

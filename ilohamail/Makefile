@@ -5,6 +5,7 @@ DISTNAME=	IlohaMail-0.8.14-rc3
 PKGNAME=	ilohamail-0.8.14rc3
 CATEGORIES=	mail www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=ilohamail/}
+LICENSE=	gnu-gpl-v2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://blog.ilohamail.org/
@@ -47,7 +48,7 @@ CONF_FILES_PERMS+=	${EGDIR}/conf/${file} ${ILOHAMAIL_CONF_DIR}/${file} \
 SUBST_CLASSES+=		ilohamail
 SUBST_STAGE.ilohamail=	post-patch
 SUBST_FILES.ilohamail=	IlohaMail/conf/conf.php
-SUBST_SED.ilohamail=	-e "s|@ILOHAMAIL_DATA_DIR@|${ILOHAMAIL_DATA_DIR}|g"
+SUBST_VARS.ilohamail=	ILOHAMAIL_DATA_DIR
 
 pre-install:
 	${FIND} ${WRKSRC} -name "*.orig" -print -type f | ${XARGS} ${RM} -f

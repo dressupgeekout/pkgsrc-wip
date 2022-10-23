@@ -2,11 +2,10 @@
 #
 
 PKGNAME=	${PYPKGPREFIX}-bsddb-${PY_DISTVERSION}
-#PKGREVISION=	1
 CATEGORIES=	databases
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.python.org/topics/database/
+HOMEPAGE=	https://www.python.org/topics/database/
 COMMENT=	Python extension module for Berkeley DB 3 and 4
 
 
@@ -20,7 +19,7 @@ EXTRACT_ELEMENTS=	${PYSUBDIR}/Modules/_bsddb.c
 EXTRACT_ELEMENTS+=	${PYSUBDIR}/Modules/bsddb.h
 .endif
 
-PY_SETUP_SUBST+=	BLPREFIX=${LOCALBASE}
+PY_SETUP_SUBST+=	BLPREFIX=${PREFIX}
 PY_SETUP_SUBST+=	DBRTPREFIX=${BUILDLINK_PREFIX.db4}
 PY_SETUP_SUBST+=	DBPREFIX=${BUILDLINK_PREFIX.db4}
 

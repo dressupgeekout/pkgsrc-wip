@@ -1,7 +1,5 @@
 $NetBSD$
 
-SHA1 (kwrited-5.6.3.tar.xz) = 44b3353bd7025baa576aa60cefd4c7de53cdb7b6
-RMD160 (kwrited-5.6.3.tar.xz) = 2cf0e1faf37f123ba6feab7ffa141e7345b7b8eb
-SHA512 (kwrited-5.6.3.tar.xz) = 1963a9f6cf0c9547e8e561f7468dc90197628fb18cac41d6d3b079a26ffc35ba14cbaef6ef1ffe270b697ced4d4e7e1b39c8672b9db66f1132e9e63fd4615bf4
-Size (kwrited-5.6.3.tar.xz) = 20272 bytes
-SHA1 (patch-CMakeLists.txt) = 5b7cd708939b1f54bf5746690c4e4681c83da6bf
+BLAKE2s (kwrited-5.24.6.tar.xz) = 3f806a3f54d07211403c42e1c81b2a7551561d0d2237083c444203e2e288360a
+SHA512 (kwrited-5.24.6.tar.xz) = 86afab6d65b1439a79421c42d9e7f5b93f9fcee6f6215b06093f4085cc57b587808a76639988da096831c5d6ec51d6c22bf690f5235b7925244663af15e6460d
+Size (kwrited-5.24.6.tar.xz) = 20912 bytes

@@ -2,13 +2,15 @@
 
 DISTNAME=	mapnik-v3.0.12
 PKGNAME=	${DISTNAME:S/-v/-/}
-GITHUB_RELEASE= v${PKGVERSION_NOREV}
+PKGREVISION=	1
+GITHUB_RELEASE=	v${PKGVERSION_NOREV}
 CATEGORIES=	geography
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mapnik/}
 EXTRACT_SUFX=	.tar.bz2
+LICENSE=	gnu-lgpl-v2.1
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://mapnik.org/
+HOMEPAGE=	https://mapnik.org/
 COMMENT=	Toolkit for mapping applications
 
 NO_CONFIGURE=		yes

@@ -1,11 +1,11 @@
 # $NetBSD: Makefile,v 1.2 2012/12/13 18:20:29 ftigeot Exp $
 
-DISTNAME=	nss-pam-ldapd-0.9.7
-CATEGORIES=	databases
+DISTNAME=	nss-pam-ldapd-0.9.12
+CATEGORIES=	security
 MASTER_SITES=	http://arthurdejong.org/nss-pam-ldapd/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://arthurdejong.org/nss-pam-ldapd/
+HOMEPAGE=	https://arthurdejong.org/nss-pam-ldapd/
 COMMENT=	LDAP client for nsswitch
 LICENSE=	gnu-lgpl-v2
 
@@ -68,8 +68,8 @@ post-install:
 # Otherwise PAM_EXTERN ends up "static" and -O2 optimizes everything away
 CFLAGS+=		-DNO_STATIC_MODULES
 
-INSTALL_TEMPLATES=	INSTALL.nss
-DEINSTALL_TEMPLATES=	DEINSTALL.nss
+INSTALL_TEMPLATES=	INSTALL.NetBSD
+DEINSTALL_TEMPLATES=	DEINSTALL.NetBSD
 .endif
 
 # NSS_LDAP_SONAME is used by both the NSS client and the server(!)
@@ -92,27 +92,29 @@ PAM_LDAP_SONAME=	pam_ldap.so
 
 PLIST_SUBST+=		PAM_LDAP_SONAME=${PAM_LDAP_SONAME:Q}
 
-SUBST_CLASSES+=		fix-paths
-SUBST_STAGE.fix-paths=	pre-configure
-SUBST_MESSAGE.fix-paths=Fixing config file path
-SUBST_FILES.fix-paths=	man/*.[0-9] man/*.[0-9].xml
-SUBST_SED.fix-paths=	-e 's|/etc/nslcd.conf|${PKG_SYSCONFDIR}/nslcd.conf|g'
+SUBST_CLASSES+=			fix-paths
+SUBST_STAGE.fix-paths=		pre-configure
+SUBST_MESSAGE.fix-paths=	Fixing config file path
+SUBST_FILES.fix-paths=		man/*.[0-9] man/*.[0-9].xml
+SUBST_SED.fix-paths=		-e 's|/etc/nslcd.conf|${PKG_SYSCONFDIR}/nslcd.conf|g'
 
 # Thread Local Storage seems not to work on NetBSD-4
 .if !empty(MACHINE_PLATFORM:MNetBSD-[0-4].*-*)
-SUBST_CLASSES+=		disable-tls
-SUBST_STAGE.disable-tls=post-configure
-SUBST_MESSAGE.disable-tls=disabling TLS
-SUBST_FILES.disable-tls=config.h
-SUBST_SED.disable-tls=	-e 's|/\* \#undef __thread \*/|\#define __thread /\*\*/|'
+SUBST_CLASSES+=			disable-tls
+SUBST_STAGE.disable-tls=	post-configure
+SUBST_MESSAGE.disable-tls=	disabling TLS
+SUBST_FILES.disable-tls=	config.h
+SUBST_SED.disable-tls=		-e 's|/\* \#undef __thread \*/|\#define __thread /\*\*/|'
 .endif
 
-SUBST_CLASSES+=		usergroup
-SUBST_STAGE.usergroup=	post-patch
-SUBST_FILES.usergroup=	nslcd.conf
-SUBST_SED.usergroup=	-e 's/^uid nslcd/uid ${NSLCD_USER}/'
-SUBST_SED.usergroup+=	-e 's/^gid nslcd/gid ${NSLCD_GROUP}/'
+SUBST_CLASSES+=			usergroup
+SUBST_STAGE.usergroup=		pre-configure
+SUBST_FILES.usergroup=		nslcd.conf
+SUBST_SED.usergroup=		-e 's/^uid nslcd/uid ${NSLCD_USER}/'
+SUBST_SED.usergroup+=		-e 's/^gid nslcd/gid ${NSLCD_GROUP}/'
+SUBST_NOOP_OK.usergroup=	yes
 
 .include "../../lang/python/application.mk"
+.include "../../lang/python/extension.mk"
 .include "../../databases/openldap-client/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

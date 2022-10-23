@@ -6,7 +6,7 @@ CATEGORIES=	x11
 MASTER_SITES=	http://www.gdesklets.info/archive/
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://www.gdesklets.info/archive/#S
+HOMEPAGE=	https://www.gdesklets.info/archive/#S
 COMMENT=	Icon bar for GNOME where you can put starters into
 
 DEPENDS=	gDesklets-[0-9]*:../../wip/gDesklets
@@ -15,8 +15,8 @@ NO_CONFIGURE=	yes
 NO_BUILD=	yes
 USE_TOOLS+=	pax
 
-NAME=StarterBar
-GDESKLETSDIR=	${LOCALBASE}/share/gdesklets
+NAME=		StarterBar
+GDESKLETSDIR=	${PREFIX}/share/gdesklets
 
 post-extract:
 	${PYTHONBIN} ${WRKSRC}/Install_${NAME}_Sensor.bin --nomsg ${WRKSRC}

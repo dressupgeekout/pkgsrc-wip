@@ -3,12 +3,12 @@
 # Don't bother committing this.  I'm adding new features almost every
 # time I convert a port.
 
-DISTNAME=	fbsd2pkg-0.4
+DISTNAME=	fbsd2pkg-0.6.0.3
 CATEGORIES=	pkgtools
-MASTER_SITES=	http://acadix.biz/Ports/distfiles/
-EXTRACT_SUFX=	.tar.xz
+MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
+GITHUB_TAG=	c00239d877962ec3ada264df4aaace78c36876d9
 
-MAINTAINER=	bacon4000@gmail.com
+MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	http://acadix.biz/Ports/distfiles/
 COMMENT=	Convert a FreeBSD port framework to a pkgsrc package
 LICENSE=	2-clause-bsd
@@ -18,16 +18,16 @@ USE_LANGUAGES=	# none
 NO_BUILD=	yes
 
 SUBST_CLASSES+=		prefix
-SUBST_STAGE.prefix=	post-patch
-SUBST_FILES.prefix=	${WRKSRC}/fbsd2pkg
-SUBST_SED.prefix=	\
-	's|fbsd2pkg.awk|${PREFIX}/libexec/fbsd2pkg/fbsd2pkg.awk|g'
+SUBST_STAGE.prefix=	pre-configure
+SUBST_FILES.prefix=	fbsd2pkg
+SUBST_SED.prefix=	-e 's|fbsd2pkg.awk|${PREFIX}/libexec/fbsd2pkg/fbsd2pkg.awk|g'
 
-DEPENDS+=	createbuildlink:../../pkgtools/createbuildlink \
-		pkglint:../../pkgtools/pkglint
+DEPENDS+=	createbuildlink>=0:../../pkgtools/createbuildlink \
+		pkglint>=0:../../pkgtools/pkglint
+
+INSTALLATION_DIRS=	bin libexec/fbsd2pkg
 
 do-install:
-	${MKDIR} ${DESTDIR}${PREFIX}/bin ${DESTDIR}${PREFIX}/libexec/fbsd2pkg
 	${INSTALL_SCRIPT} ${WRKSRC}/fbsd2pkg ${DESTDIR}${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/fbsd2pkg.awk \
 		${DESTDIR}${PREFIX}/libexec/fbsd2pkg

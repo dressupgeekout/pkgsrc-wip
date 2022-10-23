@@ -7,7 +7,7 @@ CATEGORIES=	lang
 MAINTAINER=	rumcic@gmail.com
 HOMEPAGE=	http://www.tinycc.org/
 COMMENT=	The Smallest ANSI C compiler
-
+LICENSE=	mit
 
 USE_TOOLS+=	gmake
 HAS_CONFIGURE=	yes
@@ -25,7 +25,7 @@ SUBST_STAGE.ldl=	post-patch
 SUBST_SED.ldl=		-e 's,LIBS=,\#LIBS,'
 .endif
 
-CONFIGURE_ARGS+=	--prefix=${PREFIX:Q}
+CONFIGURE_ARGS+=	--prefix=${PREFIX}
 
 GIT_REPOSITORIES=	tcc
 GIT_REPO.tcc=		http://repo.or.cz/tinycc.git

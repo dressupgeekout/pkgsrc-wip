@@ -5,6 +5,7 @@ PKGNAME=	${DISTNAME:S/_/-/}
 PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://flyback.googlecode.com/files/
+LICENSE=	gnu-gpl-v2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://code.google.com/p/flyback/
@@ -17,7 +18,7 @@ DEPENDS+=	rsync-[0-9]*:../../net/rsync
 WRKSRC=		${WRKDIR}/flyback
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-ORBit via py-gnome2, py-sqlite2
+PYTHON_VERSIONS_ACCEPTED=	27 # py-ORBit via py-gnome2, py-sqlite2
 
 INSTALLATION_DIRS=	bin share/flyback
 

@@ -4,19 +4,20 @@ DISTNAME=	pydb-1.26
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=bashdb/}
 EXTRACT_SUFX=	.tar.bz2
+LICENSE=	gnu-gpl-v3
 
 MAINTAINER=	splitscreen@users.sourceforge.net
-HOMEPAGE=	http://sourceforge.net/projects/bashdb/
+HOMEPAGE=	https://sourceforge.net/projects/bashdb/
 COMMENT=	The Extended Python Debugger
 
 DEPENDS+=	${PYPKGPREFIX}-ipython-[0-9]*:../../devel/py-ipython
 
-GNU_CONFIGURE=		yes
+GNU_CONFIGURE=	yes
 USE_LANGUAGES=	# none
 
-PKG_OPTIONS_VAR=                PKG_OPTIONS.pydb
-PKG_SUPPORTED_OPTIONS=          pyreadline
-PKG_SUGGESTED_OPTIONS=          pyreadline
+PKG_OPTIONS_VAR=		PKG_OPTIONS.pydb
+PKG_SUPPORTED_OPTIONS=		pyreadline
+PKG_SUGGESTED_OPTIONS=		pyreadline
 
 .include "../../mk/bsd.options.mk"
 
@@ -26,7 +27,7 @@ CONFIGURE_ARGS+=	--enable-pyreadline
 .endif
 
 PY_PATCHPLIST=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-ipython
+PYTHON_VERSIONS_ACCEPTED=	27 # py-ipython
 
 .include "../../lang/python/extension.mk"
 .include "../../lang/python/pyversion.mk"

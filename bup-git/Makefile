@@ -5,7 +5,7 @@ CATEGORIES=	sysutils
 MASTER_SITES=	#
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://github.com/bup/bup
+HOMEPAGE=	https://github.com/bup/bup
 COMMENT=	Highly efficient file backup system based on the git packfile format
 LICENSE=	gnu-gpl-v2
 
@@ -19,12 +19,9 @@ DEPENDS+=	git-base-[0-9]*:../../devel/git-base
 BUILD_DEPENDS+=	rsync>=3.0:../../net/rsync
 BUILD_DEPENDS+=	rdiff-backup-[0-9]*:../../sysutils/rdiff-backup
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-fuse-bindings
+PYTHON_VERSIONS_ACCEPTED=	27 # py-fuse-bindings
 
-GIT_REPOSITORIES=	bup
-GIT_REPO.bup=		git://github.com/bup/bup.git
-
-WRKSRC=                 ${WRKDIR}/bup
+GIT_REPO=	https://github.com/bup/bup.git
 
 TEST_TARGET=	test
 

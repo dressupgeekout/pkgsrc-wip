@@ -6,13 +6,13 @@ CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_PYPI:=d/django-quran/}
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://github.com/idris/django-quran
+HOMEPAGE=	https://github.com/idris/django-quran
 COMMENT=	Quranic models and helpers for use in Django projects
 LICENSE=	modified-bsd
 
 DEPENDS+=	${PYPKGPREFIX}-django-[0-9]*:../../www/py-django
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 0.1
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 0.1
 
 USE_LANGUAGES=	# none
 

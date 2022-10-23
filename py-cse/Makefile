@@ -4,7 +4,7 @@ DISTNAME=	pycse-1.42
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pycse/}
-EXTRACT_SUFX=	.zip#md5=acb390d6ddb068c301ae5debabe0f37c
+EXTRACT_SUFX=	.zip
 
 MAINTAINER=	jihbed.research@gmail.com
 HOMEPAGE=	https://github.com/nipy/PySurfer
@@ -19,7 +19,7 @@ DEPENDS+=	${PYPKGPREFIX}-report-[0-9]*:../../wip/py-report
 USE_LANGUAGES=	# none
 
 PYDISTUTILSPKG=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-docutils
+PYTHON_VERSIONS_ACCEPTED=	27 # py-docutils
 
 post-extract:
 	${MV} ${WRKSRC}/pycse/publish.py ${WRKSRC}/pycse/publish.py${PYVERSSUFFIX}

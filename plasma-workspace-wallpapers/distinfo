@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (plasma-workspace-wallpapers-5.6.3.tar.xz) = 9f68433d08585384fba7839c9b63875b68dc86b3
-RMD160 (plasma-workspace-wallpapers-5.6.3.tar.xz) = d6c8b31c6b7db526f48fd448eb0476a0bf061463
-SHA512 (plasma-workspace-wallpapers-5.6.3.tar.xz) = 894ac6c32f9a5daa5ad154b3ddd73a1d2f91b29005de89d1216dfb0ed109eaeb5b85a504c2673605eeff77344fa9e6229bf720ea712dcecfe86089f14b06fff8
-Size (plasma-workspace-wallpapers-5.6.3.tar.xz) = 45918188 bytes
+BLAKE2s (plasma-workspace-wallpapers-5.24.6.tar.xz) = c50ff5c9b3b0ed7c20af6bbf66466b554288e8e250280bea1e15f1c4d36866f2
+SHA512 (plasma-workspace-wallpapers-5.24.6.tar.xz) = 48f31c9bdcb6765ef4c4b62c332d66f86b23ee2712c93975488d1f391f68acb76ec4f5fd0ee1aa09a5f6569fda6fb1ad33a16d782a6cba9d594aaf3203e622c3
+Size (plasma-workspace-wallpapers-5.24.6.tar.xz) = 72712004 bytes

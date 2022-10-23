@@ -23,16 +23,16 @@ CFLAGS+=	-Wno-inconsistent-missing-override \
 		-Wno-unused-variable \
 		-Wno-unused-function
 
-CMAKE_ARGS+= 	-DENABLE_SPOTIFY_BLOB=OFF \
-		-DCRYPTOPP_LIBS=${LOCALBASE}/lib/libcryptopp.so \
-	     	-DCRYPTOPP_INCLUDEDIR=${LOCALBASE}/include/cryptopp \
-	     	-DCRYPTOPP_LIBDIR=${LOCALBASE}/lib \
-	     	-DCRYPTOPP_LDFLAGS=-lcryptopp \
-	     	-DCRYPTOPP_LIBRARIES=cryptopp \
-	     	-DCRYPTOPP_LIBRARY_DIRS=${LOCALBASE}/lib \
-	     	-DCRYPTOPP_cryptopp_INCLUDEDIR=${LOCALBASE}/include/cryptopp \
-	     	-DCRYPTOPP_cryptopp_LIBDIR=${LOCALBASE}/lib \
-	     	-DCRYPTOPP_FOUND=1 \
+CMAKE_ARGS+=	-DENABLE_SPOTIFY_BLOB=OFF \
+		-DCRYPTOPP_LIBS=${PREFIX}/lib/libcryptopp.so \
+		-DCRYPTOPP_INCLUDEDIR=${PREFIX}/include/cryptopp \
+		-DCRYPTOPP_LIBDIR=${PREFIX}/lib \
+		-DCRYPTOPP_LDFLAGS=-lcryptopp \
+		-DCRYPTOPP_LIBRARIES=cryptopp \
+		-DCRYPTOPP_LIBRARY_DIRS=${PREFIX}/lib \
+		-DCRYPTOPP_cryptopp_INCLUDEDIR=${PREFIX}/include/cryptopp \
+		-DCRYPTOPP_cryptopp_LIBDIR=${PREFIX}/lib \
+		-DCRYPTOPP_FOUND=1 \
 		-DENABLE_DBUS=ON \
 		-DBUILD_WERROR=OFF
 
@@ -49,7 +49,7 @@ DEPENDS+=	qt4-tiff>=4.5.0:../../x11/qt4-tiff \
 		gst-plugins1-flac>=1.4.0:../../audio/gst-plugins1-flac \
 		gst-plugins1-gio>=1.4.0:../../sysutils/gst-plugins1-gio \
 		gst-plugins1-lame>=1.4.0:../../audio/gst-plugins1-lame \
-		gst-plugins1-mad>=1.4.0:../../audio/gst-plugins1-mad \
+		gst-plugins1-mpg123>=1.4.0:../../audio/gst-plugins1-mpg123 \
 		gst-plugins1-opus>=1.4.0:../../audio/gst-plugins1-opus \
 		gst-plugins1-twolame>=1.4.0:../../audio/gst-plugins1-twolame \
 		gst-plugins1-vorbis>=1.4.0:../../audio/gst-plugins1-vorbis \

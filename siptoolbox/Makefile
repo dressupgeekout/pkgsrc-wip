@@ -3,7 +3,7 @@
 
 DISTNAME=	sip-0.4.0-rc1
 PKGNAME=	siptoolbox-0.4.0nb1
-PKGREVISION=	3
+PKGREVISION=	5
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=siptoolbox/}
 EXTRACT_SUFX=	.tar.bz2
@@ -11,7 +11,7 @@ EXTRACT_SUFX=	.tar.bz2
 MAINTAINER=	matias@dotbsd.org
 HOMEPAGE=	http://siptoolbox.sourceforge.net/
 COMMENT=	Scilab Image Processing toolbox
-
+LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes

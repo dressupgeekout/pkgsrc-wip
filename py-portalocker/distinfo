@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (portalocker-2.5.1.tar.gz) = fe9f079aa9f72e3758f130dd3d186e577ad7852a49a2150a44408ac62dff7be1
+SHA512 (portalocker-2.5.1.tar.gz) = a1aeea4cb09a05d4fc65a346965b5af509963f84c6b440bed974770576cab8d5c94c8535f2debd72613f3c603cf9fe3cc236fac6bec2fd69d7d48d206ba4c344
+Size (portalocker-2.5.1.tar.gz) = 20552 bytes

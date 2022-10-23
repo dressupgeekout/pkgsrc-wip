@@ -1,34 +1,51 @@
-# $NetBSD: Makefile,v 1.6 2015/01/18 07:50:32 makoto Exp $
+# $NetBSD$
 
-DISTNAME=		avrdude-6.1
+DISTNAME=		avrdude-7.0
 CATEGORIES=		cross
-MASTER_SITES=		http://download.savannah.gnu.org/releases/avrdude/
+# The archive "archive/refs/tags/v7.0.tar.gz" uses a different build system!
+MASTER_SITES=		${MASTER_SITE_GITHUB:=avrdudes/}/avrdude/releases/download/v7.0/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.nongnu.org/avrdude/
+HOMEPAGE=		https://github.com/avrdudes/avrdude/
 COMMENT=		Downloader/uploader for Atmel AVR 8-bit RISC microcontrollers
 LICENSE=		gnu-gpl-v2
-
-BUILD_DEPENDS+=		dvipsk-[0-9]*:../../print/dvipsk
-BUILD_DEPENDS+=		tex-latex-fonts-[0-9]*:../../fonts/tex-latex-fonts
-BUILD_DEPENDS+=		tex-pdftex-[0-9]*:../../print/tex-pdftex
-
-# make: make: don't know how to make ./libavrdude.a. Stop
-MAKE_JOBS_SAFE=		no
 
 .include "../../mk/bsd.prefs.mk"
 
 GNU_CONFIGURE=		yes
-TEXINFO_REQD=		4.9
-USE_TOOLS+=		autoconf automake autoreconf makeinfo texi2html yacc lex
+USE_TOOLS+=		autoconf automake autoreconf lex yacc
+USE_TOOLS+=		gmake
+USE_LIBTOOL=		yes
 INFO_FILES=		yes
 EGDIR=			${PREFIX}/share/examples/avrdude
 CONF_FILES_PERMS=	${EGDIR}/avrdude.conf ${PKG_SYSCONFDIR}/avrdude.conf \
 			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 644
 
+PKG_OPTIONS_VAR=		PKG_OPTIONS.avrdude
+PKG_SUPPORTED_OPTIONS=		doc
+PKG_SUGGESTED_OPTIONS=		doc
+
+.include "../../mk/bsd.options.mk"
+
+PLIST_VARS+=		doc
+.if !empty(PKG_OPTIONS:Mdoc)
+PLIST.doc=		yes
+TEXINFO_REQD=		4.9
+USE_TOOLS+=		texi2html makeinfo
+BUILD_DEPENDS+=		dvipsk-[0-9]*:../../print/dvipsk
+BUILD_DEPENDS+=		tex-latex-fonts-[0-9]*:../../fonts/tex-latex-fonts
+BUILD_DEPENDS+=		tex-pdftex-[0-9]*:../../print/tex-pdftex
+# DragonFly has stripped makeinfo in the base - without texi2dvi.
+.  if ${OPSYS} == "DragonFly"
+BUILD_DEPENDS+=		gtexinfo-[0-9]*:../../devel/gtexinfo
+.  endif
 CONFIGURE_ARGS+=	--enable-doc
+.else
+CONFIGURE_ARGS+=	--disable-doc
+.endif
+
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
-CONFIGURE_ENV+=		DEFAULT_SER_PORT=${DEFAULT_SERIAL_DEVICE:Q}
+CONFIGURE_ENV+=		DEFAULT_SER_PORT=${DEFAULT_SERIAL_DEVICE}
 PLIST_SUBST+=		DISTNAME=${DISTNAME}
 
 # The autotools used by this pkg are older than what's in pkgsrc
@@ -36,15 +53,8 @@ PLIST_SUBST+=		DISTNAME=${DISTNAME}
 pre-configure:
 	cd ${WRKSRC} && autoreconf -vif
 
-# DragonFly has stripped makeinfo in the base - without texi2dvi.
-.if ${OPSYS} == "DragonFly"
-BUILD_DEPENDS+=		gtexinfo-[0-9]*:../../devel/gtexinfo
-.endif
-
-.include "../../devel/libftdi/buildlink3.mk"
-.include "../../devel/libhid/buildlink3.mk"
-.include "../../wip/libftdi1/buildlink3.mk"
-.include "../../devel/libusb/buildlink3.mk"
+.include "../../comms/libhidapi/buildlink3.mk"
+.include "../../devel/libftdi1/buildlink3.mk"
 .include "../../devel/libusb1/buildlink3.mk"
 # elf_getshdrstrndx
 .include "../../devel/libelf/buildlink3.mk"

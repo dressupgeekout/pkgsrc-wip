@@ -5,7 +5,7 @@ CATEGORIES=	devel
 MASTER_SITES=	http://embed.cs.utah.edu/creduce/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://embed.cs.utah.edu/creduce/
+HOMEPAGE=	https://embed.cs.utah.edu/creduce/
 COMMENT=	Reduce compiler-breaking C program to minimal one
 LICENSE=	modified-bsd
 
@@ -24,7 +24,7 @@ USE_LANGUAGES=	c c++
 USE_TOOLS+=	flex gmake perl:run
 
 GIT_REPOSITORIES=	creduce
-GIT_REPO.creduce=	git://github.com/csmith-project/creduce.git
+GIT_REPO.creduce=	https://github.com/csmith-project/creduce.git
 WRKSRC=			${WRKDIR}/creduce
 
 pre-configure:

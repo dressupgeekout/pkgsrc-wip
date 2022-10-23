@@ -2,17 +2,17 @@
 
 CATEGORIES=	net
 PKGBASE=	mtr
-PKGVERSION=	0.87.216
+PKGVERSION=	0.87.225
 PKGNAME=	${PKGBASE}-${PKGVERSION}
 DISTNAME=	${PKGBASE}-${GITHUB_HASH}
 MASTER_SITES=	https://github.com/${GITHUB_USER}/${PKGBASE}/tarball/${GITHUB_HASH}/
 WRKSRC=		${WRKDIR}/${GITHUB_USER}-${PKGBASE}-${GITHUB_HASH}
 
-GITHUB_HASH=	7476ad5
+GITHUB_HASH=	e6d0a7e
 GITHUB_USER=	traviscross
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.bitwizard.nl/mtr/
+HOMEPAGE=	https://www.bitwizard.nl/mtr/
 COMMENT=	Traceroute and ping in a single graphical network diagnostic tool
 LICENSE=	gnu-gpl-v2
 
@@ -37,7 +37,7 @@ BUILDLINK_TRANSFORM+=	rm:-Wno-pointer-sign
 LIBS+=	-lresolv
 .endif
 
-SUBST_CLASSES+=	fix-version
+SUBST_CLASSES+=			fix-version
 SUBST_STAGE.fix-version=	post-patch
 SUBST_MESSAGE.fix-version=	Fixing version
 SUBST_FILES.fix-version=	configure.ac
