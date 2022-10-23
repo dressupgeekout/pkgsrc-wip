@@ -12,15 +12,20 @@ COMMENT=	2D animation tool
 LICENSE=	gnu-gpl-v2
 
 USE_LANGUAGES=	c c++
+USE_TOOLS+=	gmake
 
 QMAKE_ARGS+=	pencil2d.pro
+QMAKE_ARGS+=	NO_TESTS=1
 #QMAKE_ARGS+=	PREFIX=${PREFIX}
 
-BUILD_MAKE_FLAGS+=	core_lib
+#BUILD_MAKE_FLAGS+=	core_lib
+#BUILD_MAKE_FLAGS+=	
 #INSTALL_MAKE_FLAGS+=	INSTALL_ROOT=${DESTDIR}
 #
 #pre-extract:
 #	${MKDIR} ${WRKSRC}
+
+MAKE_JOBS_SAFE=	no
 
 do-configure:
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${QTDIR}/bin/qmake ${QMAKE_ARGS}
