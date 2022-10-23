@@ -6,6 +6,7 @@ VERSION!=	make show-var VARNAME=PKGVERSION
 V_NOREV!=	make show-var VARNAME=PKGVERSION_NOREV
 
 SHORT_TARGETS+=	armv7
+SHORT_TARGETS+= armv6
 SHORT_TARGETS+=	sparc64
 SHORT_TARGETS+=	powerpc
 SHORT_TARGETS+=	powerpc90
@@ -19,6 +20,7 @@ SHORT_TARGETS+=	i386
 # Root of target directories.
 # Must have dest/ (build.sh's DESTDIR) and tools/ subdirectories
 ROOT.armv7?=		/u/evbarm-armv7hf
+ROOT.armv6?=		/u/evbarm-armv6hf
 ROOT.sparc64?=		/u/sparc64
 ROOT.powerpc?=		/u/macppc
 ROOT.powerpc90?=	/u/9.0-macppc
@@ -28,6 +30,7 @@ ROOT.i386?=		/u/i386
 
 # Mapping to GNU triple
 G_TGT.armv7=		armv7--netbsdelf-eabihf
+G_TGT.armv6=		armv6--netbsdelf-eabihf
 G_TGT.sparc64=		sparc64--netbsd
 G_TGT.powerpc=		powerpc--netbsd
 G_TGT.powerpc90=	powerpc--netbsd
@@ -37,6 +40,7 @@ G_TGT.i386=		i486--netbsdelf
 
 # Mapping to rust's TARGET specification
 TGT.armv7=		armv7-unknown-netbsd-eabihf
+TGT.armv6=		armv6-unknown-netbsd-eabihf
 TGT.sparc64=		sparc64-unknown-netbsd
 TGT.powerpc=		powerpc-unknown-netbsd
 TGT.powerpc90=		powerpc-unknown-netbsd
@@ -69,7 +73,7 @@ CA.${st}+=--set=target.${TGT.${st}}.linker=${SCRIPTS}/gcc-wrap
 CA.${st}+=--set=target.${TGT.${st}}.ar=${ROOT.${st}}/tools/bin/${G_TGT.${st}}-ar
 do-${st}:
 	mkdir -p dist
-	${ECHO} "=======> Cross-building rust for ${st}"
+	@echo "=======> Cross-building rust for ${st}"
 	${DEBUG} make -f Makefile clean
 	${DEBUG} env \
 		CROSS_ROOT=${ROOT.${st}} \
@@ -87,13 +91,13 @@ do-${st}:
 		src=$${distdir}/$${comp}-${V_NOREV}-${TGT.${st}}.tar.xz; \
 		tgt=dist/$${comp}-${VERSION}-$${TT}.tar.xz; \
 		if [ ! -f "$${tgt}" ]; then \
-			${ECHO} ln $${src} $${tgt}; \
+			echo ln $${src} $${tgt}; \
 			${DEBUG} ln $${src} $${tgt}; \
 		fi; \
 	done; \
 	src_comp=rust-src-${V_NOREV}.tar.xz; \
 	if [ ! -f dist/$${src_comp} ]; then \
-		${ECHO} ln $${distdir}/$${src_comp} dist; \
+		echo ln $${distdir}/$${src_comp} dist; \
 		${DEBUG} ln $${distdir}/$${src_comp} dist; \
 	fi
 .endfor

@@ -19,6 +19,7 @@ info/ede.info.gz
 info/ediff.info.gz
 info/edt.info.gz
 info/efaq.info.gz
+info/eglot.info.gz
 info/eieio.info.gz
 info/eintr.info.gz
 info/elisp.info.gz
@@ -643,6 +644,10 @@ share/emacs/${PKGVERSION}/etc/images/next-page.pbm
 share/emacs/${PKGVERSION}/etc/images/next-page.xpm
 share/emacs/${PKGVERSION}/etc/images/open.pbm
 share/emacs/${PKGVERSION}/etc/images/open.xpm
+share/emacs/${PKGVERSION}/etc/images/outline-close.pbm
+share/emacs/${PKGVERSION}/etc/images/outline-close.svg
+share/emacs/${PKGVERSION}/etc/images/outline-open.pbm
+share/emacs/${PKGVERSION}/etc/images/outline-open.svg
 share/emacs/${PKGVERSION}/etc/images/paste.pbm
 share/emacs/${PKGVERSION}/etc/images/paste.xpm
 share/emacs/${PKGVERSION}/etc/images/preferences.pbm
@@ -955,6 +960,7 @@ share/emacs/${PKGVERSION}/etc/tutorials/TUTORIAL.sl
 share/emacs/${PKGVERSION}/etc/tutorials/TUTORIAL.sv
 share/emacs/${PKGVERSION}/etc/tutorials/TUTORIAL.th
 share/emacs/${PKGVERSION}/etc/tutorials/TUTORIAL.translators
+share/emacs/${PKGVERSION}/etc/tutorials/TUTORIAL.uk
 share/emacs/${PKGVERSION}/etc/tutorials/TUTORIAL.zh
 share/emacs/${PKGVERSION}/etc/w32-feature.el
 share/emacs/${PKGVERSION}/etc/yow.lines
@@ -970,6 +976,8 @@ share/emacs/${PKGVERSION}/lisp/allout.el.gz
 share/emacs/${PKGVERSION}/lisp/allout.elc
 share/emacs/${PKGVERSION}/lisp/ansi-color.el.gz
 share/emacs/${PKGVERSION}/lisp/ansi-color.elc
+share/emacs/${PKGVERSION}/lisp/ansi-osc.el.gz
+share/emacs/${PKGVERSION}/lisp/ansi-osc.elc
 share/emacs/${PKGVERSION}/lisp/apropos.el.gz
 share/emacs/${PKGVERSION}/lisp/apropos.elc
 share/emacs/${PKGVERSION}/lisp/arc-mode.el.gz
@@ -2623,8 +2631,6 @@ share/emacs/${PKGVERSION}/lisp/leim/quail/vnvni.el.gz
 share/emacs/${PKGVERSION}/lisp/leim/quail/vnvni.elc
 share/emacs/${PKGVERSION}/lisp/leim/quail/welsh.el.gz
 share/emacs/${PKGVERSION}/lisp/leim/quail/welsh.elc
-share/emacs/${PKGVERSION}/lisp/linum.el.gz
-share/emacs/${PKGVERSION}/lisp/linum.elc
 share/emacs/${PKGVERSION}/lisp/loaddefs.el.gz
 share/emacs/${PKGVERSION}/lisp/loaddefs.elc
 share/emacs/${PKGVERSION}/lisp/loadhist.el.gz
@@ -2927,6 +2933,8 @@ share/emacs/${PKGVERSION}/lisp/net/tramp-cmds.el.gz
 share/emacs/${PKGVERSION}/lisp/net/tramp-cmds.elc
 share/emacs/${PKGVERSION}/lisp/net/tramp-compat.el.gz
 share/emacs/${PKGVERSION}/lisp/net/tramp-compat.elc
+share/emacs/${PKGVERSION}/lisp/net/tramp-container.el.gz
+share/emacs/${PKGVERSION}/lisp/net/tramp-container.elc
 share/emacs/${PKGVERSION}/lisp/net/tramp-crypt.el.gz
 share/emacs/${PKGVERSION}/lisp/net/tramp-crypt.elc
 share/emacs/${PKGVERSION}/lisp/net/tramp-ftp.el.gz
@@ -3043,6 +3051,8 @@ share/emacs/${PKGVERSION}/lisp/obsolete/iswitchb.el.gz
 share/emacs/${PKGVERSION}/lisp/obsolete/iswitchb.elc
 share/emacs/${PKGVERSION}/lisp/obsolete/landmark.el.gz
 share/emacs/${PKGVERSION}/lisp/obsolete/landmark.elc
+share/emacs/${PKGVERSION}/lisp/obsolete/linum.el.gz
+share/emacs/${PKGVERSION}/lisp/obsolete/linum.elc
 share/emacs/${PKGVERSION}/lisp/obsolete/longlines.el.gz
 share/emacs/${PKGVERSION}/lisp/obsolete/longlines.elc
 share/emacs/${PKGVERSION}/lisp/obsolete/makesum.el.gz
@@ -3092,6 +3102,8 @@ share/emacs/${PKGVERSION}/lisp/obsolete/sup-mouse.el.gz
 share/emacs/${PKGVERSION}/lisp/obsolete/sup-mouse.elc
 share/emacs/${PKGVERSION}/lisp/obsolete/terminal.el.gz
 share/emacs/${PKGVERSION}/lisp/obsolete/terminal.elc
+share/emacs/${PKGVERSION}/lisp/obsolete/thumbs.el.gz
+share/emacs/${PKGVERSION}/lisp/obsolete/thumbs.elc
 share/emacs/${PKGVERSION}/lisp/obsolete/tls.el.gz
 share/emacs/${PKGVERSION}/lisp/obsolete/tls.elc
 share/emacs/${PKGVERSION}/lisp/obsolete/tpu-edt.el.gz
@@ -3376,6 +3388,8 @@ share/emacs/${PKGVERSION}/lisp/password-cache.el.gz
 share/emacs/${PKGVERSION}/lisp/password-cache.elc
 share/emacs/${PKGVERSION}/lisp/pcmpl-cvs.el.gz
 share/emacs/${PKGVERSION}/lisp/pcmpl-cvs.elc
+share/emacs/${PKGVERSION}/lisp/pcmpl-git.el.gz
+share/emacs/${PKGVERSION}/lisp/pcmpl-git.elc
 share/emacs/${PKGVERSION}/lisp/pcmpl-gnu.el.gz
 share/emacs/${PKGVERSION}/lisp/pcmpl-gnu.elc
 share/emacs/${PKGVERSION}/lisp/pcmpl-linux.el.gz
@@ -3520,6 +3534,8 @@ share/emacs/${PKGVERSION}/lisp/progmodes/ebnf2ps.el.gz
 share/emacs/${PKGVERSION}/lisp/progmodes/ebnf2ps.elc
 share/emacs/${PKGVERSION}/lisp/progmodes/ebrowse.el.gz
 share/emacs/${PKGVERSION}/lisp/progmodes/ebrowse.elc
+share/emacs/${PKGVERSION}/lisp/progmodes/eglot.el.gz
+share/emacs/${PKGVERSION}/lisp/progmodes/eglot.elc
 share/emacs/${PKGVERSION}/lisp/progmodes/elisp-mode.el.gz
 share/emacs/${PKGVERSION}/lisp/progmodes/elisp-mode.elc
 share/emacs/${PKGVERSION}/lisp/progmodes/erts-mode.el.gz
@@ -3886,12 +3902,11 @@ share/emacs/${PKGVERSION}/lisp/textmodes/underline.el.gz
 share/emacs/${PKGVERSION}/lisp/textmodes/underline.elc
 share/emacs/${PKGVERSION}/lisp/textmodes/word-wrap-mode.el.gz
 share/emacs/${PKGVERSION}/lisp/textmodes/word-wrap-mode.elc
+share/emacs/${PKGVERSION}/lisp/theme-loaddefs.el
 share/emacs/${PKGVERSION}/lisp/thingatpt.el.gz
 share/emacs/${PKGVERSION}/lisp/thingatpt.elc
 share/emacs/${PKGVERSION}/lisp/thread.el.gz
 share/emacs/${PKGVERSION}/lisp/thread.elc
-share/emacs/${PKGVERSION}/lisp/thumbs.el.gz
-share/emacs/${PKGVERSION}/lisp/thumbs.elc
 share/emacs/${PKGVERSION}/lisp/time-stamp.el.gz
 share/emacs/${PKGVERSION}/lisp/time-stamp.elc
 share/emacs/${PKGVERSION}/lisp/time.el.gz

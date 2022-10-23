@@ -20,16 +20,15 @@ DEPENDS+=	${PYPKGPREFIX}-requests>=2.22.0:../../devel/py-requests
 DEPENDS+=	${PYPKGPREFIX}-imapclient>=2.1.0:../../mail/py-imapclient
 DEPENDS+=	${PYPKGPREFIX}-dateparser>=1.1.1:../../time/py-dateparser
 DEPENDS+=	${PYPKGPREFIX}-mailsuite>=1.6.1:../../mail/py-mailsuite
-DEPENDS+=	${PYPKGPREFIX}-elasticsearch>=0:../../databases/py-elasticsearch
-#DEPENDS+=	# TODO: elasticsearch-dsl==7.4.0>=0
+DEPENDS+=	${PYPKGPREFIX}-elasticsearch>=7:../../wip/py-elasticsearch
+DEPENDS+=	${PYPKGPREFIX}-elasticsearch-dsl>=7.4.0:../../wip/py-elasticsearch-dsl
 DEPENDS+=	${PYPKGPREFIX}-kafka-python>=1.4.4:../../devel/py-kafka-python
 DEPENDS+=	${PYPKGPREFIX}-tqdm>=4.31.1:../../misc/py-tqdm
 DEPENDS+=	${PYPKGPREFIX}-lxml>=4.4.0:../../textproc/py-lxml
 DEPENDS+=	${PYPKGPREFIX}-boto3>=1.16.63:../../net/py-boto3
-#DEPENDS+=	# TODO: msgraph-core>=0.2.2
-#DEPENDS+=	# TODO: azure-identity>=1.8.0
-# pkgsrc version too old
-#DEPENDS+=	${PYPKGPREFIX}-google-api-core>=2.4.0:../../devel/py-google-api-core
+DEPENDS+=	${PYPKGPREFIX}-msgraph-core>=0.2.2:../../wip/py-msgraph-core
+DEPENDS+=	${PYPKGPREFIX}-azure-identity>=1.9.0:../../wip/py-azure-identity
+DEPENDS+=	${PYPKGPREFIX}-google-api-core>=2.4.0:../../devel/py-google-api-core
 DEPENDS+=	${PYPKGPREFIX}-google-api-core>=0:../../devel/py-google-api-core
 DEPENDS+=	${PYPKGPREFIX}-google-api-python-client>=2.35.0:../../www/py-google-api-python-client
 DEPENDS+=	${PYPKGPREFIX}-google-auth>=2.3.3:../../security/py-google-auth

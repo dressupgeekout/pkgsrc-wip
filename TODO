@@ -16,7 +16,7 @@ Suggested package updates
 	o blink-2.0.0
 	o cairo-java-1.0.8
 	o calligra-3.0.1
-	o cde-2.2.4
+	o cde-2.5.1
 	o cinelerra-4.5
 	o d4x-2.5.7.1
 	o daphne-1.0
@@ -145,7 +145,7 @@ Suggested package updates
 	o vacuum-0.13a
 	o vidalia-0.2.21
 	o vidalia-devel-0.3.3
-	o virtualbox-6.1
+	o virtualbox-7.0
 	o wkhtmltopdf-0.12.4
 	o xaralx-bin-0.7.1692
 	o xf86-input-synaptics-1.9.2
@@ -185,11 +185,13 @@ Suggested ready to import packages
 	o ispell-dictionaries
 	o marathon-tempus-irae
 	o matiec
+  o moonlight-qt
 	o pear-Net_URL2
 	o phalanx [kamil]
 	o pnmcurve
 	o py-csp [kamil; some tests hang but it seems good enough; need for wip/py-uuid]
 	o py-jswebkit
+  o qbe
 	o rar4
 	o send-pr
 	o tqsllib

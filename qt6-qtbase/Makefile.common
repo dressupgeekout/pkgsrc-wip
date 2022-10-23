@@ -5,6 +5,7 @@
 # used by wip/qt6-qtcharts/Makefile
 # used by wip/qt6-qtdatavis3d/Makefile
 # used by wip/qt6-qtdeclarative/Makefile
+# used by wip/qt6-qthttpserver/Makefile
 # used by wip/qt6-qtimageformats/Makefile
 # used by wip/qt6-qtlanguageserver/Makefile
 # used by wip/qt6-qtlottie/Makefile
@@ -16,6 +17,7 @@
 # used by wip/qt6-qtremoteobjects/Makefile
 # used by wip/qt6-qtscxml/Makefile
 # used by wip/qt6-qtshadertools/Makefile
+# used by wip/qt6-qtspeech/Makefile
 # used by wip/qt6-qtsvg/Makefile
 # used by wip/qt6-qttools/Makefile
 # used by wip/qt6-qtwayland/Makefile
@@ -101,4 +103,3 @@ pkgconfig-link:
 			${LN} -f -s ${QTPREFIX}/lib/pkgconfig/$${pcfile} $${pcfile};	\
 		done									\
 		fi
-
