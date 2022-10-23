@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.15 2021/12/08 16:04:24 adam Exp $
 
-PKGNAME=	assaultcube-1.2.0.2
-PKGREVISION=	12
-DISTNAME=	AssaultCube_v${PKGVERSION_NOREV}
+PKGNAME=	assaultcube-1.3.0.2
+DISTNAME=	AssaultCube_v${PKGVERSION_NOREV}_LockdownEdition_RC1
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=assaultcube/}
 EXTRACT_SUFX=	.tar.bz2

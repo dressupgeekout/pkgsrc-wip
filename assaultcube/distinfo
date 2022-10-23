@@ -1,8 +1,9 @@
 $NetBSD: distinfo,v 1.5 2021/10/26 10:43:47 nia Exp $
 
-BLAKE2s (AssaultCube_v1.2.0.2.tar.bz2) = f4d6876aed7f72b5c9c171f1952c54618a596f847ebfbb0a90892b79f2c066e6
-SHA512 (AssaultCube_v1.2.0.2.tar.bz2) = e2a0d3380db6d2ac2773ea90703fd572504729b9214a6c105f39aefa4c06ff48720634c6601efdad8b9b3b22dec9bc3a9ea7e094839042bc3ff5cfdd88eac976
-Size (AssaultCube_v1.2.0.2.tar.bz2) = 48181347 bytes
+SHA1 (AssaultCube_v1.3.0.2_LockdownEdition_RC1.tar.bz2) = 0297358971dd9dc2b487b395f8e9a81e1acc34c9
+RMD160 (AssaultCube_v1.3.0.2_LockdownEdition_RC1.tar.bz2) = 58d334f23a04c23a44e776956e56373e4a93c479
+SHA512 (AssaultCube_v1.3.0.2_LockdownEdition_RC1.tar.bz2) = d837e945681a44f76c5a17c651c0578d912fae1161b7d0fa3c5b06524c2639c8701b767c8a1aeb95d14066faa7c4ecb25f2d1ab845c10dce5cf655b59bbafcd9
+Size (AssaultCube_v1.3.0.2_LockdownEdition_RC1.tar.bz2) = 52071427 bytes
 SHA1 (patch-source_src_Makefile) = 8825c40bf869166708a1f9277b1f77901137771d
 SHA1 (patch-source_src_bot_bot__waypoint.cpp) = 5ded14f79b69ee6ec6c2e9628452a1d6db0d406e
 SHA1 (patch-source_src_command.cpp) = 9bf2127eff468fd213bf66d345daab982b1c0722
