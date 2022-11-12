@@ -7,11 +7,11 @@ MASTER_SITES=	http://www.eclipse.org/downloads/download.php?file=/eclipse/downlo
 VERSION=	4.2.1
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.eclipse.org/
+HOMEPAGE=	https://www.eclipse.org/
 COMMENT=	Java IDE
 LICENSE=	eclipse-license
 
-PKG_JVMS_ACCEPTED=	sun-jdk6 sun-jdk15 sun-jdk14 openjdk7-bin openjdk7
+PKG_JVMS_ACCEPTED=	sun-jdk7 openjdk7-bin openjdk7
 
 MAKE_ENV+=	JAVA_HOME=${PKG_JAVA_HOME}
 

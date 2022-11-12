@@ -19,7 +19,7 @@ USE_LANGUAGES=	c c++
 
 MAKE_ENV+=		PYVERSSUFFIX=${PYVERSSUFFIX:Q}
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-Numeric
+PYTHON_VERSIONS_ACCEPTED=	27 # py-Numeric
 REPLACE_PYTHON+=		check-config.py
 REPLACE_PYTHON+=		test/display_dc_restoration.py
 REPLACE_PYTHON+=		test/opengl_info.py
@@ -27,5 +27,5 @@ REPLACE_PYTHON+=		test/opengl_info.py
 .include "../../devel/py-game/buildlink3.mk"
 .include "../../math/py-Numeric/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

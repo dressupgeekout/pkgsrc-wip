@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.1 2015/02/19 21:21:12 jihbed Exp $
+$NetBSD$
 
-SHA1 (cinnamon-menus-3.8.1.tar.gz) = 1879f64927747d75a5ac7ca0257ece95a62231a0
-RMD160 (cinnamon-menus-3.8.1.tar.gz) = 5a0d4c609e0cc9990e3d5b3181c5689f04c6c79e
-SHA512 (cinnamon-menus-3.8.1.tar.gz) = 5766dba26f4a4c88ad4475bc8d364e3c648d584a774caf71c11b90bf8d0bd1b4d2ca65f4007ef7f38a03a0ba2d39eeb73ec9222cdef1b03f05604511da4fd439
-Size (cinnamon-menus-3.8.1.tar.gz) = 181134 bytes
+SHA1 (cinnamon-menus-5.2.0.tar.gz) = 8ffdc1853c023793822478259aae6741fa3f2473
+RMD160 (cinnamon-menus-5.2.0.tar.gz) = 80240a1c07f3ddb87492bba29f1f613071734800
+SHA512 (cinnamon-menus-5.2.0.tar.gz) = 822ad5f3bf20b6ecfa9f2e3aa4c6d85f6f7b54a68bf73b60a4c2ceec853d2ce8b7d1e42b308eff9395c993eb8b5dc1c580b714e89a8ff2153e264db380aa8dae
+Size (cinnamon-menus-5.2.0.tar.gz) = 95316 bytes

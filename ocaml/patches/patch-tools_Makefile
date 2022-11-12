@@ -1,0 +1,15 @@
+$NetBSD$
+
+Honor LDFLAGS.
+
+--- tools/Makefile.orig	2021-09-30 15:40:11.000000000 +0000
++++ tools/Makefile
+@@ -41,7 +41,7 @@ INCLUDES = $(addprefix -I $(ROOTDIR)/,ut
+                        file_formats lambda)
+ COMPFLAGS = -absname -w +a-4-9-41-42-44-45-48-70 -strict-sequence \
+ -warn-error +A -principal -safe-string -strict-formats -bin-annot $(INCLUDES)
+-LINKFLAGS = $(INCLUDES)
++LINKFLAGS = $(INCLUDES) -cclib "$(LDFLAGS)"
+ VPATH := $(filter-out -I,$(INCLUDES))
+ 
+ programs_byte := \

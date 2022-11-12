@@ -8,14 +8,14 @@ MASTER_SITES=	${MASTER_SITE_PYPI:=d/dolo/}
 EXTRACT_SUFX=	.zip
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://albop.github.com/dolo/
+HOMEPAGE=	https://albop.github.com/dolo/
 COMMENT=	Economic modelling in Python
 LICENSE=	2-clause-bsd
 
 DEPENDS+=	${PYPKGPREFIX}-matplotlib-[0-9]*:../../graphics/py-matplotlib
 DEPENDS+=	${PYPKGPREFIX}-yaml>=3.10:../../textproc/py-yaml
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # as of 0.4.9.2
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 0.4.9.2
 
 USE_LANGUAGES=	# none
 

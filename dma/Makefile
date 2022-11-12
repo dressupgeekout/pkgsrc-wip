@@ -1,13 +1,11 @@
 # $NetBSD$
 
-DISTNAME=	dma-${GITHUB_TAG}
-PKGNAME=	dma-0.11
+DISTNAME=	dma-0.13
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_GITHUB:=corecode/}
-GITHUB_PROJECT=	dma
-GITHUB_TAG=	v0.11
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://github.com/corecode/dma
 COMMENT=	The DragonFly Mail Agent
 LICENSE=	modified-bsd
@@ -53,4 +51,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/dma.conf ${DESTDIR}${EGDIR}/dma.conf
 	${INSTALL_DATA} ${WRKSRC}/auth.conf ${DESTDIR}${EGDIR}/auth.conf
 
+.include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

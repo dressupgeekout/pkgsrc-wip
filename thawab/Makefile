@@ -14,7 +14,7 @@ DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
 DEPENDS+=	${PYPKGPREFIX}-Whoosh>=2.5.7:../../textproc/py-Whoosh
 DEPENDS+=	${PYPKGPREFIX}-othman>=0.2.7:../../wip/py-othman
 DEPENDS+=	${PYPKGPREFIX}-okasha>=0.2.4:../../wip/py-okasha
-DEPENDS+=	${PYPKGPREFIX}-Paste>=1.7.5.1:../../www/py-paste
+DEPENDS+=	${PYPKGPREFIX}-paste>=1.7.5.1:../../www/py-paste
 
 WRKSRC=		${WRKDIR}/thawab-3.0.13
 
@@ -23,7 +23,7 @@ USE_TOOLS+=		intltool msgfmt
 USE_LANGUAGES=		# none
 
 PYDISTUTILSPKG=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2
 
 .include "../../devel/pango/buildlink3.mk"
 .include "../../lang/python/extension.mk"

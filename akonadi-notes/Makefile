@@ -11,8 +11,7 @@ LICENSE=	gnu-lgpl-v2
 
 USE_TOOLS+=	msgmerge
 
-.include "../../devel/boost-libs/buildlink3.mk"
 .include "../../wip/akonadi/buildlink3.mk"
-.include "../../wip/kmime/buildlink3.mk"
+.include "../../mail/kmime/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

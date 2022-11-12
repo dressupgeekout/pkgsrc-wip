@@ -1,12 +1,14 @@
 # $NetBSD: Makefile,v 1.1 2014/08/10 00:06:55 thomasklausner Exp $
 
-DISTNAME=	rem-0.5.3
+DISTNAME=	rem-2.6.0
 PKGNAME=	lib${DISTNAME}
 CATEGORIES=	net audio
-MASTER_SITES=	http://www.creytiv.com/pub/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=baresip/}
+GITHUB_PROJECT=	rem
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.creytiv.com/rem.html
+HOMEPAGE=	https://github.com/baresip/rem
 COMMENT=	Portable library for real-time audio and video processing
 LICENSE=	modified-bsd
 
@@ -21,7 +23,7 @@ SUBST_FILES.prefix=	Makefile
 SUBST_MESSAGE.prefix=	Fixing PREFIX path.
 SUBST_SED.prefix=	-e "s|/usr/local|${PREFIX}|1"
 SUBST_SED.prefix+=	-e "s|} -lre|} ${COMPILER_RPATH_FLAG}"'$$$$'"{libdir} -lre|"
-SUBST_STAGE.prefix=	post-patch
+SUBST_STAGE.prefix=	pre-build
 
 post-install:
 	${CHMOD} -x ${DESTDIR}${PREFIX}/lib/librem.a

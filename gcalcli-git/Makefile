@@ -7,10 +7,10 @@ LICENSE=	mit
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/insanum/gcalcli/
-COMMENT=	Command line interface to Google Calendar 
+COMMENT=	Command line interface to Google Calendar
 
 GIT_REPOSITORIES=	gcalcli
-GIT_REPO.gcalcli=	git://github.com/insanum/gcalcli.git
+GIT_REPO.gcalcli=	https://github.com/insanum/gcalcli.git
 WRKSRC=			${WRKDIR}/gcalcli
 
 DEPENDS+=	${PYPKGPREFIX}-dateutil-[0-9]*:../../time/py-dateutil
@@ -20,7 +20,7 @@ DEPENDS+=	${PYPKGPREFIX}-httplib2-[0-9]*:../../www/py-httplib2
 DEPENDS+=	${PYPKGPREFIX}-parsedatetime-[0-9]*:../../time/py-parsedatetime
 DEPENDS+=	${PYPKGPREFIX}-vobject-[0-9]*:../../textproc/py-vobject
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gflags
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gflags
 
 .include "../../lang/python/egg.mk"
 .include "../../wip/mk/git-package.mk"

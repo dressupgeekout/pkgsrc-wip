@@ -11,14 +11,15 @@ COMMENT=	Access a multitude of neuroimaging data formats
 LICENSE=	mit
 
 DEPENDS+=	${PYPKGPREFIX}-nose>=0.11.3:../../devel/py-nose
-DEPENDS+=	${PYPKGPREFIX}-sphinx>=1.0.7:../../textproc/py-sphinx
+# not for python 2.x
+#DEPENDS+=	${PYPKGPREFIX}-sphinx>=1.0.7:../../textproc/py-sphinx
 DEPENDS+=	${PYPKGPREFIX}-dicom>=0.9.8:../../wip/py-dicom
 
 USE_LANGUAGES=	c
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-fuse-bindings
+PYTHON_VERSIONS_ACCEPTED=	27 # py-fuse-bindings
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../filesystems/py-fuse-bindings/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

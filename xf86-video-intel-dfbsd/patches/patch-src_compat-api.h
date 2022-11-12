@@ -2,39 +2,27 @@ $NetBSD: patch-src_compat-api.h,v 1.1 2016/12/07 21:59:54 wiz Exp $
 
 Upstream patches for xorg-server-1.19.
 
---- src/compat-api.h.orig	2014-11-18 21:50:39.000000000 +0000
+Handler args patch from NetBSD xsrc xf86-video-intel-2014
+
+--- src/compat-api.h.orig	2019-03-01 18:22:07.000000000 +0000
 +++ src/compat-api.h
-@@ -30,6 +30,7 @@
+@@ -94,11 +94,19 @@
  
- #include <xorg-server.h>
- #include <xorgVersion.h>
-+#include <xf86Module.h>
+ #define SCREEN_INIT_ARGS_DECL ScreenPtr screen, int argc, char **argv
  
- #include <picturestr.h>
- #ifndef GLYPH_HAS_GLYPH_PICTURE_ACCESSOR
-@@ -42,6 +43,10 @@
- #define xf86ScrnToScreen(s) screenInfo.screens[(s)->scrnIndex]
- #endif
- 
-+#if GET_ABI_MAJOR(ABI_VIDEODRV_VERSION) >= 22
-+#define HAVE_NOTIFY_FD 1
-+#endif
++#if (ABI_VIDEODRV_VERSION >= SET_ABI_VERSION(23, 0)) && defined(HANDLER_XSRC_NETBSD)
++#define BLOCKHANDLER_ARGS_DECL ScreenPtr arg, pointer timeout
++#define BLOCKHANDLER_ARGS arg, timeout
 +
- #ifndef XF86_SCRN_INTERFACE
++#define WAKEUPHANDLER_ARGS_DECL ScreenPtr arg, int result
++#define WAKEUPHANDLER_ARGS arg, result
++#else
+ #define BLOCKHANDLER_ARGS_DECL ScreenPtr arg, pointer timeout, pointer read_mask
+ #define BLOCKHANDLER_ARGS arg, timeout, read_mask
  
- #define SCRN_ARG_TYPE int
-@@ -223,4 +228,14 @@ static inline void FreePixmap(PixmapPtr
- 			  dstx, dsty)
- #endif
+ #define WAKEUPHANDLER_ARGS_DECL ScreenPtr arg, unsigned long result, pointer read_mask
+ #define WAKEUPHANDLER_ARGS arg, result, read_mask
++#endif
  
-+#if ABI_VIDEODRV_VERSION >= SET_ABI_VERSION(22, 0)
-+#define OsBlockSIGIO()
-+#define OsReleaseSIGIO()
-+#endif
-+
-+#if !HAVE_NOTIFY_FD
-+#define SetNotifyFd(fd, cb, mode, data) AddGeneralSocket(fd);
-+#define RemoveNotifyFd(fd) RemoveGeneralSocket(fd)
-+#endif
-+
- #endif
+ #define CLOSE_SCREEN_ARGS_DECL ScreenPtr screen
+ #define CLOSE_SCREEN_ARGS screen

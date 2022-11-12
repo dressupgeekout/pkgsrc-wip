@@ -3,6 +3,7 @@
 
 DISTNAME=	symeig-1.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=mdp-toolkit/}
 
@@ -19,7 +20,7 @@ do-test:
 	${RUN} cd ${WRKSRC}/test; \
 	${SETENV} ${TEST_ENV} ${PYTHONBIN} test_symeig.py
 
+.include "../../mk/blas.buildlink3.mk"
 .include "../../math/py-numpy/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
 .include "../../lang/python/extension.mk"
 .include "../../mk/bsd.pkg.mk"

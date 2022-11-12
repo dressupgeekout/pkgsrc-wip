@@ -1,0 +1,3 @@
+@comment $NetBSD$
+sbin/influxd
+share/examples/rc.d/influxdb

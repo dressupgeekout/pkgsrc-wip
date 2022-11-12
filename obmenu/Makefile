@@ -15,11 +15,11 @@ SUBST_CLASSES+=		obmenu
 SUBST_MESSAGE.obmenu=	Fixing LOCALBASE path.
 SUBST_STAGE.obmenu=	pre-patch
 SUBST_FILES.obmenu=	obmenu
-SUBST_SED.obmenu+=	-e 's|/usr/share|${LOCALBASE}/share|g'
+SUBST_SED.obmenu+=	-e 's|/usr/share|${PREFIX}/share|g'
 
 PYDISTUTILSPKG=	yes
 REPLACE_PYTHON=	${WRKSRC}/obmenu ${WRKSRC}/obxml.py
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2
 
 USE_LANGUAGES=	# none
 

@@ -1,7 +1,7 @@
 $NetBSD: distinfo,v 1.1 2015/02/19 21:21:12 jihbed Exp $
 
-SHA1 (nemo-3.6.5.tar.gz) = 7e31c77ce7a019ac77ca13611c72ba5b86e9e132
-RMD160 (nemo-3.6.5.tar.gz) = 6f9fc76900eb78493914c4eef3778354881af9f2
-SHA512 (nemo-3.6.5.tar.gz) = 6a8652633c0d71e910aad1447cae1cc09de67e6325ff4c7b1515e653e354be80ec2b9889f92bbe3fa011132152729e8aacf95698c079ff00d6b8e737a9cd25f1
-Size (nemo-3.6.5.tar.gz) = 1433746 bytes
-SHA1 (patch-files_Makefile.in) = 215130f3097729c5022a8a9a4ddc1c1f6a70410f
+SHA1 (nemo-5.2.2.tar.gz) = 2f3245572ed4d874ed4ceb72b42f6709cc9d57d8
+RMD160 (nemo-5.2.2.tar.gz) = 3b6da4d7c9e5b5af97fa2990b8d31c8f7ad8aa4e
+SHA512 (nemo-5.2.2.tar.gz) = f2b78fbd63b9ef341a5aeb52d95387c8d8ec328167d2bd271a84efb7cea191d02db4c53268e70ece55ded41ccf6ea278dcf0b8a527d3c4b65c430f3e6a5d8e5e
+Size (nemo-5.2.2.tar.gz) = 1491587 bytes
+SHA1 (patch-libnemo-private_nemo-statx.c) = 44282262749166e20e2d84b4980c9465b5b4b2c4

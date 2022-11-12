@@ -3,11 +3,11 @@
 DISTNAME=	PlRPC-0.2020
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	net perl5
-MASTER_SITES=	http://search.cpan.org/CPAN/authors/id/M/MN/MNOONING/PlRPC/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/M/MN/MNOONING/PlRPC/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://search.cpan.org/CPAN/authors/id/M/MN/MNOONING/PlRPC/
-COMMENT=	TODO: Short description of the package
+HOMEPAGE=	https://metacpan.org/pod/Bundle::PlRPC
+COMMENT=	All that's needed to run PlRPC-Server and Client
 LICENSE=	${PERL5_LICENSE}
 
 DEPENDS+=	p5-Net-Daemon-[0-9]*:../../net/p5-Net-Daemon

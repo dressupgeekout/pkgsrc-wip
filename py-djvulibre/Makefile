@@ -6,7 +6,7 @@ CATEGORIES=	graphics textproc
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/python-djvulibre/}
 
 MAINTAINER=	ryoon@NetBSD.org
-HOMEPAGE=	http://jwilk.net/software/python-djvulibre
+HOMEPAGE=	https://jwilk.net/software/python-djvulibre
 COMMENT=	Python bindings for the DjVuLibre library
 LICENSE=	gnu-gpl-v2
 
@@ -22,7 +22,7 @@ pre-build:
 	mkdir -p ${BUILDLINK_DIR}/bin
 	ln -s ${PYTHONBIN} ${BUILDLINK_DIR}/bin/python
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 BUILDLINK_API_DEPENDS.py-cython+=	${PYPKGPREFIX}-cython>=0.20
 .include "../../devel/py-cython/buildlink3.mk"
 .include "../../graphics/djvulibre-lib/buildlink3.mk"

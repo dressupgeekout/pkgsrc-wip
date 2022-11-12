@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (kscreen-5.12.4.tar.xz) = f9653665ff063d18e9d60db1a8e31d687eef5719
-RMD160 (kscreen-5.12.4.tar.xz) = e4f472e197327160eb0834a75ebde9eeda4a64b1
-SHA512 (kscreen-5.12.4.tar.xz) = b35bff40f8b4424e64ff69426728d35b169d14daac5f11dcf628c1d1d27c98aca2dc1270c0bfb2499bd081e11744dea489ac47c1aaca2ae2dbcc16927ab1a682
-Size (kscreen-5.12.4.tar.xz) = 117192 bytes
+BLAKE2s (kscreen-5.24.6.tar.xz) = b233277f9e8ba202241564fc048c04a06c06b3c63d439982125d5cae1921c7df
+SHA512 (kscreen-5.24.6.tar.xz) = 0bee9129de90df75ed95bf9c456842cb3c2b3e240f2861f153c0fb56223178ae645e5e2a6b2ae377e07fc847ff60c58eca2173fec84a084bfb7cf0dc71175323
+Size (kscreen-5.24.6.tar.xz) = 137616 bytes

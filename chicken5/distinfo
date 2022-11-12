@@ -1,6 +1,7 @@
-$NetBSD: distinfo,v 1.42 2016/06/08 14:44:54 asau Exp $
+$NetBSD: distinfo,v 1.5 2021/10/26 10:51:31 nia Exp $
 
-SHA1 (chicken-5.0.0rc2.tar.gz) = 18b872b42455885654a61005c3b3716ad4869baf
-RMD160 (chicken-5.0.0rc2.tar.gz) = 7d25f7371637b8d4f3b217bbc465c805882781bb
-SHA512 (chicken-5.0.0rc2.tar.gz) = fcb3f772a1300a4c3548a560ac9b49d84fd3ca4ff2d02a92efbb3ff476e061a70b0023071fbd40b3bf521fcbb4b6bbc0352e3fa1b3c07bd98e9c5e3e54f3616a
-Size (chicken-5.0.0rc2.tar.gz) = 4004627 bytes
+BLAKE2s (chicken-5.3.0.tar.gz) = 5d64daeded1ddebaeea8118937c563160ae426138ffcc6268f5ad49b77ca6fc3
+SHA512 (chicken-5.3.0.tar.gz) = 8fcc08a1ba44cde42c95820695a11858a3b7ff39a4b577bc5afb894c53513661aab2dc5b8e608e1d9d26648e314551052041626c4c8e519fcb9f8af324386e02
+Size (chicken-5.3.0.tar.gz) = 4069549 bytes
+SHA1 (patch-Makefile.bsd) = 45a3b810da13754b720bcb23f384a9e975675947
+SHA1 (patch-tests_runtests.sh) = c2bcee720a56cc399c6acdb1e002dbcd82ea272e

@@ -10,8 +10,8 @@ HOMEPAGE=	https://massimolauria.github.io/cnfgen
 COMMENT=	CNF formula generator
 LICENSE=	gnu-gpl-v3
 
-DEPENDS+=	${PYPKGPREFIX}-pyparsing>=2.1.8:../../devel/py-pyparsing
 DEPENDS+=	${PYPKGPREFIX}-networkx>=1.11:../../math/py-networkx
+DEPENDS+=	${PYPKGPREFIX}-pyparsing-[0-9]*:../../devel/py-pyparsing
 
 WRKSRC=		${WRKDIR}/CNFgen-0.7.1
 

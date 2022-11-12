@@ -1,12 +1,12 @@
 # $NetBSD$
 
-DISTNAME=	edbrowse-3.7.4
+DISTNAME=	edbrowse-3.7.5.1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=CMB/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://edbrowse.org/
+HOMEPAGE=	https://edbrowse.org/
 COMMENT=	Command Line Editor Browser
 LICENSE=	gnu-gpl-v3
 

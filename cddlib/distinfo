@@ -1,5 +1,5 @@
-$NetBSD: distinfo,v 1.2 2015/01/31 20:03:00 jihbed Exp $
+$NetBSD$
 
-SHA1 (cddlib-094g.tar.gz) = 4ef38ca6efbf3d54a7a753c63ff25a8c95e5fc5f
-RMD160 (cddlib-094g.tar.gz) = 543d25bce930756fd06de5aa890abcd9b65e74a9
-Size (cddlib-094g.tar.gz) = 1383388 bytes
+BLAKE2s (cddlib-0.94m.tar.gz) = de8cb0fbf65365a371e8cbf3ea4b89a2a02837bb73ac398a152abe72cc52b7ae
+SHA512 (cddlib-0.94m.tar.gz) = 50997bda38c36990456345881dc1eac65b1880aa510ea3812ae46a122ba7696bf3577f2b6976ff16811ee00f0a920c8ed6f1e7de0a4060bfaa96def11bab816e
+Size (cddlib-0.94m.tar.gz) = 1351298 bytes

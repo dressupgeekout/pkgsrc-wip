@@ -1,8 +1,6 @@
 $NetBSD$
 
-SHA1 (kinfocenter-5.12.4.tar.xz) = d5d706e713502be0d9b494869440a237e5a0a9e7
-RMD160 (kinfocenter-5.12.4.tar.xz) = 652e0b14846201c761cd60f12893f24bc6e5f2e7
-SHA512 (kinfocenter-5.12.4.tar.xz) = 56e93f9e71c94a3c6906d042e0b9c40cbbcce3d7494fe5e5833324014d11d79fe8d480967e08292eab43754688e9f4582cabc6af79609a9b88eb992235aead83
-Size (kinfocenter-5.12.4.tar.xz) = 1267316 bytes
-SHA1 (patch-Modules_base_info__netbsd.cpp) = 3c4c886757d473518874a3d79f58cbb4ca365fc0
-SHA1 (patch-Modules_nics_nic.cpp) = d759de60f074d8e35d759cef3426c2f84ad9768e
+BLAKE2s (kinfocenter-5.24.6.tar.xz) = 7a0bbca3dc1ea4d55e68891d117939f790c0becd57e327ea7335d01edd8575f2
+SHA512 (kinfocenter-5.24.6.tar.xz) = bb30faf3fdef1df6df7740210da4a63a596b6a354774dd46fabf7561df265eccac85c8fc500b3e5bcf48b8bbef60b4617aa5b3bc245ea10117e8e9a082f98717
+Size (kinfocenter-5.24.6.tar.xz) = 720088 bytes
+SHA1 (patch-Modules_about-distro_src_MemoryEntry.cpp) = 8d5a163a85ab89908f02bdccb77ffe6d5fa9d34f

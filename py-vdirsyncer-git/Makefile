@@ -11,7 +11,7 @@ COMMENT=	Synchronization tool for vdir
 LICENSE=	mit
 
 GIT_REPOSITORIES=	vdirsyncer
-GIT_REPO.vdirsyncer=	git://github.com/untitaker/vdirsyncer.git
+GIT_REPO.vdirsyncer=	https://github.com/untitaker/vdirsyncer.git
 
 WRKSRC=			${WRKDIR}/vdirsyncer
 
@@ -25,6 +25,8 @@ DEPENDS+=	${PYPKGPREFIX}-requests-[0-9]*:../../devel/py-requests
 DEPENDS+=	${PYPKGPREFIX}-requests-toolbelt>=0.3.0:../../devel/py-requests-toolbelt
 # optional, but recommended
 DEPENDS+=	${PYPKGPREFIX}-keyring-[0-9]*:../../security/py-keyring
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27 # py-keyring
 
 USE_LANGUAGES=		# none
 INSTALLATION_DIRS=	share/examples/${PKGBASE}

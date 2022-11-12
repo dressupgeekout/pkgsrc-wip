@@ -9,7 +9,7 @@ COMMENT=		USRP (Universal Software Radio Peripheral) Hardware Drivers
 LICENSE=		gnu-gpl-v2
 
 GIT_REPOSITORIES=	master
-GIT_REPO.master=	git://github.com/EttusResearch/uhd.git
+GIT_REPO.master=	https://github.com/EttusResearch/uhd.git
 GIT_MODULE.master=	uhd
 
 USE_LANGUAGES=		c c++
@@ -20,7 +20,7 @@ USE_TOOLS=		cmake
 WRKSRC=			${WRKDIR}/uhd/host
 
 REPLACE_PYTHON=	\
-        uhd-firmware/x300/bin_to_coe.py \
+	uhd-firmware/x300/bin_to_coe.py \
 	utils/uhd_images_downloader.py.in \
 	utils/usrp2_card_burner.py \
 	utils/usrp2_card_burner_gui.py \
@@ -49,15 +49,15 @@ REPLACE_PYTHON=	\
 	uhd-fpga/usrp3/top/python/bit_to_zynq_bin.py \
 	uhd-fpga/usrp3/top/python/check_inout.py \
 	uhd-fpga/usrp3/top/python/check_timing.py \
-        uhd-fpga/usrp3/lib/io_port2/create-lvbitx.py \
+	uhd-fpga/usrp3/lib/io_port2/create-lvbitx.py \
 
 
 REPLACE_PERL=	uhd-fpga/usrp1/tb/makesine.pl
 
-REPLACE_BASH=	\
+REPLACE_BASH=		\
 	uhd-fpga/usrp2/top/impactor.sh \
 	uhd-fpga/usrp3/top/impactor.sh \
-        uhd-fpga/usrp3/top/python/batch-build \
+	uhd-fpga/usrp3/top/python/batch-build \
 
 INSTALLATION_DIRS+=	share/uhd
 INSTALLATION_DIRS+=	share/uhd/firmware
@@ -74,7 +74,7 @@ post-patch:
 	done)
 
 do-configure:
-	(cd $(WRKSRC) ; \
+	(cd ${WRKSRC} ; \
 	cmake \
 	-DCMAKE_BUILD_WITH_INSTALL_RPATH=TRUE \
 	-DCMAKE_INSTALL_PREFIX=${PREFIX} \
@@ -85,7 +85,7 @@ do-configure:
 post-install:
 	for i in firmware fpga images ; do \
 	  ${CP} -r ${WRKSRC}/uhd-$$i/* ${DESTDIR}${PREFIX}/share/uhd/$$i/;\
-	done	
+	done
 
 .include "../../lang/python/application.mk"
 .include "../../devel/boost-libs/buildlink3.mk"

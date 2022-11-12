@@ -1,14 +1,15 @@
 # $NetBSD: Makefile,v 1.100 2015/11/02 13:40:41 ryoon Exp $
 
 DISTNAME=		pulseaudio-9.0
+PKGREVISION=		1
 CATEGORIES=		audio
 GIT_REPOSITORIES=	pulse
-GIT_REPO.pulse=		git://github.com/pulseaudio/pulseaudio.git
+GIT_REPO.pulse=		https://github.com/pulseaudio/pulseaudio.git
 
 WRKSRC=		${WRKDIR}/pulse
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.freedesktop.org/wiki/Software/PulseAudio
+HOMEPAGE=	https://www.freedesktop.org/wiki/Software/PulseAudio
 COMMENT=	Sound server for POSIX and Win32 systems
 LICENSE=	gnu-lgpl-v2.1 AND gnu-gpl-v2
 

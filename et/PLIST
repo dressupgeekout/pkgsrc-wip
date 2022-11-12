@@ -1,0 +1,6 @@
+@comment $NetBSD$
+bin/et
+bin/etserver
+bin/etterminal
+bin/htm
+bin/htmd

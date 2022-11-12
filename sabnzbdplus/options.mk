@@ -27,14 +27,14 @@ DEPENDS+=	unrar-[0-9]*:../../archivers/unrar
 ### feedparser support
 ###
 .if !empty(PKG_OPTIONS:Mfeedparser)
-DEPENDS+=	${PYPKGPREFIX}-feedparser-[0-9]*:../../textproc/py-feedparser
+DEPENDS+=	${PYPKGPREFIX}-feedparser<6.0.0:../../textproc/py-feedparser5
 .endif
 
 ###
 ### par2 support
 ###
 .if !empty(PKG_OPTIONS:Myenc)
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-yenc
+PYTHON_VERSIONS_ACCEPTED=	27 # py-yenc
 DEPENDS+=	${PYPKGPREFIX}-yenc-[0-9]*:../../converters/py-yenc
 .endif
 

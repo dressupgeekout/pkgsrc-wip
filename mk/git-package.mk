@@ -132,9 +132,9 @@ _GIT_DISTDIR=		${DISTDIR}/git-packages
 
 # Definition of repository-specific variables
 .for repo in ${GIT_REPOSITORIES}
-.if defined(GIT_MODULE.${repo}) # for backwards compatibility
+.  if defined(GIT_MODULE.${repo}) # for backwards compatibility
 GIT_EXTRACTDIR.${repo}?=	${GIT_MODULE.${repo}}
-.endif
+.  endif
 GIT_EXTRACTDIR.${repo}?=	${repo}
 _GIT_ENV.${repo}=		${GIT_ENV.${repo}}
 
@@ -189,10 +189,12 @@ _GIT_CMD.checkout.${repo}= \
 	  remote set-branches origin '*';				\
 	\
 	${STEP_MSG} "Updating Git working area $$extractdir.";		\
+	revision=${_GIT_REV.${repo}:Q};					\
+	rev_before=`${_GIT_CMDLINE.${repo}} -C "$$extractdir" show-ref "$$revision"`; \
 	${_GIT_CMDLINE.${repo}} -C "$$extractdir"			\
 	  fetch ${_GIT_FETCH_FLAGS.${repo}};				\
+	rev_after=`${_GIT_CMDLINE.${repo}} -C "$$extractdir" show-ref "$$revision"`; \
 	\
-	revision=${_GIT_REV.${repo}:Q};					\
 	checkout_date=${CHECKOUT_DATE:Q};				\
 	if [ "$$checkout_date" ]; then					\
 	  ${STEP_MSG} "Checking out $$revision at $$checkout_date.";	\
@@ -202,10 +204,8 @@ _GIT_CMD.checkout.${repo}= \
 	    checkout ${_GIT_CHECKOUT_FLAGS} "$$ref";			\
 	else								\
 	  ${STEP_MSG} "Checking out $$revision.";			\
-	  rev_before=`${_GIT_CMDLINE.${repo}} -C "$$extractdir" show-ref HEAD`; \
 	  ${_GIT_CMDLINE.${repo}} -C "$$extractdir"			\
 	    checkout ${_GIT_CHECKOUT_FLAGS} "$$revision";		\
-	  rev_after=`${_GIT_CMDLINE.${repo}} -C "$$extractdir" show-ref HEAD`; \
 	fi;								\
 	\
 	${STEP_MSG} "Updating submodules of $$extractdir.";		\
@@ -248,3 +248,5 @@ _PKG_VARS.git+=		${varbase}.${repo}
 _SYS_VARS.git+=		${varbase}.${repo}
 .  endfor
 .endfor
+_DEF_VARS.git+=		BUILD_DEPENDS USE_TOOLS WARNINGS _GIT_DISTDIR _GIT_CHECKOUT_FLAGS
+_USE_VARS.git+=		PKGBASE DISTDIR WRKDIR PREFIX _GIT_PKGVERSION

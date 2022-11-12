@@ -15,9 +15,9 @@ DEPENDS+=	${PYPKGPREFIX}-gtk2>=2.10:../../x11/py-gtk2
 DEPENDS+=	${PYPKGPREFIX}-dbus>=0.80:../../sysutils/py-dbus
 DEPENDS+=	${PYPKGPREFIX}-urwid>=0.9.9:../../devel/py-urwid
 
-PY_PATCHPLIST =	YES
-PYSETUP =	setup.py
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2
+PY_PATCHPLIST=	YES
+PYSETUP=	setup.py
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2
 PLIST_SUBST+=	EGG_INFODIR=${EGG_NAME}-py${PYVERSSUFFIX}.egg-info
 
 USE_TOOLS+=	pkg-config
@@ -54,6 +54,6 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/wicd.conf ${PKG_SYSCONFDIR}/dbus-1/system.d/
 
 .include "options.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -2,12 +2,13 @@
 
 DISTNAME=	Aquaria
 PKGNAME=	aquaria-1.1.3
+PKGREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=AquariaOSE/}
 GITHUB_PROJECT=	Aquaria
-GITHUB_TAG=	d8da8576e8321fd989cbb865c0e4d19d295a36b1
+GITHUB_TAG=	7377ea0a09a7691451e8c00e9a027ccfabeb2a06
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 COMMENT=	Aquaria Open Source Edition
 LICENSE=	gnu-gpl-v2
 

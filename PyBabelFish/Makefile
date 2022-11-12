@@ -9,13 +9,13 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=pythonol/}
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.phrozensmoke.com/projects/pythonol/
+HOMEPAGE=		https://www.phrozensmoke.com/projects/pythonol/
 COMMENT=		Gtk-based frontend for several translation services on web
 
 
 PY_PATCHPLIST=		yes
 NO_CONFIGURE=		yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2
 
 PYFILES=	URLRead.py pybabelfish.py pyfilter.py pytheme.py \
 		pythonol_festival.py symbolbar.py

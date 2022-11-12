@@ -1,10 +1,9 @@
 $NetBSD$
 
-SHA1 (libksysguard-5.12.4.tar.xz) = f4a15dc10128d723e040b0698ab81d635c5ce317
-RMD160 (libksysguard-5.12.4.tar.xz) = 846d8ba2fdba09a3a5a2d9314b7b74e9fadc3dbf
-SHA512 (libksysguard-5.12.4.tar.xz) = c1e7e3c16c88b9ceef463503e6e776ca0a9cf4d4033aad51f6785e33a6b1e17f041ea351456a2c305888a09349d568fbff1f5feda6535b060b1c010c688cad4e
-Size (libksysguard-5.12.4.tar.xz) = 567216 bytes
-SHA1 (patch-ksgrd_SensorManager.cpp) = 90390178e85106f936bb0bcb49ae184b50ae52dc
-SHA1 (patch-processcore_CMakeLists.txt) = 97f9bf250847fb79545c87e9ec8f1a80f49be338
-SHA1 (patch-processcore_processes.cpp) = d2d0feb9334e4a2a5845c263ba51615f48356d0c
-SHA1 (patch-processcore_processes__netbsd__p.cpp) = e69a3775effc375bb8eb5dfdc0cb4622d4c3aeb1
+BLAKE2s (libksysguard-5.24.6.tar.xz) = 1f84d33e533f6613217d8b73d1712e094839c03f6f0330f6de3e3f03a3868e08
+SHA512 (libksysguard-5.24.6.tar.xz) = 9bc810e74821bd11fc4083d61452cd728daf00a2c2d8baa79869c2da4aca07f0db8ca3d7fbfe800110c1498bb9c94550c56dd8e82099a919b61bc76a15a8580c
+Size (libksysguard-5.24.6.tar.xz) = 768148 bytes
+SHA1 (patch-ksgrd_SensorManager.cpp) = 8bb7a2649728782c9a06c626295d8e11b2b89224
+SHA1 (patch-processcore_CMakeLists.txt) = ab2fe1886ac0b95ddc2d49bb9b31cae99449fc4b
+SHA1 (patch-processcore_processes.cpp) = c101e0a0c43d64cc91a998c4ff171d384eadaa32
+SHA1 (patch-processcore_processes__netbsd__p.cpp) = 6b355a592a383c62303c0bcfbcf4f3ac159ebc63

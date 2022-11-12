@@ -5,7 +5,7 @@ CATEGORIES=	textproc
 MASTER_SITES=	http://dl.suckless.org/tools/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://tools.suckless.org/sent/
+HOMEPAGE=	https://tools.suckless.org/sent/
 COMMENT=	Simple plaintext presentation tool
 LICENSE=	mit
 
@@ -13,7 +13,7 @@ USE_TOOLS+=	bzip2:run	# for bunzip2
 
 WRKSRC=		${WRKDIR}
 
-DEPENDS+=	farbfeld-[0-9]*:../../wip/farbfeld	# for 2ff
+DEPENDS+=	farbfeld-[0-9]*:../../graphics/farbfeld	# for 2ff
 
 SUBST_CLASSES+=		makefile
 SUBST_STAGE.makefile=	pre-configure

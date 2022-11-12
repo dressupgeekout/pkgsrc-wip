@@ -17,7 +17,7 @@ DEPENDS+=	${PYPKGPREFIX}-psutil>=2.1.3:../../sysutils/py-psutil
 #DEPENDS+=	${PYPKGPREFIX}-cryptography>=1.0.1:../../security/py-cryptography
 DEPENDS+=	${PYPKGPREFIX}-pygments-[0-9]*:../../textproc/py-pygments
 DEPENDS+=	${PYPKGPREFIX}-arrow>=0.4.2:../../time/py-arrow
-DEPENDS+=	${PYPKGPREFIX}-kitchen>=1.2.1:../../wip/py-kitchen
+DEPENDS+=	${PYPKGPREFIX}-kitchen>=1.2.1:../../devel/py-kitchen
 DEPENDS+=	${PYPKGPREFIX}-moksha-hub>=1.4.4:../../wip/py-moksha-hub
 
 USE_TOOLS+=	bash
@@ -25,7 +25,7 @@ USE_LANGUAGES=	# none
 
 REPLACE_BASH+=	fedmsg/tests/test_certs/rebuild-all-fedmsg-certs
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-moksha-common via py-moksha-hub
+PYTHON_VERSIONS_ACCEPTED=	27 # py-moksha-common via py-moksha-hub
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

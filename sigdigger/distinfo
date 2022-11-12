@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (SigDigger-0.2.0git-557f6712d868f2ee08bc38fbbab68d9171f40bfb.tar.gz) = 9cbb57f0659b0ed1827c7edeb6ef50281f591dc848ec9a2bdc0356ca135a0d8c
+SHA512 (SigDigger-0.2.0git-557f6712d868f2ee08bc38fbbab68d9171f40bfb.tar.gz) = 4cc5fb1b28a90208eff983df02b6dbf226dea155feb6b16e2068fc80abed337619cbc09822207e6f31aa6b3c146add3997c96f0962e2cbfc16312164977c844d
+Size (SigDigger-0.2.0git-557f6712d868f2ee08bc38fbbab68d9171f40bfb.tar.gz) = 5013746 bytes

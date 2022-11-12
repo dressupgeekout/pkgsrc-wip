@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (keditbookmarks-18.04.0.tar.xz) = b11363c5fd1cc790767f145c51f927306a452004
-RMD160 (keditbookmarks-18.04.0.tar.xz) = b0395ed300922e1a3bbe88d2c54d53f6f245021c
-SHA512 (keditbookmarks-18.04.0.tar.xz) = 8e2f8c4ed3f231d3cb0b10613c885e7b60e44a701a81a3cd1c1db59dd0d102434524d3d7fe94f17717c8999e0af43e5707e361ee04c39915ec08d37d7098780a
-Size (keditbookmarks-18.04.0.tar.xz) = 183208 bytes
+BLAKE2s (keditbookmarks-22.08.1.tar.xz) = f710f6ffe8a72679a65abca5edac6017ef8aedb926f065e00b0e4464127266be
+SHA512 (keditbookmarks-22.08.1.tar.xz) = 8ad8040501788e60120c30e7cc2b8a41fcc9283961ea79cb668498c5810ec4ece51d2d520a8477050375c81a20401720a661919cb2b63354e2b1b9ab9be1ce84
+Size (keditbookmarks-22.08.1.tar.xz) = 204300 bytes

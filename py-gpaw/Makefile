@@ -16,7 +16,7 @@ DEPENDS+=	${PYPKGPREFIX}-ase-[0-9]*:../../wip/py-ase
 
 USE_LANGUAGES=	c c99
 EGG_NAME=	gpaw-0.9.0
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2 and py-gobject via py-ase
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2 and py-gobject via py-ase
 
 post-extract:
 	${MV} ${WRKSRC}/tools/gpaw ${WRKSRC}/tools/gpaw${PYVERSSUFFIX}
@@ -25,6 +25,6 @@ post-extract:
 	${MV} ${WRKSRC}/tools/gpaw-setup ${WRKSRC}/tools/gpaw-setup${PYVERSSUFFIX}
 	${MV} ${WRKSRC}/tools/gpaw-test ${WRKSRC}/tools/gpaw-test${PYVERSSUFFIX}
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

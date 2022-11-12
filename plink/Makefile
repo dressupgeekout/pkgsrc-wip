@@ -6,11 +6,11 @@
 ###########################################################
 
 DISTNAME=	plink-${PORTVERSION}
-PKGNAME=	plink19-${PORTVERSION}
+PKGREVISION=	1
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=chrchang/}
 GITHUB_PROJECT=	plink-ng
-GITHUB_TAG=	cbcf442c176036138419b14d6b46a3d57e8325d4
+GITHUB_TAG=	00aaeb53d3edd569c93bd60e7bcd27ced4cd8fdb
 
 MAINTAINER=	bacon@NetBSD.org
 #HOMEPAGE=	http://pngu.mgh.harvard.edu/~purcell/plink/
@@ -25,26 +25,25 @@ USE_TOOLS+=	gmake
 
 WRKSRC=		${WRKDIR}/plink-ng-${GITHUB_TAG}/1.9
 
-CFLAGS+=	-DDYNAMIC_ZLIB -I${PREFIX}/include -I.
-CXXFLAGS+=	-DDYNAMIC_ZLIB -I${PREFIX}/include
-MAKE_FLAGS+=	ZLIB=-lz BLASFLAGS="-L${PREFIX}/lib -llapack -lcblas -lblas -lpthread"
+CFLAGS+=	-DDYNAMIC_ZLIB -I${PREFIX}/include -I. ${BLAS_INCLUDES}
+CXXFLAGS+=	-DDYNAMIC_ZLIB -I${PREFIX}/include ${BLAS_INCLUDES}
+MAKE_FLAGS+=	ZLIB=-lz BLASFLAGS="-L${PREFIX}/lib ${LAPACK_LIBS} ${CBLAS_LIBS}  -lpthread"
 INSTALL_TARGET=	install-strip
 
 PORTVERSION=	1.90b4
+BLAS_ACCEPTED=	openblas_pthread
+
+BLAS_C_INTERFACE=	yes
 
 INSTALLATION_DIRS=	bin
 
 post-patch:
 	${CP} ${WRKSRC}/Makefile.std ${WRKSRC}/Makefile
 
-# Override install target and install as plink19 to allow coexistence with
-# plink 1.07
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/plink ${DESTDIR}${PREFIX}/bin/plink19
+	${INSTALL_PROGRAM} ${WRKSRC}/plink ${DESTDIR}${PREFIX}/bin
 
-.include "../../wip/cblas/buildlink3.mk"
-.include "../../math/blas/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

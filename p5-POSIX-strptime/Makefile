@@ -2,15 +2,14 @@
 
 DISTNAME=	POSIX-strptime-0.13
 PKGNAME=	p5-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=POSIX/}
 
 MAINTAINER=	tonnerre@thebsh.sygroup.ch
-HOMEPAGE=	http://search.cpan.org/dist/POSIX-strptime/
+HOMEPAGE=	https://metacpan.org/release/POSIX-strptime
 COMMENT=	Perl module for the POSIX strptime function
 LICENSE=	${PERL5_LICENSE}
-
-DEPENDS+=	p5-XSLoader-[0-9]*:../../devel/p5-XSLoader
 
 USE_LANGUAGES=	c
 

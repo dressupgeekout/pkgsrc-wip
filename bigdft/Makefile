@@ -2,6 +2,7 @@
 #
 
 DISTNAME=	bigdft-1.6.0
+PKGREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	http://inac.cea.fr/L_Sim/BigDFT/
 
@@ -24,9 +25,8 @@ CONFIGURE_ARGS+=	--disable-internal-libxc
 CONFIGURE_ARGS+=	--with-archives
 .include "../../archivers/libarchive/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-blas
-.include "../../math/blas/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 CONFIGURE_ARGS+=	--with-lapack
-.include "../../math/lapack/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"

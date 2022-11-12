@@ -6,7 +6,7 @@ CATEGORIES=	time
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=taskcoach/}
 
 MAINTAINER=	ryoon@NetBSD.org
-HOMEPAGE=	http://www.taskcoach.org/
+HOMEPAGE=	https://www.taskcoach.org/
 COMMENT=	Task Coach is a simple open source todo manager
 LICENSE=	gnu-gpl-v3
 
@@ -15,7 +15,7 @@ DEPENDS+=	${PYPKGPREFIX}-wxWidgets>=2.8.9.1:../../x11/py-wxWidgets
 USE_LANGUAGES=	# none
 
 PYDISTUTILSPKG=	YES
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-wxWidgets
+PYTHON_VERSIONS_ACCEPTED=	27 # py-wxWidgets
 
 SUBST_CLASSES+=		fix-cdll
 SUBST_STAGE.fix-cdll=	pre-configure

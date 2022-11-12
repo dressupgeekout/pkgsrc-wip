@@ -3,10 +3,10 @@
 DISTNAME=	Encode-Arabic-14.2
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	converters perl5
-MASTER_SITES=	http://search.cpan.org/CPAN/authors/id/S/SM/SMRZ/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/S/SM/SMRZ/}
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://search.cpan.org/dist/Encode-Arabic/
+HOMEPAGE=	https://metacpan.org/release/Encode-Arabic
 COMMENT=	Perl5 implementation for Arabic encodings
 LICENSE=	${PERL5_LICENSE}
 

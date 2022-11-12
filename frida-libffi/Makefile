@@ -36,7 +36,7 @@ pre-build:
 
 .if !empty(PKGSRC_RUN_TEST:M[Yy][Ee][Ss])
 TEST_TARGET=	check
-TEST_ENV=	
+TEST_ENV=
 BUILD_DEPENDS+=	dejagnu-[0-9]*:../../devel/dejagnu
 .endif
 
@@ -47,11 +47,11 @@ LIBS+=	-lm68k
 
 # fix http://gnats.netbsd.org/42865
 .if !empty(MACHINE_PLATFORM:MSunOS-*-i386) && !empty(CC_VERSION:Mgcc-[23]*)
-CPPFLAGS +=	-D__PIC__
+CPPFLAGS+=	-D__PIC__
 .endif
 
 # irix fixes from PR 48587
-.if !empty(OPSYS:MIRIX)
+.if ${OPSYS} == IRIX
 USE_TOOLS+=	bash gmake
 MAKE_FLAGS+=	SHELL=${TOOLS_DIR}/bin/bash
 .endif

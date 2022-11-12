@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.68 2015/11/23 10:30:16 wiz Exp $
 
 DISTNAME=	libreoffice
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	misc
 
 GIT_REPOSITORIES=	core
@@ -11,7 +11,7 @@ GIT_REPO.core=		git://gerrit.libreoffice.org/core.git
 
 #EXTRACT_SUFX=	.tar.bz2
 
-HOMEPAGE=	http://www.libreoffice.org/
+HOMEPAGE=	https://www.libreoffice.org/
 COMMENT=	Office productivity suite from The Document Foundation
 LICENSE=	gnu-lgpl-v3
 

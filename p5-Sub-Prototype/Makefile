@@ -1,12 +1,12 @@
 # $NetBSD$
 
-DISTNAME=	Sub-Prototype-0.02
+DISTNAME=	Sub-Prototype-0.03
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	textproc perl5
-MASTER_SITES=	http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/E/ET/ETHER/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://search.cpan.org/dist/Sub-Prototype/
+HOMEPAGE=	https://metacpan.org/release/Sub-Prototype
 COMMENT=	Add prototype for function
 LICENSE=	${PERL5_LICENSE}
 

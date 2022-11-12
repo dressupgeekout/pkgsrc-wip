@@ -1,12 +1,11 @@
-# $Id: Makefile,v 1.8 2014/10/31 12:45:46 bartoszkuzma Exp $
-#
+# $NetBSD$
 
 DISTNAME=	downtimed-0.6
 CATEGORIES=	sysutils
 MASTER_SITES=	http://dist.epipe.com/downtimed/
 
 MAINTAINER=	bartosz@maciejewski.org
-HOMEPAGE=	http://dist.epipe.com/downtimed/
+HOMEPAGE=	https://dist.epipe.com/downtimed/
 COMMENT=	Downtimed is monitoring system downtime
 LICENSE=	2-clause-bsd
 

@@ -1,0 +1,14 @@
+$NetBSD: distinfo,v 1.99 2021/10/26 10:24:15 nia Exp $
+
+BLAKE2s (wine-7.0.tar.xz) = c1fd7a8e8f727319320a759d4f77aa896b5a3424a142e2b0306291542ed4d0cf
+SHA512 (wine-7.0.tar.xz) = eec17b046ed5447eb540f421c9b2748d9419ce087496c2743a9914fd27bbe5ff9da0cfe47d3cd76fa97323bd1188a1d82b1eef4968d86ed1957dc1a95e28529c
+Size (wine-7.0.tar.xz) = 27120912 bytes
+SHA1 (patch-configure) = 1a7b5c26aa7daff5134de4da0cc079a14627f8d1
+SHA1 (patch-dlls_nsiproxy.sys_ip.c) = b494f1e6b110d2898d097dfdcb4a9648c86113fb
+SHA1 (patch-dlls_nsiproxy.sys_ndis.c) = 513be1c4cfa5526b5f4e1ca73100824417cf27cd
+SHA1 (patch-dlls_nsiproxy.sys_tcp.c) = 1ccb4e8c42d0bc5a9dc00afddf5a0164b1cd54e2
+SHA1 (patch-dlls_ntdll_unix_file.c) = 86aa2138106f902ab42e7829fb004bf37bdfd9d9
+SHA1 (patch-dlls_ntdll_unix_socket.c) = 7eac2fd0dcd67f215aae914fb4d6604e75c29317
+SHA1 (patch-dlls_winex11.drv_x11drv__main.c) = b31388deb12a46cfecaba3e01b3cdafa0d77cfa0
+SHA1 (patch-dlls_ws2__32_unixlib.c) = 7b36ed81e5a0845fe260f4f497de1184ffd0e737
+SHA1 (patch-include_winnt.h) = e09610d4cbb37d11a28cadfd590dddadb1ea6af4

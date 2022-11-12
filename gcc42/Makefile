@@ -9,7 +9,7 @@ EXTRACT_SUFX=	.tar.bz2
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
 MAINTAINER=	blair.sadewitz@gmail.com
-HOMEPAGE=	http://gcc.gnu.org/
+HOMEPAGE=	https://gcc.gnu.org/
 COMMENT=	This is the GCC 4.2.3 compiler
 
 GCC_VERSION=		4.2.3
@@ -50,8 +50,8 @@ MAKEFLAGS+=		USE_BINUTILS=${USE_BINUTILS:Q}
 .endif
 .if defined(USE_BINUTILS) && !empty(USE_BINUTILS:M[yY][eE][sS])
 DEPENDS+=		binutils>=2.14:../../devel/binutils
-CONFIGURE_ARGS+=	--with-as=${LOCALBASE}/bin/as
-CONFIGURE_ARGS+=	--with-ld=${LOCALBASE}/bin/ld
+CONFIGURE_ARGS+=	--with-as=${PREFIX}/bin/as
+CONFIGURE_ARGS+=	--with-ld=${PREFIX}/bin/ld
 CONFIGURE_ARGS+=	--with-gnu-as
 CONFIGURE_ARGS+=	--with-gnu-ld
 CONFIGURE_ARGS+=	--with-libiconv-prefix=${BUILDLINK_PREFIX.iconv}
@@ -144,7 +144,7 @@ PLIST_SRC=		${WRKDIR}/PLIST_DYNAMIC
 # Ada bootstrap compiler section
 # An Ada compiler is required to build the Ada compiler. You
 # may specify:
-#USE_GCC42ADA	=	# Define to use gcc-3.4.x-ada
+#USE_GCC42ADA=		# Define to use gcc-3.4.x-ada
 # Or, you may specify the path of any gcc/gnat Ada compiler
 # by providing the full path of the compiler (example) below:
 #ALT_GCC=		prefix/bin/gcc

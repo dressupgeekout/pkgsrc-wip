@@ -5,7 +5,7 @@ PKGNAME=		${PYPKGPREFIX}-jabber-${DISTNAME:S/py//}
 CATEGORIES=		chat python
 MASTER_SITES=		https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/pyicqt/
 
-MAINTAINER=		eric@cirr.com
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://code.google.com/p/pyicqt/
 COMMENT=		Transport connecting Jabber to the ICQ IM network
 LICENSE=		gnu-gpl-v2
@@ -38,7 +38,7 @@ REPLACE_PYTHON+=		PyICQt.py
 REPLACE_PYTHON+=		tools/infodump.py
 REPLACE_PYTHON+=		tools/managessi.py
 REPLACE_PYTHON+=		tools/migrate.py
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-imaging
+PYTHON_VERSIONS_ACCEPTED=	27 # py-imaging
 
 TRANSPORTDIR=		${JABBER_TRANSDIR}/pyicqt
 
@@ -77,16 +77,16 @@ SUBST_CLASSES+=		paths
 SUBST_MESSAGE.paths=	Localizing Paths
 SUBST_STAGE.paths=	pre-configure
 SUBST_FILES.paths=	config_example.xml PyICQt.py src/main.py
-SUBST_SED.paths+=	-e 's,@PKG_SYSCONFDIR@,${PKG_SYSCONFDIR},g'
-SUBST_SED.paths+=	-e 's,@TRANSPORTDIR@,${TRANSPORTDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_SPOOLDIR@,${JABBER_SPOOLDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_TRANSDIR@,${JABBER_TRANSDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_GROUP@,${JABBER_GROUP},g'
-SUBST_SED.paths+=	-e 's,@JABBER_USER@,${JABBER_USER},g'
-SUBST_SED.paths+=	-e 's,@JABBER_LOGDIR@,${JABBER_LOGDIR},g'
-SUBST_SED.paths+=	-e 's,@PREFIX@,${PREFIX},g'
-SUBST_SED.paths+=	-e 's,@JABBER_PIDDIR@,${JABBER_PIDDIR},g'
-SUBST_SED.paths+=	-e 's,@PYTHONBIN@,${PYTHONBIN},g'
+SUBST_VARS.paths=	PKG_SYSCONFDIR
+SUBST_VARS.paths+=	TRANSPORTDIR
+SUBST_VARS.paths+=	JABBER_SPOOLDIR
+SUBST_VARS.paths+=	JABBER_TRANSDIR
+SUBST_VARS.paths+=	JABBER_GROUP
+SUBST_VARS.paths+=	JABBER_USER
+SUBST_VARS.paths+=	JABBER_LOGDIR
+SUBST_VARS.paths+=	PREFIX
+SUBST_VARS.paths+=	JABBER_PIDDIR
+SUBST_VARS.paths+=	PYTHONBIN
 
 .include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"

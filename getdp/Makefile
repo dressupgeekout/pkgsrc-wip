@@ -2,6 +2,7 @@
 
 DISTNAME=	getdp-2.4.1-source
 PKGNAME=	getdp-2.4.1
+PKGREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	http://www.geuz.org/getdp/src/
 EXTRACT_SUFX=	.tgz
@@ -20,8 +21,7 @@ SUBST_MESSAGE.setup=	Fixing ${PYSETUP}
 SUBST_FILES.setup=	CMakeLists.txt
 SUBST_SED.setup+=	-e 's,share/man/,${PKGMANDIR}/,g'
 
-.include "../../math/blas/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../math/gsl/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

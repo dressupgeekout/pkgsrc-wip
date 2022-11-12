@@ -1,5 +1,0 @@
-@comment $NetBSD$
-bin/xxhsum
-bin/xxhsum32
-bin/xxhsum_inlinedXXH
-man/man1/xxhsum.1

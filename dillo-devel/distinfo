@@ -1,0 +1,7 @@
+$NetBSD$
+
+BLAKE2s (dillo-3.0.5.tar.bz2) = 7644d03e1ebf63ad7abcb1a1b629a112b34e5d82026631ccca1e6e13c4a3ef25
+SHA512 (dillo-3.0.5.tar.bz2) = d0e86f57e50da762debf592b6deb94de5ee58f84e0cae1159890262540a463aea8143d2b99c634021c1f273f91c2fe0918f30d72c3eaf91fdb541e741469b155
+Size (dillo-3.0.5.tar.bz2) = 734472 bytes
+SHA1 (patch-configure.ac) = 6c37d8aa1dbd1f6499cfa17dd57c487672e4abdf
+SHA1 (patch-dpi_https.c) = 1f95a8dfdc44a9ad6aa666cb880198708c6a5f1d

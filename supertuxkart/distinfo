@@ -1,12 +1,6 @@
-$NetBSD: distinfo,v 1.7 2015/11/03 20:57:05 agc Exp $
+$NetBSD$
 
-SHA1 (supertuxkart-0.9.2-src.tar.xz) = df3805a8f9dc556a0fc5af44442dae8126db5d5a
-RMD160 (supertuxkart-0.9.2-src.tar.xz) = 1f3bc663a2c40e9e074917803aa667f6e64b2ec8
-SHA512 (supertuxkart-0.9.2-src.tar.xz) = 57f11d518736f88044d1cb73e1dfcc92f5667f3b1147ab7e54435f6bc560fe856c3650410410da5fa048bf23d0b64fc8a9887c830001e1435b0359c9163e71b0
-Size (supertuxkart-0.9.2-src.tar.xz) = 501606188 bytes
-SHA1 (patch-CIrrDeviceLinux.cpp) = 0e4e9ea3874c32a8742201dbd3e692d8c9ef50a0
-SHA1 (patch-IrrCompileConfig.h) = 597d7e542bc7f0aeac95e55871e4aa542d463eaa
-SHA1 (patch-as_config.h) = 0f1c3703fcdfe7db6f495b3d2e4434f0a537685a
-SHA1 (patch-as_memory.cpp) = 028c69a42b67cb60f8467d2ad38d496f63f4af09
-SHA1 (patch-os.cpp) = b5569351322777f12f339261820501887f1274bd
-SHA1 (patch-src_utils_log.hpp) = 918be9edb061c9b6a4ab8d69fdf241007020290c
+BLAKE2s (SuperTuxKart-1.4-src.tar.xz) = 860086124a9b4bcbabae25f6fac2b5fd4c98d87c532b376dc89686e49ec8b10c
+SHA512 (SuperTuxKart-1.4-src.tar.xz) = e88f3fb5ccdb38d0ef75e92d73b43c5cc7a1f6c76ac9502033df099a00d6dc3e86b2c5442b806237d2420c44ada7dd23a2c90ecf94785a44d2348c933770a5ab
+Size (SuperTuxKart-1.4-src.tar.xz) = 650010456 bytes
+SHA1 (patch-src_io_rich_presence.cpp) = 05f8748977fc578e87d6b0a8e35d134c83ea4bc5

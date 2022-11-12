@@ -1,17 +1,15 @@
 # $NetBSD: Makefile,v 1.13 2014/09/08 21:24:08 thomasklausner Exp $
 
 DISTNAME=		ppr-1.53
-PKGREVISION=		1
+PKGREVISION=		2
 CATEGORIES=		print
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=ppr/}\
-			ftp://ppr-dist.trincoll.edu/pub/ppr/
+MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=ppr/}
 
 MAINTAINER=		hauke@NetBSD.org
 HOMEPAGE=		http://ppr.trincoll.edu/
 COMMENT=		PPR is a print spooler for PostScript printers
 
 CONFLICTS+=		LPRng-[0-9]* LPRng-core-[0-9]* cups-[0-9]*
-
 
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake perl

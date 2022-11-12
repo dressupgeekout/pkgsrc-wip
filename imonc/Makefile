@@ -2,11 +2,11 @@
 
 DISTNAME=	imonc-20010125
 CATEGORIES=	net
-MASTER_SITES=	http://download.fli4l.de/3.10.9/x86/
+MASTER_SITES=	http://download.fli4l.de/3.10.19/x86/
 DISTFILES=	src.tar.gz
 
 MAINTAINER=	schwarz@NetBSD.org
-HOMEPAGE=	http://www.fli4l.de/
+HOMEPAGE=	https://www.fli4l.de/
 COMMENT=	Command-line version of the fli4l monitoring tool
 LICENSE=	gnu-gpl-v2
 

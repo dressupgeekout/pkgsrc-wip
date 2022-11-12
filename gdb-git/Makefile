@@ -11,7 +11,7 @@ GIT_REPO.gdb=		https://github.com/wallento/binutils-gdb.git
 WRKSRC=			${WRKDIR}/gdb
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/gdb/gdb.html
+HOMEPAGE=	https://www.gnu.org/software/gdb/gdb.html
 COMMENT=	Symbolic debugger for multiple language frontends
 LICENSE=	gnu-gpl-v3
 
@@ -65,7 +65,7 @@ MAKE_ENV+= gdb_cv_var_elf=yes
 CONFIGURE_ENV+= gdb_cv_struct_lwp=yes
 MAKE_ENV+= gdb_cv_struct_lwp=yes
 PLIST.gcore=	YES
-.elif !empty(OPSYS:MLinux)
+.elif ${OPSYS} == Linux
 PLIST.gcore=		YES
 PLIST.gdbserver=	YES
 .endif

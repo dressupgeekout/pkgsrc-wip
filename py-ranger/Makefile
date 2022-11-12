@@ -1,12 +1,15 @@
 # $NetBSD$
 
-DISTNAME=	ranger-1.7.2
+GITHUB_PROJECT=	ranger
+RANGER_VERSION=	1.9.2
+DISTNAME=	${GITHUB_PROJECT}-${RANGER_VERSION}
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	sysutils
-MASTER_SITES=	http://ranger.nongnu.org/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=ranger/}
+GITHUB_TAG=	v${RANGER_VERSION}
 
-MAINTAINER=	nahra@unseen.is
-HOMEPAGE=	http://ranger.github.io/
+MAINTAINER=	jake.slazenger@yandex.com
+HOMEPAGE=	https://ranger.github.io/
 COMMENT=	VIM-inspired filemanager for the console
 LICENSE=	gnu-gpl-v3
 
@@ -43,6 +46,6 @@ USE_LANGUAGES=	# none
 PKG_OPTIONS.libcaca+=	imlib2
 
 .include	"options.mk"
-.include	"../../lang/python/distutils.mk"
+.include	"../../wip/python/distutils.mk"
 .include	"../../lang/python/application.mk"
 .include	"../../mk/bsd.pkg.mk"

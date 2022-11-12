@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.35 2016/04/11 19:01:40 ryoon Exp $
 
 PKGNAME=		qt5-qtbase-${QTVERSION}
-PKGREVISION=		1
+PKGREVISION=		2
 GIT_REPOSITORIES=	qtproject
 GIT_REPO.qtproject=	https://github.com/qtproject/qtbase.git
 # 5.6 will go up to 5.7 and dev automatically
@@ -55,7 +55,7 @@ CONFIGURE_ARGS+=	-system-zlib
 CONFIGURE_ARGS+=	-iconv
 QMAKE_CONF=		qmake.conf
 .  if ${OPSYS} != "SunOS" && \
-      (!empty(MACHINE_ARCH:Mi386) || !empty(MACHINE_ARCH:Mx86_64))
+      ((${MACHINE_ARCH} == i386) || (${MACHINE_ARCH} == x86_64))
 CONFIGURE_ARGS+=	-reduce-relocations
 .  endif
 .else
@@ -146,7 +146,7 @@ PC_FILES=		Qt5Bootstrap.pc Qt5Concurrent.pc Qt5Core.pc \
 			Qt5Widgets.pc Qt5Xml.pc
 
 pre-configure:
-	${SED}  -e 's:@LOCALBASE@:${LOCALBASE}:g' \
+	${SED}  -e 's:@LOCALBASE@:${PREFIX}:g' \
 		-e 's:@X11BASE@:${X11BASE}:g' \
 		-e 's:@LIBTOOL@:${LIBTOOL:Q}:g' \
 		-e 's:@CC@:${CC:Q}:g' \
@@ -165,10 +165,10 @@ pre-configure:
 		-e 's:@COMPILER_RPATH_FLAG@:${COMPILER_RPATH_FLAG}:g' \
 		-e 's:@QMAKE_RANLIB@:${QMAKE_RANLIB:Q}:g' \
 		${FILESDIR}/${QMAKE_CONF} > ${WRKSRC}/qmake.conf
-		for dir in ${WRKSRC}/mkspecs/*; do \
-			cp ${WRKSRC}/qmake.conf $${dir}; \
-			rm -f $${dir}/*.orig; \
-		done
+	for dir in ${WRKSRC}/mkspecs/*; do \
+		cp ${WRKSRC}/qmake.conf $${dir}; \
+		rm -f $${dir}/*.orig; \
+	done
 	${RM} -f ${WRKSRC}/mkspecs/features/mac/default_pre.prf
 	${RM} -f ${WRKSRC}/mkspecs/features/mac/objective_c.prf.orig
 

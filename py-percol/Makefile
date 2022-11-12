@@ -4,7 +4,7 @@
 DISTNAME=	percol-0.0.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	misc
-GIT_REPO=	git://github.com/mooz/percol.git
+GIT_REPO=	https://github.com/mooz/percol.git
 
 MAINTAINER=	pho@cielonegro.org
 HOMEPAGE=	https://github.com/mooz/percol
@@ -27,6 +27,6 @@ DEPENDS+=	cmigemo-[0-9]*:../../textproc/cmigemo
 DEPENDS+=	${PYPKGPREFIX}-curses-[0-9]*:../../devel/py-curses
 DEPENDS+=	${PYPKGPREFIX}-pymigemo-[0-9]*:../../wip/py-pymigemo
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../wip/mk/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

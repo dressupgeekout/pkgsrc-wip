@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	GDSreader-0.4.2
+DISTNAME=	GDSreader-0.4.5
 PKGNAME=	${DISTNAME:tl}
 CATEGORIES=	cad
 MASTER_SITES=	${MASTER_SITE_GITHUB:=makoto-fujiwara/}
@@ -12,7 +12,7 @@ LICENSE=	gnu-gpl-v2
 
 EXAMPLESDIR=	${PREFIX}/share/examples/${PKGBASE}
 
-AUTO_MKDIRS=	yes
+AUTO_MKDIRS=		yes
 INSTALLATION_DIRS=	bin ${EXAMPLESDIR}
 
 do-install:

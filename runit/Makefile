@@ -1,12 +1,13 @@
 # $NetBSD: Makefile,v 1.15 2014/06/19 11:22:34 fhajny Exp $
 
-DISTNAME=	runit-2.0.0
+DISTNAME=	runit-2.1.2
 CATEGORIES=	sysutils
 MASTER_SITES=	${HOMEPAGE}
 
 MAINTAINER=	neil@daikokuya.co.uk
 HOMEPAGE=	http://smarden.org/runit/
 COMMENT=	UNIX init scheme with service supervision
+LICENSE=	modified-bsd
 
 WRKSRC=		${WRKDIR}/admin/${DISTNAME}
 CMDDIR=		${WRKSRC}/command
@@ -15,20 +16,19 @@ PKGEXAMPLEDIR=	${PREFIX}/share/examples/${PKGBASE}
 
 USE_TOOLS+=		pax
 BUILD_DEFS+=		VARBASE
-DJB_RESTRICTED=		NO
 DJB_SLASHPACKAGE=	YES
 
 SERVICEDIR?=	${VARBASE}/spool/service
-OWN_DIRS_PERMS=	${SERVICEDIR} ${ROOT_USER} ${ROOT_GROUP} 0755
+OWN_DIRS_PERMS=	${SERVICEDIR} ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0755
 
 DOCS=		package/CHANGES package/COPYING package/README \
 		package/THANKS package/TODO doc/*.html
 
 .include "../../mk/bsd.prefs.mk"
 
-.if ${OPSYS} == "SunOS"
+.if ${OPSYS} == "SunOS" || ${OPSYS} == "Darwin"
 SUBST_CLASSES+=		static
-SUBST_STAGE.static=	post-patch
+SUBST_STAGE.static=	pre-configure
 SUBST_MESSAGE.static=	Disable static linking on SunOS
 SUBST_FILES.static=	src/Makefile
 SUBST_SED.static=	-e 's/-static//'

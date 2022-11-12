@@ -2,7 +2,7 @@
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.residualvm
 PKG_SUPPORTED_OPTIONS=		faad flac fluidsynth mad freetype png theora timidity jpeg
-PKG_SUGGESTED_OPTIONS=		faad flac fluidsynth mad freetype png theora timidity jpeg vorbis 
+PKG_SUGGESTED_OPTIONS=		faad flac fluidsynth mad freetype png theora timidity jpeg vorbis
 # only one of tremor or ogg/vorbis
 PKG_OPTIONS_OPTIONAL_GROUPS+=	vorbis
 PKG_OPTIONS_GROUP.vorbis=	vorbis tremor
@@ -60,7 +60,7 @@ CONFIGURE_ARGS+=	--with-png-prefix=${BUILDLINK_PREFIX.png}
 
 .if !empty(PKG_OPTIONS:Mjpeg)
 CONFIGURE_ARGS+=	--with-jpeg-prefix=${BUILDLINK_PREFIX.jpeg}
-.include "../../graphics/jpeg/buildlink3.mk"
+.include "../../mk/jpeg.buildlink3.mk"
 .endif
 
 .if !empty(PKG_OPTIONS:Mtheora)

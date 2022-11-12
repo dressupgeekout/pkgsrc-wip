@@ -6,13 +6,13 @@ CATEGORIES=	math python
 MASTER_SITES=	http://www.hepforge.org/archive/myfitter/
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://myfitter.hepforge.org/
+HOMEPAGE=	https://myfitter.hepforge.org/
 COMMENT=	Maximum Likelihood Fits in Python
 LICENSE=	gnu-gpl-v3
 
 DEPENDS+=	${PYPKGPREFIX}-scipy>=0.12.1:../../math/py-scipy
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 0.1.3
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 0.1.3
 
 USE_LANGUAGES=	# none
 

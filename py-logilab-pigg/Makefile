@@ -7,13 +7,13 @@ CATEGORIES=	x11 python
 MASTER_SITES=	http://ftp.logilab.org/pub/pigg/
 
 MAINTAINER=	kamel.derouiche@gmail.com
-HOMEPAGE=	http://www.logilab.org/project/pigg
+HOMEPAGE=	https://www.logilab.org/project/pigg
 COMMENT=	Python Interface Generator for Gtk implementation of the MVC pattern
 LICENSE=	gnu-gpl-v2
 
 USE_LANGUAGES=	# none
 PYDISTUTILSPKG=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2, py-gobject
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2, py-gobject
 
 .include "../../devel/py-gobject/buildlink3.mk"
 .include "../../lang/python/extension.mk"

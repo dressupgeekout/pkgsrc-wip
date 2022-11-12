@@ -5,7 +5,7 @@ PKGREVISION=	1
 CATEGORIES=	net www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=sgmltools-lite/}
 
-MAINTAINER=	gdt@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://sgmltools-lite.sourceforge.net/
 COMMENT=	Friendly Python interface to SGML software
 LICENSE=	gnu-gpl-v2
@@ -23,9 +23,9 @@ GNU_CONFIGURE=	YES
 CONFIGURE_ENV=	PYTHON=${PYTHONBIN:Q}
 
 PKG_SYSCONFSUBDIR=	sgml
-EGDIR=			${LOCALBASE}/share/examples/sgmltools-lite
+EGDIR=			${PREFIX}/share/examples/sgmltools-lite
 CONFIGURE_ARGS+=	--with-etcsgml=${EGDIR}
-CONFIGURE_ARGS+=	--datadir=${LOCALBASE}/share
+CONFIGURE_ARGS+=	--datadir=${PREFIX}/share
 
 # Avoid using -s on /usr/pkg/bin/sgmltools
 _STRIPFLAG_INSTALL=

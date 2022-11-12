@@ -3,8 +3,7 @@
 DISTNAME=	nag-h3-${NAGVER}
 PKGNAME=	nag-${NAGVER}
 CATEGORIES=	www time
-MASTER_SITES=	http://ftp.horde.org/pub/nag/ \
-		ftp://ftp.horde.org/pub/nag/
+#MASTER_SITES=	ftp://ftp.horde.org/pub/nag/
 
 MAINTAINER=	frederic@fauberteau.org
 HOMEPAGE=	https://www.horde.org/nag/
@@ -48,7 +47,7 @@ USE_PKGINSTALL=		YES
 SUBST_CLASSES+=		files
 SUBST_STAGE.files=	post-build
 SUBST_FILES.files=	nag.conf.dist
-SUBST_SED.files=	-e "s|@NAGDIR@|${NAGDIR}|g"
+SUBST_VARS.files=	NAGDIR
 SUBST_MESSAGE.files=	Fixing configuration files.
 
 PKG_USERS_VARS+=	APACHE_USER
@@ -81,7 +80,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/docs/UPGRADING ${DESTDIR}${DOCDIR}
 
 .for d in ${PAXDIRS}
-		cd ${WRKSRC}/${d} && pax -rwpma . ${DESTDIR}${NAGDIR}/${d}
+	cd ${WRKSRC}/${d} && pax -rwpma . ${DESTDIR}${NAGDIR}/${d}
 .endfor
 
 	${INSTALL_DATA} ${WRKSRC}/config/*.dist ${DESTDIR}${NAGDIR}/config

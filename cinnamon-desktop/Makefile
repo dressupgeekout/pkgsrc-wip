@@ -1,6 +1,7 @@
 # $NetBSD: Makefile,v 1.2 2015/02/19 18:01:20 jihbed Exp $
 
-DISTNAME=	cinnamon-desktop-3.8.1
+DISTNAME=	cinnamon-desktop-5.2.0
+PKGREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=linuxmint/}
 GITHUB_PROJECT=	cinnamon-desktop
@@ -14,7 +15,7 @@ LICENSE=	gnu-gpl-v2
 
 #USE_LIBTOOL=	yes
 #GNU_CONFIGURE=	yes
-USE_TOOLS+=	gmake pkg-config automake autoreconf intltool msgfmt
+USE_TOOLS+=	pkg-config automake autoreconf intltool msgfmt
 
 REPLACE_PYTHON=	install-scripts/meson_install_schemas.py \
 		files/usr/bin/cinnamon-desktop-migrate-mediakeys
@@ -28,7 +29,7 @@ MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/libcvc:${WRKSRC}/output/libcinnamon-
 pre-install:
 	${CHMOD} +x ${WRKSRC}/install-scripts/meson_install_schemas.py
 
-.include "../../devel/py-meson/build.mk"
+.include "../../devel/meson/build.mk"
 .include "../../devel/glib2/schemas.mk"
 .include "../../lang/python/application.mk"
 

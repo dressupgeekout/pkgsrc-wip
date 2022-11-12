@@ -1,6 +1,7 @@
 # $NetBSD: Makefile,v 1.1 2015/02/19 21:21:12 jihbed Exp $
 
-DISTNAME=	nemo-3.6.5
+DISTNAME=	nemo-5.2.2
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=linuxmint/}
 GITHUB_PROJECT=	nemo
@@ -12,16 +13,16 @@ COMMENT=	File Manager for Cinnamon
 LICENSE=	gnu-gpl-v2
 
 USE_LIBTOOL=		yes
-GNU_CONFIGURE=		yes
-USE_TOOLS+=		gmake bash pkg-config intltool autoconf automake autoreconf xgettext
-CONFIGURE_ARGS+=	--disable-selinux
+USE_TOOLS+=		pkg-config intltool msgfmt
+#MESON_ARGS+=		--buildtype=debug
+USE_CMAKE=		yes
 
-SUBST_CLASSES=		prefix
-SUBST_MESSAGE.prefix=	Fix prefix references
-SUBST_FILES.prefix=	src/nemo-interesting-folder-bar.c
-SUBST_FILES.prefix+=	src/nemo-properties-window.c
-SUBST_STAGE.prefix=	pre-configure
-SUBST_SED.prefix=	-e 's,/usr/share,${PREFIX}/share,g'
+#SUBST_CLASSES=		prefix
+#SUBST_MESSAGE.prefix=	Fix prefix references
+#SUBST_FILES.prefix=	src/nemo-interesting-folder-bar.c
+#SUBST_FILES.prefix+=	src/nemo-properties-window.c
+#SUBST_STAGE.prefix=	pre-configure
+#SUBST_SED.prefix=	-e 's,/usr/share,${PREFIX}/share,g'
 
 DEPENDS+=	${PYPKGPREFIX}-polib-[0-9]*:../../devel/py-polib
 DEPENDS+=	gvfs-[0-9]*:../../sysutils/gvfs
@@ -31,15 +32,18 @@ TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 
 REPLACE_PYTHON=	data/merge_action_strings \
 		files/usr/share/nemo/actions/myaction.py \
-		files/usr/share/nemo/actions/send-by-mail.py
+		files/usr/share/nemo/actions/send-by-mail.py \
+		install-scripts/meson_install_schemas.py \
+		install-scripts/meson_update_icon_cache.py \
+		install-scripts/meson_update_mime_database.py
 
-pre-configure:
-	cd ${WRKSRC} && NOCONFIGURE=1 ./autogen.sh
+# helps build but creates typelib with wrong path! (libcvc/libnemo-private.so instead of path/lib/lib.so)
+# check /usr/pkg/share/gir-1.0 for dubious lib paths
+MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/libcvc:${WRKSRC}/output/libnemo-private
+MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/libcvc:${WRKSRC}/output/libnemo-extension
 
-pre-install:
-	cd ${WRKSRC}/files && mv usr/share . && rmdir usr
-
-#.include "../../devel/py-meson/build.mk"
+.include "../../devel/libgsf/buildlink3.mk"
+.include "../../devel/meson/build.mk"
 .include "../../lang/python/application.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/exempi/buildlink3.mk"

@@ -1,24 +1,21 @@
-# $NetBSD: Makefile,v 1.3 2015/01/31 20:03:00 jihbed Exp $
+# $NetBSD$
 
-DISTNAME=	cddlib-094g
+GITHUB_PROJECT=	cddlib
+DISTNAME=	cddlib-0.94m
 CATEGORIES=	math
-MASTER_SITES=	ftp://ftp.math.ethz.ch/users/fukudak/cdd/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=cddlib/}
+GITHUB_RELEASE=	0.94m
 
-MAINTAINER=	INSERT_YOUR_MAIL_ADDRESS_HERE
-HOMEPAGE=	https://www.inf.ethz.ch/personal/fukudak/cdd_home/
-COMMENT=	TODO: Short description of the package
+MAINTAINER=	jihbed.research@gmail.com
+HOMEPAGE=	https://github.com/cddlib/cddlib
+COMMENT=	C-library implementation of the Double Description Method
 LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	yes
-USE_TOOLS+=	gmake
 USE_LIBTOOL=	yes
+USE_TOOLS+=	gmake pkg-config
 
-INSTALLATION_DIRS+=	share/doc/cddlib
-
-post-install:
-	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/doc/cddlib
-	${INSTALL_DATA} ${WRKSRC}/doc/cddlibman.pdf \
-		${DESTDIR}${PREFIX}/share/doc/cddlib
+PKGCONFIG_OVERRIDE+=	cddlib.pc.in
 
 .include "../../devel/gmp/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
