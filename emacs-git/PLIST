@@ -19,6 +19,7 @@ info/ede.info.gz
 info/ediff.info.gz
 info/edt.info.gz
 info/efaq.info.gz
+info/eglot.info.gz
 info/eieio.info.gz
 info/eintr.info.gz
 info/elisp.info.gz
@@ -1696,6 +1697,8 @@ share/emacs/${PKGVERSION}/lisp/emacs-lisp/nadvice.el.gz
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/nadvice.elc
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/oclosure.el.gz
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/oclosure.elc
+share/emacs/${PKGVERSION}/lisp/emacs-lisp/package-vc.el.gz
+share/emacs/${PKGVERSION}/lisp/emacs-lisp/package-vc.elc
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/package-x.el.gz
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/package-x.elc
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/package.el.gz
@@ -1820,6 +1823,8 @@ share/emacs/${PKGVERSION}/lisp/erc/erc-button.el.gz
 share/emacs/${PKGVERSION}/lisp/erc/erc-button.elc
 share/emacs/${PKGVERSION}/lisp/erc/erc-capab.el.gz
 share/emacs/${PKGVERSION}/lisp/erc/erc-capab.elc
+share/emacs/${PKGVERSION}/lisp/erc/erc-common.el.gz
+share/emacs/${PKGVERSION}/lisp/erc/erc-common.elc
 share/emacs/${PKGVERSION}/lisp/erc/erc-compat.el.gz
 share/emacs/${PKGVERSION}/lisp/erc/erc-compat.elc
 share/emacs/${PKGVERSION}/lisp/erc/erc-dcc.el.gz
@@ -2836,12 +2841,16 @@ share/emacs/${PKGVERSION}/lisp/net/eudc.el.gz
 share/emacs/${PKGVERSION}/lisp/net/eudc.elc
 share/emacs/${PKGVERSION}/lisp/net/eudcb-bbdb.el.gz
 share/emacs/${PKGVERSION}/lisp/net/eudcb-bbdb.elc
+share/emacs/${PKGVERSION}/lisp/net/eudcb-ecomplete.el.gz
+share/emacs/${PKGVERSION}/lisp/net/eudcb-ecomplete.elc
 share/emacs/${PKGVERSION}/lisp/net/eudcb-ldap.el.gz
 share/emacs/${PKGVERSION}/lisp/net/eudcb-ldap.elc
 share/emacs/${PKGVERSION}/lisp/net/eudcb-mab.el.gz
 share/emacs/${PKGVERSION}/lisp/net/eudcb-mab.elc
 share/emacs/${PKGVERSION}/lisp/net/eudcb-macos-contacts.el.gz
 share/emacs/${PKGVERSION}/lisp/net/eudcb-macos-contacts.elc
+share/emacs/${PKGVERSION}/lisp/net/eudcb-mailabbrev.el.gz
+share/emacs/${PKGVERSION}/lisp/net/eudcb-mailabbrev.elc
 share/emacs/${PKGVERSION}/lisp/net/eww.el.gz
 share/emacs/${PKGVERSION}/lisp/net/eww.elc
 share/emacs/${PKGVERSION}/lisp/net/gnutls.el.gz
@@ -3533,6 +3542,8 @@ share/emacs/${PKGVERSION}/lisp/progmodes/ebnf2ps.el.gz
 share/emacs/${PKGVERSION}/lisp/progmodes/ebnf2ps.elc
 share/emacs/${PKGVERSION}/lisp/progmodes/ebrowse.el.gz
 share/emacs/${PKGVERSION}/lisp/progmodes/ebrowse.elc
+share/emacs/${PKGVERSION}/lisp/progmodes/eglot.el.gz
+share/emacs/${PKGVERSION}/lisp/progmodes/eglot.elc
 share/emacs/${PKGVERSION}/lisp/progmodes/elisp-mode.el.gz
 share/emacs/${PKGVERSION}/lisp/progmodes/elisp-mode.elc
 share/emacs/${PKGVERSION}/lisp/progmodes/erts-mode.el.gz
