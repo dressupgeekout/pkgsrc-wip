@@ -102,11 +102,13 @@ BUILD_TARGET?=		build
 .endif
 
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-powerpc) || \
-    !empty(MACHINE_PLATFORM:MNetBSD-*-earmv7hf) || \
-    !empty(TARGET:Marmv7-unknown-netbsd-eabihf)
+    !empty(MACHINE_PLATFORM:MNetBSD-*-earmv[67]hf) || \
+    !empty(MACHINE_PLATFORM:MNetBSD-*-mipsel) || \
+    !empty(TARGET:Marmv[67]-unknown-netbsd-eabihf) || \
+    !empty(TARGET:Mmipsel-unknown-netbsd)
 # Bootstrapping on NetBSD/powerpc requires no debug-info from rustc
 # (both for amd64->powerpc built and powerpc->powerpc built bootstrap bits)
-# Also try to downsize the armv7 build.
+# Also try to downsize the armv[67] build.
 CONFIGURE_ARGS+=	--disable-debug
 CONFIGURE_ARGS+=	--disable-debug-assertions
 CONFIGURE_ARGS+=	--disable-llvm-release-debuginfo
@@ -118,13 +120,20 @@ CONFIGURE_ARGS+=	--debuginfo-level-tests=0
 .endif
 
 # Only build the ARM target on/for this host, due to resource constraints
-.if !empty(MACHINE_PLATFORM:MNetBSD-*-earmv7hf)
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-earmv[67]hf)
 CONFIGURE_ARGS+=	--set llvm.targets="ARM"
 .endif
 # When cross-building for ARM on X86, X86 needs to go along due
 # to 2-stage build process
-.if !empty(TARGET:Marmv7-unknown-netbsd-eabihf)
+.if !empty(TARGET:Marmv[67]-unknown-netbsd-eabihf)
 CONFIGURE_ARGS+=	--set llvm.targets="ARM;X86"
+.endif
+# Same for mips:
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-mipsel)
+CONFIGURE_ARGS+=	--set llvm.targets="Mips"
+.endif
+.if !empty(TARGET:Mmipsel-unknown-netbsd)
+CONFIGURE_ARGS+=	--set llvm.targets="Mips;X86"
 .endif
 
 .if ${OPSYS} == "NetBSD"
@@ -345,6 +354,24 @@ DISTFILES:=			${DISTFILES} ${RUST_STAGE0} ${RUST_STD_STAGE0}
 SITES.${RUST_STAGE0}=		${MASTER_SITE_LOCAL:=rust/}
 SITES.${RUST_STD_STAGE0}=	${MASTER_SITE_LOCAL:=rust/}
 .endif
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-earmv6hf) || make(distinfo) || make (makesum) || make(mdi)
+RUST_ARCH=			armv6-unknown-netbsd-eabihf
+RUST_STAGE0_VER=		1.63.0
+RUST_STAGE0:=			rust-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.xz
+RUST_STD_STAGE0:=		rust-std-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.xz
+DISTFILES:=			${DISTFILES} ${RUST_STAGE0} ${RUST_STD_STAGE0}
+SITES.${RUST_STAGE0}=		${MASTER_SITE_LOCAL:=rust/}
+SITES.${RUST_STD_STAGE0}=	${MASTER_SITE_LOCAL:=rust/}
+.endif
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-mipsel) || make(distinfo) || make (makesum) || make(mdi)
+RUST_ARCH=			mipsel-unknown-netbsd
+RUST_STAGE0_VER=		1.63.0
+RUST_STAGE0:=			rust-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.xz
+RUST_STD_STAGE0:=		rust-std-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.xz
+DISTFILES:=			${DISTFILES} ${RUST_STAGE0} ${RUST_STD_STAGE0}
+SITES.${RUST_STAGE0}=		${MASTER_SITE_LOCAL:=rust/}
+SITES.${RUST_STD_STAGE0}=	${MASTER_SITE_LOCAL:=rust/}
+.endif
 
 # You may override RUST_BOOTSTRAP_PATH and RUST_ARCH in mk.conf
 # if you have a local bootstrap compiler.
@@ -383,11 +410,11 @@ CKSUMS+=	1a5dd77a916141a3398372a99278e05cfa9ec9ff56c99325afca6a6b7375c300
 
 CKSUM_CRATES+=	vendor/libc
 CKSUMS+=	cb1560bf8ffcc7b2726a27b433efac90e726292960626f3064bd2c6b7f861a55
-CKSUMS+=	683f56837b31b9f0f5bace3080c5242b86f57f71d1126e352be24af9874ab531
+CKSUMS+=	cea54f3eb0929a12fa9c2c07e647343f28fbb6d5394ef0f8e7331959fb540fd3
 CKSUMS+=	976b07a13e195840b67c166a62318abfa9ffc8d5ebbb0358f199dd213ec98d1b
 CKSUMS+=	ee760c856bb491d885e9458fb723c53db7988ba775e59ab5b9ee8be438e69cf4
 CKSUMS+=	cb1560bf8ffcc7b2726a27b433efac90e726292960626f3064bd2c6b7f861a55
-CKSUMS+=	683f56837b31b9f0f5bace3080c5242b86f57f71d1126e352be24af9874ab531
+CKSUMS+=	b4d5e82df95afc69a931db296be1ef6f40350af60029219587f64ca600f5f53d
 
 CKSUM_CRATES+=	vendor/lzma-sys
 CKSUMS+=	6fd5e9245db34c6f557b8bfcaf03db82fc88c3b06dbfbb5f03b2bcd138983ef9
@@ -401,13 +428,37 @@ CKSUM_CRATES+=	vendor/stacker
 CKSUMS+=	cee329550bad2ed1182abb71db9c24558a91b12e1eab8d9a48e23b997bb8f04e
 CKSUMS+=	79915b243d02df1dc698f5c2de3a9356c6c296d2dedb06d9035dbcc2f8972cf4
 
-CKSUM_CRATES+=	vendor/openssl-src
-CKSUMS+=	40cd1069246b552b04fcdfd13eb77b3a89194192f18c426b77377a78abbfd72f
-CKSUMS+=	30a3a2d0c0f77bf271fd7e532fc944a2a6bfc0e8f2fe130d1a2edca3318024f2
-
 CKSUM_CRATES+=	vendor/kqueue
 CKSUMS+=	900a966152b8fdccc4e953df94fa27024cb473f57f49df06cd8f2acaac869787
 CKSUMS+=	9bf215b1d26d7f12def8cbc3cdc2f89eabe9249f040911c4a44792fb417cc0fd
+
+CKSUM_CRATES+=	vendor/crossbeam-utils-0.8.8
+CKSUMS+=	71b5f78fd701ce604aa766dd3d825fa5bed774282aae4d6c31d7acb01b1b242f
+CKSUMS+=	8fe3bafee993fe92ef421e066b4ed3b75c52efd5f8676b8950d1b868f3a7abba
+
+CKSUM_CRATES+=	vendor/crossbeam
+CKSUMS+=	a2621c1b029c614fb0ab8e3f5cda2e839df88d90d26133181c1b901965f7eec4
+CKSUMS+=	1ca104253f186211d88627c66086278adf6cd8e17eaaa243b822106d5e95d637
+
+CKSUM_CRATES+=	vendor/crossbeam-utils
+CKSUMS+=	916ed15218bb7b75a4e0d432430e7134efd27ca43ca8a8766e0c90e89febb602
+CKSUMS+=	9203c99b493cf333be37410484eb3a1d7f9fccf5049aa5fd6fc9b89b20f946ed
+
+CKSUM_CRATES+=	vendor/crossbeam-epoch
+CKSUMS+=	916ed15218bb7b75a4e0d432430e7134efd27ca43ca8a8766e0c90e89febb602
+CKSUMS+=	9203c99b493cf333be37410484eb3a1d7f9fccf5049aa5fd6fc9b89b20f946ed
+
+CKSUM_CRATES+=	vendor/crossbeam-queue
+CKSUMS+=	71b5f78fd701ce604aa766dd3d825fa5bed774282aae4d6c31d7acb01b1b242f
+CKSUMS+=	8fe3bafee993fe92ef421e066b4ed3b75c52efd5f8676b8950d1b868f3a7abba
+
+CKSUM_CRATES+=	vendor/crossbeam-epoch-0.9.6
+CKSUMS+=	3529c0833bcd1e09a352d3bd1696d3666850c9b09fe2111bf1a783ec16a5f467
+CKSUMS+=	67fd5293c2f8d25fd2eaa4694198178c44e46e4db589fbf6f33459b200419e34
+
+CKSUM_CRATES+=	vendor/openssl-src
+CKSUMS+=	40cd1069246b552b04fcdfd13eb77b3a89194192f18c426b77377a78abbfd72f
+CKSUMS+=	0762dfc33f22810157225d9a78415ac3df6a89d589d1937cc58f75a6611e7fc9
 
 SUBST_CLASSES+=		cksum
 SUBST_STAGE.cksum=	pre-configure
@@ -600,16 +651,20 @@ stage0-bootstrap: install
 
 ## Issues specific to: bootstrap AND NetBSD follow
 
-# rust i386 bootstraps are built for 8.0 and still depend on libstdc++.so.8.
+# rust i386 and sparc64 bootstraps are built for 8.0
+# and still depend on libstdc++.so.8.
 # Pull in compat80 on 9.x and newer.
-.if !empty(MACHINE_PLATFORM:MNetBSD-*-i386) && empty(OS_VERSION:M8.*)
+.if (!empty(MACHINE_PLATFORM:MNetBSD-*-i386) || \
+     !empty(MACHINE_PLATFORM:MNetBSD-*-sparc64)) \
+    && empty(OS_VERSION:M8.*)
 BUILD_DEPENDS+=	compat80>=0:../../emulators/compat80
 .endif
 
 .include "../../mk/atomic64.mk"
 # This is for when we build natively:
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-powerpc) || \
-    !empty(MACHINE_PLATFORM:MNetBSD-*-i386)
+    !empty(MACHINE_PLATFORM:MNetBSD-*-i386) || \
+    !empty(MACHINE_PLATFORM:MNetBSD-*-mipsel)
 # Make libatomic library available via a unique directory:
 DEPENDS+=	libatomic-links>=0:../../devel/libatomic-links
 .endif
