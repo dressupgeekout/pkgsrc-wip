@@ -6,9 +6,6 @@ ${PYSITELIB}/semdep/__init__.pyo
 ${PYSITELIB}/semdep/find_lockfiles.py
 ${PYSITELIB}/semdep/find_lockfiles.pyc
 ${PYSITELIB}/semdep/find_lockfiles.pyo
-${PYSITELIB}/semdep/models.py
-${PYSITELIB}/semdep/models.pyc
-${PYSITELIB}/semdep/models.pyo
 ${PYSITELIB}/semdep/package_restrictions.py
 ${PYSITELIB}/semdep/package_restrictions.pyc
 ${PYSITELIB}/semdep/package_restrictions.pyo
@@ -112,9 +109,15 @@ ${PYSITELIB}/semgrep/env.pyo
 ${PYSITELIB}/semgrep/error.py
 ${PYSITELIB}/semgrep/error.pyc
 ${PYSITELIB}/semgrep/error.pyo
+${PYSITELIB}/semgrep/error_handler.py
+${PYSITELIB}/semgrep/error_handler.pyc
+${PYSITELIB}/semgrep/error_handler.pyo
 ${PYSITELIB}/semgrep/external/__init__.py
 ${PYSITELIB}/semgrep/external/__init__.pyc
 ${PYSITELIB}/semgrep/external/__init__.pyo
+${PYSITELIB}/semgrep/external/git_url_parser.py
+${PYSITELIB}/semgrep/external/git_url_parser.pyc
+${PYSITELIB}/semgrep/external/git_url_parser.pyo
 ${PYSITELIB}/semgrep/external/junit_xml.py
 ${PYSITELIB}/semgrep/external/junit_xml.pyc
 ${PYSITELIB}/semgrep/external/junit_xml.pyo
@@ -157,9 +160,6 @@ ${PYSITELIB}/semgrep/git.pyo
 ${PYSITELIB}/semgrep/ignores.py
 ${PYSITELIB}/semgrep/ignores.pyc
 ${PYSITELIB}/semgrep/ignores.pyo
-${PYSITELIB}/semgrep/job_postings.py
-${PYSITELIB}/semgrep/job_postings.pyc
-${PYSITELIB}/semgrep/job_postings.pyo
 ${PYSITELIB}/semgrep/join_rule.py
 ${PYSITELIB}/semgrep/join_rule.pyc
 ${PYSITELIB}/semgrep/join_rule.pyo
@@ -203,6 +203,9 @@ ${PYSITELIB}/semgrep/output.pyo
 ${PYSITELIB}/semgrep/output_from_core.py
 ${PYSITELIB}/semgrep/output_from_core.pyc
 ${PYSITELIB}/semgrep/output_from_core.pyo
+${PYSITELIB}/semgrep/parsing_data.py
+${PYSITELIB}/semgrep/parsing_data.pyc
+${PYSITELIB}/semgrep/parsing_data.pyo
 ${PYSITELIB}/semgrep/profile_manager.py
 ${PYSITELIB}/semgrep/profile_manager.pyc
 ${PYSITELIB}/semgrep/profile_manager.pyo

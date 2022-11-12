@@ -1,5 +1,5 @@
 $NetBSD$
 
-BLAKE2s (biolibc-0.2.3.tar.gz) = cf90b6e8f11ccdac136ad4434b5e959f634d4423b4b037f351e8dd598241b288
-SHA512 (biolibc-0.2.3.tar.gz) = 53fa93189517d3632b5cacadeae1d61eef725b5381be15cadb4150e08dbd2bce9e5788cdc71f40bbd658b3c64ba7521436f7cad6676ce92dac735e769f92f24d
-Size (biolibc-0.2.3.tar.gz) = 140008 bytes
+BLAKE2s (biolibc-0.2.3.5-0276eaf73379cfdc8d3c2e7417611dcb3e968573.tar.gz) = 7ab2a201401eea402d7610d79ec5ebbd65201b8837f5dede7746d232fb0ed24d
+SHA512 (biolibc-0.2.3.5-0276eaf73379cfdc8d3c2e7417611dcb3e968573.tar.gz) = 9fae557de72354b375eecbe591aff3ca1697f5aa13bcee979f18e328b5dca02ff29bdcf847118df63fef1315f926aedda88e95ede4745e0bc8b91feaa5a1be3d
+Size (biolibc-0.2.3.5-0276eaf73379cfdc8d3c2e7417611dcb3e968573.tar.gz) = 140322 bytes
