@@ -31,6 +31,7 @@ CMAKE_MODULE_PATH_OVERRIDE+=	../cmake
 .include "../../graphics/libmypaint/buildlink3.mk"
 .include "../../graphics/opencv/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
+.include "../../math/gsl/buildlink3.mk"
 .include "../../math/superlu/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk" 
 .include "../../x11/qt5-qtmultimedia/buildlink3.mk" 
