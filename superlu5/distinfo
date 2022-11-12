@@ -1,7 +1,0 @@
-$NetBSD$
-
-SHA1 (superlu_5.2.1.tar.gz) = 10ce07b87d002c86cce2f71b84cb144de3112fb4
-RMD160 (superlu_5.2.1.tar.gz) = 2aae43b29da1301e70625d79d41453e5d5ed04e2
-SHA512 (superlu_5.2.1.tar.gz) = 30538b4c2809294b8f34646bce6445944f21a1dffaf3ec0a0f29a55d5261caa56e4279d7722bb95cc9d89450d36ded969617edc82ecce7d0f1dfb24040d80d07
-Size (superlu_5.2.1.tar.gz) = 2560875 bytes
-SHA1 (patch-make.inc) = b9f130665dfdb43cfb6180e5fa336184fa8e0bdf
