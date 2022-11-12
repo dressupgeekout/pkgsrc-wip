@@ -1,0 +1,16 @@
+$NetBSD$
+
+Don't buy into the idea that a 64-bit machine somehow implies using
+libjpeg-turbo instead of ordinary libjpeg.
+
+--- toonz/CMakeLists.txt.orig	2022-11-11 21:03:05.647403915 -0800
++++ toonz/CMakeLists.txt	2022-11-11 21:03:19.378955122 -0800
+@@ -523,7 +523,7 @@
+ 
+     set(EXTRA_LIBS ${EXTRA_LIBS} ${Boost_LIBRARIES} ${OPENBLAS_LIB})
+     if(PLATFORM EQUAL 64)
+-        set(EXTRA_LIBS ${EXTRA_LIBS} Qt5::SerialPort ${TURBOJPEG_LIB} ${OpenCV_LIBS})
++        set(EXTRA_LIBS ${EXTRA_LIBS} Qt5::SerialPort ${OpenCV_LIBS})
+     endif()
+ 
+     if(BUILD_TARGET_WIN)

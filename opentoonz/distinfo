@@ -4,3 +4,5 @@ SHA1 (opentoonz-1.6.0.tar.gz) = a1a55039b0c5e3e3984547ed65e2dbb23c15fa98
 RMD160 (opentoonz-1.6.0.tar.gz) = 3bd7efcee2f8779aefac1aee9f46287f15a52d22
 SHA512 (opentoonz-1.6.0.tar.gz) = 5ee7b724d51f058867d2c7e9c540e68ee3cb6d1350e32c5fd817b10b92ad79cc2a106d36dccc9234503e62788903e6058841dcd8dc39450c889393d0300636e9
 Size (opentoonz-1.6.0.tar.gz) = 55011226 bytes
+SHA1 (patch-CMakeLists.txt) = b210b7b95ae836a6451449d8ddd25dd3dad9fadc
+SHA1 (patch-toonz_CMakeLists.txt) = 6f4e0246fe65a23ca4b6ae7e9387050d3b88e69f
