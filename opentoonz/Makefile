@@ -1,11 +1,11 @@
 # $NetBSD$
 
 DISTNAME=	opentoonz-${GITHUB_TAG:S/v//}
-GITHUB_TAG=	v1.2.1
+GITHUB_TAG=	v1.6.0
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=opentoonz/}
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://opentoonz.github.io
 COMMENT=	Open source animation production software
 LICENSE=	modified-bsd
@@ -28,7 +28,7 @@ USE_LANGUAGES+=	c c++
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/glew/buildlink3.mk"
 .include "../../graphics/glu/buildlink3.mk"
-.include "../../graphics/glut/buildlink3.mk"
+#.include "../../graphics/glut/buildlink3.mk"
 .include "../../graphics/libmypaint/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
