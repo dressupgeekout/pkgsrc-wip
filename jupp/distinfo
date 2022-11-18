@@ -1,5 +1,5 @@
 $NetBSD: distinfo,v 1.4 2012/06/09 11:09:27 bsiegert Exp $
 
-RMD160 (joe-3.1jupp38.tgz) = 2ef8a448516e7d0b5ba27bd87196f1f4e3dbe716
-SHA512 (joe-3.1jupp38.tgz) = 1d21ee5bbd1a042c58a89dd2bed8ec711c59fc383ff0dfd94d3a0eaccb999734915abc202e2112c5d573d8073e748b8024cd710b21803fed7422f5a8bccbc0c5
-Size (joe-3.1jupp38.tgz) = 498068 bytes
+BLAKE2s (joe-3.1jupp41.tgz) = 56cb21bf376b17eb4ffe9854bb37f253d39bcb50955aea003258848923cfea6e
+SHA512 (joe-3.1jupp41.tgz) = 9a07946984b64fff4ad8174f9fa437073543cd6af357caf9674571ed787709b3cc2b16fd571d7b8b50b8bb9c7e7bf49dff010d162b76324818be130ab37e06cf
+Size (joe-3.1jupp41.tgz) = 505002 bytes

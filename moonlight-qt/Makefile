@@ -1,7 +1,7 @@
 # $NetBSD$
 
-DISTNAME=	MoonlightSrc-4.1.0
-PKGNAME=	moonlight-qt-4.1.0
+DISTNAME=	MoonlightSrc-4.3.1
+PKGNAME=	moonlight-qt-4.3.1
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=moonlight-stream/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
@@ -18,7 +18,6 @@ WRKSRC=		${WRKDIR}/${DISTNAME}
 # Work around the fact that the distfile is a tarbomb
 EXTRACT_DIR=	${WRKSRC}
 
-QMAKE_ARGS=	# defined
 QMAKE_ARGS+=	moonlight-qt.pro
 QMAKE_ARGS+=	PREFIX=${PREFIX}
 
@@ -35,6 +34,7 @@ do-configure:
 .include "../../fonts/SDL2_ttf/buildlink3.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../graphics/freeglut/buildlink3.mk"
+.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../multimedia/ffmpeg4/buildlink3.mk"
 .include "../../x11/qt5-qtquickcontrols2/buildlink3.mk"
 .include "../../x11/qt5-qtsvg/buildlink3.mk"

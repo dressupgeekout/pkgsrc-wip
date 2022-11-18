@@ -1,0 +1,9 @@
+it's using /usr/pkg/* for things like pid and db; not sure
+if that's correct.
+
+not sure that ffmpeg5 is correct; 
+
+Need to figure out ALSA so mpd mode can be tested.
+
+Config file should be installed into share/examples/owntone and
+installed using CONF_FILES

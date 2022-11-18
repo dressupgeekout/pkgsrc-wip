@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (chkugenids-0.2.tar.gz) = 24da1805384ad8dfdef063648730bc7d957a5e4a094245848cb45c863db70855
+SHA512 (chkugenids-0.2.tar.gz) = 53e79d20ef8d0a3486eec5448b2efdd627bb8ea09cdde3675948818ee6925f3ddd5d59131eed05d0435b02b7fbe9cc2cd1877cd0f61575c39d4c9bb01e7f0fde
+Size (chkugenids-0.2.tar.gz) = 5513 bytes

@@ -1,36 +1,20 @@
 # $NetBSD$
 
-DISTNAME=	muon-0.0.1
+PKGNAME=	muon-0.1.0
+DISTNAME=	${PKGNAME:S/muon-//}
 CATEGORIES=	devel
-GIT_REPO=	https://git.sr.ht/~lattis/muon
-GIT_BRANCH=	master
-GIT_REVISION=	944dd7e2f91a83fd39f50aa49b30a19c2fcb02ce
+MASTER_SITES=	https://git.sr.ht/~lattis/muon/archive/
 
 MAINTAINER=	micha@NetBSD.org
 HOMEPAGE=	https://git.sr.ht/~lattis/muon
 COMMENT=	Implementation of meson build system in c99 with minimal dependencies
 LICENSE=	gnu-gpl-v3
 
+USE_LANGUAGES=	c99
+
 TOOL_DEPENDS+=	samurai>=1.2:../../devel/samurai
 
-MESON_CFLAGS=	${CFLAGS:C/ /' c_args+='/Wg}
-MESON_LDFLAGS=	${LDFLAGS:S/ /' link_args+='/Wg}
-
-SUBST_CLASSES+=		flags1
-SUBST_STAGE.flags1=	pre-configure
-SUBST_MESSAGE.flags1=	Honor CFLAGS and LDFLAGS in bootstrap.sh ...
-SUBST_FILES.flags1=	bootstrap.sh
-SUBST_SED.flags1=	-e 's,$${CC:-c99} -o "$$dir/muon",$${CC} -std=c99 $$LDFLAGS -o "$$dir/muon",'
-SUBST_SED.flags1+=	-e 's,$${CC:-c99} -g,$${CC} -std=c99 $$CFLAGS -g,'
-
-SUBST_CLASSES+=		flags2
-SUBST_STAGE.flags2=	pre-configure
-SUBST_MESSAGE.flags2=	Honor CFLAGS and LDFLAGS in meson.build ...
-SUBST_FILES.flags2=	meson.build
-SUBST_SED.flags2=	-e "s|@CFLAGS@|c_args+='${MESON_CFLAGS:S/ /@LF@/Wg}'|"
-SUBST_SED.flags2+=	-e "s|@LDFLAGS@|link_args+='${MESON_LDFLAGS:S/ /@LF@/Wg}'|"
-SUBST_SED.flags2+=	-e "s|@LF@|\\${.newline}|g"
-
+WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
 INSTALLATION_DIRS=	bin
 
 do-configure:
@@ -51,5 +35,4 @@ do-install:
 #.include "../../archivers/libarchive/buildlink3.mk"
 #.include "../../www/curl/buildlink3.mk"
 
-.include "../../wip/mk/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -5,16 +5,16 @@ VERS=		0.0.1
 
 DISTNAME=	${PROGNAME}-${VERS}
 CATEGORIES=	security
-MASTER_SITES=	${MASTER_SITE_GITHUB:=0xDRRB/}
-GITHUB_TAG=	refs/tags/v${PKGVERSION_NOREV}
+MASTER_SITES=	${MASTER_SITE_GITLAB:=0xDRRB/}
+GITLAB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	lefinnois@lefinnois.net
-HOMEPAGE=	https://github.com/0xDRRB/nfcapdu/
+HOMEPAGE=	https://gitlab.com/0xDRRB/nfcapdu/
 COMMENT=	Command line tool to exchange APDUs with an RFID/NFC tag
 LICENSE=	gnu-lgpl-v3
 
 
-WRKSRC=		${WRKDIR}/${DISTNAME}
+WRKSRC=		${WRKDIR}/${PROGNAME}-v${VERS}
 
 USE_TOOLS+=	pkg-config gmake
 USE_LANGUAGES+=	c
@@ -32,6 +32,5 @@ post-install:
 .include "../../devel/readline/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../wip/libnfc/buildlink3.mk"
-.include "../../wip/libfreefare/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

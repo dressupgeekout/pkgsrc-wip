@@ -1,5 +1,5 @@
 $NetBSD$
 
-BLAKE2s (qtsvg-everywhere-src-6.3.0.tar.xz) = 9c1171baf6808dba0555501a5260fcfffc60148eacdbe37a1f945c8796953b81
-SHA512 (qtsvg-everywhere-src-6.3.0.tar.xz) = f00750df4eb43bcd69ccd20d3d1181252e19a19ddf94c8d5b4eb51e88d1005f67d35902942a795a6af434c4a9cad9754da2702248791e1e60feab54341514e98
-Size (qtsvg-everywhere-src-6.3.0.tar.xz) = 1727216 bytes
+BLAKE2s (qtsvg-everywhere-src-6.4.0.tar.xz) = 9ac0b6f51fd40bab1b3f54765092bde72a6282320452874e5351537352a986ae
+SHA512 (qtsvg-everywhere-src-6.4.0.tar.xz) = f3a6b3bda1c0a3395528f99b5f7b9647a19aeeda0f97dc96bfb551b9c134a50166d1d58d7d63a411a84bcb482580c6907b2c231d570794a482f42126cec9dd89
+Size (qtsvg-everywhere-src-6.4.0.tar.xz) = 1726036 bytes
