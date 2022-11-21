@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	semgrep-core-0.106.0
+DISTNAME=	semgrep-core-0.111.1
 PKGREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=returntocorp/}
@@ -52,6 +52,7 @@ do-install:
 .include "../../lang/python/pyversion.mk"
 BUILDLINK_DEPMETHOD.ocaml=	build
 .include "../../lang/ocaml/buildlink3.mk"
+.include "../../lang/python/tool.mk"
 BUILDLINK_DEPMETHOD.ocaml-opam=	build
 .include "../../misc/ocaml-opam/buildlink3.mk"
 .include "../../textproc/tree-sitter/buildlink3.mk"

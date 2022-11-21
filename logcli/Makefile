@@ -1,13 +1,13 @@
 # $NetBSD$
 
-DISTNAME=	loki-2.5.0
+DISTNAME=	loki-2.6.1
 PKGNAME=	${DISTNAME:S/loki/logcli/}
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=grafana/}
 GITHUB_PROJECT=	loki
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	leot@NetBSD.org
 HOMEPAGE=	https://grafana.com/loki
 COMMENT=	Grafana Loki's command-line interface
 LICENSE=	gnu-agpl-v3

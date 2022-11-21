@@ -3,7 +3,7 @@
 DISTNAME=	ee-1.5.2.src
 PKGNAME=	${DISTNAME:S,.src,,}
 CATEGORIES=	editors
-MASTER_SITES=	http://web.archive.org/web/20120716042037/http://mahon.cwx.net/sources/
+MASTER_SITES=	https://mirrors.ustc.edu.cn/gentoo/distfiles/
 DIST_SUBDIR=	${PKGNAME_NOREV}
 EXTRACT_SUFX=	.tgz
 
@@ -15,12 +15,19 @@ LICENSE=	2-clause-bsd
 USE_TOOLS+=	pkg-config
 USE_NCURSES=	yes     # fixterm()
 
+SUBST_CLASSES+=		paths
+SUBST_STAGE.paths=	pre-configure
+SUBST_FILES.paths+=	create.make
+SUBST_VARS.paths=	PREFIX
+SUBST_MESSAGE.paths=	Setting default pkg-config's path.
+
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
-WRKSRC=	${WRKDIR}/easyedit-1.5.2
+WRKSRC=	${WRKDIR}/easyedit-${PKGVERSION_NOREV}
 
-post-configure:
-	cd ${WRKSRC} && ${MAKE:Q} all
+do-build:
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV}								\
+	${MAKE_PROGRAM:Q} ${MAKE_FLAGS} all
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/ee ${DESTDIR}${PREFIX}/bin

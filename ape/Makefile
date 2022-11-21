@@ -1,9 +1,9 @@
 # $NetBSD: Makefile,v 1.7 2014/04/03 01:21:22 outpaddling Exp $
 
-DISTNAME=	APE-3.5.3.114
+DISTNAME=	APE-3.5.3.121
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
-GITHUB_TAG=	d488f0217ae7eaec7a1816c0ba79ccf80a8f18ee
+GITHUB_TAG=	e78f75443e1eba3346096619793c56e3b6e3c827
 
 MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://github.com/outpaddling/APE
@@ -14,6 +14,8 @@ DEPENDS=	webbrowser>=0:../../wip/webbrowser
 
 MAKE_ENV+=		VERSION=${PKGVERSION}
 INSTALL_MAKE_FLAGS+=	MANDIR=${PREFIX}/${PKGMANDIR}
+
+LDFLAGS.SunOS+=		-lresolv -lsocket -lnsl
 
 pre-build:
 	cd ${WRKSRC} && ${MAKE} LOCALBASE=${PREFIX} depend
