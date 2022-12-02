@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	auto-admin-0.7.10.17
+DISTNAME=	auto-admin-0.7.13.6
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
-GITHUB_TAG=	2c02f6ba5ab6fa83daf2cc9d1baa85c3e8f83e2a
+GITHUB_TAG=	81381d3a574634cae8cc7c8439a358aecf07f335
 
 MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://github.com/outpaddling/auto-admin

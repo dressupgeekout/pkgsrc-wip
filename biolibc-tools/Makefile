@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	biolibc-tools-0.1.2.24
+DISTNAME=	biolibc-tools-0.1.3.12
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=auerlab/}
-GITHUB_TAG=	c3af36af16f80f7863e4851650c75f95b4c418f1
+GITHUB_TAG=	dfb8b0c20debae6c6314ec593bf681bbfdaf1b25
 
 MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://github.com/auerlab/biolibc-tools
@@ -13,6 +13,8 @@ LICENSE=	2-clause-bsd
 BUILD_TARGET=	depend all
 MAKE_ENV+=	VERSION=${PKGVERSION}
 INSTALL_TARGET=	install-strip
+
+LDFLAGS.SunOS+=		-lresolv -lsocket -lnsl
 
 pre-build:
 	cd ${WRKSRC} && ${MAKE} PREFIX=${PREFIX} depend

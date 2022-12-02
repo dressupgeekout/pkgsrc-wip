@@ -1,8 +1,6 @@
 # $NetBSD: Makefile,v 1.42 2019/06/18 12:36:59 gdt Exp $
 
-#VERSION=	1.36.7
-VERSION=	1.30.5
-PKGREVISION=	1
+VERSION=	1.32.3
 # Sometimes the distfile unpacks to ZoneMinder and sometimes zoneminder.
 NAME_DIST=	ZoneMinder
 NAME_LOWER=	zoneminder
@@ -63,6 +61,9 @@ DEPENDS+=	p5-Sys-Mmap-[0-9]*:../../devel/p5-Sys-Mmap
 #DEPENDS+=	{perl>=5.7.3,p5-Time-HiRes-[0-9]*}:../../time/p5-Time-HiRes
 DEPENDS+=	p5-libwww-[0-9]*:../../www/p5-libwww
 
+# \todo: Decide to drop CONFIGURE_ARGS, validating that each has been
+# turned into cmake, once we are at a zoneminder version that does not
+# support autoconf (which maybe we are at already!).
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CMAKE_ARGS+=		-DZM_CONFIG_DIR=${PKG_SYSCONFDIR}
 
@@ -92,16 +93,10 @@ CMAKE_ARGS+=		-DZM_SOCKDIR=${VARBASE}/run/zm
 CMAKE_ARGS+=		-DZM_TMPDIR=${VARBASE}/tmp/zm
 CMAKE_ARGS+=		-DZM_LOGDIR=${VARBASE}/log/zm
 
-# PolicyKit doesn't actually seem to be necessary.  This hack disables
-# configure's hunt for PolicyKit, but has no other apparent ill effects.
-# cmake needs an almost identical hack - though resorting to patching might
-# be safer.
-CONFIGURE_ENV+=		POLKIT_CFLAGS=" " POLKIT_LIBS=" "
-CMAKE_ARGS+=		-DPOLKIT_LIBRARIES=" " -DPOLKIT_INCLUDE_DIR=" "
-
 PTHREAD_AUTO_VARS=	yes
 .include "../../mk/pthread.buildlink3.mk"
 
+# This should probably be ffmpeg4 at least.  Defer until up-to-date.
 .include "../../multimedia/ffmpeg2/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-ffmpeg=${BUILDLINK_PREFIX.ffmpeg2}
 CONFIGURE_ENV+=		PATH_FFMPEG=${BUILDLINK_PREFIX.ffmpeg2}/bin/ffmpeg2
@@ -190,6 +185,7 @@ ZM_REPLACE_PERL+=	scripts/zmcontrol.pl.in
 ZM_REPLACE_PERL+=	scripts/zmdc.pl.in
 ZM_REPLACE_PERL+=	scripts/zmfilter.pl.in
 ZM_REPLACE_PERL+=	scripts/zmpkg.pl.in
+ZM_REPLACE_PERL+=	scripts/zmstats.pl.in
 ZM_REPLACE_PERL+=	scripts/zmtelemetry.pl.in
 ZM_REPLACE_PERL+=	scripts/zmtrack.pl.in
 ZM_REPLACE_PERL+=	scripts/zmtrigger.pl.in
@@ -200,7 +196,7 @@ ZM_REPLACE_PERL+=	scripts/zmx10.pl.in
 
 # ZoneMinder scripts needing interpreter patching
 REPLACE_PERL+=	${ZM_REPLACE_PERL}
-REPLACE_PERL+=	onvif/scripts/zmonvif-probe.pl
+REPLACE_PERL+=	scripts/zmonvif-probe.pl.in
 REPLACE_PERL+=	zmconfgen.pl.in
 
 #
@@ -294,9 +290,11 @@ PERL5_REQD+=		5.6.0
 #post-configure: perl5-configure
 
 EGDIR=			share/examples/${PKGBASE}
+DOCDIR=			share/doc/${PKGBASE}
 INSTALLATION_DIRS+=	${EGDIR} ${EGDIR}/config ${EGDIR}/apache
 CONF_FILES+=		${PREFIX}/${EGDIR}/config/zm.conf ${PKG_SYSCONFDIR}/zm.conf
 INSTALLATION_DIRS+=	bin share/examples/rc.d share/zoneminder/db
+INSTALLATION_DIRS+=	${DOCDIR}
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/zoneminder.conf ${DESTDIR}${PREFIX}/${EGDIR}/apache/zoneminder.conf
 	${INSTALL_DATA} ${WRKSRC}/zm.conf ${DESTDIR}${PREFIX}/${EGDIR}/config/zm.conf
@@ -309,7 +307,7 @@ post-install:
 	${LN} -s ${ZM_CACHE}/temp ${DESTDIR}${PREFIX}/${ZM_HTTPD_ROOT:Q}/temp
 	${LN} -s ${ZM_CACHE}/events ${DESTDIR}${PREFIX}/${ZM_HTTPD_ROOT:Q}/events
 	${LN} -s ${ZM_CACHE}/images ${DESTDIR}${PREFIX}/${ZM_HTTPD_ROOT:Q}/images
-
+	${INSTALL_DATA} files/README-pkgsrc.md ${DESTDIR}${PREFIX}/${DOCDIR}
 
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
@@ -319,6 +317,7 @@ post-install:
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../multimedia/mp4v2/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

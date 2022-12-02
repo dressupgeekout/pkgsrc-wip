@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=		gnunet-0.16.3
+DISTNAME=		gnunet-0.18.0
 CATEGORIES=		net
 MASTER_SITES=		${MASTER_SITE_GNU:=gnunet/}
 
@@ -9,7 +9,7 @@ HOMEPAGE=		https://gnunet.org/
 COMMENT=		Framework for secure P2P networking
 LICENSE=		gnu-agpl-v3
 
-USE_TOOLS+=		msgfmt pkg-config # gmake
+USE_TOOLS+=		msgfmt pkg-config gmake
 USE_LANGUAGES=		c
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
@@ -28,8 +28,10 @@ CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--with-extractor=${BUILDLINK_PREFIX.libextractor}
 CONFIGURE_ARGS+=	--with-gnunetdns=gnunetdns
 CONFIGURE_ARGS+=	--with-jansson=${BUILDLINK_PREFIX.jansson}
-CONFIGURE_ARGS+=	--with-microhttpd=${BUILDLINK_PREFIX.libmicrohttpd}
+CONFIGURE_ARGS+=	--with-jose=${BUILDLINK_PREFIX.jose}/lib
 CONFIGURE_ARGS+=	--with-libgcrypt-prefix=${BUILDLINK_PREFIX.libgcrypt}
+CONFIGURE_ARGS+=	--with-microhttpd=${BUILDLINK_PREFIX.libmicrohttpd}
+
 
 GNUNET_LOG_DIR=		${VARBASE}/chroot/gnunet/cache
 GNUNET_DIR=		${VARBASE}/chroot/gnunet
@@ -61,6 +63,7 @@ FILES_SUBST+=		PKG_HOME=${GNUNET_DIR}
 post-extract:
 	${CP} ${FILESDIR}/gnunet.conf ${WRKSRC}/gnunet.conf
 	${CP} ${FILESDIR}/gnunet_user.conf ${WRKSRC}/gnunet_user.conf
+	${CP} ${FILESDIR}/README.pkgsrc.txt ${WRKSRC}/README.pkgsrc.txt
 
 SUBST_CLASSES+=			sysconfdir
 SUBST_STAGE.sysconfdir=		pre-configure
@@ -75,6 +78,8 @@ post-configure:
 	${MKDIR} ${DESTDIR}${PKG_SYSCONFDIR}
 	${INSTALL_DATA} ${WRKSRC}/gnunet.conf ${DESTDIR}${PKG_SYSCONFDIR}/gnunet.conf
 	${INSTALL_DATA} ${WRKSRC}/gnunet_user.conf ${DESTDIR}${PKG_SYSCONFDIR}/gnunet_user.conf
+	${MKDIR} ${DESTDIR}/share/doc/gnunet/
+	${INSTALL_DATA} ${WRKSRC}/README.pkgsrc.txt ${DESTDIR}/share/doc/gnunet/README.pkgsrc.txt
 
 # All helpers have to be suid. fs helper must not be suid.
 # Some helpers and functionalities are only supported on
@@ -113,8 +118,9 @@ SPECIAL_PERMS+=	${PREFIX}/lib/gnunet/libexec/gnunet-helper-nat-server ${SETUID_R
 .include "../../security/libsodium/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../textproc/jansson/buildlink3.mk"
+.include "../../wip/jose/buildlink3.mk"
 .include "../../textproc/libunistring/buildlink3.mk"
-.include "../../wip/gnurl/buildlink3.mk"
+.include "../../www/curl/buildlink3.mk"
 .include "../../www/libmicrohttpd/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

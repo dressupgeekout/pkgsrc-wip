@@ -10,10 +10,25 @@ HOMEPAGE=	https://kubectx.dev/
 COMMENT=	Faster way to switch between clusters and namespaces in kubectl
 LICENSE=	apache-2.0
 
-GO_BUILD_PATTERN+=	./cmd/kubectx
-GO_BUILD_PATTERN+=	./cmd/kubens
+USE_TOOLS+=	bash:run
 
-.include "go-modules.mk"
+USE_LANGUAGES=	# none
 
-.include "../../lang/go/go-module.mk"
+REPLACE_BASH+=	kubectx
+REPLACE_BASH+=	kubens
+
+INSTALLATION_DIRS+=	bin
+INSTALLATION_DIRS+=	share/bash-completion/completions
+INSTALLATION_DIRS+=	share/fish/completions
+
+do-build:
+
+do-install:
+	${INSTALL_SCRIPT} ${WRKSRC}/kubectx ${DESTDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/kubens ${DESTDIR}${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/completion/kubectx.bash ${DESTDIR}${PREFIX}/share/bash-completion/completions/kubectx
+	${INSTALL_DATA} ${WRKSRC}/completion/kubens.bash ${DESTDIR}${PREFIX}/share/bash-completion/completions/kubens
+	${INSTALL_DATA} ${WRKSRC}/completion/kubectx.fish ${DESTDIR}${PREFIX}/share/fish/completions
+	${INSTALL_DATA} ${WRKSRC}/completion/kubens.fish ${DESTDIR}${PREFIX}/share/fish/completions
+
 .include "../../mk/bsd.pkg.mk"

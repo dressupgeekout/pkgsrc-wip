@@ -1,4 +1,6 @@
 @comment $NetBSD$
+lib/pkgconfig/Qt6WaylandClient.pc
+lib/pkgconfig/Qt6WaylandCompositor.pc
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qtwaylandclient-config_p.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qtwaylandclientglobal_p.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwayland-hardware-integration.h
@@ -9,6 +11,7 @@ qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwayland-qt-wi
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwayland-server-buffer-extension.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwayland-surface-extension.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwayland-tablet-unstable-v2.h
+qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwayland-text-input-unstable-v1.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwayland-text-input-unstable-v2.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwayland-text-input-unstable-v4-wip.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwayland-touch-extension.h
@@ -60,6 +63,7 @@ qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwaylandsubsur
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwaylandsurface_p.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwaylandtabletv2_p.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwaylandtextinputinterface_p.h
+qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwaylandtextinputv1_p.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwaylandtextinputv2_p.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwaylandtextinputv4_p.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/qwaylandtouch_p.h
@@ -75,6 +79,7 @@ qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/wayland-qt-win
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/wayland-server-buffer-extension-client-protocol.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/wayland-surface-extension-client-protocol.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/wayland-tablet-unstable-v2-client-protocol.h
+qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/wayland-text-input-unstable-v1-client-protocol.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/wayland-text-input-unstable-v2-client-protocol.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/wayland-text-input-unstable-v4-wip-client-protocol.h
 qt6/include/QtWaylandClient/${PKGVERSION}/QtWaylandClient/private/wayland-touch-extension-client-protocol.h
@@ -87,6 +92,7 @@ qt6/include/QtWaylandClient/QtWaylandClient
 qt6/include/QtWaylandClient/QtWaylandClientDepends
 qt6/include/QtWaylandClient/QtWaylandClientVersion
 qt6/include/QtWaylandClient/qtwaylandclient-config.h
+qt6/include/QtWaylandClient/qtwaylandclientexports.h
 qt6/include/QtWaylandClient/qtwaylandclientglobal.h
 qt6/include/QtWaylandClient/qtwaylandclientversion.h
 qt6/include/QtWaylandClient/qwaylandclientexport.h
@@ -351,7 +357,6 @@ qt6/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorQtShellAdditionalTargetInfo.
 qt6/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorQtShellConfig.cmake
 qt6/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorQtShellConfigVersion.cmake
 qt6/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorQtShellConfigVersionImpl.cmake
-qt6/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorQtShellDependencies.cmake
 qt6/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorQtShellTargets-release.cmake
 qt6/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorQtShellTargets.cmake
 qt6/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorWLShellAdditionalTargetInfo.cmake
@@ -384,6 +389,18 @@ qt6/lib/cmake/Qt6Qml/QmlPlugins/Qt6qwaylandcompositorpluginConfigVersion.cmake
 qt6/lib/cmake/Qt6Qml/QmlPlugins/Qt6qwaylandcompositorpluginConfigVersionImpl.cmake
 qt6/lib/cmake/Qt6Qml/QmlPlugins/Qt6qwaylandcompositorpluginTargets-release.cmake
 qt6/lib/cmake/Qt6Qml/QmlPlugins/Qt6qwaylandcompositorpluginTargets.cmake
+qt6/lib/cmake/Qt6WaylandClient/Qt6DmaBufServerBufferPluginAdditionalTargetInfo.cmake
+qt6/lib/cmake/Qt6WaylandClient/Qt6DmaBufServerBufferPluginConfig.cmake
+qt6/lib/cmake/Qt6WaylandClient/Qt6DmaBufServerBufferPluginConfigVersion.cmake
+qt6/lib/cmake/Qt6WaylandClient/Qt6DmaBufServerBufferPluginConfigVersionImpl.cmake
+qt6/lib/cmake/Qt6WaylandClient/Qt6DmaBufServerBufferPluginTargets-release.cmake
+qt6/lib/cmake/Qt6WaylandClient/Qt6DmaBufServerBufferPluginTargets.cmake
+qt6/lib/cmake/Qt6WaylandClient/Qt6DrmEglServerBufferPluginAdditionalTargetInfo.cmake
+qt6/lib/cmake/Qt6WaylandClient/Qt6DrmEglServerBufferPluginConfig.cmake
+qt6/lib/cmake/Qt6WaylandClient/Qt6DrmEglServerBufferPluginConfigVersion.cmake
+qt6/lib/cmake/Qt6WaylandClient/Qt6DrmEglServerBufferPluginConfigVersionImpl.cmake
+qt6/lib/cmake/Qt6WaylandClient/Qt6DrmEglServerBufferPluginTargets-release.cmake
+qt6/lib/cmake/Qt6WaylandClient/Qt6DrmEglServerBufferPluginTargets.cmake
 qt6/lib/cmake/Qt6WaylandClient/Qt6QWaylandBradientDecorationPluginAdditionalTargetInfo.cmake
 qt6/lib/cmake/Qt6WaylandClient/Qt6QWaylandBradientDecorationPluginConfig.cmake
 qt6/lib/cmake/Qt6WaylandClient/Qt6QWaylandBradientDecorationPluginConfigVersion.cmake
@@ -438,9 +455,28 @@ qt6/lib/cmake/Qt6WaylandClient/Qt6WaylandClientConfigVersion.cmake
 qt6/lib/cmake/Qt6WaylandClient/Qt6WaylandClientConfigVersionImpl.cmake
 qt6/lib/cmake/Qt6WaylandClient/Qt6WaylandClientDependencies.cmake
 qt6/lib/cmake/Qt6WaylandClient/Qt6WaylandClientMacros.cmake
+qt6/lib/cmake/Qt6WaylandClient/Qt6WaylandClientPlugins.cmake
 qt6/lib/cmake/Qt6WaylandClient/Qt6WaylandClientTargets-release.cmake
 qt6/lib/cmake/Qt6WaylandClient/Qt6WaylandClientTargets.cmake
 qt6/lib/cmake/Qt6WaylandClient/Qt6WaylandClientVersionlessTargets.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6DmaBufServerBufferIntegrationPluginAdditionalTargetInfo.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6DmaBufServerBufferIntegrationPluginConfig.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6DmaBufServerBufferIntegrationPluginConfigVersion.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6DmaBufServerBufferIntegrationPluginConfigVersionImpl.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6DmaBufServerBufferIntegrationPluginTargets-release.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6DmaBufServerBufferIntegrationPluginTargets.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6DrmEglServerBufferIntegrationPluginAdditionalTargetInfo.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6DrmEglServerBufferIntegrationPluginConfig.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6DrmEglServerBufferIntegrationPluginConfigVersion.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6DrmEglServerBufferIntegrationPluginConfigVersionImpl.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6DrmEglServerBufferIntegrationPluginTargets-release.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6DrmEglServerBufferIntegrationPluginTargets.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6QWaylandDmabufClientBufferIntegrationPluginAdditionalTargetInfo.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6QWaylandDmabufClientBufferIntegrationPluginConfig.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6QWaylandDmabufClientBufferIntegrationPluginConfigVersion.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6QWaylandDmabufClientBufferIntegrationPluginConfigVersionImpl.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6QWaylandDmabufClientBufferIntegrationPluginTargets-release.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6QWaylandDmabufClientBufferIntegrationPluginTargets.cmake
 qt6/lib/cmake/Qt6WaylandCompositor/Qt6QWaylandEglClientBufferIntegrationPluginAdditionalTargetInfo.cmake
 qt6/lib/cmake/Qt6WaylandCompositor/Qt6QWaylandEglClientBufferIntegrationPluginConfig.cmake
 qt6/lib/cmake/Qt6WaylandCompositor/Qt6QWaylandEglClientBufferIntegrationPluginConfigVersion.cmake
@@ -465,6 +501,7 @@ qt6/lib/cmake/Qt6WaylandCompositor/Qt6WaylandCompositorConfigVersion.cmake
 qt6/lib/cmake/Qt6WaylandCompositor/Qt6WaylandCompositorConfigVersionImpl.cmake
 qt6/lib/cmake/Qt6WaylandCompositor/Qt6WaylandCompositorDependencies.cmake
 qt6/lib/cmake/Qt6WaylandCompositor/Qt6WaylandCompositorMacros.cmake
+qt6/lib/cmake/Qt6WaylandCompositor/Qt6WaylandCompositorPlugins.cmake
 qt6/lib/cmake/Qt6WaylandCompositor/Qt6WaylandCompositorTargets-release.cmake
 qt6/lib/cmake/Qt6WaylandCompositor/Qt6WaylandCompositorTargets.cmake
 qt6/lib/cmake/Qt6WaylandCompositor/Qt6WaylandCompositorVersionlessTargets.cmake
@@ -531,6 +568,8 @@ qt6/lib/metatypes/qt6waylandcompositor_release_metatypes.json
 qt6/lib/metatypes/qt6waylandeglclienthwintegrationprivate_release_metatypes.json
 qt6/lib/metatypes/qt6waylandeglcompositorhwintegrationprivate_release_metatypes.json
 qt6/lib/metatypes/qt6wlshellintegrationprivate_release_metatypes.json
+qt6/lib/pkgconfig/Qt6WaylandClient.pc
+qt6/lib/pkgconfig/Qt6WaylandCompositor.pc
 qt6/libexec/qtwaylandscanner
 qt6/mkspecs/modules/qt_lib_wayland_egl_client_hw_integration_private.pri
 qt6/mkspecs/modules/qt_lib_wayland_egl_compositor_hw_integration_private.pri
@@ -549,8 +588,13 @@ qt6/modules/WlShellIntegrationPrivate.json
 qt6/plugins/platforms/libqwayland-egl.so
 qt6/plugins/platforms/libqwayland-generic.so
 qt6/plugins/wayland-decoration-client/libbradient.so
+qt6/plugins/wayland-graphics-integration-client/libdmabuf-server.so
+qt6/plugins/wayland-graphics-integration-client/libdrm-egl-server.so
 qt6/plugins/wayland-graphics-integration-client/libqt-plugin-wayland-egl.so
 qt6/plugins/wayland-graphics-integration-client/libshm-emulation-server.so
+qt6/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-dmabuf-server-buffer.so
+qt6/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-drm-egl-server-buffer.so
+qt6/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-linux-dmabuf-unstable-v1.so
 qt6/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-shm-emulation-server.so
 qt6/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-wayland-egl.so
 qt6/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-wayland-eglstream-controller.so

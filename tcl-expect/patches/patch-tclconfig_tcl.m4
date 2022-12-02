@@ -1,13 +1,23 @@
 $NetBSD$
 
-#       tclconfig/tcl.m4
-#       add support for svr5
+On OpenServer 5, when compiling with gcc, also use gcc to link,
+because the system ld is not GNU ld.
 
-# Emailed Upstream September 2019
+Add support for Unixware and SCO_SV-5, and add them to the list of
+systems needing -fPIC.
+
+Sent upstream by email September 2019.
 
 --- tclconfig/tcl.m4.orig	2018-02-04 06:55:43.000000000 +0000
-+++ tclconfig/tcl.m4	2022-04-30 09:18:53.837696001 +0000
-@@ -1817,16 +1817,42 @@
++++ tclconfig/tcl.m4	2022-06-07 08:37:43.412809932 -0600
+@@ -1814,19 +1814,50 @@
+ 	    LD_SEARCH_FLAGS=""
+ 	    ;;
+ 	SCO_SV-3.2*)
++	    # fix SCO OpenServer 5 linking with gcc
++	    # gcc is use to link, there is no gnu ld.
++	    # native compiler uses ld which comes with OS
++
  	    AS_IF([test "$GCC" = yes], [
  		SHLIB_CFLAGS="-fPIC -melf"
  		LDFLAGS="$LDFLAGS -melf -Wl,-Bexport"
@@ -24,6 +34,7 @@ $NetBSD$
  	    LD_SEARCH_FLAGS=""
  	    ;;
 +       UnixWare-5*|SCO_SV-5*)
++	    # Add UnixWare 
 +            # -Kthread will define _REENTRANT
 +            AS_IF([test "$GCC" = yes], [
 +                SHLIB_CFLAGS="-fPIC"
@@ -51,25 +62,11 @@ $NetBSD$
  	SunOS-5.[[0-6]])
  	    # Careful to not let 5.10+ fall into this case
  
-@@ -1968,9 +1994,10 @@
- 	    BSD/OS*) ;;
- 	    CYGWIN_*) ;;
- 	    IRIX*) ;;
--	    NetBSD-*|FreeBSD-*|OpenBSD-*) ;;
-+	    NetBSD-*|FreeBSD-*|OpenBSD-*|DragonFly-*|MirBSD-*) ;;
+@@ -1971,6 +2003,7 @@
+ 	    NetBSD-*|FreeBSD-*|OpenBSD-*) ;;
  	    Darwin-*) ;;
  	    SCO_SV-3.2*) ;;
 +	    UnixWare-5*|SCO_SV-3.5*) ;;
  	    windows) ;;
  	    *) SHLIB_CFLAGS="-fPIC" ;;
  	esac])
-@@ -3212,6 +3239,9 @@
-     # substituted. (@@@ Might not be necessary anymore)
-     #--------------------------------------------------------------------
- 
-+    PVNODOTS=`echo ${PACKAGE_VERSION} | tr -d .`
-+    SHARED_LIB_SUFFIX=${PVNODOTS}.so
-+    UNSHARED_LIB_SUFFIX=${PVNODOTS}.a
-     if test "${TEA_PLATFORM}" = "windows" ; then
- 	if test "${SHARED_BUILD}" = "1" ; then
- 	    # We force the unresolved linking of symbols that are really in
