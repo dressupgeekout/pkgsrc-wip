@@ -1512,6 +1512,7 @@ SUBDIR+=	haze
 SUBDIR+=	hcloud
 SUBDIR+=	hdparm
 SUBDIR+=	heaptrack
+SUBDIR+=	hedgewars
 SUBDIR+=	heimdall
 SUBDIR+=	helm
 SUBDIR+=	hengband
