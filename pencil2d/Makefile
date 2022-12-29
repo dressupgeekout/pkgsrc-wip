@@ -14,6 +14,8 @@ LICENSE=	gnu-gpl-v2
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	gmake
 
+QMAKE_ARGS+=	-r
+QMAKE_ARGS+=	-spec linux-g++-64 # XXX
 QMAKE_ARGS+=	pencil2d.pro
 QMAKE_ARGS+=	NO_TESTS=1
 #QMAKE_ARGS+=	PREFIX=${PREFIX}
