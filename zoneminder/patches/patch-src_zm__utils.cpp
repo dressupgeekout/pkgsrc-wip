@@ -1,28 +1,15 @@
-$NetBSD: patch-src_zm__utils.cpp,v 1.1 2013/03/24 16:47:47 joerg Exp $
+$NetBSD$
 
-\todo Explain
+Fix time types (sizes).
 
---- src/zm_utils.cpp.orig	2019-02-22 15:38:47.000000000 +0000
+--- src/zm_utils.cpp.orig	2018-12-08 14:22:36.000000000 +0000
 +++ src/zm_utils.cpp
-@@ -76,21 +76,6 @@ const std::string stringtf( const char *
-   return( tempString );
+@@ -397,7 +397,7 @@ char *timeval_to_string( struct timeval 
+   nowtime = tv.tv_sec;
+   nowtm = localtime(&nowtime);
+   strftime(tmbuf, sizeof tmbuf, "%Y-%m-%d %H:%M:%S", nowtm);
+-  snprintf(buf, sizeof buf, "%s.%06ld", tmbuf, tv.tv_usec);
++  snprintf(buf, sizeof buf, "%s.%06jd", tmbuf, (intmax_t) tv.tv_usec);
+   return buf;
  }
  
--const std::string stringtf( const std::string &format, ... )
--{
--  va_list ap;
--  char tempBuffer[8192];
--  std::string tempString;
--
--  va_start(ap, format );
--  vsnprintf( tempBuffer, sizeof(tempBuffer), format.c_str() , ap );
--  va_end(ap);
--
--  tempString = tempBuffer;
--
--  return( tempString );
--}
--
- bool startsWith( const std::string &haystack, const std::string &needle )
- {
-   return( haystack.substr( 0, needle.length() ) == needle );
