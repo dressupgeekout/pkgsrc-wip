@@ -8,18 +8,19 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=sarf/}
 EXTRACT_SUFX=	.jar
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://sourceforge.net/projects/sarf/
+HOMEPAGE=	https://sourceforge.net/projects/sarf/
 COMMENT=	Arabic Morphology System
+LICENSE=	gnu-gpl-v2
 
 WRKSRC=		${WRKDIR}
 
 VERSION=	1.0
 USE_LANGUAGES=	# none
 
-PKG_JVMS_ACCEPTED= sun-jdk6 sun-jdk15
-USE_JAVA2= yes
+PKG_JVMS_ACCEPTED=	sun-jdk7
+USE_JAVA2=		yes
 
-INSTALLATION_DIRS= bin  lib/java
+INSTALLATION_DIRS=	bin  lib/java
 
 do-build:
 	printf "#! ${SH}\\nexec ${PKG_JAVA_HOME}/bin/java -jar ${PREFIX}/lib/java/${DISTNAME}.jar \"\$$@\"\\n" > ${WRKSRC}/${DISTNAME}.sh

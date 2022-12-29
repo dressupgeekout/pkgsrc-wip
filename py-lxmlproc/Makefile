@@ -7,7 +7,7 @@ CATEGORIES=	textproc
 MASTER_SITES=	https://github.com/downloads/nicferrier/lxmlproc/
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://github.com/nicferrier/lxmlproc
+HOMEPAGE=	https://github.com/nicferrier/lxmlproc
 COMMENT=	Lxml version of xsltproc
 LICENSE=	gnu-gpl-v3
 
@@ -18,5 +18,5 @@ USE_LANGUAGES=	# none
 post-extract:
 	${MV} ${WRKSRC}/src/lxmlproc ${WRKSRC}/src/lxmlproc${PYVERSSUFFIX}
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

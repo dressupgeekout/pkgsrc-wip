@@ -12,8 +12,8 @@ HOMEPAGE=	https://github.com/janestreet/fieldslib/
 COMMENT=	Define first class values representing record fields
 LICENSE=	apache-2.0
 
-OCAML_USE_OASIS=      yes
+OCAML_USE_OASIS=	yes
 
 .include "../../devel/ocaml-type_conv/buildlink3.mk"
-.include "../../mk/ocaml.mk"
+.include "../../lang/ocaml/ocaml.mk"
 .include "../../mk/bsd.pkg.mk"

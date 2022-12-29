@@ -1,23 +1,30 @@
-# $NetBSD: Makefile,v 1.2 2014/06/01 12:49:37 thomasklausner Exp $
-#
+# $NetBSD$
 
-DISTNAME=	macro11-2013.2
-CATEGORIES=	devel
-MASTER_SITES=	https://github.com/shattered/macro11/archive/
+DISTNAME=	macro11-0.7.2
+CATEGORIES=	cross
+MASTER_SITES=	https://gitlab.com/Rhialto/macro11/-/archive/${TAG}/
+DISTFILES+=	macro11-${TAG}.tar.gz
+TAG=		macro11-v${PKGVERSION_NOREV}
+TARDIR=		macro11-${TAG}
 
-MAINTAINER=	shattered@NetBSD.org
-HOMEPAGE=	https://github.com/shattered/macro11/
-COMMENT=	Portable replacement of MACRO-11 (PDP-11 assembler)
-#LICENSE=	# TODO: (see mk/license.mk)
+MAINTAINER=	rhialto@NetBSD.org
+HOMEPAGE=	https://gitlab.com/Rhialto/macro11/
+COMMENT=	PDP-11 crossassembler
+LICENSE=	modified-bsd
 
-WRKSRC=		${WRKDIR}/macro11-${DISTNAME}
-NO_CONFIGURE=	yes
+USE_TOOLS+=	gmake
+REPLACE_PERL+=	obj2bin/obj2bin.pl
+WRKSRC=		${WRKDIR}/${TARDIR}
 
-INSTALLATION_DIRS=	bin share/doc/macro11
+FORTIFY_SUPPORTED=	no	# fortify re#defines gets to something weird
+INSTALLATION_DIRS=	${PREFIX}/bin
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/macro11 ${DESTDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/dumpobj ${DESTDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/README ${DESTDIR}${PREFIX}/share/doc/macro11
+	${INSTALL_PROGRAM} ${WRKSRC}/macro11 ${DESTDIR}${PREFIX}/bin/
+	${INSTALL_PROGRAM} ${WRKSRC}/dumpobj ${DESTDIR}${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/obj2bin/obj2bin.pl ${DESTDIR}${PREFIX}/bin/
+
+do-test:
+	cd ${WRKSRC} && ${MAKE_PROGRAM} tests
 
 .include "../../mk/bsd.pkg.mk"

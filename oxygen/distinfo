@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (oxygen-5.6.3.tar.xz) = 56c58c0b7017cb4257881e44883b413a6211bcb7
-RMD160 (oxygen-5.6.3.tar.xz) = 8531f28ded8869b9a523356a03b2f1fe67c837ef
-SHA512 (oxygen-5.6.3.tar.xz) = 6612cc9892fa721665c3fc05fec1c58eca608de2d89293a92f18a57bfe396e0e304987a62554009225678653d8dfa8e4fbc50b2be5f98be7c695c31bbe7d29e9
-Size (oxygen-5.6.3.tar.xz) = 4488792 bytes
+BLAKE2s (oxygen-5.24.6.tar.xz) = 29ee30a7b27e34f4f6eb9b564c994f35ee9a83b78243ab1fa76c33307d9deee7
+SHA512 (oxygen-5.24.6.tar.xz) = 0cb9853e12345b33b0d96012eafc5f059f4f9bb8a19cc5df0e459b50b2a06e504107296359c5a1d710f7fd23e68f631e70bb9f887f8f1fde6f76baaca4184b2c
+Size (oxygen-5.24.6.tar.xz) = 4610216 bytes

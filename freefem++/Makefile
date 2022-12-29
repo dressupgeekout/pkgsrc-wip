@@ -2,6 +2,7 @@
 #
 
 DISTNAME=	freefem++-3.19-1
+PKGREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	http://www.freefem.org/ff++/ftp/
 
@@ -23,9 +24,8 @@ USE_LANGUAGES=	c c++ fortran
 .include "../../mk/mpi.buildlink3.mk"
 
 ### Maths
-.include "../../math/blas/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../math/fftw/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
 
 ### libX11
 .include "../../x11/libX11/buildlink3.mk"

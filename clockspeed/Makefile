@@ -5,7 +5,7 @@ CATEGORIES=	time
 MASTER_SITES=	http://cr.yp.to/clockspeed/
 
 MAINTAINER=	neil@daikokuya.co.uk
-HOMEPAGE=	http://cr.yp.to/clockspeed.html
+HOMEPAGE=	https://cr.yp.to/clockspeed.html
 COMMENT=	Suite of clock synchronization utilities
 LICENSE=	public-domain
 
@@ -16,8 +16,9 @@ PKGDOCDIR=	${PREFIX}/share/doc/${PKGBASE}
 EGDIR=		${PREFIX}/share/examples/${PKGBASE}
 CLOCKSPEEDDIR=	${VARBASE}/${PKGBASE}
 
-DJB_RESTRICTED= YES
-DJB_CONFIG_PREFIX= ${CLOCKSPEEDDIR}
+DJB_CONFIG_PREFIX=	${CLOCKSPEEDDIR}
+
+SUBST_CLASSES+=		djberrno
 
 DOCS=		${WRKSRC}/BLURB ${WRKSRC}/CHANGES ${WRKSRC}/README \
 		${WRKSRC}/INSTALL ${WRKSRC}/TODO ${WRKSRC}/THANKS
@@ -26,8 +27,8 @@ USER_CMDS=	${CMDDIR}/clockview \
 SYS_CMDS=	${CMDDIR}/clockspeed ${CMDDIR}/clockadd
 CONF_FILES=	${EGDIR}/leapsecs.dat ${PKG_SYSCONFDIR}/leapsecs.dat
 
-INSTALLATION_DIRS= ${PKGMANDIR} ${PKGMANDIR}/man1 ${PKGMANDIR}/man3 \
-		${PKGMANDIR}/man8 ${EGDIR} bin sbin
+INSTALLATION_DIRS=	${PKGMANDIR} ${PKGMANDIR}/man1 ${PKGMANDIR}/man3 \
+			${PKGMANDIR}/man8 ${EGDIR} bin sbin
 
 post-extract:
 	${CP} ${.CURDIR}/files/leapsecs.dat ${WRKSRC}

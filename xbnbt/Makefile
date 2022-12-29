@@ -9,6 +9,7 @@ EXTRACT_SUFX=	.zip
 MAINTAINER=	loic-hoguin@users.sourceforge.net
 HOMEPAGE=	http://xbnbt.sourceforge.net/
 COMMENT=	Alternative BitTorrent tracker written in C++
+LICENSE=	gnu-gpl-v2
 
 WRKSRC=		${WRKDIR}/xbnbt/bnbt/src
 
@@ -20,9 +21,9 @@ BUILD_TARGET+=	bnbt
 INSTALLATION_DIRS+=	sbin share/doc/xbnbt share/examples/xbnbt share/xbnbt
 
 post-extract:
-	mv ${WRKDIR:Q}/"Copy of xbnbt-81b.3" ${WRKDIR:Q}/xbnbt
-	mv ${WRKDIR:Q}/xbnbt/bnbt/examples/"XBNBT IPB2 Mod" \
-		${WRKDIR:Q}/xbnbt/bnbt/examples/ipb2_mod
+	mv ${WRKDIR}/"Copy of xbnbt-81b.3" ${WRKDIR}/xbnbt
+	mv ${WRKDIR}/xbnbt/bnbt/examples/"XBNBT IPB2 Mod" \
+		${WRKDIR}/xbnbt/bnbt/examples/ipb2_mod
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bnbt ${DESTDIR}${PREFIX}/sbin

@@ -5,13 +5,13 @@ CATEGORIES=		databases math
 MASTER_SITES=		${MASTER_SITE_R_CRAN:=contrib/}
 
 MAINTAINER=		mchittur@cs.nmsu.edu
-HOMEPAGE=		${R_HOMEPAGE_BASE}/rgdal.html
 COMMENT=		Provides bindings to GDAL and R
 
 R_PKGNAME=		rgdal
-R_PKGVER=		0.2-7
+R_PKGVER=		1.5-16
 
-DEPENDS+=		gdal-lib>=1.1.9:../../geography/gdal-lib
+DEPENDS+=		gdal-lib>=3:../../geography/gdal-lib
+DEPENDS+=		proj>=6:../../geography/proj
 DEPENDS+=		R-abind>=1.1.0:../../math/R-abind
 DEPENDS+=		R-pixmap>=0.4.1:../../math/R-pixmap
 

@@ -8,7 +8,7 @@ MASTER_SITES=		http://alioth.debian.org/download.php/463/
 
 MAINTAINER=	evaldo@gardenali.biz
 HOMEPAGE=	http://www.linuxnet.com/
-COMMENT=		MUSCLE SmartCard framework PKCS \#11 library
+COMMENT=	MUSCLE SmartCard framework PKCS \#11 library
 
 
 WRKSRC=			${WRKDIR}/${DISTNAME}/libmusclepkcs11
@@ -16,7 +16,7 @@ GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
 USE_TOOLS+=		gmake
 
-CPPFLAGS+=		-I${LOCALBASE}/include/PCSC
+CPPFLAGS+=		-I${PREFIX}/include/PCSC
 
 EGDIR=			${PREFIX}/share/examples/muscle-pkcs11
 

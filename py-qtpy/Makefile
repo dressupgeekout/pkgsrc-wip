@@ -1,20 +1,21 @@
 # $NetBSD$
 
-DISTNAME=	QtPy-1.1.1
-PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
-CATEGORIES=	x11 python
-MASTER_SITES=	${MASTER_SITE_PYPI:=q/QtPy/}
+DISTNAME=	QtPy-2.2.0
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+CATEGORIES=	python
+MASTER_SITES=	${MASTER_SITE_PYPI:=Q/QtPy/}
 
-MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	https://github.com/spyder-ide/qtpy
-COMMENT=	Provides an abstraction layer on top of the various Qt bindings
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://pypi.org/project/QtPy/
+COMMENT=	Abstraction layer for PyQt5/PySide2/PyQt6/PySide6
 LICENSE=	mit
 
-WRKSRC=		${WRKDIR}/QtPy-1.1.1
+DEPENDS+=	${PYPKGPREFIX}-packaging>0:../../devel/py-packaging
 
 USE_LANGUAGES=	# none
 
+post-extract:
+	${CHMOD} -R o-w,g-w ${WRKSRC}
+
 .include "../../lang/python/egg.mk"
-.include "../../x11/py-qt4/buildlink3.mk"
-#.include "../../x11/py-qt5/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

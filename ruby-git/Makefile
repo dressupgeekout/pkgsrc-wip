@@ -4,8 +4,8 @@ DISTNAME=	git-1.2.5
 PKGNAME=	${RUBY_PKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel
 
-MAINTAINER=	filip@joyent.com
-HOMEPAGE=	http://github.com/schacon/ruby-git
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://github.com/schacon/ruby-git
 COMMENT=	Manipulate Git repositories by wrapping around the git binary
 LICENSE=	mit
 

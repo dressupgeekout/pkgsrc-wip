@@ -6,9 +6,10 @@ PKGNAME=		gcc43-${GCC_VERSION}
 CATEGORIES=		lang
 MASTER_SITES=		${MASTER_SITE_GNU:=gcc/gcc-${GCC_VERSION}/}
 EXTRACT_SUFX=		.tar.bz2
+LICENSE=		gnu-gpl-v2 AND gnu-lgpl-v2.1 AND gnu-gpl-v3 AND gnu-lgpl-v3
 
 MAINTAINER=		blair.sadewitz@gmail.com
-HOMEPAGE=		http://gcc.gnu.org/
+HOMEPAGE=		https://gcc.gnu.org/
 COMMENT=		This is the GCC 4.3.2 compiler
 
 USE_TOOLS+=		awk:run bash:build perl chmod ar \
@@ -18,7 +19,7 @@ GCC_VERSION=		4.3.2
 
 GCC_SUBPREFIX=		gcc43
 GCC_PREFIX=		${DESTDIR}${PREFIX}/${GCC_SUBPREFIX}
-FILES_SUBST+=		PKGNAME=${PKGNAME:Q}
+FILES_SUBST+=		PKGNAME=${PKGNAME}
 MESSAGE_SUBST+=		GCC_PREFIX=${GCC_PREFIX}
 
 # XXX do you really need this? you do it manually
@@ -54,15 +55,15 @@ BUILD_CXX?=		YES
 BUILD_FORTRAN?=		YES
 BUILD_OBJC?=		YES
 
-LANGS= c
+LANGS=	c
 .if !empty(BUILD_CXX:M[Yy][Ee][Ss])
-LANGS+= c++
+LANGS+=	c++
 .endif
 .if !empty(BUILD_FORTRAN:M[Yy][Ee][Ss])
-LANGS+= fortran
+LANGS+=	fortran
 .endif
 .if !empty(BUILD_OBJC:M[Yy][Ee][Ss])
-LANGS+= objc
+LANGS+=	objc
 .endif
 
 CONFIGURE_ARGS+=	--prefix=${GCC_PREFIX:Q}
@@ -77,18 +78,18 @@ CONFIGURE_ARGS+=	--enable-threads=posix # XXX seems to be needed
 CONFIGURE_ARGS+=	--with-gmp=${BUILDLINK_PREFIX.gmp}
 CONFIGURE_ARGS+=	--with-mpfr=${BUILDLINK_PREFIX.mpfr}
 
-CONFIGURE_ENV+=		CONFIG_SHELL=${CONFIG_SHELL:Q}
+CONFIGURE_ENV+=		CONFIG_SHELL=${CONFIG_SHELL}
 
 MAKE_ENV+=		ICONVPREFIX=${BUILDLINK_PREFIX.iconv}
 MAKE_ENV+=		SHELL=${CONFIG_SHELL}
-MAKE_ENV+=		ac_cv_path_ac_cv_prog_chmod=${TOOLS_CHMOD:Q}
+MAKE_ENV+=		ac_cv_path_ac_cv_prog_chmod=${TOOLS_CHMOD}
 
 CPPFLAGS+=		-I${BUILDLINK_DIR}/include
 CFLAGS+=		-I${BUILDLINK_DIR}/include
 
 # Somone should fix this so it will match the NetBSD system compiler
 #.if ${OPSYS} == "NetBSD"
-#GCC_PLATFORM=	${LOWER_ARCH}--${LOWER_OPSYS}${APPEND_ELF}
+#GCC_PLATFORM=		${LOWER_ARCH}--${LOWER_OPSYS}${APPEND_ELF}
 #CONFIGURE_ARGS+=	--host=${GCC_PLATFORM:Q}
 #MAKE_ENV+=		AR=/usr/bin/ar
 #.endif # NetBSD

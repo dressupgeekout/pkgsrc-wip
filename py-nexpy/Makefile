@@ -6,14 +6,15 @@ CATEGORIES=	graphics python
 MASTER_SITES=	${MASTER_SITE_PYPI:=N/NeXpy/}
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://nexpy.github.io/nexpy/
+HOMEPAGE=	https://nexpy.github.io/nexpy/
 COMMENT=	Python GUI to analyze NeXus data
 LICENSE=	modified-bsd
 
+DEPENDS+=	${PYPKGPREFIX}-matplotlib-[0-9]*:../../graphics/py-matplotlib
 DEPENDS+=	${PYPKGPREFIX}-h5py>=2.2.1:../../devel/py-h5py
-.include "../../graphics/py-matplotlib/buildlink3.mk"
+DEPENDS+=	${PYPKGPREFIX}-pyside-qt4.8>=1.2.1:../../wip/py-pyside
+DEPENDS+=	${PYPKGPREFIX}-scipy>=0.12.0:../../math/py-scipy
+
 .include "../../lang/python/egg.mk"
 .include "../../math/py-numpy/buildlink3.mk"
-DEPENDS+=	${PYPKGPREFIX}-scipy>=0.12.0:../../math/py-scipy
-DEPENDS+=	${PYPKGPREFIX}-pyside-qt4.8>=1.2.1:../../wip/py-pyside
 .include "../../mk/bsd.pkg.mk"

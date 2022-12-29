@@ -7,9 +7,9 @@ CATEGORIES=	math
 MASTER_SITES=	http://www.broune.com/frobby/
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://www.broune.com/frobby/index.html
+HOMEPAGE=	https://www.broune.com/frobby/index.html
 COMMENT=	Computations with monomial ideals
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	gnu-gpl-v2
 
 USE_TOOLS+=	gmake
 USE_LANGUAGES=	c++

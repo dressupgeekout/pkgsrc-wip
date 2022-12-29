@@ -2,14 +2,14 @@ $NetBSD$
 
 Use siginfo_t instead of struct siginfo, which may be a union.
 
---- lib/diagnostics.cpp.orig	2016-02-22 14:20:58.000000000 +0000
+--- lib/diagnostics.cpp.orig	2017-12-06 20:02:16.929507800 +0000
 +++ lib/diagnostics.cpp
-@@ -751,7 +751,7 @@ static char *xtoa(size_t x) {
- #endif
- 
- #ifdef HAVE_SIGACTION
--void boinc_catch_signal(int signal, struct siginfo *siginfo, void *sigcontext) {
-+void boinc_catch_signal(int signal, siginfo_t *siginfo, void *sigcontext) {
+@@ -756,7 +756,7 @@ static char *xtoa(size_t x) {
+ #ifdef ANDROID_VOODOO
+ void boinc_catch_signal(int signal, struct siginfo *siginfo, void *sigcontext) {
+ #else
+-void boinc_catch_signal(int signal, struct siginfo *, void *) {
++void boinc_catch_signal(int signal, siginfo_t *, void *) {
+ #endif  // ANDROID
  #else
  void boinc_catch_signal(int signal) {
- #endif

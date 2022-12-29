@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.4 2014/04/25 10:20:06 asau Exp $
+@comment $NetBSD: PLIST,v 1.6 2018/03/24 18:05:58 bacon Exp $
 bin/munge
 bin/remunge
 bin/unmunge
@@ -25,8 +25,10 @@ man/man3/munge_enum_str_to_int.3
 man/man3/munge_strerror.3
 man/man7/munge.7
 man/man8/munged.8
+man/man8/mungekey.8
 sbin/munged
+sbin/mungekey
+@pkgdir etc/logrotate.d
 @pkgdir var/run/munge
 @pkgdir var/log/munge
 @pkgdir var/lib/munge
-@pkgdir share/examples/munge

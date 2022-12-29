@@ -8,12 +8,13 @@ MASTER_SITES=	http://www.dr-qubit.org/${DISTNAME}/
 EXTRACT_SUFX=	.el
 
 MAINTAINER=	pho@cielonegro.org
-HOMEPAGE=	http://www.emacswiki.org/emacs/UndoTree
+HOMEPAGE=	https://www.emacswiki.org/emacs/UndoTree
 COMMENT=	Treat Emacs undo history as a tree
+LICENSE=	gnu-gpl-v3
 
 WRKSRC=		${WRKDIR}
 USE_LANGUAGES=	# none
-MESSAGE_SUBST+=	LISPDIR=${EMACS_LISPPREFIX:Q}
+MESSAGE_SUBST+=	LISPDIR=${EMACS_LISPPREFIX}
 
 do-build:
 	cd ${WRKSRC} && ${EMACS_BIN} -batch -f batch-byte-compile ${DISTNAME}.el

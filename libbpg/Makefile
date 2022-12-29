@@ -2,17 +2,17 @@
 
 DISTNAME=	libbpg-0.9.5
 CATEGORIES=	graphics
-MASTER_SITES=	http://bellard.org/bpg/
+MASTER_SITES=	https://bellard.org/bpg/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://bellard.org/bpg/
+HOMEPAGE=	https://bellard.org/bpg/
 COMMENT=	Library for BGP (Better Portable Graphics)
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
-USE_LANGUAGES=	c c++
-USE_TOOLS+=	gmake
-MAKE_FLAGS+=	prefix=${PREFIX}
-MAKE_FLAGS+=	DESTDIR=${DESTDIR}
+USE_LANGUAGES=		c c++
+USE_TOOLS+=		gmake
+MAKE_FLAGS+=		prefix=${PREFIX}
+MAKE_FLAGS+=		DESTDIR=${DESTDIR}
 INSTALLATION_DIRS=	bin
 
 post-install:

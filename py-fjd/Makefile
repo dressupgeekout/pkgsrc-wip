@@ -6,16 +6,16 @@ CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=f/fjd/}
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://github.com/nhoening/fjd/
+HOMEPAGE=	https://github.com/nhoening/fjd/
 COMMENT=	File-based job distribution for everyone
 LICENSE=	apache-2.0
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-paramiko
+PYTHON_VERSIONS_ACCEPTED=	27 # py-paramiko
 
 USE_TOOLS+=	bash:run
 USE_LANGUAGES=	# none
 
-REPLACE_BASH+=	 fjd/scripts/bgscreen
+REPLACE_BASH+=	fjd/scripts/bgscreen
 
 REPLACE_PYTHON+=	fjd/scripts/fjd-recruiter \
 					fjd/scripts/fjd-worker \

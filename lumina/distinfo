@@ -1,8 +1,7 @@
 $NetBSD$
 
-SHA1 (lumina-qt5-1.1.0.tar.gz) = 0981f8ab4f259c9eda57b10e79aa0efee9bd2807
-RMD160 (lumina-qt5-1.1.0.tar.gz) = 95bc1c1bdc0b59880693c5985105e921d0033652
-SHA512 (lumina-qt5-1.1.0.tar.gz) = 79b48e70fd7be3708966221c25025a8013a3ef96e00681056e99dfdd60809a3ff9d2048b3767d9fbc57c1c4f7e00fb36659cdca86fa41a322f125e9e061e88e0
-Size (lumina-qt5-1.1.0.tar.gz) = 55828227 bytes
+RMD160 (lumina/lumina-1.2.0-p1.tar.gz) = 3f19624efd833a428f3a236bb3c04d2afe94e4a2
+SHA512 (lumina/lumina-1.2.0-p1.tar.gz) = 8490e2b0f2fa08b2d63ec688f9993771ea935129a2947ef7bfa1874424cbede6d8877083ce90658c283858e67397383b5bab536388e9222b440015ebdf8b2919
+Size (lumina/lumina-1.2.0-p1.tar.gz) = 56032695 bytes
+SHA1 (patch-LuminaOS-NetBSD.cpp) = 891ee5634e489b84f73ec6cc821a6955ff69d578
 SHA1 (patch-OS-detect.pri) = d92d95bc56083d131c1029038a7c5d59433cfb3e
-SHA1 (patch-src-qt5_core_menu-scripts_ls.json.sh) = 779fde39e0490abc542c4f4689e41642d4b26036

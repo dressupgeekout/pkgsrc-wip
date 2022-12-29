@@ -1,7 +1,7 @@
 # $NetBSD$
 
 CATEGORIES=	filesystems
-VERSION=	0.2.1
+VERSION=	0.3.0
 GITHUB_PROJECT=	simple-mtpfs
 PKGNAME=	${GITHUB_PROJECT}-${VERSION}
 DISTNAME=	simple-mtpfs-${VERSION}
@@ -9,7 +9,7 @@ MASTER_SITES=	${MASTER_SITE_GITHUB:=phatina/}
 GITHUB_TAG=	${DISTNAME}
 
 MAINTAINER=	amoibos@gmail.com
-HOMEPAGE=	http://github.com/phatina/simple-mtpfs
+HOMEPAGE=	https://github.com/phatina/simple-mtpfs
 COMMENT=	FUSE module for interacting with MTP devices
 LICENSE=	gnu-gpl-v2
 

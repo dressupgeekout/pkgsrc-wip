@@ -10,10 +10,10 @@ HOMEPAGE=	https://github.com/pgmpy/pgmpy
 COMMENT=	Library for Probabilistic Graphical Models
 LICENSE=	mit
 
-DEPENDS+=	${PYPKGPREFIX}-pyparsing>=2.1.8:../../devel/py-pyparsing
 DEPENDS+=	${PYPKGPREFIX}-pandas>=0.18.1:../../math/py-pandas
 DEPENDS+=	${PYPKGPREFIX}-networkx>=1.11:../../math/py-networkx
 DEPENDS+=	${PYPKGPREFIX}-scipy>=0.18.0:../../math/py-scipy
+DEPENDS+=	${PYPKGPREFIX}-pyparsing-[0-9]*:../../devel/py-pyparsing
 
 USE_LANGUAGES=	# none
 

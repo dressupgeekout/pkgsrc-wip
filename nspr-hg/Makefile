@@ -1,27 +1,21 @@
-# $NetBSD: Makefile,v 1.3 2015/06/06 14:31:26 thomasklausner Exp $
+# $NetBSD$
 
-# necessary because hg-package.mk would override it
-PKGNAME=	nspr-${NSPR_RELEASE}
-DISTNAME=	nspr-${NSPR_RELEASE}
 NSPR_RELEASE=	4.14beta1
+DISTNAME=	nspr-${NSPR_RELEASE}
+PKGNAME=	${DISTNAME} # to prevent hg-package.mk from overriding it
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_MOZILLA_ALL:=nspr/releases/v${NSPR_RELEASE}/src/}
+HG_REPO=	https://hg.mozilla.org/projects/nspr
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSPR
 COMMENT=	Platform-neutral API for system level and libc like functions (hg version)
 LICENSE=	mpl-2.0
 
-HG_REPOSITORIES=	nspr
-HG_REPO.nspr=		https://hg.mozilla.org/projects/nspr
-WRKSRC=                 ${WRKDIR}/nspr
-#WRKSRC=                        ${WRKDIR}
-
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}js/src/configure
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}configure
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}js/src/configure
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}configure
 
 GNU_CONFIGURE=		yes
-GNU_CONFIGURE_LIBSUBDIR=nspr
+GNU_CONFIGURE_LIBSUBDIR= nspr
 
 USE_GCC_RUNTIME=	yes
 USE_TOOLS+=		autoconf gmake perl
@@ -29,7 +23,7 @@ REPLACE_PERL+=		pr/src/misc/compile-et.pl
 
 CONFIGURE_ARGS+=	--disable-debug
 CONFIGURE_ARGS+=	--with-pthreads
-CONFIGURE_ENV+=		LIBRUNPATH=${PREFIX:Q}/lib/nspr
+CONFIGURE_ENV+=		LIBRUNPATH=${PREFIX}/lib/nspr
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -40,7 +34,7 @@ SUBST_FILES.nspr-config=	config/nspr-config.in
 SUBST_SED.nspr-config=		-e 's|-L$$libdir|"${COMPILER_RPATH_FLAG}$$libdir -L$$libdir"|g'
 
 .if ${OPSYS} == "OpenBSD"
-CHECK_SHLIBS_SUPPORTED= no
+CHECK_SHLIBS_SUPPORTED=	no
 .endif
 
 .if ${OPSYS} == "Darwin"
@@ -68,9 +62,9 @@ PLIST_VARS+=		sun4u_32
 .  if defined(ABI) && ${ABI} == "64"
 CONFIGURE_ARGS+=	--enable-64bit
 .  else
-HW_CLASS!=	${UNAME} -m
+HW_CLASS!=		${UNAME} -m
 .    if ${HW_CLASS} == "sun4u"
-PLIST.sun4u_32=                yes
+PLIST.sun4u_32=		yes
 .    endif
 .  endif
 .endif

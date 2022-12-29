@@ -7,12 +7,12 @@ MASTER_SITES=	${HOMEPAGE}
 MAINTAINER=	neil@daikokuya.co.uk
 HOMEPAGE=	http://smarden.org/ipsvd/
 COMMENT=	Internet protocol service daemons
+LICENSE=	modified-bsd
 
 WRKSRC=		${WRKDIR}/net/${DISTNAME}
 CMDDIR=		${WRKSRC}/command
 PKGDOCDIR=	${PREFIX}/share/doc/${PKGBASE}
 
-DJB_RESTRICTED=		NO
 DJB_SLASHPACKAGE=	YES
 
 DOCS=		package/CHANGES package/COPYING package/README doc/*.html

@@ -7,9 +7,10 @@ MASTER_SITES=		http://github.com/downloads/haad/proxychains/
 PROXYCHAINS_VERSION=	4.2.0
 PKGNAME=		proxychains-${PROXYCHAINS_VERSION}
 EXTRACT_SUFX=		.tar.bz2
+LICENSE=		gnu-gpl-v2
 
 MAINTAINER=		haad@netbsd.org
-HOMEPAGE=		http://haad.github.com/proxychains/
+HOMEPAGE=		https://haad.github.com/proxychains/
 COMMENT=		Chain multiple proxies in a transparent way
 
 # pkgsrc is not currently able to fetch distfiles from https web servers

@@ -2,14 +2,13 @@
 
 DISTNAME=	Apache-AuthenNTLM-2.10
 PKGNAME=	p5-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Apache/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://search.cpan.org/~speeves/
+HOMEPAGE=	https://metacpan.org/pod/Apache::AuthenNTLM
 COMMENT=	Perl5/Apache module for NTLM authorization
-
-DEPENDS+=	p5-MIME-Base64>=3:../../converters/p5-MIME-Base64
 
 PERL5_PACKLIST=	auto/Apache/AuthenNTLM/.packlist
 

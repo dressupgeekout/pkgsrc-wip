@@ -1,9 +1,8 @@
 # $NetBSD: Makefile,v 1.7 2012/10/03 21:32:48 asau Exp $
-#
 
 DISTNAME=		orion-0.2
 CATEGORIES=		wm
-MASTER_SITES=		ftp://ftp.scsh.net/pub/scsh/packages/orion-wm/
+MASTER_SITES=		http://ftp.scsh.net/pub/scsh/packages/orion-wm/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://orion.antidesktop.org/
@@ -32,9 +31,7 @@ SCSH_IMAGE=		${PREFIX}/lib/scsh/scsh.image
 SUBST_CLASSES+=		orion
 SUBST_STAGE.orion=	post-patch
 SUBST_FILES.orion=	install.scm
-SUBST_SED.orion=	-e "s,@HEAP_SIZE@,${HEAP_SIZE},g" \
-			-e "s,@SCSH_VM@,${SCSH_VM},g"     \
-			-e "s,@SCSH_IMAGE@,${SCSH_IMAGE},g"
+SUBST_VARS.orion=	HEAP_SIZE SCSH_VM SCSH_IMAGE
 
 do-install:
 	cd ${WRKSRC}; \

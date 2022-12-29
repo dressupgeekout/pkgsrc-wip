@@ -1,16 +1,26 @@
-$NetBSD: TODO,v 1.1 2014/08/07 17:40:11 darcycain Exp $
+* Drop MESSAGE, and instead put files in share/doc/PKGNAME/.
 
-I pretty much gave up on Freeswitch but I was asked to drop what I had
-into wip so that others could continue it if they wanted.  You need to
-be able to build the distfile to make it work.  Here is the script that
-I used to do that.  Adjust as needed for your environment.
+* There are some bundled libs that are currently imported to pkgsrc & pkgsrc-wip.
+  Nevertheless, these bundled libs are patched by upstream developers.
+  I ran into many errors while integrating pkgsrc libs instead of the bundled ones.
+  Thus, further work needs to be done to make them work or bundled libs are
+  unavoidable.    Specific issues are:
 
-#! /bin/sh
-# makes a fake dist file from git head
+    - wip/libzrtp (does not build on netbsd-7 amd64)
 
-cd /home/darcy/git/freeswitch-1.2.3
-make clean
-cd ..
-tar cvzjf /usr/NetBSD/cvs/pkgsrc/distfiles/freeswitch/freeswitch-1.2.3.tar.bz2 freeswitch-1.2.3
-cd /usr/NetBSD/cvs/pkgsrc/net/freeswitch-core
-make makesum
+* Use of CONF_FILES framework to avoid pkglint errors. 
+
+* This package has only been tested on FreeBSD 11.  It does not build
+  on NetBSD 7 amd64.
+
+* Determine a strategy for modules.  Arguably, the modules built by
+  the core package should be the default from upstream.  Ideally, it
+  would be possible to build modules separately so they can be in
+  their own package.
+	UPDATE: Modules were included in the options.mk framework.
+	This will replace previous patch-modules.conf used (which was not ideal).
+	Since modules are bundled it is not possible to build them separately.
+	Not all modules were included. Work in progress.
+
+* This package has known vulnerabilities, please investigate and fix if possible:
+   CVE-2018-19911, CVE-2019-19492, CVE-2021-37624, CVE-2021-41158, CVE-2021-41157

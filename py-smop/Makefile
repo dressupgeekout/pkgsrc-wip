@@ -6,9 +6,9 @@ CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_PYPI:=s/smop/}
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://chiselapp.com/user/victorlei/repository/smop-dev/index
+HOMEPAGE=	https://chiselapp.com/user/victorlei/repository/smop-dev/index
 COMMENT=	Matlab/Octave to Python compiler
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	mit
 
 DEPENDS+=	${PYPKGPREFIX}-networkx>=1.2:../../math/py-networkx
 

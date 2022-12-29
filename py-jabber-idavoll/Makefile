@@ -4,10 +4,12 @@ DISTNAME=	idavoll-0.9.1
 PKGNAME=	${PYPKGPREFIX}-jabber-${DISTNAME}
 CATEGORIES=	chat python
 MASTER_SITES=	http://idavoll.ik.nu/releases/0.9.1/
+LICENSE=	mit
 
-MAINTAINER=	eric@cirr.com
-HOMEPAGE=	http://idavoll.ik.nu/
-COMMENT=	XMPP publish-subscribe (XEP-0060) component (via twistd)
+MAINTAINER=	pkgsrc-users@NetBSD.org
+#HOMEPAGE=	http://idavoll.ik.nu/
+HOMEPAGE=	https://github.com/ralphm/idavoll
+COMMENT=	XMPP publish-subscribe (XEP-0060) component (via twisted)
 
 #
 # jabberd isn't really a dependency since the transport can run on a
@@ -18,11 +20,6 @@ COMMENT=	XMPP publish-subscribe (XEP-0060) component (via twistd)
 DEPENDS+=	${PYPKGPREFIX}-twisted>=8.1.0:../../net/py-twisted
 DEPENDS+=	${PYPKGPREFIX}-crypto>=2.0.1:../../security/py-crypto
 # wonkle
-# python < 2.5, uuid
-
-# it's a python package using the standard Python packager
-PYDISTUTILSPKG=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-twisted
 
 # always include bsd.prefs.mk before any .if or .ifdef statements
 .include "../../mk/bsd.prefs.mk"
@@ -36,8 +33,8 @@ PKG_GROUPS_VARS+=	JABBER_GROUP
 
 .include "../../wip/jabberd/transports.mk"
 
-DOCDIR=                 ${PREFIX}/share/doc/idavoll
-DOCFILES=               README INSTALL NEWS LICENSE
+DOCDIR=			${PREFIX}/share/doc/idavoll
+DOCFILES=		README INSTALL NEWS LICENSE
 
 INSTALLATION_DIRS=	share/doc/idavoll
 
@@ -54,15 +51,15 @@ SUBST_CLASSES+=		paths
 SUBST_MESSAGE.paths=	Localizing Paths
 SUBST_STAGE.paths=	pre-configure
 SUBST_FILES.paths=	example-config.xml
-SUBST_SED.paths+=	-e 's,@JABBER_GROUP@,${JABBER_GROUP},g'
-SUBST_SED.paths+=	-e 's,@JABBER_LOGDIR@,${JABBER_LOGDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_PIDDIR@,${JABBER_PIDDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_SPOOLDIR@,${JABBER_SPOOLDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_TRANSDIR@,${JABBER_TRANSDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_USER@,${JABBER_USER},g'
-SUBST_SED.paths+=	-e 's,@PKG_SYSCONFDIR@,${PKG_SYSCONFDIR},g'
-SUBST_SED.paths+=	-e 's,@PREFIX@,${PREFIX},g'
-SUBST_SED.paths+=	-e 's,@TRANSPORTDIR@,${TRANSPORTDIR},g'
+SUBST_VARS.paths=	JABBER_GROUP
+SUBST_VARS.paths+=	JABBER_LOGDIR
+SUBST_VARS.paths+=	JABBER_PIDDIR
+SUBST_VARS.paths+=	JABBER_SPOOLDIR
+SUBST_VARS.paths+=	JABBER_TRANSDIR
+SUBST_VARS.paths+=	JABBER_USER
+SUBST_VARS.paths+=	PKG_SYSCONFDIR
+SUBST_VARS.paths+=	PREFIX
+SUBST_VARS.paths+=	TRANSPORTDIR
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

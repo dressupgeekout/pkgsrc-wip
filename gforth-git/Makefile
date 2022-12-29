@@ -3,9 +3,10 @@
 DISTNAME=	gforth-0.7.99
 PKGNAME=	gforth-0.7.99 # needed because of cvs-package.mk
 CATEGORIES=	lang
+LICENSE=	gnu-gpl-v3
 
 MAINTAINER=	asau@inbox.ru
-HOMEPAGE=	http://www.complang.tuwien.ac.at/forth/gforth/
+HOMEPAGE=	https://www.complang.tuwien.ac.at/forth/gforth/
 COMMENT=	Fast interpreter for the Forth language
 
 GIT_REPOSITORIES=	gforth
@@ -51,7 +52,7 @@ pre-configure:
 
 .include "../../devel/libltdl/buildlink3.mk"
 .include "../../devel/libffi/buildlink3.mk"
-.include "../../devel/ffcall/buildlink3.mk"
+.include "../../devel/libffcall/buildlink3.mk"
 
 .include "../../wip/mk/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,13 +1,12 @@
 # $NetBSD: Makefile,v 1.4 2014/10/09 14:06:29 thomasklausner Exp $
-#
 
-DISTNAME=	Proc-Fork-0.802
+DISTNAME=	Proc-Fork-0.806
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Proc/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://search.cpan.org/dist/Proc-Fork/
+HOMEPAGE=	https://metacpan.org/release/Proc-Fork
 COMMENT=	Simple, intuitive interface to the fork() system call
 LICENSE=	${PERL5_LICENSE}
 

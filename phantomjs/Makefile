@@ -7,7 +7,7 @@ CATEGORIES=	www
 MASTER_SITES=	http://bitbucket.org/ariya/phantomjs/downloads/
 EXTRACT_SUFX=	.zip
 
-MAINTAINER=	filip@joyent.com
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.phantomjs.org/
 COMMENT=	Headless WebKit with JavaScript API
 LICENSE=	modified-bsd
@@ -16,8 +16,8 @@ WRKSRC=		${WRKDIR}/${DISTNAME:S/-source//}
 USE_LANGUAGES=	c c++ c99
 USE_TOOLS+=	bash gmake
 
-CHECK_PORTABILITY_SKIP=	src/qt/config.tests/mac/dwarf2.test src/qt/configure
-CHECK_PORTABILITY_SKIP+=src/breakpad/src/third_party/protobuf/protobuf/post_process_dist.sh
+CHECK_PORTABILITY_SKIP=		src/qt/config.tests/mac/dwarf2.test src/qt/configure
+CHECK_PORTABILITY_SKIP+=	src/breakpad/src/third_party/protobuf/protobuf/post_process_dist.sh
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -36,7 +36,7 @@ post-extract:
 	${INSTALL_DATA} ${FILESDIR}/qplatformdefs.h ${WRKSRC}/src/qt/mkspecs/solaris-g++
 
 pre-configure:
-	sed	-e 's:@LOCALBASE@:${LOCALBASE}:g' \
+	sed	-e 's:@LOCALBASE@:${PREFIX}:g' \
 		-e 's:@X11BASE@:${X11BASE}:g' \
 		-e 's:@X11PREFIX@:${X11PREFIX}:g' \
 		-e 's:@LIBTOOL@:${LIBTOOL:Q}:g' \

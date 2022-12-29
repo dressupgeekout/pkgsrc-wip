@@ -5,7 +5,7 @@ DISTNAME=	ufc-${MMVERSION}.0
 CATEGORIES=	math
 MASTER_SITES=	http://launchpad.net/ufc/${MMVERSION}.x/${MMVERSION}.0/+download/
 
-MAINTAINER=	bacon4000@gmail.com
+MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://launchpad.net/ufc
 COMMENT=	Unified framework for finite element assembly
 LICENSE=	public-domain
@@ -28,7 +28,7 @@ CXXFLAGS+=	-I${PREFIX}/${PYINC}
 PKGCONFIG_OVERRIDE+=	cmake/ufc-1.pc.in
 
 # Stolen from lang/python/extension.mk
-PLIST_SUBST+=   PYINC=${PYINC} PYLIB=${PYLIB} PYSITELIB=${PYSITELIB}
+PLIST_SUBST+=	PYINC=${PYINC} PYLIB=${PYLIB} PYSITELIB=${PYSITELIB}
 
 MMVERSION=	2.2
 

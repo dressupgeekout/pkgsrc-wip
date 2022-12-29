@@ -1,18 +1,20 @@
 # $NetBSD: Makefile,v 1.10 2012/12/12 10:44:37 thomasklausner Exp $
 #
 
-DISTNAME=		git-110
-PKGNAME=		glkgit-1.1.0
+GITHUB_PROJECT=		Git
+DISTNAME=		${GITHUB_TAG}
+PKGNAME=		glkgit-1.3.5
 CATEGORIES=		games
-MASTER_SITES=		http://diden.net/if/git/releases/
-EXTRACT_SUFX=		.zip
+MASTER_SITES=		${MASTER_SITE_GITHUB:=DavidKinder/}
+DIST_SUBDIR=		${GITHUB_PROJECT}
+GITHUB_TAG=		v${PKGVERSION_NOREV}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://diden.net/if/git/
+HOMEPAGE=		${MASTER_SITE_GITHUB:=DavidKinder/Git/}
 COMMENT=		Interpreter for Glulx interactive fiction
 
-WRKSRC=			${WRKDIR}/${PKGNAME_NOREV:S/glk//}
-MAKE_ENV+=		BUILDLINK_DIR=${BUILDLINK_DIR:Q}
+WRKSRC=			${WRKDIR}/${PKGNAME_NOREV:S/glkg/G/}
+MAKE_ENV+=		BUILDLINK_DIR=${BUILDLINK_DIR}
 
 INSTALLATION_DIRS+=	bin
 

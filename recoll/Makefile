@@ -6,7 +6,7 @@ CATEGORIES=	sysutils
 MASTER_SITES=	http://www.lesbonscomptes.com/recoll/
 
 MAINTAINER=	slitvinov@gmail.com
-HOMEPAGE=	http://www.lesbonscomptes.com/recoll/
+HOMEPAGE=	https://www.lesbonscomptes.com/recoll/
 COMMENT=	Full text desktop search engine
 LICENSE=	gnu-gpl-v2
 
@@ -14,9 +14,9 @@ GNU_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	perl:run
 
-CONFIGURE_ARGS+= --disable-python-module
-CONFIGURE_ARGS+= --with-aspell=${BUILDLINK_PREFIX.aspell}/bin/aspell
-CONFIGURE_ARGS+= --with-file-command=${BUILDLINK_PREFIX.file}/bin/file
+CONFIGURE_ARGS+=	--disable-python-module
+CONFIGURE_ARGS+=	--with-aspell=${BUILDLINK_PREFIX.aspell}/bin/aspell
+CONFIGURE_ARGS+=	--with-file-command=${BUILDLINK_PREFIX.file}/bin/file
 
 BUILDLINK_TRANSFORM+=	opt:-ldl:${BUILDLINK_LDADD.dl:M*}
 

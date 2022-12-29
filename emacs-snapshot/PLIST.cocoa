@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST.cocoa,v 1.1 2015/04/14 08:31:57 makoto Exp $
+@comment $NetBSD: PLIST.cocoa,v 1.4 2009/10/11 10:44:34 thomasklausner Exp $
 Applications/Emacs.app/Contents/Info.plist
 Applications/Emacs.app/Contents/MacOS/Emacs
 Applications/Emacs.app/Contents/PkgInfo

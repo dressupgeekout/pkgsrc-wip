@@ -7,7 +7,7 @@ CATEGORIES=	www
 MASTER_SITES=	http://bitbucket.org/ariya/phantomjs/downloads/
 EXTRACT_SUFX=	.zip
 
-MAINTAINER=	filip@joyent.com
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.phantomjs.org/
 COMMENT=	Headless WebKit with JavaScript API
 LICENSE=	modified-bsd
@@ -24,14 +24,14 @@ USE_LANGUAGES=	c c++ c99
 USE_TOOLS+=	bash bison flex gmake perl pkg-config sed
 REPLACE_PERL+=	src/qt/qtwebkit/Source/WebKit2/Scripts/generate-forwarding-headers.pl
 
-CHECK_PORTABILITY_SKIP=	src/qt/config.tests/mac/dwarf2.test src/qt/configure
-CHECK_PORTABILITY_SKIP+=src/breakpad/src/third_party/protobuf/protobuf/post_process_dist.sh
+CHECK_PORTABILITY_SKIP=		src/qt/config.tests/mac/dwarf2.test src/qt/configure
+CHECK_PORTABILITY_SKIP+=	src/breakpad/src/third_party/protobuf/protobuf/post_process_dist.sh
 
 .include "../../mk/bsd.prefs.mk"
 
 NOT_FOR_PLATFORM+=	SunOS-*-x86_64
 
-CONFIGURE_ARGS+=	--qtdeps=system -no-rpath 
+CONFIGURE_ARGS+=	--qtdeps=system -no-rpath
 CONFIGURE_ENV+=		MACHINE_ARCH=${MACHINE_ARCH}
 
 CFLAGS.NetBSD+=		-D_NETBSD_SOURCE
@@ -50,7 +50,7 @@ PHANTOMJS_WEBKIT_DISABLE+=	video
 PHANTOMJS_WEBKIT_DISABLE+=	gamepad
 
 pre-configure:
-	${SED}	-e 's:@LOCALBASE@:${LOCALBASE}:g' \
+	${SED}	-e 's:@LOCALBASE@:${PREFIX}:g' \
 		-e 's:@X11BASE@:${X11BASE}:g' \
 		-e 's:@X11PREFIX@:${X11PREFIX}:g' \
 		-e 's:@LIBTOOL@:${LIBTOOL:Q}:g' \

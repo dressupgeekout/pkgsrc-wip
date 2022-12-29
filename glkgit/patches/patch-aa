@@ -1,6 +1,6 @@
 $NetBSD: patch-aa,v 1.3 2005/03/07 15:24:23 dillo Exp $
 
---- Makefile.orig	2004-12-22 15:34:43.000000000 +0100
+--- Makefile.orig	2015-06-13 19:59:51.000000000 +0000
 +++ Makefile
 @@ -9,16 +9,16 @@ GLK = cheapglk
  #GLK = glkterm
@@ -18,31 +18,27 @@ $NetBSD: patch-aa,v 1.3 2005/03/07 15:24:23 dillo Exp $
  
  # Generic C compiler
 -CC = cc -O2
--OPTIONS =
+-OPTIONS = 
 +#CC = cc -O2
-+OPTIONS =-rdynamic
++OPTIONS = -rdynamic
  
  # Best settings for GCC 2.95. This generates faster code than
  # GCC 3, so you should use this setup if possible.
-@@ -37,7 +37,7 @@ OPTIONS =
- # -----------------------------------------------------------------
- # Step 3: decide where you want to install the compiled executable.
- 
--INSTALLDIR = /usr/local/bin
-+INSTALLDIR = $(PREFIX)/bin
- 
- # -----------------------------------------------------------------
- # You shouldn't have to change anything from here on down.
-@@ -46,7 +46,7 @@ MAJOR = 1
- MINOR = 1
- PATCH = 0
+@@ -46,11 +46,11 @@ MAJOR = 1
+ MINOR = 3
+ PATCH = 4
  
 -include $(GLKINCLUDEDIR)/$(GLKMAKEFILE)
 +include $(BUILDLINK_DIR)/include/glk/$(GLKMAKEFILE)
  
  CFLAGS = $(OPTIONS) -I$(GLKINCLUDEDIR)
  
-@@ -69,7 +69,7 @@ git: $(OBJS)
+-LIBS = -L$(GLKLIBDIR) $(GLKLIB) $(LINKLIBS) 
++LIBS = -L$(GLKLIBDIR) $(GLKLIB) $(LINKLIBS) -lm
+ 
+ HEADERS = version.h git.h config.h compiler.h \
+ 	memory.h opcodes.h labels.inc
+@@ -73,7 +73,7 @@ git: $(OBJS)
  	$(CC) $(OPTIONS) -o git $(OBJS) $(LIBS)
  
  install: git
@@ -50,4 +46,4 @@ $NetBSD: patch-aa,v 1.3 2005/03/07 15:24:23 dillo Exp $
 +	$(BSD_INSTALL_PROGRAM) git $(INSTALLDIR)/git
  
  clean:
- 	rm -f *~ *.o git
+ 	rm -f *~ *.o git test/*.tmp

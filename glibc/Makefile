@@ -5,9 +5,10 @@ CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GNU:=glibc/}
 DISTFILES=	glibc-${VERSION}${EXTRACT_SUFX} \
 		glibc-linuxthreads-${VERSION}${EXTRACT_SUFX}
+LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/libc/libc.html
+HOMEPAGE=	https://www.gnu.org/software/libc/libc.html
 COMMENT=	GNU C library
 
 VERSION=	2.3.2
@@ -19,10 +20,10 @@ USE_TOOLS+=	gmake
 WRKSRC=		${WRKDIR}/work
 CFLAGS+=	-I${PREFIX}/include
 
-CONFIGURE_SCRIPT=../${DISTNAME}/configure
-CONFIGURE_ARGS+=--disable-profile
-CONFIGURE_ARGS+=--enable-add-ons=linuxthreads
-CONFIGURE_ARGS+=--with-headers=${PREFIX}/include
+CONFIGURE_SCRIPT=	../${DISTNAME}/configure
+CONFIGURE_ARGS+=	--disable-profile
+CONFIGURE_ARGS+=	--enable-add-ons=linuxthreads
+CONFIGURE_ARGS+=	--with-headers=${PREFIX}/include
 
 BUILD_DEPENDS+=	linux-kernel-headers-[0-9]*:../../wip/linux-kernel-headers
 

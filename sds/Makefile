@@ -1,24 +1,30 @@
-# $NetBSD: Makefile,v 1.1 2015/07/10 21:24:03 travis-paul Exp $
-# vim: noexpandtab:
+# $NetBSD$
 
-GITHUB_PROJECT=	sds
-PKGNAME=	${GITHUB_PROJECT}-0.d86a9b8
-GITHUB_TAG=	d86a9b85cb4fb96430c7479ae6c956f2b605bbd1
-DISTNAME=	master
+DISTNAME=	sds-2.2
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GITHUB:=antirez/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=jcorporation/}
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.zip
-DIST_SUBDIR=	${GITHUB_PROJECT}
 
-MAINTAINER=	Tr@visPaul.me
-HOMEPAGE=	https://github.com/antirez/sds/
-COMMENT=	Simple Dynamic Strings library for C
+MAINTAINER=	micha@NetBSD.org
+HOMEPAGE=	https://github.com/jcorporation/sds/
+COMMENT=	Simple dynamic strings library for C
 LICENSE=	2-clause-bsd
 
-INSTALLATION_DIRS=	lib include
+USE_LANGUAGES=	c99
+USE_LIBTOOL=	yes
 
-do-install:
-	${INSTALL_LIB} ${WRKSRC}/libsds.so ${DESTDIR}${PREFIX}/lib/libsds.so
-	${INSTALL_DATA} ${WRKSRC}/sds.h ${DESTDIR}${PREFIX}/include/sds.h
+TEST_TARGET=	test
+
+INSTALLATION_DIRS=	lib/pkgconfig
+
+post-extract:
+	${CP} ${FILESDIR}/libsds-2.pc.in ${WRKDIR}
+	cd ${WRKDIR} && ${SED} -e "s,@prefix@,${PREFIX},g" \
+            -e "s,@release@,${PKGVERSION_NOREV},g" <libsds-2.pc.in >libsds-2.pc
+
+post-install:
+	cd ${WRKDIR} && ${INSTALL_DATA} libsds-2.pc \
+            ${DESTDIR}${PREFIX}/lib/pkgconfig/libsds-2.pc
 
 .include "../../mk/bsd.pkg.mk"

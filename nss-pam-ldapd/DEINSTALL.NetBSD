@@ -1,0 +1,8 @@
+# $NetBSD: DEINSTALL.NetBSD $
+
+case ${STAGE} in
+	POST-DEINSTALL)
+		rm -f /usr/lib/nss_ldap.so.0
+                rm -f /usr/lib/security/pam_ldap.so
+		;;
+esac

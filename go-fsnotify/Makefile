@@ -2,10 +2,11 @@
 #
 
 DISTNAME=		go-fsnotify-1.2.0
-GITHUB_PROJECT=         fsnotify
-CATEGORIES=             devel
-MASTER_SITES=           ${MASTER_SITE_GITHUB:=go-fsnotify/}
-GITHUB_TAG=             v${PKGVERSION_NOREV}
+GITHUB_PROJECT=		fsnotify
+PKGREVISION=		12
+CATEGORIES=		devel
+MASTER_SITES=		${MASTER_SITE_GITHUB:=go-fsnotify/}
+GITHUB_TAG=		v${PKGVERSION_NOREV}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		https://fsnotify.org/

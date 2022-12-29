@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (libinput-1.19.4.tar.xz) = 01c4d8c6550745050509fee3c751c30ba1ded23dbe0e9727adceeb615718d866
+SHA512 (libinput-1.19.4.tar.xz) = 3a046a1719747c04f59d48608c438399631c25d0ed0643ca0370206bb67c6da2ea0697bbbb8ea8cec0feff2bc61d63a9045519c961c5fd8fd46814b571468174
+Size (libinput-1.19.4.tar.xz) = 655528 bytes

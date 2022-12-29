@@ -5,15 +5,15 @@ CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GNU:=proxyknife/}
 
 MAINTAINER=	schwarz@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/proxyknife/proxyknife.html
+HOMEPAGE=	https://www.gnu.org/software/proxyknife/proxyknife.html
 COMMENT=	Proxyknife is a tool to validate free proxies
 LICENSE=	gnu-gpl-v3
 
-GNU_CONFIGURE=	YES
-INFO_FILES=	YES
+GNU_CONFIGURE=		YES
+INFO_FILES=		YES
 USE_PKGLOCALEDIR=	YES
-USE_TOOLS+=	perl gmake
-USE_FEATURES+=	snprintf
+USE_TOOLS+=		perl gmake
+USE_FEATURES+=		snprintf
 
 CONFIGURE_ARGS+=	--docdir=${PREFIX}/share/doc/proxyknife
 CPPFLAGS.SunOS+=	-DHAVE_LOCALE_H # apparently not automatically detected

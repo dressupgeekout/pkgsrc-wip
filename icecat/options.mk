@@ -9,10 +9,10 @@ PLIST_VARS+=		gnome
 PKG_SUGGESTED_OPTIONS+=	mozilla-jemalloc
 .endif
 
-.if !empty(MACHINE_ARCH:Mi386) || !empty(MACHINE_ARCH:Msparc) || \
-	!empty(MACHINE_ARCH:Marm)
-PKG_SUPPORTED_OPTIONS+= mozilla-jit
-PKG_SUGGESTED_OPTIONS+= mozilla-jit
+.if ${MACHINE_ARCH} == i386 || ${MACHINE_ARCH} == sparc || \
+	${MACHINE_ARCH} == arm
+PKG_SUPPORTED_OPTIONS+=	mozilla-jit
+PKG_SUGGESTED_OPTIONS+=	mozilla-jit
 .endif
 
 .include "../../mk/bsd.options.mk"
@@ -28,9 +28,9 @@ CONFIGURE_ARGS+=	--disable-gnomevfs --disable-dbus
 
 .if !empty(PKG_OPTIONS:Mmozilla-jemalloc)
 CONFIGURE_ARGS+=	--enable-jemalloc
-. if ${OPSYS} == "SunOS"
+.  if ${OPSYS} == "SunOS"
 PLIST.jemalloc=		yes
-. endif
+.  endif
 .else
 CONFIGURE_ARGS+=	--disable-jemalloc
 .endif

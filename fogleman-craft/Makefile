@@ -1,21 +1,22 @@
 # $NetBSD$
 
-DISTNAME=	Craft-${GITHUB_TAG}
+DISTNAME=	${GITHUB_PROJECT}-${GITHUB_TAG}
 PKGNAME=	fogleman-craft-${VERSION}
 VERSION=	1.0
 GITHUB_TAG=	v${PKGVERSION_NOREV}
+GITHUB_PROJECT=	Craft
 MASTER_SITES=	${MASTER_SITE_GITHUB:=fogleman/}
 CATEGORIES=	games
 LICENSE=	mit
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 COMMENT=	Simple Minecraft clone written in C
 HOMEPAGE=	https://www.michaelfogleman.com/craft/
 
 USE_CMAKE=	yes
 USE_LANGUAGES+=	c c++
 
-WRKSRC=			${WRKDIR}/Craft-${VERSION}
+WRKSRC=			${WRKDIR}/${GITHUB_PROJECT}-${VERSION}
 INSTALLATION_DIRS=	bin
 
 # The default 'install' target wants to install the dependencies it

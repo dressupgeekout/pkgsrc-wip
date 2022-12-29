@@ -8,7 +8,7 @@ MASTER_SITES=		http://download.tuxfamily.org/xmoto/xmoto/${VERSION}/ \
 VERSION=		0.5.11
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://xmoto.tuxfamily.org/
+HOMEPAGE=		https://xmoto.tuxfamily.org/
 COMMENT=		2D motocross platform game
 LICENSE=		gnu-gpl-v2
 
@@ -31,7 +31,7 @@ GCC_REQD+=		3.4
 pre-configure:
 	cd ${WRKSRC} && autoconf
 
-INSTALLATION_DIRS+= share/applications share/pixmaps
+INSTALLATION_DIRS+=	share/applications share/pixmaps
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/extra/xmoto.desktop ${DESTDIR}${PREFIX}/share/applications

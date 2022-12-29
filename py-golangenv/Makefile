@@ -1,12 +1,12 @@
 # $NetBSD$
 
 DISTNAME=	golangenv-0.1
-PKGNAME=        ${PYPKGPREFIX}-${DISTNAME}
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_PYPI:=g/golangenv/}
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://github.com/twang817/golangenv
+HOMEPAGE=	https://github.com/twang817/golangenv
 COMMENT=	Manage golang in your virtualenv
 LICENSE=	mit
 

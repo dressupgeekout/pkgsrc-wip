@@ -1,23 +1,23 @@
-# $NetBSD: Makefile,v 1.21 2015/09/07 13:10:43 thomasklausner Exp $
+# $NetBSD$
 
-DISTNAME=	xpra-1.0
+DISTNAME=	xpra-2.1.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	x11
 MASTER_SITES=	http://xpra.org/src/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://xpra.org/
+HOMEPAGE=	https://xpra.org/
 COMMENT=	screen(1) for X
 LICENSE=	gnu-gpl-v2
 
 DEPENDS+=	${PYPKGPREFIX}-cython>=0.14:../../devel/py-cython
+#DEPENDS+=	${PYPKGPREFIX}-cairo-[0-9]*:../../graphics/py-cairo118
 
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config
 
-#PYTHON_VERSIONED_DEPENDENCIES=	cairo
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-gtk2
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2
 
 REPLACE_PYTHON+=	cups/xpraforwarder
 REPLACE_PYTHON+=	*/*.py
@@ -54,5 +54,5 @@ post-install:
 .include "../../x11/libxkbfile/buildlink3.mk"
 #.include "../../x11/gtk3/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

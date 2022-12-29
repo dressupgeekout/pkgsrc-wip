@@ -6,6 +6,7 @@ PKGREVISION=	2
 CATEGORIES=	finance
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=grisbi/}
 EXTRACT_SUFX=	.tar.bz2
+LICENSE=	gnu-gpl-v2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://grisbi.sourceforge.net/
@@ -17,9 +18,9 @@ USE_TOOLS+=	pkg-config intltool gmake
 
 INSTALLATION_DIRS=	${PREFIX}${PKGMANDIR}/man1 ${PREFIX}/share/applications/
 
-PKG_OPTIONS_VAR=                PKG_OPTIONS.gribsi
-PKG_SUPPORTED_OPTIONS=          libofx
-PKG_SUGGESTED_OPTIONS=          libofx
+PKG_OPTIONS_VAR=		PKG_OPTIONS.gribsi
+PKG_SUPPORTED_OPTIONS=		libofx
+PKG_SUGGESTED_OPTIONS=		libofx
 
 .include "../../mk/bsd.options.mk"
 

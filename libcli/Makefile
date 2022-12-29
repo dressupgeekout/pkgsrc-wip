@@ -4,16 +4,15 @@
 DISTNAME=	libcli-1.8.8
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libcli/}
+LICENSE=	gnu-lgpl-v2
 
 MAINTAINER=	haaaad@gmail.com
 HOMEPAGE=	http://libcli.sourceforge.net/
-
-COMMENT="Provides a shared library for including a Cisco-like CLI."
-
+COMMENT=	Provides a shared library for including a Cisco-like CLI.
 
 USE_LANGUAGES+=	c
 
-WRKSRC=			${WRKDIR}/${DISTNAME}
+WRKSRC=		${WRKDIR}/${DISTNAME}
 
 INSTALLATION_DIRS=	lib share/examples
 

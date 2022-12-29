@@ -7,19 +7,19 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=umix/}
 MAINTAINER=	cez@compsoc.man.ac.uk
 HOMEPAGE=	http://umix.sourceforge.net/
 COMMENT=	Adjust mix levels
-
+LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		aclocal autoconf automake gmake pkg-config
 USE_LIBTOOL=		yes
 
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 
 LIBS+=			${LIBOSSAUDIO}
 
 pre-configure:
 	cd ${WRKSRC} && aclocal
-	cd ${WRKSRC} && ${LOCALBASE}/bin/libtoolize --automake
+	cd ${WRKSRC} && ${PREFIX}/bin/libtoolize --automake
 	cd ${WRKSRC} && automake --add-missing
 	cd ${WRKSRC} && autoconf
 

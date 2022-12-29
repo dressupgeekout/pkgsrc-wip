@@ -4,7 +4,7 @@ DISTNAME=	n2n-2.1.0
 CATEGORIES=	net
 
 MAINTAINER=	pho@cielonegro.org
-HOMEPAGE=	http://www.ntop.org/products/n2n/
+HOMEPAGE=	https://www.ntop.org/products/n2n/
 COMMENT=	Layer Two Peer-to-Peer VPN
 LICENSE=	gnu-gpl-v3
 
@@ -13,7 +13,7 @@ LICENSE=	gnu-gpl-v3
 ONLY_FOR_PLATFORM=	Darwin-*-* FreeBSD-*-* Linux-*-* NetBSD-*-*
 
 GIT_REPOSITORIES=	n2n
-GIT_REPO.n2n=		git://github.com/meyerd/n2n
+GIT_REPO.n2n=		https://github.com/meyerd/n2n
 
 RCD_SCRIPTS=		n2n_edge n2n_supernode
 DOCDIR=			share/doc/n2n

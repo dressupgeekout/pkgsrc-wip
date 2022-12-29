@@ -4,10 +4,10 @@ DISTNAME=	therubyracer-0.12.2
 PKGNAME=	${RUBY_PKGPREFIX}-${DISTNAME}
 CATEGORIES=	lang
 
-MAINTAINER=	filip@joyent.com
-HOMEPAGE=	http://github.com/cowboyd/libv8
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://github.com/cowboyd/libv8
 COMMENT=	Embedded V8 Javascript
-LICENSE=        mit
+LICENSE=	mit
 
 DEPENDS+=	${RUBY_PKGPREFIX}-libv8>=3.16:../../wip/ruby-libv8
 DEPENDS+=	${RUBY_PKGPREFIX}-ref-[0-9]*:../../devel/ruby-ref

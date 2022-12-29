@@ -1,21 +1,49 @@
 # $NetBSD$
 
-DISTNAME=	dask-0.11.0
+GITHUB_TAG=	2022.12.1
+DISTNAME=	dask-${GITHUB_TAG}
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-CATEGORIES=	devel
-MASTER_SITES=	https://pypi.python.org/packages/45/78/da8e4a5625e71566ff2af73c3ce61d7846c7405917fd1f15d5d15d4d06a6/
+GITHUB_PROJECT=	dask
+CATEGORIES=	math python
+MASTER_SITES=	${MASTER_SITE_GITHUB:=dask/}
 
 
-MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://github.com/dask/dask/
-COMMENT=	Dask is a flexible parallel computing library for analytics
+MAINTAINER=	matthewd@fastmail.us
+HOMEPAGE=	https://github.com/dask/dask/
+COMMENT=	Flexible parallel computing library for analytics
 LICENSE=	modified-bsd
 
-DEPENDS+=	${PYPKGPREFIX}-toolz>=0.7.1:../../wip/py-toolz
+.include "../../mk/bsd.prefs.mk"
+.include "options.mk"
 
-WRKSRC=		${WRKDIR}/dask-0.11.0
+BUILD_DEPENDS+=       ${PYPKGPREFIX}-wheel>=0:../../devel/py-wheel
+
+DEPENDS+=	${PYPKGPREFIX}-toolz>=0.8.2:../../devel/py-toolz
+DEPENDS+=	${PYPKGPREFIX}-numpy>=1.18:../../math/py-numpy
+DEPENDS+=	${PYPKGPREFIX}-pandas>=1.0:../../math/py-pandas
+DEPENDS+=	${PYPKGPREFIX}-partd>=0.3.10:../../wip/py-partd
+DEPENDS+=	${PYPKGPREFIX}-yaml>=5.3.1:../../textproc/py-yaml
+DEPENDS+=	${PYPKGPREFIX}-distributed>=2022.12.0:../../wip/py-distributed
+DEPENDS+=	${PYPKGPREFIX}-cloudpickle>=1.1.1:../../wip/py-cloudpickle
+DEPENDS+=	${PYPKGPREFIX}-fsspec>=2022.7.1:../../wip/py-fsspec
+DEPENDS+=	${PYPKGPREFIX}-zict>=2.1.0:../../wip/py-zict
+DEPENDS+=	${PYPKGPREFIX}-packaging>=20.0:../../devel/py-packaging
+DEPENDS+=	${PYPKGPREFIX}-jinja2-[0-9]*:../../textproc/py-jinja2
+
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-rerunfailures-[0-9]*:../../devel/py-test-rerunfailures
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-xdist-[0-9]*:../../devel/py-test-xdist
+TEST_DEPENDS+=	${PYPKGPREFIX}-multipledispatch>=0.6.0*:../../devel/py-multipledispatch
+TEST_DEPENDS+=	${PYPKGPREFIX}-pre-commit-[0-9]*:../../wip/py-pre-commit
+# TEST_DEPENDS+=	${PYPKGPREFIX}-s3fs>=2022*:../../wip/py-s3fs
+# TEST_DEPENDS+=	${PYPKGPREFIX}-sparse>=0.11.2:../../wip/py-sparse
+
+# The setup.py has integration with pytest-runner, but throws odd errors
+do-test:
+	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHONBIN} -m pytest -s
 
 USE_LANGUAGES=	# none
 
-.include "../../lang/python/egg.mk"
+.include "../../lang/python/wheel.mk"
+.include "../../math/py-numpy/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

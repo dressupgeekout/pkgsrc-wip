@@ -1,0 +1,6 @@
+$NetBSD$
+
+SHA512 (mrustc/998dc164309d7d707e5c1c38dd61c0b95169cbcf-998dc164309d7d707e5c1c38dd61c0b95169cbcf.zip) = ede7bee90a5b14548fb86c91b78d20a0c7847ab6795040399bbb6d6435985470f175ffe26262e3a86ab1c33a7ffa011ba09cddd6857ca8b5d3c1d7d9cfd96b09
+Size (mrustc/998dc164309d7d707e5c1c38dd61c0b95169cbcf-998dc164309d7d707e5c1c38dd61c0b95169cbcf.zip) = 1454068 bytes
+SHA1 (patch-Makefile) = 3ff1523b9475f4e5667c3a5c17026afef9ce2f90
+SHA1 (patch-src_hir__conv_constant__evaluation.cpp) = dae575bff16aa41aba4bfd80474b7b2054fadf84

@@ -8,7 +8,7 @@ MASTER_SITES=	http://www.hepforge.org/archive/agile/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://agile.hepforge.org/
+HOMEPAGE=	https://agile.hepforge.org/
 COMMENT=	Interface for a variety of Fortran-based Monte Carlo generators
 LICENSE=	gnu-gpl-v2
 
@@ -17,9 +17,9 @@ USE_LIBTOOL=	yes
 USE_TOOLS+=	bash:run
 USE_LANGUAGES=	c c++ fortran
 
-PKG_OPTIONS_VAR=                PKG_OPTIONS.agile
-PKG_SUPPORTED_OPTIONS=          pyext
-#PKG_SUGGESTED_OPTIONS=      pyext
+PKG_OPTIONS_VAR=	PKG_OPTIONS.agile
+PKG_SUPPORTED_OPTIONS=	pyext
+#PKG_SUGGESTED_OPTIONS=	pyext
 
 .include "../../mk/bsd.options.mk"
 

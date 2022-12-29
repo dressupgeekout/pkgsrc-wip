@@ -5,6 +5,7 @@ PKGNAME=	ap2-auth-imap-2.2.0
 PKGREVISION=	3
 CATEGORIES=	www mail
 MASTER_SITES=	http://ben.brillat.net/files/projects/mod_auth_imap2/
+LICENSE=	gnu-gpl-v2
 
 MAINTAINER=	cg@cgall.de
 HOMEPAGE=	http://ben.brillat.net/projects/mod_auth_imap/
@@ -24,9 +25,9 @@ do-install:
 	cd ${WRKSRC} && ${APXS} -n ${APACHE_MODULE_NAME} -i mod_auth_imap.la
 
 post-install:
-	${INSTALL_DATA_DIR} ${PREFIX:Q}/share/examples/ap2-auth-imap
-	${INSTALL_DATA} ${WRKSRC:Q}/examples/htaccess-example ${PREFIX:Q}/share/examples/ap2-auth-imap
-	${INSTALL_DATA} ${WRKSRC:Q}/examples/httpd.conf-append-example ${PREFIX:Q}/share/examples/ap2-auth-imap
+	${INSTALL_DATA_DIR} ${PREFIX}/share/examples/ap2-auth-imap
+	${INSTALL_DATA} ${WRKSRC}/examples/htaccess-example ${PREFIX}/share/examples/ap2-auth-imap
+	${INSTALL_DATA} ${WRKSRC}/examples/httpd.conf-append-example ${PREFIX}/share/examples/ap2-auth-imap
 
 .include "../../mk/apache.mk"
 .include "../../mk/pthread.buildlink3.mk"

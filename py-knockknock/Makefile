@@ -2,14 +2,14 @@
 #
 
 DISTNAME=	knockknock-0.8
-PKGNAME=        ${PYPKGPREFIX}-${DISTNAME}
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	security
 MASTER_SITES=	https://moxie.org/software/knockknock/
 
 MAINTAINER=	pettai@nordu.net
 HOMEPAGE=	https://moxie.org/software/knockknock/
 COMMENT=	Simple & secure port knocking client/server written in python
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	gnu-gpl-v3
 
 DEPENDS+=	hping3-[0-9]*:../../net/hping3
 DEPENDS+=	${PYPKGPREFIX}-crypto-[0-9]*:../../security/py-crypto

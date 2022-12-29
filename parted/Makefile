@@ -5,9 +5,10 @@ DISTNAME=		parted-1.6.23
 PKGREVISION=		1
 CATEGORIES=		sysutils
 MASTER_SITES=		http://ftp.gnu.org/gnu/parted/
+LICENSE=		gnu-gpl-v3
 
 MAINTAINER=		reed@reedmedia.net
-HOMEPAGE=		http://www.gnu.org/software/parted/parted.html
+HOMEPAGE=		https://www.gnu.org/software/parted/parted.html
 COMMENT=		Create, destroy, resize, check, and copy partitions and file systems
 
 ONLY_FOR_PLATFORM=	Linux-*-*

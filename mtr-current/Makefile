@@ -1,20 +1,18 @@
-# $NetBSD: Makefile,v 1.20 2015/03/24 14:03:21 yvs4sf Exp $
+# $NetBSD$
 
 CATEGORIES=	net
 PKGBASE=	mtr
-PKGVERSION=	0.86.99
-#PKGREVISION=	0
-#
+PKGVERSION=	0.87.225
 PKGNAME=	${PKGBASE}-${PKGVERSION}
-DISTNAME=	${PKGBASE}-${GITVERSION}
-MASTER_SITES=	https://github.com/${GITHUB_USER}/${PKGBASE}/tarball/${GITVERSION}/
-WRKSRC=		${WRKDIR}/${GITHUB_USER}-${PKGBASE}-${GITVERSION}
+DISTNAME=	${PKGBASE}-${GITHUB_HASH}
+MASTER_SITES=	https://github.com/${GITHUB_USER}/${PKGBASE}/tarball/${GITHUB_HASH}/
+WRKSRC=		${WRKDIR}/${GITHUB_USER}-${PKGBASE}-${GITHUB_HASH}
 
-GITVERSION=	effef18
+GITHUB_HASH=	e6d0a7e
 GITHUB_USER=	traviscross
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.bitwizard.nl/mtr/
+HOMEPAGE=	https://www.bitwizard.nl/mtr/
 COMMENT=	Traceroute and ping in a single graphical network diagnostic tool
 LICENSE=	gnu-gpl-v2
 
@@ -27,12 +25,7 @@ INSTALLATION_DIRS=	${PKGMANDIR}/man8 sbin share/doc/mtr
 
 .include "options.mk"
 
-# mtr uses libtermcap by default, but needs wattr_{on,off} from (n)curses,
-# so we rewrite -ltermcap to -lncurses (which will be auto-mangled into
-# -lcurses on the appropriate platforms).
-BUILDLINK_TRANSFORM+=	l:termcap:ncurses
-
-SPECIAL_PERMS=	sbin/mtr ${SETUID_ROOT_PERMS}
+SPECIAL_PERMS=	sbin/mtr-packet ${SETUID_ROOT_PERMS}
 
 # Remove hard-coded compiler option that GCC 3.x doesn't support.
 .include "../../mk/compiler.mk"
@@ -44,13 +37,21 @@ BUILDLINK_TRANSFORM+=	rm:-Wno-pointer-sign
 LIBS+=	-lresolv
 .endif
 
+SUBST_CLASSES+=			fix-version
+SUBST_STAGE.fix-version=	post-patch
+SUBST_MESSAGE.fix-version=	Fixing version
+SUBST_FILES.fix-version=	configure.ac
+SUBST_SED.fix-version=		-e '/build-aux\/git-version-gen/s/\[.*\]/[${PKGVERSION}]/'
+
 pre-configure:
 	autoreconf -fi ${WRKSRC}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/mtr ${DESTDIR}${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/mtr-packet ${DESTDIR}${PREFIX}/sbin
 	${INSTALL_DATA} ${WRKSRC}/mtr.8 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
+	${INSTALL_DATA} ${WRKSRC}/mtr-packet.8 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
 	${INSTALL_DATA} ${WRKSRC}/SECURITY ${DESTDIR}${PREFIX}/share/doc/mtr
 
-.include "../../devel/ncurses/buildlink3.mk"
+.include "../../mk/curses.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

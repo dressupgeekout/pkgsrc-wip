@@ -1,0 +1,18 @@
+$NetBSD$
+
+--- schemas/org.cinnamon.desktop.session.gschema.xml.in.orig	2021-11-15 12:11:43.000000000 +0000
++++ schemas/org.cinnamon.desktop.session.gschema.xml.in
+@@ -13,11 +13,11 @@
+       "gnome" and "gnome-fallback".</description>
+     </key>
+     <key name="session-manager-uses-logind" type="b">
+-      <default>true</default>
++      <default>false</default>
+       <summary>*no longer used*</summary>
+     </key>
+     <key name="settings-daemon-uses-logind" type="b">
+-      <default>true</default>
++      <default>false</default>
+       <summary>*no longer used*</summary>
+     </key>
+   </schema>

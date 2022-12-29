@@ -1,6 +1,11 @@
-@comment $NetBSD: PLIST,v 1.2 2013/03/23 14:53:14 outpaddling Exp $
-bin/instant-clean
-bin/instant-showcache
+@comment $NetBSD$
+bin/instant-clean${PYVERSSUFFIX}
+bin/instant-showcache${PYVERSSUFFIX}
+${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
+${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
+${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
+${PYSITELIB}/${EGG_INFODIR}/requires.txt
+${PYSITELIB}/${EGG_INFODIR}/top_level.txt
 ${PYSITELIB}/instant/__init__.py
 ${PYSITELIB}/instant/__init__.pyc
 ${PYSITELIB}/instant/__init__.pyo

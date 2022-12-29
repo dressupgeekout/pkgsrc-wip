@@ -1,6 +1,8 @@
-$NetBSD$
+$NetBSD: patch-toolkit_components_terminator_nsTerminator.cpp,v 1.1 2016/06/16 12:08:21 ryoon Exp $
 
---- toolkit/components/terminator/nsTerminator.cpp.orig	2016-06-27 17:15:24.677082132 +0000
+* Fix segfault on exit under NetBSD
+
+--- toolkit/components/terminator/nsTerminator.cpp.orig	2016-06-15 21:54:53.514370128 +0000
 +++ toolkit/components/terminator/nsTerminator.cpp
 @@ -36,7 +36,7 @@
  #if defined(XP_WIN)

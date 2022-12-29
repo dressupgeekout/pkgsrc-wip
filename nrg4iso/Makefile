@@ -3,7 +3,7 @@
 
 DISTNAME=	nrg4iso-1.0.1
 CATEGORIES=	sysutils
-MASTER_SITES=	http://nrg4iso.googlecode.com/files/
+MASTER_SITES=	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/nrg4iso/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	schwarz@NetBSD.org
@@ -11,12 +11,12 @@ HOMEPAGE=	http://code.google.com/p/nrg4iso/
 COMMENT=	Extracts data from a Nero Burning ROM image file
 LICENSE=	modified-bsd
 
-NO_CONFIGURE=	yes
-WRKSRC=		${WRKDIR}/nrg4iso
+NO_CONFIGURE=		yes
+WRKSRC=			${WRKDIR}/nrg4iso
 BUILD_TARGET=
 INSTALLATION_DIRS=	bin
 
-SUBST_CLASSES+=	nospec
+SUBST_CLASSES+=		nospec
 SUBST_STAGE.nospec=	post-patch
 SUBST_FILES.nospec=	Makefile
 SUBST_SED.nospec=	-e 's/^CC/\#CC/g' -e 's/^CFLAGS/\#CFLAGS/g'

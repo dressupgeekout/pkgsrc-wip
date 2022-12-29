@@ -4,8 +4,8 @@ DISTNAME=	swift-2.0
 CATEGORIES=	chat
 MASTER_SITES=	http://swift.im/downloads/releases/swift-2.0/
 
-MAINTAINER=	eric@cirr.com
-HOMEPAGE=	http://swift.im/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://swift.im/
 COMMENT=	Swift XMPP Client
 LICENSE=	gnu-gpl-v3
 

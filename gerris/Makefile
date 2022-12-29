@@ -7,13 +7,13 @@ MASTER_SITES=	http://garr.dl.sourceforge.net/project/gfs/gerris/0.9.2/
 
 MAINTAINER=	jihbed.research@gmail.com
 HOMEPAGE=	http://gfs.sourceforge.net/wiki/index.php/Main_Page
-COMMENT=	Software the solution of the PDE describing fluid flow
+COMMENT=	Software solution of the PDE describing fluid flow
 #LICENSE=	# TODO: (see mk/license.mk)
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config pax
-USE_LANGUAGES+=	 c c++
+USE_LANGUAGES+=	c c++
 
 PKGCONFIG_OVERRIDE+=	src/gerris2D.pc.in
 PKGCONFIG_OVERRIDE+=	src/gerris2D3.pc.in

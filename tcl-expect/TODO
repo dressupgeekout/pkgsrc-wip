@@ -1,0 +1,11 @@
+- In patch-configure:
+
+   - Check "avoid regenerating within pkgsrc", which is labeled as
+     from the previous version but does not appear there.  This is no
+     longer present, but if someone thinks it belongs we should
+     discuss.
+
+- The package patches an m4 file and configure, and this doesn't
+  really make sense, as either we are regenerating configure or we
+  aren't.  At the moment we are not regenerating configure, so the m4
+  patch has no effect.  Explain/fix.

@@ -9,23 +9,23 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=visionegg/}
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://visionegg.sourceforge.net/
 COMMENT=	Visual stimulus creation and control in Python
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	gnu-lgpl-v2.1
 
 DEPENDS+=	${PYPKGPREFIX}-Pyro4>=3.4:../../devel/py-Pyro
 DEPENDS+=	${PYPKGPREFIX}-OpenGL-[0-9]*:../../graphics/py-OpenGL
 DEPENDS+=	${PYPKGPREFIX}-Tk-[0-9]*:../../x11/py-Tk
 
-USE_LANGUAGES= c c++
+USE_LANGUAGES=	c c++
 
 MAKE_ENV+=		PYVERSSUFFIX=${PYVERSSUFFIX:Q}
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-Numeric
-REPLACE_PYTHON+=	check-config.py
-REPLACE_PYTHON+=	test/display_dc_restoration.py
-REPLACE_PYTHON+=	test/opengl_info.py
+PYTHON_VERSIONS_ACCEPTED=	27 # py-Numeric
+REPLACE_PYTHON+=		check-config.py
+REPLACE_PYTHON+=		test/display_dc_restoration.py
+REPLACE_PYTHON+=		test/opengl_info.py
 
 .include "../../devel/py-game/buildlink3.mk"
 .include "../../math/py-Numeric/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

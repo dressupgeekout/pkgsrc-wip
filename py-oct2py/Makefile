@@ -2,12 +2,12 @@
 #
 
 DISTNAME=	oct2py-0.3.4
-PKGNAME=        ${PYPKGPREFIX}-${DISTNAME}
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_PYPI:=o/oct2py/}
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://github.com/blink1073/oct2py
+HOMEPAGE=	https://github.com/blink1073/oct2py
 COMMENT=	Python to GNU Octave bridge --> run m-files from python
 LICENSE=	mit
 

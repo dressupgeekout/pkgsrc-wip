@@ -4,6 +4,7 @@
 DISTNAME=		msworkbench-0.3
 CATEGORIES=		geography
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=msworkbench/}
+LICENSE=		gnu-lgpl-v2
 
 MAINTAINER=		mchittur@cs.nmsu.edu
 HOMEPAGE=		http://msworkbench.sourceforge.net/
@@ -17,7 +18,7 @@ SUBST_CLASSES+=		wishpath
 SUBST_STAGE.wishpath=	pre-install
 SUBST_FILES.wishpath=	install.sh
 SUBST_SED.qtbindir=	's:$${PREFIX}:${PREFIX}:g'
-SUBST_MESSAGE.wishpath= Fixing Wish path
+SUBST_MESSAGE.wishpath=	Fixing Wish path
 
 INSTALLATION_DIRS=	bin
 

@@ -6,14 +6,15 @@ PKGNAME=	squirrelmail-${DISTNAME}
 CATEGORIES=	mail
 MASTER_SITES=	http://www.squirrelmail.org/plugins/
 
-MAINTAINER=	eric@cirr.com
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.squirrelmail.org/
 COMMENT=	Sieve Script editing plugin for SquirrelMail
+LICENSE=	gnu-gpl-v2
 
 NO_CONFIGURE=	yes
 
 WRKSRC=		${WRKDIR}
-USE_TOOLS+= tar
+USE_TOOLS+=	tar
 
 SMDIR=			${PREFIX}/share/squirrelmail
 MESSAGE_SUBST+=		SMDIR=${SMDIR}

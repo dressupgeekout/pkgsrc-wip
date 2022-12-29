@@ -5,6 +5,7 @@ DISTNAME=	# git package
 PKGNAME=	libcpu-0
 CATEGORIES=	devel
 MASTER_SITES=	# git package
+LICENSE=	2-clause-bsd
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/libcpu/libcpu
@@ -17,7 +18,7 @@ WRKSRC=		${WRKDIR}/libcpu
 BUILDLINK_TRANSFORM+=	rm:-Werror
 
 GIT_REPOSITORIES=	libcpu
-GIT_REPO.libcpu=	git://github.com/libcpu/libcpu.git
+GIT_REPO.libcpu=	https://github.com/libcpu/libcpu.git
 
 pre-configure:
 	${LN} -s ${LLVM_CONFIG_PATH} ${TOOLS_DIR}/bin/llvm-config

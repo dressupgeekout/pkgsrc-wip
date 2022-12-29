@@ -1,5 +1,5 @@
-$NetBSD: distinfo,v 1.4 2014/09/30 10:31:54 fhajny Exp $
+$NetBSD$
 
-SHA1 (Pint-0.5.2.zip) = 8017605186214b25ea244876481f107408514088
-RMD160 (Pint-0.5.2.zip) = 278e25f93cc15e28c6b1d4e2fd10051a4560e06d
-Size (Pint-0.5.2.zip) = 134033 bytes
+BLAKE2s (Pint-0.20.1.tar.gz) = 0d01804555549addbe204ca11b8f81544458330b61f38e875dc0431f8571aa19
+SHA512 (Pint-0.20.1.tar.gz) = f2bcd3e779e7975044b2d63f6a4ea778697728a437c4bd2085e80d29fec18f5f0fef2d33dbadf3c3a2cf818d033b9175ad5efa0df92c4da55335405ddb158ff1
+Size (Pint-0.20.1.tar.gz) = 316180 bytes

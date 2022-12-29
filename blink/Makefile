@@ -6,7 +6,7 @@ CATEGORIES=	net
 MASTER_SITES=	http://download.ag-projects.com/BlinkQt/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ag-projects.com/blink-products-283
+HOMEPAGE=	https://ag-projects.com/blink-products-283
 COMMENT=	Qt version of Blink, a state of the art, easy to use SIP client
 LICENSE=	gnu-gpl-v3
 
@@ -15,13 +15,14 @@ DEPENDS+=	${PYPKGPREFIX}-eventlib-[0-9]*:../../net/py-eventlib
 DEPENDS+=	${PYPKGPREFIX}-python-application-[0-9]*:../../wip/py-python-application
 DEPENDS+=	${PYPKGPREFIX}-qt4-[0-9]*:../../x11/py-qt4
 DEPENDS+=	${PYPKGPREFIX}-cython-[0-9]*:../../devel/py-cython
+DEPENDS+=	${PYPKGPREFIX}-cjson-[0-9]*:../../textproc/py-cjson
 
 USE_LANGUAGES=	c
 
-REPLACE_PYTHON+=	resources/chat/styles/Smooth\ Operator/test/view.py
-REPLACE_PYTHON+=	resources/chat/styles/Stockholm/test/view.py
-PY_PATCHPLIST=		yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-python-application, py-python-gnutls
+REPLACE_PYTHON+=		resources/chat/styles/Smooth\ Operator/test/view.py
+REPLACE_PYTHON+=		resources/chat/styles/Stockholm/test/view.py
+PY_PATCHPLIST=			yes
+PYTHON_VERSIONS_ACCEPTED=	27 # py-python-application, py-python-gnutls
 
 post-install:
 	${MV} ${DESTDIR}${PREFIX}/bin/blink \
@@ -33,8 +34,7 @@ post-install:
 	done
 
 .include "../../net/libvncserver/buildlink3.mk"
-.include "../../textproc/py-cjson/buildlink3.mk"
 .include "../../x11/py-sip/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

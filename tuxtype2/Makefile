@@ -2,16 +2,16 @@
 
 DISTNAME=	Tuxtype2-${VERSION}
 PKGNAME=	tuxtype2-${VERSION}
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=tuxtype/}
 
 MAINTAINER=	reed@reedmedia.net
-COMMENT=	Educational typing tutorial game for children
 HOMEPAGE=	http://tuxtype.sourceforge.net/
+COMMENT=	Educational typing tutorial game for children
+LICENSE=	gnu-gpl-v2
 
 VERSION=	1.5.0
-
 
 WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
 GNU_CONFIGURE=	YES

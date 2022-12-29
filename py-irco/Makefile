@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.6 2014/12/31 13:58:32 thomasklausner Exp $
 
 DISTNAME=	irco-0.9.1
-PKGNAME=        ${PYPKGPREFIX}-${DISTNAME}
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=i/irco/}
 
@@ -18,12 +18,12 @@ DEPENDS+=	${PYPKGPREFIX}-werkzeug>=0.9.4:../../www/py-werkzeug
 DEPENDS+=	${PYPKGPREFIX}-ftfy>=3.0.4:../../textproc/py-ftfy
 DEPENDS+=	${PYPKGPREFIX}-itsdangerous>=0.23:../../security/py-itsdangerous
 DEPENDS+=	${PYPKGPREFIX}-networkx>=1.7:../../math/py-networkx
-DEPENDS+=	${PYPKGPREFIX}-pycountry>=0.19:../../geography/py-pycountry
+DEPENDS+=	${PYPKGPREFIX}-country>=0.19:../../geography/py-country
 DEPENDS+=	${PYPKGPREFIX}-requests>=1.2.3:../../devel/py-requests
 DEPENDS+=	${PYPKGPREFIX}-structlog>=0.3.2:../../sysutils/py-structlog
 BROKEN=		needs unpackaged wip/py-tablib-garetjax
 #DEPENDS+=	${PYPKGPREFIX}-tablib-garetjax>=0.9.12:../../wip/py-tablib-garetjax
-DEPENDS+=	${PYPKGPREFIX}-raven>=4.2.1:../../wip/py-raven
+DEPENDS+=	${PYPKGPREFIX}-raven>=4.2.1:../../www/py-raven
 
 USE_LANGUAGES=	# none
 

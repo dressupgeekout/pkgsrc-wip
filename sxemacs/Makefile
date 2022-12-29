@@ -6,15 +6,16 @@ CATEGORIES=	editors
 MASTER_SITES=	http://downloads.sxemacs.org/releases/
 
 MAINTAINER=	hauke@Espresso.Rhein-Neckar.DE
-HOMEPAGE=	http://www.sxemacs.org/
+HOMEPAGE=	https://www.sxemacs.org/
 COMMENT=	SXEmacs text editor version 22
+LICENSE=	gnu-gpl-v3
 
 CONFLICTS+=	gnuclient-[0-9]*
 CONFLICTS+=	xemacs-[0-9]*
 
 
-PLIST_SUBST+=	DISTNAME=${DISTNAME:Q}
-MESSAGE_SUBST+=	DISTNAME=${DISTNAME:Q}
+PLIST_SUBST+=	DISTNAME=${DISTNAME}
+MESSAGE_SUBST+=	DISTNAME=${DISTNAME}
 
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		makeinfo perl
@@ -82,11 +83,11 @@ PLIST_SUBST+=	X11ONLY=""
 INFOPATH=	${PREFIX}/info:${X11BASE}/info:/usr/local/info
 
 CONFIGURE_ARGS+=	${MACHINE_GNU_PLATFORM}
-CONFIGURE_ARGS+=	--prefix=${PREFIX:Q}
+CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--with-clash-detection
 CONFIGURE_ARGS+=	--with-mule=yes
 .if ${OPSYS} == "Darwin"
-CONFIGURE_ARGS+=       --with-ncurses
+CONFIGURE_ARGS+=	--with-ncurses
 .elif ${OPSYS} != "Linux"
 CONFIGURE_ARGS+=	--with-ncurses=no
 .endif
@@ -95,7 +96,7 @@ CONFIGURE_ARGS+=	${WITH_DIALOGS}
 CONFIGURE_ARGS+=	--with-infopath=${INFOPATH:Q}
 CONFIGURE_ARGS+=	--with-site-includes=${BUILDLINK_DIR}/include:${BUILDLINK_X11_DIR}/include
 CONFIGURE_ARGS+=	--with-site-libraries=${BUILDLINK_DIR}/lib:${BUILDLINK_X11_DIR}
-CONFIGURE_ARGS+=	--with-site-runtime-libraries=${LOCALBASE}/lib:${X11BASE}/lib
+CONFIGURE_ARGS+=	--with-site-runtime-libraries=${PREFIX}/lib:${X11BASE}/lib
 
 CFLAGS+=		-Dunix
 

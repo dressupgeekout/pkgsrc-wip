@@ -7,9 +7,9 @@ CATEGORIES=	chat python
 # MASTER_SITES=	http://code.stanziq.com/punjab/export/38/releases/
 # MASTER_SITES=	http://code.stanziq.com/cgit/punjab/punjab/snapshot/
 MASTER_SITES=	https://github.com/twonds/punjab/archive/master.zip
+LICENSE=	mit
 
-
-MAINTAINER=	eric@cirr.com
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/twonds/punjab
 COMMENT=	HTTP XMMP client interface implementing BOSH/XEP-0124
 BROKEN=		Source tarballs have disappeared.
@@ -23,13 +23,8 @@ BROKEN=		Source tarballs have disappeared.
 DEPENDS+=	${PYPKGPREFIX}-twisted>=8.1.0:../../net/py-twisted
 DEPENDS+=	${PYPKGPREFIX}-crypto>=2.0.1:../../security/py-crypto
 
-# it's a python package using the standard Python packager
-PYDISTUTILSPKG=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-twisted
-
 # always include bsd.prefs.mk before any .if or .ifdef statements
 .include "../../mk/bsd.prefs.mk"
-
 
 JABBER_USER?=		jabberd
 JABBER_GROUP?=		jabberd
@@ -39,8 +34,8 @@ PKG_GROUPS_VARS+=	JABBER_GROUP
 
 .include "../../wip/jabberd/transports.mk"
 
-DOCDIR=                 ${PREFIX}/share/doc/punjab
-DOCFILES=               README.txt INSTALL.txt
+DOCDIR=			${PREFIX}/share/doc/punjab
+DOCFILES=		README.txt INSTALL.txt
 
 INSTALLATION_DIRS=	share/doc/punjab
 
@@ -56,15 +51,15 @@ SUBST_CLASSES+=		paths
 SUBST_MESSAGE.paths=	Localizing Paths
 SUBST_STAGE.paths=	pre-configure
 SUBST_FILES.paths=	example-config.xml
-SUBST_SED.paths+=	-e 's,@JABBER_GROUP@,${JABBER_GROUP},g'
-SUBST_SED.paths+=	-e 's,@JABBER_LOGDIR@,${JABBER_LOGDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_PIDDIR@,${JABBER_PIDDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_SPOOLDIR@,${JABBER_SPOOLDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_TRANSDIR@,${JABBER_TRANSDIR},g'
-SUBST_SED.paths+=	-e 's,@JABBER_USER@,${JABBER_USER},g'
-SUBST_SED.paths+=	-e 's,@PKG_SYSCONFDIR@,${PKG_SYSCONFDIR},g'
-SUBST_SED.paths+=	-e 's,@PREFIX@,${PREFIX},g'
-SUBST_SED.paths+=	-e 's,@TRANSPORTDIR@,${TRANSPORTDIR},g'
+SUBST_VARS.paths=	JABBER_GROUP
+SUBST_VARS.paths+=	JABBER_LOGDIR
+SUBST_VARS.paths+=	JABBER_PIDDIR
+SUBST_VARS.paths+=	JABBER_SPOOLDIR
+SUBST_VARS.paths+=	JABBER_TRANSDIR
+SUBST_VARS.paths+=	JABBER_USER
+SUBST_VARS.paths+=	PKG_SYSCONFDIR
+SUBST_VARS.paths+=	PREFIX
+SUBST_VARS.paths+=	TRANSPORTDIR
 
-.include "../../lang/python/extension.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

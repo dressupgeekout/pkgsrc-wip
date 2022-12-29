@@ -6,6 +6,7 @@ PKGNAME=		openaxiom-1.4.1
 CATEGORIES=		math
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=open-axiom/}
 EXTRACT_SUFX=		.tar.bz2
+LICENSE=		modified-bsd
 
 MAINTAINER=		asau@inbox.ru
 HOMEPAGE=		http://www.open-axiom.org/
@@ -24,7 +25,7 @@ BUILD_DEPENDS+=		noweb-[0-9]*:../../devel/noweb
 
 BUILD_MAKE_FLAGS+=	TOOLS_PLATFORM.install=${TOOLS_PLATFORM.install:Q}
 
-CONFIGURE_ENV+=		HOST_AWK=$(TOOLS_PATH.awk)	# force it
+CONFIGURE_ENV+=		HOST_AWK=${TOOLS_PATH.awk}	# force it
 
 .include "options.mk"
 
@@ -47,7 +48,7 @@ pre-configure:
 	${RUN} cd ${WRKSRC} && ./build-setup.sh
 
 # Skip these checks for now:
-CHECK_WRKREF_SKIP=     lib/*/hypertex lib/*/viewAlone lib/*/view2D lib/*/view3D lib/*/viewman
+CHECK_WRKREF_SKIP=	lib/*/hypertex lib/*/viewAlone lib/*/view2D lib/*/view3D lib/*/viewman
 
 
 # Get it from Subversion repository:

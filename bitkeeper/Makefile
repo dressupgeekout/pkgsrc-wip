@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	bk-7.3ce
+DISTNAME=	bk-7.3.3
 PKGNAME=	${DISTNAME:S/bk/bitkeeper/}
 CATEGORIES=	devel
-MASTER_SITES=	http://www.bitkeeper.org/downloads/7.3ce/
+MASTER_SITES=	http://www.bitkeeper.org/downloads/7.3.3/
 EXTRACT_SUFX=	.src.tar.gz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -13,7 +13,7 @@ LICENSE=	apache-2.0
 
 USE_TOOLS+=	gmake bison lex groff perl bash pkg-config
 
-BUILD_DEPENDS+= gperf-[0-9]*:../../devel/gperf
+BUILD_DEPENDS+=	gperf-[0-9]*:../../devel/gperf
 
 BUILD_DIRS=	src
 

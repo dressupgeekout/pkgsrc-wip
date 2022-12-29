@@ -10,9 +10,9 @@ HOMEPAGE=	http://www.alfanous.org/
 COMMENT=	Quranic search engine API
 LICENSE=	gnu-agpl-v3
 
-DEPENDS+=	${PYPKGPREFIX}-pyparsing>=2.0.2:../../devel/py-pyparsing
-
 WRKSRC=		${WRKDIR}/alfanous-0.7.28
+
+DEPENDS+=	${PYPKGPREFIX}-pyparsing-[0-9]*:../../devel/py-pyparsing
 
 USE_LANGUAGES=	# none
 

@@ -6,14 +6,14 @@ CATEGORIES=	devel
 MASTER_SITES=	http://people.gnome.org/~ryanl/src/
 
 MAINTAINER=	pkgsrc.gnome@gmail.com
-HOMEPAGE=	http://people.gnome.org/~ryanl/src/
+HOMEPAGE=	https://people.gnome.org/~ryanl/src/
 COMMENT=	GVariant is a new datatype in glib that stores complex values
 LICENSE=	gnu-gpl-v3
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config
-USE_LANGUAGES= c c++
+USE_LANGUAGES=	c c++
 
 PKGCONFIG_OVERRIDE+=	glib/gvariant.pc.in
 

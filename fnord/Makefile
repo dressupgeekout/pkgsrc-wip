@@ -6,14 +6,14 @@ MASTER_SITES=	http://www.fefe.de/fnord/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	schwarz@NetBSD.org
-HOMEPAGE=	http://www.fefe.de/fnord/
+HOMEPAGE=	https://www.fefe.de/fnord/
 COMMENT=	Small HTTP server
 LICENSE=	gnu-gpl-v2
 
 # web server Gatling running at www.fefe.de is incompatible with BSD ftp
 # cf. PR#45516
 USE_TOOLS+=	gmake
-DEPENDS+=	ucspi-tcp-*:../../net/ucspi-tcp
+DEPENDS+=	{ucspi-tcp6-[0-9]*,ucspi-tcp-[0-9]*}:../../net/ucspi-tcp
 
 CFLAGS+=	${CPPFLAGS}
 MAKE_ENV+=	RANLIB=${RANLIB:Q} LIBS=${LIBS:Q}
@@ -27,6 +27,6 @@ LIBS.SunOS+=	-lsocket -lnsl
 INSTALLATION_DIRS=	sbin
 
 do-install:
-		cd ${WRKSRC} && ${INSTALL_PROGRAM} fnord fnord-cgi fnord-idx ${DESTDIR}${PREFIX}/sbin
+	cd ${WRKSRC} && ${INSTALL_PROGRAM} fnord fnord-cgi fnord-idx ${DESTDIR}${PREFIX}/sbin
 
 .include "../../mk/bsd.pkg.mk"

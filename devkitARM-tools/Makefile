@@ -2,17 +2,17 @@
 
 DISTNAME=	devkitARM-tools-45
 CATEGORIES=	cross
-
 MASTER_SITES=	${MASTER_SITE_GITHUB:=devkitPro/}
 GITHUB_PROJECT=	general-tools
 GITHUB_TAG=	36c900196bbc3cf58375c8ae5f6ee46b3324b0a1
 
 MAINTAINER=	js@heap.zone
-HOMEPAGE=	http://devkitpro.org/
+HOMEPAGE=	https://devkitpro.org/
 COMMENT=	General tools for devkitARM
 # They currently don't have a license:
 # https://github.com/devkitPro/general-tools/issues/1
 LICENSE=	devkitpro-license
+
 WRKSRC=		${WRKDIR}/general-tools-${GITHUB_TAG}
 USE_LANGUAGES=	c c++
 

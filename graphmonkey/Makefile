@@ -25,9 +25,9 @@ SUBST_STAGE.prefix=	post-patch
 INSTALLATION_DIRS+=	bin share/pixmaps
 
 post-install:
-		${INSTALL_DATA} ${WRKSRC}/pixmaps/*.png \
-			${DESTDIR}${PREFIX}/share/pixmaps
+	${INSTALL_DATA} ${WRKSRC}/pixmaps/*.png \
+		${DESTDIR}${PREFIX}/share/pixmaps
 
-.include "../../lang/mono2/buildlink3.mk"
+.include "../../lang/mono/buildlink3.mk"
 .include "../../x11/gtk-sharp/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

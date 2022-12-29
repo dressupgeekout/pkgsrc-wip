@@ -1,16 +1,17 @@
 $NetBSD$
 
-SHA1 (freecad-0.16.tar.gz) = 5e8956588e87b18c8c4140cbdcaa1229c04907bb
 RMD160 (freecad-0.16.tar.gz) = 47eef6c13df03dfa424a0b9389b9b549a7569c6c
 SHA512 (freecad-0.16.tar.gz) = bc9dc8122cabd9a84f2b955746818e0d77ae90e68747ec96521099472b7803df9ff794ed823d6eb29352bd0538b8f01cf81c306ff427f1af2ee049f8f7096dbb
 Size (freecad-0.16.tar.gz) = 111706127 bytes
 SHA1 (patch-CMakeLists.txt) = 7a89a8ea491b8cb234c768a3e8b82878bd1bbf9e
-SHA1 (patch-src_3rdParty_salomesmesh_src_SMDS_SMDS__MemoryLimit.cpp) = 38bed1dd4708a83dd06fea2fbc5547513f7156cd
-SHA1 (patch-src_3rdParty_salomesmesh_src_SMDS_SMDS__Mesh.cpp) = ebef7e0abdd3ada326e607c931a46099ad93cefc
+SHA1 (patch-src_3rdParty_salomesmesh_src_SMDS_SMDS__MemoryLimit.cpp) = 26e640d87715e323474ebb743c8ede55deb42077
+SHA1 (patch-src_3rdParty_salomesmesh_src_SMDS_SMDS__Mesh.cpp) = 394c55da62b7a31a4e24820b224c699329019d9a
 SHA1 (patch-src_App_Application.cpp) = 7f23ee068ae97695c81a847ebf93abce9f8db2c7
 SHA1 (patch-src_App_CMakeLists.txt) = c73a2a69235bf62ae0a1d45101fd021826aed9cf
 SHA1 (patch-src_App_FreeCADInit.py) = 81ff70632cdb15ab4ebd744da64f691bf621f3d2
-SHA1 (patch-src_Main_CMakeLists.txt) = c10d5b97eb8fb840360681c4a5a38b14b8c1c0bb
+SHA1 (patch-src_Base_TimeInfo.cpp) = 7ec2ddac5c326ff1b1aa3f68c046c81018cc6e23
+SHA1 (patch-src_Base_TimeInfo.h) = 3dbdd0fbb27c0c8fb1fe7cec8faa6c437426d9c6
+SHA1 (patch-src_Main_CMakeLists.txt) = 49a676bf38bc7d27560b9ecbe331c8844cd8cbe0
 SHA1 (patch-src_Main_MainCmd.cpp) = 1554fd69e21627889fd4e0802e16dbd8f057f21d
 SHA1 (patch-src_Main_MainGui.cpp) = 482dafad3dbfd80661870d9230bbad2f05a4b950
 SHA1 (patch-src_Main_MainPy.cpp) = f92b2ab54d81e293e5ce737f12c7811e1ec131b0

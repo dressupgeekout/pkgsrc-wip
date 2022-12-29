@@ -8,13 +8,13 @@ MASTER_SITES=	# manually packaged from SVN
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://trac.calendarserver.org/
 COMMENT=	CalDAV library for python used by CalendarServer
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	apache-2.0
 
 WRKSRC=		${WRKDIR}/CalDAVClientLibrary
 USE_LANGUAGES=	# none
 EGG_NAME=	UNKNOWN-0.0.0
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 13824
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 13824
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

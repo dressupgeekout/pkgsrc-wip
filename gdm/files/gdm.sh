@@ -4,7 +4,7 @@
 #
 
 # PROVIDE: gdm
-# REQUIRE: DAEMON LOGIN wscons
+# REQUIRE: DAEMON LOGIN wscons dbus
 # KEYWORD: shutdown
 
 if [ -f /etc/rc.subr ]; then
@@ -14,8 +14,9 @@ fi
 name="gdm"
 rcvar=${name}
 command="@PREFIX@/sbin/${name}"
-pidfile="/var/run/${name}.pid"
-procname="@PREFIX@/sbin/gdm-binary"
+command_args="&"
+pidfile="/var/run/gdm/${name}.pid"
+procname="@PREFIX@/sbin/gdm"
 required_files="@PKG_SYSCONFDIR@/custom.conf"
 extra_commands="reload"
 

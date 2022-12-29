@@ -1,6 +1,5 @@
-$NetBSD: distinfo,v 1.1 2015/02/19 21:21:12 jihbed Exp $
+$NetBSD$
 
-SHA1 (3.0.2.tar.gz) = feaa56959fc35d9b25c361667bf4524691af3dca
-RMD160 (3.0.2.tar.gz) = bbdaf578535819cef16f2b6cd563bfa55ac56d14
-SHA512 (3.0.2.tar.gz) = a309c10e21be1f5fe7e558017cc0573e7ae421ef860465411190bb071eb42caa8013f52ec71257322ec3dd37de998c78cd9014c4f4daca1edde413db6bed6b7f
-Size (3.0.2.tar.gz) = 211077 bytes
+BLAKE2s (cinnamon-menus/master.lmde5.tar.gz) = d1907b8a99ed33b45b4269059a9b4e888457e98ec2102c77bba641b3c4fbc356
+SHA512 (cinnamon-menus/master.lmde5.tar.gz) = ed7b21393e8e44100b0b64f1dabc61e27206669cca3a7cad696bf711e90ab20d8c604b4b0a74b87d7e14ca2bb8ae9d9a82f284321f3d39b8334447748f375285
+Size (cinnamon-menus/master.lmde5.tar.gz) = 96194 bytes

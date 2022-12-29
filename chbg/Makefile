@@ -6,6 +6,7 @@ PKGREVISION=		3
 CATEGORIES=		x11
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=chbg/}
 EXTRACT_SUFX=		.tgz
+LICENSE=		gnu-gpl-v2
 
 MAINTAINER=		ccatrian@eml.cc
 HOMEPAGE=		http://chbg.sourceforge.net/
@@ -19,7 +20,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-image-library=imlib2
 
 pre-configure:
-		${CP} ${FILESDIR:Q}/es.* ${WRKSRC:Q}/po
+	${CP} ${FILESDIR}/es.* ${WRKSRC}/po
 
 .include "../../devel/glib/buildlink3.mk"
 .include "../../graphics/imlib2/buildlink3.mk"

@@ -8,7 +8,7 @@ MASTER_SITES=	${MASTER_SITE_GNU:=gnuzilla/${ICECAT_VER}/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/gnuzilla/
+HOMEPAGE=	https://www.gnu.org/software/gnuzilla/
 COMMENT=	GNU version of www/firefox
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
@@ -92,7 +92,7 @@ install-desktop:
 .if ${OPSYS} == "NetBSD"
 # The configure test for __thread succeeds, but later we end up with:
 # dist/bin/libxul.so: undefined reference to `__tls_get_addr'
-CONFIGURE_ENV+= ac_cv_thread_keyword=no
+CONFIGURE_ENV+=	ac_cv_thread_keyword=no
 .endif
 
 .include "../../archivers/bzip2/buildlink3.mk"

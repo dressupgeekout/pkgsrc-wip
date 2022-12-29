@@ -1,17 +1,17 @@
 # $NetBSD$
 
-DISTNAME=	rawdog-2.22
+DISTNAME=	rawdog-2.23
 CATEGORIES=	news
 MASTER_SITES=	http://offog.org/files/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://offog.org/code/rawdog/
+HOMEPAGE=	https://offog.org/code/rawdog/
 COMMENT=	RSS Aggregator Without Delusions Of Grandeur
 LICENSE=	gnu-gpl-v2
 
 USE_LANGUAGES=	# none
 
-DEPENDS+=	${PYPKGPREFIX}-feedparser-[0-9]*:../../textproc/py-feedparser
+DEPENDS+=	${PYPKGPREFIX}-feedparser<6.0.0:../../textproc/py-feedparser5
 
 PYTHON_VERSIONS_ACCEPTED=	27
 PYDISTUTILSPKG=			YES

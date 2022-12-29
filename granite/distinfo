@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (granite/7.1.0.tar.gz) = efed7bcda726823aba00bad75ff541760013a7e758b617496f5a63759670d3bb
+SHA512 (granite/7.1.0.tar.gz) = 05c343d976113b5ae2c635c18697b7d3664d0b46f11398c859154169494cd0f7477192e0b10d198e002a353f5c5dbbe0d7dbd69a6072c78a4fbfee44e7994ac2
+Size (granite/7.1.0.tar.gz) = 382517 bytes

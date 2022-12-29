@@ -10,7 +10,7 @@ CATEGORIES=		cross lang
 MASTER_SITES=		${MASTER_SITE_GNU:=binutils/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.gnu.org/
+HOMEPAGE=		https://www.gnu.org/
 COMMENT=		Unified GNU binutils for cross build environments
 LICENSE=		gnu-gpl-v3 AND gnu-lgpl-v3
 
@@ -28,12 +28,12 @@ CONFIGURE_ARGS+=	--enable-targets=all
 # Ensure that --host is not included as default
 CONFIGURE_ARGS+=	--target=i386-linux
 # ./configure.lineno: 3281: Syntax error: "(" unexpected (expecting "fi")
-PKGSRC_MAKE_ENV+=       SH=/bin/ksh
+PKGSRC_MAKE_ENV+=	SH=/bin/ksh
 
 MAKE_ARGS+=		CFLAGS="${CFLAGS}"
 BUILD_TARGET=		all-binutils all-ld
 
-PLIST_SUBST+=		LOCALBASE=${LOCALBASE:Q}
+PLIST_SUBST+=		LOCALBASE=${PREFIX}
 
 BINDIR=			${PREFIX}/cross/libexec/binutils
 

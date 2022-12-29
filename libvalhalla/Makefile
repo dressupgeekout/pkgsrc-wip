@@ -7,13 +7,13 @@ MASTER_SITES=	http://libvalhalla.geexbox.org/releases/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	jrbleboss@gmail.com
-HOMEPAGE=	http://libvalhalla.geexbox.org/
+HOMEPAGE=	https://libvalhalla.geexbox.org/
 COMMENT=	Tiny media scanner library
 LICENSE=	gnu-lgpl-v2.1
 
 USE_TOOLS+=	gmake
 
-CONFIGURE_ARGS+= --prefix=${PREFIX}
+CONFIGURE_ARGS+=	--prefix=${PREFIX}
 
 HAS_CONFIGURE=	yes
 

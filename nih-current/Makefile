@@ -10,7 +10,7 @@ COMMENT=	Package manager for pkgsrc
 LICENSE=	2-clause-bsd
 
 GIT_REPOSITORIES=	pkgnih
-GIT_REPO.pkgnih=	git://github.com/cheusov/pkgnih.git
+GIT_REPO.pkgnih=	https://github.com/cheusov/pkgnih.git
 .include "../../wip/mk/git-package.mk"
 
 DEPENDS+=	pkg_summary-utils>=0.66.0:../../pkgtools/pkg_summary-utils
@@ -37,7 +37,7 @@ REPLACE_INTERPRETER+=	runawk
 REPLACE.runawk.old=	.*runawk
 REPLACE.runawk.new=	${PREFIX}/bin/runawk
 REPLACE_FILES.runawk=	nih/pkg_update_plan.in nih/cmp2hr.in \
-    nih/pkg_create_fake.in nih/analyse_conflicts.in
+			nih/pkg_create_fake.in nih/analyse_conflicts.in
 
 MAKE_ENV+=		VERSION=${_GIT_PKGVERSION:S/.//}
 MAKE_ENV+=		PKG_DBDIR=${PKG_DBDIR}
@@ -48,13 +48,13 @@ MAKE_ENV+=		REAL_ROOT_GROUP=${REAL_ROOT_GROUP}
 
 .if ${OPSYS} == NetBSD || ${OPSYS} == FreeBSD || ${OPSYS} == OpenBSD || \
     ${OPSYS} == DragonFly || ${OPSYS} == MirBSD
-FTP_CMD=/usr/bin/ftp
+FTP_CMD=	/usr/bin/ftp
 .else
-FTP_CMD=${PREFIX}/bin/ftp
+FTP_CMD=	${PREFIX}/bin/ftp
 DEPENDS+=	tnftp-[0-9]*:../../net/tnftp
 .endif
 
-MAKE_ENV+= FTP=${FTP_CMD:Q} PKG_TOOLS_BIN=${PKG_TOOLS_BIN}
+MAKE_ENV+=	FTP=${FTP_CMD:Q} PKG_TOOLS_BIN=${PKG_TOOLS_BIN}
 
 .if ${OPSYS} =="SunOS" #&& empty(OS_VERSION:M5.11*)
 REPLACE_SH+=	nih/nih.in nih/pkg_status.in

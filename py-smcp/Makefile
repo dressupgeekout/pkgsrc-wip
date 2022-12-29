@@ -6,11 +6,11 @@ CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_PYPI:=s/smcp/}
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://cvxopt.github.io/smcp
+HOMEPAGE=	https://cvxopt.github.io/smcp
 COMMENT=	Python extension for solving sparse matrix cone programs
 LICENSE=	gnu-gpl-v3
 
-PYDISTUTILSPKG= yes
+PYDISTUTILSPKG=	yes
 
 .include "../../lang/python/extension.mk"
 DEPENDS+=	${PYPKGPREFIX}-chompack>=2.0.0:../../wip/py-chompack

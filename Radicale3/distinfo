@@ -1,0 +1,5 @@
+$NetBSD: distinfo,v 1.4 2017/09/04 10:35:44 prlw1 Exp $
+
+BLAKE2s (Radicale-3.1.8.tar.gz) = 8533a3d37ab861352a84a8b6e35269d04ec89e555ae1c239167f2839792f0a51
+SHA512 (Radicale-3.1.8.tar.gz) = 282c45c5d7b6ad0d3614dc42766a4b952c65491a67c24c93f5ef1d7cc546388b4f3a2cbf0cb5ea2b8a345b05eeb92ec888ea459cf355db67e248386ec1a0c3e5
+Size (Radicale-3.1.8.tar.gz) = 113385 bytes

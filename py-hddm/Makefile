@@ -6,14 +6,14 @@ CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=H/HDDM/}
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://github.com/hddm-devs/hddm
+HOMEPAGE=	https://github.com/hddm-devs/hddm
 COMMENT=	Hierarchical Bayesian estimation of Drift Diffusion Models
 LICENSE=	modified-bsd
 
-DEPENDS+= ${PYPKGPREFIX}-scipy>=0.12.1:../../math/py-scipy
+DEPENDS+=	${PYPKGPREFIX}-scipy>=0.12.1:../../math/py-scipy
 DEPENDS+=	${PYPKGPREFIX}-patsy>=0.3.0:../../math/py-patsy
 
-USE_LANGUAGES= c fortran
+USE_LANGUAGES=	c fortran
 
 .include "../../devel/py-cython/buildlink3.mk"
 .include "../../lang/python/egg.mk"

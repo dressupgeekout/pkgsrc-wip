@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (libpatterns-1.0.0.tar.gz) = dd73992e63b257bf6669c03129b1175a42dd35cc2b70ca392a65fd33673aa510
+SHA512 (libpatterns-1.0.0.tar.gz) = ff3b216db266eb1586ee97aea5a37f2ffc800bbef100212212e688ac6b19db0db6c17790ae7c025f7941f3bb0b35a4b112399dfe29485a15fd228d77f6ebc86d
+Size (libpatterns-1.0.0.tar.gz) = 10742 bytes

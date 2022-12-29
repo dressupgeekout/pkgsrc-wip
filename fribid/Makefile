@@ -6,10 +6,10 @@ CATEGORIES=		security
 MASTER_SITES=		http://fribid.se/releases/source/
 
 MAINTAINER=		oht@users.sourceforge.net
-HOMEPAGE=		http://fribid.se/
-EXTRACT_SUFX=    	.tar.bz2
+HOMEPAGE=		https://fribid.se/
+EXTRACT_SUFX=		.tar.bz2
 COMMENT=		FriBID  is a web browser plugin for BankID
-USE_TOOLS+=             gmake pkg-config
+USE_TOOLS+=		gmake pkg-config
 LICENSE=		mit
 
 

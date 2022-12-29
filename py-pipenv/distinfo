@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (pipenv-2022.1.8.tar.gz) = d7537bdd9e4b8dff8f52d115959ee6e11badbf51d017090c07c4b997e88e3e20
+SHA512 (pipenv-2022.1.8.tar.gz) = d6b190d9f3c14565a9c7fdf6e91dd93eda83251640c93b91c2358d94af79807f6fc9da1a24cf1342976067dd2bdd31b5db37143d036f5970eb46f439fc8364f2
+Size (pipenv-2022.1.8.tar.gz) = 5002974 bytes

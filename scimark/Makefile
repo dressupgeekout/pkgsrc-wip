@@ -8,16 +8,16 @@ MASTER_SITES=	http://math.nist.gov/scimark2/
 EXTRACT_SUFX=	.zip
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://math.nist.gov/scimark2/index.html
+HOMEPAGE=	https://math.nist.gov/scimark2/index.html
 COMMENT=	Java benchmark for scientific and numerical computing
 
 WRKSRC=		${WRKDIR}
 
-USE_JAVA=  run
+USE_JAVA=	run
 USE_TOOLS+=	pax
 USE_LANGUAGES=	# none
 
-SCMDIR=	${PREFIX}/lib/java/scimark2
+SCMDIR=		${PREFIX}/lib/java/scimark2
 SCMJDIR=	${PREFIX}/lib/java/scimark2/jnt
 
 INSTALLATION_DIRS=	bin ${SCMJDIR}

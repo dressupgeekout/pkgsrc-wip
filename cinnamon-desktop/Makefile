@@ -1,40 +1,35 @@
-# $NetBSD: Makefile,v 1.2 2015/02/19 18:01:20 jihbed Exp $
+# $NetBSD$
 
-DISTNAME=	3.0.2
-PKGNAME=	cinnamon-desktop-3.0.2
+GITHUB_PROJECT=	cinnamon-desktop
+GITHUB_TAG=	refs/tags/master.mint21
+DISTNAME=	master.mint21
+VERSION=		4.0.0
+PKGNAME=	${GITHUB_PROJECT}-${VERSION}
 CATEGORIES=	x11
-MASTER_SITES=	${MASTER_SITE_GITHUB:=linuxmint/cinnamon-desktop/archive/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=linuxmint/}
+DIST_SUBDIR=	${GITHUB_PROJECT}
 
-MAINTAINER=	pkgsrc.gnome@gmail.com
-HOMEPAGE=	https://github.com/linuxmint/cinnamon-desktop
+MAINTAINER=	youri@NetBSD.org
+HOMEPAGE=	https://github.com/linuxmint/cinnamon-desktop/
 COMMENT=	Additional UI API for cinnamon
 LICENSE=	gnu-gpl-v2
 
-WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
+WRKSRC=			${WRKDIR}/cinnamon-desktop-master.mint21
 
-GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
-USE_TOOLS+=	gmake pkg-config automake autoreconf intltool msgfmt
+USE_TOOLS+=	pkg-config intltool msgfmt
+USE_PKGLOCALEDIR=	yes
 
-BUILD_DEPENDS+=		gettext-m4>=0.14.6:../../devel/gettext-m4
-BUILD_DEPENDS+=		gnome-common-[0-9]*:../../devel/gnome-common
+MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/libcvc:${WRKSRC}/output/libcinnamon-desktop
 
-PKGCONFIG_OVERRIDE+=	libcinnamon-desktop/cinnamon-desktop.pc.in
+REPLACE_PYTHON=	install-scripts/meson_install_schemas.py
 
-pre-configure:
-	cd ${WRKSRC} && ${SH}  ./autogen.sh
-
-BUILD_DEPENDS+=	gnome-common-[0-9]*:../../devel/gnome-common
-
-.include "options.mk"
-
-.include "../../audio/pulseaudio/buildlink3.mk"
-.include "../../devel/glib2/schemas.mk"
+.include "../../audio/pulseaudio/buildlink3.mk""
 .include "../../graphics/gdk-pixbuf2/buildlink3.mk"
-.include "../../x11/gtk3/buildlink3.mk"
+.include "../../devel/gobject-introspection/buildlink3.mk"
+.include "../../devel/meson/build.mk"
 .include "../../x11/libXext/buildlink3.mk"
-.include "../../x11/libXrandr/buildlink3.mk"
 .include "../../x11/libxkbfile/buildlink3.mk"
+.include "../../x11/libXrandr/buildlink3.mk"
+.include "../../x11/gtk3/buildlink3.mk"
 .include "../../x11/xkeyboard-config/buildlink3.mk"
-.include "../../x11/libX11/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

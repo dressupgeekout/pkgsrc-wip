@@ -5,13 +5,14 @@ PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/D/d/S/T/t/}
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_PYPI:=D/DecoratorTools/}
 EXTRACT_SUFX=	.zip
+LICENSE=	python-software-foundation # or ZPL
 
 MAINTAINER=	kamel.derouiche@gmail.com
 HOMEPAGE=	http://pypi.python.org/pypi/DecoratorTools
 COMMENT=	Class, function, and metaclass decorators
 
 USE_LANGUAGES=	# none
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 1.8
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 1.8
 
 DOCDIR=	${PREFIX}/share/doc/py-decoratortools
 

@@ -2,10 +2,11 @@
 #
 
 DISTNAME=		hpoj-0.91
-PKGREVISION=		4
+PKGREVISION=		5
 CATEGORIES=		print
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=hpoj/}
 EXTRACT_SUFX=		.tgz
+LICENSE=		gnu-gpl-v2
 
 MAINTAINER=		domg@users.sourceforge.net
 HOMEPAGE=		http://hpoj.sourceforge.net/
@@ -20,10 +21,10 @@ DEPENDS+=		bash-[0-9]*:../../shells/bash
 USE_TOOLS+=		gmake perl
 GNU_CONFIGURE=		YES
 
-CONFIGURE_ARGS+=	--prefix=${PREFIX:Q} \
-			--with-cups-backend=${PREFIX:Q}/libexec/cups/backend \
-			--with-sane-backend=${PREFIX:Q}/lib/sane \
-			--with-sane-etc=${PREFIX:Q}/etc/sane.d \
+CONFIGURE_ARGS+=	--prefix=${PREFIX} \
+			--with-cups-backend=${PREFIX}/libexec/cups/backend \
+			--with-sane-backend=${PREFIX}/lib/sane \
+			--with-sane-etc=${PREFIX}/etc/sane.d \
 			--with-usb=libusb \
 			--without-snmp \
 			--without-qt
@@ -34,6 +35,6 @@ REPLACE.bash.old=	.*/bin/bash
 REPLACE.bash.new=	${PREFIX}/bin/bash
 REPLACE_FILES.bash=	scripts/ptal-cups.in
 
-.include "../../print/cups/buildlink3.mk"
+.include "../../print/cups-base/buildlink3.mk"
 .include "../../graphics/sane-backends/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

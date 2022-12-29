@@ -7,7 +7,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=naturaldocs/}
 EXTRACT_SUFX=	.zip
 
 MAINTAINER=	pkgsrc@blackmouse.biz
-HOMEPAGE=	http://www.naturaldocs.org/
+HOMEPAGE=	https://www.naturaldocs.org/
 COMMENT=	Open-source, extensible, multi-language documentation generator
 
 USE_TOOLS+=	perl:run
@@ -27,7 +27,8 @@ INSTALL_DIRS=	Info JavaScript Modules Modules/NaturalDocs Modules/NaturalDocs/Bu
 		Modules/NaturalDocs/Settings Modules/NaturalDocs/SymbolTable \
 		Modules/NaturalDocs/Topics Styles Config Help Help/example Help/images \
 		Help/images/header Help/images/menu Help/javascript
-INSTALLATION_DIRS=	${NDDIR}
+INSTALLATION_DIRS= \
+		${NDDIR}
 
 do-install:
 	cd ${WRKSRC} && pax -wr * ${DESTDIR}${NDDIR}

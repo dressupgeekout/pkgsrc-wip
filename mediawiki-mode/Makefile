@@ -11,13 +11,13 @@ EXTRACT_SUFX=	.el
 # web servers. See http://gnats.netbsd.org/45680
 
 MAINTAINER=	pho@cielonegro.org
-HOMEPAGE=	http://www.emacswiki.org/emacs/MediaWikiMode
+HOMEPAGE=	https://www.emacswiki.org/emacs/MediaWikiMode
 COMMENT=	Emacs frontend for MediaWiki
 LICENSE=	gnu-gpl-v3
 
 INSTALLATION_DIRS+=	${EMACS_LISPPREFIX}
 
-WRKSRC=	${WRKDIR}
+WRKSRC=		${WRKDIR}
 USE_LANGUAGES=	# none
 NO_CONFIGURE=	YES
 

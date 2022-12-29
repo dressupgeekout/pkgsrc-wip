@@ -6,11 +6,11 @@ CATEGORIES=		games
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=eboard/}
 
 MAINTAINER=		zul@netbsd-fr.org
-HOMEPAGE=		http://www.bergo.eng.br/eboard/
+HOMEPAGE=		https://www.bergo.eng.br/eboard/
 COMMENT=		Extras sets, pieces and sound or eboard
 LICENSE=		gnu-gpl-v2
 
-NO_BUILD=YES
+NO_BUILD=	YES
 
 DISTFILES+=		${EXTRA2}${EXTRACT_SUFX}
 DISTFILES+=		${EXTRA1}${EXTRACT_SUFX}

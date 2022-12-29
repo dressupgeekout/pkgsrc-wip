@@ -5,14 +5,13 @@ PKGNAME=	${DISTNAME}-2.2
 PKGREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_TEX_CTAN:=support/}
+DIST_SUBDIR=	${PKGNAME_NOREV}
 EXTRACT_SUFX=	.tgz
+# the download servers archive this on the fly
 
 MAINTAINER=	reed@reedmedia.net
 HOMEPAGE=	ftp://ctan.tug.org/tex-archive/support/tr2latex/README
 COMMENT=	Troff to LaTeX converter
-
-DIST_SUBDIR=	${PKGNAME_NOREV}
-# the download servers archive this on the fly
 
 # todo: restricted because of "no profit is made by copying the files"
 # see README
@@ -25,9 +24,9 @@ DIST_SUBDIR=	${PKGNAME_NOREV}
 # also tar ball has windows executable?
 
 # todo: maybe patch Makefile.unix for CC and CFLAGS not overwritten
-MAKE_FILE=	Makefile.unix
-BUILD_TARGET=	tr2latex
-PKGMANDIR?=	man  # until in pkgsrc
+MAKE_FILE=		Makefile.unix
+BUILD_TARGET=		tr2latex
+PKGMANDIR?=		man  # until in pkgsrc
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1 share/texmf-dist/tex/latex/misc
 
 do-install:

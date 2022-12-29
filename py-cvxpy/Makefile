@@ -2,19 +2,19 @@
 
 DISTNAME=	cvxpy-0.2.15
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=c/cvxpy/}
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://github.com/cvxgrp/cvxpy/
+HOMEPAGE=	https://github.com/cvxgrp/cvxpy/
 COMMENT=	Python software for convex optimization
 LICENSE=	gnu-gpl-v3
 
 USE_LANGUAGES=	# none
 
 .include "../../lang/python/egg.mk"
-.include "../../math/blas/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../math/glpk/buildlink3.mk"
 .include "../../math/gsl/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

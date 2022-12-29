@@ -7,7 +7,7 @@ MASTER_SITES=	http://www.markusfisch.de/downloads/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.markusfisch.de/
+HOMEPAGE=	https://www.markusfisch.de/
 COMMENT=	Task bar and application menu launcher in shape of a pie menu
 LICENSE=	mit
 
@@ -27,7 +27,7 @@ SUBST_SED.share=	-e "s|/usr/share|${PREFIX}/share|g"
 .include "options.mk"
 
 post-install:
-			${INSTALL_DATA} ${WRKSRC}/res/piedockrc.sample ${DESTDIR}${PREFIX}/${EGDIR}/
+	${INSTALL_DATA} ${WRKSRC}/res/piedockrc.sample ${DESTDIR}${PREFIX}/${EGDIR}/
 
 .include "../../x11/libXmu/buildlink3.mk"
 .include "../../x11/libXrender/buildlink3.mk"

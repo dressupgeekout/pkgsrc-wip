@@ -7,15 +7,14 @@ CATEGORIES=	x11
 MASTER_SITES=	http://labs.o-hand.com/sources/xoo/
 
 MAINTAINER=	khorben@defora.org
-HOMEPAGE=	http://labs.o-hand.com/xoo/
+HOMEPAGE=	https://github.com/freedesktop/xoo
 COMMENT=	Graphical wrapper around Xnest/Xephyr
 
 LICENSE=	gnu-gpl-v2
 
-GNU_CONFIGURE=	yes
-CFLAGS=
-CFLAGS+=	-DPREFIX=\"${PREFIX:Q}\"
-CONFIGURE_ARGS+=CFLAGS=${CFLAGS:M*:Q}
+GNU_CONFIGURE=		yes
+CFLAGS=			-DPREFIX=\"${PREFIX}\"
+CONFIGURE_ARGS+=	CFLAGS=${CFLAGS:M*:Q}
 
 post-install:
 	${INSTALL} -m 444 ${FILESDIR}/neo1973.png ${DESTDIR}${PREFIX}/share/xoo/neo1973.png

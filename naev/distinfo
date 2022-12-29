@@ -1,13 +1,11 @@
-$NetBSD: distinfo,v 1.1 2015/08/19 20:11:36 yhardy Exp $
+$NetBSD: distinfo,v 1.1 2019/10/01 12:25:37 nia Exp $
 
-SHA1 (naev-0.6.1.tar.bz2) = 69661f0bfd7324b5da39e67c8a966e13bb440d96
-RMD160 (naev-0.6.1.tar.bz2) = 5639cd64ba7905818daf0aa218d6f421901cf788
-SHA512 (naev-0.6.1.tar.bz2) = 4766c80b49de5a7e748948f0404ac54edbc5afa80618150d1f993d66c7462ea73bfc5220d73073cb51cd76ff5dc6ecdf935d6f843051943136ceefaea9837203
-Size (naev-0.6.1.tar.bz2) = 1047908 bytes
-SHA1 (ndata-0.6.1.zip) = 364c6f647d7e779e2222ea7b816d2ad213efe4fa
-RMD160 (ndata-0.6.1.zip) = e9a94eeba50f777752a3ea1ee1dbc71700739d6d
-SHA512 (ndata-0.6.1.zip) = 71c3024e1713b094b63cb0de3c70239d61c54142b715e61d5206c5eb3cb8c7a851fc1b388ecf891110dd8bb5c2b3759af71d20f39cb6e629c71b27386a57d7fe
-Size (ndata-0.6.1.zip) = 303984255 bytes
+RMD160 (naev-0.8.2.tar.gz) = eb2800d6ce529e48de49105844ad2c636133525d
+SHA512 (naev-0.8.2.tar.gz) = c37a514dbe7ed1bca21563d20a4bb05892a07ee437eeaddefe00b5abe7009c2671da3c587db19bc8f1407db4ff3518f0cf5b28cb095778ba61946dcf87f61e5e
+Size (naev-0.8.2.tar.gz) = 359479151 bytes
+SHA1 (patch-Makefile.am) = 2519d0d8a1d45fe1b2cca924599c29fb945c7edd
 SHA1 (patch-build_shave.in) = e548c7547bc81a16a7cfbf3e7a97e4e3e23787fc
-SHA1 (patch-configure) = 3b9a87b01af29745ca4030365e3b640ca8691099
-SHA1 (patch-src_ndata.c) = 2dff16576a38076561b4776e842abaa20806e856
+SHA1 (patch-configure.ac) = b54678d7b79c06bd82fe1c8917184965561919ef
+SHA1 (patch-src_tk_widget_input.c) = 4aaaa3d1969bdb975bc7433494f1d3eadc543aab
+SHA1 (patch-src_utf8.c) = 4c10e8d8ec97cc7a4608870e90dcb38320794e03
+SHA1 (patch-utils_build_naev.sh) = ae67f5fbec418b058baaceafebdb056765627b73

@@ -1,0 +1,6 @@
+@comment $NetBSD$
+include/ObjFWRT/ObjFWRT.h
+lib/libobjfwrt.a
+lib/libobjfwrt.so
+lib/libobjfwrt.so.1
+lib/libobjfwrt.so.1.0

@@ -1,7 +1,7 @@
 # $NetBSD$
 
 DISTNAME=	pyclid-0.51
-PKGNAME=        ${PYPKGPREFIX}-${DISTNAME:S/py//}
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pyclid/}
 
@@ -12,5 +12,5 @@ LICENSE=	mit
 
 USE_LANGUAGES=	# none
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

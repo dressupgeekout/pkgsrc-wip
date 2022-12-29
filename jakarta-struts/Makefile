@@ -4,9 +4,10 @@
 DISTNAME=		jakarta-struts-1.1
 CATEGORIES=		www
 MASTER_SITES=		http://archive.apache.org/dist/struts/struts-1.1/
+LICENSE=		apache-2.0
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://archive.apache.org/dist/struts/struts-1.1/
+HOMEPAGE=		https://archive.apache.org/dist/struts/struts-1.1/
 COMMENT=		Struts is struts xD
 
 

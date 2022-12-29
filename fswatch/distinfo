@@ -1,6 +1,5 @@
 $NetBSD: distinfo,v 1.2 2015/06/04 10:14:50 thomasklausner Exp $
 
-SHA1 (fswatch-1.9.3.tar.gz) = 84bd3c208ae11ccc34973b4d6fc031974c46cf8d
-RMD160 (fswatch-1.9.3.tar.gz) = bc4c5304338728f74c140387b4bd18d0778d65b4
-SHA512 (fswatch-1.9.3.tar.gz) = dce41a4544524d70b53c1c422031ecc3a4bbc5f6e3c141329fcade281aba3c5fb422a5195e9aead534855b28a18c252052365bc8e13ccbcfe5af62b75c101246
-Size (fswatch-1.9.3.tar.gz) = 1243495 bytes
+RMD160 (fswatch-1.12.0.tar.gz) = 832857a8280041be0976e93695615ebcc62c735e
+SHA512 (fswatch-1.12.0.tar.gz) = 4e890ca8cd64ed5658fc6e4c4d14071ffb47105b06e2a67021aac17ec8f5e1e37409062b952eaa91c9dac1c0aa1b58dbdb50d846c8f26ff5b72e6db9762b54db
+Size (fswatch-1.12.0.tar.gz) = 820691 bytes

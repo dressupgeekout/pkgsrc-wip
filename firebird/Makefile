@@ -7,16 +7,17 @@ PKGREVISION=		2
 CATEGORIES=		databases
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=firebird/}
 EXTRACT_SUFX=		.tar.bz2
+LICENSE=		mpl-1.1
 
 MAINTAINER=		nel@soraneko.com, adam.hoka@gmail.com
-HOMEPAGE=		http://www.firebirdsql.org/
+HOMEPAGE=		https://www.firebirdsql.org/
 COMMENT=		SQL database, opensource version of InterBase
 
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
-#RCD_SCRIPTS=            000.firebird.sh
+#RCD_SCRIPTS=		000.firebird.sh
 
 CONFIGURE_ARGS+=	--with-editline \
 			--with-system-editline \
@@ -37,7 +38,7 @@ FBUSER?=		firebird
 FBGROUP?=		firebird
 FBHOME?=		firebird
 
-BUILD_DEFS+=            FBHOME
+BUILD_DEFS+=		FBHOME
 
 PKG_GROUPS=		${FBGROUP}
 PKG_USERS=		${FBUSER}:${FBGROUP}

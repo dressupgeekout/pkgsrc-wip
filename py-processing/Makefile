@@ -6,12 +6,12 @@ PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 PKGREVISION=	2
 CATEGORIES=	parallel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/processing/}
-EXTRACT_SUFX=	.zip#md5=62772fa3002d003b2395ed669072d51d
+EXTRACT_SUFX=	.zip
 
 MAINTAINER=	kamel.derouiche@gmail.com
 HOMEPAGE=	http://pyprocessing.berlios.de/
 COMMENT=	Library for running multiple Python processes using the threading API
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	modified-bsd
 
 PYDISTUTILSPKG=	yes
 

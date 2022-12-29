@@ -6,12 +6,12 @@ CATEGORIES=	devel
 MASTER_SITES=	http://www.softintegration.com/download/software/release/Linux/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.softintegration.com/products/
+HOMEPAGE=	https://www.softintegration.com/products/
 COMMENT=	Ch is an interactive C development environment
 # I have included chstandard-license for pkgsrc-wip purposes as
 # linux-ch/licenses/chstandard-license. Basically,
 # this tool is free for personal and commercial use.
-LICENSE=		chstandard-license
+LICENSE=	chstandard-license
 
 LINUX_BINPKG_FMT=	plain
 LINUX_USE_X11=		yes

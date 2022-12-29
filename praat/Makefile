@@ -6,17 +6,17 @@ MASTER_SITES=	${MASTER_SITE_GITHUB:=praat/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	cherry@NetBSD.org
-HOMEPAGE=	http://www.praat.org/
+HOMEPAGE=	https://www.praat.org/
 COMMENT=	Doing phonetics by computer
 LICENSE=	gnu-gpl-v2
 
 USE_LANGUAGES=	c c++
 USE_TOOLS=	gmake pkg-config
 
-NO_CONFIGURE=   yes
+NO_CONFIGURE=	yes
 MAKE_FILE=	makefile
 
-INSTALLATION_DIRS=      bin # ${PKGMANDIR}/man1
+INSTALLATION_DIRS=	bin # ${PKGMANDIR}/man1
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/praat ${DESTDIR}${PREFIX}/bin/praat

@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (ad2vcf-0.1.6.tar.gz) = ffe5aff4c7c67c02c4f73d7ea292369d5e8b84796c9b6c8d7197f83a7fdfac08
+SHA512 (ad2vcf-0.1.6.tar.gz) = 367b0af0c6c890f52c643d97fe72f3f91e37964fa9d58b29ad0a7a80caaaa8962c382e8fa0385a003b2003cbbd9d500aa01c59bce582a2732fcc705f943db1a9
+Size (ad2vcf-0.1.6.tar.gz) = 16293 bytes

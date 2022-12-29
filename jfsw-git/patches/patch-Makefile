@@ -1,0 +1,20 @@
+$NetBSD$
+
+Set LIBS for BSD.
+Add LDFLAGS so that the X11 library paths can be used.
+
+--- Makefile.orig	2021-12-26 20:11:15.000000000 +0000
++++ Makefile
+@@ -233,10 +233,10 @@ endif
+ all: sw$(EXESUFFIX) build$(EXESUFFIX)
+ 
+ sw$(EXESUFFIX): $(GAMEOBJS) $(ELIB)/$(ENGINELIB) $(AUDIOLIBROOT)/$(JFAUDIOLIB)
+-	$(CXX) $(CXXFLAGS) $(OURCXXFLAGS) $(OURCFLAGS) -o $@ $^ $(LIBS) $(GAMELIBS) -Wl,-Map=$@.map
++	$(CXX) $(CXXFLAGS) $(OURCXXFLAGS) $(OURCFLAGS) -o $@ $^ $(LIBS) $(GAMELIBS) $(PKGSRCLDFLAGS) -Wl,-Map=$@.map
+ 
+ build$(EXESUFFIX): $(EDITOROBJS) $(ELIB)/$(EDITORLIB) $(ELIB)/$(ENGINELIB)
+-	$(CXX) $(CXXFLAGS) $(OURCXXFLAGS) $(OURCFLAGS) -o $@ $^ $(LIBS) -Wl,-Map=$@.map
++	$(CXX) $(CXXFLAGS) $(OURCXXFLAGS) $(OURCFLAGS) -o $@ $^ $(LIBS) $(PKGSRCLDFLAGS) -Wl,-Map=$@.map
+ 
+ include Makefile.deps
+ 

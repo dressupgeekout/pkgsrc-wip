@@ -6,7 +6,7 @@ CATEGORIES=	chat
 MASTER_SITES=	http://telepathy.freedesktop.org/releases/telepathy-butterfly/
 
 MAINTAINER=	pkgsrc.gnome@gmail.com
-HOMEPAGE=	http://telepathy.freedesktop.org/releases/telepathy-butterfly/
+HOMEPAGE=	https://telepathy.freedesktop.org/releases/telepathy-butterfly/
 COMMENT=	Telepathy-butterfly is the MSN connection manager for telepathy
 LICENSE=	gnu-gpl-v2
 
@@ -18,8 +18,8 @@ USE_LANGUAGES=	# none
 
 PY_PATCHPLIST=	yes
 
-REPLACE_PYTHON+=	waf telepathy-butterfly
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-gobject, py-papyon
+REPLACE_PYTHON+=		waf telepathy-butterfly
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gobject, py-papyon
 
 .include "../../devel/py-gobject/buildlink3.mk"
 .include "../../sysutils/py-dbus/buildlink3.mk"

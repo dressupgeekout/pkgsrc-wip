@@ -12,7 +12,7 @@ LICENSE=	gnu-gpl-v3
 
 USE_TOOLS+=	pkg-config
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-Numeric, py-numarray
+PYTHON_VERSIONS_ACCEPTED=	27 # py-Numeric, py-numarray
 
 do-test:
 	${RUN} cd ${WRKSRC}; ${SETENV} ${TEST_ENV} ${PYTHONBIN} run_test.py
@@ -22,7 +22,7 @@ INSTALLATION_DIRS=	share/doc/py-gsl/ref
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/html/ref/* ${DESTDIR}${PREFIX}/share/doc/py-gsl/ref
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 BUILDLINK_API_DEPENDS.gsl+=		gsl>=1.9
 .include "../../math/gsl/buildlink3.mk"
 # furur replace py-Numeric; py-numarray by py-numpy

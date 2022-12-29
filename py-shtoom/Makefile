@@ -13,13 +13,11 @@ LICENSE=		gnu-lgpl-v2.1
 
 DEPENDS+=		${PYPKGPREFIX}-twisted>=1.3.0:../../net/py-twisted
 
-PY_PATCHPLIST=		yes
-PYDISTUTILSPKG=		yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-twisted
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 0.2
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/shtoom/ui/gnomeui/shtoom.glade \
 		${DESTDIR}${PREFIX}/${PYSITELIB}/shtoom/ui/gnomeui/shtoom.glade
 
-.include "../../lang/python/extension.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

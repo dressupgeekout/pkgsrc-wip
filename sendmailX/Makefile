@@ -9,7 +9,7 @@ MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.sendmail.org/sm-X/
 COMMENT=	Modular Mail Transfer Agent
-
+LICENSE=	sendmail-license
 
 CONFLICTS+=	postfix-[0-9]* fastforward>=0.51nb2 sendmail-[0-9]*
 GNU_CONFIGURE=	YES
@@ -26,8 +26,8 @@ USERMOD?=	/usr/sbin/usermod
 
 EGDIR=		${PREFIX}/share/examples/smX
 DOCDIR=		${PREFIX}/share/doc/smX
-FILES_SUBST+=	PREFIX=${PREFIX:Q} SMXCNF=${SMXCNF:Q} USERMOD=${USERMOD:Q}
-FILES_SUBST+=	VARBASE=${VARBASE:Q} SED=${SED:Q} UNAME=${UNAME:Q}
+FILES_SUBST+=	PREFIX=${PREFIX} SMXCNF=${SMXCNF:Q} USERMOD=${USERMOD:Q}
+FILES_SUBST+=	VARBASE=${VARBASE} SED=${SED:Q} UNAME=${UNAME:Q}
 MESSAGE_SUBST+=	SMXCNF=${SMXCNF}
 
 PKG_SYSCONFSUBDIR=	smx

@@ -7,18 +7,18 @@ CATEGORIES=	devel java
 MASTER_SITES=	http://archive.apache.org/dist/commons/beanutils/binaries/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://commons.apache.org/beanutils/
+HOMEPAGE=	https://commons.apache.org/beanutils/
 COMMENT=	Utility for manipulating JavaBeans
 LICENSE=	apache-2.0
 
 WRKSRC=		${WRKDIR}/commons-beanutils-1.8.3
 
-NO_BUILD=		yes
+NO_BUILD=	yes
 USE_TOOLS+=	pax
 USE_LANGUAGES=	# none
 
-USE_JAVA=	yes
-PKG_JVMS_ACCEPTED= sun-jdk6 sun-jdk15 sun-jdk14
+USE_JAVA=		yes
+PKG_JVMS_ACCEPTED=	sun-jdk7
 
 INSTALLATION_DIRS=	lib/java share/doc/apache-commons-beanutils
 

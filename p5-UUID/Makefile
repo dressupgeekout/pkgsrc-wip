@@ -1,13 +1,13 @@
 # $NetBSD$
 #
 
-DISTNAME=	UUID-0.27
+DISTNAME=	UUID-0.28
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=UUID/}
 
 MAINTAINER=	mishka@NetBSD.org
-HOMEPAGE=	http://search.cpan.org/dist/UUID/
+HOMEPAGE=	https://metacpan.org/release/UUID
 COMMENT=	DCE compatible Universally Unique Identifier library for Perl
 LICENSE=	${PERL5_LICENSE}
 

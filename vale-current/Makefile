@@ -6,14 +6,14 @@ MASTER_SITES=	http://www.soft-switch.org/downloads/vale/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	x400@msfu.ru
-HOMEPAGE=	http://www.soft-switch.org/
+HOMEPAGE=	https://www.soft-switch.org/
 COMMENT=	Media streaming library
-
+LICENSE=	gnu-gpl-v2
 
 WRKSRC=		${WRKDIR}/vale-0.0.1
 GNU_CONFIGURE=	yes
-USE_LIBTOOL=    yes
-USE_LANGUAGES=  c c++ fortran77
-USE_TOOLS+=     gmake
+USE_LIBTOOL=	yes
+USE_LANGUAGES=	c c++ fortran77
+USE_TOOLS+=	gmake
 
 .include "../../mk/bsd.pkg.mk"

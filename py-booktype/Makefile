@@ -2,21 +2,20 @@
 
 DISTNAME=	Booktype-1.5
 PKGNAME=	${PYPKGPREFIX}-booktype-1.5
+PKGREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_PYPI:=B/Booktype/}
 
 MAINTAINER=	kamelderouiche@yahoo.com
 HOMEPAGE=	http://booki-dev.flossmanuals.net/
-COMMENT= FLOSS Manuals collaborative book writing tool
+COMMENT=	FLOSS Manuals collaborative book writing tool
 LICENSE=	gnu-gpl-v3
 
-
 DEPENDS+=	p5-Text-Aspell>=0.09:../../textproc/p5-Text-Aspell
-DEPENDS+=	p5-Encode>=2.44:../../textproc/p5-Encode
 DEPENDS+=	p5-XML-DOM>=1.44:../../textproc/p5-XML-DOM
 
 DEPENDS+=	${PYPKGPREFIX}-simplejson>=2.6.0:../../converters/py-simplejson
-DEPENDS+=	${PYPKGPREFIX}-feedparser>=5.1.2:../../textproc/py-feedparser
+DEPENDS+=	${PYPKGPREFIX}-feedparser>=5.1.2<6.0.0:../../textproc/py-feedparser5
 DEPENDS+=	${PYPKGPREFIX}-lxml-[0-9]*:../../textproc/py-lxml
 DEPENDS+=	${PYPKGPREFIX}-Unidecode>=0.04.9:../../textproc/py-Unidecode
 DEPENDS+=	${PYPKGPREFIX}-django-[0-9]*:../../www/py-django

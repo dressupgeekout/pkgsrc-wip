@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.7 2014/08/11 23:10:14 thomasklausner Exp $
 
 DISTNAME=	synfig-0.62.02
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=synfig/}
 
@@ -11,7 +11,7 @@ COMMENT=	Vector-based 2D animation renderer
 LICENSE=	gnu-gpl-v3
 
 GNU_CONFIGURE=		yes
-USE_TOOLS+=			pkg-config
+USE_TOOLS+=		pkg-config
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes

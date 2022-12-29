@@ -2,10 +2,10 @@
 
 # Global and legacy options
 
-PKG_OPTIONS_VAR=	PKG_OPTIONS.ffmpeg
-PKG_SUPPORTED_OPTIONS=	faac lame ass libvpx theora vorbis x264 xvid \
-			opencore-amr x11
-PKG_SUGGESTED_OPTIONS=	lame ass libvpx theora vorbis x264 xvid
+PKG_OPTIONS_VAR=		PKG_OPTIONS.ffmpeg
+PKG_SUPPORTED_OPTIONS=		faac lame ass libvpx theora vorbis x264 xvid \
+				opencore-amr x11
+PKG_SUGGESTED_OPTIONS=		lame ass libvpx theora vorbis x264 xvid
 #PKG_OPTIONS_OPTIONAL_GROUPS=	aac-decoder
 #PKG_OPTIONS_GROUP.aac-decoder=	faac
 
@@ -109,10 +109,10 @@ CONFIGURE_ARGS+=	--enable-libxvid
 ###
 .if !empty(PKG_OPTIONS:Mx264)
 # ABI change between 20090326 and 20100201
-BUILDLINK_API_DEPENDS.x264-devel+=	x264-devel>=20111207
-#BUILDLINK_API_DEPENDS.x264-devel+=	x264-devel<20110102
+BUILDLINK_API_DEPENDS.x264+=		x264>=20111207
+#BUILDLINK_API_DEPENDS.x264+=		x264<20110102
 CONFIGURE_ARGS+=	--enable-libx264
-.include "../../multimedia/x264-devel/buildlink3.mk"
+.include "../../multimedia/x264/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-libx264
 .endif

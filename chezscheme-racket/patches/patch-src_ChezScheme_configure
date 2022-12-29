@@ -1,0 +1,15 @@
+$NetBSD$
+
+* use standard `=` for string comparison instead of bashism `==`
+
+--- src/ChezScheme/configure.orig	2022-07-08 06:15:58.000000000 +0000
++++ src/ChezScheme/configure
+@@ -811,7 +811,7 @@ case "${flagsmuni}" in
+         exePostStep='paxctl +m'
+         ;;
+     em)
+-        if [ "$empetite" == yes ]; then
++        if [ "$empetite" = yes ]; then
+             preloadBootFiles="$w/boot/$m/petite.boot"
+         else
+             preloadBootFiles="$w/boot/$m/petite.boot $w/boot/$m/scheme.boot"

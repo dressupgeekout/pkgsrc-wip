@@ -4,10 +4,10 @@ DISTNAME=	ARS-0.5b1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_PYPI:=A/ARS/}
-EXTRACT_SUFX=	.zip#md5=41d681a4a1e9434d856e18451c197fb0
+EXTRACT_SUFX=	.zip
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://bitbucket.org/glarrain/ars
+HOMEPAGE=	https://bitbucket.org/glarrain/ars
 COMMENT=	Physically-accurate robotics simulator
 LICENSE=	2-clause-bsd
 

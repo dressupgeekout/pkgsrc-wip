@@ -17,7 +17,7 @@ USE_PKGLOCALEDIR=	yes
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		bison
 USE_TOOLS+=		perl
-REPLACE_PERL=   	ipfw_add ipfw_delete pfctl_add pfctl_delete
+REPLACE_PERL=		ipfw_add ipfw_delete pfctl_add pfctl_delete
 
 INSTALLATION_DIRS+=	${PKG_SYSCONFDIR}/doorman
 EGDIR=			${PREFIX}/share/examples/doorman
@@ -31,7 +31,7 @@ SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		post-patch
 SUBST_MESSAGE.fix-paths=	Fixing absolute pathes.
 SUBST_FILES.fix-paths=		configure
-SUBST_SED.fix-paths=		-e 's,@PREFIX@,${PREFIX},g'
+SUBST_VARS.fix-paths=		PREFIX
 
 SUBST_CLASSES+=			fix-conf-paths
 SUBST_STAGE.fix-conf-paths=	post-configure

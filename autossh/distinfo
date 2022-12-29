@@ -1,7 +1,5 @@
-$NetBSD: distinfo,v 1.3 2013/03/30 07:06:51 shattered Exp $
+$NetBSD$
 
-SHA1 (autossh-1.4e.tgz) = 268b5f2556ecfbb18b750b26d9816e53fb9501f4
-RMD160 (autossh-1.4e.tgz) = b4b1689404cc96da50c6b0c5d0163c4399b5c2b5
-SHA512 (autossh-1.4e.tgz) = 2f71403ee005103c6a3e2e669f6b26153161c95c8dacd3e73d61673461b3512348636877760d911341771e744c0a682b107df4ac48621661ff36a9fc0191f2fb
-Size (autossh-1.4e.tgz) = 65852 bytes
-SHA1 (patch-aa) = 7021aaae589aa018834116cd13013570f55cee9e
+RMD160 (autossh-1.4g.tgz) = ca6f67ac9d50d0037a126d57544df2684eac7a27
+SHA512 (autossh-1.4g.tgz) = 499b560d978736f4e764d5d828282fdaba1cbf94811ae6be0be5434d9c1cdc6ca5513d728b6372aa243843cb1b91e61cfc5fdeb77ddb0b6a7ce027218ba67466
+Size (autossh-1.4g.tgz) = 67599 bytes

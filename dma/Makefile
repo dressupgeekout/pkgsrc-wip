@@ -1,24 +1,21 @@
 # $NetBSD$
 
-DISTNAME=		dma-${GITHUB_TAG}
-PKGNAME=		dma-0.11
-CATEGORIES=		mail
+DISTNAME=	dma-0.13
+CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_GITHUB:=corecode/}
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://github.com/corecode/dma
 COMMENT=	The DragonFly Mail Agent
 LICENSE=	modified-bsd
-
-GITHUB_PROJECT=	dma
-GITHUB_TAG=		v0.11
 
 BUILD_DEFS+=		VARBASE
 
 PKG_SYSCONFSUBDIR=	dma
 EGDIR=			${PREFIX}/share/exmaples/${PKGBASE}
 
-USE_TOOLS+=		flex yacc
+USE_TOOLS+=	flex yacc
 LDFLAGS.SunOS+=	-lsocket -lnsl
 
 NO_CONFIGURE=	yes
@@ -39,12 +36,12 @@ CFLAGS+=	-DDMA_ROOT_USER=\"${DMA_ROOT_USER}\"
 
 MAKE_ENV+=	CONFDIR=${PKG_SYSCONFDIR}
 
-MAKE_FLAGS=		"LIBEXEC=${PREFIX}/libexec"
+MAKE_FLAGS=	"LIBEXEC=${PREFIX}/libexec"
 MAKE_FLAGS+=	"MAN=${PREFIX}/${PKGMANDIR}"
 
 INSTALLATION_DIRS=	${EGDIR}
 
-CONF_FILES=		${EGDIR}/dma.conf ${PKG_SYSCONFDIR}/dma.conf
+CONF_FILES=	${EGDIR}/dma.conf ${PKG_SYSCONFDIR}/dma.conf
 CONF_FILES+=	${EGDIR}/auth.conf ${PKG_SYSCONFDIR}/auth.conf
 
 OWN_DIRS=	${VARBASE}/spool/dma
@@ -54,4 +51,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/dma.conf ${DESTDIR}${EGDIR}/dma.conf
 	${INSTALL_DATA} ${WRKSRC}/auth.conf ${DESTDIR}${EGDIR}/auth.conf
 
+.include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -4,7 +4,7 @@ DISTNAME=	mathopd-1.6b15
 CATEGORIES=	www
 MASTER_SITES=	http://www.mathopd.org/dist/
 
-MAINTAINER=	ishit@users.sourceforge.net
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.mathopd.org/
 COMMENT=	Very small, yet very fast HTTP server
 
@@ -25,9 +25,9 @@ PKG_GROUPS_VARS+=	MATHOPD_GROUP
 PKG_GROUPS=		${MATHOPD_GROUP}
 PKG_USERS=		${MATHOPD_USER}:${MATHOPD_GROUP}
 
-PKG_GECOS.${MATHOPD_USER}=mathopd server user
+PKG_GECOS.${MATHOPD_USER}=	mathopd server user
 #PKG_HOME.${MATHOPD_USER}=
-PKG_SHELL.${MATHOPD_USER}=${NOLOGIN}
+PKG_SHELL.${MATHOPD_USER}=	${NOLOGIN}
 
 USE_PKGLOCALEDIR=	yes
 

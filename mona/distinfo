@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (mona-1.4-18.tar.gz) = a2a2da1729eddd9f338678d280af9081cf7bde3a74ed5e0938f32012bb53cef3
+SHA512 (mona-1.4-18.tar.gz) = 9b80b46701d7e9d320a668ded23a68a520454a3fa3e5bae4af5fcadf06d655f26f4bd706dfdb4933dc3f9f6bdbc95d858a086cd676b62b2457e8d05d72cc304c
+Size (mona-1.4-18.tar.gz) = 703111 bytes

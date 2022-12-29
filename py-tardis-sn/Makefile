@@ -13,10 +13,10 @@ LICENSE=	2-clause-bsd
 DEPENDS+=	${PYPKGPREFIX}-pandas>=0.12.0:../../math/py-pandas
 DEPENDS+=	${PYPKGPREFIX}-scipy>=0.12.1:../../math/py-scipy
 DEPENDS+=	${PYPKGPREFIX}-yaml>=3.10:../../textproc/py-yaml
-DEPENDS+=	${PYPKGPREFIX}-astropy>=0.3:../../wip/py-astropy
+DEPENDS+=	${PYPKGPREFIX}-astropy>=0.3:../../math/py-astropy
 DEPENDS+=	${PYPKGPREFIX}-h5py>=2.2.1:../../devel/py-h5py
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-astropy
+PYTHON_VERSIONS_ACCEPTED=	27 # py-astropy
 
 .include "../../lang/python/egg.mk"
 .include "../../math/py-numpy/buildlink3.mk"

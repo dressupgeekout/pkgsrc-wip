@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (avra-1.4.2.tar.gz) = ae02c5ac9b961dcaa37ade9234f9f26b4e9a56b39737fc5708d462e6947fa47e
+SHA512 (avra-1.4.2.tar.gz) = f51a43b1b28102d6180ce27e74b50642de8f3d18fa35a82904fddaac993e87e1096667f2245bebfad92e4ba3283330f6ac4b6083e486be5af9edca7b7e90e56f
+Size (avra-1.4.2.tar.gz) = 392445 bytes

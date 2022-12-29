@@ -25,16 +25,16 @@ PKGCONFIG_OVERRIDE+=	edelib.pc.in
 PKG_OPTIONS_VAR=	PKG_OPTIONS.edelib
 PKG_SUPPORTED_OPTIONS=	largefile nls shared
 PKG_SUGGESTED_OPTIONS=	nls shared
-PLIST_VARS+=	shlibs statlibs
+PLIST_VARS+=		shlibs statlibs
 
 .include "../../mk/bsd.prefs.mk"
 .include "../../mk/bsd.options.mk"
 
 # Solaris /bin/sh is really bad, so use TOOLS_PLATFORM.sh if it's been defined.
 .if ${OPSYS} == "SunOS"
-REPLACE_SH+=    autogen.sh configure \
-                src/tinyscheme/gen-c-string.sh \
-                test/abicheck.sh tools/geniconmap
+REPLACE_SH+=	autogen.sh configure \
+		src/tinyscheme/gen-c-string.sh \
+		test/abicheck.sh tools/geniconmap
 .else
 # doxygen doesn't build from pkgsrc on Solaris now - handle this better later
 BUILD_DEPENDS+=	doxygen-[0-9]*:../../devel/doxygen

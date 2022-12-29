@@ -8,12 +8,13 @@ MASTER_SITES=	http://download.berlios.de/yakuake/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	drjumba@bigmir.net
-HOMEPAGE=	http://extragear.kde.org/apps/yakuake/
+HOMEPAGE=	https://extragear.kde.org/apps/yakuake/
 COMMENT=	Drop-down terminal emulator based on KDE Konsole technology
+LICENSE=	gnu-gpl-v2
 
-USE_CMAKE=              yes
-USE_LANGUAGES=          c c++
-USE_TOOLS+=             awk msgfmt pkg-config perl
+USE_CMAKE=		yes
+USE_LANGUAGES=		c c++
+USE_TOOLS+=		awk msgfmt pkg-config perl
 
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../meta-pkgs/kde4/kde4.mk"

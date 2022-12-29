@@ -3,11 +3,11 @@
 DISTNAME=	khotkeys-${PLASMAVER}
 CATEGORIES=	x11
 
-HOMEPAGE=	https://www.kde.org/workspaces/plasmadesktop/
+HOMEPAGE=	https://kde.org/plasma-desktop/
 COMMENT=	KHotKeys
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
-.include "../../wip/kde5/plasma.mk"
+.include "../../meta-pkgs/kde/plasma5.mk"
 
 BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
@@ -17,16 +17,9 @@ USE_TOOLS+=	msgmerge pkg-config
 SUBST_CLASSES+=		fix-moc
 SUBST_STAGE.fix-moc=	post-configure
 SUBST_MESSAGE.fix-moc=	Cleaning up MOC includes
-SUBST_FILES.fix-moc=	_KDE_build/app/CMakeFiles/kded_khotkeys_automoc.dir/AutogenInfo.cmake 
-SUBST_FILES.fix-moc+=	_KDE_build/test/CMakeFiles/khotkeys_standalone_automoc.dir/AutogenInfo.cmake 
-SUBST_FILES.fix-moc+=	_KDE_build/kcm_hotkeys/CMakeFiles/kcm_hotkeys_automoc.dir/AutogenInfo.cmake 
-SUBST_SED.fix-moc=	-e 's,;${PREFIX}/include;,;,g'
-
-#MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg/autostart
-#CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/autostart/krunner.desktop \
-#		${PKG_SYSCONFDIR}/xdg/autostart/krunner.desktop
-#CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/plasmoids.knsrc \
-#		${PKG_SYSCONFDIR}/xdg/plasmoids.knsrc
+SUBST_FILES.fix-moc=	_KDE_build/*/CMakeFiles/*_autogen.dir/AutogenInfo.json 
+SUBST_NOOP_OK.fix-moc=	yes
+SUBST_SED.fix-moc=	-e 's;"${PREFIX}/include",;;g'
 
 .include "../../devel/kcmutils/buildlink3.mk"
 .include "../../x11/kdelibs4support/buildlink3.mk"

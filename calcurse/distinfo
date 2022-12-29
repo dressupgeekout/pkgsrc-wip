@@ -1,5 +1,0 @@
-$NetBSD: distinfo,v 1.4 2015/08/18 20:53:25 yhardy Exp $
-
-SHA1 (calcurse-4.0.0.tar.gz) = 5cbada72f511851a8b9d7bc40612e13a56d5e648
-RMD160 (calcurse-4.0.0.tar.gz) = 649ded6f01ae5c0c5898e16e81cb0b88f91b2d4a
-Size (calcurse-4.0.0.tar.gz) = 611593 bytes

@@ -5,9 +5,10 @@ DISTNAME=		libbtctl-0.6.0
 PKGREVISION=		1
 CATEGORIES=		net
 MASTER_SITES=		http://ftp.gnome.org/pub/gnome/sources/libbtctl/0.6/
+LICENSE=		gnu-gpl-v2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://live.gnome.org/GnomeBluetooth
+HOMEPAGE=		https://live.gnome.org/GnomeBluetooth
 COMMENT=		GObject Bluetooth controller
 
 
@@ -20,7 +21,7 @@ PKGCONFIG_OVERRIDE+=	${WRKSRC}/mono/libbtctl/libbtctl-sharp.pc.in
 
 GNU_CONFIGURE=		yes
 
-ONLY_FOR_PLATFORM=Linux-*-*
+ONLY_FOR_PLATFORM=	Linux-*-*
 
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"

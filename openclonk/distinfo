@@ -1,7 +1,6 @@
 $NetBSD$
 
-SHA1 (openclonk-7.0-src.tar.bz2) = cd29fc094e605481ce3523fa6762bfa44ee02979
-RMD160 (openclonk-7.0-src.tar.bz2) = 9a5437b92ac75217898af028bc2857f99506b528
-Size (openclonk-7.0-src.tar.bz2) = 102143348 bytes
-SHA1 (patch-CMakeLists.txt) = 857d956eff7f5b2efae4c0f6561252a5dd581641
-SHA1 (patch-src_graphics_StdPNG.cpp) = 552c9526546dd4677c63d0d0f69f2194cd8d583a
+RMD160 (openclonk-8.1-src.tar.bz2) = 65ae54147aa12d50972cf3bf9ef454338063e6d6
+SHA512 (openclonk-8.1-src.tar.bz2) = b52a2fba0906cc80fffe2ce308bb4631d4e2d4ada6b8442856deb5e729d37d5c473c3c1a50765eb0bd978d9e3c874d83e0d60f67f44d9535a3ac432029849f6c
+Size (openclonk-8.1-src.tar.bz2) = 120149164 bytes
+SHA1 (patch-CMakeLists.txt) = f0d0eac3227c0bf3ff11cb85203ba471de8d9344

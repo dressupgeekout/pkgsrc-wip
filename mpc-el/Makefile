@@ -7,12 +7,12 @@ CATEGORIES=	audio
 MASTER_SITES=	http://www.iro.umontreal.ca/~monnier/elisp/
 
 MAINTAINER=	pho@cielonegro.org
-HOMEPAGE=	http://www.iro.umontreal.ca/~monnier/elisp/#mpc.el
+HOMEPAGE=	https://www.iro.umontreal.ca/~monnier/elisp/#mpc.el
 COMMENT=	Emacs front end to the Music Player Daemon
 
 USE_TOOLS+=	gmake
 
-MESSAGE_SUBST+=         LISPDIR=${EMACS_LISPPREFIX:Q}
+MESSAGE_SUBST+=		LISPDIR=${EMACS_LISPPREFIX}
 
 do-build:
 	cd ${WRKSRC} && \

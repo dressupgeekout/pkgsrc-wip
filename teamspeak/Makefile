@@ -1,14 +1,13 @@
 # $NetBSD: Makefile,v 1.7 2012/10/07 16:38:04 asau Exp $
-#
 
 DISTNAME=		ts2_client_rc2_2032
 PKGNAME=		teamspeak-2.0.2032
 CATEGORIES=		net audio
-MASTER_SITES=		ftp://ftp.freenet.de/pub/4players/teamspeak.org/releases/
+MASTER_SITES=		#
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		ftp://ftp.freenet.de/pub/4players/teamspeak.org/releases/
+#HOMEPAGE=		ftp://ftp.freenet.de/pub/4players/teamspeak.org/releases/
 COMMENT=		Talk to other people over the internet
 LICENSE=		fee-based-commercial-use
 
@@ -19,7 +18,7 @@ SUBST_CLASSES+=		ts
 SUBST_STAGE.ts=		post-configure
 SUBST_FILES.ts+=	teamspeak.sh
 SUBST_SED.ts+=		-e 's|@BASEDIR@|${TS_BASEDIR}|g'
-SUBST_SED.ts+=		-e 's|@SH@|${SH}|g'
+SUBST_VARS.ts=		SH
 
 TS_BASEDIR=		${PREFIX}/lib/${PKGNAME_NOREV}
 TS_SRCDIR=		${WRKSRC}/setup.data/image

@@ -1,11 +1,8 @@
-$NetBSD: distinfo,v 1.6 2008/09/22 12:16:16 thomasklausner Exp $
+$NetBSD$
 
-SHA1 (GNUnet-0.6.4a.tar.bz2) = f3e5f55de75f3859c2f7bc9f0cbb4896255dbbc4
-RMD160 (GNUnet-0.6.4a.tar.bz2) = d827e3a596eded29a6c0d5840e0dbf047682caf7
-Size (GNUnet-0.6.4a.tar.bz2) = 1250052 bytes
-SHA1 (patch-aa) = 3424b9929668e5783fb59f73c53514eed2013308
-SHA1 (patch-ab) = 0dd443aa888314d029af761f2a8140ddb0455de7
-SHA1 (patch-ac) = 506753f8e0bde8fded12182dade9e37d22b2da28
-SHA1 (patch-ad) = e95ec0f92dc404b8d4dab6e8d09236c6e3fd24c0
-SHA1 (patch-ae) = 6b34c9afe15bb1f54444dcb9dd2bb7b5e81c6771
-SHA1 (patch-af) = 566351d448749da2285eff9560ebad90cede3246
+BLAKE2s (gnunet-0.19.0.tar.gz) = 041e2e85d538eae183743b7ee25e6cd1f6bba679074c2ff70220426f8b8b3823
+SHA512 (gnunet-0.19.0.tar.gz) = be1f9c77e14172dae78a4f94254289e73123d840d0f090e70567223515adb8e2b937a52d925e1c44fd49a4bbbb0b943617f55606b9ceb22927b6de7d9470d966
+Size (gnunet-0.19.0.tar.gz) = 10613630 bytes
+SHA1 (patch-contrib_packages_fedora_10-dns2gns.sh) = b666e57a74d974e8cae25db28e55102e8a5c7463
+SHA1 (patch-src_include_gnunet_common.h) = 44a0f31cd3d7fa4df5491cf9cf2efa31e695cdb9
+SHA1 (patch-src_setu_gnunet-service-setu.c) = 2e6c8eb895544fe79e27edec85e37379ec9b3783

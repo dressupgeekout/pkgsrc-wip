@@ -1,0 +1,7 @@
+$NetBSD$
+
+BLAKE2s (cyclone-bootstrap/v0.35.0.tar.gz) = 5a311cec00b35bfc63fdf6eea2ad6ea4b99959fee7e19220d6b7019073964533
+SHA512 (cyclone-bootstrap/v0.35.0.tar.gz) = 9aabae2bdcccdf6873780947c41a3230b80a3a5e93c9797cdfe278ba971e2b43320edab31349403a7fb14416c92216395d76af2415c33fb28f041ab867f2d716
+Size (cyclone-bootstrap/v0.35.0.tar.gz) = 3955837 bytes
+SHA1 (patch-Makefile) = 3b1405ff54738ac53808f1f4e2e2a8d3f458f75d
+SHA1 (patch-Makefile.config) = 8838e7b3ac7b22452b798ab043ad94fe33ac4822

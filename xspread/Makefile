@@ -1,12 +1,10 @@
 # $NetBSD: Makefile,v 1.6 2012/10/07 19:54:59 asau Exp $
-#
 
 DISTNAME=		xspread3.1.1c
 PKGNAME=		xspread-3.1.1c
 CATEGORIES=		math
 # What is the tucows-bsd URL for this?
-MASTER_SITES=		http://public.planetmirror.com/pub/tucows-bsd/files/ \
-			ftp://ftp.openbsd.org/pub/OpenBSD/distfiles/
+MASTER_SITES=		http://public.planetmirror.com/pub/tucows-bsd/files/
 
 MAINTAINER=		reed@reedmedia.net
 HOMEPAGE=		http://www.chemie.fu-berlin.de/chemnet/use/xspread.html
@@ -17,7 +15,7 @@ PKG_DESTDIR_SUPPORT=	destdir
 GNU_CONFIGURE=		yes
 CONFIGURE_HAS_MANDIR=	no
 
-#CONFIGURE_ENV+=		CPPFLAGS="-I${X11BASE}/include"
+#CONFIGURE_ENV+=	CPPFLAGS="-I${X11BASE}/include"
 MAKE_ENV+=		LOCAL_LDFLAGS="${COMPILER_RPATH_FLAG}${X11BASE}/lib -L${X11BASE}/lib"
 
 PKGMANDIR?=		man

@@ -6,7 +6,7 @@ CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=qtractor/}
 
 MAINTAINER=	gianni-pkgsrc-wip@daprile.net
-HOMEPAGE=	http://qtractor.sourceforge.net/
+HOMEPAGE=	https://qtractor.sourceforge.io/
 COMMENT=	Qt Audio/MIDI multi-track sequencer application
 LICENSE=	gnu-gpl-v2
 
@@ -14,7 +14,7 @@ PKG_DESTDIR_SUPPORT=	user-destdir
 
 GNU_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
-USE_TOOLS+=     gmake pkg-config
+USE_TOOLS+=	gmake pkg-config
 
 QTDIR?=			${PREFIX}/qt5
 CONFIGURE_ENV+=		QTDIR=${QTDIR:Q}

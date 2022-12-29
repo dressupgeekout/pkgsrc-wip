@@ -3,9 +3,9 @@
 DISTNAME=	QCDLoop-1.95
 PKGNAME=	qcdloop-1.95
 CATEGORIES=	math
-MASTER_SITES=	http://qcdloop.fnal.gov/
+MASTER_SITES=	https://qcdloop.fnal.gov/
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://qcdloop.fnal.gov/
+HOMEPAGE=	https://qcdloop.fnal.gov/
 COMMENT=	Repository of one-loop scalar Feynman integrals
 #LICENSE=	# TODO: (see mk/license.mk)
 

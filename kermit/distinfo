@@ -1,0 +1,7 @@
+$NetBSD: distinfo,v 1.28 2020/07/30 03:03:07 gutteridge Exp $
+
+BLAKE2s (cku402-beta08.tar.gz) = 21ff87950d235cab183a10938a11358aade26b57ebee5fa8fd0a746b936a3339
+SHA512 (cku402-beta08.tar.gz) = 96f5b6bb386b200e282099e72c709f8f9efe239a8199b49953aafd1391da9b666ef48b5f74b9fae4b6f7e17fb7684a7d02731390366ef59eaf0f3b0474a7fa39
+Size (cku402-beta08.tar.gz) = 2311492 bytes
+SHA1 (patch-ckupty.c) = 97cb6cca9b90d4c9a3a2faf9161310cb51fd2a58
+SHA1 (patch-makefile) = 6d72725dc07bdbdab1ace45f8add3d578b9a2934

@@ -1,25 +1,19 @@
-# $NetBSD$
+# $NetBSD: Makefile,v 1.53 2022/07/13 16:03:02 bsiegert Exp $
 
-GITHUB_PROJECT=	caddy
-DISTNAME=	v0.8.3
-PKGNAME=	${GITHUB_PROJECT}-${DISTNAME:S/v//}
-CATEGORIES=	wip www
-MASTER_SITES=	${MASTER_SITE_GITHUB:=mholt/}
-DIST_SUBDIR=	${GITHUB_PROJECT}
+DISTNAME=	caddy-2.5.2
+CATEGORIES=	www
+GITHUB_TAG=	v${PKGVERSION_NOREV}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=caddyserver/}
 
 MAINTAINER=	bsiegert@NetBSD.org
-HOMEPAGE=	${MASTER_SITE_GITHUB:=mholt/caddy/}
-COMMENT=	general-purpose web server
+HOMEPAGE=	https://caddyserver.com/
+COMMENT=	General-purpose web server
 LICENSE=	apache-2.0
 
-WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
-USE_LANGUAGES=	# none
+GO_BUILD_PATTERN=	./...
+EXTRACT_USING=		bsdtar
 
-BUILD_DEPENDS+=         go>=1.6:../../lang/go
-USE_TOOLS=	bash
+.include "go-modules.mk"
 
-do-build:
-	cd ${WRKSRC} && ${BASH} ./build.bash
-
-
+.include "../../lang/go/go-module.mk"
 .include "../../mk/bsd.pkg.mk"

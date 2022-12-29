@@ -6,9 +6,10 @@ PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	# empty
 DISTFILES=	# empty
+LICENSE=	apache-2.0
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://apr.apache.org/
+HOMEPAGE=	https://apr.apache.org/
 COMMENT=	Libtool replacement from the apache APR, written in C
 
 NO_CONFIGURE=		yes
@@ -18,12 +19,12 @@ USE_FEATURES+=		snprintf
 AUTO_MKDIRS=		yes
 
 do-extract:
-.   if !exists(${WRKSRC})
+.if !exists(${WRKSRC})
 	${RUN} ${MKDIR} ${WRKSRC}
-.   endif
+.endif
 
-.   for fn in Makefile jlibtool.c
+.for fn in Makefile jlibtool.c
 	${RUN} cp ${FILESDIR}/${fn} ${WRKSRC}
-.   endfor
+.endfor
 
 .include "../../mk/bsd.pkg.mk"

@@ -1,10 +1,11 @@
 # $NetBSD: Makefile,v 1.64 2016/04/22 08:04:23 jperkin Exp $
 
-DISTNAME=	kde-runtime-16.04.0
+DISTNAME=	kde-runtime-17.08.3
 PKGNAME=	${DISTNAME:S/-1/4-1/}
+PKGREVISION=	1
 CATEGORIES=	x11
 COMMENT=	Runtime requirements for the KDE integrated X11 desktop
-MASTER_SITES=	${MASTER_SITE_KDE:=applications/16.04.0/src/}
+MASTER_SITES=	${MASTER_SITE_KDE:=applications/17.08.3/src/}
 
 .include "../../meta-pkgs/kde4/Makefile.kde4"
 
@@ -18,9 +19,12 @@ CMAKE_ARGS+=	-DLIBLZMA_LIBRARY:FILEPATH=${BUILDLINK_PREFIX.xz}/lib/liblzma.dylib
 CMAKE_ARGS+=	-DLIBLZMA_LIBRARY:FILEPATH=${BUILDLINK_PREFIX.xz}/lib/liblzma.so
 .endif
 
+CMAKE_ARGS+=	-DWITH_QNtrack=OFF
+CMAKE_ARGS+=	-DWITH_NepomukCore=OFF
 CMAKE_ARGS+=	-DBUILD_khelpcenter=OFF
 CMAKE_ARGS+=	-DBUILD_kglobalaccel=OFF
 CMAKE_ARGS+=	-DBUILD_kuiserver=OFF
+CMAKE_ARGS+=	-DBUILD_drkonqi=OFF
 CMAKE_ARGS+=	-DBUILD_doc=OFF
 
 #DEPENDS+=	htdig>=3.2.0:../../www/htdig
@@ -47,7 +51,7 @@ PLIST.polkit=	yes
 PLIST.x11=	yes
 .endif
 
-#SUBST_CLASSES+=		htdig
+#SUBST_CLASSES+=	htdig
 #SUBST_STAGE.htdig=	post-patch
 #SUBST_MESSAGE.htdig=	Fix htdig paths.
 #SUBST_FILES.htdig=	khelpcenter/searchhandlers/khc_htsearch.pl
@@ -55,7 +59,7 @@ PLIST.x11=	yes
 
 SUBST_CLASSES+=		paths
 SUBST_FILES.paths=	kioslave/info/kde-info2html.conf
-SUBST_SED.paths=	-e 's,@LOCALBASE@,${LOCALBASE},g'
+SUBST_SED.paths=	-e 's,@LOCALBASE@,${PREFIX},g'
 SUBST_STAGE.paths=	post-patch
 
 REPLACE_PERL+= \
@@ -66,7 +70,7 @@ REPLACE_PERL+= \
 	kioslave/info/kde-info2html
 
 CONF_FILES+=	${PREFIX}/share/examples/kde-runtime4/kde-information.menu \
-                ${PKG_SYSCONFDIR}/xdg/menus/kde-information.menu
+		${PKG_SYSCONFDIR}/xdg/menus/kde-information.menu
 CONF_FILES+=	${PREFIX}/share/examples/kde4-dbus/org.kde.kcontrol.kcmremotewidgets.conf \
 		${PKG_SYSCONFDIR}/dbus-1/system.d/org.kde.kcontrol.kcmremotewidgets.conf
 
@@ -81,8 +85,8 @@ INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 #.include "../../lang/python/application.mk"
 # not the libssh the package wants
 #.include "../../security/libssh/buildlink3.mk"
+.include "../../security/gpgme/buildlink3.mk"
 .include "../../security/qca2/buildlink3.mk"
-.include "../../misc/kdepimlibs4/buildlink3.mk"
 .include "../../multimedia/phonon/buildlink3.mk"
 .include "../../archivers/xz/buildlink3.mk"
 .include "../../graphics/exiv2/buildlink3.mk"
@@ -93,7 +97,6 @@ BUILDLINK_ABI_DEPENDS.attica?=	attica>=0.1.4
 .include "../../multimedia/xine-lib/buildlink3.mk"
 .include "../../net/openslp/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../x11/libkactivities4/buildlink3.mk"
 .include "../../x11/kdelibs4/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

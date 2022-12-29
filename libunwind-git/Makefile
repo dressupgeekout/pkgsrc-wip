@@ -7,7 +7,7 @@ GIT_REPOSITORIES=	libunwind
 GIT_REPO.libunwind=	https://github.com/llvm-mirror/libunwind.git
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://libunwind.llvm.org/
+#HOMEPAGE=	http://libunwind.llvm.org/
 COMMENT=	LLVM libunwind
 LICENSE=	modified-bsd
 
@@ -15,7 +15,7 @@ WRKSRC=			${WRKDIR}/${PKGBASE}
 CONFIGURE_DIRS=		${WRKDIR}/build
 
 USE_TOOLS+=		pax
-USE_LANGUAGES=		c c++
+USE_LANGUAGES=		c c++11
 USE_CMAKE=		yes
 GCC_REQD+=		4.8
 

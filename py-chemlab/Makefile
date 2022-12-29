@@ -12,9 +12,14 @@ LICENSE=	gnu-gpl-v3
 
 DEPENDS+=	${PYPKGPREFIX}-nose>=1.3.4:../../devel/py-nose
 
-BROKEN=		"downloads during build (distribute_setup.py)"
+PYTHON_VERSIONED_DEPENDENCIES+=	setuptools:build
+
+pre-configure:
+	# Verify that no fetching is done during build
+	${RM} ${WRKSRC}/distribute_setup.py
 
 .include "../../devel/py-cython/buildlink3.mk"
 .include "../../lang/python/egg.mk"
 .include "../../math/py-numpy/buildlink3.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

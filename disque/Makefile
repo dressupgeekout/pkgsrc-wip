@@ -1,13 +1,13 @@
 # $NetBSD$
 
-PKGNAME=	disque-1.0rc1
 DISTNAME=	disque-1.0-rc1
+PKGNAME=	disque-1.0rc1
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=antirez/}
 GITHUB_PROJECT=	disque
 GITHUB_TAG=	1.0-rc1
 
-MAINTAINER=	cfkoch@edgebsd.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/antirez/disque
 COMMENT=	Distributed message broker
 LICENSE=	modified-bsd

@@ -1,13 +1,13 @@
-$NetBSD: patch-chrome_common_chrome__switches.h,v 1.1 2011/04/28 03:09:02 rxg Exp $
+$NetBSD$
 
---- chrome/common/chrome_switches.h.orig	2011-04-13 08:01:58.000000000 +0000
+--- chrome/common/chrome_switches.h.orig	2020-07-08 21:41:47.000000000 +0000
 +++ chrome/common/chrome_switches.h
-@@ -369,7 +369,7 @@ extern const char kEnableMediaPlayer[];
- extern const char kEnableAdvancedFileSystem[];
+@@ -255,7 +255,7 @@ extern const char kAllowNaClFileHandleAP
+ extern const char kAllowNaClSocketAPI[];
  #endif
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
- extern const char kScrollPixels[];
+-#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN)
++#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN) || defined(OS_BSD)
+ extern const char kEnableNewAppMenuIcon[];
+ extern const char kGuest[];
  #endif
- 

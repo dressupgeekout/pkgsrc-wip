@@ -6,17 +6,17 @@ MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libsocialweb/0.25/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	noud4@users.sourceforge.net
-HOMEPAGE=	http://projects.gnome.org/	# XXX
+HOMEPAGE=	https://projects.gnome.org/	# XXX
 COMMENT=	Personal social data server
 LICENSE=	gnu-lgpl-v2.1
 
 BUILD_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 
-GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
-USE_TOOLS+=	pkg-config intltool msgfmt
-USE_TOOLS+=	gmake
-USE_TOOLS+=	perl
+GNU_CONFIGURE=		yes
+USE_LIBTOOL=		yes
+USE_TOOLS+=		pkg-config intltool msgfmt
+USE_TOOLS+=		gmake
+USE_TOOLS+=		perl
 USE_PKGLOCALEDIR=	yes
 
 PKGCONFIG_OVERRIDE+=	libsocialweb-client.pc.in libsocialweb-keyfob.pc.in \

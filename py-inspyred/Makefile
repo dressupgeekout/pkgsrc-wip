@@ -6,7 +6,7 @@ CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_PYPI:=i/inspyred/}
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	 https://aarongarrett.github.io/inspyred
+HOMEPAGE=	https://aarongarrett.github.io/inspyred
 COMMENT=	Bio-inspired computational intelligence algorithms in Python
 LICENSE=	mit
 
@@ -14,5 +14,5 @@ WRKSRC=		${WRKDIR}/inspyred-1.0.1
 
 USE_LANGUAGES=	# none
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

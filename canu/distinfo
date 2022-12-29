@@ -1,0 +1,7 @@
+$NetBSD$
+
+BLAKE2s (canu-2.2.tar.gz) = ecb7c025c7cd24d90403844ac9d62bc4245fe1b63efb8bc18354542f1920a679
+SHA512 (canu-2.2.tar.gz) = 9c4389994857bdd8c75d6e1b6e9f5bba765d89716b3cc037ae8066b62fddd0c7028ce10ecdaacc762c641ea96831b95dcef07e0a27e09afe758377e1900b2694
+Size (canu-2.2.tar.gz) = 2068564 bytes
+SHA1 (patch-Makefile) = aa83003677cbb12558e438c776402ec48df0598d
+SHA1 (patch-pipelines_canu_Defaults.pm) = 55a4631d86abb1881b0cc997514d44c536209ea6

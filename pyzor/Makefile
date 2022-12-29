@@ -5,11 +5,13 @@ CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_GITHUB:=SpamExperts/}
 
 MAINTAINER=	tom@replic8.net
-HOMEPAGE=	http://github.com/SpamExperts/pyzor/
+HOMEPAGE=	https://github.com/SpamExperts/pyzor/
 COMMENT=	Collaborative, networked system to detect and block spam
 LICENSE=	gnu-gpl-v2
 
 GITHUB_TAG=	release-${PKGVERSION_NOREV:S/./-/g}
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27 # py-sphinx
 
 USE_TOOLS+=	gmake
 
@@ -17,6 +19,8 @@ BUILD_DEPENDS+=	${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 
 REPLACE_PYTHON=	scripts/pyzor scripts/pyzord
 MESSAGE_SUBST+=	PYPKGPREFIX=${PYPKGPREFIX}
+
+BUILD_DEFS+=	PKG_SYSCONFBASE
 
 EGDIR=			share/examples/pyzor
 CONFIG_FILES=		accounts config pyzord.access pyzord.paswd servers
@@ -33,7 +37,7 @@ SUBST_MESSAGE.etc=	Fixing default config path
 SUBST_FILES.etc=	scripts/pyzord scripts/pyzor web/application.py
 SUBST_SED.etc=		-e 's,/etc,${PKG_SYSCONFBASE},'
 
-MAKE_FLAGS+=		SPHINXBUILD=sphinx-build${PYVERSSUFFIX}
+MAKE_FLAGS+=		SPHINXBUILD=sphinx-build-${PYVERSSUFFIX}
 INSTALLATION_DIRS+=	${PREFIX}/${PKGMANDIR}/man1 ${EGDIR}
 
 post-build:

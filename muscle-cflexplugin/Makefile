@@ -8,14 +8,14 @@ MASTER_SITES=		http://alioth.debian.org/download.php/463/
 
 MAINTAINER=	evaldo@gardenali.biz
 HOMEPAGE=	http://www.linuxnet.com/
-COMMENT=		CryptoFlex plugin for the MUSCLE framework
+COMMENT=	CryptoFlex plugin for the MUSCLE framework
 
 WRKSRC=			${WRKDIR}/${DISTNAME}/CFlexPlugin
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
 USE_TOOLS+=		gmake
 
-CPPFLAGS+=		-I${LOCALBASE}/include/PCSC
+CPPFLAGS+=		-I${PREFIX}/include/PCSC
 
 CONTSRCDIR=	${WRKSRC}/src/slbCryptoflex.bundle/Contents/
 CONTDIR=	${PREFIX}/lib/pcsc-lite/drivers/slbCryptoflex.bundle/Contents

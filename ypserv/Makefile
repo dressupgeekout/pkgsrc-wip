@@ -1,10 +1,9 @@
 # $NetBSD: Makefile,v 1.9 2012/10/07 20:11:11 asau Exp $
-#
 
 DISTNAME=		ypserv-2.9
 PKGREVISION=		1
 CATEGORIES=		net
-MASTER_SITES=		ftp://ftp.kernel.org/pub/linux/utils/net/NIS/
+#MASTER_SITES=		ftp://ftp.kernel.org/pub/linux/utils/net/NIS/
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		reed@reedmedia.net
@@ -21,7 +20,7 @@ GNU_CONFIGURE=		yes
 RCD_SCRIPTS=		yppasswdd ypserv
 
 CONFIGURE_ARGS+=	--libexecdir=${PREFIX}/sbin
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 
 .include "../../databases/gdbm/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

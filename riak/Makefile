@@ -6,7 +6,7 @@ MASTER_SITES=		http://s3.amazonaws.com/downloads.basho.com/riak/2.1/${PKGVERSION
 			http://s3.amazonaws.com/files.basho.com/solr/ \
 			http://s3.amazonaws.com/files.basho.com/yokozuna/
 
-MAINTAINER=		filip@joyent.com
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.basho.com/products_riak_overview.php
 COMMENT=		Distributed, highly available data store
 LICENSE=		apache-2.0
@@ -76,7 +76,7 @@ REPLACE_BASH+=		deps/yokozuna/build/${SOLR:S/.tgz//}/example/etc/create-solrtest
 REPLACE_INTERPRETER+=	escript
 REPLACE.escript.old=	.*escript
 REPLACE.escript.new=	${PREFIX}/bin/escript
-REPLACE_FILES.escript=  deps/node_package/priv/base/nodetool
+REPLACE_FILES.escript=	deps/node_package/priv/base/nodetool
 
 CHECK_PORTABILITY_SKIP=	deps/riak_search/tests/riak_search/run_all.sh
 

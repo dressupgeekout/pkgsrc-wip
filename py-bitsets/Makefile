@@ -2,16 +2,16 @@
 
 DISTNAME=	bitsets-0.1.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-CATEGORIES=	wip
+CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_PYPI:=b/bitsets/}
 EXTRACT_SUFX=	.zip
 
 MAINTAINER=	kamel.derouiche@gmail.com
-HOMEPAGE=	https://github.com/xflr6/bitsets	
+HOMEPAGE=	https://github.com/xflr6/bitsets
 COMMENT=	Ordered subsets over a predefined domain
 LICENSE=	mit
 
-PYDISTUTILSPKG= yes
+PYDISTUTILSPKG=	yes
 
 do-test:
 	${RUN} cd ${WRKSRC}; ${SETENV} ${TEST_ENV} ${PYTHONBIN} run-tests.py

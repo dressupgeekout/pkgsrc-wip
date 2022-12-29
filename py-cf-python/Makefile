@@ -10,13 +10,13 @@ HOMEPAGE=	http://cfpython.bitbucket.org/
 COMMENT=	Python interface to the CF data model
 LICENSE=	mit
 
-PYTHON_VERSIONS_INCOMPATIBLE= 30 34 35
+PYTHON_VERSIONS_ACCEPTED=	27
 
+DEPENDS+=	${PYPKGPREFIX}-matplotlib-[0-9]*:../../graphics/py-matplotlib
 DEPENDS+=	${PYPKGPREFIX}-scipy>=0.15.1:../../math/py-scipy
 DEPENDS+=	${PYPKGPREFIX}-psutil-2.1.3:../../sysutils/py-psutil
-DEPENDS+=	${PYPKGPREFIX}-netcdf4>=1.1.8:../../wip/py-netcdf4
+DEPENDS+=	${PYPKGPREFIX}-netCDF4>=1.1.8:../../math/py-netCDF4
 
-.include "../../graphics/py-matplotlib/buildlink3.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

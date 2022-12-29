@@ -6,9 +6,10 @@ PKGNAME=	ap2-jk2-${AP_JK_VER}
 PKGREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	https://archive.apache.org/dist/tomcat/tomcat-connectors/jk2/source/
+LICENSE=	apache-2.0
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://tomcat.apache.org/
+HOMEPAGE=	https://tomcat.apache.org/
 COMMENT=	Apache2 JK2 module for connecting to Tomcat using AJP1X
 
 

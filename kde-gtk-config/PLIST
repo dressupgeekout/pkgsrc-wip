@@ -3,9 +3,6 @@ libexec/gtk3_preview
 libexec/gtk_preview
 libexec/reload_gtk_apps
 qt5/plugins/kcm_kdegtkconfig.so
-share/examples/kde-xdg/cgcgtk3.knsrc
-share/examples/kde-xdg/cgcicon.knsrc
-share/examples/kde-xdg/cgctheme.knsrc
 share/icons/hicolor/128x128/apps/kde-gtk-config.png
 share/icons/hicolor/16x16/apps/kde-gtk-config.png
 share/icons/hicolor/22x22/apps/kde-gtk-config.png
@@ -17,9 +14,10 @@ share/icons/hicolor/64x64/apps/kde-gtk-config.png
 share/icons/hicolor/8x8/apps/kde-gtk-config.png
 share/icons/hicolor/scalable/apps/kde-gtk-config.svgz
 share/kcm-gtk-module/preview.ui
+share/knsrcfiles/cgcgtk3.knsrc
+share/knsrcfiles/cgctheme.knsrc
 share/kservices5/kde-gtk-config.desktop
 share/locale/ar/LC_MESSAGES/kde-gtk-config.mo
-share/locale/ast/LC_MESSAGES/kde-gtk-config.mo
 share/locale/bs/LC_MESSAGES/kde-gtk-config.mo
 share/locale/ca/LC_MESSAGES/kde-gtk-config.mo
 share/locale/ca@valencia/LC_MESSAGES/kde-gtk-config.mo
@@ -30,10 +28,14 @@ share/locale/el/LC_MESSAGES/kde-gtk-config.mo
 share/locale/en_GB/LC_MESSAGES/kde-gtk-config.mo
 share/locale/es/LC_MESSAGES/kde-gtk-config.mo
 share/locale/et/LC_MESSAGES/kde-gtk-config.mo
+share/locale/eu/LC_MESSAGES/kde-gtk-config.mo
 share/locale/fi/LC_MESSAGES/kde-gtk-config.mo
 share/locale/fr/LC_MESSAGES/kde-gtk-config.mo
 share/locale/gl/LC_MESSAGES/kde-gtk-config.mo
+share/locale/he/LC_MESSAGES/kde-gtk-config.mo
 share/locale/hu/LC_MESSAGES/kde-gtk-config.mo
+share/locale/ia/LC_MESSAGES/kde-gtk-config.mo
+share/locale/id/LC_MESSAGES/kde-gtk-config.mo
 share/locale/it/LC_MESSAGES/kde-gtk-config.mo
 share/locale/ja/LC_MESSAGES/kde-gtk-config.mo
 share/locale/ko/LC_MESSAGES/kde-gtk-config.mo

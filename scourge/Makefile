@@ -9,6 +9,7 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=scourge/}
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://scourge.sourceforge.net/
 COMMENT=		Graphical 3D roguelike, vermin extermination
+LICENSE=		gnu-gpl-v2
 
 MAKE_FILE=		Makefile.Fedora
 
@@ -18,7 +19,7 @@ USE_TOOLS+=		pax
 post-extract:
 	${CP} ${FILESDIR}/scourge.sh ${WRKSRC}
 
-SUBST_CLASSES+=	scourge
+SUBST_CLASSES+=		scourge
 SUBST_MESSAGE.scourge=	Replacing prefix.
 SUBST_STAGE.scourge=	post-patch
 SUBST_FILES.scourge=	scourge.sh

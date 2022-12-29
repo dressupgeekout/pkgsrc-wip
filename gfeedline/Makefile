@@ -3,7 +3,7 @@
 DISTNAME=	gfeedline-2.4.1
 PKGREVISION=	1
 CATEGORIES=	net
-MASTER_SITES=	http://gfeedline.googlecode.com/files/
+MASTER_SITES=	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/gfeedline/
 
 MAINTAINER=	noud4@users.sourceforge.net
 HOMEPAGE=	http://code.google.com/p/gfeedline/
@@ -11,22 +11,21 @@ COMMENT=	Social network client for GNOME
 LICENSE=	gnu-gpl-v3
 
 DEPENDS+=	${PYPKGPREFIX}-gobject-[0-9]*:../../devel/py-gobject
+DEPENDS+=	${PYPKGPREFIX}-dateutil-[0-9]*:../../time/py-dateutil
 #gir1.2-webkit-3.0
 DEPENDS+=	${PYPKGPREFIX}-twisted-[0-9]*:../../net/py-twisted
 #python-openssl
 DEPENDS+=	${PYPKGPREFIX}-beautifulsoup-[0-9]*:../../www/py-beautifulsoup
-DEPENDS+=	${PYPKGPREFIX}-oauth-[0-9]*:../../security/py-oauth
 DEPENDS+=	${PYPKGPREFIX}-xdg-[0-9]*:../../devel/py-xdg
 DEPENDS+=	${PYPKGPREFIX}-distutils-extra-[0-9]*:../../wip/py-distutils-extra
 
-PYTHON_VERSIONED_DEPENDENCIES=	dateutil
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-beautifulsoup, py-gobject, py-twisted
+PYTHON_VERSIONS_ACCEPTED=	27 # py-beautifulsoup, py-gobject
 
-USE_LANGUAGES=	# none
-NO_BUILD=	YES
-USE_TOOLS+=	intltool
-PY_PATCHPLIST=	yes
-PLIST_SUBST+=	EGG_INFODIR=${DISTNAME}-py${PYVERSSUFFIX}.egg-info
+USE_LANGUAGES=		# none
+NO_BUILD=		YES
+USE_TOOLS+=		intltool
+PY_PATCHPLIST=		yes
+PLIST_SUBST+=		EGG_INFODIR=${DISTNAME}-py${PYVERSSUFFIX}.egg-info
 INSTALLATION_DIRS=	share/applications \
 			${PKGMANDIR}/man1 \
 			etc \
@@ -46,7 +45,7 @@ REPLACE_PYTHON=		lib/plugins/post.py lib/plugins/twitter/dd.py
 SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	pre-configure
 SUBST_FILES.prefix=	lib/utils/iconimage.py lib/utils/iconimage.py lib/constants.py
-SUBST_SED.prefix=	-e 's,@PREFIX@,${PREFIX},g'
+SUBST_VARS.prefix=	PREFIX
 SUBST_MESSAGE.prefix=	Replacing pkg path.
 
 .include "options.mk"
@@ -66,5 +65,4 @@ post-install:
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
 .include "../../lang/python/pyversion.mk"
-.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

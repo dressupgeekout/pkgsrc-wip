@@ -14,7 +14,7 @@ LICENSE=	gnu-gpl-v3
 
 USE_LANGUAGES=	c++
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # as of 0.9.4
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 0.9.4
 
 post-extract:
 	cd ${WRKSRC}/scripts && ${MV} shedskin shedskin${PYVERSSUFFIX}
@@ -22,5 +22,5 @@ post-extract:
 do-test:
 	cd ${WRKSRC} && ${PYTHONBIN} test.py
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

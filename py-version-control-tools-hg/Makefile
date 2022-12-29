@@ -8,15 +8,15 @@ MASTER_SITES=	#
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://mercurial.selenic.com/wiki/MozillaPushlogExtension
 COMMENT=	Mercurial extensions used by the mozilla project (incl. pushlog)
-#LICENSE=	mpl-1.1
+LICENSE=	gnu-gpl-v2
 
-HG_REPOSITORIES=	version-control-tools
+HG_REPOSITORIES=		version-control-tools
 HG_REPO.version-control-tools=	https://hg.mozilla.org/hgcustom/version-control-tools/
-WRKSRC=		${WRKDIR}/version-control-tools/hghooks
+WRKSRC=				${WRKDIR}/version-control-tools/hghooks
 
 DEPENDS+=	${PYPKGPREFIX}-mercurial-[0-9]*:../../devel/py-mercurial
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-mercurial
+PYTHON_VERSIONS_ACCEPTED=	27 # mozhghooks/whitelist_*.py
 
 REPLACE_PYTHON+=	*.py
 REPLACE_PYTHON+=	*/*.py

@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.8 2012/11/25 23:32:07 othyro Exp $
-#
+# $NetBSD$
 
-DISTNAME=		afflib-1.6.31
-CATEGORIES=		devel
-MASTER_SITES=		http://www.afflib.org/downloads/
+DISTNAME=	afflib-1.6.31
+CATEGORIES=	devel
+MASTER_SITES=	http://www.afflib.org/downloads/
 
-MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		https://sourceforge.net/projects/afflib/
-COMMENT=		Advanced Forensic Format library
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://sourceforge.net/projects/afflib/
+COMMENT=	Advanced Forensic Format library
+LICENSE=	original-bsd
 
-USE_LANGUAGES= c++
+USE_LANGUAGES=	c++
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/aimage/aimage ${DESTDIR}${PREFIX}/bin

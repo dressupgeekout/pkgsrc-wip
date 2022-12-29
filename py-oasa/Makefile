@@ -10,14 +10,14 @@ HOMEPAGE=	http://bkchem.zirael.org/download/
 COMMENT=	Python library for manipulation of chemical formats
 LICENSE=	gnu-gpl-v2
 
-USE_LANGUAGES=	# none
+DEPENDS+=	${PYPKGPREFIX}-cairo-[0-9]*:../../graphics/py-cairo118
 
-PYDISTUTILSPKG=	yes
-PYTHON_VERSIONED_DEPENDENCIES=	cairo
+PYTHON_VERSIONS_ACCEPTED=	27
+
+USE_LANGUAGES=	# none
 
 do-test:
 	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHONBIN} test.py
 
-.include "../../lang/python/versioned_dependencies.mk"
-.include "../../lang/python/extension.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

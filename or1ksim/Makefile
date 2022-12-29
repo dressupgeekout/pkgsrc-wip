@@ -8,7 +8,7 @@ CATEGORIES=	emulators
 MASTER_SITES=	-https://github.com/openrisc/or1ksim/archive/or1ksim-${VER}.tar.gz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://opencores.org/or1k/Or1ksim
+HOMEPAGE=	https://opencores.org/or1k/Or1ksim
 COMMENT=	OpenRISC emulator
 
 
@@ -16,7 +16,7 @@ USE_TOOLS+=	gmake
 
 INFO_FILES=	yes
 
-GNU_CONFIGURE=  yes
+GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--target=or32
 
 # rl_event_hook

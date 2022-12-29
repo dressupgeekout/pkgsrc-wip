@@ -8,22 +8,21 @@ CATEGORIES=	fonts
 MASTER_SITES=	http://download.microsoft.com/download/f/5/a/f5a3df76-d856-4a61-a6bd-722f52a5be26/
 DISTFILES=	PowerPointViewer.exe
 
-MAINTAINER=	shattered@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.microsoft.com/download/en/details.aspx?id=6
 COMMENT=	TrueType fonts from Microsoft Windows Vista
 LICENSE=	ms-ttf-license
 
-RESTRICTED=	No redistribution in altered form
-
-BUILD_DEPENDS+=	cabextract-[0-9]*:../../archivers/cabextract
-
+RESTRICTED=		No redistribution in altered form
 NO_BIN_ON_CDROM=	${RESTRICTED}
 NO_BIN_ON_FTP=		${RESTRICTED}
+
+BUILD_DEPENDS+=	cabextract-[0-9]*:../../archivers/cabextract
 
 NO_CONFIGURE=	yes
 NO_BUILD=	yes
 
-EXTRACT_CMD=	${LOCALBASE}/bin/cabextract -q -s $${extract_file} ppviewer.cab
+EXTRACT_CMD=	${PREFIX}/bin/cabextract -q -s $${extract_file} ppviewer.cab
 FONTDIR=	${PREFIX}/share/fonts/X11/TTF
 DOCDIR=		${PREFIX}/share/doc/vista-fonts
 FONTS_DIRS.ttf=	${FONTDIR}

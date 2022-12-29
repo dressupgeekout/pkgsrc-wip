@@ -12,13 +12,13 @@ LICENSE=	mit
 
 DEPENDS+=	${PYPKGPREFIX}-blosc>=1.2.3:../../wip/py-blosc
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # as of 0.6.0
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 0.6.0
 
 USE_LANGUAGES=	# none
 
 post-extract:
 	${MV} ${WRKSRC}/blpk ${WRKSRC}/blpk${PYVERSSUFFIX}
 
-.include "../../lang/python/distutils.mk"
+.include "../../wip/python/distutils.mk"
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

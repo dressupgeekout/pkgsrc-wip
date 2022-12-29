@@ -1,44 +1,43 @@
 # $NetBSD$
 
 GITHUB_PROJECT=	openfodder
-DISTNAME=	1.0.0
+DISTNAME=	1.6.0
 PKGNAME=	${GITHUB_PROJECT}-${DISTNAME}
 CATEGORIES=	games
-MASTER_SITES=	${MASTER_SITE_GITHUB:=segrax/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=OpenFodder/}
 DIST_SUBDIR=	${GITHUB_PROJECT}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://github.com/segrax/openfodder/
+HOMEPAGE=	http://openfodder.com
 COMMENT=	Engine for the Cannon Fodder game
 LICENSE=	gnu-gpl-v3
 
-WRKSRC=		${WRKDIR}/openfodder-1.0.0
-USE_LANGUAGES=	c++
+WRKSRC=		${WRKDIR}/openfodder-${PKGVERSION_NOREV}
+USE_LANGUAGES=	c++14
 
-CXXFLAGS+=	-std=c++0x
-CXXFLAGS+=	-D OPENFODDER_DATADIR=\"${PREFIX}/share/openfodder\"
+CXXFLAGS+=	-D OPENFODDER_DATADIR=\"${PREFIX}/share/\"
 CXXFLAGS+=	-I${WRKSRC}/Source
 CXXFLAGS+=	`sdl2-config --cflags`
 LIBS+=		`sdl2-config --libs`
 LIBS+=		-lSDL2_mixer
 LIBS+=		${X11_LDFLAGS}
 
-FODDER_SRCDIRS=	Source Source/PC Source/Amiga
+DEPENDS+=	openfodder-data-1.7.0:../../wip/openfodder-data
+
+FODDER_SRCDIRS=	Source Source/Amiga Source/Map Source/PC Source/Structures Source/Utils
 FODDER_SRCS=	${FODDER_SRCDIRS:=/*.cpp}
 
-INSTALLATION_DIRS+=	bin share/openfodder
+INSTALLATION_DIRS+=	bin share/doc/OpenFodder share/examples/OpenFodder
 
 do-build:
+	${ECHO} 'const char* gitversion="pkgsrc-${PKGVERSION_NOREV}";' > ${WRKSRC}/Source/gitver.hpp
 	cd ${WRKSRC} && ${CXX} ${CXXFLAGS} -o OpenFodder ${FODDER_SRCS} ${LIBS}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/OpenFodder ${DESTDIR}${PREFIX}/bin
-	cd ${WRKSRC}/Run && ${FIND} . -type d | while read d; do \
-		${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/openfodder/$$d || exit 1; \
-	done
-	cd ${WRKSRC}/Run && ${FIND} . -type f | while read f; do \
-		${INSTALL_DATA} $$f ${DESTDIR}${PREFIX}/share/openfodder/$${f%/*} || exit 1; \
-	done
+	${INSTALL_DATA} ${WRKSRC}/INSTALL.md ${DESTDIR}${PREFIX}/share/doc/OpenFodder/
+	${INSTALL_DATA} ${WRKSRC}/README.md ${DESTDIR}${PREFIX}/share/doc/OpenFodder/
+	${INSTALL_DATA} ${WRKSRC}/openfodder.ini.example ${DESTDIR}${PREFIX}/share/examples/OpenFodder/
 
 .include "../../audio/SDL2_mixer/buildlink3.mk"
 .include "../../devel/SDL2/buildlink3.mk"

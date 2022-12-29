@@ -1,19 +1,19 @@
 # $NetBSD: Makefile,v 1.16 2012/10/14 17:57:23 asau Exp $
 #
 
-PKGNAME=		ncbi-lib-20120620
 DISTNAME=		ncbi
-DIST_SUBDIR=		ncbi-${PKGVERSION_NOREV}
+PKGNAME=		ncbi-lib-20120620
 CATEGORIES=		biology
 MASTER_SITES=		ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools/old/${PKGVERSION_NOREV}/
+DIST_SUBDIR=		ncbi-${PKGVERSION_NOREV}
 
 MAINTAINER=		mchittur@cs.nmsu.edu
-HOMEPAGE=		http://www.ncbi.nlm.nih.gov/IEB/ToolBox/
+HOMEPAGE=		https://www.ncbi.nlm.nih.gov/IEB/ToolBox/
 COMMENT=		Portable, modular software for molecular biology
 
 WRKSRC=			${WRKDIR}/ncbi
 
-MAKE_ENV+=		PREFIX=${PREFIX:Q}
+MAKE_ENV+=		PREFIX=${PREFIX}
 
 post-extract:
 	${MV} ${WRKSRC}/make/makedis.csh ${WRKSRC}/make/makedis.csh.in

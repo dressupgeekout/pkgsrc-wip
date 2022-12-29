@@ -3,9 +3,9 @@
 DISTNAME=		mule-p20151011
 #                                 mule-p20151011 -> mule11-20151011
 PKGNAME=		${DISTNAME:C/e-p/e11-/}
+CATEGORIES=		editors
 MASTER_SITES=		${MASTER_SITE_GITHUB:=tsutsui/}
 GITHUB_PROJECT=		mule1.1-netbsd
-CATEGORIES=		editors
 
 MAINTAINER=		makoto@ki.nu
 HOMEPAGE=		https://github.com/tsutsui/mule1.1-netbsd
@@ -27,29 +27,28 @@ SUBST_CLASSES+=		pref
 SUBST_MESSAGE.pref=	Convert /usr/local to ${PREFIX}
 SUBST_STAGE.pref=	pre-configure
 SUBST_SED.pref=		-e 's,/usr/local,${PREFIX},g'
-SUBST_FILES.pref=	\
-	Makefile \
-	build-install \
-	dos/emx/makefile \
-	dos/go32/makefile \
-	etc/FAQ \
-	etc/FAQ.jp \
-	etc/MACHINES \
-	etc/m2ps.1-dist \
-	etc/mule.1-dist \
-	info/canna-jp \
-	info/egg-jp-2 \
-	info/emacs-11 \
-	info/emacs-13 \
-	lisp/paths.el \
-	man/canna-jp.texi \
-	man/egg-jp.texi \
-	man/emacs.texi \
-	src/m-ibmps2-aix.h \
-	src/mconfig.h-dist \
-	src/mconfig.h-netbsd \
-	src/paths.h-dist \
-	src/ymakefile \
+SUBST_FILES.pref=	Makefile \
+			build-install \
+			dos/emx/makefile \
+			dos/go32/makefile \
+			etc/FAQ \
+			etc/FAQ.jp \
+			etc/MACHINES \
+			etc/m2ps.1-dist \
+			etc/mule.1-dist \
+			info/canna-jp \
+			info/egg-jp-2 \
+			info/emacs-11 \
+			info/emacs-13 \
+			lisp/paths.el \
+			man/canna-jp.texi \
+			man/egg-jp.texi \
+			man/emacs.texi \
+			src/m-ibmps2-aix.h \
+			src/mconfig.h-dist \
+			src/mconfig.h-netbsd \
+			src/paths.h-dist \
+			src/ymakefile
 
 SUBST_CLASSES+=		dest
 SUBST_MESSAGE.dest=	Support to DESTDIR (and disables INSTALLFLAGS)
@@ -66,7 +65,7 @@ SUBST_SED.dest+=	-e 's,^INSTALLFLAGS,\#INSTALLFLAGS,'
 REPLACE_PERL=		etc/faq2texi.perl
 
 # build PATH in the dumped emacs may not be a problem
-CHECK_WRKREF_SKIP+=     bin/mule
+CHECK_WRKREF_SKIP+=	bin/mule
 
 .include	"../../mk/bsd.prefs.mk"
 
