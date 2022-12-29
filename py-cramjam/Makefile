@@ -1,11 +1,11 @@
 # $NetBSD$
 
-VERSION=		2.5.0.post3
+VERSION=		2.6.2
 PKGVERSION_NOREV=	${VERSION}
 GITHUB_TAG=		v${PKGVERSION_NOREV}
 DISTNAME=		pyrus-cramjam-${VERSION}
 PKGNAME=		${PYPKGPREFIX}-cramjam-${VERSION}
-WHEEL_NAME=		cramjam-2.5.0
+WHEEL_NAME=		cramjam-${VERSION}
 GITHUB_PROJECT=		pyrus-cramjam
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_GITHUB:=milesgranger/}
@@ -25,7 +25,7 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-hypothesis-[0-9]*:../../devel/py-hypothesis
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} maturin-${PYVERSSUFFIX} pep517 \
 		build-wheel -i ${PREFIX}/bin/python3.10 --compatibility off \
-		--cargo-extra-args="--offline"
+		--offline
 
 # Test Requires install
 do-test:
