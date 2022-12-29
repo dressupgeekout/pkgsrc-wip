@@ -1,11 +1,10 @@
 # $NetBSD$
 
-DISTNAME=	biolibc-0.2.2.26
+DISTNAME=	biolibc-0.2.4
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=auerlab/}
-GITHUB_TAG=	5f4a544c3677d67c65a656b940901efad4360705
 
-MAINTAINER=	bacon@NetBSD.org
+OWNER=		bacon@NetBSD.org
 HOMEPAGE=	https://github.com/auerlab/biolibc
 COMMENT=	Low-level high-performance bioinformatics library
 LICENSE=	2-clause-bsd

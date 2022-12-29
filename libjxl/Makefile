@@ -3,7 +3,9 @@
 .include "../../wip/libjxl/Makefile.common"
 COMMENT=	JpegXL reference codec
 
-USE_TOOLS+=	bash pkg-config
+TOOL_DEPENDS+=	asciidoc-[0-9]*:../../textproc/asciidoc
+
+USE_TOOLS+=	bash pkg-config realpath
 USE_LANGUAGES=	c c++
 USE_CMAKE=	yes
 
@@ -18,11 +20,12 @@ REPLACE_BASH=	deps.sh
 PKGCONFIG_OVERRIDE+=	lib/jxl/libjxl.pc.in
 PKGCONFIG_OVERRIDE+=	lib/threads/libjxl_threads.pc.in
 
+# TODO:
+# The dependencies installed using deps.sh should be packaged
+# and buildlink3ed instead:
+# lodepng, sjpeg, skcms
 pre-configure:
 	cd ${WRKSRC} && ./deps.sh
-
-TOOL_DEPENDS+=	asciidoc-[0-9]*:../../textproc/asciidoc
-TOOL_DEPENDS+=	realpath-[0-9]*:../../wip/realpath
 
 .include "../../archivers/brotli/buildlink3.mk"
 .include "../../devel/googletest/buildlink3.mk"
@@ -30,6 +33,6 @@ TOOL_DEPENDS+=	realpath-[0-9]*:../../wip/realpath
 .include "../../graphics/openexr/buildlink3.mk"
 .include "../../graphics/libwebp/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
-.include "../../wip/libhighway/buildlink3.mk"
+.include "../../graphics/libhighway/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

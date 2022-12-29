@@ -10,18 +10,16 @@ BUILD_DEPENDS+=	npm-[0-9]*:../../lang/npm
 BUILD_TARGET=	compile
 INSTALL_TARGET=	deploy source-package
 
-EGDIR=		share/jitsi-meet
-PKG_SYSCONFSUBDIR= jitsi/meet
-CONF_FILES=	${EGDIR}/config.js ${PKG_SYSCONFDIR}/config.js
-CONF_FILES+=	${EGDIR}/interface_config.js \
-		${PKG_SYSCONFDIR}/interface_config.js
-CONF_FILES+=	${EGDIR}/title.html ${PKG_SYSCONFDIR}/title.html
-
-INSTALLATION_DIRS=	${EGDIR} share/examples/jitsi-meet
+EGDIR=			share/jitsi-meet
+PKG_SYSCONFSUBDIR=	jitsi/meet
+CONF_FILES=		${EGDIR}/config.js ${PKG_SYSCONFDIR}/config.js
+CONF_FILES+=		${EGDIR}/interface_config.js \
+			${PKG_SYSCONFDIR}/interface_config.js
+CONF_FILES+=		${EGDIR}/title.html ${PKG_SYSCONFDIR}/title.html
 
 BUILD_DEFS+=		VARBASE
 
-WRKSRC=		${WRKDIR}/${GITHUB_PROJECT}-stable-${DISTNAME}
+INSTALLATION_DIRS=	${EGDIR} share/examples/jitsi-meet
 
 do-configure:
 	cd ${WRKSRC} && \
@@ -37,6 +35,4 @@ post-install:
 		${DESTDIR}${PREFIX}/share/examples/jitsi-meet/title.html
 
 .include "../../wip/jitsi-meet/Makefile.common"
-.include "../../lang/nodejs/buildlink3.mk"
-.include "../../lang/nodejs/nodeversion.mk"
 .include "../../mk/bsd.pkg.mk"

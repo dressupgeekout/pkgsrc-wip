@@ -1,0 +1,10 @@
+@comment $NetBSD$
+${PYSITELIB}/_dlib_pybind11.so
+${PYSITELIB}/dlib-${PKGVERSION}.0-py${PYVERSSUFFIX}.egg-info/PKG-INFO
+${PYSITELIB}/dlib-${PKGVERSION}.0-py${PYVERSSUFFIX}.egg-info/SOURCES.txt
+${PYSITELIB}/dlib-${PKGVERSION}.0-py${PYVERSSUFFIX}.egg-info/dependency_links.txt
+${PYSITELIB}/dlib-${PKGVERSION}.0-py${PYVERSSUFFIX}.egg-info/not-zip-safe
+${PYSITELIB}/dlib-${PKGVERSION}.0-py${PYVERSSUFFIX}.egg-info/top_level.txt
+${PYSITELIB}/dlib/__init__.py
+${PYSITELIB}/dlib/__init__.pyc
+${PYSITELIB}/dlib/__init__.pyo
