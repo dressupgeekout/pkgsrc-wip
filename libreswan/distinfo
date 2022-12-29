@@ -1,7 +1,5 @@
 $NetBSD$
 
-BLAKE2s (libreswan-4.7.tar.gz) = 952887f1381b00a672e05e9baa4d4bb899cd07c4809dc8f365fc06e9791cbd6d
-SHA512 (libreswan-4.7.tar.gz) = aea958be5512e08ea809145021695edd4e7df4487a0f3ba94c4d0165113647195c1c1599cd5fbbbfae8f6a2bebf39d7514a694f86297c29c543b1a63646ca44e
-Size (libreswan-4.7.tar.gz) = 3684167 bytes
-SHA1 (patch-kvm) = 7864fd394df006829ab758d579d248d3cc0defb8
-SHA1 (patch-mk_defaults_netbsd.mk) = 36e3b00088466d0c8ea7ed85e5581d42a374e419
+BLAKE2s (libreswan/libreswan-9583cda324d23e73c806b0b0377eadebdbee1f89.tar.gz) = 65c00da66ca25370984238ca523620bec994e56b14615964d5956bb3b4bc9e14
+SHA512 (libreswan/libreswan-9583cda324d23e73c806b0b0377eadebdbee1f89.tar.gz) = 5c2a0419fd1c89a4abd5e15ad680be66fdbb55168fe22b36756fa1bdb36c3dc8b8aec2779b8071ecdb021cae1215568d0cad6f3c6d594c4dada405c81002d9d0
+Size (libreswan/libreswan-9583cda324d23e73c806b0b0377eadebdbee1f89.tar.gz) = 3694158 bytes

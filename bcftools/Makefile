@@ -1,10 +1,10 @@
-# $NetBSD$
+# $NetBSD: Makefile,v 1.15 2022/06/30 11:18:04 nia Exp $
 
-DISTNAME=	bcftools-1.15
+DISTNAME=	bcftools-1.16
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=samtools/}
 
-MAINTAINER=	bacon@NetBSD.org
+OWNER=		bacon@NetBSD.org
 HOMEPAGE=	https://www.htslib.org/
 COMMENT=	Tools for manipulating BCF and VCF variant call files
 LICENSE=	mit

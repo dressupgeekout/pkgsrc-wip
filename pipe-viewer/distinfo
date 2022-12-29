@@ -1,5 +1,5 @@
 $NetBSD$
 
-BLAKE2s (pipe-viewer-0.2.2.tar.gz) = 28186ec9e7be1e6883e9f6ad159410c03373a04ee231968a15218d84d555f54a
-SHA512 (pipe-viewer-0.2.2.tar.gz) = 6d651273467ba25c1205c14b7b79378486d60f21be9382c1d2e933c409a57c2c0a8c2d0953b3a036ca9fa2e40b2bfd841ffb7970a735e41268b7a4b4b63e6352
-Size (pipe-viewer-0.2.2.tar.gz) = 265475 bytes
+BLAKE2s (pipe-viewer-0.4.4.tar.gz) = 6d459c90e3fbd29cc1596f34ebbd371a6734d22e4c971b69ee870e387774b02b
+SHA512 (pipe-viewer-0.4.4.tar.gz) = 490249348e58be88a394d348f902cccab4c850be31d277ebf4d515baf775fc3d76f569d4210bb2e4c9cf302bb665d0e256d527710f6c7c6a35372664b01fe140
+Size (pipe-viewer-0.4.4.tar.gz) = 267112 bytes

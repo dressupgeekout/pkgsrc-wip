@@ -1,7 +1,7 @@
 # $NetBSD$
 
-DISTNAME=	MoonlightSrc-4.1.0
-PKGNAME=	moonlight-qt-4.1.0
+DISTNAME=	MoonlightSrc-4.3.1
+PKGNAME=	moonlight-qt-4.3.1
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=moonlight-stream/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
@@ -12,6 +12,7 @@ COMMENT=	GameStream client
 LICENSE=	gnu-gpl-v3
 
 USE_LANGUAGES=	c c++
+USE_TOOLS+=	pkg-config
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
@@ -36,6 +37,7 @@ do-configure:
 .include "../../graphics/freeglut/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../multimedia/ffmpeg4/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
 .include "../../x11/qt5-qtquickcontrols2/buildlink3.mk"
 .include "../../x11/qt5-qtsvg/buildlink3.mk"
 .include "../../x11/qt5-qttools/buildlink3.mk"

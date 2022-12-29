@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	aws-iam-authenticator-0.5.7
+DISTNAME=	aws-iam-authenticator-0.5.9
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GITHUB:=kubernetes-sigs/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -12,8 +12,8 @@ LICENSE=	apache-2.0
 
 GO_BUILD_PATTERN+=	-ldflags ' \
 			-X sigs.k8s.io/aws-iam-authenticator/pkg.Version=${GITHUB_TAG} \
-			-X sigs.k8s.io/aws-iam-authenticator/pkg.BuildDate="" \
-			-X sigs.k8s.io/aws-iam-authenticator/pkg.CommitID=""'
+			-X sigs.k8s.io/aws-iam-authenticator/pkg.BuildDate= \
+			-X sigs.k8s.io/aws-iam-authenticator/pkg.CommitID='
 GO_BUILD_PATTERN+=	./cmd/aws-iam-authenticator
 
 .include "go-modules.mk"
