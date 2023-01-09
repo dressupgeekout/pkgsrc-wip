@@ -1,0 +1,7 @@
+$NetBSD: distinfo,v 1.23 2021/10/26 10:54:10 nia Exp $
+
+BLAKE2s (nmh-1.8-RC1.tar.gz) = 92f047ebbf17d3b66f843ea9342cd932236feb8b620cc30239b27789627cefd1
+SHA512 (nmh-1.8-RC1.tar.gz) = 344946ba3aa49b9c84d7e34654956a4c373fc7f740c5f4fb4047625ff25cf5e3616b4ffd24bf9cd70f5b8b2cdca3aedc535c5f3a6f67bd02d0bd22eef321615a
+Size (nmh-1.8-RC1.tar.gz) = 1514434 bytes
+SHA1 (patch-ca) = 5cf595da9003e311fbcf0a9bf738520290495366
+SHA1 (patch-cd) = 2f9be94dab854f86b103088471bc6b5529fca29e
