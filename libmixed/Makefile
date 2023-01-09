@@ -20,10 +20,12 @@ CMAKE_ARGS+=	-DBUILD_SIMD=OFF
 
 INSTALLATION_DIRS+=	lib
 
+# XXX Not sure why 'install(TARGETS)' in the CMakeLists isn't working... do
+# it manually instead:
 do-install:
-	#${INSTALL_SCRIPT} ${WRKDIR}/SymphonyOfEmpires ${DESTDIR}${PREFIX}/bin/SymphonyOfEmpires
-	#${INSTALL_PROGRAM} ${WRKSRC}/SymphonyOfEmpires ${DESTDIR}${PREFIX}/libexec
-	#${INSTALL_LIB} ${WRKSRC}/eng3d/libeng3d.so ${DESTDIR}${PREFIX}/lib
-	#(cd ${WRKSRC}/mods && ${PAX} -r -w . ${DESTDIR}${PREFIX}/share/SymphonyOfEmpires/mods)
+	${INSTALL} -m0644 ${WRKSRC}/libmixed.a ${DESTDIR}${PREFIX}/lib
+	${INSTALL_LIB} ${WRKSRC}/libmixed.so.2.1-0 ${DESTDIR}${PREFIX}/lib
+	ln -sf libmixed.so.2.1-0 ${DESTDIR}${PREFIX}/lib/libmixed.so.2
+	ln -sf libmixed.so.2 ${DESTDIR}${PREFIX}/lib/libmixed.so
 
 .include "../../mk/bsd.pkg.mk"
