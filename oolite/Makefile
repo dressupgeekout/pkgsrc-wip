@@ -17,6 +17,11 @@ USE_TOOLS+=	bash gmake
 NO_CONFIGURE=	yes
 MAKE_FILE=	GNUmakefile
 
+BUILD_MAKE_FLAGS+=	OBJCFLAGS=-Wno-macro-redefined
+BUILD_MAKE_FLAGS+=	debug=yes
+BUILD_MAKE_FLAGS+=	strip=no
+BUILD_MAKE_FLAGS+=	use_deps=no
+
 .include "../../audio/espeak/buildlink3.mk"
 .include "../../audio/libvorbis/buildlink3.mk"
 .include "../../audio/openal-soft/buildlink3.mk"
@@ -24,5 +29,6 @@ MAKE_FILE=	GNUmakefile
 .include "../../devel/gnustep-base/buildlink3.mk"
 .include "../../devel/nspr/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
+.include "../../lang/spidermonkey185/buildlink3.mk"
 .include "../../multimedia/libogg/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
