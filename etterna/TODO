@@ -1,0 +1,4 @@
+etterna TODO:
+
+- get it working on NetBSD! seems that the CMake wants to find dlfcn.h and
+  friends in a library (no such thing on NetBSD)
