@@ -1,0 +1,15 @@
+# $NetBSD$
+
+DISTNAME=	red-0.0.0
+CATEGORIES=	lang
+MASTER_SITES=	${MASTER_SITE_GITHUB:=red/}
+GITHUB_TAG=	c7ceccff1e0022b22e35f25abdbac40940264c9c
+
+MAINTAINER=	charlotte@NetBSD.org
+HOMEPAGE=	XXX
+COMMENT=	XXX
+LICENSE=	XXX
+
+USE_LANGUAGES+=	rebol # XXX
+
+.include "../../mk/bsd.pkg.mk"
