@@ -5,14 +5,19 @@ PKGNAME=	argentum-age-0
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=anura-engine/}
 GITHUB_PROJECT=	anura
+# The latest SHA in the 'argentum-age' branch of anura.git
 GITHUB_TAG=	c36ae6b7b969d37c07755d1c2431131701d7989b
 
-ARGENTUM=	49376c8184b683bc253aac6bdf414eb65194b2fd.tar.gz
-IMGUI=		d7ce9212f1d321a1470c8ab8dceeed222c55a3ce.tar.gz
-DISTFILES+=	${DEFAULT_DISTFILES} ${ARGENTUM} ${IMGUI}
-
+ARGENTUM=		49376c8184b683bc253aac6bdf414eb65194b2fd.tar.gz
 SITES.${ARGENTUM}=	${MASTER_SITE_GITHUB:=davewx7/}citadel/archive/
+
+# This is NOT the version of Imgui in Anura's submodule, but a newer one
+# which has fixes regarding alloca(3) on NetBSD.
+#IMGUI=			2379a8b3f21642f715a18749fbd0345c4acafa79.tar.gz
+IMGUI=			d7ce9212f1d321a1470c8ab8dceeed222c55a3ce.tar.gz
 SITES.${IMGUI}=		${MASTER_SITE_GITHUB:=anura-engine/}imgui/archive/
+
+DISTFILES+=	${DEFAULT_DISTFILES} ${ARGENTUM} ${IMGUI}
 
 MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://argentumage.com/
@@ -39,7 +44,7 @@ FROGATTO_DIRS+=	xxx
 FROGATTO_FILES+=	master-config.cfg
 FROGATTO_FILES+=	module.cfg
 
-# imgui is a submodule of anura.
+# Imgui is a submodule of Anura.
 post-extract:
 	${RM} -rf ${WRKSRC}/imgui
 	${LN} -sf ${WRKDIR}/imgui-${IMGUI:S/${EXTRACT_SUFX}//} ${WRKSRC}/imgui
