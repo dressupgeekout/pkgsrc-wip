@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# $NetBSD$
+# Launcher script for Argentum Age
+#
+
+set -e
+
+cd @@PREFIX@@/share/argentum-age && @@PREFIX@@/libexec/argentum-age/anura

@@ -25,29 +25,41 @@ NO_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	gmake pax pkg-config
 
-GCC_REQD+=	4.8
+CFLAGS+=	-Wno-deprecated-declarations
+CFLAGS+=	-Wno-sign-compare
 
-#INSTALLATION_DIRS+=	bin
-#INSTALLATION_DIRS+=	libexec
-#INSTALLATION_DIRS+=	share/nanosaur/Data
+INSTALLATION_DIRS+=	bin
+INSTALLATION_DIRS+=	libexec/argentum-age
+INSTALLATION_DIRS+=	share/argentum-age
+
+ANURA_DIRS+=	xxx
+
+FROGATTO_DIRS+=	xxx
+
+FROGATTO_FILES+=	master-config.cfg
+FROGATTO_FILES+=	module.cfg
 
 # imgui is a submodule of anura.
 post-extract:
 	${RM} -rf ${WRKSRC}/imgui
 	${LN} -sf ${WRKDIR}/imgui-${IMGUI:S/${EXTRACT_SUFX}//} ${WRKSRC}/imgui
 
+pre-configure:
+	${SED} -e 's,@@PREFIX@@,${PREFIX},g' \
+		${FILESDIR}/argentum.template > ${WRKDIR}/argentum
 
-#pre-configure:
-#	${SED} -e 's,@@PREFIX@@,${PREFIX},g' \
-#		${FILESDIR}/nanosaur.template > ${WRKDIR}/nanosaur
+# Copy Argentum Age's data into the Anura distribution, then install it all
+# as just one complete "Argentum Age."
+pre-install:
+	${MKDIR} ${WRKDIR}/anura/modules/argentum
 
-#do-install:
-#	${INSTALL_SCRIPT} ${WRKDIR}/nanosaur ${DESTDIR}${PREFIX}/bin/nanosaur
-#	${INSTALL_PROGRAM} ${WRKSRC}/Nanosaur ${DESTDIR}${PREFIX}/libexec
-#	(cd ${WRKSRC}/Data && ${PAX} -r -w . ${DESTDIR}${PREFIX}/share/nanosaur/Data)
+do-install:
+	${INSTALL_SCRIPT} ${WRKDIR}/argentum-age ${DESTDIR}${PREFIX}/bin/argentum
 
+.include "../../audio/SDL2_mixer/buildlink3.mk"
 .include "../../devel/SDL2/buildlink3.mk"
 .include "../../devel/boost-headers/buildlink3.mk"
+.include "../../devel/boost-libs/buildlink3.mk"
 .include "../../fonts/SDL2_ttf/buildlink3.mk"
 .include "../../graphics/SDL2_image/buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"
