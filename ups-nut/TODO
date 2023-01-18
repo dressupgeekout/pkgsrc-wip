@@ -1,0 +1,4 @@
+  - Check all patches and comment and send upstream
+  - Resolve manpage building
+  - Test forced shutdown and uncomment upsdrvctl shutdown
+ 

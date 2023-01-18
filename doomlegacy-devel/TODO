@@ -1,8 +1,13 @@
 
-Part 23: Import final release
+Part 24: Mid-texture rendering
+==============================
+[ ] Some mid-textures are rendered wrong in Pagodia
+    => Reported upstream in ticket #687
+
+
+Part 25: Add UMAPINFO support
 =============================
-[X] Import version 1.48.10 to pkgsrc
-    Parts 8 to 22 are now available in games/doomlegacy
+[ ] Based on libdoom-umapinfo
 
 
 EOF
