@@ -1,7 +1,5 @@
 $NetBSD: distinfo,v 1.2 2013/01/03 21:21:36 mrampke Exp $
 
-RMD160 (cpdup-1.17.tgz) = 8c6cc5c4caccb1c790e7d02fb59d9dfb1adf024a
-SHA512 (cpdup-1.17.tgz) = 819911641866a25b3b488ad1a620a90c6cde6c5f2729051fac5e235ad576aa834de0521643f8bfe2875556a770d2f79bd10a94d159c6be04c036f2b70d814e5f
-Size (cpdup-1.17.tgz) = 42236 bytes
-SHA1 (patch-Makefile) = b4fe63210a9d3f1f118c2ea9040350bdc3ae10ac
-SHA1 (patch-cpdup.h) = 998731dc9bbb12bf254d73af371b69a92f66218e
+BLAKE2s (cpdup-1.22.tar.gz) = 391c72d4b3bd37d014d969e4a4227603bb7bb9167aa83490b82893f249ee05eb
+SHA512 (cpdup-1.22.tar.gz) = 221c948e757ca6d16ebf7fc6722a78ce772a23fd89e1de1bedee47e4d0dc0c365a08a9f244d54b268ff62b843ebc4803076d6b91f14cbc2ebf2fbf6b3a0a44cf
+Size (cpdup-1.22.tar.gz) = 44126 bytes
