@@ -5372,6 +5372,7 @@ SUBDIR+=	subread
 SUBDIR+=	subsync
 SUBDIR+=	suitesparse
 SUBDIR+=	sulley
+SUBDIR+=	sunshine
 SUBDIR+=	sunterlib
 SUBDIR+=	sunxi-mali-fb
 SUBDIR+=	supercat
