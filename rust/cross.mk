@@ -40,7 +40,7 @@
 # host the compiler is supposed to run on.
 # Rust's target designation
 #TARGET=		armv7-unknown-netbsd-eabihf
-#TARGET= 		armv6-unknown-netbsd-eabihf
+#TARGET=		armv6-unknown-netbsd-eabihf
 #TARGET=		sparc64-unknown-netbsd
 #TARGET=		powerpc-unknown-netbsd
 #TARGET=		aarch64-unknown-netbsd

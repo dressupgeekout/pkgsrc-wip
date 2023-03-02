@@ -12,13 +12,13 @@ BUILDLINK_PKGSRCDIR.hs-haskore?=	../../wip/hs-haskore
 .include "../../wip/hs-data-accessor/buildlink3.mk"
 .include "../../wip/hs-event-list/buildlink3.mk"
 .include "../../wip/hs-haskell-src/buildlink3.mk"
-.include "../../wip/hs-HUnit/buildlink3.mk"
+.include "../../devel/hs-HUnit/buildlink3.mk"
 .include "../../wip/hs-markov-chain/buildlink3.mk"
 .include "../../wip/hs-midi/buildlink3.mk"
 .include "../../wip/hs-non-negative/buildlink3.mk"
 .include "../../textproc/hs-parsec/buildlink3.mk"
 .include "../../devel/hs-transformers/buildlink3.mk"
-.include "../../wip/hs-utility-ht/buildlink3.mk"
+.include "../../devel/hs-utility-ht/buildlink3.mk"
 .endif	# HS_HASKORE_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-hs-haskore

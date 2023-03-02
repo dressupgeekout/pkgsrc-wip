@@ -2,7 +2,7 @@
 
 ### Set options
 PKG_OPTIONS_VAR=			PKG_OPTIONS.emacs
-PKG_SUPPORTED_OPTIONS=			dbus gnutls imagemagick jansson svg xaw3d xml
+PKG_SUPPORTED_OPTIONS=			dbus gnutls imagemagick jansson libotf libwebp svg tree-sitter xaw3d xml
 # xaw3d is only valid with tookit = xaw
 
 PKG_OPTIONS_OPTIONAL_GROUPS+=		window-system
@@ -22,7 +22,7 @@ PKG_OPTIONS_GROUP.toolkit=		gtk gtk2 gtk3 xaw
 # imagemagick is disabled because of stability/security
 # svg is omitted because it is rarely needed and heavyweight due to the rust dependency
 # xaw3d is omitted because it is only valid with xaw
-PKG_SUGGESTED_OPTIONS=	dbus gnutls gtk3 jansson xml x11
+PKG_SUGGESTED_OPTIONS=	dbus gnutls gtk3 jansson libotf libwebp tree-sitter xml x11
 
 .include "../../mk/bsd.options.mk"
 
@@ -43,6 +43,24 @@ CONFIGURE_ARGS+=	--without-dbus
 .  include "../../textproc/jansson/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-json
+.endif
+
+###
+### Support OTF
+###
+.if !empty(PKG_OPTIONS:Mlibotf)
+.  include "../../graphics/libotf/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--without-libotf
+.endif
+
+###
+### Support WEBP
+###
+.if !empty(PKG_OPTIONS:Mlibwebp)
+.  include "../../graphics/libwebp/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--without-webp
 .endif
 
 ###
@@ -177,6 +195,24 @@ CONFIGURE_ARGS+=	--without-jpeg
 CONFIGURE_ARGS+=	--without-tiff
 CONFIGURE_ARGS+=	--without-gif
 CONFIGURE_ARGS+=	--without-png
+.endif
+
+.if !empty(PKG_OPTIONS:Mtree-sitter)
+DEPENDS+=	tree-sitter-c-[0-9]*:../../textproc/tree-sitter-c
+DEPENDS+=	tree-sitter-cmake-[0-9]*:../../textproc/tree-sitter-cmake
+DEPENDS+=	tree-sitter-cpp-[0-9]*:../../textproc/tree-sitter-cpp
+DEPENDS+=	tree-sitter-dockerfile-[0-9]*:../../textproc/tree-sitter-dockerfile
+DEPENDS+=	tree-sitter-go-[0-9]*:../../textproc/tree-sitter-go
+DEPENDS+=	tree-sitter-html-[0-9]*:../../textproc/tree-sitter-html
+DEPENDS+=	tree-sitter-java-[0-9]*:../../textproc/tree-sitter-java
+DEPENDS+=	tree-sitter-json-[0-9]*:../../textproc/tree-sitter-json
+DEPENDS+=	tree-sitter-python-[0-9]*:../../textproc/tree-sitter-python
+DEPENDS+=	tree-sitter-ruby-[0-9]*:../../textproc/tree-sitter-ruby
+DEPENDS+=	tree-sitter-rust-[0-9]*:../../textproc/tree-sitter-rust
+DEPENDS+=	tree-sitter-toml-[0-9]*:../../textproc/tree-sitter-toml
+DEPENDS+=	tree-sitter-typescript-[0-9]*:../../textproc/tree-sitter-typescript
+DEPENDS+=	tree-sitter-yaml-[0-9]*:../../textproc/tree-sitter-yaml
+.include "../../textproc/tree-sitter/buildlink3.mk"
 .endif
 
 # Local Variables:

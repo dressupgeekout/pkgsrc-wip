@@ -1,0 +1,16 @@
+$NetBSD: distinfo,v 1.177 2022/06/28 10:02:51 wiz Exp $
+
+BLAKE2s (perl-5.37.9.tar.xz) = 3b1fb2f1d8d23892bc71d2b97285733445874a90e5df6900915bdc830c7d77cd
+SHA512 (perl-5.37.9.tar.xz) = e994f5931ae4b1cf1205c986d378a4d8931e5b9aaf62678adf0ff5cb1272b9de5f05ecd532d49a5dd5d500e4364ca7bbcd086acb5fce9a9632d7fcba1ea23a0d
+Size (perl-5.37.9.tar.xz) = 13455772 bytes
+SHA1 (patch-Configure) = f3bd324a90254405b3ce8e29846b4ddc9ebf7d73
+SHA1 (patch-Makefile.SH) = 56203aea57c429a94760f039a978463b8859b0a9
+SHA1 (patch-caretx.c) = e9698f513b6fb5237b627d6a1a56153720654039
+SHA1 (patch-cpan_ExtUtils-MakeMaker_lib_ExtUtils_MM__BeOS.pm) = 79e5aeccfa272ca5ec08bffc616d8053ae90ac51
+SHA1 (patch-cpan_ExtUtils-MakeMaker_lib_ExtUtils_MM__Unix.pm) = 6171a21a24e3bea312155b1d5f692d76ef733d23
+SHA1 (patch-cpan_ExtUtils-MakeMaker_t_MM__BeOS.t) = 9b0e7ab85fdab4887b1754599a8879bd7d9f36cc
+SHA1 (patch-hints_cygwin.sh) = 1b21d927d6b7379754c4cd64a2b05d3632c35470
+SHA1 (patch-hints_linux.sh) = 4baa8f80695687abb53d4f4e1830cf86db5b2bf7
+SHA1 (patch-hints_netbsd.sh) = 0d549a48800372d75fe34b783529a78cba90f646
+SHA1 (patch-hints_solaris__2.sh) = 364a28ca57dbabe1f902b601e336532996db6a0e
+SHA1 (patch-installperl) = b129d64cc17b898b44fe6282b8b1df36e342d0ef
