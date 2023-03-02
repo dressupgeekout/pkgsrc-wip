@@ -1,5 +1,5 @@
 @comment $NetBSD$
-bin/pastebin
+bin/pastebin3.10
 bin/upload-system-info
 bin/xfce4-set-wallpaper
 etc/X11/xinit/xinitrc.d/80xapp-gtk3-module.sh
@@ -17,6 +17,7 @@ include/xapp/libxapp/xapp-status-icon.h
 include/xapp/libxapp/xapp-statusicon-interface.h
 include/xapp/libxapp/xapp-style-manager.h
 include/xapp/libxapp/xapp-util.h
+include/xapp/libxapp/xapp-visibility-group.h
 lib/girepository-1.0/XApp-1.0.typelib
 lib/gtk-3.0/modules/libxapp-gtk3-module.so
 lib/libxapp.so
@@ -45,6 +46,7 @@ share/icons/hicolor/scalable/actions/view-top-pane-symbolic.svg
 share/icons/hicolor/scalable/actions/xapp-annotations-squiggly-symbolic.svg
 share/icons/hicolor/scalable/actions/xapp-annotations-text-symbolic.svg
 share/icons/hicolor/scalable/actions/xapp-diaporama-symbolic.svg
+share/icons/hicolor/scalable/actions/xapp-edit-symbolic.svg
 share/icons/hicolor/scalable/actions/xapp-favorite-symbolic.svg
 share/icons/hicolor/scalable/actions/xapp-format-text-highlight-symbolic.svg
 share/icons/hicolor/scalable/actions/xapp-go-history-next-symbolic-rtl.svg
@@ -58,6 +60,8 @@ share/icons/hicolor/scalable/actions/xapp-text-case-symbolic.svg
 share/icons/hicolor/scalable/actions/xapp-unfavorite-symbolic.svg
 share/icons/hicolor/scalable/actions/xapp-unpin-symbolic.svg
 share/icons/hicolor/scalable/actions/xapp-use-regex-symbolic.svg
+share/icons/hicolor/scalable/actions/xapp-view-fit-height-symbolic.svg
+share/icons/hicolor/scalable/actions/xapp-view-fit-width-symbolic.svg
 share/icons/hicolor/scalable/apps/xapp-favorites-app-symbolic.svg
 share/icons/hicolor/scalable/apps/xapp-favorites-app.svg
 share/icons/hicolor/scalable/apps/xapp-mate-status-applet.svg

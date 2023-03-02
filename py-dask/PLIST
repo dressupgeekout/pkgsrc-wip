@@ -1,5 +1,5 @@
 @comment $NetBSD$
-bin/dask
+bin/dask-3.10
 ${PYSITELIB}/${WHEEL_INFODIR}/INSTALLER
 ${PYSITELIB}/${WHEEL_INFODIR}/LICENSE.txt
 ${PYSITELIB}/${WHEEL_INFODIR}/METADATA
@@ -426,12 +426,16 @@ ${PYSITELIB}/dask/system.py
 ${PYSITELIB}/dask/system.pyc
 ${PYSITELIB}/dask/tests/__init__.py
 ${PYSITELIB}/dask/tests/__init__.pyc
+${PYSITELIB}/dask/tests/test_backends.py
+${PYSITELIB}/dask/tests/test_backends.pyc
 ${PYSITELIB}/dask/tests/test_base.py
 ${PYSITELIB}/dask/tests/test_base.pyc
 ${PYSITELIB}/dask/tests/test_cache.py
 ${PYSITELIB}/dask/tests/test_cache.pyc
 ${PYSITELIB}/dask/tests/test_callbacks.py
 ${PYSITELIB}/dask/tests/test_callbacks.pyc
+${PYSITELIB}/dask/tests/test_ci.py
+${PYSITELIB}/dask/tests/test_ci.pyc
 ${PYSITELIB}/dask/tests/test_cli.py
 ${PYSITELIB}/dask/tests/test_cli.pyc
 ${PYSITELIB}/dask/tests/test_compatibility.py
@@ -486,6 +490,8 @@ ${PYSITELIB}/dask/tests/test_utils.py
 ${PYSITELIB}/dask/tests/test_utils.pyc
 ${PYSITELIB}/dask/tests/test_utils_test.py
 ${PYSITELIB}/dask/tests/test_utils_test.pyc
+${PYSITELIB}/dask/tests/warning_aliases.py
+${PYSITELIB}/dask/tests/warning_aliases.pyc
 ${PYSITELIB}/dask/threaded.py
 ${PYSITELIB}/dask/threaded.pyc
 ${PYSITELIB}/dask/typing.py

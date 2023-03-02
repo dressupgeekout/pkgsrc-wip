@@ -2,7 +2,7 @@
 
 .include	"version.mk"
 DISTNAME=	emacs-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
-PKGNAME=	emacs29-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
+PKGNAME=	emacs30-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
 CATEGORIES=	editors
 GIT_REPO=	git://git.savannah.gnu.org/emacs.git
 
@@ -66,6 +66,7 @@ post-install:
 		mv emacs-*.pdmp emacs.pdmp
 
 .include "../../wip/mk/git-package.mk"
+.include "../../databases/sqlite3/buildlink3.mk"
 .include "../../fonts/harfbuzz/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/libimagequant/buildlink3.mk"
