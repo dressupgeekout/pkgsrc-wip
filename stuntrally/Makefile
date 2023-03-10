@@ -1,8 +1,10 @@
 # $NetBSD$
 
-DISTNAME=	stuntrally-2.6.2
+DISTNAME=	stuntrally-2.7
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=stuntrally/}
+
+GITHUB_SUBMODULES=	stuntrally tracks ${PKGVERSION_NOREV} data/tracks
 
 MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://stuntrally.tuxfamily.org/
@@ -11,8 +13,6 @@ LICENSE=	gnu-gpl-v3
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
-
-DEPENDS+=	stuntrally-tracks>=${PKGVERSION_NOREV}:../../wip/stuntrally-tracks
 
 # Out-of-tree build is required.
 CONFIGURE_DIRS+=	${WRKDIR}/build

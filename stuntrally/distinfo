@@ -1,7 +1,9 @@
 $NetBSD$
 
-SHA1 (stuntrally-2.6.2.tar.gz) = f5c188d020c80d869e809383dc1cad226cad7921
-RMD160 (stuntrally-2.6.2.tar.gz) = 852d152183407be4658227b9a61ede15b4959a9e
-SHA512 (stuntrally-2.6.2.tar.gz) = 6976dcaece2bf73851ebe713821be58e5aca27dd5b45470d485a3280760fe87b1356f181a990e6d0937a8f6f06b0e116535f6f23337b316ece081f5e719fd8f7
-Size (stuntrally-2.6.2.tar.gz) = 651633552 bytes
+BLAKE2s (stuntrally-2.7.tar.gz) = 14bf4bd98d58fc3c8d28fdcc9c530b96087bc8733af9b0430070d912559d39fe
+SHA512 (stuntrally-2.7.tar.gz) = c8ec25111686ad0022dd3291e4155209561657c01afea586ee19e25329640509c3f64cebb2bbcbb21211b781ae6187af7a0537ce92ce6446fc873780cc338be0
+Size (stuntrally-2.7.tar.gz) = 760099584 bytes
+BLAKE2s (stuntrally-tracks-2.7.tar.gz) = ffbb0458992d28acd51ed0a751f5d3caaf381fe0f4150699b2b81d06310bb899
+SHA512 (stuntrally-tracks-2.7.tar.gz) = 877b6315e3452444d6ae052262c0008bcb644fee44ad138ed81622b3a841e8e8006228daed05e12a822ce0e558fa87536b17f5389b6200e202077d1cae232597
+Size (stuntrally-tracks-2.7.tar.gz) = 445486760 bytes
 SHA1 (patch-source_vdrift_numprocessors.h) = 61f97fc61dbd2ea6b86341a0ee426087e4a45085
