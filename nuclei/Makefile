@@ -1,18 +1,18 @@
 # $NetBSD$
 
-DISTNAME=	nuclei-2.7.7
+DISTNAME=	nuclei-2.8.9
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GITHUB:=projectdiscovery/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	leot@NetBSD.org
 HOMEPAGE=	https://nuclei.projectdiscovery.io/
 COMMENT=	Fast and customizable vulnerability scanner
 LICENSE=	mit
 
 GO_BUILD_PATTERN+=	./cmd/nuclei
 
-WRKSRC=		${WRKDIR}/${PKGNAME}/v2
+WRKSRC=		${WRKDIR}/${DISTNAME}/v2
 
 .include "go-modules.mk"
 
