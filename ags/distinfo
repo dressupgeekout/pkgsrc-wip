@@ -1,8 +1,8 @@
 $NetBSD$
 
-BLAKE2s (ags-3.5.1.20.tar.gz) = 4379f32f93dd413488343e5252e9965e18bf0c4bce5680037ac108ed3e4e5e3f
-SHA512 (ags-3.5.1.20.tar.gz) = 2c62e3c0d07c19ae6bdd270b25cb961f46be22bb43265acee18a5d248a60ac753d2b142458960684df56ef89f8c6a477bf24258c5d9bc3a9766d3a639c695b35
-Size (ags-3.5.1.20.tar.gz) = 7640362 bytes
+BLAKE2s (ags-3.5.1.26.tar.gz) = ab5ec1988a00b6970a541f08b80e2ac01bd70e03270d9ff6203c2abc06cf84e2
+SHA512 (ags-3.5.1.26.tar.gz) = e9b858165d6304b2a81336fb581c9135d0d5d12237a93e06ffec0da78cf217fd52418e3f7d0b1b0a355ab1e37e0ea1bf47fbba4dfca3e75f0792414c7382fdfd
+Size (ags-3.5.1.26.tar.gz) = 7643637 bytes
 SHA1 (patch-Common_core_platform.h) = 393ae8b7e90601cfab0b11ecb185693db6a24ee1
 SHA1 (patch-Engine_Makefile) = 849759ce98a4e4cdb5bf2d1ebb961295169ab170
 SHA1 (patch-Engine_Makefile-defs.linux) = f283deedc28ca4c720cad52579f849668e86a30c
