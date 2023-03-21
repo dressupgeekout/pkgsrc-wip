@@ -1,15 +1,14 @@
 $NetBSD$
 
-Add "mipsel-unknown-netbsd" to the list who don't have 
-native 64-bit atomic ops.
+Add mipsel-unknown-netbsd target as not having 64-bit atomics.
 
---- vendor/crossbeam-utils/no_atomic.rs.orig	2022-09-19 15:35:01.000000000 +0000
+--- vendor/crossbeam-utils/no_atomic.rs.orig	2023-01-25 01:49:15.000000000 +0000
 +++ vendor/crossbeam-utils/no_atomic.rs
-@@ -36,6 +36,7 @@ const NO_ATOMIC_64: &[&str] = &[
+@@ -41,6 +41,7 @@ const NO_ATOMIC_64: &[&str] = &[
+     "mipsel-unknown-linux-gnu",
      "mipsel-unknown-linux-musl",
      "mipsel-unknown-linux-uclibc",
-     "mipsel-unknown-none",
 +    "mipsel-unknown-netbsd",
+     "mipsel-unknown-none",
      "mipsisa32r6-unknown-linux-gnu",
      "mipsisa32r6el-unknown-linux-gnu",
-     "msp430-none-elf",

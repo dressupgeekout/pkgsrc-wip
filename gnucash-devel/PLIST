@@ -125,6 +125,7 @@ include/gnucash/gnc-quotes.hpp
 include/gnucash/gnc-rational-rounding.hpp
 include/gnucash/gnc-rational.hpp
 include/gnucash/gnc-recurrence.h
+include/gnucash/gnc-report-combo.h
 include/gnucash/gnc-report.h
 include/gnucash/gnc-session.h
 include/gnucash/gnc-splash.h
@@ -231,7 +232,6 @@ lib/gnucash/libgnc-register-core.so
 lib/gnucash/libgnc-register-gnome.so
 lib/gnucash/libgnc-report.so
 lib/gnucash/libgncmod-backend-xml.so
-lib/gnucash/libgncmod-python.so
 lib/guile/3.0/site-ccache/gnucash/app-utils.go
 lib/guile/3.0/site-ccache/gnucash/app-utils/c-interface.go
 lib/guile/3.0/site-ccache/gnucash/app-utils/date-utilities.go
@@ -294,9 +294,8 @@ lib/guile/3.0/site-ccache/gnucash/reports.go
 lib/guile/3.0/site-ccache/gnucash/reports/cash-flow-calc.go
 lib/guile/3.0/site-ccache/gnucash/reports/example/average-balance.go
 lib/guile/3.0/site-ccache/gnucash/reports/example/daily-reports.go
-lib/guile/3.0/site-ccache/gnucash/reports/example/hello-world.go
 lib/guile/3.0/site-ccache/gnucash/reports/example/sample-graphs.go
-lib/guile/3.0/site-ccache/gnucash/reports/example/welcome-to-gnucash.go
+lib/guile/3.0/site-ccache/gnucash/reports/example/sample-report.go
 lib/guile/3.0/site-ccache/gnucash/reports/locale-specific/de_DE/taxtxf.go
 lib/guile/3.0/site-ccache/gnucash/reports/locale-specific/us/taxtxf.go
 lib/guile/3.0/site-ccache/gnucash/reports/standard/account-piecharts.go
@@ -991,6 +990,8 @@ share/gnucash/pixmaps/gnucash-icon.ico
 share/gnucash/pixmaps/gnucash_splash.png
 share/gnucash/pref_transformations.xml
 share/gnucash/tip_of_the_day.list
+share/gnucash/ui/accelerator-map
+share/gnucash/ui/accelerator-map-osx
 share/gnucash/ui/osx_accel_map
 share/guile/site/3.0/gnucash/app-utils.scm
 share/guile/site/3.0/gnucash/app-utils/c-interface.scm
@@ -1054,9 +1055,8 @@ share/guile/site/3.0/gnucash/reports.scm
 share/guile/site/3.0/gnucash/reports/cash-flow-calc.scm
 share/guile/site/3.0/gnucash/reports/example/average-balance.scm
 share/guile/site/3.0/gnucash/reports/example/daily-reports.scm
-share/guile/site/3.0/gnucash/reports/example/hello-world.scm
 share/guile/site/3.0/gnucash/reports/example/sample-graphs.scm
-share/guile/site/3.0/gnucash/reports/example/welcome-to-gnucash.scm
+share/guile/site/3.0/gnucash/reports/example/sample-report.scm
 share/guile/site/3.0/gnucash/reports/locale-specific/de_DE/taxtxf.scm
 share/guile/site/3.0/gnucash/reports/locale-specific/us/taxtxf.scm
 share/guile/site/3.0/gnucash/reports/standard/account-piecharts.scm

@@ -1,13 +1,17 @@
 
-Part 24: Mid-texture rendering
-==============================
-[ ] Some mid-textures are rendered wrong in Pagodia
+Part 24: Middle-texture rendering
+=================================
+[X] Some middle-textures are rendered wrong in Pagodia
     => Reported upstream in ticket #687
+    => Fixed with SVN revision 1647
 
 
 Part 25: Add UMAPINFO support
 =============================
-[ ] Based on libdoom-umapinfo
+[X] Based on libdoom-umapinfo-1.0.0
+    => Module to parse and import data added
+[ ] Hook keys into game engine
+    => All keys except 'enterpic', "emenu' and 'bossactions' should work now
 
 
 EOF

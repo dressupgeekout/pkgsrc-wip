@@ -1,6 +1,6 @@
 # $NetBSD$
 
-GITHUB_TAG=	2022.12.1
+GITHUB_TAG=	2023.3.1
 DISTNAME=	dask-${GITHUB_TAG}
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 GITHUB_PROJECT=	dask
@@ -41,6 +41,9 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-pre-commit-[0-9]*:../../wip/py-pre-commit
 # The setup.py has integration with pytest-runner, but throws odd errors
 do-test:
 	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHONBIN} -m pytest -s
+
+post-install:
+	cd ${DESTDIR}${PREFIX}/bin && ${MV} dask dask-${PYVERSSUFFIX}
 
 USE_LANGUAGES=	# none
 

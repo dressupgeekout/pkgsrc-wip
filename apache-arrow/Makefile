@@ -14,7 +14,7 @@ LICENSE=	apache-2.0
 # These packages are built within arrow, and it
 # looks difficult to decouple them
 # They come from ./cpp/thirdparty/versions.txt
-XSIMD=		8.1.0.tar.gz
+XSIMD=		9.0.1.tar.gz
 JEMALLOC=	jemalloc-5.3.0.tar.bz2
 
 DISTFILES+=		${DISTNAME}${EXTRACT_SUFX}
@@ -54,7 +54,7 @@ CONFIGURE_ENV+=	ARROW_XSIMD_URL=/${DISTDIR}/${XSIMD}
 CMAKE_ARGS+=	-DARROW_BUILD_TESTS=OFF
 
 post-install:
-	${MV} ${DESTDIR}${PREFIX}/share/gdb/auto-load/${LOCALBASE}/lib/libarrow.so.900.0.0-gdb.py ${DESTDIR}${PREFIX}/share/arrow/gdb/
+	${MV} ${DESTDIR}${PREFIX}/share/gdb/auto-load/${LOCALBASE}/lib/libarrow.so.${APACHE_ARROW_VERSION:S/.//g}.0.0-gdb.py ${DESTDIR}${PREFIX}/share/arrow/gdb/
 
 BUILD_DEPENDS+=		cmake-[0-9]*:../../devel/cmake
 # Needs gnu install for -v option
@@ -67,11 +67,10 @@ TOOLS_PATH.install=	${PREFIX}/bin/ginstall
 .include "../../converters/utf8proc/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/cmake/buildlink3.mk"
-.include "../../devel/libthrift/buildlink3.mk"
+.include "../../devel/gflags/buildlink3.mk"
 .include "../../devel/flatbuffers/buildlink3.mk"
-
+.include "../../devel/libthrift/buildlink3.mk"
 # .include "../../devel/googletest/buildlink3.mk"
-
 .include "../../devel/protobuf/buildlink3.mk"
 .include "../../devel/re2/buildlink3.mk"
 .include "../../net/grpc/buildlink3.mk"

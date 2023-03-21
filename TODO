@@ -17,7 +17,6 @@ Suggested package updates
 	o blink-2.0.0
 	o cairo-java-1.0.8
 	o calligra-3.0.1
-	o cde-2.5.1
 	o cinelerra-4.5
 	o d4x-2.5.7.1
 	o daphne-1.0
@@ -91,7 +90,6 @@ Suggested package updates
 	o meta-tracker-1.4.0
 	o miro-5.0
 	o mixxx-1.11.0
-	o moe-1.9
 	o mpgedit-0.73dev2
 	o mumble-1.2.4
 	o mupen64-0.5
@@ -121,7 +119,6 @@ Suggested package updates
 	o raylib-4.2.0 [needs glfw-3.4]
 	o rdup-1.1.13
 	o recoll-1.19.14
-	o residualvm-0.3.0
 	o rosegarden-current-1.4.0
 	o rsyslog6-6.3.6
 	o rygel-0.26.0
@@ -186,14 +183,11 @@ Suggested ready to import packages
 	o ispell-dictionaries
 	o marathon-tempus-irae
 	o matiec
-	o moonlight-qt
-	o openjazz
 	o pear-Net_URL2
 	o phalanx [kamil]
 	o pnmcurve
 	o py-csp [kamil; some tests hang but it seems good enough; need for wip/py-uuid]
 	o py-jswebkit
-	o qbe
 	o rar4
 	o send-pr
 	o tqsllib
