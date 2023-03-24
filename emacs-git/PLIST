@@ -93,6 +93,7 @@ share/emacs/${PKGVERSION}/etc/DEBUG
 share/emacs/${PKGVERSION}/etc/DEVEL.HUMOR
 share/emacs/${PKGVERSION}/etc/DISTRIB
 share/emacs/${PKGVERSION}/etc/DOC
+share/emacs/${PKGVERSION}/etc/EGLOT-NEWS
 share/emacs/${PKGVERSION}/etc/ERC-NEWS
 share/emacs/${PKGVERSION}/etc/ETAGS.EBNF
 share/emacs/${PKGVERSION}/etc/ETAGS.README
@@ -3575,6 +3576,8 @@ share/emacs/${PKGVERSION}/lisp/progmodes/eglot.el.gz
 share/emacs/${PKGVERSION}/lisp/progmodes/eglot.elc
 share/emacs/${PKGVERSION}/lisp/progmodes/elisp-mode.el.gz
 share/emacs/${PKGVERSION}/lisp/progmodes/elisp-mode.elc
+share/emacs/${PKGVERSION}/lisp/progmodes/elixir-ts-mode.el.gz
+share/emacs/${PKGVERSION}/lisp/progmodes/elixir-ts-mode.elc
 share/emacs/${PKGVERSION}/lisp/progmodes/erts-mode.el.gz
 share/emacs/${PKGVERSION}/lisp/progmodes/erts-mode.elc
 share/emacs/${PKGVERSION}/lisp/progmodes/etags.el.gz
@@ -3601,6 +3604,8 @@ share/emacs/${PKGVERSION}/lisp/progmodes/grep.el.gz
 share/emacs/${PKGVERSION}/lisp/progmodes/grep.elc
 share/emacs/${PKGVERSION}/lisp/progmodes/gud.el.gz
 share/emacs/${PKGVERSION}/lisp/progmodes/gud.elc
+share/emacs/${PKGVERSION}/lisp/progmodes/heex-ts-mode.el.gz
+share/emacs/${PKGVERSION}/lisp/progmodes/heex-ts-mode.elc
 share/emacs/${PKGVERSION}/lisp/progmodes/hideif.el.gz
 share/emacs/${PKGVERSION}/lisp/progmodes/hideif.elc
 share/emacs/${PKGVERSION}/lisp/progmodes/hideshow.el.gz
