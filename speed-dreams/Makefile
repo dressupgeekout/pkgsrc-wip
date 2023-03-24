@@ -1,7 +1,7 @@
 # $NetBSD$
 
-PKGNAME=	speed-dreams-2.2.3
-DISTNAME=	speed-dreams-src-base-${PKGVERSION_NOREV}-r7616
+PKGNAME=	speed-dreams-2.3.0
+DISTNAME=	speed-dreams-src-base-${PKGVERSION_NOREV}-r8786
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=speed-dreams/}
 EXTRACT_SUFX=	.tar.xz

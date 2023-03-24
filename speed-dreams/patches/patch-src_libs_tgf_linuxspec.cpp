@@ -1,6 +1,7 @@
 $NetBSD$
 
 Proper method of determining the CPU count.
+
 --- src/libs/tgf/linuxspec.cpp.orig	2022-07-28 17:54:11.723581581 -0700
 +++ src/libs/tgf/linuxspec.cpp	2022-07-28 18:07:31.952939532 -0700
 @@ -635,23 +635,19 @@
@@ -25,7 +26,7 @@ Proper method of determining the CPU count.
 +#if defined(__NetBSD__)
  			mib[1] = HW_NCPU;
 +#else
-+		mib[1] = HW_AVAILCPU;
++			mib[1] = HW_AVAILCPU;
 +#endif
  			sysctl(mib, 2, &nCPUs, &len, NULL, 0);
 -		}
