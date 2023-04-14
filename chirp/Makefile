@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.57 2023/01/29 21:16:48 ryoon Exp $
 
-VERSION=	20230218
+VERSION=	20230304
 DISTNAME=	chirp-${VERSION}
 CATEGORIES=	ham
 MASTER_SITES=	https://trac.chirp.danplanet.com/chirp_next/next-${VERSION}/
@@ -31,8 +31,10 @@ DEPENDS+=	${PYPKGPREFIX}-serial>=2.7:../../comms/py-serial
 DEPENDS+=	${PYPKGPREFIX}-requests>=2.0:../../devel/py-requests
 DEPENDS+=	${PYPKGPREFIX}-six-[0-9]*:../../lang/py-six
 DEPENDS+=	${PYPKGPREFIX}-future>=0.18.0:../../devel/py-future
+
 .include "../../lang/python/pyversion.mk"
-.if ${_PYTHON_VERSION} < 310
+
+.if ${PYTHON_VERSION} < 310
 DEPENDS+=	${PYPKGPREFIX}-importlib-resources>=1.4.0:../../devel/py-importlib-resources
 .endif
 # py-yattag

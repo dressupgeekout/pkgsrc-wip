@@ -1,13 +1,12 @@
-$NetBSD$
+$NetBSD: patch-configure.ac,v 1.4 2023/03/12 17:57:44 js Exp $
 
-Defang bash 4.0 syntax in configure and check for sizeof(time_t).
+Check for sizeof(time_t).
 
-upstream bugs
- - (bash) https://github.com/gluster/glusterfs/issues/3940
- - (sizeof(time_t)) https://github.com/gluster/glusterfs/issues/3942
+Defang bash 4.0 syntax in configure
+(https://github.com/gluster/glusterfs/issues/3940).
 
---- configure.ac.orig   2023-01-01 23:19:38.254216893 +0100
-+++ configure.ac        2023-01-02 15:14:21.968041528 +0100
+--- configure.ac.orig   2022-09-20 12:24:29.568820624 +0200
++++ configure.ac        2023-03-06 22:45:21.897057433 +0100
 @@ -544,6 +544,11 @@
  AC_SUBST(SIZEOF_LONG)
  AC_SUBST(SIZEOF_LONG_LONG)
@@ -20,7 +19,7 @@ upstream bugs
  # YACC needs a check
  AC_PROG_YACC
  if test "x${YACC}" = "xbyacc" -o "x${YACC}" = "xyacc" -o "x${YACC}" = "x"; then
-@@ -1896,10 +1901,10 @@
+@@ -1896,10 +1896,10 @@
  echo "Building with LTO    : $LTO_BUILD"
  echo
  
