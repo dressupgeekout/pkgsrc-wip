@@ -1,0 +1,2 @@
+@comment $NetBSD$
+share/jitsi-videobridge/lib/jniwrapper-native-${PKGVERSION}-SNAPSHOT.jar

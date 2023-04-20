@@ -1,11 +1,11 @@
 # $NetBSD$
 
-DISTNAME=	libxtend-0.1.6.12
+DISTNAME=	libxtend-0.1.7.12
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
-GITHUB_TAG=	b1fc67d81828c869c6446e3ed70820b0bcf875fa
+GITHUB_TAG=	610cba7f8430d3406253f7f8398203f0e946d8dc
 
-MAINTAINER=	bacon@NetBSD.org
+OWNER=		bacon@NetBSD.org
 HOMEPAGE=	https://github.com/outpaddling/libxtendc
 COMMENT=	Miscellaneous functions to extend libc
 LICENSE=	2-clause-bsd

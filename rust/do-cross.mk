@@ -5,14 +5,15 @@
 VERSION!=	make show-var VARNAME=PKGVERSION
 V_NOREV!=	make show-var VARNAME=PKGVERSION_NOREV
 
-SHORT_TARGETS+=	armv7
-SHORT_TARGETS+= armv6
-SHORT_TARGETS+=	sparc64
-SHORT_TARGETS+=	powerpc
-SHORT_TARGETS+=	powerpc90
-SHORT_TARGETS+=	arm64
-SHORT_TARGETS+=	arm64_be
-SHORT_TARGETS+=	i386
+SHORT_TARGETS+=		armv7
+SHORT_TARGETS+=		armv6
+SHORT_TARGETS+=		sparc64
+SHORT_TARGETS+=		powerpc
+SHORT_TARGETS+=		powerpc90
+SHORT_TARGETS+=		arm64
+SHORT_TARGETS+=		arm64_be
+SHORT_TARGETS+=		i386
+SHORT_TARGETS+=		mipsel	# produces mips32 (not mips1) executables
 
 # Conditional local overrides of ROOT.* variables:
 .sinclude "local-roots.mk"
@@ -27,6 +28,7 @@ ROOT.powerpc90?=	/u/9.0-macppc
 ROOT.arm64?=		/u/evbarm64
 ROOT.arm64_be?=		/u/evbarm64eb
 ROOT.i386?=		/u/i386
+ROOT.mipsel?=		/u/mipsel
 
 # Mapping to GNU triple
 G_TGT.armv7=		armv7--netbsdelf-eabihf
@@ -37,6 +39,7 @@ G_TGT.powerpc90=	powerpc--netbsd
 G_TGT.arm64=		aarch64--netbsd
 G_TGT.arm64_be=		aarch64_be--netbsd
 G_TGT.i386=		i486--netbsdelf
+G_TGT.mipsel=		mipsel--netbsd
 
 # Mapping to rust's TARGET specification
 TGT.armv7=		armv7-unknown-netbsd-eabihf
@@ -47,6 +50,7 @@ TGT.powerpc90=		powerpc-unknown-netbsd
 TGT.arm64=		aarch64-unknown-netbsd
 TGT.arm64_be=		aarch64_be-unknown-netbsd
 TGT.i386=		i586-unknown-netbsd
+TGT.mipsel=		mipsel-unknown-netbsd
 
 # Optional target tweak for bootstrap files
 TT.powerpc90=		powerpc-unknown-netbsd90

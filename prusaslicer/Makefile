@@ -1,6 +1,6 @@
 # $NetBSD$
 
-PKGVERSION=	2.5.0
+PKGVERSION=	2.5.2
 PKGNAME=	prusaslicer-${PKGVERSION}
 DISTNAME=	PrusaSlicer-${PKGVERSION:S/rc/-rc/}
 CATEGORIES=	cad
@@ -20,7 +20,7 @@ ONLY_FOR_PLATFORM=	*-*-aarch64 *-*-x86_64 *-*-earmv6 *-*-earmv7 *-*-i386
 # Uses std::to_chars_result from <charconv> which is actually gcc8+.
 GCC_REQD+=	10
 USE_LANGUAGES=	c c++17
-USE_TOOLS+=	cmake gmake
+USE_TOOLS+=	cmake gmake pkg-config:run
 USE_CMAKE=	yes
 ICON_THEMES=	yes
 

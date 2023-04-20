@@ -11,8 +11,9 @@
 
 GITHUB_PROJECT=	libreswan
 DISTNAME=	libreswan
-PKGNAME=	libreswan-4.9nb1
-GITHUB_TAG=	9583cda324d23e73c806b0b0377eadebdbee1f89
+# this is really a pre-5.0 snapshot and >all 4.x
+PKGNAME=	libreswan-4.9nb3
+GITHUB_TAG=	87b84cc19b90a4e046f28568cc2738835800398a
 MASTER_SITES=	${MASTER_SITE_GITHUB:=${GITHUB_PROJECT}/}
 DIST_SUBDIR=	${GITHUB_PROJECT}
 
@@ -57,7 +58,7 @@ CONF_FILES+=		${EGDIR}/ipsec.d/policies/private ${PKG_SYSCONFDIR}/ipsec.d/polici
 CONF_FILES+=		${EGDIR}/ipsec.d/policies/private-or-clear ${PKG_SYSCONFDIR}/ipsec.d/policies/private-or-clear
 
 # Always install pam.d!?
-MAKE_DIRS+=		${PKG_SYSCONFDIR}/pam.d
+MAKE_DIRS+=	${PKG_SYSCONFDIR}/pam.d
 CONF_FILES+=	${EGDIR}/pam.d/pluto ${PKG_SYSCONFDIR}/pam.d/pluto
 
 # Alway install logrotate!?!
@@ -67,7 +68,7 @@ CONF_FILES+=	${EGDIR}/logrotate.d/libreswan ${PKG_SYSCONFDIR}/logrotate.d/libres
 CHECK_PORTABILITY_SKIP=	mk/docker-targets.mk
 
 # code not clean enough; XXX: why?
-BUILDLINK_TRANSFORM+=	rm:-Werror
+#BUILDLINK_TRANSFORM+=	rm:-Werror
 
 # some stuff uses .include, some does not
 DEPENDS+=	xmlto-[0-9]*:../../textproc/xmlto
