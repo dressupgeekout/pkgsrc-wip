@@ -1,31 +1,35 @@
 # $NetBSD$
 
-PKGNAME=		frogatto-0
+DISTNAME=		anura-0
+PKGNAME=		frogatto-4.28
 CATEGORIES=		games
-GIT_REPOSITORIES=	anura frogatto
-
-GIT_REPO.anura=		https://github.com/anura-engine/anura.git
-GIT_REVISION.anura=	e837e63ea88b8426dafd9414f0fdd7f30ab58102
-GIT_BRANCH.anura=	trunk
-
-GIT_REPO.frogatto=	https://github.com/frogatto/frogatto.git
-GIT_REVISION.frogatto=	8b0351854518af25b553c7fd50f6f2afb6d5e71b
-GIT_BRANCH.frogatto=	master
+MASTER_SITES=		${MASTER_SITE_GITHUB:=dressupgeekout/}
+GITHUB_PROJECT=		anura
+GITHUB_TAG=		cdb63c9c7b500c1bdf61b405d659851c9903c101
 
 MAINTAINER=	charlotte@NetBSD.org
 COMMENT=	The Frogatto and Friends game
-LICENSE=	modified-bsd AND mit AND zlib # XXX not true, + cc-by-v3.0 also
+LICENSE=	modified-bsd AND mit AND zlib # XXX + cc-by-v3.0 also
+
+GITHUB_SUBMODULES+=	\
+	anura-engine imgui 2379a8b3f21642f715a18749fbd0345c4acafa79 imgui
+
+# The Frogatto data files aren't actually a submodule of Anura, but they need
+# to end up "inside" the Anura source anyway, so this works well.
+GITHUB_SUBMODULES+=	\
+	dressupgeekout frogatto dressupgeekout-${PKGVERSION_NOREV} modules/frogatto4
 
 USE_LANGUAGES=	c c++
 GCC_REQD+=	4.8
-USE_TOOLS+=	gmake pkg-config
+USE_TOOLS+=	gmake pax pkg-config
 
 # Anura provides the game engine, which needs to be compiled. Frogatto is
 # simply the game data, no compiliation needed.
-WRKSRC=		${WRKDIR}/anura
+WRKSRC=		${WRKDIR}/anura-${GITHUB_TAG}
 
 CFLAGS+=	-Wno-sign-compare
 CFLAGS+=	-Wno-deprecated-declarations
+CFLAGS+=	-Wno-strict-aliasing
 
 .if "${OPSYS}" == "NetBSD"
 LDFLAGS+=	-lexecinfo
@@ -35,67 +39,63 @@ INSTALLATION_DIRS+=	bin
 INSTALLATION_DIRS+=	libexec/frogatto
 INSTALLATION_DIRS+=	share/frogatto
 
-ANURA_DIRS+=	data
-ANURA_DIRS+=	images
-ANURA_DIRS+=	modules
-ANURA_DIRS+=	music
-ANURA_DIRS+=	update
+ANURA_SHARE_DEST=	${DESTDIR}${PREFIX}/share/frogatto
+FROGATTO_MODULE_DEST=	${ANURA_SHARE_DEST}/modules/frogatto4
 
-FROGATTO_DIRS+=	data
-FROGATTO_DIRS+=	images
-FROGATTO_DIRS+=	locale
-FROGATTO_DIRS+=	music
-FROGATTO_DIRS+=	music_aac
-FROGATTO_DIRS+=	po
-FROGATTO_DIRS+=	sounds
-FROGATTO_DIRS+=	sounds_wav
+ANURA_DIRS+=		data
+ANURA_DIRS+=		images
+ANURA_DIRS+=		music
+ANURA_DIRS+=		update
+ANURA_DIRS+=		modules/gui
+ANURA_DIRS+=		modules/icons
+ANURA_DIRS+=		modules/lib_2d
+ANURA_DIRS+=		modules/tbs
+
+FROGATTO_DIRS+=		data
+FROGATTO_DIRS+=		images
+FROGATTO_DIRS+=		locale
+FROGATTO_DIRS+=		music
+FROGATTO_DIRS+=		music_aac
+FROGATTO_DIRS+=		po
+FROGATTO_DIRS+=		sounds
+FROGATTO_DIRS+=		sounds_wav
 
 FROGATTO_FILES+=	master-config.cfg
 FROGATTO_FILES+=	module.cfg
+FROGATTO_FILES+=	LICENSE
 
-# The call to pax(1) from wip/mk/git-package.mk complains of file names that
-# are too long, related to the Xcode project in the MacOS directory. So, use
-# this opportunity to remove that and tons of other inessential files.
-post-fetch:
-	${RM} -rf ${WRKDIR}/anura/MacOS
-	${RM} -rf ${WRKDIR}/anura/vs2013
-
-# Called frogatto-launcher on purpose to avoid conflict with source code repo
-# for Frogatto.
 pre-configure:
-	${SED} -e 's,@@PREFIX@@,${PREFIX},g' ${FILESDIR}/frogatto.template > ${WRKDIR}/frogatto-launcher
-
-# Copy Frogatto's data into the Anura distribution, but install it as just
-# one complete "Frogatto."
-pre-install:
-	${MKDIR} ${WRKDIR}/anura/modules/frogatto4
-	for dir in ${FROGATTO_DIRS}; do										\
-		${MKDIR} ${WRKDIR}/anura/modules/frogatto4/$${dir};						\
-		cd ${WRKDIR}/frogatto/$${dir} && ${PAX} -r -w . ${WRKDIR}/anura/modules/frogatto4/$${dir};	\
-	done
-	for file in ${FROGATTO_FILES}; do							\
-		${INSTALL_DATA} ${WRKDIR}/frogatto/$${file} ${WRKDIR}/anura/modules/frogatto4/$${file};	\
-	done
+	${SED} -e 's,@@PREFIX@@,${PREFIX},g' ${FILESDIR}/frogatto.template > ${WRKDIR}/frogatto
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/frogatto-launcher ${DESTDIR}${PREFIX}/bin/frogatto
-	${INSTALL_PROGRAM} ${WRKDIR}/anura/anura ${DESTDIR}${PREFIX}/libexec/frogatto/anura
-	for dir in ${ANURA_DIRS}; do										\
-		${MKDIR} ${DESTDIR}${PREFIX}/share/frogatto/$${dir};						\
-		cd ${WRKDIR}/anura/$${dir} && ${PAX} -r -w . ${DESTDIR}${PREFIX}/share/frogatto/$${dir};	\
+	${INSTALL_SCRIPT} ${WRKDIR}/frogatto ${DESTDIR}${PREFIX}/bin/frogatto
+	${INSTALL_PROGRAM} ${WRKSRC}/anura ${DESTDIR}${PREFIX}/libexec/frogatto/anura
+	for dir in ${ANURA_DIRS}; do							\
+		${MKDIR} ${ANURA_SHARE_DEST}/$${dir};					\
+		cd ${WRKSRC}/$${dir} && ${PAX} -r -w . ${ANURA_SHARE_DEST}/$${dir};	\
+	done
+	for dir in ${FROGATTO_DIRS}; do										\
+		${MKDIR} ${FROGATTO_MODULE_DEST}/$${dir};							\
+		cd ${WRKSRC}/modules/frogatto4/$${dir} && ${PAX} -r -w . ${FROGATTO_MODULE_DEST}/$${dir};	\
+	done
+	for file in ${FROGATTO_FILES}; do							\
+		${INSTALL_DATA} ${WRKSRC}/modules/frogatto4/$${file} ${FROGATTO_MODULE_DEST};	\
 	done
 
 .include "../../audio/SDL2_mixer/buildlink3.mk"
+.include "../../audio/libvorbis/buildlink3.mk"
 .include "../../devel/SDL2/buildlink3.mk"
 .include "../../devel/boost-headers/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../fonts/SDL2_ttf/buildlink3.mk"
+.include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../graphics/SDL2_image/buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"
+.include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/glew/buildlink3.mk"
 .include "../../graphics/glm/buildlink3.mk"
 .include "../../graphics/glu/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
+.include "../../multimedia/libogg/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
-.include "../../wip/mk/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

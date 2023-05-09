@@ -15,7 +15,7 @@ HOMEPAGE=	https://github.com/milesgranger/pyrus-cramjam
 COMMENT=	Extremely thin Python bindings to de/compression algorithms in Rust
 LICENSE=	mit
 
-DEPENDS+=	${PYPKGPREFIX}-maturin-[0-9]*:../../wip/py-maturin
+DEPENDS+=	${PYPKGPREFIX}-maturin-[0-9]*:../../devel/py-maturin
 DEPENDS+=	${PYPKGPREFIX}-numpy>=1.18:../../math/py-numpy
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 TEST_DEPENDS+=	${PYPKGPREFIX}-hypothesis-[0-9]*:../../devel/py-hypothesis
@@ -24,7 +24,7 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-hypothesis-[0-9]*:../../devel/py-hypothesis
 
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} maturin-${PYVERSSUFFIX} pep517 \
-		build-wheel -i ${PREFIX}/bin/python3.10 --compatibility off \
+		build-wheel -i ${PREFIX}/bin/python${PYVERSSUFFIX} --compatibility off \
 		--offline
 
 # Test Requires install

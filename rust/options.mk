@@ -9,13 +9,19 @@ PKG_SUPPORTED_OPTIONS+=	rust-cargo-static rust-docs
 .if ${OPSYS} != "SunOS"
 PKG_SUPPORTED_OPTIONS+=		rust-internal-llvm
 # There may be compatibility issues with the base LLVM on e.g. NetBSD.
-.  if !empty(HAVE_LLVM) || !empty(MACHINE_PLATFORM:MDarwin-*-aarch64)
+.  if !empty(HAVE_LLVM) || ${MACHINE_PLATFORM:MDarwin-*-aarch64}
 PKG_SUGGESTED_OPTIONS+=		rust-internal-llvm
 .  endif
 .endif
 
 # If cross-building, always use the internal LLVM
 .if !empty(TARGET)
+PKG_SUGGESTED_OPTIONS+=		rust-internal-llvm
+.endif
+
+# (NetBSD)/sparc64 systems fail to build libunwind,
+# a dependency of pkgsrc llvm, so use the internal one instead
+.if ${MACHINE_PLATFORM:MNetBSD-*-sparc64}
 PKG_SUGGESTED_OPTIONS+=		rust-internal-llvm
 .endif
 

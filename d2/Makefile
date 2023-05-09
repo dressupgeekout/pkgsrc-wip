@@ -1,13 +1,13 @@
 # $NetBSD$
 
-PKGNAME=	d2-0.1.2
+PKGNAME=	d2-0.4.2
 DISTNAME=	d2-${GITHUB_TAG}
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=terrastruct/}
 GITHUB_PROJECT=	d2
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	iku.iwasa@gmail.com
+MAINTAINER=	iquiw@NetBSD.org
 HOMEPAGE=	https://d2lang.com/
 COMMENT=	Modern diagram scripting language that turns text to diagrams
 LICENSE=	mpl-2.0
