@@ -1,5 +1,5 @@
 $NetBSD$
 
-BLAKE2s (mindustry-140.4.tar.gz) = 17e12826d030cb34cbad3d2ee30254229f9b90d6920a206ed0a9e61b189914c1
-SHA512 (mindustry-140.4.tar.gz) = 3a31b14bc6c852c6979a9ada0f682c3c6df79b0217cd6165e6b4b1038603d67e0d334269372a4a6c9ec97d35ffcdda01271a778593379bb81f96ef9e197cfed9
-Size (mindustry-140.4.tar.gz) = 53709079 bytes
+BLAKE2s (mindustry-143.1.tar.gz) = 3a948b37e9b79a9e677cd46d1cafdc456c882e9e75c442f167f56760d5e2dce0
+SHA512 (mindustry-143.1.tar.gz) = 82859265ab5d36edb17e6b94edd1ef2f5b2a1e719cccd6e9195a1ac4cbfb934b4b307f1dcd35c8886e06b97a0cd8d864cc1fb6ff45b198ddda4822d4a6968d19
+Size (mindustry-143.1.tar.gz) = 53731723 bytes

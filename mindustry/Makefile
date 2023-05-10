@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mindustry-140.4
+DISTNAME=	mindustry-143.1
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Anuken/}
 GITHUB_PROJECT=	Mindustry
