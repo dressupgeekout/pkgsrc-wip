@@ -1,0 +1,8 @@
+$NetBSD$
+
+BLAKE2s (furnace-0.6pre4.tar.gz) = ccbe71260da9720b3fa0b3c5cc0208c90659ccd331ee9d1b8c5d00592613524a
+SHA512 (furnace-0.6pre4.tar.gz) = 2bc910f854401be6d6406917a9846e8e475c9d7dc885f4595bde76477d7fb45abc005cb86f3891b89a1561928f08b20ae6527fc1fc4c019aafb1f6f67abefe42
+Size (furnace-0.6pre4.tar.gz) = 43120190 bytes
+BLAKE2s (superctr-adpcm-ef7a217154badc3b99978ac481b268c8aab67bd8.tar.gz) = 3614dfc72d015f06ac8aa2a77c8bef02e35f42dfa6bd85eab7f3592dd18e59b8
+SHA512 (superctr-adpcm-ef7a217154badc3b99978ac481b268c8aab67bd8.tar.gz) = 40b6f042a56532681e731da8d63c28abd3d824ce660060bc7e296ff9d1ad994d358189fc441458a86eb1506bce47f8364b09ebe1a2d475d308345058b7f4bfb0
+Size (superctr-adpcm-ef7a217154badc3b99978ac481b268c8aab67bd8.tar.gz) = 5497 bytes
