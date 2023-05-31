@@ -11,8 +11,19 @@
 
 GITHUB_PROJECT=	libreswan
 DISTNAME=	libreswan
-PKGNAME=	libreswan-4.9nb2
-GITHUB_TAG=	00c483c7e2e970ba4bc4a972b204d8ca9cb595fa
+
+# This is a pre-5.0 snapshot taken from mainline.  It includes the CVE
+# fixes in v4.10 and v4.11.
+#
+# The version number 4.9 in the below is topologically correct.  It is
+# the point where the v4.x maintenance branch was created (both v4.10
+# and v4.11 were drawn from that branch).
+#
+# If this were Fedora I'd be using something like libreswan-v4.9~1324
+# (that's a tilda).  Perhaps 4.11nb5.1324 would be better?
+
+PKGNAME=	libreswan-4.9nb3
+GITHUB_TAG=	87b84cc19b90a4e046f28568cc2738835800398a
 MASTER_SITES=	${MASTER_SITE_GITHUB:=${GITHUB_PROJECT}/}
 DIST_SUBDIR=	${GITHUB_PROJECT}
 

@@ -18,5 +18,6 @@
 - fix handling of config files - install into share/examples/libreswan
   and use CONF_FILES
 
-- This package has known vulnerabilities, please investigate and fix if possible:
-    CVE-2023-23009
+
+This package has known vulnerabilities, please investigate and fix if possible:
+  CVE-2023-2295, CVE-2023-30570
