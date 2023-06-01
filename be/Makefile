@@ -1,12 +1,13 @@
 # $NetBSD$
 
-DISTNAME=	be-0.0.0
+DISTNAME=	be-0.6.1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=asmedit/}
-GITHUB_TAG=	6c59e60623a6b60addd3aa2714951db11057c22a
+GITHUB_PROJECT= be
+GITHUB_TAG=	7b165a4832d84aa83541e563f50727707e2f6d16
 
-MAINTAINER=	charlotte@NetBSD.org
-HOMEPAGE=	https://5ht.co/be/
+MAINTAINER=	namdak@tonpa.guru
+HOMEPAGE=	https://github.com/asmedit/be
 COMMENT=	Binary hex editor with retro disassemblers
 LICENSE=	isc
 
