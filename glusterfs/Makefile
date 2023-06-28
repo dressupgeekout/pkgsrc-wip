@@ -1,9 +1,9 @@
 # $NetBSD: Makefile,v 1.116 2023/03/28 01:10:53 gutteridge Exp $
 
-DISTNAME=	glusterfs-10.3
-PKGREVISION=	2
+DISTNAME=	glusterfs-10.4
+# PKGREVISION=	2
 CATEGORIES=	filesystems
-MASTER_SITES=	http://bits.gluster.org/pub/gluster/glusterfs/src/
+MASTER_SITES=	https://bits.gluster.org/pub/gluster/glusterfs/src/
 
 MAINTAINER=	als@thangorodrim.ch
 HOMEPAGE=	https://www.gluster.org/
@@ -166,7 +166,7 @@ BUILDLINK_API_DEPENDS.userspace-rcu+=	userspace-rcu>=0.12.1
 .include "../../devel/userspace-rcu/buildlink3.mk"
 .if ${OPSYS} == "Linux"
 .include "../../devel/liburing/buildlink3.mk"
-.include "../../devel/acl/buildlink3.mk"
+.include "../../sysutils/acl/buildlink3.mk"
 .endif
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"

@@ -1,12 +1,12 @@
 # $NetBSD: Makefile,v 1.142 2022/08/17 20:28:37 wiz Exp $
 
-# after 2.53.2 release
-DISTNAME=	unison-2.53.2.0.1
+# 2.53.3.beyond
+DISTNAME=	unison-2.53.3.0.50
 #PKGREVISION=	0
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=bcpierce00/}
 #GITHUB_TAG=	v${PKGVERSION_NOREV}
-GITHUB_TAG=	50d0b6981d144c9d6c4a0f62370528ffad7dc092
+GITHUB_TAG=	9056d581efdc17dda13e08b6868032f4f6e4445d
 
 
 MAINTAINER=	gdt@NetBSD.org
@@ -40,12 +40,10 @@ INSTALLATION_DIRS+=	share/doc/unison
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/unison ${DESTDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/src/CONTRIB ${DESTDIR}${PREFIX}/share/doc/unison
 	${INSTALL_MAN} ${WRKSRC}/src/COPYING ${DESTDIR}${PREFIX}/share/doc/unison
+	${INSTALL_MAN} ${WRKSRC}/CONTRIBUTING.md ${DESTDIR}${PREFIX}/share/doc/unison
+	${INSTALL_MAN} ${WRKSRC}/INSTALL.md ${DESTDIR}${PREFIX}/share/doc/unison
 	${INSTALL_MAN} ${WRKSRC}/NEWS.md ${DESTDIR}${PREFIX}/share/doc/unison
-	${INSTALL_MAN} ${WRKSRC}/src/README ${DESTDIR}${PREFIX}/share/doc/unison
-	${INSTALL_MAN} ${WRKSRC}/src/ROADMAP.txt ${DESTDIR}${PREFIX}/share/doc/unison
-	${INSTALL_MAN} ${WRKSRC}/src/TODO.txt ${DESTDIR}${PREFIX}/share/doc/unison
 	${INSTALL_MAN} ${WRKSRC}/man/unison.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 
 .include "../../mk/pthread.buildlink3.mk"

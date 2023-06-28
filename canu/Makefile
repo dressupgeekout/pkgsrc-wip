@@ -2,8 +2,9 @@
 
 DISTNAME=	canu-2.2
 CATEGORIES=	biology java
-MASTER_SITES=	${MASTER_SITE_GITHUB:=marbl/}
-GITHUB_TAG=	v${PKGVERSION_NOREV}
+# Github-generaged files are incomplete
+MASTER_SITES=	https://github.com/marbl/canu/releases/download/v${PKGVERSION_NOREV}/
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://canu.readthedocs.io/
@@ -12,21 +13,10 @@ LICENSE=	gnu-gpl-v2
 
 DEPENDS+=	gnuplot>0:../../graphics/gnuplot
 
-# Makefile compiles directly into ${DESTDIR}${PREFIX}
-SUBST_CLASSES+=		optimize
-SUBST_STAGE.optimize=	pre-configure
-SUBST_SED.optimize+=	-e 's|-g3||g'
-SUBST_SED.optimize+=	-e 's|-O3||g'
-SUBST_SED.optimize+=	-e 's|-O4||g'
-SUBST_SED.optimize+=	-e 's|-funroll-loops||g'
-SUBST_SED.optimize+=	-e 's|-fexpensive-optimizations||g'
-SUBST_SED.optimize+=	-e 's|-finline-functions||g'
-SUBST_FILES.optimize+=	${WRKSRC}/Makefile
-
 SUBST_CLASSES+=		perl
 SUBST_STAGE.perl=	pre-configure
 SUBST_SED.perl+=	-e 's|$$FindBin::RealBin/../lib/site_perl|${PREFIX}/${SITE_PERL_REL}|g'
-SUBST_FILES.perl+=	${WRKSRC}/pipelines/canu.pl
+SUBST_FILES.perl+=	pipelines/canu.pl
 
 REPLACE_PERL+=	bogart/*.pl
 REPLACE_PERL+=	pipelines/*.pl
@@ -41,7 +31,7 @@ REPLACE_PERL+=	fastq-utilities/*.pl
 REPLACE_PERL+=	*.pl
 
 # May work on other 64-bit processors, but untested
-ONLY_FOR_PLATFORM=	*-*-x86_64
+ONLY_FOR_PLATFORM=	*-*-x86_64 *-*-aarch64 *-*-powerpc64
 
 USE_LANGUAGES=	c c++
 USE_JAVA=	run
@@ -51,23 +41,39 @@ USE_TOOLS+=	gmake pax perl
 WRKSRC=		${WRKDIR}/canu-${PKGVERSION_NOREV}/src
 MAKE_ENV+=	DESTDIR=${WRKSRC}
 
-TMP_INST=		${WRKSRC}${PREFIX}/${OPSYS}-${MACHINE_ARCH:S/x86_64/amd64/}
+TMP_INST=		${WRKSRC}/build
 SITE_PERL_REL=		lib/perl5/site_perl
 JAVAJARDIR=		share/java/classes
-INSTALLATION_DIRS=	bin ${JAVAJARDIR}
+INSTALLATION_DIRS=	bin lib/perl5 ${JAVAJARDIR}
+
+.include "../../mk/bsd.prefs.mk"
 
 post-extract:
 	${CHMOD} -R g-w ${WRKDIR}
+.if ${MACHINE_ARCH} == "aarch64"
+	${CP} ${FILESDIR}/cpuid_arm.c ${WRKSRC}/utility/src/parasail/cpuid.c
+.elif ${MACHINE_ARCH} == "powerpc64"
+	${CP} ${FILESDIR}/cpuid_ppc.c ${WRKSRC}/utility/src/parasail/cpuid.c
+.elif ${MACHINE_ARCH} != "amd64"
+	${CP} ${FILESDIR}/cpuid_any.c ${WRKSRC}/utility/src/parasail/cpuid.c
+.endif
 
+# Upstream does not want to use lib/perl5/site_perl
 post-build:
 	${MKDIR} ${TMP_INST}/lib/perl5
 	${MV} ${TMP_INST}/lib/site_perl ${TMP_INST}/lib/perl5
-	${RM} -f ${TMP_INST}/bin/canu.defaults
 
 do-install:
 	cd ${TMP_INST}/bin && ${PAX} -wr * ${DESTDIR}${PREFIX}/bin
 	cd ${TMP_INST}/lib/perl5 && ${PAX} -wr * ${DESTDIR}${PREFIX}/lib/perl5
 	cd ${TMP_INST}/share && ${PAX} -wr * ${DESTDIR}${PREFIX}/share
+
+# Xcode supports -Xpreprocessor -fopenmp, but does not supply OpenMP libs
+# parallel/openmp installs an entire llvm
+# Maybe a libomp package would suffice?
+.if ${OPSYS} == Darwin
+.include "../../parallel/openmp/buildlink3.mk"
+.endif
 
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../lang/perl5/module.mk"

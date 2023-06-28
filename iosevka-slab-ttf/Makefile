@@ -1,13 +1,13 @@
 # $NetBSD$
 
-PKGNAME=	iosevka-slab-ttf-22.0.1
+PKGNAME=	iosevka-slab-ttf-24.1.4
 DISTNAME=	super-ttc-${PKGNAME:S/-ttf//}
 CATEGORIES=	fonts
 MASTER_SITES=	${MASTER_SITE_GITHUB:=be5invis/}
 GITHUB_PROJECT=	Iosevka
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	iku.iwasa@gmail.ccom
+MAINTAINER=	iquiw@NetBSD.org
 HOMEPAGE=	https://github.com/be5invis/Iosevka
 COMMENT=	Slender typeface for code, from code
 LICENSE=	ofl-v1.1
