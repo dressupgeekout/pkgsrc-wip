@@ -1,3 +1,7 @@
+$NetBSD$
+
+Several functions are hidden behind _NETBSD_SOURCE.
+
 --- CMakeLists.txt.orig	2023-05-22 07:27:43.000000000 -0700
 +++ CMakeLists.txt	2023-06-29 00:17:35.378577080 -0700
 @@ -13,6 +13,10 @@
