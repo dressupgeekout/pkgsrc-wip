@@ -16,8 +16,7 @@ USE_LANGUAGES=	c c++17
 USE_TOOLS+=	pkg-config
 .include "../../lang/python/tool.mk"
 
-CMAKE_ARGS+=	-DUSING_X11_VULKAN=OFF
-CMAKE_ARGS+=	-DARM_NO_VULKAN=ON
+ONLY_FOR_PLATFORM=	*-*-*arm* *-*-x86_64 *-*-i386
 
 CMAKE_ARGS+=	-DUSE_DISCORD=OFF
 CMAKE_ARGS+=	-DUSE_SYSTEM_FFMPEG=ON
@@ -27,6 +26,8 @@ CMAKE_ARGS+=	-DUSE_SYSTEM_LIBZIP=ON
 CMAKE_ARGS+=	-DUSE_SYSTEM_MINIUPNPC=ON
 CMAKE_ARGS+=	-DUSE_SYSTEM_SNAPPY=ON
 CMAKE_ARGS+=	-DUSE_SYSTEM_ZSTD=ON
+
+NOT_PAX_MPROTECT_SAFE+=	bin/PPSSPPSDL
 
 .include "../../archivers/libzip/buildlink3.mk"
 .include "../../archivers/zstd/buildlink3.mk"
