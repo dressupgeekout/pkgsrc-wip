@@ -1,5 +1,5 @@
 $NetBSD$
 
-RMD160 (mtr-8506092.tar.gz) = ca8c925f8831674d5ccae290f8b7a135effbc0aa
-SHA512 (mtr-8506092.tar.gz) = 95973fc61aceca6060958ae4e0ae32bc26a96cdce909479afa4e836a81824674fac85f5a306bdcf344adc2d7381fdd2716ab8cf55a9065eabf34bfe681c09a0e
-Size (mtr-8506092.tar.gz) = 98179 bytes
+BLAKE2s (mtr085-cadfc35.tar.gz) = 21668aae7b19ca3222900748551dcc4860b6f3740a480815569bf245cebadbee
+SHA512 (mtr085-cadfc35.tar.gz) = d3fafa210231bc18337d2cd7a23f144c0cf8cbb205bfa467f065bac2a875e32e846fc5a6453330a0110fa196c47e6f9aab6d1644c35fd2b39d20f22f368cbd7c
+Size (mtr085-cadfc35.tar.gz) = 97154 bytes

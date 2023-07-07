@@ -1,0 +1,9 @@
+$NetBSD: distinfo,v 1.29 2023/01/12 19:32:53 adam Exp $
+
+BLAKE2s (cmake-16.0.6.src.tar.xz) = a967225f31bcd98484d632a2d530c498131b0035f18b15e27915663b915dc6ba
+SHA512 (cmake-16.0.6.src.tar.xz) = 52ecd941d2d85a5b668caa5d0d40480cb6a97b3bf1174e634c2a93e9ef6d03670ca7e96abb0a60cb33ba537b93d5788754dab1f2f45c1f623f788162717d088b
+Size (cmake-16.0.6.src.tar.xz) = 9008 bytes
+BLAKE2s (polly-16.0.6.src.tar.xz) = bc6e7cb25b4eef49d004da174a9f50dfbfe9b7dccc549178f14b3b42822fc34c
+SHA512 (polly-16.0.6.src.tar.xz) = 791473c145930fcd1541002c5385c2fbc1b6dbecc60ca19b69f81d4df27a324609d1b0fc2723893147886eab988b4bf88e9c0ca815b1aa5b0a10d899cf32bc7e
+Size (polly-16.0.6.src.tar.xz) = 9356796 bytes
+SHA1 (patch-CMakeLists.txt) = 8138e11f858f23e0069c8fa0c07eff2b7aaf8c43

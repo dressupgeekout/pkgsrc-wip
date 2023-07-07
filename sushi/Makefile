@@ -14,14 +14,14 @@ LICENSE=	gnu-gpl-v2
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		intltool perl pkg-config
 
-BUILD_DEPENDS+=		p5-XML-Parser-[0-9]*:../../textproc/p5-XML-Parser
+TOOL_DEPENDS+=		p5-XML-Parser-[0-9]*:../../textproc/p5-XML-Parser
 
 .include "../../www/webkit24-gtk/buildlink3.mk"
 .include "../../x11/gtksourceview3/buildlink3.mk"
 .include "../../print/evince3/buildlink3.mk"
 .include "../../audio/libmusicbrainz/buildlink3.mk"
 .include "../../multimedia/gstreamer1/buildlink3.mk"
-.include "../../wip/clutter-gst/buildlink3.mk"
+.include "../../multimedia/clutter-gst/buildlink3.mk"
 .include "../../graphics/clutter-gtk/buildlink3.mk"
 .include "../../graphics/clutter/buildlink3.mk"
 .include "../../lang/gjs/buildlink3.mk"

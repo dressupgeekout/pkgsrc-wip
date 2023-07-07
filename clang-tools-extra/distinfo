@@ -1,0 +1,11 @@
+$NetBSD: distinfo,v 1.17 2023/01/12 19:32:53 adam Exp $
+
+BLAKE2s (clang-16.0.6.src.tar.xz) = 528647ba7c3b87280ceb8c4a46eecf514600bad27cd1b71ee5ab32a28f8c5069
+SHA512 (clang-16.0.6.src.tar.xz) = 92c65b882e1504f4a9b8a3f6b8a24061505987aaacc8bb835115b4e4d74ac3a8c98343a308567b07c6b42bb99877c300bce3c4a5a25ada77abe65606aa25188d
+Size (clang-16.0.6.src.tar.xz) = 20356652 bytes
+BLAKE2s (clang-tools-extra-16.0.6.src.tar.xz) = f819493b015d8fc14400d723827c823c364f560854fb67295dc0920169929884
+SHA512 (clang-tools-extra-16.0.6.src.tar.xz) = ec1a0834f223e393d24c11586b744167a41cea6c39d1bb18c433d2fb736501950fdff42f1eb0caa13c75bcb8ef9ac309eb0687644307698ec0420ff8a769c710
+Size (clang-tools-extra-16.0.6.src.tar.xz) = 3151928 bytes
+BLAKE2s (cmake-16.0.6.src.tar.xz) = a967225f31bcd98484d632a2d530c498131b0035f18b15e27915663b915dc6ba
+SHA512 (cmake-16.0.6.src.tar.xz) = 52ecd941d2d85a5b668caa5d0d40480cb6a97b3bf1174e634c2a93e9ef6d03670ca7e96abb0a60cb33ba537b93d5788754dab1f2f45c1f623f788162717d088b
+Size (cmake-16.0.6.src.tar.xz) = 9008 bytes

@@ -90,15 +90,15 @@ lib/chapel/${VERSION}/runtime/include/encoding/encoding-support.h
 lib/chapel/${VERSION}/runtime/include/error.h
 lib/chapel/${VERSION}/runtime/include/freebsd/stdint.h
 lib/chapel/${VERSION}/runtime/include/gdb.h
-lib/chapel/${VERSION}/runtime/include/gpu/cuda/chpl-gpu-gen-includes.h
-lib/chapel/${VERSION}/runtime/include/gpu/rocm/chpl-gpu-gen-includes.h
+lib/chapel/${VERSION}/runtime/include/gpu/amd/chpl-gpu-gen-includes.h
+lib/chapel/${VERSION}/runtime/include/gpu/cpu/chpl-gpu-gen-includes.h
+lib/chapel/${VERSION}/runtime/include/gpu/nvidia/chpl-gpu-gen-includes.h
 lib/chapel/${VERSION}/runtime/include/llvm/chapel_libc_wrapper.h
 lib/chapel/${VERSION}/runtime/include/llvm/clang_builtins_wrapper.h
 lib/chapel/${VERSION}/runtime/include/localeModels/apu/chpl-locale-model.h
 lib/chapel/${VERSION}/runtime/include/localeModels/chpl-locale-model.h
 lib/chapel/${VERSION}/runtime/include/localeModels/flat/chpl-locale-model.h
 lib/chapel/${VERSION}/runtime/include/localeModels/gpu/chpl-locale-model.h
-lib/chapel/${VERSION}/runtime/include/localeModels/knl
 lib/chapel/${VERSION}/runtime/include/localeModels/numa/chpl-locale-model.h
 lib/chapel/${VERSION}/runtime/include/mem/cstdlib/chpl-mem-impl.h
 lib/chapel/${VERSION}/runtime/include/mem/jemalloc/chpl-mem-impl.h
@@ -211,7 +211,6 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm-c/Target.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm-c/TargetMachine.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm-c/Transforms/AggressiveInstCombine.h
-lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm-c/Transforms/Coroutines.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm-c/Transforms/IPO.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm-c/Transforms/InstCombine.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm-c/Transforms/PassBuilder.h
@@ -220,11 +219,13 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm-c/Transforms/Utils.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm-c/Transforms/Vectorize.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm-c/Types.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm-c/blake3.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm-c/lto.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ADT/APFixedPoint.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ADT/APFloat.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ADT/APInt.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ADT/APSInt.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ADT/AddressRanges.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ADT/AllocatorList.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ADT/Any.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ADT/ArrayRef.h
@@ -396,6 +397,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/MemoryBuiltins.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/MemoryDependenceAnalysis.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/MemoryLocation.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/MemoryProfileInfo.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/MemorySSA.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/MemorySSAUpdater.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/ModelUnderTrainingRunner.h
@@ -427,6 +429,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/ScalarEvolutionDivision.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/ScalarEvolutionExpressions.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/ScalarEvolutionNormalization.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/ScalarFuncs.def
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/ScopedNoAliasAA.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/SparsePropagation.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/StackLifetime.h
@@ -438,6 +441,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/TargetLibraryInfo.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/TargetTransformInfo.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/TargetTransformInfoImpl.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/TensorSpec.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/Trace.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/TypeBasedAliasAnalysis.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Analysis/TypeMetadataUtils.h
@@ -456,6 +460,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/AsmParser/SlotMapping.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/AMDGPUMetadataVerifier.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/COFF.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/DXContainer.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/Dwarf.def
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/Dwarf.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/DynamicTags.def
@@ -469,6 +474,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/ELFRelocs/CSKY.def
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/ELFRelocs/Hexagon.def
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/ELFRelocs/Lanai.def
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/ELFRelocs/LoongArch.def
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/ELFRelocs/M68k.def
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/ELFRelocs/MSP430.def
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/ELFRelocs/Mips.def
@@ -480,6 +486,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/ELFRelocs/VE.def
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/ELFRelocs/i386.def
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/ELFRelocs/x86_64.def
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/GOFF.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/MachO.def
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/MachO.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/BinaryFormat/Magic.h
@@ -503,6 +510,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Bitcode/BitcodeWriter.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Bitcode/BitcodeWriterPass.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Bitcode/LLVMBitCodes.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Bitstream/BitCodeEnums.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Bitstream/BitCodes.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Bitstream/BitstreamReader.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Bitstream/BitstreamWriter.h
@@ -513,7 +521,9 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/AsmPrinterHandler.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/AtomicExpandUtils.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/BasicBlockSectionUtils.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/BasicBlockSectionsProfileReader.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/BasicTTIImpl.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/CFIFixup.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/CSEConfigBase.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/CalcSpillWeights.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/CallingConvLower.h
@@ -563,8 +573,6 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/GlobalISel/MIPatternMatch.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/GlobalISel/MachineIRBuilder.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/GlobalISel/RegBankSelect.h
-lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/GlobalISel/RegisterBank.h
-lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/GlobalISel/RegisterBankInfo.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/GlobalISel/Utils.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/ISDOpcodes.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/IndirectThunks.h
@@ -656,6 +664,8 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/RegAllocPBQP.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/RegAllocRegistry.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/Register.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/RegisterBank.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/RegisterBankInfo.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/RegisterClassInfo.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/RegisterPressure.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/CodeGen/RegisterScavenging.h
@@ -805,11 +815,13 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/DWARF/DWARFObject.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/DWARF/DWARFRelocMap.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/DWARF/DWARFSection.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/DWARF/DWARFTypePrinter.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/DWARF/DWARFTypeUnit.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/DWARF/DWARFUnit.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/DWARF/DWARFUnitIndex.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/DWARF/DWARFVerifier.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/GSYM/DwarfTransformer.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/GSYM/ExtractRanges.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/GSYM/FileEntry.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/GSYM/FileWriter.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/GSYM/FunctionInfo.h
@@ -821,7 +833,6 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/GSYM/LineTable.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/GSYM/LookupResult.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/GSYM/ObjectFileTransformer.h
-lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/GSYM/Range.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/GSYM/StringTable.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/MSF/IMSFFile.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/MSF/MSFBuilder.h
@@ -866,6 +877,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/DbiStream.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/DbiStreamBuilder.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/EnumTables.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/FormatUtil.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/Formatters.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/GSIStreamBuilder.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/GlobalsStream.h
@@ -875,6 +887,8 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/InfoStream.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/InfoStreamBuilder.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/InjectedSourceStream.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/InputFile.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/LinePrinter.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/ModuleDebugStream.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/NamedStreamMap.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/Native/NativeCompilandSymbol.h
@@ -954,14 +968,19 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/PDB/UDTLayout.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/Symbolize/DIFetcher.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/Symbolize/DIPrinter.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/Symbolize/Markup.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/Symbolize/MarkupFilter.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/Symbolize/SymbolizableModule.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/Symbolize/SymbolizableObjectFile.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/DebugInfo/Symbolize/Symbolize.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Debuginfod/DIFetcher.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Debuginfod/Debuginfod.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Debuginfod/HTTPClient.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Debuginfod/HTTPServer.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Demangle/Demangle.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Demangle/DemangleConfig.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Demangle/ItaniumDemangle.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Demangle/ItaniumNodes.def
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Demangle/MicrosoftDemangle.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Demangle/MicrosoftDemangleNodes.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Demangle/StringView.h
@@ -970,6 +989,9 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/GenericValue.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Interpreter.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/JITEventListener.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/JITLink/COFF.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/JITLink/COFF_x86_64.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/JITLink/DWARFRecordSectionSplitter.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/JITLink/EHFrameSupport.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/JITLink/ELF.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/JITLink/ELF_aarch64.h
@@ -1017,6 +1039,8 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/LookupAndRecordAddrs.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/MachOPlatform.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/Mangling.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/MapperJITLinkMemoryManager.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/MemoryMapper.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/ObjectFileInterface.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/ObjectLinkingLayer.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/ObjectTransformLayer.h
@@ -1035,6 +1059,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/Speculation.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/SymbolStringPool.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/TargetProcess/ExecutorBootstrapService.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/TargetProcess/ExecutorSharedMemoryMapperService.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/TargetProcess/JITLoaderGDB.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/TargetProcess/RegisterEHFrames.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ExecutionEngine/Orc/TargetProcess/SimpleExecutorDylibManager.h
@@ -1072,7 +1097,6 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/Attributes.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/Attributes.inc
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/Attributes.td
-lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/AttributesAMDGPU.td
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/AutoUpgrade.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/BasicBlock.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/BuiltinGCs.h
@@ -1080,6 +1104,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/CallingConv.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/Comdat.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/Constant.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/ConstantFold.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/ConstantFolder.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/ConstantRange.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/Constants.h
@@ -1096,6 +1121,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/DiagnosticInfo.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/DiagnosticPrinter.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/Dominators.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/FMF.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/FPEnv.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/FixedMetadataKinds.def
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/FixedPointBuilder.h
@@ -1131,6 +1157,8 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsARM.td
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsBPF.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsBPF.td
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsDirectX.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsDirectX.td
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsHexagon.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsHexagon.td
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsHexagonDep.td
@@ -1144,6 +1172,8 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsRISCV.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsRISCV.td
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsS390.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsSPIRV.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsSPIRV.td
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsSystemZ.td
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsVE.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/IntrinsicsVE.td
@@ -1201,6 +1231,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/ValueHandle.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/ValueMap.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/ValueSymbolTable.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/VectorBuilder.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IR/Verifier.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/IRReader/IRReader.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/InitializePasses.h
@@ -1236,6 +1267,9 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCCodeEmitter.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCCodeView.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCContext.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCDXContainerStreamer.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCDXContainerWriter.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCDecoderOps.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCDirectives.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCDisassembler/MCDisassembler.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCDisassembler/MCExternalSymbolizer.h
@@ -1245,7 +1279,6 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCELFObjectWriter.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCELFStreamer.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCExpr.h
-lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCFixedLenDisassembler.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCFixup.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCFixupKindInfo.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCFragment.h
@@ -1273,12 +1306,16 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCPseudoProbe.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCRegister.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCRegisterInfo.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCSPIRVObjectWriter.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCSPIRVStreamer.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCSchedule.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCSection.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCSectionCOFF.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCSectionDXContainer.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCSectionELF.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCSectionGOFF.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCSectionMachO.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCSectionSPIRV.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCSectionWasm.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCSectionXCOFF.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MC/MCStreamer.h
@@ -1316,6 +1353,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MCA/HardwareUnits/ResourceManager.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MCA/HardwareUnits/RetireControlUnit.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MCA/HardwareUnits/Scheduler.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MCA/IncrementalSourceMgr.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MCA/InstrBuilder.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MCA/Instruction.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MCA/Pipeline.h
@@ -1330,6 +1368,20 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MCA/Stages/Stage.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MCA/Support.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/MCA/View.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/COFF/COFFConfig.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/COFF/COFFObjcopy.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/CommonConfig.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/ConfigManager.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/ELF/ELFConfig.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/ELF/ELFObjcopy.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/MachO/MachOConfig.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/MachO/MachOObjcopy.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/MultiFormatConfig.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/ObjCopy.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/XCOFF/XCOFFConfig.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/XCOFF/XCOFFObjcopy.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/wasm/WasmConfig.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjCopy/wasm/WasmObjcopy.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/Archive.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/ArchiveWriter.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/Binary.h
@@ -1337,6 +1389,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/COFFImportFile.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/COFFModuleDefinition.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/CVDebugRecord.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/DXContainer.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/Decompressor.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/ELF.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/ELFObjectFile.h
@@ -1351,6 +1404,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/Minidump.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/ModuleSymbolTable.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/ObjectFile.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/OffloadBinary.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/RelocationResolver.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/StackMapParser.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Object/SymbolSize.h
@@ -1369,10 +1423,12 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjectYAML/CodeViewYAMLTypes.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjectYAML/DWARFEmitter.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjectYAML/DWARFYAML.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjectYAML/DXContainerYAML.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjectYAML/ELFYAML.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjectYAML/MachOYAML.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjectYAML/MinidumpYAML.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjectYAML/ObjectYAML.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjectYAML/OffloadYAML.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjectYAML/WasmYAML.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjectYAML/XCOFFYAML.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ObjectYAML/YAML.h
@@ -1401,6 +1457,8 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ProfileData/InstrProfData.inc
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ProfileData/InstrProfReader.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ProfileData/InstrProfWriter.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ProfileData/MIBEntryDef.inc
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ProfileData/MemProf.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ProfileData/MemProfData.inc
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ProfileData/ProfileCommon.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ProfileData/RawMemProfReader.h
@@ -1439,6 +1497,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/AutoConvert.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/Automaton.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/BCD.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/BLAKE3.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/Base64.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/BinaryByteStream.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/BinaryItemStream.h
@@ -1456,6 +1515,10 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/CFGUpdate.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/COM.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/CRC.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/CSKYAttributeParser.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/CSKYAttributes.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/CSKYTargetParser.def
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/CSKYTargetParser.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/CachePruning.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/Caching.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/Capacity.h
@@ -1471,6 +1534,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/CrashRecoveryContext.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/DJB.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/DOTGraphTraits.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/DXILOperationCommon.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/DataExtractor.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/DataTypes.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Support/Debug.h
@@ -1616,6 +1680,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/TableGen/DirectiveEmitter.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/TableGen/Error.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/TableGen/Main.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/TableGen/Parser.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/TableGen/Record.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/TableGen/SearchableTable.td
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/TableGen/SetTheory.h
@@ -1657,8 +1722,8 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/ToolDrivers/llvm-lib/LibDriver.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/AggressiveInstCombine/AggressiveInstCombine.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/CFGuard.h
-lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Coroutines.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Coroutines/CoroCleanup.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Coroutines/CoroConditionalWrapper.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Coroutines/CoroEarly.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Coroutines/CoroElide.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Coroutines/CoroSplit.h
@@ -1769,7 +1834,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/LoopUnrollAndJamPass.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/LoopUnrollPass.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/LoopVersioningLICM.h
-lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/LowerAtomic.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/LowerAtomicPass.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/LowerConstantIntrinsics.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/LowerExpectIntrinsic.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/LowerGuardIntrinsic.h
@@ -1796,6 +1861,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/SpeculativeExecution.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/StraightLineStrengthReduce.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/StructurizeCFG.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/TLSVariableHoist.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/TailRecursionElimination.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Scalar/WarnMissedTransforms.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils.h
@@ -1838,13 +1904,17 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/LoopSimplify.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/LoopUtils.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/LoopVersioning.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/LowerAtomic.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/LowerGlobalDtors.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/LowerInvoke.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/LowerMemIntrinsics.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/LowerSwitch.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/MatrixUtils.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/Mem2Reg.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/MemoryOpRemark.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/MemoryTaggingSupport.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/MetaRenamer.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/MisExpect.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/ModuleUtils.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/NameAnonGlobals.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Utils/PredicateInfo.h
@@ -1878,6 +1948,8 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/inclu
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Vectorize/LoopVectorize.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Vectorize/SLPVectorizer.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/Transforms/Vectorize/VectorCombine.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/WindowsDriver/MSVCPaths.h
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/WindowsDriver/MSVCSetupApi.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/WindowsManifest/WindowsManifestMerger.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/WindowsResource/ResourceProcessor.h
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/include/llvm/WindowsResource/ResourceScriptToken.h
@@ -1905,6 +1977,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/c
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/AddSphinxTarget.cmake
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/CheckAtomic.cmake
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/CheckCompilerVersion.cmake
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/CheckProblematicConfigurations.cmake
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/ChooseMSVCCRT.cmake
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/CoverageReport.cmake
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/CrossCompile.cmake
@@ -1916,6 +1989,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/c
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/FindSphinx.cmake
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/FindTerminfo.cmake
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/FindZ3.cmake
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/Findzstd.cmake
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/GenerateVersionFromVCS.cmake
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/GetErrcMessages.cmake
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/GetLibraryName.cmake
@@ -1937,6 +2011,7 @@ lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/c
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/TensorFlowCompile.cmake
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/UseLibtool.cmake
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/VersionFromVCS.cmake
+lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/cmake/llvm/llvm-driver-template.cpp.in
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/libLLVMDemangle.a
 lib/chapel/${VERSION}/third-party/llvm/install/support-only-netbsd64-amd64/lib/libLLVMSupport.a
 lib/chapel/${VERSION}/third-party/qthread/Makefile
@@ -2096,8 +2171,10 @@ share/chapel/${VERSION}/modules/packages/AllLocalesBarriers.chpl
 share/chapel/${VERSION}/modules/packages/ArgumentParser.chpl
 share/chapel/${VERSION}/modules/packages/AtomicObjects.chpl
 share/chapel/${VERSION}/modules/packages/BLAS.chpl
+share/chapel/${VERSION}/modules/packages/BinaryIO.chpl
 share/chapel/${VERSION}/modules/packages/Buffers.chpl
 share/chapel/${VERSION}/modules/packages/Channel.chpl
+share/chapel/${VERSION}/modules/packages/ChplFormat.chpl
 share/chapel/${VERSION}/modules/packages/Collection.chpl
 share/chapel/${VERSION}/modules/packages/ConcurrentMap.chpl
 share/chapel/${VERSION}/modules/packages/CopyAggregation.chpl
@@ -2115,6 +2192,7 @@ share/chapel/${VERSION}/modules/packages/Futures.chpl
 share/chapel/${VERSION}/modules/packages/HDF5.chpl
 share/chapel/${VERSION}/modules/packages/HDF5Helper/hdf5_helper.h
 share/chapel/${VERSION}/modules/packages/HDFS.chpl
+share/chapel/${VERSION}/modules/packages/Json.chpl
 share/chapel/${VERSION}/modules/packages/LAPACK.chpl
 share/chapel/${VERSION}/modules/packages/LinearAlgebra.chpl
 share/chapel/${VERSION}/modules/packages/LinearAlgebraJama.chpl
@@ -2146,6 +2224,7 @@ share/chapel/${VERSION}/modules/packages/UnorderedAtomics.chpl
 share/chapel/${VERSION}/modules/packages/UnorderedCopy.chpl
 share/chapel/${VERSION}/modules/packages/UnrolledLinkedList.chpl
 share/chapel/${VERSION}/modules/packages/VisualDebug.chpl
+share/chapel/${VERSION}/modules/packages/Yaml.chpl
 share/chapel/${VERSION}/modules/packages/ZMQ.chpl
 share/chapel/${VERSION}/modules/packages/ZMQHelper/zmq_helper.c
 share/chapel/${VERSION}/modules/packages/ZMQHelper/zmq_helper.h
@@ -2156,6 +2235,7 @@ share/chapel/${VERSION}/modules/standard/BitOps.chpl
 share/chapel/${VERSION}/modules/standard/CTypes.chpl
 share/chapel/${VERSION}/modules/standard/ChapelIO.chpl
 share/chapel/${VERSION}/modules/standard/ChplConfig.chpl
+share/chapel/${VERSION}/modules/standard/Collectives.chpl
 share/chapel/${VERSION}/modules/standard/CommDiagnostics.chpl
 share/chapel/${VERSION}/modules/standard/Communication.chpl
 share/chapel/${VERSION}/modules/standard/DynamicIters.chpl
@@ -2164,7 +2244,7 @@ share/chapel/${VERSION}/modules/standard/FileSystem.chpl
 share/chapel/${VERSION}/modules/standard/GMP.chpl
 share/chapel/${VERSION}/modules/standard/GMPHelper/chplgmp.h
 share/chapel/${VERSION}/modules/standard/GPU.chpl
-share/chapel/${VERSION}/modules/standard/GPUDiagnostics.chpl
+share/chapel/${VERSION}/modules/standard/GpuDiagnostics.chpl
 share/chapel/${VERSION}/modules/standard/HaltWrappers.chpl
 share/chapel/${VERSION}/modules/standard/Heap.chpl
 share/chapel/${VERSION}/modules/standard/Help.chpl
@@ -2172,6 +2252,7 @@ share/chapel/${VERSION}/modules/standard/IO.chpl
 share/chapel/${VERSION}/modules/standard/List.chpl
 share/chapel/${VERSION}/modules/standard/Map.chpl
 share/chapel/${VERSION}/modules/standard/Math.chpl
+share/chapel/${VERSION}/modules/standard/MemDiagnostics.chpl
 share/chapel/${VERSION}/modules/standard/MemMove.chpl
 share/chapel/${VERSION}/modules/standard/Memory.chpl
 share/chapel/${VERSION}/modules/standard/Memory/Diagnostics.chpl
@@ -2182,10 +2263,8 @@ share/chapel/${VERSION}/modules/standard/Random.chpl
 share/chapel/${VERSION}/modules/standard/Reflection.chpl
 share/chapel/${VERSION}/modules/standard/Regex.chpl
 share/chapel/${VERSION}/modules/standard/Set.chpl
-share/chapel/${VERSION}/modules/standard/Spawn.chpl
 share/chapel/${VERSION}/modules/standard/Subprocess.chpl
 share/chapel/${VERSION}/modules/standard/Sys.chpl
-share/chapel/${VERSION}/modules/standard/SysBasic.chpl
 share/chapel/${VERSION}/modules/standard/Time.chpl
 share/chapel/${VERSION}/modules/standard/Types.chpl
 share/chapel/${VERSION}/modules/standard/VectorizingIterator.chpl
@@ -2247,6 +2326,7 @@ share/chapel/${VERSION}/util/chplenv/chpl_gmp.py
 share/chapel/${VERSION}/util/chplenv/chpl_gpu.py
 share/chapel/${VERSION}/util/chplenv/chpl_home_utils.py
 share/chapel/${VERSION}/util/chplenv/chpl_hwloc.py
+share/chapel/${VERSION}/util/chplenv/chpl_hwloc_debug.py
 share/chapel/${VERSION}/util/chplenv/chpl_jemalloc.py
 share/chapel/${VERSION}/util/chplenv/chpl_launcher.py
 share/chapel/${VERSION}/util/chplenv/chpl_lib_pic.py
@@ -2261,6 +2341,7 @@ share/chapel/${VERSION}/util/chplenv/chpl_qthreads.py
 share/chapel/${VERSION}/util/chplenv/chpl_re2.py
 share/chapel/${VERSION}/util/chplenv/chpl_sanitizers.py
 share/chapel/${VERSION}/util/chplenv/chpl_tasks.py
+share/chapel/${VERSION}/util/chplenv/chpl_tasks_debug.py
 share/chapel/${VERSION}/util/chplenv/chpl_timers.py
 share/chapel/${VERSION}/util/chplenv/chpl_unwind.py
 share/chapel/${VERSION}/util/chplenv/chplenv.py
@@ -2277,10 +2358,16 @@ share/chapel/${VERSION}/util/config/compileline
 share/chapel/${VERSION}/util/config/compileline.py
 share/chapel/${VERSION}/util/config/find-python.sh
 share/chapel/${VERSION}/util/config/fixpath.py
+share/chapel/${VERSION}/util/config/generate-copyright
+share/chapel/${VERSION}/util/config/generate-license
+share/chapel/${VERSION}/util/config/generate-reservedSymbolNames
 share/chapel/${VERSION}/util/config/llvmVersions
 share/chapel/${VERSION}/util/config/make_sys_basic_types.py
 share/chapel/${VERSION}/util/config/replace-paths.py
 share/chapel/${VERSION}/util/config/run-in-prgenv-gnu.bash
 share/chapel/${VERSION}/util/config/run-in-venv.bash
 share/chapel/${VERSION}/util/config/update-if-different
+share/chapel/${VERSION}/util/config/write-git-sha
 share/chapel/${VERSION}/util/printchplenv
+@pkgdir share/chapel/${VERSION}/util/config/__pycache__
+@pkgdir share/chapel/${VERSION}/util/chplenv/__pycache__

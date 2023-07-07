@@ -1,10 +1,10 @@
 # $NetBSD$
 
-DISTNAME=	frp-0.47.0
+DISTNAME=	frp-0.48.0
 MASTER_SITES=	${MASTER_SITE_GITHUB:=fatedier/}
 CATEGORIES=	net
+DIST_SUBDIR=    ${PKGBASE}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
-EXTRACT_USING=	bsdtar
 
 MAINTAINER=	fox@NetBSD.org
 HOMEPAGE=	https://github.com/fatedier/frp

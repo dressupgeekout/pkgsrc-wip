@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	chapel-1.29.0
+DISTNAME=	chapel-1.31.0
 CATEGORIES=	parallel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=chapel-lang/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -10,7 +10,7 @@ HOMEPAGE=	https://chapel-lang.org/
 COMMENT=	The Chapel programming language
 LICENSE=	apache-2.0
 
-BUILD_DEPENDS+=	cmake-[0-9]*:../../devel/cmake
+TOOL_DEPENDS+=	cmake-[0-9]*:../../devel/cmake
 
 USE_TOOLS=		bash:run pkg-config gmake perl
 USE_LIBTOOL=		yes
@@ -24,8 +24,11 @@ TEST_TARGET=		check
 
 # TODO: detect clang and set to 'clang' instead
 MAKE_ENV+=		CHPL_HOST_COMPILER=gnu
-# llvm 15 not supported yet as of 1.29.0
-MAKE_ENV+=		CHPL_LLVM=none
+MAKE_ENV+=		CHPL_TARGET_COMPILER=gnu
+# TODO: llvm 15 is supported yet as of 1.31, use it
+MAKE_ENV+=             CHPL_LLVM=none
+
+LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib/chapel/1.30/compiler
 
 USE_LANGUAGES=	c c++ fortran
 
@@ -45,13 +48,17 @@ REPLACE_SH+=		util/printchplenv
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
+REPLACE_PERL+=		modules/dists/fixDistDocs.perl
+
 REPLACE_PYTHON+=	util/chplenv/*.py
 REPLACE_PYTHON+=	util/chplenv/third-party-pkgs
 REPLACE_PYTHON+=	util/config/*.py
+REPLACE_PYTHON+=	util/config/generate-copyright
+REPLACE_PYTHON+=	util/config/generate-license
+REPLACE_PYTHON+=	util/config/generate-reservedSymbolNames
 REPLACE_PYTHON+=	util/config/update-if-different
+REPLACE_PYTHON+=	util/config/write-git-sha
 REPLACE_PYTHON+=	util/printchplenv
-
-REPLACE_PERL+=		modules/dists/fixDistDocs.perl
 
 SUBST_CLASSES+=			penvperl
 SUBST_STAGE.penvperl=		pre-install

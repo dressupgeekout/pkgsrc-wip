@@ -19,9 +19,9 @@ GNU_CONFIGURE=	yes
 INFO_FILES=	yes
 USE_TOOLS+=	autoconf automake gm4 gmake gsed gzip makeinfo
 # for example, Mac OS X 10.6.1 has 2.61 which fails
-AUTOCONF_REQD=	2.65
+AUTOCONF_REQD+=	2.65
 # NetBSD has 4.8
-TEXINFO_REQD=	4.13
+TEXINFO_REQD+=	4.13
 
 CONFIGURE_ARGS+=	--srcdir=${WRKSRC}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
@@ -69,6 +69,5 @@ post-install:
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../fonts/harfbuzz/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-.include "../../graphics/libimagequant/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

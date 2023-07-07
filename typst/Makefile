@@ -1,33 +1,31 @@
-# $NetBSD$
+# $NetBSD: Makefile,v 1.4 2023/05/24 12:17:49 pin Exp $
 
-DISTNAME=	typst-${GITHUB_TAG:C/-/./:C/-/./}
+# Do not import. Requires Rust-1.70 or higher
+DISTNAME=	typst-0.6.0
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=typst/}
 GITHUB_PROJECT=	typst
-GITHUB_TAG=	22-03-21
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://typst.app/
 COMMENT=	Markup-based typesetting system
 LICENSE=	apache-2.0
 
-#USE_LANGUAGES+=	c c++
-#USE_TOOLS+=	gmake pkg-config
-
-#TOOL_DEPENDS+=	cmake-[0-9]*:../../devel/cmake
+DISTFILES=	${DEFAULT_DISTFILES}
+SVG2PDF_REV=	35f4bb87fb677473661c6d12919e01a6d64a716d
+DISTFILES+=	svg2pdf-${SVG2PDF_REV}.tar.gz
+SITES.svg2pdf-${SVG2PDF_REV}.tar.gz+= -${MASTER_SITE_GITHUB:=typst/}svg2pdf/archive/${SVG2PDF_REV}.tar.gz
 
 .include "cargo-depends.mk"
-.include "cargo-depends-git.mk"
 
 INSTALLATION_DIRS=	bin
 
 post-extract:
-.for name rev url path in ${CARGO_GIT_FILES}
-	${MV} ${WRKDIR}/${name}-${rev} ${WRKDIR}/vendor/${path}
-.endfor
+	mv ${WRKDIR}/svg2pdf-* ${WRKSRC}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/target/release/zola ${DESTDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/target/release/typst ${DESTDIR}${PREFIX}/bin
 
 .include "../../lang/rust/cargo.mk"
 .include "../../mk/bsd.pkg.mk"

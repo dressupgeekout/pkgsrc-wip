@@ -1,11 +1,11 @@
 # $NetBSD$
 
-DISTNAME=	cloudflared-2023.3.1
+DISTNAME=	cloudflared-2023.6.1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=cloudflare/}
 GITHUB_PROJECT=	cloudflared
 
-MAINTAINER=	iku.iwasa@gmail.com
+MAINTAINER=	iquiw@NetBSD.org
 HOMEPAGE=	https://github.com/cloudflare/cloudflared/
 COMMENT=	Cloudflare Tunnel client
 LICENSE=	apache-2.0

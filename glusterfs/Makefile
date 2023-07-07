@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.114 2023/03/16 03:28:24 gutteridge Exp $
+# $NetBSD: Makefile,v 1.116 2023/03/28 01:10:53 gutteridge Exp $
 
-DISTNAME=	glusterfs-10.3
-PKGREVISION=	1
+DISTNAME=	glusterfs-10.4
+# PKGREVISION=	2
 CATEGORIES=	filesystems
-MASTER_SITES=	http://bits.gluster.org/pub/gluster/glusterfs/src/
+MASTER_SITES=	https://bits.gluster.org/pub/gluster/glusterfs/src/
 
 MAINTAINER=	als@thangorodrim.ch
 HOMEPAGE=	https://www.gluster.org/
@@ -18,7 +18,10 @@ CONFIGURE_ARGS+=	--disable-fusermount
 CONFIGURE_ARGS+=	--disable-fuse-notifications
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=	--without-tcmalloc
-
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
+CONFIGURE_ARGS+=	--datadir=${PREFIX}/share/examples/${PKGBASE}
+# libtirpc not in pkgsrc (yet)
+CONFIGURE_ARGS+=	--without-libtirpc
 
 # Upstream glusterfs effectively dropped support for 32bit platforms
 # somewhere between 8.2 (works on e.g. NetBSD/i386) and 10.3 as various
@@ -76,7 +79,6 @@ REPLACE_BASH+=		geo-replication/src/set_geo_rep_pem_keys.sh
 # Explicit substitution of bash
 CHECK_PORTABILITY_SKIP+=	extras/peer_add_secret_pub.in
 
-
 SUBST_CLASSES+=		mtab
 SUBST_STAGE.mtab=	post-build
 SUBST_FILES.mtab+=	xlators/mount/fuse/utils/mount.glusterfs.in
@@ -91,10 +93,28 @@ SUBST_SED.etc=		-e "s,/etc/gluster,${PREFIX}/etc/gluster,g"
 SUBST_CLASSES+=		bash
 SUBST_STAGE.bash=	pre-configure
 SUBST_FILES.bash=	build-aux/pkg-version
-SUBST_SED.bash=		-e "s,/bin/bash,/usr/pkg/bin/bash,g"
+SUBST_SED.bash=		-e "s,/bin/bash,${BASH},g"
 
-#EGDIR=			${PREFIX}/etc/glusterfs
-#CONF_FILES+=		${EGDIR}/glusterd.vol.sample ${EGDIR}/glusterd.vol
+EGDIR=		${PREFIX}/share/examples/${PKGBASE}
+CONF_FILES+=	${EGDIR}/eventsconfig.json ${PKG_SYSCONFDIR}/glusterfs/eventsconfig.json
+CONF_FILES+=	${EGDIR}/ganesha/ganesha-ha.conf.sample ${PKG_SYSCONFDIR}/glusterfs/ganesha/ganesha-ha.conf.sample
+CONF_FILES+=	${EGDIR}/gluster-rsyslog-5.8.conf ${PKG_SYSCONFDIR}/glusterfs/gluster-rsyslog-5.8.conf
+CONF_FILES+=	${EGDIR}/gluster-rsyslog-7.2.conf ${PKG_SYSCONFDIR}/glusterfs/gluster-rsyslog-7.2.conf
+CONF_FILES+=	${EGDIR}/glusterd.vol ${PKG_SYSCONFDIR}/glusterfs/glusterd.vol
+CONF_FILES+=	${EGDIR}/glusterfs-georep-logrotate ${PKG_SYSCONFDIR}/glusterfs/glusterfs-georep-logrotate
+CONF_FILES+=	${EGDIR}/glusterfs-logrotate ${PKG_SYSCONFDIR}/glusterfs/glusterfs-logrotate
+CONF_FILES+=	${EGDIR}/group-db-workload ${PKG_SYSCONFDIR}/glusterfs/group-db-workload
+CONF_FILES+=	${EGDIR}/group-distributed-virt ${PKG_SYSCONFDIR}/glusterfs/group-distributed-virt
+CONF_FILES+=	${EGDIR}/group-gluster-block ${PKG_SYSCONFDIR}/glusterfs/group-gluster-block
+CONF_FILES+=	${EGDIR}/group-metadata-cache ${PKG_SYSCONFDIR}/glusterfs/group-metadata-cache
+CONF_FILES+=	${EGDIR}/group-nl-cache ${PKG_SYSCONFDIR}/glusterfs/group-nl-cache
+CONF_FILES+=	${EGDIR}/group-samba ${PKG_SYSCONFDIR}/glusterfs/group-samba
+CONF_FILES+=	${EGDIR}/group-virt.example ${PKG_SYSCONFDIR}/glusterfs/group-virt.example
+CONF_FILES+=	${EGDIR}/logger.conf.example ${PKG_SYSCONFDIR}/glusterfs/logger.conf.example
+CONF_FILES+=	${EGDIR}/thin-arbiter.vol ${PKG_SYSCONFDIR}/glusterfs/thin-arbiter.vol
+OWN_DIRS+=	${PKG_SYSCONFDIR}/glusterfs
+OWN_DIRS+=	${PKG_SYSCONFDIR}/glusterfs/ganesha
+
 OWN_DIRS+=		${VARBASE}/log/glusterfs
 BUILD_DEFS+=		VARBASE
 
@@ -115,9 +135,6 @@ pre-build:
 	${ECHO} "glusterd.vol.sample: glusterd.vol" >> Makefile &&	\
 	${ECHO} "	cp glusterd.vol glusterd.vol.sample" >> Makefile
 
-post-install:
-	${INSTALL_SCRIPT} ${DESTDIR}/sbin/mount_glusterfs \
-	    ${DESTDIR}/${PREFIX}/sbin/mount_glusterfs
 
 # Debug
 CFLAGS+=		-g
@@ -130,9 +147,14 @@ CONFIGURE_ARGS+=	--enable-debug
 
 .include "../../mk/bsd.prefs.mk"
 
-# only needed on Linux since glibc dropped RPC support
-.if ${OPSYS} != "Linux"
-CONFIGURE_ARGS+=        --without-libtirpc
+.if ${OPSYS} == "Linux"
+post-install:
+	${INSTALL_SCRIPT} ${DESTDIR}/sbin/mount.glusterfs \
+	    ${DESTDIR}/${PREFIX}/sbin/mount.glusterfs
+.else
+post-install:
+	${INSTALL_SCRIPT} ${DESTDIR}/sbin/mount_glusterfs \
+	    ${DESTDIR}/${PREFIX}/sbin/mount_glusterfs
 .endif
 
 .include "../../devel/libuuid/buildlink3.mk"
@@ -142,6 +164,10 @@ CONFIGURE_ARGS+=        --without-libtirpc
 .include "../../databases/sqlite3/buildlink3.mk"
 BUILDLINK_API_DEPENDS.userspace-rcu+=	userspace-rcu>=0.12.1
 .include "../../devel/userspace-rcu/buildlink3.mk"
+.if ${OPSYS} == "Linux"
+.include "../../devel/liburing/buildlink3.mk"
+.include "../../sysutils/acl/buildlink3.mk"
+.endif
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
 

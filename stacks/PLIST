@@ -1,4 +1,4 @@
-@comment $NetBSD$
+@comment $NetBSD: PLIST,v 1.2 2022/03/17 23:49:08 bacon Exp $
 bin/clone_filter
 bin/cstacks
 bin/denovo_map.pl

@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.3 2013/04/21 18:04:04 kristerw Exp $
-#
 
 DISTNAME=	aegis-devel-4.24
+PKGREVISION=	1
 CATEGORIES=	meta-pkgs devel
 MASTER_SITES=	# empty
 
@@ -10,6 +10,8 @@ HOMEPAGE=	http://aegis.sourceforge.net/
 COMMENT=	Infrastructure meta-package to develop on Aegis
 
 META_PACKAGE=		yes
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27 37 38
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -33,7 +35,7 @@ DEPENDS+=		ImageMagick>=6.4.8.3:../../graphics/ImageMagick
 DEPENDS+=		libxml2>=1.8.17:../../textproc/libxml2
 DEPENDS+=		png2ico>=20021208:../../wip/png2ico
 DEPENDS+=		pngcrush>=1.6.17:../../graphics/pngcrush
-DEPENDS+=		psutils>=1.17:../../print/psutils
+DEPENDS+=		${PYPKGPREFIX}-pspdfutils-[0-9]*:../../print/py-pspdfutils
 .if ${OPSYS} != "NetBSD"
 # on NetBSD rcs is in the base set. others?
 DEPENDS+=		rcs>=5.7:../../devel/rcs
@@ -46,4 +48,5 @@ DEPENDS+=		tardy>=1.17:../../wip/tardy
 DEPENDS+=		zlib>=1.1.4:../../devel/zlib
 .endif
 
+.include "../../lang/python/pyversion.mk"
 .include "../../mk/bsd.pkg.mk"
