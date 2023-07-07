@@ -11,6 +11,7 @@ HOMEPAGE=	https://www.veloren.net/
 COMMENT=	Multiplayer voxel RPG
 LICENSE=	gnu-gpl-v3
 
+USE_TOOLS+=	pkg-config
 WRKSRC=		${WRKDIR}/veloren-${GITLAB_TAG}
 
 .include "cargo-depends.mk"
