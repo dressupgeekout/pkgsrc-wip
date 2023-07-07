@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	qmediamanager-0.1.0.6
+DISTNAME=	qmediamanager-0.1.0.15
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
-GITHUB_TAG=	34ae200c8a37c95609e4f759b9056e6737f77ef3
+GITHUB_TAG=	bcbf30524465b3a264181210e1d640256b6970ce
 
 OWNER=		bacon@NetBSD.org
 HOMEPAGE=	https://github.com/outpaddling/qmediamanager
@@ -12,7 +12,7 @@ LICENSE=	2-clause-bsd
 
 DEPENDS=	npmount>0:../../wip/npmount
 DEPENDS+=	devpub-mount>0:../../wip/devpub-mount
-DEPENDS+=	auto-admin>=0.7.17:../../sysutils/auto-admin
+DEPENDS+=	auto-admin>=0.7.17.8:../../sysutils/auto-admin
 DEPENDS+=	rxvt-unicode>0:../../x11/rxvt-unicode
 # Maybe use qt5/6 options.  See net/wireshark.
 DEPENDS+=	qt6-qttools>0:../../devel/qt6-qttools
