@@ -2,7 +2,7 @@
 
 DISTNAME=	mapnik-v3.0.12
 PKGNAME=	${DISTNAME:S/-v/-/}
-PKGREVISION=	1
+PKGREVISION=	2
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
 CATEGORIES=	geography
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mapnik/}
@@ -14,7 +14,7 @@ HOMEPAGE=	https://mapnik.org/
 COMMENT=	Toolkit for mapping applications
 
 NO_CONFIGURE=		yes
-BUILD_DEPENDS+=		scons>=0.96:../../devel/scons
+TOOL_DEPENDS+=		scons>=0.96:../../devel/scons
 DEPENDS+=		dejavu-ttf>=2.19:../../fonts/dejavu-ttf
 USE_LANGUAGES=		c c++
 

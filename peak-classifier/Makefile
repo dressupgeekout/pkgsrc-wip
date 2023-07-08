@@ -1,10 +1,11 @@
 # $NetBSD$
 
-DISTNAME=	peak-classifier-0.1.4
+DISTNAME=	peak-classifier-0.1.4.8
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=auerlab/}
+GITHUB_TAG=	72155f3bb7c53fb75fc8c9756540da4006ad555f
 
-MAINTAINER=	bacon@NetBSD.org
+OWNER=		bacon@NetBSD.org
 HOMEPAGE=	https://github.com/auerlab/peak-classifier
 COMMENT=	Classify ChIP/ATAC-Seq peaks based on features provided in a GFF
 LICENSE=	2-clause-bsd

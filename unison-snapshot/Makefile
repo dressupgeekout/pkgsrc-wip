@@ -1,14 +1,17 @@
-# $NetBSD: Makefile,v 1.32 2022/03/08 22:32:15 gdt Exp $
+# $NetBSD: Makefile,v 1.142 2022/08/17 20:28:37 wiz Exp $
 
-# development version towards 2.53.0
-DISTNAME=	unison-2.52.71.2
+# 2.53.3.beyond
+DISTNAME=	unison-2.53.3.0.50
 #PKGREVISION=	0
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=bcpierce00/}
-GITHUB_TAG=	025d4d76193764d75a0f2ac5e59813d85e13f405
+#GITHUB_TAG=	v${PKGVERSION_NOREV}
+GITHUB_TAG=	9056d581efdc17dda13e08b6868032f4f6e4445d
+
 
 MAINTAINER=	gdt@NetBSD.org
-HOMEPAGE=	https://www.cis.upenn.edu/~bcpierce/unison/
+HOMEPAGE=	https://github.com/bcpierce00/unison
+#HOMEPAGE+=	https://www.cis.upenn.edu/~bcpierce/unison/
 COMMENT=	File-synchronization tool
 LICENSE=	gnu-gpl-v3
 
@@ -16,7 +19,7 @@ USE_TOOLS+=	gmake bash
 MAKE_FLAGS+=	CFLAGS=""
 MAKE_ENV+=	HOME=${WRKDIR:Q}
 
-.include "../../mk/ocaml.mk"
+.include "../../lang/ocaml/ocaml.mk"
 
 .if (${OCAML_USE_OPT_COMPILER} == "yes")
 MAKE_FLAGS+=	NATIVE=true
@@ -37,12 +40,10 @@ INSTALLATION_DIRS+=	share/doc/unison
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/unison ${DESTDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/src/CONTRIB ${DESTDIR}${PREFIX}/share/doc/unison
 	${INSTALL_MAN} ${WRKSRC}/src/COPYING ${DESTDIR}${PREFIX}/share/doc/unison
+	${INSTALL_MAN} ${WRKSRC}/CONTRIBUTING.md ${DESTDIR}${PREFIX}/share/doc/unison
+	${INSTALL_MAN} ${WRKSRC}/INSTALL.md ${DESTDIR}${PREFIX}/share/doc/unison
 	${INSTALL_MAN} ${WRKSRC}/NEWS.md ${DESTDIR}${PREFIX}/share/doc/unison
-	${INSTALL_MAN} ${WRKSRC}/src/README ${DESTDIR}${PREFIX}/share/doc/unison
-	${INSTALL_MAN} ${WRKSRC}/src/ROADMAP.txt ${DESTDIR}${PREFIX}/share/doc/unison
-	${INSTALL_MAN} ${WRKSRC}/src/TODO.txt ${DESTDIR}${PREFIX}/share/doc/unison
 	${INSTALL_MAN} ${WRKSRC}/man/unison.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 
 .include "../../mk/pthread.buildlink3.mk"

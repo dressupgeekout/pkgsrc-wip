@@ -1,29 +1,30 @@
-$NetBSD$
+$NetBSD: patch-src_CMakeLists.txt,v 1.1 2022/11/14 18:44:06 adam Exp $
 
-Make sure that libcxx headers are found, they are normally found
-using the target cxx-headers but, it does not exist since libcxxabi
-it's built alone, so have to create it.
+Fix build.
 
-Link to -lunwind since the target unwind_shared does not exist
-due to that libcxxabi it's build alone.
-
---- src/CMakeLists.txt.orig	2022-09-20 06:05:50.000000000 +0000
+--- src/CMakeLists.txt.orig	2022-11-02 03:11:40.000000000 +0000
 +++ src/CMakeLists.txt
-@@ -58,6 +58,8 @@ endif()
+@@ -57,6 +57,7 @@ if (MSVC_IDE OR XCODE)
+ endif()
  
  # Some files depend on libc++ internals.
++include_directories("${LIBCXXABI_LIBCXX_PATH}/include")
  include_directories("${LIBCXXABI_LIBCXX_PATH}/src")
-+add_library(cxx-headers INTERFACE)
-+target_include_directories(cxx-headers INTERFACE "${LIBCXXABI_LIBCXX_INCLUDES}")
  
  if (LIBCXXABI_HAS_CXA_THREAD_ATEXIT_IMPL)
-   add_definitions(-DHAVE___CXA_THREAD_ATEXIT_IMPL)
-@@ -165,7 +167,7 @@ if (LIBCXXABI_USE_LLVM_UNWINDER)
-     target_link_libraries(cxxabi_shared_objects PUBLIC unwind_shared_objects) # propagate usage requirements
-     target_sources(cxxabi_shared_objects PUBLIC $<TARGET_OBJECTS:unwind_shared_objects>)
-   else()
--    target_link_libraries(cxxabi_shared_objects PUBLIC unwind_shared)
-+    target_link_libraries(cxxabi_shared_objects PUBLIC unwind)
+@@ -168,7 +169,6 @@ if (LIBCXXABI_USE_LLVM_UNWINDER)
+     target_link_libraries(cxxabi_shared_objects PUBLIC unwind_shared)
    endif()
  endif()
- target_link_libraries(cxxabi_shared_objects PRIVATE cxx-headers ${LIBCXXABI_BUILTINS_LIBRARY} ${LIBCXXABI_SHARED_LIBRARIES} ${LIBCXXABI_LIBRARIES})
+-target_link_libraries(cxxabi_shared_objects PRIVATE cxx-headers ${LIBCXXABI_BUILTINS_LIBRARY} ${LIBCXXABI_SHARED_LIBRARIES} ${LIBCXXABI_LIBRARIES})
+ target_link_libraries(cxxabi_shared_objects PUBLIC cxxabi-headers)
+ set_target_properties(cxxabi_shared_objects
+   PROPERTIES
+@@ -239,7 +239,6 @@ if (LIBCXXABI_USE_LLVM_UNWINDER AND LIBC
+   target_link_libraries(cxxabi_static_objects PUBLIC unwind_static_objects) # propagate usage requirements
+   target_sources(cxxabi_static_objects PUBLIC $<TARGET_OBJECTS:unwind_static_objects>)
+ endif()
+-target_link_libraries(cxxabi_static_objects PRIVATE cxx-headers ${LIBCXXABI_STATIC_LIBRARIES} ${LIBCXXABI_LIBRARIES})
+ target_link_libraries(cxxabi_static_objects PUBLIC cxxabi-headers)
+ set_target_properties(cxxabi_static_objects
+   PROPERTIES

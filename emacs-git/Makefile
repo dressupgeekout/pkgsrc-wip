@@ -2,7 +2,7 @@
 
 .include	"version.mk"
 DISTNAME=	emacs-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
-PKGNAME=	emacs29-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
+PKGNAME=	emacs30-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
 CATEGORIES=	editors
 GIT_REPO=	git://git.savannah.gnu.org/emacs.git
 
@@ -19,9 +19,9 @@ GNU_CONFIGURE=	yes
 INFO_FILES=	yes
 USE_TOOLS+=	autoconf automake gm4 gmake gsed gzip makeinfo
 # for example, Mac OS X 10.6.1 has 2.61 which fails
-AUTOCONF_REQD=	2.65
+AUTOCONF_REQD+=	2.65
 # NetBSD has 4.8
-TEXINFO_REQD=	4.13
+TEXINFO_REQD+=	4.13
 
 CONFIGURE_ARGS+=	--srcdir=${WRKSRC}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
@@ -66,8 +66,8 @@ post-install:
 		mv emacs-*.pdmp emacs.pdmp
 
 .include "../../wip/mk/git-package.mk"
+.include "../../databases/sqlite3/buildlink3.mk"
 .include "../../fonts/harfbuzz/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-.include "../../graphics/libimagequant/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

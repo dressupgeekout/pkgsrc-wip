@@ -1,0 +1,10 @@
+@comment $NetBSD$
+bin/cropsr
+bin/prmrdsgn2
+libexec/cropsr/CROPSR.py
+libexec/cropsr/cropsr_functions.py
+libexec/cropsr/prmrdsgn2.py
+share/doc/cropsr/README.md
+share/examples/cropsr/output.csv
+share/examples/cropsr/sample_genome.fa
+share/examples/cropsr/sample_genome.gff

@@ -1,8 +1,27 @@
 
-Part 23: Import final release
+Part 24: Middle-texture rendering
+=================================
+[X] Some middle-textures are rendered wrong in Pagodia
+    => Reported upstream in ticket #687
+    => Fixed with SVN revision 1647
+
+
+Part 25: Add UMAPINFO support
 =============================
-[X] Import version 1.48.10 to pkgsrc
-    Parts 8 to 22 are now available in games/doomlegacy
+[X] Based on libdoom-umapinfo-1.0.0
+    => Module to parse and import data added
+[X] Hook keys into game engine
+    => All keys should work now, up to the limits of the engine
+
+=> Created upstream feature request ticket #100
+
+
+Part 26: Incorrect voodoo doll behaviour
+========================================
+[X] Player stuck in Solar Struggle (map E3M6)
+    Voodoo doll transfers damage to the player, but seems to not take thrust
+    (is not pushed away e.g. from an explosion as expected).
+    => Reported upstream in ticket #688
 
 
 EOF

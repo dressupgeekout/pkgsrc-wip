@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-CMakeLists.txt,v 1.2 2022/11/14 18:44:05 adam Exp $
 
 Don't implement sys/regset.h workaround, fix source instead.
 

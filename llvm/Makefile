@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.82 2022/09/12 08:59:15 he Exp $
+# $NetBSD: Makefile,v 1.87 2023/04/19 08:10:35 adam Exp $
 #
 # When updating this, please also update:
 # devel/include-what-you-use
@@ -34,17 +34,7 @@ HOMEPAGE=	https://llvm.org/
 COMMENT=	Low Level Virtual Machine compiler infrastructure
 LICENSE=	apache-2.0
 
-# As of v15.0.0 llvm requires cmake source code to build
-CMAKE=		cmake-${LLVM_VERSION}.src
-EXTRA_DIST=	${CMAKE}${EXTRACT_SUFX}
-
-SITES.${CMAKE}${EXTRACT_SUFX}=	\
-	${MASTER_SITES:=${GITHUB_PROJECT}/releases/download/${GITHUB_RELEASE}/}
-
-DISTFILES=	${DEFAULT_DISTFILES} ${EXTRA_DIST}
-
 USE_LANGUAGES=		c c++14
-USE_CMAKE=		yes
 GCC_REQD+=		7
 PYTHON_FOR_BUILD_ONLY=	yes
 
@@ -53,10 +43,6 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 NOT_FOR_PLATFORM+=	*-*-alpha
 NOT_FOR_PLATFORM+=	*-*-vax
 
-CONFIGURE_DIRS=		build
-CMAKE_ARG_PATH=		${WRKSRC}
-
-CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
 CMAKE_ARGS+=	-DCMAKE_C_COMPILER=${CC:Q}
 CMAKE_ARGS+=	-DCMAKE_CXX_COMPILER=${CXX:Q}
 CMAKE_ARGS+=	-DCMAKE_CXX_LINK_FLAGS=${LDFLAGS:Q}
@@ -140,6 +126,8 @@ CXXFLAGS+=	-mno-pltseq
 .  endif
 .endif
 
+PLIST_SUBST+=	RELEASE_TYPE=${RELEASE_TYPE}
+
 .if ${OPSYS} == "NetBSD"
 CMAKE_ARGS+=	-DPKGSRC_LLVM_PTHREADLIB=-lpthread
 .endif
@@ -149,12 +137,12 @@ CMAKE_ARGS+=	-DPKGSRC_LLVM_PTHREADLIB=-lpthread
 # replacing config.guess is required even for cmake.
 # It is used to detect correct LLVM_HOST_TRIPLE, e.g. for NetBSD/evbarm.
 post-extract:
-	${MKDIR} ${WRKSRC}/build
 .for f in config.guess config.sub
-	cp ../../mk/gnu-config/${f} ${WRKSRC}/cmake/${f}
+	${CP} ../../mk/gnu-config/${f} ${WRKSRC}/cmake/${f}
 .endfor
-	${LN} -f -s ${WRKDIR}/${CMAKE} ${WRKDIR}/cmake
 
+.include "../../devel/cmake/build.mk"
+.include "../../archivers/zstd/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/tool.mk"

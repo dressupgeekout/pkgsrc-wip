@@ -1,20 +1,20 @@
 # $NetBSD$
 
-DISTNAME=		nix-2.7.0
-CATEGORIES=		wip
+DISTNAME=		nix-2.15.0
+CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_GITHUB:=NixOS/}
 
-MAINTAINER=		pkgsrc-users@NetBSD.org
+MAINTAINER=		nikita@NetBSD.org
 HOMEPAGE=		https://github.com/NixOS/nix/
 COMMENT=		Purely functional package manager
 LICENSE=		gnu-lgpl-v2.1
 
 USE_TOOLS+=		pkg-config flex bash bison gmake
 USE_TOOLS+=		automake autoconf autoreconf
-USE_LANGUAGES=		c c++
-GNU_CONFIGURE=		YES
+USE_LANGUAGES=		c c++17
+GNU_CONFIGURE=		yes
 
-BUILD_DEPENDS+=		autoconf-archive-[0-9]*:../../devel/autoconf-archive
+TOOL_DEPENDS+=		autoconf-archive-[0-9]*:../../devel/autoconf-archive
 
 PKGCONFIG_OVERRIDE+=	src/libexpr/nix-expr.pc.in
 PKGCONFIG_OVERRIDE+=	src/libmain/nix-main.pc.in
@@ -23,8 +23,13 @@ PKGCONFIG_OVERRIDE+=	src/libstore/nix-store.pc.in
 .include "../../mk/bsd.prefs.mk"
 
 # CONFIGURE_ARGS+=	--localstatedir=/nix/var
-CONFIGURE_ARGS+=	--with-sandbox-shell=/bin/sh
-CONFIGURE_ARGS+=	--enable-gc
+# CONFIGURE_ARGS+=	--with-sandbox-shell=/bin/sh
+# CONFIGURE_ARGS+=	--enable-static=rapidcheck
+
+# one of those fixes the detection of rapidcheck
+CONFIGURE_ENV+=		RAPIDCHECK_HEADERS=${BUILDLINK_PREFIX.rapidcheck}/include/rapidcheck
+CFLAGS+=		-I${BUILDLINK_PREFIX.rapidcheck}/include/rapidcheck
+LDFLAGS+=		-L${BUILDLINK_PREFIX.rapidcheck}/lib
 
 # s3 option needs s3-cpp, this was reported as a cause for error if
 # left unchanged.
@@ -33,16 +38,20 @@ CONFIGURE_ENV+=		ac_cv_header_aws_s3_S3Client_h=no
 #CONFIGURE_ENV+=	EDITLINE_LIBS=-L${BUILDLINK_PREFIX.editlinereadline:Q}/lib
 #CONFIGURE_ENV+=	EDITLINE_CFLAGS=-I${BUILDLINK_PREFIX.editlinereadline:Q}/include/readline
 CONFIGURE_ENV+=		EDITLINE_CFLAGS="-DREADLINE"
-CONFIGURE_ENV+=		EDITLINE_LIBS="-ledit -L${BUILDLINK_PREFIX.editlinereadline:Q}/lib"
+#CONFIGURE_ENV+=	EDITLINE_LIBS="-ledit -L${BUILDLINK_PREFIX.editlinereadline}/lib"
+CONFIGURE_ENV+=		EDITLINE_LIBS="-ledit -L${BUILDLINK_PREFIX.editline}/lib"
 #CONFIGURE_ENV+=	EDITLINE_CFLAGS=${BUILDLINK_PREFIX.editline:Q}/include/readline
 #CONFIGURE_ENV+=	EDITLINE_LIBS=${BUILDLINK_PREFIX.editline:Q}/lib
-#CONFIGURE_ENV+=		LIBLZMA_CFLAGS="-I${BUILDLINK_PREFIX.xz:Q}/include"
-#CONFIGURE_ENV+=		LIBLZMA_LIBS="-llzma -L${BUILDLINK_PREFIX.xz:Q}/lib"
-CONFIGURE_ENV+=		BOOST_ROOT=${BUILDLINK_PREFIX.boost:Q}/lib
+#CONFIGURE_ENV+=	LIBLZMA_CFLAGS="-I${BUILDLINK_PREFIX.xz:Q}/include"
+#CONFIGURE_ENV+=	LIBLZMA_LIBS="-llzma -L${BUILDLINK_PREFIX.xz:Q}/lib"
+CONFIGURE_ENV+=		BOOST_ROOT=${BUILDLINK_PREFIX.boost-libs}/lib
 
 # Workaround for:
 #   /usr/bin/ld: error: undefined symbol: SHA512_Update
-MAKE_ARGS+=	libutil_ALLOW_UNDEFINED=yes
+MAKE_FLAGS+=	libutil_ALLOW_UNDEFINED=yes
+
+# sqlite3_error_offset(), https://www.sqlite.org/releaselog/3_38_0.html
+BUILDLINK_API_DEPENDS.sqlite3+=	sqlite3>=3.38
 
 BUILDLINK_TRANSFORM.NetBSD+=	rm:-ldl
 
@@ -67,7 +76,7 @@ PKG_GROUPS+=	nixbld
 PKG_USERS+=	nixbld${i}:nixbld
 .endfor
 
-#SUBST_CLASSES+=		docbook
+#SUBST_CLASSES+=	docbook
 #SUBST_MESSAGE.docbook=	Fixing docbook URLs.
 #SUBST_FILES.docbook+=	doc/manual/installation/prerequisites-source.xml
 #SUBST_FILES.docbook+=	doc/manual/local.mk
@@ -79,21 +88,12 @@ PKG_USERS+=	nixbld${i}:nixbld
 # SUBST_CLASSES+=		docbook2
 # SUBST_MESSAGE.docbook2=	Fixing docbook URLs.
 # SUBST_FILES.docbook2+=	doc/manual/local.mk
-# SUBST_STAGE.docbook2=	pre-configure
-# SUBST_SED.docbook2+=	-e 's,http://docbook.org/xml/5.0/rng/docbook.rng,${PREFIX}/share/xsl/docbook,g'
+# SUBST_STAGE.docbook2=		pre-configure
+# SUBST_SED.docbook2+=		-e 's,http://docbook.org/xml/5.0/rng/docbook.rng,${PREFIX}/share/xsl/docbook,g'
 
-# remove workdir references
-SUBST_CLASSES+=			confignix
-SUBST_MESSAGE.confignix=	remove workdir references
-SUBST_FILES.confignix+=		corepkgs/config.nix.in
-SUBST_STAGE.confignix=		post-configure
-SUBST_SED.confignix+=		-e 's,@bash@,${PREFIX}/bin/bash,g'
-SUBST_SED.confignix+=		-e 's,@coreutils@,/bin,g'
-SUBST_SED.confignix+=		-e 's,@tr@,/usr/bin/tr,g'
-
-BUILD_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
-BUILD_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
-BUILD_DEPENDS+=	jq-[0-9]*:../../devel/jq
+TOOL_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
+TOOL_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
+TOOL_DEPENDS+=	jq-[0-9]*:../../devel/jq
 
 # Linux is supported, FreeBSD support is experimental.
 # macOS is probably supported.
@@ -109,9 +109,9 @@ BUILD_DEPENDS+=	jq-[0-9]*:../../devel/jq
 # .if ${READLINE_TYPE} == "readline"
 # SUBST_CLASSES+=		editline
 # SUBST_MESSAGE.editline=	Fixing editline header.
-# SUBST_STAGE.editline=	pre-configure
-# SUBST_FILES.editline=	src/nix/repl.cc
-# SUBST_SED.editline=	-e "s,editline\.h,readline\.h,g"
+# SUBST_STAGE.editline=		pre-configure
+# SUBST_FILES.editline=		src/nix/repl.cc
+# SUBST_SED.editline=		-e "s,editline\.h,readline\.h,g"
 # .endif
 
 pre-configure:
@@ -127,8 +127,13 @@ pre-configure:
 .include "../../devel/boehm-gc/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/editline/buildlink3.mk"
+.include "../../devel/googletest/buildlink3.mk"
+.include "../../devel/rapidcheck/buildlink3.mk"
+.include "../../sysutils/libcpuid/buildlink3.mk"
 .include "../../security/libsodium/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
+.include "../../textproc/nlohmann-json/buildlink3.mk"
+.include "../../textproc/lowdown/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 #.include "../../wip/aws-sdk-cpp/buildlink3.mk" # Needs some source fixes
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-cmake_litehtmlConfig.cmake,v 1.1 2022/11/30 10:24:35 nros Exp $
 
 * The gumbo package does not install cmake packages so this line breaks
   find_package(litehtml) . This line is not needed when litehtml is used

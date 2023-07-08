@@ -1,11 +1,11 @@
 # $NetBSD: Makefile,v 1.93 2020/04/08 15:22:07 rhialto Exp $
 
-# https://www.kermitproject.org/ftp/kermit/test/tar/cku10.0-beta04.tar.gz
-# https://www.kermitproject.org/ftp/kermit/test/tar/cku400-beta05.tar.gz
+# https://www.kermitproject.org/ftp/kermit/test/tar/index.html
+# https://www.kermitproject.org/ftp/kermit/test/tar/cku405-beta09.tar.gz
 VERSION=	10.0
-VERSIONDIST=	400	# ?
+VERSIONDIST=	405
 VERSIONSEP=	-
-VERSIONRC=	beta05
+VERSIONRC=	beta10
 DISTNAME=	cku${VERSIONDIST}${VERSIONSEP}${VERSIONRC}
 PKGNAME=	kermit-${VERSION}${VERSIONRC}
 CATEGORIES=	comms
