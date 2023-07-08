@@ -4,7 +4,7 @@ DISTNAME=	ryzomcore-0.0.0
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ryzom/}
 # 'core4' branch:
-GITHUB_TAG=	ad20f0cb92797c1e9e8a7c67bd0802369459a552
+GITHUB_TAG=	70c9a811b6c7eca3717254abc25d25dcf475d6a7
 
 # Graphical assets:
 #https://cdn.ryzom.dev/pub/assets/ryzomcore_graphics-rev5.7z
@@ -22,6 +22,8 @@ GCC_REQD+=	4.9
 
 CMAKE_ARG_PATH=	..
 CMAKE_ARGS+=	-DWITH_GUI:BOOL=OFF
+CMAKE_ARGS+=	-DHUNTER_ENABLED:BOOL=OFF
+#CMAKE_ARGS+=	-DHUNTER_ENABLED:BOOL=OFF
 
 # Force out-of-tree builds
 post-extract:
@@ -35,6 +37,7 @@ post-extract:
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/giflib/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
+.include "../../multimedia/assimp/buildlink3.mk"
 .include "../../multimedia/libogg/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../wip/libsquish/buildlink3.mk"
