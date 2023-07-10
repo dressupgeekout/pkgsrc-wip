@@ -1,13 +1,13 @@
 # $NetBSD$
 
-DISTNAME=		vis-0.7
+DISTNAME=		vis-0.8
 PKGNAME=		${DISTNAME:S/vis/vis-editor/}
 CATEGORIES=		editors
 MASTER_SITES=		${MASTER_SITE_GITHUB:=martanne/}
 GITHUB_PROJECT=		vis
 GITHUB_TAG=		v${PKGVERSION_NOREV}
 
-MAINTAINER=		erig@erig.me
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		https://github.com/martanne/vis/
 COMMENT=		Vim like text editor
 LICENSE=		isc
@@ -59,7 +59,7 @@ post-install:
 	${MV} ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/vis-digraph.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/vis-editor-digraph.1
 	${MV} ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/vis-menu.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/vis-editor-menu.1
 
+.include·"../../devel/ncursesw/buildlink3.mk"
 .include "../../lang/lua/buildlink3.mk"
-.include "../../mk/curses.buildlink3.mk"
 .include "../../devel/libtermkey/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

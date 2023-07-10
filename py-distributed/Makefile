@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	distributed-2022.12.1
+DISTNAME=	distributed-2023.5.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel net
 GITHUB_PROJECT=	distributed
@@ -12,7 +12,10 @@ HOMEPAGE=	https://github.com/dask/distributed/
 COMMENT=	Distributed is the parallel scheduler for dask
 LICENSE=	modified-bsd
 
-BUILD_DEPENDS+=       ${PYPKGPREFIX}-wheel>=0:../../devel/py-wheel
+PYTHON_VERSIONS_INCOMPATIBLE=	27 37 38
+
+TOOL_DEPENDS+=       ${PYPKGPREFIX}-wheel>=0:../../devel/py-wheel
+TOOL_DEPENDS+=       ${PYPKGPREFIX}-versioneer>=0.28:../../devel/py-versioneer
 
 DEPENDS+=	${PYPKGPREFIX}-click>=8.1.3:../../devel/py-click
 DEPENDS+=	${PYPKGPREFIX}-sortedcontainers>=2.0.1:../../devel/py-sortedcontainers

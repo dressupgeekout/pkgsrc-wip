@@ -85,7 +85,7 @@
 #
 # Keywords: git github
 
-BUILD_DEPENDS+=		git-base>=1.6.4:../../devel/git-base
+TOOL_DEPENDS+=		git-base>=1.6.4:../../devel/git-base
 
 # Defaults for package-settable variables
 DISTFILES?=		# empty
@@ -124,7 +124,7 @@ GIT_EXTRACTDIR.${repo}?= ${GIT_MODULE.${repo}}
 
 USE_TOOLS+=		date gzip pax
 
-_GIT_CMD=		${PREFIX}/bin/git
+_GIT_CMD=		${TOOLBASE}/bin/git
 _GIT_CHECKOUT_FLAGS=	--quiet
 _GIT_PKGVERSION_CMD=	${DATE} -u +'%Y.%m.%d'
 _GIT_PKGVERSION=	${_GIT_PKGVERSION_CMD:sh}
@@ -212,6 +212,7 @@ _GIT_CMD.checkout.${repo}= \
 	: "XXX: The revision of the submodules is not correct";		\
 	${_GIT_CMDLINE.${repo}} -C "$$extractdir" submodule update --recursive
 
+# TODO: can result in "pax: File name too long for ustar"
 # Create the cached archive from the checked out repository
 _GIT_CMD.create_archive.${repo}= \
 	if [ ! -f "$$archive" -o  "$${rev_before-unknown}" != "$${rev_after-unknown}" ]; then \
@@ -248,5 +249,5 @@ _PKG_VARS.git+=		${varbase}.${repo}
 _SYS_VARS.git+=		${varbase}.${repo}
 .  endfor
 .endfor
-_DEF_VARS.git+=		BUILD_DEPENDS USE_TOOLS WARNINGS _GIT_DISTDIR _GIT_CHECKOUT_FLAGS
-_USE_VARS.git+=		PKGBASE DISTDIR WRKDIR PREFIX _GIT_PKGVERSION
+_DEF_VARS.git+=		TOOL_DEPENDS USE_TOOLS WARNINGS _GIT_DISTDIR _GIT_CHECKOUT_FLAGS
+_USE_VARS.git+=		PKGBASE DISTDIR WRKDIR TOOLBASE _GIT_PKGVERSION

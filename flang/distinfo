@@ -1,8 +1,8 @@
 $NetBSD: distinfo,v 1.35 2015/09/11 01:21:57 tnn Exp $
 
-BLAKE2s (cmake-15.0.6.src.tar.xz) = 6d91c537ea78e56d2621d703d6d20d9b4f52281b80520e5003bb8ea402ad8236
-SHA512 (cmake-15.0.6.src.tar.xz) = a078b9b426515414dae41c8732d7cd955e8ddc9638b4ba9c7dd0925db68e5ea760096f08fd7e1cb9d55b6d73da75f9b4318a2fac36d7aa64f47536ac383b3edc
-Size (cmake-15.0.6.src.tar.xz) = 6972 bytes
-BLAKE2s (flang-15.0.6.src.tar.xz) = 1ee276a10e8b78986a5940f13f11a0a409d7e0a3b19cb6810bdce588aae6c2a5
-SHA512 (flang-15.0.6.src.tar.xz) = cd11553a5e5128d4f4b136cefc3856729a8656776ee77994b5e22539fe50d11c2ee3bdc3166b81f640a8945edd61079570f913fdbd74bae1f12f90ba914fdd68
-Size (flang-15.0.6.src.tar.xz) = 2089664 bytes
+BLAKE2s (cmake-16.0.6.src.tar.xz) = a967225f31bcd98484d632a2d530c498131b0035f18b15e27915663b915dc6ba
+SHA512 (cmake-16.0.6.src.tar.xz) = 52ecd941d2d85a5b668caa5d0d40480cb6a97b3bf1174e634c2a93e9ef6d03670ca7e96abb0a60cb33ba537b93d5788754dab1f2f45c1f623f788162717d088b
+Size (cmake-16.0.6.src.tar.xz) = 9008 bytes
+BLAKE2s (flang-16.0.6.src.tar.xz) = e6c603ee4fa9243e99ec39c5924b8ea5cca868e1830d7b58e4ee7399cd368c39
+SHA512 (flang-16.0.6.src.tar.xz) = 42c1d978946fae320cd4d91e766f1bc5b83ffe0ba676e245b287f5460ffaee25e77f5a1c118e94c0329922dfb9c10f06fb7d76c63481108ba0bd3ae4a0d7937e
+Size (flang-16.0.6.src.tar.xz) = 2369292 bytes
