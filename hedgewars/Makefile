@@ -8,7 +8,7 @@ MASTER_SITES=	https://www.hedgewars.org/download/releases/
 
 MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	http://www.hedgewars.org/
-COMMENT=	Turn-based strategy game
+COMMENT=	Funny turn-based artillery game with fighting hedgehogs
 LICENSE=	gnu-gpl-v2
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/hedgewars
@@ -22,7 +22,7 @@ CMAKE_ARGS+=	-DLUA_SYSTEM:BOOL=ON
 CMAKE_ARGS+=	-DPHYSFS_SYSTEM:BOOL=ON
 
 # XXX needs FreePascal
-#BUILD_DEPENDS+=	gpc>=0:../../wip/fpc
+BUILD_DEPENDS+=	gpc>=0:../../wip/fpc
 
 # For the server
 #.include "../../lang/ghc7/buildlink3.mk"
