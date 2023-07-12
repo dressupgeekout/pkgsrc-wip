@@ -1,11 +1,11 @@
 # $NetBSD$
 
-DISTNAME=	fasda-0.1.1.1
+DISTNAME=	fasda-0.1.3.8
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=auerlab/}
-GITHUB_TAG=	c75ffe59c6f3183f7d94f87a27e911cb2fb97f99
+GITHUB_TAG=	f73ba816467c0389f84d990015eabb2eee393b98
 
-MAINTAINER=	bacon@NetBSD.org
+OWNER=		bacon@NetBSD.org
 HOMEPAGE=	https://github.com/auerlab/fasda
 COMMENT=	Fast and simple differential analysis
 LICENSE=	2-clause-bsd

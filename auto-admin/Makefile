@@ -1,11 +1,10 @@
 # $NetBSD$
 
-DISTNAME=	auto-admin-0.7.13.6
+DISTNAME=	auto-admin-0.7.18
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
-GITHUB_TAG=	81381d3a574634cae8cc7c8439a358aecf07f335
 
-MAINTAINER=	bacon@NetBSD.org
+OWNER=		bacon@NetBSD.org
 HOMEPAGE=	https://github.com/outpaddling/auto-admin
 COMMENT=	Portable tools for automating systems management
 LICENSE=	2-clause-bsd
@@ -13,5 +12,12 @@ LICENSE=	2-clause-bsd
 USE_LANGUAGES=	# none
 
 NO_BUILD=	yes
+
+SUBST_CLASSES+=		prefix
+SUBST_STAGE.prefix=	pre-configure
+SUBST_SED.prefix+=	-e 's|/usr/pkg|${PREFIX}|g'
+SUBST_SED.prefix+=	-e 's|/usr/pkgsrc|${PKGSRCDIR}|g'
+SUBST_FILES.prefix+=	User-scripts/auto-pkgsrc-prefix
+SUBST_FILES.prefix+=	User-scripts/auto-pkgsrc-dir
 
 .include "../../mk/bsd.pkg.mk"

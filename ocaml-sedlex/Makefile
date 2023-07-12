@@ -14,9 +14,9 @@ LICENSE=	mit
 USE_TOOLS+=	gmake
 
 OCAML_USE_DUNE=	yes
-BUILD_DEPENDS+=	ocaml-odoc-[0-9]*:../../wip/ocaml-odoc
+TOOL_DEPENDS+=	ocaml-odoc-[0-9]*:../../wip/ocaml-odoc
 
-.include "../../mk/ocaml.mk"
+.include "../../lang/ocaml/ocaml.mk"
 .include "../../devel/ocaml-ppx_tools/buildlink3.mk"
 .include "../../wip/ocaml-gen/buildlink3.mk"
 .include "../../lang/ocaml/buildlink3.mk"

@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-cmake_config-ix.cmake,v 1.8 2022/11/14 18:44:05 adam Exp $
 
 Do not generate invalid llvm-config in pkgsrc.
 Allow override of pthread library selection via PKGSRC_LLVM_PTHREADLIB.

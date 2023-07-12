@@ -1,7 +1,7 @@
 # $NetBSD$
 
 DISTNAME=	sabnzbd-${DISTVERSION}
-DISTVERSION=	3.6.1
+DISTVERSION=	3.7.2
 CATEGORIES=	news
 MASTER_SITES=	${MASTER_SITE_GITHUB:=sabnzbd/}
 GITHUB_PROJECT=	sabnzbd
@@ -22,7 +22,7 @@ DEPENDS+=	${PYPKGPREFIX}-configobj-[0-9]*:../../devel/py-configobj
 DEPENDS+=	${PYPKGPREFIX}-portend-[0-9]*:../../net/py-portend
 DEPENDS+=	${PYPKGPREFIX}-cherrypy>=18.2:../../www/py-cherrypy
 DEPENDS+=	${PYPKGPREFIX}-guessit>=3.1.1:../../textproc/py-guessit
-DEPENDS+=	${PYPKGPREFIX}-puremagic>=1.11:../../wip/py-puremagic
+DEPENDS+=	${PYPKGPREFIX}-puremagic>=1.11:../../sysutils/py-puremagic
 DEPENDS+=	par2-[0-9]*:../../archivers/par2
 DEPENDS+=	unrar-[0-9]*:../../archivers/unrar
 DEPENDS+=	unzip-[0-9]*:../../archivers/unzip
@@ -53,6 +53,7 @@ SUBST_VARS.fix-paths=		PREFIX
 
 do-install:
 	${MKDIR} ${DESTDIR}/${PREFIX}/bin
+	cd ${WRKSRC} && find . -name '*.orig' -delete
 	cd ${WRKSRC} && pax -rw SABnzbd.py ${DESTDIR}/${PREFIX}/bin/
 	${MKDIR} ${DESTDIR}/${PREFIX}/${PYSITELIB}/
 	cd ${WRKSRC} && pax -rw -pmp sabnzbd ${DESTDIR}/${PREFIX}/${PYSITELIB}/

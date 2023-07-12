@@ -1,18 +1,18 @@
 # $NetBSD$
 
-PKGVERSION=	2.5.0
+PKGVERSION=	2.6.0
 PKGNAME=	prusaslicer-${PKGVERSION}
-DISTNAME=	PrusaSlicer-${PKGVERSION:S/rc/-rc/}
+DISTNAME=	PrusaSlicer-${PKGVERSION:C/(beta|rc)/-\1/}
 CATEGORIES=	cad
 MASTER_SITES=	${MASTER_SITE_GITHUB:=prusa3d/}
 GITHUB_PROJECT=	PrusaSlicer
-GITHUB_TAG=	version_${PKGVERSION:S/rc/-rc/}
+GITHUB_TAG=	version_${PKGVERSION:C/(beta|rc)/-\1/}
 # Needed, else we strip the 'v' and look for "ersion".
 WRKSRC=		${WRKDIR}/${GITHUB_PROJECT}-${GITHUB_TAG}
 
 MAINTAINER=	stix@stix.id.au
 HOMEPAGE=	https://www.prusa3d.com/prusaslicer/
-COMMENT=	Converts STL models into gcode for 3d printing
+COMMENT=	Converts 3D models into G-code for 3D printing
 LICENSE=	gnu-agpl-v3
 
 ONLY_FOR_PLATFORM=	*-*-aarch64 *-*-x86_64 *-*-earmv6 *-*-earmv7 *-*-i386
@@ -51,21 +51,23 @@ CMAKE_ARGS+=	-DSLIC3R_FHS:BOOL=TRUE
 .include "../../graphics/libjpeg-turbo/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
-.include "../../math/cgal/buildlink3.mk"
 .include "../../math/eigen3/buildlink3.mk"
 .include "../../math/imath/buildlink3.mk"
 .include "../../math/qhull/buildlink3.mk"
 .include "../../parallel/threadingbuildingblocks/buildlink3.mk"
+.include "../../security/heimdal/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../wip/cereal/buildlink3.mk"
+.include "../../wip/cgal/buildlink3.mk"
+.include "../../wip/nanosvg/buildlink3.mk"
 .include "../../wip/nlopt/buildlink3.mk"
 .include "../../wip/opencascade-git/buildlink3.mk"
 .include "../../wip/openvdb/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../x11/xcursor/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
-.include "../../x11/wxGTK30/buildlink3.mk"
+.include "../../x11/wxGTK32/buildlink3.mk"
 .include "../../x11/xcb-proto/buildlink3.mk"
 .include "../../x11/xcursor/buildlink3.mk"
 

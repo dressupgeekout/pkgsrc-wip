@@ -1,5 +1,6 @@
 $NetBSD$
 
-BLAKE2s (fastparquet-0.8.3.tar.gz) = 9d726c9b83804ec73fe2fadd960ab8d2f2d1d8a3e709f2d13ed362ec0b3ee368
-SHA512 (fastparquet-0.8.3.tar.gz) = 11f218889eaba686a2154bbfc826b8bc9274bc1468dba3426394e9d50d33aa434ee123bc489bdf963086cf2b31ac31f532d91b0ea8b4af0c3ed9a8cfddba7841
-Size (fastparquet-0.8.3.tar.gz) = 29210251 bytes
+BLAKE2s (fastparquet-2023.4.0.tar.gz) = fd94e35fdac489a8987e9ee8feba4761a25966f9d3a13b145c0a1e0a05cae622
+SHA512 (fastparquet-2023.4.0.tar.gz) = 4fdbda5730c68560680f2f98472bcc045ca9bd526e119ac1da4e016977d430f110faaae13d1c4c5deea4fef68aab1a6452963a2e9cfcbe896e6114f66cfab120
+Size (fastparquet-2023.4.0.tar.gz) = 28903998 bytes
+SHA1 (patch-setup.py) = 43cbf6b34fc655cec2cb847838c1c84bed3d8bb9

@@ -1,5 +1,5 @@
 $NetBSD$
 
-RMD160 (altair-4.1.0.tar.gz) = e7cda9d1a3685bbd96c6e270d36899fd27589955
-SHA512 (altair-4.1.0.tar.gz) = b676d4f8baa217122aa364b289db2cf2708c81e72384e244a8522effab8df9d7c58617b7eceb69947fec3acd6a4b1e13929e42fd25b2b74aede503abf5e95cf1
-Size (altair-4.1.0.tar.gz) = 655843 bytes
+BLAKE2s (altair-5.0.1.tar.gz) = 7210036b0674be4d719fb4d44a024b51b90ab7ef224e424b63982530c50ebc51
+SHA512 (altair-5.0.1.tar.gz) = 23f6a72e213d02de12dc506f105bf4202c2ffc61cb66601b281b0f69afc2096c89c25160c3363b24b0bf4a6c415e4c4bf20fab013c2e8e5cefc15ae05d82d9fe
+Size (altair-5.0.1.tar.gz) = 456156 bytes

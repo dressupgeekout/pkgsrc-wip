@@ -1,6 +1,6 @@
 # $NetBSD$
 
-FLNEWS_VERSION=	1.2.0pre13
+FLNEWS_VERSION=	1.2.1pre0
 
 DISTNAME=	flnews-${FLNEWS_VERSION}
 CATEGORIES=	news
@@ -77,7 +77,7 @@ do-configure:
 		${SETENV} ${CONFIGURE_ENV} ${MAKE_PROGRAM} ${MAKE_FLAGS} config
 
 .if ${OPSYS} == "SunOS" && ${PKGSRC_COMPILER:Msunpro}
-BUILD_DEPENDS+=			makedepend-[0-9]*:../../devel/makedepend
+TOOL_DEPENDS+=			makedepend-[0-9]*:../../devel/makedepend
 .endif
 
 BUILDLINK_API_DEPENDS.zlib+=	zlib>=1.2.3

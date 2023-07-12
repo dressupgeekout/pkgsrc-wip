@@ -11,8 +11,8 @@ HOMEPAGE=	https://github.com/sddm/sddm
 COMMENT=	QML based X11 and Wayland display manager
 LICENSE=	gnu-gpl-v2
 
-BUILD_DEPENDS+=	extra-cmake-modules-[0-9]*:../../devel/extra-cmake-modules
-BUILD_DEPENDS+=	${PYPKGPREFIX}-docutils-[0-9]*:../../textproc/py-docutils
+TOOL_DEPENDS+=	extra-cmake-modules-[0-9]*:../../devel/extra-cmake-modules
+TOOL_DEPENDS+=	${PYPKGPREFIX}-docutils-[0-9]*:../../textproc/py-docutils
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
@@ -62,7 +62,9 @@ post-install:
 PYTHON_FOR_BUILD_ONLY=	yes
 .include "../../lang/python/pyversion.mk"
 .include "../../x11/libxcb/buildlink3.mk"
+BUILDLINK_API_DEPENDS.qt5-qtbase+=	qt5-qtbase>=5.15.8
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtdeclarative/buildlink3.mk"
+.include "../../x11/qt5-qttools/buildlink3.mk"
 .include "../../mk/pam.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

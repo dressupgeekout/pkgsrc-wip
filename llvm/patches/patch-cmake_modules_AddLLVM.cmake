@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-cmake_modules_AddLLVM.cmake,v 1.9 2022/11/14 18:44:05 adam Exp $
 
 On Darwin, create symbolic links to shared libraries.
 On Darwin, use correct install-name for shared libraries.

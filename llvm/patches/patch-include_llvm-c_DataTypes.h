@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-include_llvm-c_DataTypes.h,v 1.3 2022/11/14 18:44:05 adam Exp $
 
 Don't implement sys/regset.h workaround, fix source instead.
 
