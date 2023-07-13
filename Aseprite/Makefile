@@ -2,7 +2,7 @@
 
 GITHUB_PROJECT=	aseprite
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
-DISTNAME=	Aseprite-v1.2.16.2-Source
+DISTNAME=	Aseprite-v1.2.40-Source
 PKGNAME=	${DISTNAME:S,-v,-,:S,-Source,,}
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=aseprite/}
@@ -14,12 +14,13 @@ COMMENT=	Animated sprite editor & pixel art tool
 #LICENSE=	Aseprite-license
 
 WRKSRC=		${WRKDIR}
-USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c c++
 
 CONFIGURE_DIRS=	build
 CMAKE_ARGS+=	..
+
+.include "../../devel/cmake/build.mk"
 
 pre-configure:
 	${MKDIR} ${WRKSRC}/build
@@ -39,10 +40,10 @@ PKGCONFIG_OVERRIDE+=	third_party/json11/json11.pc.in
 PKGCONFIG_OVERRIDE+=	third_party/libarchive/build/pkgconfig/libarchive.pc.in
 PKGCONFIG_OVERRIDE+=	third_party/libpng/libpng.pc.in
 PKGCONFIG_OVERRIDE+=	third_party/libpng/scripts/libpng.pc.in
-PKGCONFIG_OVERRIDE+=	third_party/libwebp/src/demux/libwebpdemux.pc.in
-PKGCONFIG_OVERRIDE+=	third_party/libwebp/src/libwebp.pc.in
-PKGCONFIG_OVERRIDE+=	third_party/libwebp/src/libwebpdecoder.pc.in
-PKGCONFIG_OVERRIDE+=	third_party/libwebp/src/mux/libwebpmux.pc.in
+#PKGCONFIG_OVERRIDE+=	third_party/libwebp/src/demux/libwebpdemux.pc.in
+#PKGCONFIG_OVERRIDE+=	third_party/libwebp/src/libwebp.pc.in
+#PKGCONFIG_OVERRIDE+=	third_party/libwebp/src/libwebpdecoder.pc.in
+#PKGCONFIG_OVERRIDE+=	third_party/libwebp/src/mux/libwebpmux.pc.in
 PKGCONFIG_OVERRIDE+=	third_party/pixman/pixman-1.pc.in
 PKGCONFIG_OVERRIDE+=	third_party/zlib/contrib/minizip/minizip.pc.in
 PKGCONFIG_OVERRIDE+=	third_party/zlib/zlib.pc.in
@@ -57,6 +58,7 @@ CMAKE_ARGS+=	-DUSE_SHARED_TINYXML=ON
 CMAKE_ARGS+=	-DUSE_SHARED_PIXMAN=ON
 CMAKE_ARGS+=	-DUSE_SHARED_FREETYPE=ON
 CMAKE_ARGS+=	-DUSE_SHARED_HARFBUZZ=ON
+CMAKE_ARGS+=	-DENABLE_WEBP=OFF
 
 post-install:
 .for i in bin/bsd* include lib share/man
