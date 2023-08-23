@@ -1,0 +1,12 @@
+$NetBSD$
+
+BLAKE2s (jazz2-resurrection-2.1.0.tar.gz) = 393a591fad3d3878f6c0c002a43895b6517e7020570aabe2f6e022aa5d837b1c
+SHA512 (jazz2-resurrection-2.1.0.tar.gz) = 75943c8ef32d5a1325441ca406fe3e95b1b2dd7b6494412cc4baebad75de7098df76be98d192d11021629605995cc9d8a6dcfec6c9129e2b52a871a323dbdfd7
+Size (jazz2-resurrection-2.1.0.tar.gz) = 2223319 bytes
+SHA1 (patch-CMakeLists.txt) = a93a2fd192525a48f739c3fad6add4c3eab4b04e
+SHA1 (patch-Sources_Shared_IO_FileSystem.cpp) = 9817712a5b95a1440a4fa21d9aa46410192bdc8f
+SHA1 (patch-Sources_Shared_IO_FileSystem.h) = f927cde706d994673a42e8e96da11174e52f9c06
+SHA1 (patch-Sources_nCine_Threading_PosixThread.cpp) = ee498684421ef3317662808c74949df7fd8740ba
+SHA1 (patch-Sources_nCine_Threading_Thread.h) = c698e7544cf3a7b4b5c6d1ed7a20d253e4c6f1ac
+SHA1 (patch-cmake_FindGLFW.cmake) = 7926b774e180f9f9e309b6df070d7291d04ac283
+SHA1 (patch-cmake_Findlibopenmpt.cmake) = 3f03353e6fa5fa3da2c4de4d44596021621ad624
