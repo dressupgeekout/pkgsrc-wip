@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (spydrnet-1.13.0.tar.gz) = 93f011c7ec36c159bf2672d750ac57c5a7a5fa94f0e188c090dcadfe47455bce
+SHA512 (spydrnet-1.13.0.tar.gz) = ec1d90e896e00c7defba81bf8e3b3e079d044a6393ba0d4d8ab71b70a587a2a97b44412e9e25a9d2c4cf420daed030e5ca8ed7c46ab4da61d32b00495ebd7d21
+Size (spydrnet-1.13.0.tar.gz) = 937468 bytes

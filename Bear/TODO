@@ -1,23 +1,14 @@
-Doesn't install:
--- Installing: /scratch/wip/Bear/work/Bear-3.1.2/stage/lib/bear/wrapper
-CMake Error at intercept/cmake_install.cmake:54 (file):
-  file RPATH_CHANGE could not write new RPATH:
+6/7 Test #6: bear::intercept_unit_test ........Subprocess aborted***Exception:   0.13 sec
+    Start 7: bear::citnames_unit_test
+7/7 Test #7: bear::citnames_unit_test .........Subprocess aborted***Exception:   0.13 sec
 
-    
+71% tests passed, 2 tests failed out of 7
 
-  to the file:
+Total Test time (real) =   0.28 sec
 
-    /scratch/wip/Bear/work/Bear-3.1.2/stage/lib/bear/wrapper
+The following tests FAILED:
+          6 - bear::intercept_unit_test (Subprocess aborted)
+          7 - bear::citnames_unit_test (Subprocess aborted)
 
-  The current RPATH is:
-
-    /usr/pkg/lib
-
-  which does not contain:
-
-    /usr/pkg/lib:
-
-  as was expected.
-Call Stack (most recent call first):
-  cmake_install.cmake:47 (include)
-
+Reported upstream:
+https://github.com/rizsotto/Bear/issues/599

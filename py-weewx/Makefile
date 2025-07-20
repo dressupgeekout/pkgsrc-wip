@@ -1,64 +1,65 @@
 # $NetBSD: Makefile,v 1.24 2019/04/26 14:12:35 maya Exp $
 
-DISTNAME=	weewx-4.9.1
+DISTNAME=	weewx-5.1.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
+PKGREVISION=	2
 CATEGORIES=	misc
 MASTER_SITES=	https://weewx.com/downloads/released_versions/
-
-# See also
-# https://reviews.freebsd.org/file/data/wxlggqqqglli6l66usac/PHID-FILE-kucs3bj4stbb6iw4zpy5/D6324.diff
+EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	gdt@NetBSD.org
 HOMEPAGE=	https://weewx.com/
 COMMENT=	Python-powered template engine and code-generator
 LICENSE=	gnu-gpl-v3
 
+# This package is intended to be usable with the most recent stable
+# branch; modifications should either be tested in that environment or
+# sent to ${MAINTAINER}.
+
 USE_LANGUAGES=
 
-SUBST_CLASSES+=		paths
-SUBST_MESSAGE.paths=	Substituting pkgsrc paths
-SUBST_STAGE.paths=	pre-configure
-SUBST_FILES.paths=	setup.cfg
-SUBST_VARS.paths=	PREFIX
+# weewx uses sqlite3
+.include "../../lang/python/batteries-included.mk"
 
-# weewx might work with 27, but it causes pain with pkgsrc deps so just don't
-PYTHON_VERSIONS_INCOMPATIBLE=	27
+TOOL_DEPENDS+=	${PYPKGPREFIX}-poetry>=0.12:../../devel/py-poetry
 
-# These versions are probably higher than necessary, but there is little value
-# in testing with versions older than are in pkgsrc.
-DEPENDS+=	${PYPKGPREFIX}-sqlite3>=2.7.16:../../databases/py-sqlite3
-DEPENDS+=	${PYPKGPREFIX}-Pillow>=6.0.0:../../graphics/py-Pillow6
-# cheetah lacks versioned dependencies; omit 2.7 as unhelpful
-DEPENDS+=	${PYPKGPREFIX}-cheetah>=3.0.0:../../devel/py-cheetah3
-DEPENDS+=	${PYPKGPREFIX}-configobj>=5.0.6:../../devel/py-configobj
+# pyproject.toml, in order:
+DEPENDS+=	${PYPKGPREFIX}-configobj>=5.0:../../devel/py-configobj
+DEPENDS+=	${PYPKGPREFIX}-cheetah>=3.4:../../devel/py-cheetah3
+DEPENDS+=	${PYPKGPREFIX}-Pillow>=5.2:../../graphics/py-Pillow
 DEPENDS+=	${PYPKGPREFIX}-ephem>=3.7.6.0:../../math/py-ephem
+DEPENDS+=	${PYPKGPREFIX}-pymysql>=1.0:../../databases/py-pymysql
 DEPENDS+=	${PYPKGPREFIX}-serial>=3.4:../../comms/py-serial
-DEPENDS+=	${PYPKGPREFIX}-usb>=1.0.0:../../devel/py-usb
+DEPENDS+=	${PYPKGPREFIX}-usb>=1.0.2:../../devel/py-usb
 
-REPLACE_PYTHON+=		util/i18n/i18n-report
+# Dependencies of common extensions, as long as they are not heavy.
+#   mqtt
+DEPENDS+=	${PYPKGPREFIX}-paho-mqtt>=2:../../net/py-paho-mqtt
 
-# \todo Decide whether to depend/patch, omit, or continue to ignore.
-CHECK_INTERPRETER_SKIP+=	weewx/util/init.d/weewx.lsb
-CHECK_INTERPRETER_SKIP+=	weewx/util/init.d/weewx.suse
-CHECK_INTERPRETER_SKIP+=	weewx/util/logwatch/scripts/services/weewx
+REPLACE_PYTHON+=	src/weewx_data/util/i18n/i18n-report
 
-# Move config file to an example-type path.
-# \todo Consider patching setup.py instead.
+# Ignore perl rather than depend on it.  For now, don't even consider
+# a split package.
+CHECK_INTERPRETER_SKIP+=	${PYSITELIB}/weewx_data/util/logwatch/scripts/services/weewx
+
+DOCDIR=			${PREFIX}/share/doc/weewx-${PYVERSSUFFIX}
+
+INSTALLATION_DIRS=	${DOCDIR}
+
+# weewx 4.x had code and data in the same dir, and setup.py install
+# would merge config file changes.  weewx 5.x does not appear to do
+# this, and the user is left to manually adjust or not, as is the
+# usual custom.  This comment is a caution that the config file
+# behavior is not entirely understood.  This also applies to skins.
+
 post-install:
-	mv ${DESTDIR}/${PREFIX}/weewx/weewx.conf ${DESTDIR}/${PREFIX}/weewx/weewx.conf.DIST
-
-CONF_FILES+=	${PREFIX}/weewx/weewx.conf.DIST ${PREFIX}/weewx/weewx.conf
-
-# weewx has its own scheme for updating the config file, and it is
-# likely a lot of work to make a package that behaves correctly,
-# separating out the code that runs at distutils install time into
-# installation and configuration update.
-
-# \todo Consider somehow integrating weewx's config file update scheme.
-
-# \todo Consider how to manage edits to skins, which are sort of code
-# and sort of config files.
+	${RM} -f ${DESTDIR}/${PREFIX}/${PYSITELIB}/LICENSE.txt
+	${RM} -f ${DESTDIR}/${PREFIX}/${PYSITELIB}/README.md
+	cd ${DESTDIR}${PREFIX}/bin && ${MV} weectl weectl-${PYVERSSUFFIX} || ${TRUE}
+	cd ${DESTDIR}${PREFIX}/bin && ${MV} weewxd weewxd-${PYVERSSUFFIX} || ${TRUE}
+	${INSTALL_DATA} ${WRKSRC}/LICENSE.txt ${DESTDIR}${DOCDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.md ${DESTDIR}${DOCDIR}
 
 .include "../../lang/python/application.mk"
-.include "../../wip/python/distutils.mk"
+.include "../../lang/python/wheel.mk"
 .include "../../mk/bsd.pkg.mk"

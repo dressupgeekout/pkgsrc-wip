@@ -1,13 +1,17 @@
 $NetBSD$
 
---- build/config/linux/libdrm/BUILD.gn.orig	2020-06-25 09:31:19.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- build/config/linux/libdrm/BUILD.gn.orig	2025-06-30 06:54:11.000000000 +0000
 +++ build/config/linux/libdrm/BUILD.gn
-@@ -5,7 +5,7 @@ import("//build/config/chromecast_build.
- import("//build/config/chromeos/args.gni")
- import("//build/config/linux/pkg_config.gni")
+@@ -15,7 +15,7 @@ declare_args() {
+ }
  
--assert(is_linux)
-+assert(is_linux || is_bsd)
- 
- declare_args() {
-   # Controls whether the build should use the version of libdrm library shipped
+ if (use_system_libdrm) {
+-  assert(!is_linux, "System libdrm is not supported in linux")
++#  assert(!is_linux, "System libdrm is not supported in linux")
+   pkg_config("libdrm_config") {
+     packages = [ "libdrm" ]
+   }

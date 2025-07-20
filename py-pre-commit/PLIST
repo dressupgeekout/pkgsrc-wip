@@ -1,11 +1,11 @@
 @comment $NetBSD$
 bin/pre-commit
-${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
-${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
-${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
-${PYSITELIB}/${EGG_INFODIR}/entry_points.txt
-${PYSITELIB}/${EGG_INFODIR}/requires.txt
-${PYSITELIB}/${EGG_INFODIR}/top_level.txt
+${PYSITELIB}/${WHEEL_INFODIR}/licenses/LICENSE
+${PYSITELIB}/${WHEEL_INFODIR}/METADATA
+${PYSITELIB}/${WHEEL_INFODIR}/RECORD
+${PYSITELIB}/${WHEEL_INFODIR}/WHEEL
+${PYSITELIB}/${WHEEL_INFODIR}/entry_points.txt
+${PYSITELIB}/${WHEEL_INFODIR}/top_level.txt
 ${PYSITELIB}/pre_commit/__init__.py
 ${PYSITELIB}/pre_commit/__init__.pyc
 ${PYSITELIB}/pre_commit/__init__.pyo
@@ -111,6 +111,12 @@ ${PYSITELIB}/pre_commit/languages/fail.pyo
 ${PYSITELIB}/pre_commit/languages/golang.py
 ${PYSITELIB}/pre_commit/languages/golang.pyc
 ${PYSITELIB}/pre_commit/languages/golang.pyo
+${PYSITELIB}/pre_commit/languages/haskell.py
+${PYSITELIB}/pre_commit/languages/haskell.pyc
+${PYSITELIB}/pre_commit/languages/haskell.pyo
+${PYSITELIB}/pre_commit/languages/julia.py
+${PYSITELIB}/pre_commit/languages/julia.pyc
+${PYSITELIB}/pre_commit/languages/julia.pyo
 ${PYSITELIB}/pre_commit/languages/lua.py
 ${PYSITELIB}/pre_commit/languages/lua.pyc
 ${PYSITELIB}/pre_commit/languages/lua.pyo
@@ -213,3 +219,6 @@ ${PYSITELIB}/pre_commit/xargs.pyo
 ${PYSITELIB}/pre_commit/yaml.py
 ${PYSITELIB}/pre_commit/yaml.pyc
 ${PYSITELIB}/pre_commit/yaml.pyo
+${PYSITELIB}/pre_commit/yaml_rewrite.py
+${PYSITELIB}/pre_commit/yaml_rewrite.pyc
+${PYSITELIB}/pre_commit/yaml_rewrite.pyo

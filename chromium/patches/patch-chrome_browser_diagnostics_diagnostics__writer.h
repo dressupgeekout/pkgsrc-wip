@@ -1,14 +1,16 @@
 $NetBSD$
 
---- chrome/browser/diagnostics/diagnostics_writer.h.orig	2020-07-08 21:40:34.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/diagnostics/diagnostics_writer.h.orig	2025-06-30 06:54:11.000000000 +0000
 +++ chrome/browser/diagnostics/diagnostics_writer.h
-@@ -15,6 +15,10 @@ namespace diagnostics {
+@@ -16,6 +16,8 @@ namespace diagnostics {
  // Console base class used internally.
  class SimpleConsole;
  
-+#if defined(MACHINE)
 +#undef MACHINE
-+#endif
 +
  class DiagnosticsWriter : public DiagnosticsModel::Observer {
   public:

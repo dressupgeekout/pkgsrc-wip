@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.70 2023/01/08 01:32:54 gdt Exp $
+# $NetBSD: Makefile,v 1.76 2024/04/03 17:42:53 gdt Exp $
 
 .include "Makefile.common"
 
@@ -16,24 +16,25 @@ SUBST_NOOP_OK.man-so=	yes
 TOOLS_SCRIPT.perl=	exit 1
 
 CONFIGURE_ARGS+=	--with-drvpath=${NUT_DRVDIR:Q}
-# should be /var/run
 CONFIGURE_ARGS+=	--with-pidpath=${NUT_STATEDIR:Q}
-# should be /var/run/nut
 CONFIGURE_ARGS+=	--with-altpidpath=${NUT_STATEDIR:Q}
-# STATEDIR should be created at boot: /var/run/nut?
 
-CONFIGURE_ARGS+=	--without-asciidoc
+# nut, bizarrely, does not install headers by default
 CONFIGURE_ARGS+=	--with-dev
+CONFIGURE_ARGS+=	--without-asciidoc
+
 CONFIGURE_ARGS+=	--without-snmp		# provided by sysutils/ups-nut-snmp
 CONFIGURE_ARGS+=	--without-usb		# provided by sysutils/ups-nut-usb
-CONFIGURE_ARGS+=	--without-nut_monitor	# not packaged
+CONFIGURE_ARGS+=	--without-nut_monitor	# not yet packaged
 
-# \todo Move to split package.
-# Disable python2 to Workaround
+# Disable python2 to workaround
 # https://github.com/networkupstools/nut/issues/1792 which upstream
 # declines to fix.
 CONFIGURE_ARGS+=	--without-python2
+# Force only our chosen python3 (same reason as above).
+CONFIGURE_ARGS+=	--with-python3=${PYTHONBIN}
 CONFIGURE_ARGS+=	--with-python=${PYTHONBIN}
+# \todo Move to split package.
 
 PKG_GROUPS_VARS+=	NUT_GROUP
 PKG_USERS_VARS+=	NUT_USER
@@ -77,15 +78,18 @@ post-install:
 	${INSTALL_DATA_DIR} ${DESTDIR}${NUT_EGDIR}
 	${MV} ${DESTDIR}${NUT_CONFDIR}/*.sample ${DESTDIR}${NUT_EGDIR}
 	${INSTALL_DATA_DIR} ${DESTDIR}${NUT_DOCDIR}
-	for f in COPYING CREDITS ChangeLog NEWS README INSTALL UPGRADING; do \
+	${INSTALL_DATA_DIR} ${DESTDIR}${NUT_DOCDIR}/detailed
+	for f in AUTHORS COPYING ChangeLog NEWS.adoc README.adoc UPGRADING.adoc; do \
 		${INSTALL_DATA} ${WRKSRC}/$$f ${DESTDIR}${NUT_DOCDIR}; \
 	done
 	for f in ${WRKSRC}/docs/*.txt; do \
-		${INSTALL_DATA} $$f ${DESTDIR}${NUT_DOCDIR}; \
+		${INSTALL_DATA} $$f ${DESTDIR}${NUT_DOCDIR}/detailed; \
 	done
 	for f in ${WRKSRC}/docs/cables/*.txt; do \
 		${INSTALL_DATA} $$f ${DESTDIR}${NUT_DOCDIR}/cables/; \
 	done
+
+TEST_TARGET=	check
 
 # nut-scanner needs libltdl, but this is not documented
 .include "../../devel/libltdl/buildlink3.mk"

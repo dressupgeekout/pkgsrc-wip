@@ -1,22 +1,26 @@
 $NetBSD$
 
---- ui/gfx/font_render_params.h.orig	2020-07-15 18:56:34.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- ui/gfx/font_render_params.h.orig	2025-06-30 06:54:11.000000000 +0000
 +++ ui/gfx/font_render_params.h
-@@ -111,7 +111,7 @@ GFX_EXPORT FontRenderParams GetFontRende
-     const FontRenderParamsQuery& query,
-     std::string* family_out);
+@@ -115,7 +115,7 @@ COMPONENT_EXPORT(GFX)
+ FontRenderParams GetFontRenderParams(const FontRenderParamsQuery& query,
+                                      std::string* family_out);
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
  // Clears GetFontRenderParams()'s cache. Intended to be called by tests that are
  // changing Fontconfig's configuration.
- GFX_EXPORT void ClearFontRenderParamsCacheForTest();
-@@ -121,7 +121,7 @@ GFX_EXPORT void ClearFontRenderParamsCac
- GFX_EXPORT float GetFontRenderParamsDeviceScaleFactor();
+ COMPONENT_EXPORT(GFX) void ClearFontRenderParamsCacheForTest();
+@@ -125,7 +125,7 @@ COMPONENT_EXPORT(GFX) void ClearFontRend
+ COMPONENT_EXPORT(GFX) float GetFontRenderParamsDeviceScaleFactor();
  
- #if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_ANDROID) || \
--    defined(OS_FUCHSIA)
-+    defined(OS_FUCHSIA) || defined(OS_BSD)
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || \
+-    BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA)
++    BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
  // Sets the device scale factor for FontRenderParams to decide
  // if it should enable subpixel positioning.
- GFX_EXPORT void SetFontRenderParamsDeviceScaleFactor(
+ COMPONENT_EXPORT(GFX)

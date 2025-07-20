@@ -10,11 +10,11 @@ GITHUB_RELEASE=	1.22.2
 MAINTAINER=	schmonz@NetBSD.org
 HOMEPAGE=	https://github.com/Governikus/AusweisApp2/
 COMMENT=	Authenticate with your German ID or residence permit
-LICENSE=	eupl-v1.1 # XXX it's really 1.2
+LICENSE=	eupl-v1.2
 
 USE_CMAKE=	yes
-CMAKE_ARGS+=	-DVENDOR=${PKGBASE}
-CMAKE_ARGS+=	-DFORCE_SOURCE_BUILD=ON
+CMAKE_CONFIGURE_ARGS+=	-DVENDOR=${PKGBASE}
+CMAKE_CONFIGURE_ARGS+=	-DFORCE_SOURCE_BUILD=ON
 
 USE_LANGUAGES=	c++
 

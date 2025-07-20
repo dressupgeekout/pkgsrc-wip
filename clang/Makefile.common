@@ -4,31 +4,26 @@
 
 .include "../../wip/llvm/version.mk"
 
-DISTNAME=	clang-${LLVM_VERSION}.src
 CATEGORIES=	lang devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://clang.llvm.org/
-COMMENT=	C language family frontend for LLVM
 LICENSE=	apache-2.0
 
-CONFIGURE_DIRS=		build
-CMAKE_ARG_PATH=		${WRKSRC}
-
-USE_LANGUAGES=		c c++14
-USE_CMAKE=		yes
+USE_CXX_FEATURES=	c++14
+USE_LANGUAGES=		c c++
 GCC_REQD+=		7
 
-CMAKE_ARGS+=	-DLLVM_CONFIG=${LLVM_CONFIG_PATH:Q}
-CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
-CMAKE_ARGS+=	-DCMAKE_C_COMPILER=${CC:Q}
-CMAKE_ARGS+=	-DCMAKE_CXX_COMPILER=${CXX:Q}
+CMAKE_CONFIGURE_ARGS+=	-DLLVM_CONFIG=${LLVM_CONFIG_PATH:Q}
+CMAKE_CONFIGURE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
+CMAKE_CONFIGURE_ARGS+=	-DCMAKE_C_COMPILER=${CC:Q}
+CMAKE_CONFIGURE_ARGS+=	-DCMAKE_CXX_COMPILER=${CXX:Q}
 
 .include "../../mk/compiler.mk"
 
-CMAKE_ARGS.Darwin+=	-DCMAKE_LIBTOOL=/usr/bin/libtool
+CMAKE_CONFIGURE_ARGS.Darwin+=	-DCMAKE_LIBTOOL=/usr/bin/libtool
 .if defined(OSX_SDK_PATH)
-CMAKE_ARGS.Darwin+=	-DDEFAULT_SYSROOT=${OSX_SDK_PATH:Q}
+CMAKE_CONFIGURE_ARGS.Darwin+=	-DDEFAULT_SYSROOT=${OSX_SDK_PATH:Q}
 .endif
 
 # NetBSD < 10 did not provide ENOTRECOVERABLE
@@ -111,34 +106,28 @@ LIBCPP_CHECK=	NO
 .endif
 
 .if ${OPSYS} == "NetBSD" && ${LIBCPP_CHECK} != YES
-CMAKE_ARGS+=			-DCLANG_DEFAULT_CXX_STDLIB:STRING="libstdc++"
+CMAKE_CONFIGURE_ARGS+=			-DCLANG_DEFAULT_CXX_STDLIB:STRING="libstdc++"
 .endif
 
-# Enable full LLVM suite on SunOS
-.if ${OPSYS} == "SunOS"
-.include "../../wip/compiler-rt/buildlink3.mk"
-.include "../../wip/libcxx/buildlink3.mk"
-.include "../../wip/libcxxabi/buildlink3.mk"
-.include "../../wip/libunwind/buildlink3.mk"
-CMAKE_ARGS+=    -DCLANG_DEFAULT_RTLIB:STRING="compiler-rt"
-CMAKE_ARGS+=    -DCLANG_DEFAULT_CXX_STDLIB:STRING="libc++"
+# On SunOS use the libraries from the GCC used to build clang rather than
+# aimlessly searching the file system for ones that might be incompatible.
+#
+SUBST_CLASSES.SunOS+=	sunos-gcc
+SUBST_STAGE.sunos-gcc=	pre-configure
+SUBST_FILES.sunos-gcc=	lib/Driver/ToolChains/Gnu.cpp
+SUBST_SED.sunos-gcc=	-e 's,@GCCBASEDIR@,${CCPATH:H:H},'
+
+# Not perfect, but should catch most common cases.  We can't simply use
+# gcc-libs as that doesn't ship the headers.
+#
+.if ${OPSYS} == "SunOS" && ${PKGSRC_COMPILER:Mgcc}
+BUILDLINK_DEPMETHOD.${_GCC_PKGBASE}=	full
 .endif
-
-# 3.8.0 -> 3.8
-LLVM_MAJOR=	${PKGVERSION_NOREV:C/^([0-9]+\.[0-9]+)\..*$/\1/}
-PLIST_SUBST+=	LLVM_MAJOR=${LLVM_MAJOR}
-
-PKGVERSION_MAJOR=	16
-PLIST_SUBST+=		PKGVERSION_MAJOR=${PKGVERSION_MAJOR}
 
 PLIST_VARS+=	notdylib
-.if ${SHLIB_TYPE} == "dylib"
-SOEXT=		dylib
-.else
-SOEXT=		so
+.if ${SHLIB_TYPE} != "dylib"
 PLIST.notdylib=	yes
 .endif
-PLIST_SUBST+=	SOEXT=${SOEXT}
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.clang
 PKG_SUPPORTED_OPTIONS=	tests z3
@@ -146,14 +135,14 @@ PKG_SUPPORTED_OPTIONS=	tests z3
 .include "../../mk/bsd.options.mk"
 
 .if !empty(PKG_OPTIONS:Mtests)
-CMAKE_ARGS+=		-DLLVM_INCLUDE_TESTS=ON
-CMAKE_ARGS+=		-DCLANG_INCLUDE_TESTS=ON
+CMAKE_CONFIGURE_ARGS+=		-DLLVM_INCLUDE_TESTS=ON
+CMAKE_CONFIGURE_ARGS+=		-DCLANG_INCLUDE_TESTS=ON
 TEST_TARGET=		clang-test
 TEST_ENV+=		LD_LIBRARY_PATH=${WRKDIR}/build/lib
 .  include "../../devel/googletest/buildlink3.mk"
 .else
-CMAKE_ARGS+=		-DLLVM_INCLUDE_TESTS=OFF
-CMAKE_ARGS+=		-DCLANG_INCLUDE_TESTS=OFF
+CMAKE_CONFIGURE_ARGS+=		-DLLVM_INCLUDE_TESTS=OFF
+CMAKE_CONFIGURE_ARGS+=		-DCLANG_INCLUDE_TESTS=OFF
 .endif
 
 .include "../../wip/llvm/buildlink3.mk"
@@ -163,14 +152,12 @@ CMAKE_ARGS+=		-DCLANG_INCLUDE_TESTS=OFF
 PKG_FAIL_REASON+=	"z3 PKG_OPTION must be enabled in lang/llvm"
 .  endif
 .  include "../../math/z3/buildlink3.mk"
-CMAKE_ARGS+=		-DLLVM_ENABLE_Z3_SOLVER=ON
+CMAKE_CONFIGURE_ARGS+=		-DLLVM_ENABLE_Z3_SOLVER=ON
 .endif
 
-post-extract:
-	${MKDIR} ${WRKSRC}/build
-
-.include "../../textproc/libxml2/buildlink3.mk"
+.include "../../devel/cmake/build.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/tool.mk"
 DEPENDS+=	llvm-${PKGVERSION_NOREV}{,nb*}:../../wip/llvm
+.include "../../textproc/libxml2/buildlink3.mk"

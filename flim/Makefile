@@ -2,7 +2,7 @@
 
 DISTNAME=	flim-1.14.9
 PKGNAME=	${EMACS_PKGNAME_PREFIX}${DISTNAME}
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/comp/emacsen/lisp/flim/flim-1.14/
 
@@ -35,17 +35,22 @@ MAKEFLAGS.xemacs+=	XEMACS=${EMACS_BIN} \
 EMACS_MODULES=		base
 EMACS_BUILDLINK=	# empty
 
+post-patch:
+	${RM} -f ${WRKSRC}/hmac-def.el
+	${RM} -f ${WRKSRC}/hex-utile.el
+
+pre-configure:
+	${MKDIR} -p ${WRKDIR}/.home/.emacs.d/elpa
+	find ${WRKSRC} -name \*orig | xargs rm
+
 post-build:
 	cd ${WRKSRC}; for i in mime-en mime-ja; do			\
-		${RM} -f $${i}.info*;					\
-		${CP} $${i}.texi $${i}.texi.orig;			\
-		${PREFIX}/bin/qkc -Oeu $${i}.texi.orig >$${i}.texi;	\
 		makeinfo --force --no-validate $${i}.texi;		\
 	done
 
 do-install: plist
 	cd ${WRKSRC};							\
-	grep -v '^@' ${PLIST} | grep -E '/site-(|packages/)lisp/flim/' | \
+	${GREP} -v '^@' ${PLIST} | ${EGREP} '/site-(packages/)?lisp/flim/' | \
 	while read file; do						\
 		file=$$( basename $$file );				\
 		${INSTALL_DATA} $$file					\
@@ -58,11 +63,11 @@ post-install:
 		${INSTALL_DATA} "$$f" ${DESTDIR}${EMACS_INFOPREFIX};	\
 	done
 
-.include "../../wip/emacs-git/modules.mk"
+.include "../../editors/emacs/modules.mk"
 
 .if (${EMACS_FLAVOR} != "xemacs")
-BUILDLINK_API_DEPENDS.apel+=	apel>=10.7
-.include "../../wip/apel-git/buildlink3.mk"
+BUILDLINK_API_DEPENDS.apel+=	apel>=10.8
+.include "../../devel/apel/buildlink3.mk"
 .endif
 
 .include "../../mk/bsd.pkg.mk"

@@ -1,0 +1,16 @@
+  - update to 5.2.1
+  - explain and clean up the bdb stuff in lang/ocaml
+  - sort PLISTs consistently between lang/ocaml and this, to enable
+    understanding what is changed
+  - create COMMIT_MESSAGE
+    + explain why *all* the patches in lang/ocaml are missing
+    + explain PLIST changes
+    + explain why pic and flambda options are being removed
+  - create meta-pkgs/bulk-test-ocaml and test
+  - examine unresolved upstream 5.x issues
+    + https://github.com/ocaml/ocaml/issues/11913
+    + https://github.com/ocaml/ocaml/issues/13262
+    + https://github.com/ocaml/ocaml/pull/13320
+    in light of the prominent caution at
+      https://github.com/ocaml/ocaml/blob/trunk/README.adoc
+    - run tests and assess

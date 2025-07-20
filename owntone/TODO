@@ -1,13 +1,24 @@
 "GNU gperf not found, but it's output appears to be present."
 
-it's using /usr/pkg/* for things like pid and db; not sure
-if that's correct.
+- it's using /usr/pkg/* for things like pid and db; not sure if that's
+  correct.
 
-not sure that ffmpeg5 is correct; 
+- set ownership of db directory:
+    /usr/pkg/var/cache/owntone/
+  to `owntone`
 
-Need to figure out ALSA so mpd mode can be tested.
+- need to figure out ALSA so mpd mode can be tested
 
-Config file should be installed into share/examples/owntone and
-installed using CONF_FILES
+- config file should be installed into share/examples/owntone and
+  installed using CONF_FILES.
 
-Build and install web interface (separate package?).
+- need to define the runtime dependency list
+
+  had to also start avahi and dbus-daemon
+
+- build and install web interface (separate package?).
+
+Upstream bugs:
+
+- filescanner_ffmpeg.c needs patching
+  https://github.com/owntone/owntone-server/issues/1901

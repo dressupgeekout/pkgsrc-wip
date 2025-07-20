@@ -15,7 +15,6 @@ LICENSE=	2-clause-bsd AND gnu-lgpl-v2
 NOT_FOR_PLATFORM=	NetBSD-[1-6].*-*
 
 TOOL_DEPENDS+=	gettext-tools>=0.18:../../devel/gettext-tools
-TOOL_DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++17
@@ -38,23 +37,23 @@ PKGCONFIG_OVERRIDE+=	Source/JavaScriptCore/javascriptcoregtk.pc.in
 PKGCONFIG_OVERRIDE+=	Source/WebKit/gtk/webkit2gtk-web-extension.pc.in
 PKGCONFIG_OVERRIDE+=	Source/WebKit/gtk/webkit2gtk.pc.in
 
-CMAKE_ARGS+=		-DCMAKE_BUILD_TYPE=Release
-CMAKE_ARGS+=		-DPORT=GTK
-CMAKE_ARGS+=		-DENABLE_X11_TARGET=ON
-CMAKE_ARGS+=		-DENABLE_MINIBROWSER=ON
-CMAKE_ARGS+=		-DENABLE_GAMEPAD=OFF
-CMAKE_ARGS+=		-DENABLE_GEOLOCATION=OFF
-CMAKE_ARGS+=		-DENABLE_INTROSPECTION=ON
-CMAKE_ARGS+=		-DENABLE_JOURNALD_LOG=OFF
-CMAKE_ARGS+=		-DENABLE_BUBBLEWRAP_SANDBOX=OFF
-CMAKE_ARGS+=		-DENABLE_DOCUMENTATION=OFF
-CMAKE_ARGS+=		-DUSE_GSTREAMER_GL=OFF
-CMAKE_ARGS+=		-DUSE_LIBHYPHEN=OFF
-CMAKE_ARGS+=		-DUSE_OPENJPEG=OFF
-CMAKE_ARGS+=		-DUSE_SOUP2=ON
+CMAKE_CONFIGURE_ARGS+=		-DCMAKE_BUILD_TYPE=Release
+CMAKE_CONFIGURE_ARGS+=		-DPORT=GTK
+CMAKE_CONFIGURE_ARGS+=		-DENABLE_X11_TARGET=ON
+CMAKE_CONFIGURE_ARGS+=		-DENABLE_MINIBROWSER=ON
+CMAKE_CONFIGURE_ARGS+=		-DENABLE_GAMEPAD=OFF
+CMAKE_CONFIGURE_ARGS+=		-DENABLE_GEOLOCATION=OFF
+CMAKE_CONFIGURE_ARGS+=		-DENABLE_INTROSPECTION=ON
+CMAKE_CONFIGURE_ARGS+=		-DENABLE_JOURNALD_LOG=OFF
+CMAKE_CONFIGURE_ARGS+=		-DENABLE_BUBBLEWRAP_SANDBOX=OFF
+CMAKE_CONFIGURE_ARGS+=		-DENABLE_DOCUMENTATION=OFF
+CMAKE_CONFIGURE_ARGS+=		-DUSE_GSTREAMER_GL=OFF
+CMAKE_CONFIGURE_ARGS+=		-DUSE_LIBHYPHEN=OFF
+CMAKE_CONFIGURE_ARGS+=		-DUSE_OPENJPEG=OFF
+CMAKE_CONFIGURE_ARGS+=		-DUSE_SOUP2=ON
 
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-aarch64*)
-CMAKE_ARGS+=		-DAVOID_INT128=ON
+CMAKE_CONFIGURE_ARGS+=		-DAVOID_INT128=ON
 .endif
 
 REPLACE_PERL+=	Source/JavaScriptCore/Scripts/*.pl
@@ -114,11 +113,11 @@ SUBST_MESSAGE.python=	Fixing path to python binary.
 .include "../../lang/ruby/rubyversion.mk"
 .include "../../lang/ruby/replace.mk"
 TOOL_DEPENDS+=	${RUBY_BASE}>=${RUBY_VERSION}:${RUBY_SRCDIR}
-CMAKE_ARGS+=	-DRUBY_EXECUTABLE=${RUBY}
+CMAKE_CONFIGURE_ARGS+=	-DRUBY_EXECUTABLE=${RUBY}
 
 PYTHON_FOR_BUILD_ONLY=	yes
 .include "../../lang/python/application.mk"
-CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHONBIN}
+CMAKE_CONFIGURE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHONBIN}
 
 CXXFLAGS.SunOS+=	-fpermissive
 
@@ -152,7 +151,8 @@ BUILDLINK_DEPMETHOD.gobject-introspection+=	build
 .include "../../devel/pango/buildlink3.mk"
 .include "../../fonts/harfbuzz-icu/buildlink3.mk"
 .include "../../fonts/woff2/buildlink3.mk"
-.include "../../graphics/cairo-gobject/buildlink3.mk"
+BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.18
+.include "../../graphics/cairo/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/libwebp/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"

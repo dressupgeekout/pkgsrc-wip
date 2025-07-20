@@ -2,27 +2,29 @@
 
 ### Set options
 PKG_OPTIONS_VAR=			PKG_OPTIONS.emacs
-PKG_SUPPORTED_OPTIONS=			dbus gnutls imagemagick jansson libgccjit libotf libwebp svg tree-sitter xaw3d xml
+PKG_SUPPORTED_OPTIONS=			dbus gnutls imagemagick libgccjit libotf libwebp svg tree-sitter xaw3d xml
 # xaw3d is only valid with tookit = xaw
 
 PKG_OPTIONS_OPTIONAL_GROUPS+=		window-system
 PKG_OPTIONS_GROUP.window-system=	x11 nextstep
 
-
 PKG_OPTIONS_OPTIONAL_GROUPS+=		toolkit
 PKG_SUGGESTED_OPTIONS.Darwin=		nextstep
-#  --with-x-toolkit=KIT    use an X toolkit (KIT one of: yes or gtk2,
-#                          gtk3, xaw, no)
-# gtk in next line implies gtk2, xaw
-PKG_OPTIONS_GROUP.toolkit=		gtk gtk2 gtk3 xaw
-# gtk2 and gtk has the same effect
+#  --with-x-toolkit=KIT    use an X toolkit (KIT one of: gtk3, xaw, no)
+PKG_OPTIONS_GROUP.toolkit=		gtk3 xaw
 # gtk3 is default in the logic below (even not included in SUGGESTED_=)
 # gtk* will be ignored for nextstep even shown as selected.
 
 # imagemagick is disabled because of stability/security
 # svg is omitted because it is rarely needed and heavyweight due to the rust dependency
 # xaw3d is omitted because it is only valid with xaw
-PKG_SUGGESTED_OPTIONS=	dbus libgccjit gnutls gtk3 jansson libotf libwebp tree-sitter xml x11
+PKG_SUGGESTED_OPTIONS=	dbus gnutls gtk3 libotf libwebp tree-sitter xml x11
+
+.include "../../mk/bsd.fast.prefs.mk"
+
+.if !${MACHINE_PLATFORM:MDarwin-*} && !${MACHINE_PLATFORM:MSunOS-*}
+PKG_SUGGESTED_OPTIONS+=	libgccjit
+.endif
 
 .include "../../mk/bsd.options.mk"
 
@@ -37,23 +39,14 @@ CONFIGURE_ARGS+=	--without-dbus
 .endif
 
 ###
-### Support JSON
-###
-.if !empty(PKG_OPTIONS:Mjansson)
-.  include "../../textproc/jansson/buildlink3.mk"
-.else
-CONFIGURE_ARGS+=	--without-json
-.endif
-
-###
 ### Support libgccjit
 ###
 .if !empty(PKG_OPTIONS:Mlibgccjit)
 CONFIGURE_ARGS+=	--with-native-compilation
-LDFLAGS+=		${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.gcc13-libjit}/gcc13/lib
+LDFLAGS+=		${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.gcc14-libjit}/gcc14/lib
 GENERATE_PLIST+=	cd ${DESTDIR}${PREFIX} && \
         ${FIND} lib/emacs/${PKGVERSION_NOREV}/native-lisp/ \( -type f -o -type l \) -print | ${SORT};
-.  include "../../lang/gcc13-libjit/buildlink3.mk"
+.  include "../../lang/gcc14-libjit/buildlink3.mk"
 .endif
 
 ###
@@ -91,6 +84,7 @@ CONFIGURE_ARGS+=	--without-xml2
 .if !empty(PKG_OPTIONS:Mgnutls)
 .include "../../security/gnutls/buildlink3.mk"
 .include "../../security/p11-kit/buildlink3.mk"
+USE_TOOLS+=		pkg-config
 .else
 CONFIGURE_ARGS+=	--without-gnutls
 .endif
@@ -111,7 +105,6 @@ CONFIGURE_ARGS+=	--without-ns
 ### Support SVG
 ###
 .  if !empty(PKG_OPTIONS:Msvg)
-.include "../../graphics/cairo/buildlink3.mk"
 .include "../../graphics/librsvg/buildlink3.mk"
 .  else
 CONFIGURE_ARGS+=	--without-rsvg
@@ -139,17 +132,11 @@ CONFIGURE_ARGS+=	--without-xaw3d
 ###
 ### Toolkit selection
 ###
-.  if (empty(PKG_OPTIONS:Mxaw) && \
-       empty(PKG_OPTIONS:Mgtk) && \
-       empty(PKG_OPTIONS:Mgtk2))
+.  if empty(PKG_OPTIONS:Mxaw)
 # defaults to gtk3
 USE_TOOLS+=		pkg-config
 .include "../../x11/gtk3/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-x-toolkit=gtk3
-.  elif !empty(PKG_OPTIONS:Mgtk2) || !empty(PKG_OPTIONS:Mgtk)
-USE_TOOLS+=		pkg-config
-.include "../../x11/gtk2/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-x-toolkit=gtk2
 .  elif !empty(PKG_OPTIONS:Mxaw)
 .include "../../mk/xaw.buildlink3.mk"
 CONFIGURE_ARGS+=	--with-x-toolkit=athena
@@ -179,7 +166,7 @@ CONFIGURE_ARGS+=	--with-x-toolkit=athena
 APPLICATIONS_DIR=	Applications
 PLIST_SRC+=		PLIST.cocoa
 CHECK_WRKREF_SKIP+=	Applications/Emacs.app/Contents/MacOS/Emacs
-CHECK_WRKREF_SKIP+=	Applications/Emacs.app/Contents/MacOS/Emacs.pdmp
+CHECK_WRKREF_SKIP+=	Applications/Emacs.app/Contents/MacOS/libexec/Emacs.pdmp
 .  else
 .include "../../x11/gnustep-gui/buildlink3.mk"
 MAKE_FILE=		Makefile
@@ -222,7 +209,12 @@ DEPENDS+=	tree-sitter-go-mod-[0-9]*:../../textproc/tree-sitter-go-mod
 DEPENDS+=	tree-sitter-heex-[0-9]*:../../textproc/tree-sitter-heex
 DEPENDS+=	tree-sitter-html-[0-9]*:../../textproc/tree-sitter-html
 DEPENDS+=	tree-sitter-java-[0-9]*:../../textproc/tree-sitter-java
+DEPENDS+=	tree-sitter-javascript-[0-9]*:../../textproc/tree-sitter-javascript
+DEPENDS+=	tree-sitter-jsdoc-[0-9]*:../../textproc/tree-sitter-jsdoc
 DEPENDS+=	tree-sitter-json-[0-9]*:../../textproc/tree-sitter-json
+DEPENDS+=	tree-sitter-lua-[0-9]*:../../textproc/tree-sitter-lua
+DEPENDS+=	tree-sitter-markdown-[0-9]*:../../textproc/tree-sitter-markdown
+DEPENDS+=	tree-sitter-php-[0-9]*:../../textproc/tree-sitter-php
 DEPENDS+=	tree-sitter-python-[0-9]*:../../textproc/tree-sitter-python
 DEPENDS+=	tree-sitter-ruby-[0-9]*:../../textproc/tree-sitter-ruby
 DEPENDS+=	tree-sitter-rust-[0-9]*:../../textproc/tree-sitter-rust

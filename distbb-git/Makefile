@@ -1,7 +1,8 @@
 # $NetBSD: Makefile,v 1.20 2014/08/03 19:48:22 cheusov Exp $
 #
 
-DISTNAME=	distbb-9
+DISTNAME=	distbb-${_GIT_PKGVERSION}
+PKGREVISION=
 CATEGORIES=	pkgtools
 
 MAINTAINER=	cheusov@NetBSD.org
@@ -13,15 +14,14 @@ GIT_REPOSITORIES=	distbb
 GIT_REPO.distbb=	https://github.com/cheusov/distbb.git
 .include "../../wip/mk/git-package.mk"
 
-DEPENDS+=	pkg_summary-utils>=0.65.0:../../pkgtools/pkg_summary-utils
-DEPENDS+=	paexec>=0.17.0:../../parallel/paexec
+DEPENDS+=	pkg_summary-utils>=0.69.1:../../pkgtools/pkg_summary-utils
+DEPENDS+=	paexec>=1.1.6:../../parallel/paexec
 DEPENDS+=	runawk>=1.1.0:../../lang/runawk
-DEPENDS+=	pipestatus>=0.6.0:../../devel/pipestatus
 DEPENDS+=	digest-[0-9]*:../../pkgtools/digest
 
 TOOL_DEPENDS+=	mk-configure>=0.21:../../devel/mk-configure
 
-WRKSRC=			${WRKDIR}/distbb
+WRKSRC=		${WRKDIR}/distbb
 
 USE_LANGUAGES=		# none
 
@@ -34,16 +34,14 @@ REPLACE_FILES.runawk=	gen_weights.in gen_queue.in pkg_summary2build_deps.in \
 			distbb_grep.in
 
 EGDIR=			${PREFIX}/share/examples/distbb
-DOCDIR=			${PREFIX}/share/doc/distbb
+DOCDIR=		${PREFIX}/share/doc/distbb
 
 CONF_FILES=		${EGDIR}/distbb.conf     ${PKG_SYSCONFDIR}/distbb.conf
 CONF_FILES+=		${EGDIR}/distbb.local.mk ${PKG_SYSCONFDIR}/distbb.local.mk
 
-DOCFILES=		README NEWS TODO
-
 MAKE_FLAGS+=		EGDIR=${EGDIR}
-
-INSTALLATION_DIRS=	${DOCDIR}
+MAKE_ENV+=		DOC_FILES='LICENSE NEWS TODO TUTORIAL.pod'
+MAKE_ENV+=		VERSION=${_GIT_PKGVERSION}
 
 post-install:
 .for f in ${DOCFILES}

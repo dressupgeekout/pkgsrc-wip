@@ -1,31 +1,44 @@
 $NetBSD$
 
---- base/memory/platform_shared_memory_region.h.orig	2020-06-25 09:31:18.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- base/memory/platform_shared_memory_region.h.orig	2025-06-30 06:54:11.000000000 +0000
 +++ base/memory/platform_shared_memory_region.h
-@@ -27,7 +27,7 @@
- #include "base/files/scoped_file.h"
- #endif
+@@ -19,7 +19,7 @@
+ #include "base/unguessable_token.h"
+ #include "build/build_config.h"
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  namespace content {
  class SandboxIPCHandler;
  }
-@@ -121,7 +121,7 @@ class BASE_EXPORT PlatformSharedMemoryRe
+@@ -86,7 +86,7 @@ class BASE_EXPORT PlatformSharedMemoryRe
      kMaxValue = GET_SHMEM_TEMP_DIR_FAILURE
    };
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) | defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    // Structure to limit access to executable region creation.
    struct ExecutableRegion {
     private:
-@@ -266,7 +266,7 @@ class BASE_EXPORT PlatformSharedMemoryRe
+@@ -125,7 +125,7 @@ class BASE_EXPORT PlatformSharedMemoryRe
+ #if BUILDFLAG(IS_FUCHSIA)
+     kNotVmo,
+ #endif
+-#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+     kFcntlFailed,
+     kReadOnlyFdNotReadOnly,
+     kUnexpectedReadOnlyFd,
+@@ -256,7 +256,7 @@ class BASE_EXPORT PlatformSharedMemoryRe
                             CheckPlatformHandlePermissionsCorrespondToMode);
    static PlatformSharedMemoryRegion Create(Mode mode,
                                             size_t size
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
                                             ,
                                             bool executable = false
  #endif

@@ -1,5 +1,5 @@
 $NetBSD$
 
-BLAKE2s (dovecot2-fts-xapian/1.5.5.tar.gz) = 80e65e472c08402e1017c43572753879de3491e7bc2618b6331cb1febb595b0b
-SHA512 (dovecot2-fts-xapian/1.5.5.tar.gz) = 229362207bfa7bb13b1ded4d8b2a2aef7a4a72306e140dc4bd5778991220b27d296ca3659993856f83c80c437f7feadebad1e3ac06f8120a6e45b69f6dbb1ecb
-Size (dovecot2-fts-xapian/1.5.5.tar.gz) = 33228 bytes
+BLAKE2s (fts-xapian-1.8.tar.gz) = fa2d73abd2bbafb91dc39c78a214983be3fc939cbb189888bfbdd3fb8ed694a9
+SHA512 (fts-xapian-1.8.tar.gz) = 178922589ae307afbb465bdac9ba352c1198d4a97a204d190461751d0c117dad22119d964d8dbda2fb5f44a05f069536788a02e816a5822da28c8c96720c4a93
+Size (fts-xapian-1.8.tar.gz) = 35196 bytes

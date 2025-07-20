@@ -2,8 +2,7 @@
 
 .include "../../wip/llvm/version.mk"
 
-DISTNAME=	lldb-${LLVM_VERSION}.src
-PKGNAME=	${DISTNAME:S/.src//}
+PKGNAME=	lldb-${LLVM_VERSION}
 CATEGORIES=	devel lang
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -16,33 +15,37 @@ DEPENDS+=	clang-${PKGVERSION_NOREV}{,nb*}:../../wip/clang
 DEPENDS+=	swig3>=3.0:../../devel/swig3
 DEPENDS+=	${PYPKGPREFIX}-six-[0-9]*:../../lang/py-six
 
-USE_LANGUAGES=		c c++14
+USE_CXX_FEATURES=	c++14
+USE_LANGUAGES=		c c++
 GCC_REQD+=		7
 PY_PATCHPLIST=		yes
 
-CMAKE_ARGS+=	-DLLVM_CONFIG=${LLVM_CONFIG_PATH:Q}
-CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
-CMAKE_ARGS+=	-DCMAKE_C_COMPILER=${CC:Q}
-CMAKE_ARGS+=	-DCMAKE_CXX_COMPILER=${CXX:Q}
-CMAKE_ARGS+=	-DHAVE_CXX_ATOMICS64_WITHOUT_LIB=ON
-CMAKE_ARGS+=	-DLLDB_CODESIGN_IDENTITY=""
-CMAKE_ARGS+=	-DLLDB_USE_SYSTEM_SIX=ON
-CMAKE_ARGS+=	-DPYTHON_HOME=${PREFIX}
+CMAKE_CONFIGURE_ARGS+=	-DLLVM_CONFIG=${LLVM_CONFIG_PATH:Q}
+CMAKE_CONFIGURE_ARGS+=	-DLLVM_ENABLE_LIBCXX=ON
+CMAKE_CONFIGURE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
+CMAKE_CONFIGURE_ARGS+=	-DCMAKE_C_COMPILER=${CC:Q}
+CMAKE_CONFIGURE_ARGS+=	-DCMAKE_CXX_COMPILER=${CXX:Q}
+CMAKE_CONFIGURE_ARGS+=	-DHAVE_CXX_ATOMICS64_WITHOUT_LIB=ON
+CMAKE_CONFIGURE_ARGS+=	-DLLDB_CODESIGN_IDENTITY=""
+CMAKE_CONFIGURE_ARGS+=	-DLLDB_USE_SYSTEM_SIX=ON
+CMAKE_CONFIGURE_ARGS+=	-DPYTHON_HOME=${PREFIX}
 
 CHECK_PORTABILITY_SKIP=	utils/buildit/build_llvm
 
 LUA_VERSIONS_ACCEPTED=	53
+PLIST_SUBST+=		LUA_VERSION=${LUA_VERSION:R}
 
-REPLACE_PERL+=		*/*.pl
-
-REPLACE_PYTHON+=	*.py
-REPLACE_PYTHON+=	*/*.py
-REPLACE_PYTHON+=	*/*/*.py
-REPLACE_PYTHON+=	*/*/*/*.py
-REPLACE_PYTHON+=	*/*/*/*/*.py
-REPLACE_PYTHON+=	*/*/*/*/*/*.py
-REPLACE_PYTHON+=	*/*/*/*/*/*/*.py
-REPLACE_PYTHON+=	*/*/*/*/*/*/*/*.py
+REPLACE_PERL+=		scripts/disasm-gdb-remote.pl
+ 
+REPLACE_PYTHON+=	bindings/python/get-python-config.py
+REPLACE_PYTHON+=	bindings/python/lldb-python
+REPLACE_PYTHON+=	scripts/analyze-project-deps.py
+REPLACE_PYTHON+=	scripts/generate-sbapi-dwarf-enum.py
+REPLACE_PYTHON+=	scripts/reproducer-replay.py
+REPLACE_PYTHON+=	scripts/verify_api.py
+REPLACE_PYTHON+=	utils/lldb-repro/lldb-repro.py
+REPLACE_PYTHON+=	utils/lui/lui.py
+REPLACE_PYTHON+=	utils/lui/sandbox.py
 
 TEST_TARGET=		check-lldb
 #TEST_TARGET=		check-lldb-unit # doesn't work in standalone build
@@ -51,8 +54,6 @@ TEST_TARGET=		check-lldb
 TEST_ENV+=		LD_LIBRARY_PATH=${WRKDIR}/build/lib
 
 .include "../../mk/bsd.prefs.mk"
-
-PLIST_SUBST+=	LLVM_MAJOR_VERSION=${LLVM_MAJOR_VERSION}
 
 .include "options.mk"
 
@@ -69,8 +70,10 @@ NOT_FOR_PLATFORM+=	NetBSD-*-powerpc
 .include "../../devel/cmake/build.mk"
 #.include "../../devel/googletest/buildlink3.mk" # check-lldb-unit
 .include "../../devel/editline/buildlink3.mk"
+.include "../../devel/swig4/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../wip/clang/buildlink3.mk"
+.include "../../wip/libcxx/buildlink3.mk"
 .include "../../wip/llvm/buildlink3.mk"
 .include "../../lang/lua/buildlink3.mk"
 .include "../../lang/python/application.mk"
@@ -78,6 +81,4 @@ NOT_FOR_PLATFORM+=	NetBSD-*-powerpc
 .include "../../lang/python/tool.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../mk/atomic64.mk"
-# TODO: sync the readline option with other llvm packages
-.include "../../mk/readline.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

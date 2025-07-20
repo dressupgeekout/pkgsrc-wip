@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.31 2022/11/27 13:55:49 gdt Exp $
+# $NetBSD: Makefile,v 1.46 2024/12/01 23:29:17 gdt Exp $
 
-VERSION_BASE=	8.2.1
+VERSION_BASE=	9.5.1
+# Accommodate testing RCs (names like 9.0RC1, unpacking to 9.0).
 #VERSION_RC=	RC1
 VERSION=	${VERSION_BASE}${VERSION_RC}
-#PKGREVISION=	0
-# proj RCs have names like 5.1.0RC1 but unpack to 5.1.0
 WRKFINAL=	proj-${VERSION_BASE}
 WRKSRC=		${WRKDIR}/${WRKFINAL}
 DISTNAME=	proj-${VERSION}
+#PKGREVISION=	0
 CATEGORIES=	geography
 MASTER_SITES=	https://download.osgeo.org/proj/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -21,22 +21,41 @@ LICENSE=	mit
 
 PREV_PKGPATH=		misc/proj
 
-USE_LANGUAGES=		c99 c++11
+USE_LANGUAGES=		c c++
+USE_CC_FEATURES=	c99
+USE_CXX_FEATURES=	c++11
+
 USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake pkg-config
-GNU_CONFIGURE=		yes
 
-# \todo Debug this.
-# Tests fail if proj relies on NetBSD 8's C99 math, vs proj's
-# replacement functions.
-.if ${OPSYS} == "NetBSD"
-CFLAGS+=		-DHAVE_C99_MATH=0
-.endif
+TOOL_DEPENDS+=		sqlite3>=3.10.0:../../databases/sqlite3
 
-TEST_TARGET=		check
+CMAKE_CONFIGURE_ARGS+=	-DRUN_NETWORK_DEPENDENT_TESTS=OFF
 
+.include "../../devel/cmake/build.mk"
+
+# \todo GC this after resolving test issues.
+#.if ${OPSYS} == "NetBSD"
+#CFLAGS+=		-DHAVE_C99_MATH=0
+#.endif
+
+# \todo Document, file uprsteam, and add uptream bug report URL.
+CXXFLAGS.SunOS+=	-fpermissive
+
+# \todo Debug geodtest failure, after we are up to date.
+TEST_TARGET=		test
+
+# Dependencies documented by upstream
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
+
+# Dependencies not documented by upstream
+#  reported 20240527
+.include "../../devel/googletest/buildlink3.mk"
+#  reported 20240527
+.include "../../textproc/nlohmann-json/buildlink3.mk"
+#  not yet reported
 .include "../../mk/pthread.buildlink3.mk"
+
 .include "../../mk/bsd.pkg.mk"

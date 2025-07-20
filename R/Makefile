@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.240 2023/06/06 12:41:50 riastradh Exp $
+# $NetBSD: Makefile,v 1.266 2025/03/02 10:26:38 mef Exp $
 
 #
 # If updating this package, please try to ensure PLIST.Darwin is kept in sync
 # to avoid unnecessarily breaking macOS users.
 #
-DISTNAME=	R-4.3.1
+DISTNAME=	R-4.4.3
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_R_CRAN:=base/R-4/}
 
@@ -14,6 +14,12 @@ COMMENT=	Statistical language for data analysis and graphics
 LICENSE=	gnu-gpl-v2
 
 USE_GCC_RUNTIME=	yes
+# uncomment following line helps packaging on 9.4
+# GCC_REQD+=		10
+
+# https://cran.r-project.org/doc/manuals/r-release/NEWS.pdf
+# above line mentions c23 as default compiler for R, but c23 (gcc15) is N/A ?
+# USE_CC_FEATURES+=	c23
 
 BUILD_TARGET=		all info
 INSTALL_TARGET=		install install-info
@@ -35,9 +41,15 @@ CONFIGURE_ARGS+=	--with-tcltk
 CONFIGURE_ARGS+=	--with-tcl-config=${BUILDLINK_PREFIX.tcl}/lib/tclConfig.sh
 CONFIGURE_ARGS+=	--with-tk-config=${BUILDLINK_PREFIX.tk}/lib/tkConfig.sh
 
+LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib/R/lib
+
 .include "../../mk/bsd.prefs.mk"
 .if ${OPSYS} == "NetBSD" || ${OPSYS} == "FreeBSD"
 CONFIGURE_ARGS+=	--enable-long-double=no
+.endif
+
+.if ${OPSYS} == "NetBSD"
+CONFIGURE_ARGS+=	--disable-nls
 .endif
 
 .if ${OPSYS} != "Linux"
@@ -102,6 +114,14 @@ SHAREMODE=		644
 
 CONFIGURE_ARGS.Darwin+=	--disable-openmp
 
+# Temporary fix for deprecated function ATSFontFindFromName() in R 4.2.0
+# Newer R versions should eliminate this function and obsolete this hack
+# https://trac.macports.org/ticket/66095
+# Darwin 21 corresponds to macOS 12
+.if ${OPSYS} == "Darwin" && ${OS_VERSION:R} > 21
+MAKE_ENV.Darwin+=	MACOSX_DEPLOYMENT_TARGET="12.0"
+.endif
+
 # R_PAPERSIZE can be: A4, Letter, Legal, Executive
 .if defined(PAPERSIZE)
 R_PAPERSIZE?=		${PAPERSIZE}
@@ -137,17 +157,10 @@ INSTALL_SCRIPT=		${INSTALL} ${COPY} -m ${BINMODE}
 #TOOL_DEPENDS+=		tex-mptopdf-[0-9]*:../../graphics/tex-mptopdf
 #TOOL_DEPENDS+=		tex-pdftex-def-[0-9]*:../../print/tex-pdftex
 
-SUBST_CLASSES+=		rpath
-SUBST_STAGE.rpath=	pre-configure
-SUBST_FILES.rpath=	configure.ac
-SUBST_VARS.rpath=	COMPILER_RPATH_FLAG
-
 SUBST_CLASSES+=		fixwrap
 SUBST_STAGE.fixwrap=	post-build
 SUBST_FILES.fixwrap=	libtool
 SUBST_SED.fixwrap=	-e "s,${WRAPPER_BINDIR}/libtool,${PKG_LIBTOOL},g"
-
-BUILDLINK_API_DEPENDS.bzip2+=	bzip2>=1.0.5
 
 # failed to convert strong functions and variables: Invalid type identifier
 CTF_FILES_SKIP+=	lib/R/library/mgcv/libs/mgcv.so
@@ -170,6 +183,11 @@ fix-darwin-install-name:
 	done
 .endif
 
+# remove orig version left out
+post-install:
+	${RM}	-f ${DESTDIR}${PREFIX}/lib/R/library/survival/NEWS.Rd.orig
+
+BUILDLINK_API_DEPENDS.bzip2+=	bzip2>=1.0.5
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../archivers/xz/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"

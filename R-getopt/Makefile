@@ -3,12 +3,12 @@
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_R_CRAN:=contrib/}
 
-MAINTAINER=	bacon@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	C-Like 'getopt' Behavior
 LICENSE=	gnu-gpl-v2
 
 R_PKGNAME=	getopt
-R_PKGVER=	1.20.3
+R_PKGVER=	1.20.4
 
 REPLACE_R=	exec/example.R
 

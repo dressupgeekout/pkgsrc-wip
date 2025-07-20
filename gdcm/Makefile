@@ -12,14 +12,13 @@ COMMENT=	Grassroots DiCoM for processing DICOM medical files
 LICENSE=	modified-bsd
 
 USE_LANGUAGES=	c c++
-USE_TOOLS+=	gmake cmake pkg-config
-USE_CMAKE=	yes
-CMAKE_ARGS+=	-DGDCM_USE_SYSTEM_ZLIB=ON
-CMAKE_ARGS+=	-DGDCM_USE_SYSTEM_OPENSSL=ON
-CMAKE_ARGS+=	-DGDCM_USE_SYSTEM_EXPAT=ON
-CMAKE_ARGS+=	-DGDCM_USE_SYSTEM_OPENJPEG=ON
-CMAKE_ARGS+=	-DGDCM_INSTALL_MAN_DIR=man
-CMAKE_ARGS+=	-DGDCM_MANPAGES_USE_NONET:BOOL=TRUE
+USE_TOOLS+=	gmake pkg-config
+CMAKE_CONFIGURE_ARGS+=	-DGDCM_USE_SYSTEM_ZLIB=ON
+CMAKE_CONFIGURE_ARGS+=	-DGDCM_USE_SYSTEM_OPENSSL=ON
+CMAKE_CONFIGURE_ARGS+=	-DGDCM_USE_SYSTEM_EXPAT=ON
+CMAKE_CONFIGURE_ARGS+=	-DGDCM_USE_SYSTEM_OPENJPEG=ON
+CMAKE_CONFIGURE_ARGS+=	-DGDCM_INSTALL_MAN_DIR=man
+CMAKE_CONFIGURE_ARGS+=	-DGDCM_MANPAGES_USE_NONET:BOOL=TRUE
 
 TOOL_DEPENDS+=	doxygen-[0-9]*:../../devel/doxygen
 
@@ -29,6 +28,7 @@ SUBST_FILES.docbook=	Utilities/doxygen/man/*.xml
 SUBST_STAGE.docbook=	pre-configure
 SUBST_SED.docbook+=	-e 's,http://docbook.sourceforge.net/release/xsl-ns/current,${PREFIX}/share/xsl/docbook,g'
 
+.include "../../devel/cmake/build.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/openjpeg/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"

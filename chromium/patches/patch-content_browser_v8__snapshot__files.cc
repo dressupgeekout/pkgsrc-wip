@@ -1,13 +1,17 @@
 $NetBSD$
 
---- content/browser/v8_snapshot_files.cc.orig	2020-07-08 21:40:42.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- content/browser/v8_snapshot_files.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ content/browser/v8_snapshot_files.cc
-@@ -10,7 +10,7 @@
- namespace content {
- 
- std::map<std::string, base::FilePath> GetV8SnapshotFilesToPreload() {
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
- #if defined(USE_V8_CONTEXT_SNAPSHOT)
-   return {{kV8ContextSnapshotDataDescriptor,
-            base::FilePath(FILE_PATH_LITERAL("v8_context_snapshot.bin"))}};
+@@ -19,7 +19,7 @@ namespace content {
+ std::map<std::string, std::variant<base::FilePath, base::ScopedFD>>
+ GetV8SnapshotFilesToPreload(base::CommandLine& process_command_line) {
+   std::map<std::string, std::variant<base::FilePath, base::ScopedFD>> files;
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ #if BUILDFLAG(USE_V8_CONTEXT_SNAPSHOT)
+   files[kV8ContextSnapshotDataDescriptor] = base::FilePath(
+       FILE_PATH_LITERAL(BUILDFLAG(V8_CONTEXT_SNAPSHOT_FILENAME)));

@@ -1,6 +1,7 @@
 @comment $NetBSD$
 bin/rncp
 bin/rnid
+bin/rnir
 bin/rnodeconf
 bin/rnpath
 bin/rnprobe
@@ -118,6 +119,9 @@ ${PYSITELIB}/RNS/Interfaces/PipeInterface.pyo
 ${PYSITELIB}/RNS/Interfaces/RNodeInterface.py
 ${PYSITELIB}/RNS/Interfaces/RNodeInterface.pyc
 ${PYSITELIB}/RNS/Interfaces/RNodeInterface.pyo
+${PYSITELIB}/RNS/Interfaces/RNodeMultiInterface.py
+${PYSITELIB}/RNS/Interfaces/RNodeMultiInterface.pyc
+${PYSITELIB}/RNS/Interfaces/RNodeMultiInterface.pyo
 ${PYSITELIB}/RNS/Interfaces/SerialInterface.py
 ${PYSITELIB}/RNS/Interfaces/SerialInterface.pyc
 ${PYSITELIB}/RNS/Interfaces/SerialInterface.pyo
@@ -136,6 +140,9 @@ ${PYSITELIB}/RNS/Link.pyo
 ${PYSITELIB}/RNS/Packet.py
 ${PYSITELIB}/RNS/Packet.pyc
 ${PYSITELIB}/RNS/Packet.pyo
+${PYSITELIB}/RNS/Resolver.py
+${PYSITELIB}/RNS/Resolver.pyc
+${PYSITELIB}/RNS/Resolver.pyo
 ${PYSITELIB}/RNS/Resource.py
 ${PYSITELIB}/RNS/Resource.pyc
 ${PYSITELIB}/RNS/Resource.pyo
@@ -154,6 +161,9 @@ ${PYSITELIB}/RNS/Utilities/rncp.pyo
 ${PYSITELIB}/RNS/Utilities/rnid.py
 ${PYSITELIB}/RNS/Utilities/rnid.pyc
 ${PYSITELIB}/RNS/Utilities/rnid.pyo
+${PYSITELIB}/RNS/Utilities/rnir.py
+${PYSITELIB}/RNS/Utilities/rnir.pyc
+${PYSITELIB}/RNS/Utilities/rnir.pyo
 ${PYSITELIB}/RNS/Utilities/rnodeconf.py
 ${PYSITELIB}/RNS/Utilities/rnodeconf.pyc
 ${PYSITELIB}/RNS/Utilities/rnodeconf.pyo
@@ -223,6 +233,7 @@ ${PYSITELIB}/RNS/vendor/ifaddr/_win32.pyo
 ${PYSITELIB}/RNS/vendor/ifaddr/niwrapper.py
 ${PYSITELIB}/RNS/vendor/ifaddr/niwrapper.pyc
 ${PYSITELIB}/RNS/vendor/ifaddr/niwrapper.pyo
+${PYSITELIB}/RNS/vendor/ifaddr/py.typed
 ${PYSITELIB}/RNS/vendor/platformutils.py
 ${PYSITELIB}/RNS/vendor/platformutils.pyc
 ${PYSITELIB}/RNS/vendor/platformutils.pyo
@@ -232,9 +243,9 @@ ${PYSITELIB}/RNS/vendor/six.pyo
 ${PYSITELIB}/RNS/vendor/umsgpack.py
 ${PYSITELIB}/RNS/vendor/umsgpack.pyc
 ${PYSITELIB}/RNS/vendor/umsgpack.pyo
-${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
-${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
-${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
-${PYSITELIB}/${EGG_INFODIR}/entry_points.txt
-${PYSITELIB}/${EGG_INFODIR}/requires.txt
-${PYSITELIB}/${EGG_INFODIR}/top_level.txt
+${PYSITELIB}/${WHEEL_INFODIR}/METADATA
+${PYSITELIB}/${WHEEL_INFODIR}/RECORD
+${PYSITELIB}/${WHEEL_INFODIR}/WHEEL
+${PYSITELIB}/${WHEEL_INFODIR}/entry_points.txt
+${PYSITELIB}/${WHEEL_INFODIR}/licenses/LICENSE
+${PYSITELIB}/${WHEEL_INFODIR}/top_level.txt
