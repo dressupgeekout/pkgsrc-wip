@@ -1,3 +1,4 @@
 @comment $NetBSD$
 ${PYSITELIB}/_nlopt.so
 ${PYSITELIB}/nlopt.py
+${PYSITELIB}/nlopt-${PKGVERSION}.dist-info/METADATA

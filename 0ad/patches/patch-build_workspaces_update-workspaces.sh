@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-build_workspaces_update-workspaces.sh,v 1.1 2023/05/04 15:20:52 nikita Exp $
 
 --- build/workspaces/update-workspaces.sh.orig	2021-07-27 21:57:40.000000000 +0000
 +++ build/workspaces/update-workspaces.sh

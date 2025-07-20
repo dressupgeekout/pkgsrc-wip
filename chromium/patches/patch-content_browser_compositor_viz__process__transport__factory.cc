@@ -1,13 +1,17 @@
 $NetBSD$
 
---- content/browser/compositor/viz_process_transport_factory.cc.orig	2020-07-08 21:40:42.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- content/browser/compositor/viz_process_transport_factory.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ content/browser/compositor/viz_process_transport_factory.cc
-@@ -108,7 +108,7 @@ class HostDisplayClient : public viz::Ho
+@@ -104,7 +104,7 @@ class HostDisplayClient : public viz::Ho
    HostDisplayClient& operator=(const HostDisplayClient&) = delete;
  
    // viz::HostDisplayClient:
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
+-#if BUILDFLAG(IS_LINUX) && BUILDFLAG(IS_OZONE_X11)
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)) && BUILDFLAG(IS_OZONE_X11)
    void DidCompleteSwapWithNewSize(const gfx::Size& size) override {
      compositor_->OnCompleteSwapWithNewSize(size);
    }

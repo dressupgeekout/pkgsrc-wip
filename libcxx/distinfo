@@ -1,0 +1,9 @@
+$NetBSD: distinfo,v 1.25 2023/01/12 19:32:54 adam Exp $
+
+BLAKE2s (llvm-project-20.1.8.src.tar.xz) = c1587d5118d1d27f773127d6b72528b9d6f0eb78156b2679ebd4132369572e45
+SHA512 (llvm-project-20.1.8.src.tar.xz) = f330e72e6a1da468569049437cc0ba7a41abb816ccece7367189344f7ebfef730f4788ac7af2bef0aa8a49341c15ab1d31e941ffa782f264d11fe0dc05470773
+Size (llvm-project-20.1.8.src.tar.xz) = 147242952 bytes
+SHA1 (patch-src_CMakeLists.txt) = 4554c675b778d8d631f2fc664364f0d3ffc3ed5e
+SHA1 (patch-src_charconv.cpp) = 658a0727c6e2ddc051fbd22a536033bae19a22ba
+SHA1 (patch-src_filesystem_file__descriptor.h) = 44a64cb3eac4e94abb54170c355639642b8246c2
+SHA1 (patch-src_include_to__chars__floating__point.h) = 717ef2db570fc225ec0864027667c28791e6366f

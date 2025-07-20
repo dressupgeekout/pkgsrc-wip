@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-libgcc_libgcov.h,v 1.1 2024/04/26 13:05:01 micha Exp $
 
 System include directory is not searched, even if "sys/mman.h" header
 file is present. Quoted from "libgcc/configure.ac":

@@ -30,6 +30,7 @@ UNLIMIT_RESOURCES=	stacksize	# DLBFLAG: stacksize doesn't need to
 USE_TOOLS+=		gmake
 USE_LANGUAGES+=		c c++14
 
+MRUST_LIB=		${PREFIX}/lib/mrust
 RUSTBIN=		mrust-rustc
 
 
@@ -75,12 +76,12 @@ pre-build:
 		${LN} -s "${PREFIX}/bin/$$ff" "${WRKSRC}/bin";		\
 		${TOUCH} -hr "${PREFIX}/bin/$$ff" "${WRKSRC}/bin/$$ff";	\
 	done
-	( cd ${PREFIX}/lib/mrust/;					\
-	    for ff in *; do						\
+	( cd ${MRUST_LIB}/;						\
+	    for ff in *.rlib*; do					\
 		[ -e "${WRKSRC}/${MR_OUTDIR}$$ff" ] ||			\
-		    ${LN} -s "${PREFIX}/lib/mrust/$$ff"			\
+		    ${LN} -s "${MRUST_LIB}/$$ff"			\
 			"${WRKSRC}/${MR_OUTDIR}";			\
-		    ${TOUCH} -hr "${PREFIX}/lib/mrust/$$ff"		\
+		    ${TOUCH} -hr "${MRUST_LIB}/$$ff"			\
 			"${WRKSRC}/${MR_OUTDIR}/$$ff";			\
 	    done; )
 	cd ${WRKSRC} && ${PKGSRC_SETENV} ${MAKE_ENV} \
@@ -100,19 +101,30 @@ pre-test:
 # [DLBFLAG:] Lacks support for MS Windows style ".EXE" suffixes.
 ##
 do-install:
+	${PKGSRC_SETENV} ${INSTALL_ENV}                                 \
+	    ${INSTALL_LIB_DIR}     ${DESTDIR}${MRUST_LIB}/rustc;
+	${PKGSRC_SETENV} ${INSTALL_ENV}                                 \
+	    ${INSTALL_PROGRAM_DIR} ${DESTDIR}${MRUST_LIB}/rustc/bin;
 	${PKGSRC_SETENV} ${INSTALL_ENV}					\
 	    ${INSTALL_PROGRAM_DIR} ${DESTDIR}${PREFIX}/bin;
 	( cd ${WRKSRC}/${MR_OUTDIR} &&					\
-	    ${LN} rustc-build/rustc_main ${RUSTBIN} &&			\
+	    { [ -e rustc ] || ${LN} rustc-build/rustc_main rustc; } &&	\
 		${PKGSRC_SETENV} ${INSTALL_ENV}                         \
-		    ${INSTALL_PROGRAM} ${RUSTBIN}			\
-			${DESTDIR}${PREFIX}/bin )
+		    ${INSTALL_PROGRAM} rustc				\
+			${DESTDIR}${MRUST_LIB}/rustc/bin )
+	${LN} -s ${MRUST_LIB}/rustc/bin/rustc ${DESTDIR}${PREFIX}/bin/${RUSTBIN}
+
+##	( cd ${WRKSRC}/${MR_OUTDIR} &&					\
+##	    ${LN} rustc-build/rustc_main ${RUSTBIN} &&			\
+##		${PKGSRC_SETENV} ${INSTALL_ENV}                         \
+##		    ${INSTALL_PROGRAM} ${RUSTBIN}			\
+##			${DESTDIR}${PREFIX}/bin )
 
 
-BUILD_DEPENDS+=	mrust-mrustc>=${SNAPSTAMP}:../../wip/mrust-mrustc
-BUILD_DEPENDS+=	mrust-minicargo>=${SNAPSTAMP}:../../wip/mrust-minicargo
-BUILD_DEPENDS+=	mrust-libs>=${SNAPSTAMP}:../../wip/mrust-libs
-BUILD_DEPENDS+=	cmake>=3.18.2:../../devel/cmake
+TOOL_DEPENDS+=	mrust-mrustc>=${SNAPSTAMP}:../../wip/mrust-mrustc
+TOOL_DEPENDS+=	mrust-minicargo>=${SNAPSTAMP}:../../wip/mrust-minicargo
+TOOL_DEPENDS+=	mrust-libs>=${SNAPSTAMP}:../../wip/mrust-libs
+TOOL_DEPENDS+=	cmake>=3.18.2:../../devel/cmake
 
 
 .include "../../devel/libatomic/buildlink3.mk"

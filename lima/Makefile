@@ -1,11 +1,11 @@
 # $NetBSD$
 
-DISTNAME=	lima-0.13.0
+DISTNAME=	lima-1.0.1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=lima-vm/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	leot@NetBSD.org
 HOMEPAGE=	https://github.com/lima-vm/lima
 COMMENT=	Linux virtual machines for running containerd
 LICENSE=	apache-2.0
@@ -31,7 +31,7 @@ MAKE_FLAGS+=	VERSION=${GITHUB_TAG}
 SUBST_CLASSES+=			legacy-bios
 SUBST_STAGE.legacy-bios=	pre-configure
 SUBST_MESSAGE.legacy-bios=	Force to use legacy BIOS on NetBSD
-SUBST_FILES.legacy-bios+=	examples/default.yaml
+SUBST_FILES.legacy-bios+=	templates/default.yaml
 SUBST_SED.legacy-bios+=		-e 's/legacyBIOS: null/legacyBIOS: true/'
 .endif
 
@@ -44,7 +44,9 @@ do-build:
 
 do-install:
 	${RUN} cd ${WRKSRC}/_output && ${PAX} -rw bin ${DESTDIR}${PREFIX}
-	${RUN} cd ${WRKSRC}/_output && ${PAX} -rw share ${DESTDIR}${PREFIX}
+	${RUN} cd ${WRKSRC}/_output/share/man && ${PAX} -rw man1 ${DESTDIR}${PREFIX}/${PKGMANDIR}
+	${RUN} cd ${WRKSRC}/_output/share/doc && ${PAX} -rw lima ${DESTDIR}${PREFIX}/share/doc
+	${RUN} cd ${WRKSRC}/_output/share && ${PAX} -rw lima ${DESTDIR}${PREFIX}/share
 
 .include "go-modules.mk"
 

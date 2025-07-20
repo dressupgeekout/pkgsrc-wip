@@ -11,22 +11,22 @@ HOMEPAGE=	https://github.com/sddm/sddm
 COMMENT=	QML based X11 and Wayland display manager
 LICENSE=	gnu-gpl-v2
 
-BUILD_DEPENDS+=	extra-cmake-modules-[0-9]*:../../devel/extra-cmake-modules
-BUILD_DEPENDS+=	${PYPKGPREFIX}-docutils-[0-9]*:../../textproc/py-docutils
+TOOL_DEPENDS+=	extra-cmake-modules-[0-9]*:../../devel/extra-cmake-modules
+TOOL_DEPENDS+=	${PYPKGPREFIX}-docutils-[0-9]*:../../textproc/py-docutils
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config
 
 .if !exists(/etc/login.defs)
-CMAKE_ARGS+=	-DUID_MIN=1000
-CMAKE_ARGS+=	-DUID_MAX=65000
+CMAKE_CONFIGURE_ARGS+=	-DUID_MIN=1000
+CMAKE_CONFIGURE_ARGS+=	-DUID_MAX=65000
 .endif
-CMAKE_ARGS+=	-DDBUS_CONFIG_DIR=${PREFIX}/share/examples/sddm
-CMAKE_ARGS+=	-DCMAKE_INSTALL_SYSCONFDIR:PATH=${PKG_SYSCONFDIR:Q}
-CMAKE_ARGS+=	-DBUILD_MAN_PAGES=ON
-CMAKE_ARGS+=	-DRST2MAN_EXECUTABLE=${PREFIX}/bin/rst2man-${PYVERSSUFFIX}
-#CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Debug
+CMAKE_CONFIGURE_ARGS+=	-DDBUS_CONFIG_DIR=${PREFIX}/share/examples/sddm
+CMAKE_CONFIGURE_ARGS+=	-DCMAKE_INSTALL_SYSCONFDIR:PATH=${PKG_SYSCONFDIR:Q}
+CMAKE_CONFIGURE_ARGS+=	-DBUILD_MAN_PAGES=ON
+CMAKE_CONFIGURE_ARGS+=	-DRST2MAN_EXECUTABLE=${PREFIX}/bin/rst2man-${PYVERSSUFFIX}
+#CMAKE_CONFIGURE_ARGS+=	-DCMAKE_BUILD_TYPE=Debug
 
 SUBST_CLASSES+=		paths egs
 SUBST_STAGE.paths=	pre-configure
@@ -62,7 +62,9 @@ post-install:
 PYTHON_FOR_BUILD_ONLY=	yes
 .include "../../lang/python/pyversion.mk"
 .include "../../x11/libxcb/buildlink3.mk"
+BUILDLINK_API_DEPENDS.qt5-qtbase+=	qt5-qtbase>=5.15.8
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtdeclarative/buildlink3.mk"
+.include "../../x11/qt5-qttools/buildlink3.mk"
 .include "../../mk/pam.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

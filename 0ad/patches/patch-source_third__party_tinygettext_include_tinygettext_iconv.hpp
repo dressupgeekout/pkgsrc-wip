@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-source_third__party_tinygettext_include_tinygettext_iconv.hpp,v 1.1 2023/05/04 15:20:52 nikita Exp $
 
 tinygettext fails with NetBSD iconv.
 Use iconv from SDL2 instead.

@@ -9,19 +9,19 @@ LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/plasma5.mk"
 
-BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
+TOOL_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 DEPENDS+=	breeze>=${PLASMAVER}:../../wip/breeze
 DEPENDS+=	kactivitymanagerd>=${PLASMAVER}:../../wip/kactivitymanagerd
 #DEPENDS+=	kde-cli-tools>=${PLASMAVER}:../../wip/kde-cli-tools
 #DEPENDS+=	kwin>=${PLASMAVER}:../../wip/kwin
 DEPENDS+=	kwin>=5.12.5:../../wip/kwin
-DEPENDS+=	milou>=${PLASMAVER}:../../wip/milou
+DEPENDS+=	milou>=${PLASMAVER}:../../sysutils/milou
 DEPENDS+=	plasma-integration>=${PLASMAVER}:../../wip/plasma-integration
 
 USE_TOOLS+=	gmake msgmerge pkg-config
 GCC_REQD+=	10	# default member initializers for bit-fields in kcms/lookandfeel/lookandfeelmanager.h
 
-#CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Debug
+#CMAKE_CONFIGURE_ARGS+=	-DCMAKE_BUILD_TYPE=Debug
 
 # generation of ksmserver.moc fails when ${PREFIX}/include in the moc include path
 SUBST_CLASSES+=		fix-moc
@@ -70,6 +70,7 @@ CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/taskmanagerrulesrc \
 .include "../../devel/kpeople/buildlink3.mk"
 .include "../../devel/krunner/buildlink3.mk"
 .include "../../devel/ktexteditor/buildlink3.mk"
+.include "../../graphics/libkexiv2/buildlink3.mk"
 .include "../../graphics/prison/buildlink3.mk"
 .include "../../math/cln/buildlink3.mk"
 .include "../../math/qalculate/buildlink3.mk"
@@ -85,7 +86,7 @@ CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/taskmanagerrulesrc \
 .include "../../x11/kactivities-stats/buildlink3.mk"
 .include "../../wip/kscreenlocker/buildlink3.mk"
 .include "../../x11/libkscreen/buildlink3.mk"
-.include "../../wip/libksysguard/buildlink3.mk"
+.include "../../sysutils/libksysguard/buildlink3.mk"
 .include "../../x11/kdelibs4support/buildlink3.mk"	# for Solid/PowerManagement
 .include "../../x11/kxmlgui/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"

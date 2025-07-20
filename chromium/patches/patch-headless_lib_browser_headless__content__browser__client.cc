@@ -1,22 +1,26 @@
 $NetBSD$
 
---- headless/lib/browser/headless_content_browser_client.cc.orig	2020-07-08 21:41:48.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- headless/lib/browser/headless_content_browser_client.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ headless/lib/browser/headless_content_browser_client.cc
-@@ -158,7 +158,7 @@ HeadlessContentBrowserClient::GetGenerat
-   return content::GeneratedCodeCacheSettings(true, 0, context->GetPath());
- }
+@@ -59,7 +59,7 @@
+ #include "content/public/common/content_descriptors.h"
+ #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
  
--#if defined(OS_POSIX) && !defined(OS_MACOSX)
-+#if defined(OS_POSIX) && !defined(OS_MACOSX) && !defined(OS_BSD)
- void HeadlessContentBrowserClient::GetAdditionalMappedFilesForChildProcess(
-     const base::CommandLine& command_line,
-     int child_process_id,
-@@ -241,7 +241,7 @@ void HeadlessContentBrowserClient::Appen
-                                             process_type, child_process_id);
-   }
+-#if (BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)) && defined(HEADLESS_USE_PREFS)
++#if (BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)) && defined(HEADLESS_USE_PREFS)
+ #include "components/os_crypt/sync/os_crypt.h"  // nogncheck
+ #include "content/public/browser/network_service_util.h"
+ #endif
+@@ -557,7 +557,7 @@ void HeadlessContentBrowserClient::Handl
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
-   // Processes may only query perf_event_open with the BPF sandbox disabled.
-   if (old_command_line.HasSwitch(::switches::kEnableThreadInstructionCount) &&
-       old_command_line.HasSwitch(service_manager::switches::kNoSandbox)) {
+ void HeadlessContentBrowserClient::SetEncryptionKey(
+     ::network::mojom::NetworkService* network_service) {
+-#if (BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)) && defined(HEADLESS_USE_PREFS)
++#if (BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)) && defined(HEADLESS_USE_PREFS)
+   // The OSCrypt keys are process bound, so if network service is out of
+   // process, send it the required key if it is available.
+   if (content::IsOutOfProcessNetworkService()

@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-test_test.sh,v 1.1 2021/02/08 01:49:25 bacon Exp $
 
 # Warning for impending failed tests
 

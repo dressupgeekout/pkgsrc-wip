@@ -1,18 +1,16 @@
 # $NetBSD$
 
-DISTNAME=	vcf2hap-0.1.6
+DISTNAME=	vcf2hap-0.1.6.14
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=auerlab/}
+GITHUB_TAG=	8f3998572c360c74be44d47258659bbd00374286
 
 OWNER=		bacon@NetBSD.org
 HOMEPAGE=	https://github.com/auerlab/vcf2hap
 COMMENT=	Generate .hap file from VCF for haplohseq
 LICENSE=	2-clause-bsd
 
-MAKE_ENV+=	VERSION=${PKGVERSION}
-
-pre-build:
-	cd ${WRKSRC} && ${MAKE} PREFIX=${PREFIX} depend
+MAKE_ENV+=	MANDIR=${PREFIX}/${PKGMANDIR} VERSION=${PKGVERSION}
 
 do-test:
 	cd ${WRKSRC}/Test && ./run-test.sh

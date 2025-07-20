@@ -1,9 +1,8 @@
 # $NetBSD$
 
-
 DISTNAME=	apache-arrow-${APACHE_ARROW_VERSION}
 CATEGORIES=	devel
-MASTER_SITES=	https://dlcdn.apache.org/arrow/arrow-${APACHE_ARROW_VERSION}/
+MASTER_SITES=	${MASTER_SITE_APACHE:=arrow/arrow-${APACHE_ARROW_VERSION}/}/
 
 
 MAINTAINER=	matthewd@fastmail.us
@@ -14,66 +13,92 @@ LICENSE=	apache-2.0
 # These packages are built within arrow, and it
 # looks difficult to decouple them
 # They come from ./cpp/thirdparty/versions.txt
-XSIMD=		8.1.0.tar.gz
+XSIMD=		13.0.0.tar.gz
 JEMALLOC=	jemalloc-5.3.0.tar.bz2
+MIMALLOC=	mimalloc-v2.0.6.tar.gz
+SUBSTRAIT=	v0.44.0.tar.gz
 
 DISTFILES+=		${DISTNAME}${EXTRACT_SUFX}
 DISTFILES+=		${XSIMD}
 DISTFILES+=		${JEMALLOC}
+DISTFILES+=		${MIMALLOC}
+DISTFILES+=		${SUBSTRAIT}
+
 SITES.${XSIMD}=		https://github.com/xtensor-stack/xsimd/archive/
+SITES.${SUBSTRAIT}=		https://github.com/substrait-io/substrait/archive/
 SITES.${JEMALLOC}=	${MASTER_SITE_GITHUB:=jemalloc/jemalloc/releases/download/5.3.0/}
+SITES.${MIMALLOC}=	https://apache.jfrog.io/artifactory/arrow/thirdparty/7.0.0/
 
 .include "../../mk/bsd.prefs.mk"
-.include "options.mk"
 
-CONFIGURE_DIRS=	cpp
-BUILD_DIRS=	cpp
+CONFIGURE_DIR=	cpp
 
 USE_LANGUAGES=	c c++
-USE_TOOLS=	cmake gmake
-USE_CMAKE=	yes
-CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
-CMAKE_ARGS+=	-DARROW_DEPENDENCY_SOURCE=SYSTEM
+USE_TOOLS=	gmake install
+# Needs gnu install for -v option
+TOOLS_PLATFORM.install=
+
+CMAKE_CONFIGURE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
+CMAKE_CONFIGURE_ARGS+=	-DARROW_DEPENDENCY_SOURCE=SYSTEM
 # Not yet for Gandiva
-CMAKE_ARGS+=	-DARROW_GANDIVA=OFF
-CMAKE_ARGS+=	-DARROW_CUDA=OFF
+CMAKE_CONFIGURE_ARGS+=	-DARROW_GANDIVA=OFF
+CMAKE_CONFIGURE_ARGS+=	-DARROW_CUDA=OFF
 # These seem OK
-CMAKE_ARGS+=	-DARROW_FILESYSTEM=ON
-CMAKE_ARGS+=	-DARROW_BUILD_UTILITIES=ON
-CMAKE_ARGS+=	-DARROW_CSV=ON
-CMAKE_ARGS+=	-DARROW_DATASET=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_FILESYSTEM=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_BUILD_UTILITIES=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_CSV=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_ACERO=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_DATASET=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_WITH_BROTLI=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_WITH_BZ2=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_USE_GLOG=OFF=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_JSON=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_WITH_LZ4=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_PARQUET=ON
+CMAKE_CONFIGURE_ARGS+=	-DPARQUET_BUILD_EXECUTABLES=ON
+CMAKE_CONFIGURE_ARGS+=	-DPARQUET_REQUIRE_ENCRYPTION=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_SUBSTRAIT=OFF
+CMAKE_CONFIGURE_ARGS+=	-DARROW_FLIGHT=OFF
+CMAKE_CONFIGURE_ARGS+=	-DARROW_WITH_SNAPPY=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_WITH_ZLIB=ON
+CMAKE_CONFIGURE_ARGS+=	-DARROW_WITH_ZSTD=ON
 
 # For finding deps
-CMAKE_ARGS+=	-Dxsimd_SOURCE=BUNDLED
+CMAKE_CONFIGURE_ARGS+=	-Dxsimd_SOURCE=BUNDLED
 
 # Set environment variable to find the extra source packages
 CONFIGURE_ENV+=	ARROW_JEMALLOC_URL=/${DISTDIR}/${JEMALLOC}
 CONFIGURE_ENV+=	ARROW_XSIMD_URL=/${DISTDIR}/${XSIMD}
+CONFIGURE_ENV+=	ARROW_SUBSTRAIT_URL=/${DISTDIR}/${SUBSTRAIT}
+CONFIGURE_ENV+=	ARROW_MIMALLOC_URL=/${DISTDIR}/${MIMALLOC}
 
 # To enable tests, devel/googletest needs -fPIE removed
-CMAKE_ARGS+=	-DARROW_BUILD_TESTS=OFF
+CMAKE_CONFIGURE_ARGS+=	-DARROW_BUILD_TESTS=OFF
 
+# Fix this version expansion as we have to
 post-install:
-	${MV} ${DESTDIR}${PREFIX}/share/gdb/auto-load/${LOCALBASE}/lib/libarrow.so.900.0.0-gdb.py ${DESTDIR}${PREFIX}/share/arrow/gdb/
+	${MV} ${DESTDIR}${PREFIX}/share/gdb/auto-load/${LOCALBASE}/lib/libarrow.so.${APACHE_ARROW_VERSION:C/\./0/1}.0-gdb.py ${DESTDIR}${PREFIX}/share/arrow/gdb/
 
-BUILD_DEPENDS+=		cmake-[0-9]*:../../devel/cmake
-# Needs gnu install for -v option
-.if ${OPSYS} == "NetBSD"
-TOOL_DEPENDS+=		coreutils>=0:../../sysutils/coreutils
-TOOLS_PATH.install=	${PREFIX}/bin/ginstall
-.endif
 
 .include "../../wip/apache-arrow/version.mk"
+.include "../../archivers/brotli/buildlink3.mk"
+.include "../../archivers/bzip2/buildlink3.mk"
+.include "../../archivers/lz4/buildlink3.mk"
+.include "../../archivers/zstd/buildlink3.mk"
 .include "../../converters/utf8proc/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
-.include "../../devel/cmake/buildlink3.mk"
-.include "../../devel/libthrift/buildlink3.mk"
+.include "../../devel/cmake/build.mk"
+.include "../../devel/gflags/buildlink3.mk"
+.include "../../devel/google-glog/buildlink3.mk"
+.include "../../devel/snappy/buildlink3.mk"
+.include "../../devel/zlib/buildlink3.mk"
+#.include "../../devel/googletest/buildlink3.mk"
 .include "../../devel/flatbuffers/buildlink3.mk"
-
-# .include "../../devel/googletest/buildlink3.mk"
-
+.include "../../devel/libthrift/buildlink3.mk"
 .include "../../devel/protobuf/buildlink3.mk"
 .include "../../devel/re2/buildlink3.mk"
+.include "../../lang/llvm/buildlink3.mk"
 .include "../../net/grpc/buildlink3.mk"
+.include "../../textproc/rapidjson/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

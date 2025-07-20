@@ -1,13 +1,17 @@
 $NetBSD$
 
---- base/system/sys_info.cc.orig	2020-07-08 21:40:31.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- base/system/sys_info.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ base/system/sys_info.cc
-@@ -102,7 +102,7 @@ void SysInfo::GetHardwareInfo(base::Once
- #elif defined(OS_ANDROID) || defined(OS_MACOSX)
-   base::ThreadPool::PostTaskAndReplyWithResult(
-       FROM_HERE, {}, base::BindOnce(&GetHardwareInfoSync), std::move(callback));
--#elif defined(OS_LINUX)
-+#elif defined(OS_LINUX) || defined(OS_BSD)
-   base::ThreadPool::PostTaskAndReplyWithResult(
-       FROM_HERE, {base::MayBlock()}, base::BindOnce(&GetHardwareInfoSync),
-       std::move(callback));
+@@ -224,7 +224,7 @@ std::string SysInfo::SocManufacturer() {
+ #endif
+ 
+ void SysInfo::GetHardwareInfo(base::OnceCallback<void(HardwareInfo)> callback) {
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
+   constexpr base::TaskTraits kTraits = {base::MayBlock()};
+ #else
+   constexpr base::TaskTraits kTraits = {};

@@ -18,7 +18,7 @@ LICENSE=	gnu-gpl-v3
 
 DEPENDS+=		timidity-[0-9]*:../../audio/timidity
 # Docs say this is needed, but it builds fine without
-#BUILD_DEPENDS+=	docbook2X-[0-9]*:../../wip/docbook2X
+#TOOL_DEPENDS+=	docbook2X-[0-9]*:../../wip/docbook2X
 
 OPENXCOM_BASE=		${PREFIX}/share/games/${PKGBASE}
 OPENXCOM_DATA=		${OPENXCOM_BASE}/data
@@ -29,7 +29,7 @@ USE_LANGUAGES=	c c++
 USE_TOOLS+=	gmake
 USE_CMAKE=	yes
 # Yes, this is slightly confusing (the data gets appended by OpenXcom)
-CMAKE_ARGS+=	-DDATADIR=${OPENXCOM_BASE}
+CMAKE_CONFIGURE_ARGS+=	-DDATADIR=${OPENXCOM_BASE}
 
 .include "../../audio/SDL_mixer/buildlink3.mk"
 .include "../../devel/SDL/buildlink3.mk"

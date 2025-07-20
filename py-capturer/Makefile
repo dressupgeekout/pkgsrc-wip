@@ -3,16 +3,17 @@
 DISTNAME=	capturer-3.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
-MASTER_SITES=	https://files.pythonhosted.org/packages/9a/98/e2cac95d1cba553b10552511fdb55043b00a99bf8c1ed913ecbc654d6bfb/
+MASTER_SITES=	${MASTER_SITE_PYPI:=c/capturer/}
 
-MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	https://capturer.readthedocs.io/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://pypi.org/project/capturer/
 COMMENT=	Easily capture stdout/stderr of the current process and subprocesses
 LICENSE=	mit
 
-DEPENDS+=	py-humanfriendly>=10.0:../../wip/py-humanfriendly
-
-USE_LANGUAGES=	# none
+DEPENDS+=	${PYPKGPREFIX}-humanfriendly>=8.0:../../textproc/py-humanfriendly
+TEST_DEPENDS+=	${PYPKGPREFIX}-coverage>=4.2:../../devel/py-coverage
+TEST_DEPENDS+=	${PYPKGPREFIX}-test>=3.0.4:../../devel/py-test
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-cov>=2.4.0:../../devel/py-test-cov 
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.142 2022/08/17 20:28:37 wiz Exp $
+# $NetBSD: Makefile,v 1.166 2024/11/23 13:59:40 wiz Exp $
 
-# Not even an alpha leading to 2.53.1
-DISTNAME=	unison-2.53.0.60.1
+# master after 2.53.7.
+# This is the fix-linotify branch for now.
+DISTNAME=	unison-2.53.7.52
 #PKGREVISION=	0
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=bcpierce00/}
-#GITHUB_TAG=	v${PKGVERSION_NOREV}
-GITHUB_TAG=	e08c95de97e952a7ff1beb56a77b0f30ca533e5d
+GITHUB_TAG=	3b8d3d45129de2a8ce590040004f15fb747a73e8
 
 MAINTAINER=	gdt@NetBSD.org
 HOMEPAGE=	https://github.com/bcpierce00/unison
@@ -14,13 +14,19 @@ HOMEPAGE=	https://github.com/bcpierce00/unison
 COMMENT=	File-synchronization tool
 LICENSE=	gnu-gpl-v3
 
-USE_TOOLS+=	gmake bash
+USE_TOOLS+=	bash pkg-config
+# \todo Explain
 MAKE_FLAGS+=	CFLAGS=""
+ALL_ENV+=	PREFIX=${PREFIX}
+ALL_ENV+=	MANDIR=${PREFIX}/${PKGMANDIR}
 MAKE_ENV+=	HOME=${WRKDIR:Q}
 
 .include "../../lang/ocaml/ocaml.mk"
 
-.if (${OCAML_USE_OPT_COMPILER} == "yes")
+# Unison will use ocamlopt if possible, and otherwise ocamlc, but
+# passing NATIVE lets pkgsrc build byte code on a native platform,
+# should that be desired.
+.if ${OCAML_USE_OPT_COMPILER} == "yes"
 MAKE_FLAGS+=	NATIVE=true
 .else
 MAKE_FLAGS+=	NATIVE=false
@@ -31,21 +37,16 @@ MAKE_FLAGS+=	NATIVE=false
 .include "options.mk"
 .include "../../mk/bsd.prefs.mk"
 
-TEST_TARGET=		test
-
-INSTALLATION_DIRS=	bin
-INSTALLATION_DIRS+=	${PKGMANDIR}/man1
+# Unison does not install non-man docs
 INSTALLATION_DIRS+=	share/doc/unison
 
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/src/unison ${DESTDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/src/CONTRIB ${DESTDIR}${PREFIX}/share/doc/unison
+post-install:
 	${INSTALL_MAN} ${WRKSRC}/src/COPYING ${DESTDIR}${PREFIX}/share/doc/unison
+	${INSTALL_MAN} ${WRKSRC}/CONTRIBUTING.md ${DESTDIR}${PREFIX}/share/doc/unison
+	${INSTALL_MAN} ${WRKSRC}/INSTALL.md ${DESTDIR}${PREFIX}/share/doc/unison
 	${INSTALL_MAN} ${WRKSRC}/NEWS.md ${DESTDIR}${PREFIX}/share/doc/unison
-	${INSTALL_MAN} ${WRKSRC}/src/README ${DESTDIR}${PREFIX}/share/doc/unison
-	${INSTALL_MAN} ${WRKSRC}/src/ROADMAP.txt ${DESTDIR}${PREFIX}/share/doc/unison
-	${INSTALL_MAN} ${WRKSRC}/src/TODO.txt ${DESTDIR}${PREFIX}/share/doc/unison
-	${INSTALL_MAN} ${WRKSRC}/man/unison.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
+
+TEST_TARGET=		test
 
 .include "../../mk/pthread.buildlink3.mk"
 .if defined(PTHREAD_TYPE) && (${PTHREAD_TYPE} != "none")

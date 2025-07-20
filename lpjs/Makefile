@@ -5,33 +5,64 @@
 #              Tue Sep 28 11:27:06 CDT 2021               #
 ###########################################################
 
-DISTNAME=	lpjs-0.0.0.124
+DISTNAME=	lpjs-0.0.6.49
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
 GITHUB_PROJECT=	LPJS
-GITHUB_TAG=	799cd14e34c6620c1290a9ac9201ffc584fe1558
+GITHUB_TAG=	5bb53e1435480dc72a23af36449b253f9e510240
 
 OWNER=		bacon@NetBSD.org
 HOMEPAGE=	https://github.com/outpaddling/LPJS/
 COMMENT=	Lightweight, Portable Job Scheduler
 LICENSE=	2-clause-bsd
 
+TOOL_DEPENDS=	realpath>0:../../wip/realpath
+DEPENDS=	auto-admin>=0.8.0.82:../../wip/auto-admin \
+		runas>0:../../sysutils/runas
+# Only necessary for releases
+# WRKSRC=		${WRKDIR}/LPJS-${PKGVERSION_NOREV}
+
+# Force install with full debug info until release
+CFLAGS+=	-g
+MAKE_FLAGS+=	INSTALL_UNSTRIPPED=yes
+MAKE_FLAGS+=	MANDIR=${PREFIX}/${PKGMANDIR}
+MAKE_FLAGS+=	VERSION=${PKGVERSION}
 LDFLAGS.SunOS=	-lresolv -lsocket -lnsl
 
-EGDIR=		${PREFIX}/share/examples/lpjs
-OWN_DIRS=	${PKG_SYSCONFDIR}/lpjs
-CONF_FILES=	${EGDIR}/config.sample ${PKG_SYSCONFDIR}/lpjs/config
+LPJS_USER=		lpjs
+LPJS_GROUP=		${LPJS_USER}
 
-RCD_SCRIPTS+=		lpjs_dispatchd lpjs_compd
+LPJS_LOG_DIR?=		${PREFIX}/var/log/lpjs
+LPJS_SPOOL_DIR?=	${PREFIX}/var/spool/lpjs
+LPJS_RUN_DIR?=		${PREFIX}/var/run/lpjs
+LPJS_ETC_DIR?=		${PREFIX}/etc/lpjs
+
+PKG_GROUPS+=		${LPJS_GROUP}
+PKG_USERS+=		${LPJS_USER}:${LPJS_GROUP}
+PKG_GECOS.lpjs=		LPJS daemon
+PKG_SHELL.lpjs=		${NOLOGIN}
+
+OWN_DIRS_PERMS+=	${LPJS_LOG_DIR} ${LPJS_USER} ${LPJS_GROUP} 0755
+OWN_DIRS_PERMS+=	${LPJS_SPOOL_DIR} ${LPJS_USER} ${LPJS_GROUP} 0755
+OWN_DIRS_PERMS+=	${LPJS_RUN_DIR} ${LPJS_USER} ${LPJS_GROUP} 0755
+OWN_DIRS_PERMS+=	${LPJS_ETC_DIR} ${LPJS_USER} ${LPJS_GROUP} 0755
+
+EGDIR=			${PREFIX}/share/examples/lpjs
+
+CONF_FILES_PERMS=	${EGDIR}/config.sample ${PKG_SYSCONFDIR}/lpjs/config ${LPJS_USER} ${LPJS_GROUP} 0644
+
+RCD_SCRIPTS=		lpjs_dispatchd lpjs_compd
+PKG_RCD_SCRIPTS=	yes
 
 INSTALLATION_DIRS=	share/examples/lpjs
 
-pre-build:
-	cd ${WRKSRC} && ${MAKE} depend PREFIX=${PREFIX}
+pre-fetch:
+	echo ${GITHUB_PROJECT} ${GITHUB_TAG} ${DISTNAME} ${PKGVERSION_NOREV}
+	echo ${GITHUB_TAG_PROVIDED}
 
 post-install:
 	${MV} ${DESTDIR}${PREFIX}/etc/lpjs/config.sample ${DESTDIR}${EGDIR}
 
 .include "../../wip/libxtend/buildlink3.mk"
-.include "../../security/munge/buildlink3.mk"
+.include "../../wip/munge/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

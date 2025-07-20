@@ -1,0 +1,2 @@
+@comment $NetBSD$
+share/yosys/plugins/ghdl.so

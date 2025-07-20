@@ -1,17 +1,21 @@
 # $NetBSD$
 
-DISTNAME=	v2.1.3
-PKGNAME=	wendzelnntpd-${DISTNAME:S/v//}
-CATEGORIES=	news
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=wendzelnntpd/}
+#DISTNAME=		v2.1.3
+DISTNAME=		wendzelnntpd-2.2.0git
+#PKGNAME=		wendzelnntpd-${DISTNAME:S/v//}
+CATEGORIES=		news
+#MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=wendzelnntpd/}
+MASTER_SITES=		${MASTER_SITE_GITHUB:=cdpxe/}
+GITHUB_TAG=		73d8e69871ff09444b6cf5aa089df5ce06112758
+#GITHUB_RELEASE=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	micha@NetBSD.org
-HOMEPAGE=	https://sourceforge.net/projects/wendzelnntpd
-COMMENT=	Free Usenet server with SQL backend and RBAC
-LICENSE=	gnu-gpl-v3
+MAINTAINER=		micha@NetBSD.org
+HOMEPAGE=		https://sourceforge.net/projects/wendzelnntpd
+COMMENT=		Free Usenet server with SQL backend and RBAC
+LICENSE=		gnu-gpl-v3
 
-USE_TOOLS+=	bison flex gmake
-USE_FEATURES=	err regcomp snprintf
+USE_TOOLS+=		bison flex gmake
+USE_FEATURES=		err regcomp snprintf
 
 BUILD_DEFS+=		VARBASE
 
@@ -25,7 +29,8 @@ SUBST_SED.make+=	-e 's,$$(DESTDIR),$$(DESTDIR)$$(PREFIX),g'
 # Directory for example config file
 FAKECDIR=		${DESTDIR}${PREFIX}/share/examples/wendzelnntpd
 
-INSTALLATION_DIRS=	sbin share/doc/wendzelnntpd ${PKGMANDIR}/man8
+INSTALLATION_DIRS=	sbin share/doc/wendzelnntpd ${PKGMANDIR}/man8 \
+			var/spool/news/wendzelnntpd
 SPECIAL_PERMS+=		sbin/wendzelnntpd \
 			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 755
 SPECIAL_PERMS+=		sbin/wendzelnntpadm \
@@ -35,9 +40,10 @@ OWN_DIRS_PERMS+=	${VARBASE}/spool/news/wendzelnntpd \
 CONF_FILES_PERMS=	${FAKECDIR}/wendzelnntpd.conf \
 			${PKG_SYSCONFDIR}/wendzelnntpd.conf \
 			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0644
-WRKSRC=			${WRKDIR}/cdpxe-WendzelNNTPd-17d557d
+WRKSRC=			${WRKDIR}/WendzelNNTPd-73d8e69871ff09444b6cf5aa089df5ce06112758
 
 CONFIGURE_ENV+=		MYSQL=NO
+CONFIGURE_ENV+=		POSTGRES=NO
 CONFIGURE_ENV+=		CONFDIR=${PKG_SYSCONFDIR}
 CONFIGURE_ENV+=		FAKECDIR=${FAKECDIR}
 CONFIGURE_ENV+=		DESTDIR=${DESTDIR}

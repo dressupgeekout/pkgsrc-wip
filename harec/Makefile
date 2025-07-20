@@ -1,31 +1,28 @@
 # $NetBSD$
 
-DISTNAME=	harec-0
+DISTNAME=	0.24.2
+PKGNAME=	harec-${DISTNAME}
 CATEGORIES=	lang
-GIT_REPO=	https://git.sr.ht/~sircmpwn/harec
-GIT_BRANCH=	master
-GIT_REVISION=	fba0a9b547a3462d65a45ec93f78a07da58beabf
+MASTER_SITES=	https://git.sr.ht/~sircmpwn/harec/archive/
+DIST_SUBDIR=	harec
 
 MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://harelang.org/
-COMMENT=	Hare language bootstrap compiler
+COMMENT=	Compiler for the Hare language
 LICENSE=	gnu-gpl-v3
 
-USE_LANGUAGES=	c
-USE_TOOLS+=	gmake
+WRKSRC=		${WRKDIR}/harec-${DISTNAME}
 
-CONFIGURE_ARGS+=	--bindir=${BINDIR}
-CONFIGURE_ARGS+=	--libdir=${LIBDIR}
-CONFIGURE_ARGS+=	--mandir=${MANDIR}
-CONFIGURE_ARGS+=	--prefix=${PREFIX}
-CONFIGURE_ARGS+=	--sharedir=${SHAREDIR}
+TOOL_DEPENDS+=	binutils>=2.41:../../devel/binutils
+DEPENDS+=	qbe>=1.2:../../lang/qbe
 
-BUILD_DEPENDS+=		qbe-[0-9]*:../../wip/qbe
+TEST_TARGET=		check
+MAKE_FLAGS+=		LD=gld
+INSTALL_MAKE_FLAGS+=	PREFIX=${PREFIX}
 
-# XXX XXX XXX
-# >> Creating .build/config.mk... rt not supported for NetBSD
-do-configure:
-	${RUN} cd ${WRKSRC} && ${CONFIG_SHELL} ${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS} ||:
+INSTALLATION_DIRS+=	bin
 
-.include "../../wip/mk/git-package.mk"
+pre-configure:
+	cp ${WRKSRC}/configs/${OPSYS:tl}.mk ${WRKSRC}/config.mk
+
 .include "../../mk/bsd.pkg.mk"

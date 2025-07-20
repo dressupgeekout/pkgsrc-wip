@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	bowtie2-2.4.4
+DISTNAME=	bowtie2-2.5.4
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=BenLangmead/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -9,6 +9,8 @@ OWNER=		bacon@NetBSD.org
 HOMEPAGE=	https://github.com/BenLangmead/bowtie2
 COMMENT=	Ultrafast, memory-efficient short read aligner
 LICENSE=	gnu-gpl-v3
+
+ONLY_FOR_PLATFORM=	${LP64PLATFORMS}
 
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	gmake pax:build perl:run
@@ -29,4 +31,5 @@ post-install:
 
 .include "../../lang/python/application.mk"
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../devel/simde/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

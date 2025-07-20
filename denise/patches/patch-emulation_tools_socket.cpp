@@ -1,14 +1,12 @@
 $NetBSD$
 
-Include required header file.
-
---- emulation/tools/socket.cpp.orig	2021-05-12 15:32:16.000000000 +0000
+--- emulation/tools/socket.cpp.orig	2023-04-21 20:52:47.000000000 +0000
 +++ emulation/tools/socket.cpp
-@@ -6,6 +6,7 @@
+@@ -5,6 +5,7 @@
+ #else
      #define closesocket close
      #include <sys/socket.h>
++    #include <sys/time.h>
      #include <netdb.h>
-+    #include <netinet/in.h>
+     #include <netinet/in.h>
      #include <netinet/tcp.h>
-     #include <unistd.h>
-     #include <cerrno>

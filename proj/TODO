@@ -1,7 +1,12 @@
-Figure out CDN location/permission issues.  This is likely just an
-upstream doc issue, if any.
+update to 9.6.0 or 9.5.2
 
-Test all proj dependencies in pkgsrc.
+eventually:
 
-Resolve test failures; perhaps testing 8 while 7 is installed does not
-work.
+  Figure out CDN location/permission issues.  This is likely just an
+  upstream doc issue, if any.
+
+when upstream has API breaks:
+
+  Test all proj dependencies in pkgsrc.
+
+  Run tests and resolve issues.

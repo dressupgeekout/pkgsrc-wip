@@ -1,12 +1,23 @@
 $NetBSD$
 
---- base/linux_util.cc.orig	2020-06-25 09:31:18.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- base/linux_util.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ base/linux_util.cc
-@@ -19,6 +19,7 @@
- #include "base/files/dir_reader_posix.h"
- #include "base/files/file_util.h"
- #include "base/files/scoped_file.h"
-+#include "base/logging.h"
- #include "base/no_destructor.h"
- #include "base/strings/safe_sprintf.h"
- #include "base/strings/string_number_conversions.h"
+@@ -163,10 +163,14 @@ void SetLinuxDistro(const std::string& d
+ }
+ 
+ bool GetThreadsForProcess(pid_t pid, std::vector<pid_t>* tids) {
++#if BUILDFLAG(IS_BSD)
++  return false;
++#else
+   // 25 > strlen("/proc//task") + strlen(base::NumberToString(INT_MAX)) + 1 = 22
+   char buf[25];
+   strings::SafeSPrintf(buf, "/proc/%d/task", pid);
+   return GetThreadsFromProcessDir(buf, tids);
++#endif
+ }
+ 
+ bool GetThreadsForCurrentProcess(std::vector<pid_t>* tids) {

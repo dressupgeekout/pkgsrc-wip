@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (cutadapt-4.7.tar.gz) = f5b03c53fc169c1c9398c40ffc34de0b54a79a082df3064035c0780aef5cde8f
+SHA512 (cutadapt-4.7.tar.gz) = 975a12899fc014b645839ab4ebc1cbb9df7c87d4c4bef67976a72b657d7c274a49edf08e7dfa935d893cf7af35027a0cc04ceb79be0766cbe9ca49c5a2a85c61
+Size (cutadapt-4.7.tar.gz) = 250893 bytes

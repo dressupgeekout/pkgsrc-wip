@@ -1,13 +1,17 @@
 $NetBSD$
 
---- ui/views/corewm/tooltip_aura.cc.orig	2020-07-15 18:56:34.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- ui/views/corewm/tooltip_aura.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ ui/views/corewm/tooltip_aura.cc
-@@ -46,7 +46,7 @@ constexpr int kVerticalPaddingBottom = 5
+@@ -42,7 +42,7 @@ static constexpr int kTooltipMaxWidth = 
  
  // TODO(varkha): Update if native widget can be transparent on Linux.
  bool CanUseTranslucentTooltipWidget() {
--#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_WIN)
-+#if ((defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)) || defined(OS_WIN)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
    return false;
  #else
    return true;

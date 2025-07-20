@@ -3,8 +3,8 @@
 DISTNAME=	overgrowth-0.0
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=dressupgeekout/}
-# 'charlotte-netbsd' branch:
-GITHUB_TAG=	506fd955a2edf881109edd16961964e5bb33e126
+# 'charlotte_netbsd_2023-rebased' branch:
+GITHUB_TAG=	da1545e3e2215a73720abf39be0325f144690166
 
 MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://overgrowth.wolfire.com/
@@ -13,17 +13,13 @@ LICENSE=	apache-2.0
 
 WRKSRC=		${WRKDIR}/overgrowth-${GITHUB_TAG}/Projects
 USE_TOOLS+=	pkg-config
-USE_LANGUAGES=	c c++
-USE_CMAKE=	yes
+USE_LANGUAGES=	c c++11
 
-# Out-of-tree build is required.
-CONFIGURE_DIRS+=	${WRKDIR}/build
-
-CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
-CMAKE_ARGS+=	-DENABLE_RAD_TELEMETRY=OFF
-CMAKE_ARGS+=	-DBUILD_OGDA=OFF
-CMAKE_ARGS+=	-DAUX_DATA=${PREFIX}/share/overgrowth
-CMAKE_ARG_PATH=	${WRKSRC}
+CMAKE_CONFIGURE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
+CMAKE_CONFIGURE_ARGS+=	-DENABLE_RAD_TELEMETRY=OFF
+CMAKE_CONFIGURE_ARGS+=	-DBUILD_OGDA=OFF
+CMAKE_CONFIGURE_ARGS+=	-DAUX_DATA=${PREFIX}/share/overgrowth
+#CMAKE_ARG_PATH=	${WRKSRC}
 
 INSTALLATION_DIRS+=	bin
 
@@ -34,6 +30,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKDIR}/build/Overgrowth ${DESTDIR}${PREFIX}/bin/Overgrowth
 	${INSTALL_PROGRAM} ${WRKDIR}/build/OvergrowthWorker ${DESTDIR}${PREFIX}/bin/OvergrowthWorker
 
+.include "../../devel/cmake/build.mk"
 .include "../../archivers/brotli/buildlink3.mk"
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../audio/openal-soft/buildlink3.mk"

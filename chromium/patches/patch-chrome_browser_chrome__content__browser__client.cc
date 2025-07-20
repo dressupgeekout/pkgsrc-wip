@@ -1,117 +1,153 @@
 $NetBSD$
 
---- chrome/browser/chrome_content_browser_client.cc.orig	2020-07-24 02:37:46.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/chrome_content_browser_client.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ chrome/browser/chrome_content_browser_client.cc
-@@ -410,7 +410,7 @@
- #include "components/user_manager/user.h"
+@@ -468,7 +468,7 @@
  #include "components/user_manager/user_manager.h"
  #include "services/service_manager/public/mojom/interface_provider_spec.mojom.h"
--#elif defined(OS_LINUX)
-+#elif defined(OS_LINUX) || defined(OS_BSD)
+ #include "storage/browser/file_system/external_mount_points.h"
+-#elif BUILDFLAG(IS_LINUX)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  #include "chrome/browser/chrome_browser_main_linux.h"
- #elif defined(OS_ANDROID)
- #include "base/android/application_status_listener.h"
-@@ -471,7 +471,7 @@
- #endif  //  !defined(OS_ANDROID)
+ #include "chrome/browser/ui/views/chrome_browser_main_extra_parts_views_linux.h"
+ #elif BUILDFLAG(IS_ANDROID)
+@@ -563,7 +563,7 @@
+ #include "services/network/public/mojom/permissions_policy/permissions_policy_feature.mojom.h"
+ #endif  //  !BUILDFLAG(IS_ANDROID)
  
- #if defined(OS_WIN) || defined(OS_MACOSX) || \
--    (defined(OS_LINUX) && !defined(OS_CHROMEOS))
-+    ((defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS))
- #include "chrome/browser/browser_switcher/browser_switcher_navigation_throttle.h"
- #include "services/service_manager/sandbox/features.h"
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ #include "components/crash/core/app/crash_switches.h"
+ #include "components/crash/core/app/crashpad.h"
  #endif
-@@ -504,7 +504,7 @@
+@@ -572,7 +572,7 @@
+ #include "components/crash/content/browser/crash_handler_host_linux.h"
+ #endif
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+ #include "chrome/browser/enterprise/chrome_browser_main_extra_parts_enterprise.h"
+ #endif
+ 
+@@ -580,7 +580,7 @@
  #include "chrome/browser/ui/views/chrome_browser_main_extra_parts_views.h"
  #endif
  
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
- #include "chrome/browser/ui/views/chrome_browser_main_extra_parts_views_linux.h"
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "chrome/browser/chrome_browser_main_extra_parts_linux.h"
+ #elif BUILDFLAG(IS_OZONE)
+ #include "chrome/browser/chrome_browser_main_extra_parts_ozone.h"
+@@ -1398,7 +1398,7 @@ void ChromeContentBrowserClient::Registe
+   registry->RegisterBooleanPref(prefs::kDeviceNativeClientForceAllowedCache,
+                                 false);
+ #endif  // BUILDFLAG(IS_CHROMEOS)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_ANDROID)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
+   registry->RegisterBooleanPref(prefs::kOutOfProcessSystemDnsResolutionEnabled,
+                                 true);
+ #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_ANDROID)
+@@ -1617,7 +1617,7 @@ ChromeContentBrowserClient::CreateBrowse
+ #elif BUILDFLAG(IS_CHROMEOS)
+   main_parts = std::make_unique<ash::ChromeBrowserMainPartsAsh>(
+       is_integration_test, &startup_data_);
+-#elif BUILDFLAG(IS_LINUX)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   main_parts = std::make_unique<ChromeBrowserMainPartsLinux>(
+       is_integration_test, &startup_data_);
+ #elif BUILDFLAG(IS_ANDROID)
+@@ -1648,7 +1648,7 @@ ChromeContentBrowserClient::CreateBrowse
+   // Construct additional browser parts. Stages are called in the order in
+   // which they are added.
+ #if defined(TOOLKIT_VIEWS)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   main_parts->AddParts(
+       std::make_unique<ChromeBrowserMainExtraPartsViewsLinux>());
+ #else
+@@ -1665,7 +1665,7 @@ ChromeContentBrowserClient::CreateBrowse
+   main_parts->AddParts(std::make_unique<ChromeBrowserMainExtraPartsAsh>());
  #endif
  
-@@ -819,11 +819,13 @@ breakpad::CrashHandlerHostLinux* CreateC
- }
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   main_parts->AddParts(std::make_unique<ChromeBrowserMainExtraPartsLinux>());
+ #elif BUILDFLAG(IS_OZONE)
+   main_parts->AddParts(std::make_unique<ChromeBrowserMainExtraPartsOzone>());
+@@ -1684,7 +1684,7 @@ ChromeContentBrowserClient::CreateBrowse
  
- int GetCrashSignalFD(const base::CommandLine& command_line) {
-+#if !defined(OS_BSD)
-   if (crash_reporter::IsCrashpadEnabled()) {
-     int fd;
-     pid_t pid;
-     return crash_reporter::GetHandlerSocket(&fd, &pid) ? fd : -1;
-   }
+   chrome::AddMetricsExtraParts(main_parts.get());
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+   main_parts->AddParts(
+       std::make_unique<
+           enterprise_util::ChromeBrowserMainExtraPartsEnterprise>());
+@@ -2628,7 +2628,9 @@ void MaybeAppendBlinkSettingsSwitchForFi
+ void ChromeContentBrowserClient::AppendExtraCommandLineSwitches(
+     base::CommandLine* command_line,
+     int child_process_id) {
++#ifdef notyet
+   crash_keys::AppendStringAnnotationsCommandLineSwitch(command_line);
 +#endif
+ #if BUILDFLAG(IS_MAC)
+   std::unique_ptr<metrics::ClientInfo> client_info =
+       GoogleUpdateSettings::LoadMetricsClientInfo();
+@@ -2637,7 +2639,7 @@ void ChromeContentBrowserClient::AppendE
+                                     client_info->client_id);
+   }
+ #elif BUILDFLAG(IS_POSIX)
+-#if !BUILDFLAG(IS_ANDROID)
++#if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_BSD)
+   pid_t pid;
+   if (crash_reporter::GetHandlerSocket(nullptr, &pid)) {
+     command_line->AppendSwitchASCII(
+@@ -3005,7 +3007,7 @@ void ChromeContentBrowserClient::AppendE
+     }
+   }
  
-   // Extensions have the same process type as renderers.
-   if (command_line.HasSwitch(extensions::switches::kExtensionProcess)) {
-@@ -1330,7 +1332,7 @@ ChromeContentBrowserClient::CreateBrowse
- #elif defined(OS_CHROMEOS)
-   main_parts = std::make_unique<chromeos::ChromeBrowserMainPartsChromeos>(
-       parameters, startup_data_);
--#elif defined(OS_LINUX)
-+#elif defined(OS_LINUX) || defined(OS_BSD)
-   main_parts =
-       std::make_unique<ChromeBrowserMainPartsLinux>(parameters, startup_data_);
- #elif defined(OS_ANDROID)
-@@ -1356,7 +1358,7 @@ ChromeContentBrowserClient::CreateBrowse
-     // Construct additional browser parts. Stages are called in the order in
-     // which they are added.
- #if defined(TOOLKIT_VIEWS)
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
-   main_parts->AddParts(new ChromeBrowserMainExtraPartsViewsLinux());
- #else
-   main_parts->AddParts(new ChromeBrowserMainExtraPartsViews());
-@@ -2117,6 +2119,8 @@ void ChromeContentBrowserClient::AppendE
- #elif defined(OS_POSIX)
- #if defined(OS_ANDROID)
-   bool enable_crash_reporter = true;
-+#elif defined(OS_BSD)
-+  bool enable_crash_reporter = false;
- #else
-   bool enable_crash_reporter = false;
-   if (crash_reporter::IsCrashpadEnabled()) {
-@@ -2414,7 +2418,7 @@ void ChromeContentBrowserClient::AppendE
-   StackSamplingConfiguration::Get()->AppendCommandLineSwitchForChildProcess(
-       process_type, command_line);
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)) && !BUILDFLAG(IS_BSD)
+   // Opt into a hardened stack canary mitigation if it hasn't already been
+   // force-disabled.
+   if (!browser_command_line.HasSwitch(switches::kChangeStackGuardOnFork)) {
+@@ -3994,7 +3996,7 @@ bool UpdatePreferredColorScheme(WebPrefe
+   return old_preferred_color_scheme != web_prefs->preferred_color_scheme;
+ }
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
-   // Processes may only query perf_event_open with the BPF sandbox disabled.
-   if (browser_command_line.HasSwitch(switches::kEnableThreadInstructionCount) &&
-       command_line->HasSwitch(service_manager::switches::kNoSandbox)) {
-@@ -3686,7 +3690,7 @@ void ChromeContentBrowserClient::GetAddi
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+ // Sets the `root_scrollbar_theme_color` web pref if the user has enabled a
+ // custom colored frame for the UI.
+ void UpdateRootScrollbarThemeColor(Profile* profile,
+@@ -4631,7 +4633,7 @@ void ChromeContentBrowserClient::Overrid
+ 
+   UpdatePreferredColorScheme(web_prefs, main_frame_site.GetSiteURL(),
+                              web_contents, GetWebTheme());
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+   UpdateRootScrollbarThemeColor(profile, web_contents, web_prefs);
+ #endif  //  BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN)
+ 
+@@ -4956,7 +4958,7 @@ void ChromeContentBrowserClient::GetAddi
    }
  }
  
--#if defined(OS_POSIX) && !defined(OS_MACOSX)
-+#if defined(OS_POSIX) && !defined(OS_MACOSX) && !defined(OS_BSD)
+-#if BUILDFLAG(IS_POSIX) && !BUILDFLAG(IS_MAC)
++#if BUILDFLAG(IS_POSIX) && !BUILDFLAG(IS_MAC) && !BUILDFLAG(IS_BSD)
  void ChromeContentBrowserClient::GetAdditionalMappedFilesForChildProcess(
      const base::CommandLine& command_line,
      int child_process_id,
-@@ -3807,7 +3811,7 @@ bool ChromeContentBrowserClient::IsRende
- #endif  // defined(OS_WIN)
- 
- #if defined(OS_WIN) || defined(OS_MACOSX) || \
--    (defined(OS_LINUX) && !defined(OS_CHROMEOS))
-+    ((defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS))
- bool ShouldEnableAudioSandbox(const policy::PolicyMap& policies) {
-   const base::Value* audio_sandbox_enabled_policy_value =
-       policies.GetValue(policy::key::kAudioSandboxEnabled);
-@@ -3825,7 +3829,7 @@ bool ShouldEnableAudioSandbox(const poli
- 
- void ChromeContentBrowserClient::WillStartServiceManager() {
- #if defined(OS_WIN) || defined(OS_MACOSX) || \
--    (defined(OS_LINUX) && !defined(OS_CHROMEOS))
-+    ((defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS))
-   if (startup_data_) {
-     auto* chrome_feature_list_creator =
-         startup_data_->chrome_feature_list_creator();
-@@ -4071,7 +4075,7 @@ ChromeContentBrowserClient::CreateThrott
-   }
- 
- #if defined(OS_WIN) || defined(OS_MACOSX) || \
--    (defined(OS_LINUX) && !defined(OS_CHROMEOS))
-+    ((defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS))
-   MaybeAddThrottle(browser_switcher::BrowserSwitcherNavigationThrottle::
-                        MaybeCreateThrottleFor(handle),
-                    &throttles);
+@@ -7120,7 +7122,7 @@ bool ChromeContentBrowserClient::ShouldS
+ bool ChromeContentBrowserClient::ShouldRunOutOfProcessSystemDnsResolution() {
+ // This enterprise policy is supported on Android, but the feature will not be
+ // launched there.
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_ANDROID)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
+   // This is possibly called before `g_browser_process` is initialized.
+   PrefService* local_state;
+   if (g_browser_process) {

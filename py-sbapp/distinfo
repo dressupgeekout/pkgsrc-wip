@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (sbapp-0.5.4.tar.gz) = c971977792e547081776a32af4c89cb606935844cc182c3c6eeeabcc850341b3
+SHA512 (sbapp-0.5.4.tar.gz) = a23d70aca0918542cc207c599bdd2241e84ead7149cbf2d30054edb0f9f58413741cf8444465b5ca485b5f309ad6c9d73cbb4cae5dd640c5c154af1b0355b11c
+Size (sbapp-0.5.4.tar.gz) = 3167933 bytes

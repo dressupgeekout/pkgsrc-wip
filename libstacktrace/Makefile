@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.15 2012/10/03 09:10:41 asau Exp $
 #
 
-DISTNAME=	lmdbg-1.0.0
+DISTNAME=	lmdbg-1.3.0
 PKGNAME=	${DISTNAME:S/lmdbg-/libstacktrace-/}
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=lmdbg/} \
@@ -12,7 +12,7 @@ HOMEPAGE=	https://sourceforge.net/projects/lmdbg/
 COMMENT=	Stacktracing library similar to glibc backtrace(3)
 LICENSE=	mit
 
-BUILD_DEPENDS+=		mk-configure>=0.20.0:../../devel/mk-configure
+TOOL_DEPENDS+=		mk-configure>=0.20.0:../../devel/mk-configure
 
 ONLY_FOR_COMPILER=	gcc icc
 NOT_FOR_PLATFORM=	Darwin-*-*

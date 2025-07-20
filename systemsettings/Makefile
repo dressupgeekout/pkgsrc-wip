@@ -9,7 +9,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/plasma5.mk"
 
-BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
+TOOL_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
 
@@ -22,5 +22,6 @@ SUBST_SED.fix-moc=	-e 's;"${PREFIX}/include",;;g'
 
 .include "../../devel/krunner/buildlink3.mk"
 .include "../../wip/plasma-workspace/buildlink3.mk"
+.include "../../x11/kirigami2/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

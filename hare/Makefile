@@ -1,30 +1,45 @@
 # $NetBSD$
 
-DISTNAME=	hare-0
+DISTNAME=	0.24.2
+PKGNAME=	hare-${DISTNAME}
 CATEGORIES=	lang
-GIT_REPO=	https://git.sr.ht/~sircmpwn/hare
-GIT_BRANCH=	master
-GIT_REVISION=	d9870303ec34c851b5d5a06402d8009dac76d174
+MASTER_SITES=	https://git.sr.ht/~sircmpwn/hare/archive/
+DIST_SUBDIR=	hare
 
 MAINTAINER=	charlotte@NetBSD.org
 HOMEPAGE=	https://harelang.org/
 COMMENT=	The Hare programming language
-LICENSE=	gnu-gpl-v3
+LICENSE=	gnu-gpl-v3 AND mpl-2.0
 
-USE_LANGUAGES=	c
+WRKSRC=		${WRKDIR}/hare-${DISTNAME}
+
 USE_TOOLS+=	gmake
 
-MAKE_FLAGS+=	BINDIR=${BINDIR}
-MAKE_FLAGS+=	LIBDIR=${LIBDIR}
-MAKE_FLAGS+=	MANDIR=${MANDIR}
-MAKE_FLAGS+=	PREFIX=${PREFIX}
+TOOL_DEPENDS+=	binutils>=2.41:../../devel/binutils
+TOOL_DEPENDS+=	scdoc>=1.10.0:../../textproc/scdoc
+DEPENDS+=	harec>=${DISTNAME}:../../wip/harec
 
-BUILD_DEPENDS+=		harec-[0-9]*:../../wip/harec
-BUILD_DEPENDS+=		qbe-[0-9]*:../../wip/qbe
-BUILD_DEPENDS+=		scdoc-[0-9]*:../../textproc/scdoc
+TEST_TARGET=		check
+MAKE_FLAGS+=		LD=gld
+MAKE_FLAGS+=		OPSYS=${OPSYS:tl}
 
 pre-configure:
-	${RUN} cd ${WRKSRC} && ${CP} -f config.example.mk config.mk
+	cp ${FILESDIR}/config.mk ${WRKSRC}
 
-.include "../../wip/mk/git-package.mk"
+# TODO: After NetBSD 10.1, we can remove the time/chrono patch and the
+#       following
+SUBST_CLASSES+=		leapsecs
+SUBST_MESSAGE.leapsecs=	Parameterize path to leap-second data.
+SUBST_STAGE.leapsecs=	post-extract
+SUBST_FILES.leapsecs=	time/chrono/+netbsd.ha
+SUBST_SED.leapsecs=	-e s,/usr/share/zoneinfo/leap-seconds.list,${PREFIX}/share/hare/leap-seconds.list,g
+
+MASTER_SITES+=	https://data.iana.org/time-zones/code/
+DISTFILES=	${DEFAULT_DISTFILES}
+DISTFILES+=	leap-seconds.list
+post-install:
+	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/hare
+	${INSTALL_DATA} ${WRKDIR}/leap-seconds.list \
+		${DESTDIR}${PREFIX}/share/hare/leap-seconds.list
+
 .include "../../mk/bsd.pkg.mk"

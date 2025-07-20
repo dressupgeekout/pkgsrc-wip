@@ -1,0 +1,2 @@
+@comment $NetBSD$
+arduino15/packages/builtin/tools/mdns-discovery/${PKGVERSION}/mdns-discovery

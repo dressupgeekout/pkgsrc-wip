@@ -1,0 +1,7 @@
+@comment $NetBSD$
+bin/arduino-cli
+bin/client_example
+bin/cmd
+bin/discovery_client
+bin/docsgen
+bin/term_example

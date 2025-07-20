@@ -1,16 +1,19 @@
 $NetBSD$
 
---- net/http/http_auth_gssapi_posix.cc.orig	2020-07-15 18:56:00.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- net/http/http_auth_gssapi_posix.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ net/http/http_auth_gssapi_posix.cc
-@@ -367,8 +367,9 @@ base::NativeLibrary GSSAPISharedLibrary:
-     static const char* const kDefaultLibraryNames[] = {
- #if defined(OS_MACOSX)
-       "/System/Library/Frameworks/GSS.framework/GSS"
--#elif defined(OS_OPENBSD)
--      "libgssapi.so"          // Heimdal - OpenBSD
-+#elif defined(OS_BSD)
-+      "libgssapi_krb5.so"     // MIT Kerberos - FreeBSD
-+      "libgssapi.so"          // Heimdal - OpenBSD/NetBSD
+@@ -366,7 +366,9 @@ base::NativeLibrary GSSAPISharedLibrary:
+   } else {
+ #if BUILDFLAG(IS_APPLE)
+     library_names.emplace_back("/System/Library/Frameworks/GSS.framework/GSS");
+-#elif BUILDFLAG(IS_OPENBSD)
++#elif BUILDFLAG(IS_BSD)
++    // MIT Kerberos - FreeBSD
++    library_names.emplace_back("libgssapi_krb5.so.2");
+     // Heimdal - OpenBSD
+     library_names.emplace_back("libgssapi.so");
  #else
-       "libgssapi_krb5.so.2",  // MIT Kerberos - FC, Suse10, Debian
-       "libgssapi.so.4",       // Heimdal - Suse10, MDK

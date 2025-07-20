@@ -1,7 +1,12 @@
 $NetBSD$
 
-BLAKE2s (cyclone-bootstrap/v0.35.0.tar.gz) = 5a311cec00b35bfc63fdf6eea2ad6ea4b99959fee7e19220d6b7019073964533
-SHA512 (cyclone-bootstrap/v0.35.0.tar.gz) = 9aabae2bdcccdf6873780947c41a3230b80a3a5e93c9797cdfe278ba971e2b43320edab31349403a7fb14416c92216395d76af2415c33fb28f041ab867f2d716
-Size (cyclone-bootstrap/v0.35.0.tar.gz) = 3955837 bytes
-SHA1 (patch-Makefile) = 3b1405ff54738ac53808f1f4e2e2a8d3f458f75d
-SHA1 (patch-Makefile.config) = 8838e7b3ac7b22452b798ab043ad94fe33ac4822
+BLAKE2s (cyclone-0.36.0.tar.gz) = 1777c4452a676b992c0b5ed968cd6b72b358fbd5517e72589dd53c285638437c
+SHA512 (cyclone-0.36.0.tar.gz) = 6dfa3ff80b1a8397608483e6d914c25b1fee521d620991fb70f1bcf77303d290477100cbd82fbd9c939b5f2c91f72240f58711d9ab023721c15c8ad9b15998fd
+Size (cyclone-0.36.0.tar.gz) = 5237987 bytes
+SHA1 (patch-Makefile) = d5e8d8a25d9472601708778ec9e220a987da4128
+SHA1 (patch-Makefile.config) = 1cb1559cbe9779d5fa8bda998db14951af99716a
+SHA1 (patch-cyclone.scm) = e624dd62369d92b88501f8770d3504e78e311321
+SHA1 (patch-include_cyclone_types.h) = caf0f87ec67d42aad59d7041c50de12fac20c932
+SHA1 (patch-scheme_base.sld) = b9aaeb494572eb4fddecf25d30eae7cafe77163f
+SHA1 (patch-srfi_106.sld) = d8929991450c841fd00330d6b1e705a7290900bb
+SHA1 (patch-tests_macro-hygiene.scm) = 3e640ae4e4f67f0d3e3be7670559748758ac66bc

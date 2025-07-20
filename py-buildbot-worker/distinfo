@@ -1,5 +1,5 @@
 $NetBSD: distinfo,v 1.8 2020/02/19 19:07:19 adam Exp $
 
-RMD160 (buildbot-worker-3.1.0.tar.gz) = 0f58ac159cc8771c92ddd0877db8211d0387eed1
-SHA512 (buildbot-worker-3.1.0.tar.gz) = eca2a32c67822adc0dd258ba991205525024ee1543e218337835393ad9bd948d5f48dd4348976c64eb4c6812a16a7e951f4114ef81982a49a0d80da485567f98
-Size (buildbot-worker-3.1.0.tar.gz) = 97938 bytes
+BLAKE2s (buildbot-worker-3.9.2.tar.gz) = 54694fc9419ef1471a7927719b535f0552844990e9e1f2da270212b9f49f6d08
+SHA512 (buildbot-worker-3.9.2.tar.gz) = ebcca76fa21316cffcaf5dd0fe4b7fa21b6103e1a60ec04c6011c29ad9ecb02f4e3f1b9897d8f48f33b5b5ee8938c04932e90b28f8492e4429ac39ceb444e009
+Size (buildbot-worker-3.9.2.tar.gz) = 126470 bytes

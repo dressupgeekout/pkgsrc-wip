@@ -1,22 +1,35 @@
 $NetBSD$
 
---- chrome/browser/chrome_browser_interface_binders.cc.orig	2020-07-08 21:41:46.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/chrome_browser_interface_binders.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ chrome/browser/chrome_browser_interface_binders.cc
-@@ -119,7 +119,7 @@
- #endif
+@@ -80,7 +80,7 @@
+ #endif  // BUILDFLAG(ENABLE_UNHANDLED_TAP)
  
- #if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || \
--    defined(OS_CHROMEOS)
-+    defined(OS_CHROMEOS) || defined(OS_BSD)
- #include "chrome/browser/ui/webui/discards/discards.mojom.h"
- #include "chrome/browser/ui/webui/discards/discards_ui.h"
- #include "chrome/browser/ui/webui/discards/site_data.mojom.h"
-@@ -573,7 +573,7 @@ void PopulateChromeWebUIFrameBinders(
- #endif
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ #include "chrome/browser/screen_ai/screen_ai_service_router.h"
+ #include "chrome/browser/screen_ai/screen_ai_service_router_factory.h"
+ #include "chrome/browser/ui/web_applications/sub_apps_service_impl.h"
+@@ -363,7 +363,7 @@ void BindMediaFoundationPreferences(
+ #endif  // BUILDFLAG(IS_WIN)
  
- #if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || \
--    defined(OS_CHROMEOS)
-+    defined(OS_CHROMEOS) || defined(OS_BSD)
-   RegisterWebUIControllerInterfaceBinder<discards::mojom::DetailsProvider,
-                                          DiscardsUI>(map);
+ #if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || \
+-    BUILDFLAG(IS_WIN)
++    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+ void BindScreenAIAnnotator(
+     content::RenderFrameHost* frame_host,
+     mojo::PendingReceiver<screen_ai::mojom::ScreenAIAnnotator> receiver) {
+@@ -522,7 +522,7 @@ void PopulateChromeFrameBinders(
+ #endif  // BUILDFLAG(ENABLE_SPEECH_SERVICE)
  
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   if (base::FeatureList::IsEnabled(blink::features::kDesktopPWAsSubApps) &&
+       !render_frame_host->GetParentOrOuterDocument()) {
+     // The service binder will reject non-primary main frames, but we still need

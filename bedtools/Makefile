@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	bedtools-2.30.0
+DISTNAME=	bedtools-2.31.1
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=arq5x/}
 GITHUB_PROJECT=	bedtools2
@@ -20,6 +20,8 @@ SUBST_CLASSES+=		pybin
 SUBST_STAGE.pybin=	pre-configure
 SUBST_SED.pybin=	-e 's|python|${PYTHONBIN}|g'
 SUBST_FILES.pybin=	Makefile
+
+LDFLAGS.SunOS+=		-lsocket
 
 do-test:
 	cd ${WRKSRC}/test && bash test.sh

@@ -1,0 +1,7 @@
+$NetBSD: distinfo,v 1.21 2017/09/11 20:56:28 wiz Exp $
+
+BLAKE2s (libflame-5.2.0-9eae1d98f37c30774e53d0cefb31188102ab742b.tar.gz) = e2c6e722e541d8ab405ad9b598d244ecfcf7411812948ec97127fdf470374bab
+SHA512 (libflame-5.2.0-9eae1d98f37c30774e53d0cefb31188102ab742b.tar.gz) = 5ee81e243a6cefb640614206cf436617b7afbdba7e7eecefd0d4aa259961d3483186774aa4d15162051294ca3f145059ae9c8872bc58baeb5ffb1920357aa7fd
+Size (libflame-5.2.0-9eae1d98f37c30774e53d0cefb31188102ab742b.tar.gz) = 23640074 bytes
+SHA1 (patch-configure) = 92a22038ad342c15041af506d2b588cd02e7260d
+SHA1 (patch-configure__tidsp) = 5cffd9736605ec0d6cf02466da62531ab1f12c16

@@ -1,5 +1,5 @@
 $NetBSD$
 
-RMD160 (reveal.js-3.8.0.tar.gz) = 43e975c62f81c7d39aa2c84378ea56f9c20f904b
-SHA512 (reveal.js-3.8.0.tar.gz) = 4dafbaefb8ff0dd661ae7103e8793ba8b26bcd2a1b8fa9aae19af188d5c76632533ba29c41d66c71b7813d3946e328a26b18840125f4034b6e0afa005700ce1f
-Size (reveal.js-3.8.0.tar.gz) = 1842266 bytes
+BLAKE2s (reveal.js-5.1.0.tar.gz) = 3fc95e01827f6f3dc8e6bb29cf7ad381f139838d77379fdd5675c53d59ee0f60
+SHA512 (reveal.js-5.1.0.tar.gz) = 33ba5bb62dbf15c64d4ba483c250709a146beb6440cc886f09ef4559287d39bccbbe3e6e9a65233951b5169f302bf9f8d8ddbbb29bc71e204a12720c6ca8887e
+Size (reveal.js-5.1.0.tar.gz) = 2641782 bytes

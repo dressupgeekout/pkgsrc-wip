@@ -1,5 +1,0 @@
-$NetBSD$
-
-BLAKE2s (cov-analysis-netbsd64-2022.06.tar.gz) = 85a4f3c179b3fed0411ec9c3188d47f59b6ca50e483620afdfc5650c84b190c8
-SHA512 (cov-analysis-netbsd64-2022.06.tar.gz) = fd4e3bea27ed7d5ed25afda8ba3f4354ca7769178478b742b813ba2b5c48cc45cd8417ccb44bf00d154573ad403370ad8580531eff1edf8b39cfb463154c58f6
-Size (cov-analysis-netbsd64-2022.06.tar.gz) = 84923124 bytes

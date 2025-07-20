@@ -1,0 +1,4 @@
+@comment $NetBSD$
+bin/diffsitter
+bin/diffsitter-utils
+bin/diffsitter_completions

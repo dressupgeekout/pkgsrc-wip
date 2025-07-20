@@ -1,0 +1,25 @@
+Warning: this pkg is currently under construction. I plan to keep the
+pkg up to date here so that the progress is transparent. I am open to
+suggestions and active support.
+
+Done:
+
+- Updated to 3.6 (used 3.0 pkg from wip as base)
+
+- Performed basic testing (installation on NetBSD 10.0_BETA,
+  configured a IMAP server with saslauthd ldap, created a mailbox,
+  configured the mailbox and caldav calendar in Thunderbird
+
+Next steps:
+
+- watch log files for suspious messages, clarify
+
+- more testing, i.e. migrate my "production" 3.0.17 install to 3.6.1 
+
+- regenerate documentation at build time using Sphinx
+
+Bugs:
+
+- Kerberos support, PostgreSQL and MySQL are currently not tested
+
+For questions, tips or offers of help you can contact me at mp@petermann-it.de

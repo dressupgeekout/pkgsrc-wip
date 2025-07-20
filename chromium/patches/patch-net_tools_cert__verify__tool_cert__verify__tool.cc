@@ -1,31 +1,26 @@
 $NetBSD$
 
---- net/tools/cert_verify_tool/cert_verify_tool.cc.orig	2020-07-15 18:56:00.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- net/tools/cert_verify_tool/cert_verify_tool.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ net/tools/cert_verify_tool/cert_verify_tool.cc
-@@ -29,7 +29,7 @@
- #include "net/url_request/url_request_context_builder.h"
- #include "net/url_request/url_request_context_getter.h"
+@@ -35,7 +35,7 @@
+ #include "third_party/boringssl/src/pki/trust_store.h"
+ #include "third_party/boringssl/src/pki/trust_store_collection.h"
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  #include "net/proxy_resolution/proxy_config.h"
  #include "net/proxy_resolution/proxy_config_service_fixed.h"
  #endif
-@@ -46,7 +46,7 @@ void SetUpOnNetworkThread(
+@@ -67,7 +67,7 @@ void SetUpOnNetworkThread(
      base::WaitableEvent* initialization_complete_event) {
    net::URLRequestContextBuilder url_request_context_builder;
    url_request_context_builder.set_user_agent(GetUserAgent());
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    // On Linux, use a fixed ProxyConfigService, since the default one
    // depends on glib.
    //
-@@ -192,7 +192,7 @@ std::unique_ptr<CertVerifyImpl> CreateCe
-     base::StringPiece impl_name,
-     scoped_refptr<net::CertNetFetcher> cert_net_fetcher,
-     bool use_system_roots) {
--#if !(defined(OS_FUCHSIA) || defined(OS_LINUX) || defined(OS_CHROMEOS))
-+#if !(defined(OS_FUCHSIA) || defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD))
-   if (impl_name == "platform") {
-     if (!use_system_roots) {
-       std::cerr << "WARNING: platform verifier not supported with "

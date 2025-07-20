@@ -1,48 +1,58 @@
 $NetBSD$
 
-# Add destdir support, install-strip, and respect LDFLAGS
+# Respect build env, add destdir support
 
---- Makefile.orig	2019-04-17 03:23:22.000000000 +0000
+--- Makefile.orig	2025-06-17 10:24:56.000000000 +0000
 +++ Makefile
-@@ -3,9 +3,11 @@ DIR_SRC := ./src
- DIR_OBJ := ./obj
- 
- PREFIX ?= /usr/local
-+DESTDIR ?=
- BINDIR ?= $(PREFIX)/bin
+@@ -7,6 +7,8 @@ BINDIR ?= $(PREFIX)/bin
  INCLUDE_DIRS ?=
  LIBRARY_DIRS ?=
-+STRIP ?= strip
  
++STRIP	?= strip
++
  SRC := $(wildcard ${DIR_SRC}/*.cpp)
  OBJ := $(patsubst %.cpp,${DIR_OBJ}/%.o,$(notdir ${SRC}))
-@@ -15,13 +17,14 @@ TARGET := fastp
+ 
+@@ -15,15 +17,20 @@ TARGET := fastp
  BIN_TARGET := ${TARGET}
  
  CXX ?= g++
--CXXFLAGS := -std=c++11 -g -O3 -I${DIR_INC} $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) ${CXXFLAGS}
--LIBS := -lz -lpthread
--LD_FLAGS := $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir)) $(LIBS) $(LD_FLAGS)
-+CXXFLAGS ?= -g -O3
+-CXXFLAGS := -std=c++11 -pthread -g -O3 -MD -MP -I${DIR_INC} $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) ${CXXFLAGS}
++# Optional flags that the user can override by setting CXXFLAGS in the
++# env or make argument.  -pthread is a link flag, and serves no purpose
++# in the compile command.  It is handled by -lpthread in LIBS.
++CXXFLAGS ?= -g -O3 -MD -MP
++# Append required flags to standard CXXFLAGS from env
 +CXXFLAGS += -std=c++11 -I${DIR_INC} $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir))
-+LIBS := -lz
+ LIBS := -lisal -ldeflate -lpthread
+ STATIC_FLAGS := -static -Wl,--no-as-needed -pthread
+-LD_FLAGS := $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir)) $(LIBS) $(LD_FLAGS)
++# Append required flags to standard LDFLAGS from env
 +LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir)) $(LIBS)
+ STATIC_LD_FLAGS := $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir)) $(STATIC_FLAGS) $(LIBS) $(STATIC_LD_FLAGS)
  
- 
+-
  ${BIN_TARGET}:${OBJ}
 -	$(CXX) $(OBJ) -o $@ $(LD_FLAGS)
 +	$(CXX) $(OBJ) -o $@ $(LDFLAGS)
  
- ${DIR_OBJ}/%.o:${DIR_SRC}/%.cpp make_obj_dir
- 	$(CXX) -c $< -o $@ $(CXXFLAGS)
-@@ -38,5 +41,9 @@ make_obj_dir:
- 	fi
+ static:${OBJ}
+ 	$(CXX) $(OBJ) -o ${BIN_TARGET} $(STATIC_LD_FLAGS)
+@@ -38,8 +45,16 @@ clean:
+ 	@rm -rf $(DIR_OBJ)
+ 	@rm -f $(TARGET)
  
++# Respect DESTDIR for staged installs (used by most package managers).
++# DESTDIR is empty by default, so this will install directly to BINDIR
++# unless DESTDIR is supplied by the user.
  install:
 -	install $(TARGET) $(BINDIR)/$(TARGET)
-+	install -d $(DESTDIR)$(BINDIR)
-+	install $(TARGET) $(DESTDIR)$(BINDIR)/$(TARGET)
++	mkdir -p $(DESTDIR)$(BINDIR)
++	install $(TARGET) $(DESTDIR)$(BINDIR)
  	@echo "Installed."
-+
+ 
++# Many package managers use install-strip target if debugging is not enabled
 +install-strip: install
 +	$(STRIP) $(DESTDIR)$(BINDIR)/$(TARGET)
++
+ -include $(OBJ:.o=.d)

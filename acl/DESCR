@@ -1,0 +1,5 @@
+Access Control Lists (acl package)
+
+The acl package contains getfacl and setfacl utilities and the libacl
+loadable library as well as  additional files required for developing
+access control list programs.

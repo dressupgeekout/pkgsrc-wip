@@ -9,7 +9,7 @@ LICENSE=	gnu-gpl-v2
 
 .include "../../meta-pkgs/kde/plasma5.mk"
 
-BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
+TOOL_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
 
@@ -19,6 +19,8 @@ SUBST_MESSAGE.fix-moc=	Cleaning up MOC includes
 SUBST_FILES.fix-moc=	_KDE_build/kcmkgamma/CMakeFiles/kcm_kgamma_autogen.dir/AutogenInfo.json
 SUBST_NOOP_OK.fix-moc=	yes
 SUBST_SED.fix-moc=	-e 's;"${PREFIX}/include",;;g'
+
+WRKSRC=		${WRKDIR}/${DISTNAME:S/5//}
 
 .include "../../x11/kconfigwidgets/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"

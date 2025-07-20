@@ -1,13 +1,12 @@
 # $NetBSD$
 
-DISTNAME=	spcm-0.4.2.32
+DISTNAME=	spcm-0.5.9.13
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
-GITHUB_PROJECT=	SPCM
-GITHUB_TAG=	924bc14e0f2918802e3e38d17ff3396df89a3164
+GITHUB_TAG=	3d3d33100fe8075f5a5215231a4d9d68e37aa41c
 
 OWNER=		bacon@NetBSD.org
-HOMEPAGE=	http://acadix.biz/spcm.php
+HOMEPAGE=	https://github.com/outpaddling/SPCM
 COMMENT=	Simple, portable cluster management
 LICENSE=	2-clause-bsd
 
@@ -17,15 +16,16 @@ DATADIR=	${PREFIX}/share/spcm
 
 SUBST_CLASSES+=		sbin
 SUBST_STAGE.sbin=	pre-configure
-SUBST_FILES.sbin+=	Common/Src/cluster-passwd.c
+SUBST_FILES.sbin+=	Common/Src/spcm-passwd.c
 SUBST_SED.sbin=		-e 's|%%PREFIX%%|${PREFIX}|g'
 
-DEPENDS+=	auto-admin>=0.6.9.3:../../wip/auto-admin
+DEPENDS+=	auto-admin>=0.8.0.38:../../wip/auto-admin
 
 USE_TOOLS+=	bash
 
 .include "../../mk/bsd.prefs.mk"
 
+WRKSRC=		${WRKDIR}/SPCM-${GITHUB_TAG}
 MAKE_ENV+=	PREFIX=${PREFIX} DATADIR=${DATADIR}
 
 .include "../../mk/bsd.pkg.mk"

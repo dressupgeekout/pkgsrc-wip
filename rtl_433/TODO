@@ -1,6 +1,6 @@
-Don't install examples into etc; put them in share/examples/rtl-433
+  - remove all MESSAGE files one way or the other
 
-Somehow figure out/document how to use this on NetBSD, or explain why
-it can't, perhaps just in a amkefile comment.
+  - consider moving to a snapshot instead of a release, as rtl_433 does not have releases adequately often
 
-(gdt can import this once converged; I actually use rtl_433.)
+  - document or remove most CMAKE_CONFIGURE_ARGS as they look leftover from an earlier time
+  

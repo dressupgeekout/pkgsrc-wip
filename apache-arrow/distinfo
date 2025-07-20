@@ -1,11 +1,18 @@
 $NetBSD$
 
-BLAKE2s (8.1.0.tar.gz) = 37f9e9f450b26a016e97a460f8fc9b304867c36d6a2008999b8df35d67f88f02
-SHA512 (8.1.0.tar.gz) = 539f7b565b45e8225c6476ca1becc8243a84ae7fb51b45a584231e7d36aee10a09d7d30fb87d89cb77813fb063a7b7617bcf01fdf996f59d99e8d474d2a044ee
-Size (8.1.0.tar.gz) = 190180 bytes
-BLAKE2s (apache-arrow-9.0.0.tar.gz) = e06c46febd9849343357b449d8f85a6375825dd47431ede47f1ba936fa87a93d
-SHA512 (apache-arrow-9.0.0.tar.gz) = 6eb14c766e4542e110a2d6748cea19a71d7035b8a3fda095efe36b5f02c134abc8c5bbcc9cd72dbc40ae1e87c28399a116501d983b5501b9b277fbcbfa09d7e5
-Size (apache-arrow-9.0.0.tar.gz) = 18314915 bytes
+BLAKE2s (13.0.0.tar.gz) = b2edcdae20ea56461825c8ccd41f69ac17c3ffaf06b73239d1c62675e1b5ecf4
+SHA512 (13.0.0.tar.gz) = cdc42ddad3353297cf25ea2b6b3f09967f5f388efc26241f2997979fdbbac072819ff771145bc5bfa86cb326cca84b4119e8e6e3f658407961cf203a40603a7f
+Size (13.0.0.tar.gz) = 259967 bytes
+BLAKE2s (apache-arrow-20.0.0.tar.gz) = 1ae22569b962750da820c4deacab5e7dfa5043b75fd3b432562b4e1050b4a445
+SHA512 (apache-arrow-20.0.0.tar.gz) = 067e62d7d311cebfca43473b0aacaacc534da47c3450b75328517df69281d8be1e79b0430cc7e975eb613e05c62a62d6ca92a4c4f7882ae7733f826d774d9081
+Size (apache-arrow-20.0.0.tar.gz) = 17862661 bytes
 BLAKE2s (jemalloc-5.3.0.tar.bz2) = 285e6145b9d3b575b1ec5cfdae8af40b461149085f001839d64685c0d56e2689
 SHA512 (jemalloc-5.3.0.tar.bz2) = 22907bb052096e2caffb6e4e23548aecc5cc9283dce476896a2b1127eee64170e3562fa2e7db9571298814a7a2c7df6e8d1fbe152bd3f3b0c1abec22a2de34b1
 Size (jemalloc-5.3.0.tar.bz2) = 736023 bytes
+BLAKE2s (mimalloc-v2.0.6.tar.gz) = 1113416316ab2159d3525c695601369dc659836629c22ac7b6bb24caa18ef81a
+SHA512 (mimalloc-v2.0.6.tar.gz) = f2fc0fbfb6384e85959897f129e5d5d9acc51bda536d5cabcd7d4177dbda9fb735b8a8c239b961f8bea31d37c9ae10f66da23aa91d497f95393253d4ac792bb3
+Size (mimalloc-v2.0.6.tar.gz) = 1127052 bytes
+BLAKE2s (v0.44.0.tar.gz) = 02ac19748c8d788fde68954028a4cb196814eb1a8d1703e4c12ed8d58c7578ba
+SHA512 (v0.44.0.tar.gz) = 6cc2502a976ec93a8cbdeaa1a6dfe72fd9a96d44520ffa8b1cca522e9d3cb4c3df224bd8619c37cd14b53bf749aeb6e74129ac496c3fd3429936cdff21beb2d4
+Size (v0.44.0.tar.gz) = 131614 bytes
+SHA1 (patch-cpp_src_arrow_compute_kernels_vector__pairwise.cc) = 808d9f035b413c95531fc1a82c3c838ebbb14297

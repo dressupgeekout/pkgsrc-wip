@@ -1,0 +1,23 @@
+$NetBSD$
+
+fix install paths
+
+--- Makefile.orig	2024-04-03 03:45:29.535520201 +0000
++++ Makefile
+@@ -30,7 +30,6 @@ VERSION= $(MMVERSION).$(RELVER)
+ # Change the installation path as needed. This automatically adjusts
+ # the paths in src/luaconf.h, too. Note: PREFIX must be an absolute path!
+ #
+-export PREFIX= /usr/local
+ export MULTILIB= lib
+ ##############################################################################
+ 
+@@ -47,7 +46,7 @@ INSTALL_LMODD= $(INSTALL_SHARE)/lua
+ INSTALL_LMOD= $(INSTALL_LMODD)/$(ABIVER)
+ INSTALL_CMODD= $(INSTALL_LIB)/lua
+ INSTALL_CMOD= $(INSTALL_CMODD)/$(ABIVER)
+-INSTALL_MAN= $(INSTALL_SHARE)/man/man1
++INSTALL_MAN= $(DPREFIX)/$(PKGMANDIR)/man1
+ INSTALL_PKGCONFIG= $(INSTALL_LIB)/pkgconfig
+ 
+ INSTALL_TNAME= luajit-$(VERSION)

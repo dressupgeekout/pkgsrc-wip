@@ -9,7 +9,7 @@ LICENSE=	gnu-gpl-v2
 
 .include "../../meta-pkgs/kde/plasma5.mk"
 
-BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
+TOOL_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge pkg-config perl:run
 
@@ -24,5 +24,6 @@ SPECIAL_PERMS+=	${PREFIX}/libexec/kcheckpass \
 .include "../../devel/kidletime/buildlink3.mk"
 .include "../../devel/kwayland/buildlink3.mk"
 .include "../../wip/layer-shell-qt/buildlink3.mk"
+.include "../../x11/libkscreen/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,5 +1,5 @@
 $NetBSD: distinfo,v 1.7 2020/02/19 19:07:19 adam Exp $
 
-RMD160 (buildbot-grid-view-3.1.0.tar.gz) = 0ec32fc3a849a68c78a44d3b17b6626bc2ed98f1
-SHA512 (buildbot-grid-view-3.1.0.tar.gz) = dc1b68b7ba3708d8a0e2a0b11ee2a685b643ed786ae535bf7be3c6d3fd6a1262ee4795fd3ef11edfce06a6444fd0b0c77ec3bfc71b6b7e305e677ba370690d2e
-Size (buildbot-grid-view-3.1.0.tar.gz) = 13693 bytes
+BLAKE2s (buildbot-grid-view-3.9.2.tar.gz) = f5ea1693375bb8837bd150c8ec2f0e55f15047c4aa90adb9d4c8fbb399ec9e2d
+SHA512 (buildbot-grid-view-3.9.2.tar.gz) = 74ddaa2889caf56b1409f9e37677e68dcb7f002e2e073369c0a6fd694378b10225026e4d05b3123721cdf174afe3f420cffbad38b097c7d804853921aaecc367
+Size (buildbot-grid-view-3.9.2.tar.gz) = 14108 bytes

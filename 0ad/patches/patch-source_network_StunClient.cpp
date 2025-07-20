@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-source_network_StunClient.cpp,v 1.1 2023/05/04 15:20:52 nikita Exp $
 
 Add header file for std::byte.
 

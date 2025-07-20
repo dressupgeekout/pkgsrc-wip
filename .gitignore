@@ -8,9 +8,17 @@ Makefile-url2pkg.bak
 commit_wip.sh
 *~
 \#*\#
+.\#*
 *.orig
 *.core
 *.*.swp
 
 # CVS leftovers
 CVS
+
+# macOS files
+.DS_Store
+
+# make readme output
+README.html
+index.html

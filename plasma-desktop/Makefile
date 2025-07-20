@@ -9,7 +9,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/plasma5.mk"
 
-BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
+TOOL_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 #DEPENDS+=	ksysguard>=${PLASMAVER}:../../wip/ksysguard
 DEPENDS+=	kmenuedit>=${PLASMAVER}:../../wip/kmenuedit
 DEPENDS+=	polkit-kde-agent>=${PLASMAVER}:../../wip/polkit-kde-agent
@@ -17,7 +17,7 @@ DEPENDS+=	qt5-qtgraphicaleffects-[0-9]*:../../x11/qt5-qtgraphicaleffects
 
 USE_TOOLS+=	msgmerge pkg-config
 
-CMAKE_ARGS+=	-DKAUTH_DBUS_DIR=${PREFIX}/share/examples/plasma-desktop
+CMAKE_CONFIGURE_ARGS+=	-DKAUTH_DBUS_DIR=${PREFIX}/share/examples/plasma-desktop
 
 #REPLACE_PYTHON+=	kcms/ksmserver/kconf_update/ksmserver_update_loginMode_value.py
 CHECK_INTERPRETER_SKIP+=	share/kconf_update/*
@@ -58,7 +58,7 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 .include "../../lang/python/application.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../sysutils/baloo5/buildlink3.mk"
-.include "../../wip/libksysguard/buildlink3.mk"
+.include "../../sysutils/libksysguard/buildlink3.mk"
 .include "../../wip/systemsettings/buildlink3.mk"
 .include "../../x11/kdelibs4support/buildlink3.mk"
 .include "../../x11/libxkbfile/buildlink3.mk"

@@ -1,5 +1,4 @@
 # $NetBSD: Makefile,v 1.2 2012/10/07 11:54:31 asau Exp $
-#
 
 DISTNAME=	enre-0.3.4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}

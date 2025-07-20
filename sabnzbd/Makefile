@@ -1,7 +1,7 @@
 # $NetBSD$
 
 DISTNAME=	sabnzbd-${DISTVERSION}
-DISTVERSION=	3.6.1
+DISTVERSION=	4.3.2
 CATEGORIES=	news
 MASTER_SITES=	${MASTER_SITE_GITHUB:=sabnzbd/}
 GITHUB_PROJECT=	sabnzbd
@@ -13,16 +13,20 @@ HOMEPAGE=	https://sabnzbd.org/
 COMMENT=	Web-interface based binary newsgrabber in python, with nzb support
 LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND modified-bsd AND mit
 
-DEPENDS+=	${PYPKGPREFIX}-cheetah-[0-9]*:../../devel/py-cheetah3
-DEPENDS+=	${PYPKGPREFIX}-cryptography-[0-9]*:../../security/py-cryptography
-DEPENDS+=	${PYPKGPREFIX}-sabyenc3>=5.4.2:../../wip/py-sabyenc3
-DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
 DEPENDS+=	${PYPKGPREFIX}-chardet-[0-9]*:../../converters/py-chardet
-DEPENDS+=	${PYPKGPREFIX}-configobj-[0-9]*:../../devel/py-configobj
-DEPENDS+=	${PYPKGPREFIX}-portend-[0-9]*:../../net/py-portend
+DEPENDS+=	${PYPKGPREFIX}-cheetah-[0-9]*:../../devel/py-cheetah3
 DEPENDS+=	${PYPKGPREFIX}-cherrypy>=18.2:../../www/py-cherrypy
+DEPENDS+=	${PYPKGPREFIX}-configobj-[0-9]*:../../devel/py-configobj
+DEPENDS+=	${PYPKGPREFIX}-cryptography-[0-9]*:../../security/py-cryptography
 DEPENDS+=	${PYPKGPREFIX}-guessit>=3.1.1:../../textproc/py-guessit
-DEPENDS+=	${PYPKGPREFIX}-puremagic>=1.11:../../wip/py-puremagic
+DEPENDS+=	${PYPKGPREFIX}-jaraco.classes>=3.3.0:../../devel/py-jaraco.classes
+DEPENDS+=	${PYPKGPREFIX}-portend-[0-9]*:../../net/py-portend
+DEPENDS+=	${PYPKGPREFIX}-puremagic>=1.11:../../sysutils/py-puremagic
+DEPENDS+=	${PYPKGPREFIX}-sabctools>=8.2.0:../../wip/py-sabctools
+DEPENDS+=	${PYPKGPREFIX}-apprise>=1.1.0:../../wip/py-apprise
+# Optional:
+#DEPENDS+=	${PYPKGPREFIX}-dbus>=1.3.2:../../sysutils/py-dbus
+
 DEPENDS+=	par2-[0-9]*:../../archivers/par2
 DEPENDS+=	unrar-[0-9]*:../../archivers/unrar
 DEPENDS+=	unzip-[0-9]*:../../archivers/unzip
@@ -53,6 +57,7 @@ SUBST_VARS.fix-paths=		PREFIX
 
 do-install:
 	${MKDIR} ${DESTDIR}/${PREFIX}/bin
+	cd ${WRKSRC} && find . -name '*.orig' -delete
 	cd ${WRKSRC} && pax -rw SABnzbd.py ${DESTDIR}/${PREFIX}/bin/
 	${MKDIR} ${DESTDIR}/${PREFIX}/${PYSITELIB}/
 	cd ${WRKSRC} && pax -rw -pmp sabnzbd ${DESTDIR}/${PREFIX}/${PYSITELIB}/

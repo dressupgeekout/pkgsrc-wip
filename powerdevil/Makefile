@@ -9,11 +9,11 @@ LICENSE=	gnu-lgpl-v2
 
 .include "../../meta-pkgs/kde/plasma5.mk"
 
-BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
+TOOL_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
 
-CMAKE_ARGS+=	-DKAUTH_DBUS_DIR=${PREFIX}/share/examples/powerdevil
+CMAKE_CONFIGURE_ARGS+=	-DKAUTH_DBUS_DIR=${PREFIX}/share/examples/powerdevil
 
 SUBST_CLASSES+=		xdg
 SUBST_STAGE.xdg=	pre-configure
