@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	veloren-0.15.0
+DISTNAME=	veloren-0.17.0
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITLAB:=veloren/}
 GITLAB_PROJECT=	veloren
