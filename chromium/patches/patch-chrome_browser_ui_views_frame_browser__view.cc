@@ -1,13 +1,26 @@
 $NetBSD$
 
---- chrome/browser/ui/views/frame/browser_view.cc.orig	2020-07-08 21:41:47.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/ui/views/frame/browser_view.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ chrome/browser/ui/views/frame/browser_view.cc
-@@ -1766,7 +1766,7 @@ void BrowserView::UserChangedTheme(Brows
-   const bool should_use_native_frame = frame_->ShouldUseNativeFrame();
+@@ -2740,7 +2740,7 @@ void BrowserView::ToolbarSizeChanged(boo
+ }
  
-   bool must_regenerate_frame;
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
-   // GTK and user theme changes can both change frame buttons, so the frame
-   // always needs to be regenerated on Linux.
-   must_regenerate_frame = true;
+ void BrowserView::TabDraggingStatusChanged(bool is_dragging) {
+-#if !BUILDFLAG(IS_LINUX)
++#if !BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_BSD)
+   GetContentsWebView()->SetFastResize(is_dragging);
+   if (multi_contents_view_) {
+     multi_contents_view_->GetInactiveContentsView()->SetFastResize(is_dragging);
+@@ -6044,7 +6044,7 @@ void BrowserView::MaybeShowProfileSwitch
+ }
+ 
+ void BrowserView::MaybeShowSupervisedUserProfileSignInIPH() {
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   if (!ShouldShowAvatarToolbarIPH()) {
+     return;
+   }

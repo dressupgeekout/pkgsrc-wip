@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (pydeseq2-0.5.2.tar.gz) = 6b704d2405778ebc19dcade9e9041c1addea5e6c1760b359345a6a5f2d133a79
+SHA512 (pydeseq2-0.5.2.tar.gz) = df017d6651b481a946d034e6d9a34ef8e63b402f68be0eaf0b15deb23968dc57a472ef809570d81a500cbbe904e614df5010f6f455731b5420dbc27fb2da7306
+Size (pydeseq2-0.5.2.tar.gz) = 51377 bytes

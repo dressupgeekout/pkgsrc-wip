@@ -1,25 +1,32 @@
 # $NetBSD$
 
-DISTNAME=		gcc-12.1.0
+DISTNAME=		gcc-14.1.0
 PKGNAME=		${DISTNAME:C/^/avr-/}
 CATEGORIES=		cross
 MASTER_SITES=		${MASTER_SITE_GNU:=gcc/${DISTNAME}/}
-EXTRACT_SUFX=		.tar.xz
+#EXTRACT_SUFX=		.tar.xz
 
-MAINTAINER=		pkgsrc-users@NetBSD.org
+MAINTAINER=		micha@NetBSD.org
 COMMENT=		GCC for Atmel AVR 8-bit RISC microcontrollers
 LICENSE=		gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND gnu-lgpl-v3
+
+# Required at least on AMD64
+MKPIE_SUPPORTED=	no
 
 DISTFILES=		${DEFAULT_DISTFILES}
 EXTRACT_ONLY=		${DEFAULT_DISTFILES}
 
-DEPENDS+=		avr-binutils>=2.38:../../cross/avr-binutils
+DEPENDS+=		avr-binutils>=2.42:../../cross/avr-binutils
 
 .include "../../mk/bsd.prefs.mk"
 
 USE_LANGUAGES=			c c++
+USE_CXX_FEATURES+=		c++11
+# Required for ISL with option "gcc-inplace-math"
+FORCE_CXX_STD=			c++11
+
 USE_LIBTOOL=			yes
-USE_TOOLS+=			bash gmake gsed:run
+USE_TOOLS+=			bash gmake gsed:run perl
 GNU_CONFIGURE=			yes
 GNU_CONFIGURE_STRICT=		no
 CHECK_PORTABILITY_SKIP+=	contrib/* # not needed for building

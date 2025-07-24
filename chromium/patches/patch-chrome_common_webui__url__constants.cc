@@ -1,50 +1,34 @@
 $NetBSD$
 
---- chrome/common/webui_url_constants.cc.orig	2020-07-08 21:41:47.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/common/webui_url_constants.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ chrome/common/webui_url_constants.cc
-@@ -317,7 +317,7 @@ bool IsSystemWebUIHost(base::StringPiece
- }
- #endif  // defined(OS_CHROMEOS)
- 
--#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
-+#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
- const char kChromeUIDiscardsHost[] = "discards";
- const char kChromeUIDiscardsURL[] = "chrome://discards/";
- const char kChromeUIHatsHost[] = "hats";
-@@ -334,17 +334,17 @@ const char kChromeUINearbyShareURL[] = "
- const char kChromeUILinuxProxyConfigHost[] = "linux-proxy-config";
+@@ -193,21 +193,21 @@ base::span<const base::cstring_view> Chr
+       kChromeUIAssistantOptInHost,
  #endif
- 
--#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_ANDROID)
-+#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_ANDROID) || defined(OS_BSD)
- const char kChromeUISandboxHost[] = "sandbox";
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+       kChromeUIConnectorsInternalsHost,
  #endif
- 
- #if defined(OS_WIN) || defined(OS_MACOSX) || \
--    (defined(OS_LINUX) && !defined(OS_CHROMEOS))
-+    ((defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS))
- const char kChromeUIBrowserSwitchHost[] = "browser-switch";
- const char kChromeUIBrowserSwitchURL[] = "chrome://browser-switch/";
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_DESKTOP_ANDROID)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_DESKTOP_ANDROID) || BUILDFLAG(IS_BSD)
+       kChromeUIDiscardsHost,
  #endif
- 
--#if (defined(OS_LINUX) && defined(TOOLKIT_VIEWS)) || defined(USE_AURA)
-+#if ((defined(OS_LINUX) || defined(OS_BSD)) && defined(TOOLKIT_VIEWS)) || defined(USE_AURA)
- const char kChromeUITabModalConfirmDialogHost[] = "tab-modal-confirm-dialog";
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+       kChromeUIWebAppSettingsHost,
  #endif
- 
-@@ -510,13 +510,13 @@ const char* const kChromeHostURLs[] = {
-     kChromeUIInternetDetailDialogHost,
-     kChromeUIAssistantOptInHost,
+ #if BUILDFLAG(IS_POSIX) && !BUILDFLAG(IS_MAC) && !BUILDFLAG(IS_ANDROID)
+       kChromeUILinuxProxyConfigHost,
  #endif
--#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
-+#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
-     kChromeUIDiscardsHost,
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || \
+-    BUILDFLAG(IS_ANDROID)
++    BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
+       kChromeUISandboxHost,
  #endif
- #if defined(OS_POSIX) && !defined(OS_MACOSX) && !defined(OS_ANDROID)
-     kChromeUILinuxProxyConfigHost,
- #endif
--#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_ANDROID)
-+#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_ANDROID) || defined(OS_BSD)
-     kChromeUISandboxHost,
- #endif
- #if defined(OS_WIN)
+ #if BUILDFLAG(IS_WIN)

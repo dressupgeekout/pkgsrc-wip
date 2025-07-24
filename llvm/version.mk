@@ -1,4 +1,4 @@
-# $NetBSD: version.mk,v 1.14 2023/01/12 19:32:53 adam Exp $
+# $NetBSD$
 # used by devel/lld
 # used by devel/lldb
 # used by devel/polly
@@ -14,22 +14,18 @@
 # used by lang/wasi-libcxx
 # used by parallel/openmp
 
-LLVM_VERSION=	16.0.6
+LLVM_VERSION=	20.1.8
+
+DISTNAME=	llvm-project-${LLVM_VERSION}.src
 MASTER_SITES=	${MASTER_SITE_GITHUB:=llvm/}
 GITHUB_PROJECT=	llvm-project
 GITHUB_RELEASE=	llvmorg-${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.tar.xz
 
+WRKSRC=		${WRKDIR}/${DISTNAME}/${PKGBASE:S/wasi-//}
+
 LLVM_MAJOR_VERSION=	${LLVM_VERSION:tu:C/\\.[[:digit:]\.]*//}
 
-# As of v15.0.0 llvm requires cmake source code to build
-CMAKE_DIST=	cmake-${LLVM_VERSION}.src
-EXTRA_DIST+=	${CMAKE_DIST}${EXTRACT_SUFX}
-SITES.${CMAKE_DIST}${EXTRACT_SUFX}=	\
-		${MASTER_SITES:=${GITHUB_PROJECT}/releases/download/${GITHUB_RELEASE}/}
-DISTFILES=	${DEFAULT_DISTFILES} ${EXTRA_DIST}
-
-.PHONY: llvm-cmake-modules
-post-extract: llvm-cmake-modules
-llvm-cmake-modules:
-	${LN} -f -s ${WRKDIR}/${CMAKE_DIST} ${WRKDIR}/cmake
+EXTRACT_ELEMENTS=	${DISTNAME}/${PKGBASE:S/wasi-//}
+EXTRACT_ELEMENTS+=	${DISTNAME}/cmake
+EXTRACT_ELEMENTS+=	${DISTNAME}/runtimes

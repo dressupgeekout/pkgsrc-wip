@@ -8,7 +8,9 @@ LIBSAVITAR_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.libSavitar+=	libSavitar>=4.11.0
 BUILDLINK_PKGSRCDIR.libSavitar?=	../../wip/libSavitar
 
-.include "../../x11/py-sip/buildlink3.mk"
+BUILDLINK_DEPMETHOD.py-sip4?=	build
+
+.include "../../wip/py-sip4/buildlink3.mk"
 .endif	# LIBSAVITAR_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-libSavitar

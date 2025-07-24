@@ -1,13 +1,17 @@
 $NetBSD$
 
---- components/storage_monitor/removable_device_constants.h.orig	2020-07-08 21:40:41.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- components/storage_monitor/removable_device_constants.h.orig	2025-06-30 06:54:11.000000000 +0000
 +++ components/storage_monitor/removable_device_constants.h
 @@ -15,7 +15,7 @@ namespace storage_monitor {
- extern const char kFSUniqueIdPrefix[];
- extern const char kVendorModelSerialPrefix[];
+ extern COMPONENT_EXPORT(STORAGE_MONITOR) const char kFSUniqueIdPrefix[];
+ extern COMPONENT_EXPORT(STORAGE_MONITOR) const char kVendorModelSerialPrefix[];
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
- extern const char kVendorModelVolumeStoragePrefix[];
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ extern COMPONENT_EXPORT(STORAGE_MONITOR) const
+     char kVendorModelVolumeStoragePrefix[];
  #endif
- 

@@ -1,0 +1,30 @@
+@comment $NetBSD$
+bin/catalog
+bin/convert-ctg
+bin/decode
+bin/disk
+bin/dumpcpu
+bin/dumpgrom
+bin/dumpspch
+bin/list
+bin/mkcart
+bin/mkspch
+bin/say
+bin/ti99sim-console
+bin/ti99sim-sdl
+bin/ti99sim-setup
+share/ti99sim/roms/cf7+.dat
+share/ti99sim/roms/cf7a+.bin
+share/ti99sim/roms/gram-kracker.dat
+share/ti99sim/roms/mini-memory.dat
+share/ti99sim/roms/spchrom.dat
+share/ti99sim/roms/ti-994.dat
+share/ti99sim/roms/ti-994a-qi.dat
+share/ti99sim/roms/ti-994a-v22.dat
+share/ti99sim/roms/ti-994a.dat
+share/ti99sim/roms/ti-disk.dat
+share/ti99sim/roms/ti-pcard.dat
+share/ti99sim/roms/tiworkshop379.dat
+@pkgdir share/ti99sim/disks
+@pkgdir share/ti99sim/console
+@pkgdir share/ti99sim/cartridges

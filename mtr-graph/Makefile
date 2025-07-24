@@ -2,38 +2,38 @@
 
 CATEGORIES=	net
 PKGBASE=	mtr085
-PKGVERSION=	139
-PKGREVISION=	19
+PKGVERSION=	222
+PKGREVISION=	1
 PKGNAME=	${PKGBASE}-${PKGVERSION}
 DISTNAME=	${PKGBASE}-${GITHUB_HASH}
-MASTER_SITES=	https://github.com/${GITHUB_USER}/${PKGBASE}/tarball/${GITHUB_HASH}/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=${GITHUB_USER}/}/${PKGBASE}/tarball/${GITHUB_HASH}/
 WRKSRC=		${WRKDIR}/${GITHUB_USER}-${PKGBASE}-${GITHUB_HASH}
 
-GITHUB_HASH=	8e5a8b8
+GITHUB_HASH=	ebc2181
 GITHUB_USER=	yvs2014
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.bitwizard.nl/mtr/
-COMMENT=	Traceroute and ping in a single network diagnostic tool
+COMMENT=	MTR v0.85 fork with whois info, IDN, unicode
 LICENSE=	gnu-gpl-v2
+USE_LANGUAGES=	c
 
-CONFLICTS=	mtr-*
+CONFLICTS=	mtr-[0-9]*
 
 GNU_CONFIGURE=		YES
-USE_TOOLS+=		autoconf autoreconf automake
+USE_TOOLS+=		meson pkg-config
 INSTALLATION_DIRS=	${PKGMANDIR}/man8 sbin share/doc/mtr
+
+MESON_ARGS+=	-DCAP=false
+MESON_ARGS+=	-DSBIN=true
 
 .include "options.mk"
 
 SPECIAL_PERMS=	sbin/mtr ${SETUID_ROOT_PERMS}
 
-pre-configure:
-	autoreconf -fi ${WRKSRC}
-
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/mtr ${DESTDIR}${PREFIX}/sbin
-	${INSTALL_DATA} ${WRKSRC}/mtr.8 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
+post-install:
 	${INSTALL_DATA} ${WRKSRC}/SECURITY ${DESTDIR}${PREFIX}/share/doc/mtr
 
+.include "../../devel/meson/build.mk"
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

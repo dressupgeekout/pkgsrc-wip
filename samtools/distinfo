@@ -1,6 +1,6 @@
 $NetBSD$
 
-BLAKE2s (samtools-1.17.tar.bz2) = 9ab61bddae955190736abf7e9198ee869396a74e195166df38ebb652fe4bc7c7
-SHA512 (samtools-1.17.tar.bz2) = 107a6df858c6bd2556ba4e86cc1922c3184df095f347039fa94bfd24e5ee21e1a4a9fba5a7cce248a06ad47f99978d9aae570efee7e30e165f33ea848a2cd3c3
-Size (samtools-1.17.tar.bz2) = 8605080 bytes
+BLAKE2s (samtools-1.22.tar.bz2) = 99efffc1c0b6a9b3bcf60e4aa6aaa50d08343af79eb0dcc9d06499b1d7eab9e5
+SHA512 (samtools-1.22.tar.bz2) = 8bb4d68ac5f819d6e175f43d8719402f17636b958ed016a943dc6c1971704f405908562ff9fe8f3c7c8725f729057024b305a6ca428a09be8b1e63a1df1cd578
+Size (samtools-1.22.tar.bz2) = 9292743 bytes
 SHA1 (patch-Makefile) = 3fc1f1d67167c8ca8eff1ed17f7a084ec3d4579d

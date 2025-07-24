@@ -2,10 +2,14 @@
 
 .include "Makefile.common"
 
-PKGNAME=	${DISTNAME:S/.src//}
+PKGNAME=	clang-${LLVM_VERSION}
+
+COMMENT=	C language family frontend for LLVM
 
 USE_TOOLS+=	perl:run
 
+# Certain header files are generated, and can only be generated
+# if llvm has support for the target.
 PLIST_VARS+=	RISCV
 .if ${PKG_BUILD_OPTIONS.llvm:Mllvm-target-riscv}
 PLIST.RISCV=	yes

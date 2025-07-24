@@ -1,21 +1,19 @@
-# $NetBSD: Makefile,v 1.32 2021/12/11 17:30:07 gdt Exp $
+# $NetBSD: Makefile,v 1.36 2024/09/21 13:37:34 abs Exp $
 
-# Please do not drop this; a new update cycle is likely soon.
-DISTNAME=	unifi-7.0.25
+DISTNAME=	unifi-8.6.9
 CATEGORIES=	net
 MASTER_SITES=	-http://dl.ubnt.com/unifi/${PKGVERSION_NOREV}/UniFi.unix.zip
 EXTRACT_SUFX=	.zip
+DISTFILES=	${DEFAULT_DISTFILES}
 
 # Updates must be tested to not only build but actually function under
-# at least NetBSD 9/amd64 with actual UBNT hardware.
+# at least NetBSD 10/amd64 with actual UBNT hardware.
 MAINTAINER=	gdt@NetBSD.org
 HOMEPAGE=	https://www.ubnt.com/download/unifi/
 # The content that belongs in NEWS are often in a blog.
 #BLOGPAGE=	https://community.ui.com/releases
 COMMENT=	Provisioning software for network products made by Ubiquiti
 LICENSE=	ubiquiti-license
-
-# \todo Upstream changed how they bundle this; it's now a .deb
 
 # Bundled firmware images cannot be redistributed
 RESTRICTED=		No permission to redistribute
@@ -24,13 +22,11 @@ NO_BIN_ON_FTP=		${RESTRICTED}
 NO_SRC_ON_CDROM=	${RESTRICTED}
 NO_SRC_ON_FTP=		${RESTRICTED}
 
-DISTFILES=		${DEFAULT_DISTFILES}
 EXTRACT_ONLY=		${DEFAULT_DISTFILES}
-
 
 # Unifi bundles snappy-java-1.0.5.jar, which contains native code.
 # We can use the bundled snappy-java but we must recompile the native portion
-# because it only ship linux binaries. The rcd script takes care of loading the
+# because it only ships linux binaries. The rcd script takes care of loading the
 # correct library.
 SNAPPY_JAVA=		snappy-java-1.0.5.4
 # github.mk only works for the main MASTER_SITES definition and does
@@ -41,7 +37,7 @@ EXTRACT_ONLY+=		${SNAPPY_JAVA}.tar.gz
 
 SNAPPY=			snappy-1.0.5
 SITES.${SNAPPY}.tar.gz=	http://download.openpkg.org/components/cache/snappy/ \
-			http://ftp.NetBSD.org/pub/pkgsrc/distfiles/snappy-java10/
+			https://ftp.NetBSD.org/pub/pkgsrc/distfiles/snappy-java/
 DISTFILES+=		${SNAPPY}.tar.gz
 EXTRACT_ONLY+=		${SNAPPY}.tar.gz
 
@@ -51,8 +47,7 @@ INSTALLATION_DIRS=	unifi share/doc/unifi
 # Emulated JDK doesn't work due to epoll issues.  Also, would require
 # matching emulated native libraries, and we only compile actual
 # native libaries.
-# NetBSD openjdk11 fails to listen to https, so disable for now
-PKG_JVMS_ACCEPTED=	openjdk8
+PKG_JVMS_ACCEPTED=	openjdk17
 PKGSRC_MAKE_ENV+=	JAVA_HOME=${PKG_JAVA_HOME}
 USE_LANGUAGES=		c c++	# for snappy JNI library
 USE_TOOLS+=		gmake pax
@@ -85,23 +80,23 @@ post-extract:
 # as far as we know, these are for cloud access to your controller
 	ls -R ${WRKDIR}/UniFi/lib/native
 	rm -rf ${WRKDIR}/UniFi/lib/native/Windows
-.if (${OPSYS} != "Linux")
+.if ${OPSYS} != "Linux"
 	rm -rf ${WRKDIR}/UniFi/lib/native/Linux
 .else
-.  if (${MACHINE_ARCH} != "aarch64")
+.  if ${MACHINE_ARCH} != "aarch64"
 	rm -rf ${WRKDIR}/UniFi/lib/native/Linux/aarch64
 .  endif
-.  if (${MACHINE_ARCH} != "earmv7")
+.  if ${MACHINE_ARCH} != "earmv7"
 	rm -rf ${WRKDIR}/UniFi/lib/native/Linux/armv7
 .  endif
-.  if (${MACHINE_ARCH} != "x86_64")
+.  if ${MACHINE_ARCH} != "x86_64"
 	rm -rf ${WRKDIR}/UniFi/lib/native/Linux/x86_64
 .  endif
 .endif
-.if (${OPSYS} != "Darwin")
+.if ${OPSYS} != "Darwin"
 	rm -rf ${WRKDIR}/UniFi/lib/native/Mac
 .else
-.  if (${MACHINE_ARCH} != "x86_64")
+.  if ${MACHINE_ARCH} != "x86_64"
 	rm -rf ${WRKDIR}/UniFi/lib/native/Mac/x86_64
 .  endif
 .endif

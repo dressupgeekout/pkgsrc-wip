@@ -1,5 +1,5 @@
 $NetBSD$
 
-BLAKE2s (hmmlearn-0.3.0.tar.gz) = 4cafc68ee2731c6e8a2646afda5dcc49a80c4b3eaa6f5d310d7c5c15b849032f
-SHA512 (hmmlearn-0.3.0.tar.gz) = 2229fad0e1c0c18aae157884b05e4744f661f716d4181eebb15487fa766f21cb6da5553eacce121a5c81b276388b5603ee0781e6503e41c55f9b77829ec4e0ae
-Size (hmmlearn-0.3.0.tar.gz) = 77889 bytes
+BLAKE2s (hmmlearn-0.3.3.tar.gz) = 3066396bcdc0e38ceee875e64fd402880f4ad69c940eb3ea15c62d5a1723d0a9
+SHA512 (hmmlearn-0.3.3.tar.gz) = 37c317e0fa3e02145d61749156925db34e47e5c09ad7f0b420806f90eb3ff9ca37c5e03e50ad768b82e40b901699a0bb2718764c693b37a9db171a7fa4374782
+Size (hmmlearn-0.3.3.tar.gz) = 78535 bytes

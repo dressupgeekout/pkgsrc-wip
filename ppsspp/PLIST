@@ -17,7 +17,6 @@ share/ppsspp/assets/Roboto-Condensed.ttf
 share/ppsspp/assets/asciifont_atlas.meta
 share/ppsspp/assets/asciifont_atlas.zim
 share/ppsspp/assets/compat.ini
-share/ppsspp/assets/compatvr.ini
 share/ppsspp/assets/debugger/.nojekyll
 share/ppsspp/assets/debugger/asset-manifest.json
 share/ppsspp/assets/debugger/favicon.ico
@@ -51,7 +50,6 @@ share/ppsspp/assets/font_atlas.meta
 share/ppsspp/assets/font_atlas.zim
 share/ppsspp/assets/gamecontrollerdb.txt
 share/ppsspp/assets/icon_regular_72.png
-share/ppsspp/assets/knownfuncs.ini
 share/ppsspp/assets/lang/ar_AE.ini
 share/ppsspp/assets/lang/az_AZ.ini
 share/ppsspp/assets/lang/bg_BG.ini
@@ -114,12 +112,14 @@ share/ppsspp/assets/shaders/GaussianDownscale.fsh
 share/ppsspp/assets/shaders/aacolor.fsh
 share/ppsspp/assets/shaders/aacolor.vsh
 share/ppsspp/assets/shaders/bloom.fsh
+share/ppsspp/assets/shaders/bloomnoblur.fsh
 share/ppsspp/assets/shaders/cartoon.fsh
 share/ppsspp/assets/shaders/cartoon.vsh
 share/ppsspp/assets/shaders/checkers.fsh
 share/ppsspp/assets/shaders/colorcorrection.fsh
 share/ppsspp/assets/shaders/crt.fsh
 share/ppsspp/assets/shaders/defaultshaders.ini
+share/ppsspp/assets/shaders/fakereflections.fsh
 share/ppsspp/assets/shaders/fxaa.fsh
 share/ppsspp/assets/shaders/fxaa.vsh
 share/ppsspp/assets/shaders/natural.fsh

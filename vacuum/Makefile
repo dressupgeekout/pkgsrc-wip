@@ -1,26 +1,16 @@
-# $NetBSD: Makefile,v 1.3 2012/10/07 17:41:40 asau Exp $
+# $NetBSD$
 
-DISTNAME=	vacuum-0.7
-PKGREVISION=	2
-CATEGORIES=	games
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=vacuum/}
+DISTNAME=	vacuum-0.12.1
+CATEGORIES=	textproc
+MASTER_SITES=	${MASTER_SITE_GITHUB:=daveshanley/}
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://apocalypse.rulez.org/vacuum
-COMMENT=	Vacuum Magic, a fast-paced action game
-LICENSE=	gnu-gpl-v2
+HOMEPAGE=	https://quobix.com/vacuum
+COMMENT=	World's fastest OpenAPI and Swagger linter
+LICENSE=	mit
 
-DEPENDS+=	p5-SDL>=1.20.0:../../devel/p5-SDL
+.include "go-modules.mk"
 
-GNU_CONFIGURE=	yes
-USE_LANGUAGES=	# none
-USE_TOOLS+=	perl
-REPLACE_PERL=	bin/vacuum
-
-SUBST_CLASSES+=		data
-SUBST_SED.data=		-e "s,/usr/local/share/vacuum,${PREFIX}/share/vacuum,"
-SUBST_FILES.data=	bin/vacuum
-SUBST_MESSAGE.data=	Fixing path to data directory.
-SUBST_STAGE.data=	post-configure
-
+.include "../../lang/go/go-module.mk"
 .include "../../mk/bsd.pkg.mk"

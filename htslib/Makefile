@@ -1,6 +1,8 @@
 # $NetBSD$
 
-DISTNAME=	htslib-1.17
+# CAUTION: htslib should always be upgraded in conjunction with
+# samtools, bcftools, bio-mocha, and bcf-score
+DISTNAME=	htslib-1.22
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=samtools/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -11,7 +13,7 @@ HOMEPAGE=	https://www.htslib.org/
 COMMENT=	C library for high-throughput sequencing data formats
 LICENSE=	mit
 
-USE_TOOLS+=		autoconf automake autoreconf bash gmake perl
+USE_TOOLS+=		autoconf automake autoreconf bash:test gmake perl:test
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-libcurl
 PKGCONFIG_OVERRIDE=	htslib.pc.in
@@ -31,5 +33,7 @@ pre-configure:
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../archivers/xz/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../devel/libdeflate/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

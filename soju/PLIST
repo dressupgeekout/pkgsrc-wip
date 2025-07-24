@@ -1,4 +1,0 @@
-@comment $NetBSD$
-bin/soju
-bin/sojuctl
-man/man1/soju.1

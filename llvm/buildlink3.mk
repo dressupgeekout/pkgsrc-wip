@@ -1,12 +1,12 @@
-# $NetBSD: buildlink3.mk,v 1.20 2022/11/14 18:44:05 adam Exp $
+# $NetBSD$
 
 BUILDLINK_TREE+=	llvm
 
 .if !defined(LLVM_BUILDLINK3_MK)
 LLVM_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.llvm+=	llvm>=16
-BUILDLINK_PKGSRCDIR.llvm?=	../../lang/llvm
+BUILDLINK_API_DEPENDS.llvm+=	llvm>=20.1.0
+BUILDLINK_PKGSRCDIR.llvm?=	../../wip/llvm
 
 LLVM_CONFIG_PATH?=		${BUILDLINK_PREFIX.llvm}/bin/llvm-config
 
@@ -27,8 +27,10 @@ BUILDLINK_FILES.llvm+=		bin/llvm-bitcode-strip
 BUILDLINK_FILES.llvm+=		bin/llvm-c-test
 BUILDLINK_FILES.llvm+=		bin/llvm-cat
 BUILDLINK_FILES.llvm+=		bin/llvm-cfi-verify
+BUILDLINK_FILES.llvm+=		bin/llvm-cgdata
 BUILDLINK_FILES.llvm+=		bin/llvm-config
 BUILDLINK_FILES.llvm+=		bin/llvm-cov
+BUILDLINK_FILES.llvm+=		bin/llvm-ctxprof-util
 BUILDLINK_FILES.llvm+=		bin/llvm-cvtres
 BUILDLINK_FILES.llvm+=		bin/llvm-cxxdump
 BUILDLINK_FILES.llvm+=		bin/llvm-cxxfilt
@@ -73,8 +75,8 @@ BUILDLINK_FILES.llvm+=		bin/llvm-ranlib
 BUILDLINK_FILES.llvm+=		bin/llvm-rc
 BUILDLINK_FILES.llvm+=		bin/llvm-readelf
 BUILDLINK_FILES.llvm+=		bin/llvm-readobj
+BUILDLINK_FILES.llvm+=		bin/llvm-readtapi
 BUILDLINK_FILES.llvm+=		bin/llvm-reduce
-BUILDLINK_FILES.llvm+=		bin/llvm-remark-size-diff
 BUILDLINK_FILES.llvm+=		bin/llvm-remarkutil
 BUILDLINK_FILES.llvm+=		bin/llvm-rtdyld
 BUILDLINK_FILES.llvm+=		bin/llvm-sim
@@ -84,7 +86,6 @@ BUILDLINK_FILES.llvm+=		bin/llvm-stress
 BUILDLINK_FILES.llvm+=		bin/llvm-strings
 BUILDLINK_FILES.llvm+=		bin/llvm-strip
 BUILDLINK_FILES.llvm+=		bin/llvm-symbolizer
-BUILDLINK_FILES.llvm+=		bin/llvm-tapi-diff
 BUILDLINK_FILES.llvm+=		bin/llvm-tblgen
 BUILDLINK_FILES.llvm+=		bin/llvm-tli-checker
 BUILDLINK_FILES.llvm+=		bin/llvm-undname
@@ -93,6 +94,7 @@ BUILDLINK_FILES.llvm+=		bin/llvm-xray
 BUILDLINK_FILES.llvm+=		bin/not
 BUILDLINK_FILES.llvm+=		bin/obj2yaml
 BUILDLINK_FILES.llvm+=		bin/opt
+BUILDLINK_FILES.llvm+=		bin/reduce-chunk-list
 BUILDLINK_FILES.llvm+=		bin/sancov
 BUILDLINK_FILES.llvm+=		bin/sanstats
 BUILDLINK_FILES.llvm+=		bin/split-file

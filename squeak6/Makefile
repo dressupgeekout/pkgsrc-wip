@@ -1,22 +1,22 @@
 # $NetBSD$
 
 SQUEAK_VERSION=	6.0
-IMAGE_VERSION=	22104
+IMAGE_VERSION=	22148
 IMAGE_ARCH=	64bit
 SQUEAK_SOURCES=	SqueakV60.sources
 
 DISTNAME=	Squeak${SQUEAK_VERSION}-${IMAGE_VERSION}-${IMAGE_ARCH}
 PKGNAME=	squeak6-${SQUEAK_VERSION}.${IMAGE_VERSION}
 CATEGORIES=	lang
-MASTER_SITES=	http://files.squeak.org/${SQUEAK_VERSION}/${DISTNAME}/
-EXTRACT_SUFX=	.zip
+MASTER_SITES=	http://sourceforge.net/projects/squeak6/
+### EXTRACT_SUFX=	.zip
 DISTFILES=	${DEFAULT_DISTFILES} ${SQUEAK_SOURCES}.gz
 
 SITES.${SQUEAK_SOURCES}.gz=	http://files.squeak.org/sources_files/
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	goon.mage@yahoo.com	
 HOMEPAGE=	https://squeak.org/
-COMMENT=	Full Smalltalk 80 with portability to UN*X, Mac, and Windows
+COMMENT=	Squeak 6.x, Full Smalltalk 80 with portability to UN*X, Mac, and Windows
 LICENSE=	mit AND apache-2.0
 
 DEPENDS=	squeak5-vm-[0-9]*:../../wip/squeak5-vm

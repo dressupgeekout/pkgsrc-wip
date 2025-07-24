@@ -1,0 +1,5 @@
+$NetBSD: distinfo,v 1.18 2024/11/23 09:42:38 mef Exp $
+
+BLAKE2s (kicad-footprints-9.0.2.tar.bz2) = e154a5dda48be289a018ab5b14073b0b04ca5d80aac835a84359b3fea08f6c89
+SHA512 (kicad-footprints-9.0.2.tar.bz2) = 52a2f618963bf312319bdb0dfee4fc8247e6f66b8cae04fbd6ca5daa943e1666068565f9fd4037b43cd23bd85d9262460c14ea66c57dab8150c6e1fe33aa2b51
+Size (kicad-footprints-9.0.2.tar.bz2) = 7686691 bytes

@@ -1,0 +1,7 @@
+$NetBSD$
+
+BLAKE2s (minimap2-2.30.tar.gz) = d2943e62ef67cf1fb68665bacc9ae56b17950b55523e8fea03ad85168b05f468
+SHA512 (minimap2-2.30.tar.gz) = ea2159021b878d7811111c14bb4da28fee7208242c67159b14f5ba9bc83fb312d5bf8c0abe54d7011b854fae7c8b21b54a8e04c15915510dc8a01fa1b4362650
+Size (minimap2-2.30.tar.gz) = 269912 bytes
+SHA1 (patch-Makefile.simde) = fe893154d233e0b4cac679c40d40838ca83a6183
+SHA1 (patch-example.c) = ccf0c4addfece2e11b90f5a558a6de324f255d7c

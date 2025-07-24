@@ -1,0 +1,49 @@
+$NetBSD$
+
+Fix the build on NetBSD and macOS
+
+Also install bsddialog_theme.h
+
+--- lib/Makefile.orig	2024-12-02 18:36:02.000000000 +0000
++++ lib/Makefile
+@@ -3,8 +3,9 @@
+ #
+ # Written in 2021 by Alfonso Sabato Siciliano
+ 
++SOEXT = so
+ LIBRARY = bsddialog
+-LIBRARY_SO = lib${LIBRARY:=.so}
++LIBRARY_SO = lib${LIBRARY:=.${SOEXT}}
+ LIBRARY_A = lib${LIBRARY:=.a}
+ HEADERS = bsddialog.h bsddialog_theme.h bsddialog_progressview.h
+ SOURCES = barbox.c datebox.c formbox.c libbsddialog.c lib_util.c \
+@@ -15,11 +16,8 @@ PREFIX = /usr/local
+ .if defined(DEBUG)
+ CFLAGS += -g
+ .endif
+-CFLAGS += -D_XOPEN_SOURCE_EXTENDED -fPIC -Wall -Wextra -std=gnu99 \
+-	-fstack-protector-strong
+-LDFLAGS += -fstack-protector-strong -shared -Wl,-x -Wl,--fatal-warnings \
+-	-Wl,--warn-shared-textrel -Wl,-soname,${LIBRARY_SO}.${VERSION} \
+-	-L/usr/lib -lncursesw -ltinfow
++CFLAGS += -D_XOPEN_SOURCE_EXTENDED -fPIC -Wall -Wextra -std=gnu99
++LDFLAGS += -shared -L${PREFIX}/lib -Wl,-rpath,${PREFIX}/lib -lcurses
+ 
+ LN = ln -s -f
+ RM = rm -f
+@@ -29,6 +27,7 @@ all: ${LIBRARY}
+ install: all
+ 	${INSTALL} -m 0644 bsddialog.h ${DESTDIR}${PREFIX}/include/bsddialog.h
+ 	${INSTALL} -m 0644 bsddialog_progressview.h ${DESTDIR}${PREFIX}/include/bsddialog_progressview.h
++	${INSTALL} -m 0644 bsddialog_theme.h ${DESTDIR}${PREFIX}/include/bsddialog_theme.h
+ 	${INSTALL} -m 0644 ${LIBRARY_A} ${DESTDIR}${PREFIX}/lib/${LIBRARY_A}
+ 	${INSTALL} -m 0755 ${LIBRARY_SO}.${VERSION} ${DESTDIR}${PREFIX}/lib/${LIBRARY_SO}.${VERSION}
+ 	${LN} ${LIBRARY_SO}.${VERSION} ${DESTDIR}${PREFIX}/lib/${LIBRARY_SO}
+@@ -36,6 +35,7 @@ install: all
+ uninstall:
+ 	${RM} ${DESTDIR}${PREFIX}/include/bsddialog.h
+ 	${RM} ${DESTDIR}${PREFIX}/include/bsddialog_progressview.h
++	${RM} ${DESTDIR}${PREFIX}/include/bsddialog_theme.h
+ 	${RM} ${DESTDIR}${PREFIX}/lib/${LIBRARY_A}
+ 	${RM} ${DESTDIR}${PREFIX}/lib/${LIBRARY_SO}.${VERSION}
+ 	${RM} ${DESTDIR}${PREFIX}/lib/${LIBRARY_SO}

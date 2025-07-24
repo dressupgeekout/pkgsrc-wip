@@ -102,7 +102,6 @@ EXTRACT_USING=		gtar
 WRKSRC=		${WRKDIR}/${LO_BOOTSTRAP}
 
 TOOL_DEPENDS+=		p5-Archive-Zip-[0-9]*:../../archivers/p5-Archive-Zip
-DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
 # dmake scripts use relative path with -rpath-link ld arguments, which
 # is a no-go with normal pkgsrc wrappers.
@@ -281,7 +280,7 @@ BUILDLINK_API_DEPENDS.libetonyek+=	libetonyek>=0.1.4
 .include "../../graphics/glm/buildlink3.mk"
 .include "../../graphics/graphite2/buildlink3.mk"
 .include "../../graphics/lcms2/buildlink3.mk"
-.include "../../graphics/libgltf/buildlink3.mk"
+#.include "../../graphics/libgltf/buildlink3.mk"
 .include "../../graphics/librsvg/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 #.include "../../graphics/sane-backends/buildlink3.mk"

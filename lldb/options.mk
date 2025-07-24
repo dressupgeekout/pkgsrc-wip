@@ -8,42 +8,18 @@ PKG_SUGGESTED_OPTIONS=	curses
 .include "../../mk/bsd.options.mk"
 
 .if ${PKG_OPTIONS:Mtests}
-CMAKE_ARGS+=	-DLLVM_INCLUDE_TESTS=ON
+CMAKE_CONFIGURE_ARGS+=	-DLLVM_INCLUDE_TESTS=ON
 .else
 # py-lit, py-psutil, lld
-CMAKE_ARGS+=	-DLLVM_INCLUDE_TESTS=OFF
+CMAKE_CONFIGURE_ARGS+=	-DLLVM_INCLUDE_TESTS=OFF
 .endif
 
 .if ${PKG_OPTIONS:Mcurses}
 .include "../../mk/curses.buildlink3.mk"
-
-.  if ${OPSYS} == "NetBSD"
-.    if exists(/usr/include/panel.h)
-CMAKE_ARGS+=	-DLLDB_ENABLE_CURSES=ON
-CMAKE_ARGS+=	-DLLVM_ENABLE_TERMINFO=ON
-.    else
-.include "../../devel/ncurses/buildlink3.mk"
-.      if exists(${BUILDLINK_PREFIX.ncurses}/include/ncurses/panel.h)
-CMAKE_ARGS+=    -DLLDB_ENABLE_CURSES=ON
-CMAKE_ARGS+=	-DLLVM_ENABLE_TERMINFO=ON
-.      else
-CMAKE_ARGS+=    -DLLDB_ENABLE_CURSES=OFF
-CMAKE_ARGS+=	-DLLVM_ENABLE_TERMINFO=OFF
-.      endif
-.    endif
-.  else
-.include "../../devel/ncurses/buildlink3.mk"
-.    if exists(${BUILDLINK_PREFIX.ncurses}/include/ncurses/panel.h)
-CMAKE_ARGS+=    -DLLDB_ENABLE_CURSES=ON
-CMAKE_ARGS+=	-DLLVM_ENABLE_TERMINFO=ON
-.    else
-CMAKE_ARGS+=    -DLLDB_ENABLE_CURSES=OFF
-CMAKE_ARGS+=	-DLLVM_ENABLE_TERMINFO=OFF
-.    endif
-.  endif
-
+.include "../../mk/terminfo.buildlink3.mk"
+CMAKE_CONFIGURE_ARGS+=	-DLLDB_ENABLE_CURSES=ON
+CMAKE_CONFIGURE_ARGS+=	-DLLVM_ENABLE_TERMINFO=ON
 .else
-
-CMAKE_ARGS+=	-DLLDB_ENABLE_CURSES=OFF
-CMAKE_ARGS+=	-DLLVM_ENABLE_TERMINFO=OFF
+CMAKE_CONFIGURE_ARGS+=	-DLLDB_ENABLE_CURSES=OFF
+CMAKE_CONFIGURE_ARGS+=	-DLLVM_ENABLE_TERMINFO=OFF
 .endif

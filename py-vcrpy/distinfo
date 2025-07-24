@@ -1,5 +1,0 @@
-$NetBSD$
-
-BLAKE2s (vcrpy-4.3.1.tar.gz) = d04259c479e8793fbd813ab173de170a9cd5191d44d2b2efc11563120ae3af1e
-SHA512 (vcrpy-4.3.1.tar.gz) = a5c2de2bf165ae750df3de1c90cbd4f1087c9ab6c0cb7e2dbc6ad53b86fa96e8da45ca7d5398223d6268121d5d3cb62d659c0125962088e4c1f08e1030a6fade
-Size (vcrpy-4.3.1.tar.gz) = 81973 bytes

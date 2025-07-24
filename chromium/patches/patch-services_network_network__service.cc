@@ -1,22 +1,40 @@
 $NetBSD$
 
---- services/network/network_service.cc.orig	2020-07-15 18:56:47.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- services/network/network_service.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ services/network/network_service.cc
-@@ -67,7 +67,7 @@
+@@ -102,11 +102,11 @@
  #include "third_party/boringssl/src/include/openssl/cpu.h"
  #endif
  
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS) && !BUILDFLAG(IS_CHROMECAST)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS) && !BUILDFLAG(IS_CHROMECAST)
- #include "components/os_crypt/key_storage_config_linux.h"
+-#if BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CASTOS)
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)) && !BUILDFLAG(IS_CASTOS)
+ #include "components/os_crypt/sync/key_storage_config_linux.h"
  #endif
  
-@@ -646,7 +646,7 @@ void NetworkService::OnCertDBChanged() {
-   net::CertDatabase::GetInstance()->NotifyObserversCertDBChanged();
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "services/network/network_change_notifier_passive_factory.h"
+ #endif
+ 
+@@ -1042,7 +1042,7 @@ void NetworkService::SetExplicitlyAllowe
+   net::SetExplicitlyAllowedPorts(ports);
  }
  
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
- void NetworkService::SetCryptConfig(mojom::CryptConfigPtr crypt_config) {
- #if !BUILDFLAG(IS_CHROMECAST)
-   DCHECK(!os_crypt_config_set_);
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ void NetworkService::SetGssapiLibraryLoadObserver(
+     mojo::PendingRemote<mojom::GssapiLibraryLoadObserver>
+         gssapi_library_load_observer) {
+@@ -1148,7 +1148,7 @@ NetworkService::CreateHttpAuthHandlerFac
+   );
+ }
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ void NetworkService::OnBeforeGssapiLibraryLoad() {
+   if (gssapi_library_load_observer_.is_bound()) {
+     gssapi_library_load_observer_->OnBeforeGssapiLibraryLoad();

@@ -1,31 +1,44 @@
 $NetBSD$
 
---- ui/base/ui_base_features.cc.orig	2020-07-15 18:56:33.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- ui/base/ui_base_features.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ ui/base/ui_base_features.cc
-@@ -98,7 +98,7 @@ const base::Feature kCompositorThreadedS
- // native apps on Windows.
- const base::Feature kExperimentalFlingAnimation {
-   "ExperimentalFlingAnimation",
--#if defined(OS_WIN) || (defined(OS_LINUX) && !defined(OS_CHROMEOS))
-+#if defined(OS_WIN) || ((defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS))
-       base::FEATURE_ENABLED_BY_DEFAULT
+@@ -119,7 +119,7 @@ BASE_FEATURE(kWaylandLinuxDrmSyncobj,
+ // Controls whether support for Wayland's per-surface scaling is enabled.
+ BASE_FEATURE(kWaylandPerSurfaceScale,
+              "WaylandPerSurfaceScale",
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+              base::FEATURE_ENABLED_BY_DEFAULT
  #else
-       base::FEATURE_DISABLED_BY_DEFAULT
-@@ -130,7 +130,7 @@ const base::Feature kPrecisionTouchpadLo
-     "PrecisionTouchpadLogging", base::FEATURE_DISABLED_BY_DEFAULT};
- #endif  // defined(OS_WIN)
+              base::FEATURE_DISABLED_BY_DEFAULT
+@@ -143,7 +143,7 @@ BASE_FEATURE(kWaylandSessionManagement,
+              base::FEATURE_DISABLED_BY_DEFAULT);
+ #endif  // BUILDFLAG(IS_OZONE)
  
--#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
-+#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
- // Enables stylus appearing as touch when in contact with digitizer.
- const base::Feature kDirectManipulationStylus = {
-     "DirectManipulationStylus",
-@@ -179,7 +179,7 @@ bool IsCSSColorSchemeUARenderingEnabled(
- // Mac launch bug.
- const base::Feature kFormControlsRefresh = {"FormControlsRefresh",
- #if defined(OS_WIN) || defined(OS_CHROMEOS) || defined(OS_LINUX) || \
--    defined(OS_MACOSX)
-+    defined(OS_MACOSX) || defined(OS_BSD)
-                                             base::FEATURE_ENABLED_BY_DEFAULT
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ // If this feature is enabled, users not specify --ozone-platform-hint switch
+ // will get --ozone-platform-hint=auto treatment. https://crbug.com/40250220.
+ COMPONENT_EXPORT(UI_BASE_FEATURES)
+@@ -231,7 +231,7 @@ BASE_FEATURE(kUiCompositorUsesLayerLists
+ // native apps on Windows.
+ BASE_FEATURE(kExperimentalFlingAnimation,
+              "ExperimentalFlingAnimation",
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+              base::FEATURE_ENABLED_BY_DEFAULT
  #else
-                                             base::FEATURE_DISABLED_BY_DEFAULT
+              base::FEATURE_DISABLED_BY_DEFAULT
+@@ -323,7 +323,7 @@ bool IsForcedColorsEnabled() {
+ BASE_FEATURE(kEyeDropper,
+              "EyeDropper",
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+              base::FEATURE_ENABLED_BY_DEFAULT
+ #else
+              base::FEATURE_DISABLED_BY_DEFAULT

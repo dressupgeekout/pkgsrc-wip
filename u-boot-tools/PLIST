@@ -1,3 +1,5 @@
 @comment $NetBSD$
-bin/dumpimage
-bin/mkimage
+bin/u-boot-dumpimage
+bin/u-boot-mkimage
+man/man1/u-boot-dumpimage.1
+man/man1/u-boot-mkimage.1

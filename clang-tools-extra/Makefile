@@ -1,19 +1,16 @@
 # $NetBSD: Makefile,v 1.24 2023/04/19 08:10:34 adam Exp $
 
-INSTALL_DIRS=	build/tools/extra
+INSTALL_DIRS=	tools/extra
+# due to INSTALL_DIRS
+CMAKE_GENERATORS_INCOMPATIBLE=	ninja
 
 .include "../../wip/clang/Makefile.common"
 
-PKGNAME=	${DISTNAME:S/clang/clang-tools-extra/:S/.src//}
+PKGNAME=	clang-tools-extra-${LLVM_VERSION}
 
 COMMENT=	Extra Clang tools
 
 DEPENDS+=	clang>=${LLVM_VERSION}:../../wip/clang
-
-CLANG_TOOLS_EXTRA=	clang-tools-extra-${LLVM_VERSION}.src
-EXTRA_DIST+=		${CLANG_TOOLS_EXTRA}${EXTRACT_SUFX}
-SITES.${CLANG_TOOLS_EXTRA}${EXTRACT_SUFX}= \
-	${MASTER_SITES:=${GITHUB_PROJECT}/releases/download/${GITHUB_RELEASE}/}
 
 BUILD_TARGET=	clang-change-namespace clang-apply-replacements clang-doc
 BUILD_TARGET+=	clang-include-fixer clang-move clang-query clang-reorder-fields
@@ -28,6 +25,6 @@ BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,-Bsymbolic-functions
 .PHONY: inject-clang-tools
 post-extract: inject-clang-tools
 inject-clang-tools:
-	${MV} ${WRKDIR}/${DISTNAME:S/clang/clang-tools-extra/} ${WRKSRC}/tools/extra
+	${LN} -s ${WRKSRC} ${WRKSRC}/../clang/tools/extra
 
 .include "../../mk/bsd.pkg.mk"

@@ -1,5 +1,5 @@
 $NetBSD: distinfo,v 1.1 2014/02/09 20:41:05 thomasklausner Exp $
 
-RMD160 (quantities-0.12.4.tar.gz) = bcf9a1410d487de3f12c81a77765135eaca1bcc3
-SHA512 (quantities-0.12.4.tar.gz) = caad7f2b1c7ff362656e9a444f7e7f3a62d6f9941a4e645105216fc7ad7ab1a73f5e3333843e683c838cd84cc2b2fb3413e647dd0ace97451918d3a6f6e77b02
-Size (quantities-0.12.4.tar.gz) = 83912 bytes
+BLAKE2s (quantities-0.16.0.tar.gz) = fdc842b4a5137975e9055b81eb6b50f827fc3c6da3b8753acdec93a189dbcc87
+SHA512 (quantities-0.16.0.tar.gz) = 9d34d161ddf6fc5347854da50645c244fa70916abafc1a03ea36a3493b3ca06d42dd4b95066d0ff0719e162ca3bd91497cf6ff518d54175d7c1e899140e5dc6c
+Size (quantities-0.16.0.tar.gz) = 100698 bytes

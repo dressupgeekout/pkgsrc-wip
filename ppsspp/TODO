@@ -1,2 +1,4 @@
-- audio problems on NetBSD
-- segfaults caused by mprotect problems? 
+PPSSPP TODO:
+
+- Prior to 1.17.x: audio problems on NetBSD
+- 1.17.x and greater: PIC/PIE problems at link-time

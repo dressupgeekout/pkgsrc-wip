@@ -1,13 +1,17 @@
 $NetBSD$
 
---- chrome/browser/media/webrtc/webrtc_log_uploader.cc.orig	2020-07-24 02:37:47.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/media/webrtc/webrtc_log_uploader.cc.orig	2025-06-30 06:54:11.000000000 +0000
 +++ chrome/browser/media/webrtc/webrtc_log_uploader.cc
-@@ -354,6 +354,8 @@ void WebRtcLogUploader::SetupMultipart(
+@@ -101,7 +101,7 @@ std::string GetLogUploadProduct() {
+   const char product[] = "Chrome";
+ #elif BUILDFLAG(IS_MAC)
+   const char product[] = "Chrome_Mac";
+-#elif BUILDFLAG(IS_LINUX)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #if !defined(ADDRESS_SANITIZER)
+   const char product[] = "Chrome_Linux";
  #else
-   const char product[] = "Chrome_Linux_ASan";
- #endif
-+#elif defined(OS_NETBSD)
-+  const char product[] = "Chrome_NetBSD";
- #elif defined(OS_ANDROID)
-   const char product[] = "Chrome_Android";
- #elif defined(OS_CHROMEOS)
