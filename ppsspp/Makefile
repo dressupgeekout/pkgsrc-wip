@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	ppsspp-1.17.1
+DISTNAME=	ppsspp-1.19.3
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=hrydgard/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
@@ -13,7 +13,7 @@ LICENSE=	gnu-gpl-v2
 
 # There's a crash that consistently happens whenever PPSSPPSDL exits, but
 # only when built with GCC. Works fine with Clang, though.
-BUILD_DEPENDS+=	clang-[0-9]*:../../lang/clang
+#BUILD_DEPENDS+=	clang-[0-9]*:../../lang/clang
 
 USE_LANGUAGES=		c c++
 USE_CXX_FEATURES=	c++17
@@ -23,8 +23,8 @@ CFLAGS+=		-fPIE
 
 ONLY_FOR_PLATFORM=	*-*-*arm* *-*-x86_64 *-*-i386
 
-CMAKE_CONFIGURE_ARGS+=	-DCMAKE_C_COMPILER=${CLANGBASE:Q}/bin/clang
-CMAKE_CONFIGURE_ARGS+=	-DCMAKE_CXX_COMPILER=${CLANGBASE:Q}/bin/clang++
+#CMAKE_CONFIGURE_ARGS+=	-DCMAKE_C_COMPILER=${CLANGBASE:Q}/bin/clang
+#CMAKE_CONFIGURE_ARGS+=	-DCMAKE_CXX_COMPILER=${CLANGBASE:Q}/bin/clang++
 CMAKE_CONFIGURE_ARGS+=	-DUSE_DISCORD=OFF
 CMAKE_CONFIGURE_ARGS+=	-DUSE_SYSTEM_FFMPEG=ON
 CMAKE_CONFIGURE_ARGS+=	-DUSE_SYSTEM_LIBPNG=ON
