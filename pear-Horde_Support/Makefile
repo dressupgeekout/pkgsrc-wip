@@ -5,12 +5,12 @@ DISTNAME=	Horde_Support-1.0.2
 CATEGORIES=	devel
 MASTER_SITES=	http://pear.horde.org/get/
 
-MAINTAINER=	frederic@fauberteau.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://pear.horde.org/
 COMMENT=	Support classes
 LICENSE=	2-clause-bsd
 
-BUILD_DEPENDS+=	${PHP_PKG_PREFIX}-pear-channel-horde-[0-9]*:../../wip/pear-channel-horde
+TOOL_DEPENDS+=	${PHP_PKG_PREFIX}-pear-channel-horde-[0-9]*:../../wip/pear-channel-horde
 DEPENDS+=	${PHP_PKG_PREFIX}-pear-Horde_Exception-[0-9]*:../../wip/pear-Horde_Exception
 DEPENDS+=	${PHP_PKG_PREFIX}-pear-Horde_Stream_Wrapper-[0-9]*:../../wip/pear-Horde_Stream_Wrapper
 

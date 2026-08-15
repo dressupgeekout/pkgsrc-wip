@@ -1,0 +1,5 @@
+$NetBSD: distinfo,v 1.15 2024/11/23 11:11:38 mef Exp $
+
+BLAKE2s (kicad-templates-10.0.5.tar.bz2) = 5f2225c0674382f40d52e4c10f621c60418e04b5e9101e7125b5810a3e59c28c
+SHA512 (kicad-templates-10.0.5.tar.bz2) = e5e1b1cc6232eee3c1abf226857f42370ec093949856a4ec5ebeb1d213bfc5afbf7cc3ea923011633b69a189e0bcf6714375f5187a52575881c82786bcd20ce6
+Size (kicad-templates-10.0.5.tar.bz2) = 2882509 bytes

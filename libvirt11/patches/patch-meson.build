@@ -1,0 +1,50 @@
+$NetBSD$
+
+1.
+docs/meson.build:178:9: ERROR: Program 'rst2html5 rst2html5.py rst2html5-3' not found or not executable
+
+
+2.
+Let me check with work around only for NetBSD (to avoid following issue)
+----------
+meson.build:964:16: ERROR: C shared or static library 'dl' not found
+
+A full log can be found at /tmp/wip/libvirt11/work/libvirt-11.8.0/output/meson-logs/meson-log.txt
+*
+ld: cannot find -ldl: No such file or directory
+----------
+
+
+--- meson.build.orig 2025-11-27 19:37:43.438650006 +0900
++++ meson.build	2025-11-27 19:33:52.275885864 +0900
+@@ -818,6 +818,7 @@ if host_machine.system() != 'windows'
+     '/sbin',
+     '/usr/sbin',
+     '/usr/local/sbin',
++    '@PREFIX@/bin',
+   ]
+ endif
+ 
+@@ -960,14 +961,14 @@ if devmapper_dep.found()
+   conf.set('WITH_DEVMAPPER', 1)
+ endif
+ 
+-dlopen_use = host_machine.system() != 'windows'
+-dlopen_dep = cc.find_library('dl', required: dlopen_use)
+-if dlopen_dep.found()
+-  if not cc.check_header('dlfcn.h')
+-    error('Unable to find dlfcn.h')
+-  endif
+-  conf.set('WITH_DLFCN_H', 1)
+-endif
++# dlopen_use = host_machine.system() != 'windows'
++# dlopen_dep = cc.find_library('dl', required: dlopen_use)
++# if dlopen_dep.found()
++#   if not cc.check_header('dlfcn.h')
++#     error('Unable to find dlfcn.h')
++#   endif
++#   conf.set('WITH_DLFCN_H', 1)
++# endif
+ 
+ fuse_version = '3.1.0'
+ fuse_dep = dependency('fuse3', version: '>=' + fuse_version, required: false)

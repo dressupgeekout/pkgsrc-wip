@@ -1,34 +1,45 @@
 $NetBSD$
 
---- chrome/browser/chrome_browser_main_linux.cc.orig	2020-07-08 21:40:33.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/chrome_browser_main_linux.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/browser/chrome_browser_main_linux.cc
-@@ -81,6 +81,7 @@ void ChromeBrowserMainPartsLinux::PrePro
- void ChromeBrowserMainPartsLinux::PostProfileInit() {
-   ChromeBrowserMainPartsPosix::PostProfileInit();
+@@ -22,7 +22,7 @@
+ #include "device/bluetooth/dbus/bluez_dbus_manager.h"
+ #include "ui/base/l10n/l10n_util.h"
  
-+#if !defined(OS_BSD)
-   bool breakpad_registered;
-   if (crash_reporter::IsCrashpadEnabled()) {
-     // If we're using crashpad, there's no breakpad and crashpad is always
-@@ -98,10 +99,11 @@ void ChromeBrowserMainPartsLinux::PostPr
-   }
-   g_browser_process->metrics_service()->RecordBreakpadRegistration(
-       breakpad_registered);
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "ui/ozone/public/ozone_platform.h"
+ #if BUILDFLAG(USE_DBUS)
+ #include "components/dbus/thread_linux/dbus_thread_linux.h"
+@@ -65,15 +65,17 @@ void ChromeBrowserMainPartsLinux::PostCr
+ 
+ #if !BUILDFLAG(IS_CHROMEOS)
+ #if BUILDFLAG(USE_DBUS)
++#if !BUILDFLAG(IS_BSD)
+   bluez::BluezDBusManager::Initialize(
+       dbus_thread_linux::GetSharedSystemBus().get());
 +#endif
+ #endif  // BUILDFLAG(USE_DBUS)
+ #endif  // !BUILDFLAG(IS_CHROMEOS)
+ 
+   ChromeBrowserMainPartsPosix::PostCreateMainMessageLoop();
  }
  
- void ChromeBrowserMainPartsLinux::PostMainMessageLoopStart() {
--#if !defined(OS_CHROMEOS)
-+#if !defined(OS_CHROMEOS) && !defined(OS_BSD)
-   bluez::BluezDBusManager::Initialize(nullptr /* system_bus */);
- #endif
- 
-@@ -109,7 +111,7 @@ void ChromeBrowserMainPartsLinux::PostMa
- }
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ void ChromeBrowserMainPartsLinux::PostMainMessageLoopRun() {
+   ChromeBrowserMainPartsPosix::PostMainMessageLoopRun();
+   ui::OzonePlatform::GetInstance()->PostMainMessageLoopRun();
+@@ -107,7 +109,7 @@ void ChromeBrowserMainPartsLinux::PostBr
+ #endif  // BUILDFLAG(USE_DBUS) && !BUILDFLAG(IS_CHROMEOS)
  
  void ChromeBrowserMainPartsLinux::PostDestroyThreads() {
--#if !defined(OS_CHROMEOS)
-+#if !defined(OS_CHROMEOS) && !defined(OS_BSD)
+-#if BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   // No-op; per PostBrowserStart() comment, this is done elsewhere.
+ #else
    bluez::BluezDBusManager::Shutdown();
-   bluez::BluezDBusThreadManager::Shutdown();
- #endif

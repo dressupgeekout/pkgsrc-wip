@@ -1,0 +1,15 @@
+$NetBSD$
+
+Rearrange slightly where things go.
+
+--- Makefile.orig	2024-05-06 19:07:33.000000000 +0000
++++ Makefile
+@@ -169,7 +169,7 @@ MK_INCL_DIR_INST          := $(INSTALL_I
+ # Set the path to the subdirectory of the share installation directory.
+ MK_SHARE_DIR_INST         := $(INSTALL_SHAREDIR)/blis
+ 
+-PC_SHARE_DIR_INST         := $(INSTALL_SHAREDIR)/pkgconfig
++PC_SHARE_DIR_INST         := $(INSTALL_LIBDIR)/pkgconfig
+ 
+ 
+ #

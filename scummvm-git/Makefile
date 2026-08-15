@@ -5,7 +5,7 @@ CATEGORIES=	games
 GIT_REPO=	git@github.com:scummvm/scummvm.git
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://scummvm.sourceforge.net/
+HOMEPAGE=	https://scummvm.sourceforge.net/
 COMMENT=	LucasArts Script Creation Utility for Maniac Mansion
 LICENSE=	gnu-gpl-v2
 
@@ -22,7 +22,7 @@ CONFIGURE_ARGS+=	--mandir=${PREFIX}/${PKGMANDIR}
 .include "../../mk/bsd.prefs.mk"
 
 .if ${MACHINE_ARCH} == i386
-BUILD_DEPENDS+=	nasm-[0-9]*:../../devel/nasm
+TOOL_DEPENDS+=	nasm-[0-9]*:../../devel/nasm
 .endif
 
 YESTERDAY!=	expr `date +%s` - 86399

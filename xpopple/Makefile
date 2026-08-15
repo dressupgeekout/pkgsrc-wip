@@ -3,8 +3,7 @@
 DISTNAME=	xpopple-3.04.0
 CATEGORIES=	print
 GIT_REPO=	http://offog.org/git/xpopple.git
-GIT_BRANCH=	master
-GIT_REVISION=	2229941bfaa12dd23ea482e6ba356f57a2686cb7
+GIT_REVISION=	f110e3e00731011dfb6487e33c23f93ed77397c4
 
 MAINTAINER=	micha@NetBSD.org
 HOMEPAGE=	https://offog.org/code/xpopple/
@@ -14,7 +13,10 @@ LICENSE=	gnu-gpl-v2 OR gnu-gpl-v3
 CONFLICTS=	xpdf-[0-9]*
 CONFLICTS+=	xpdf4-[0-9]*
 
-USE_LANGUAGES=		c c++17
+USE_LANGUAGES=		c c++
+USE_CXX_FEATURES+=	c++20
+FORCE_CXX_STD=		c++20
+
 USE_TOOLS=		autoconf automake autoreconf pkg-config
 
 GNU_CONFIGURE=		yes
@@ -47,7 +49,7 @@ post-install:
 
 .include "../../mk/motif.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
-BUILDLINK_API_DEPENDS.poppler+=	poppler>=0.19
+BUILDLINK_API_DEPENDS.poppler+=	poppler>=24.03.0
 .include "../../print/poppler/buildlink3.mk"
 .include "../../print/poppler-includes/buildlink3.mk"
 .include "../../x11/libXpm/buildlink3.mk"

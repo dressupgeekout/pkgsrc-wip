@@ -1,56 +1,176 @@
 $NetBSD$
 
---- chrome/browser/chrome_browser_main.cc.orig	2020-07-24 02:37:46.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/chrome_browser_main.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/browser/chrome_browser_main.cc
-@@ -207,7 +207,7 @@
- #include "components/arc/metrics/stability_metrics_manager.h"
- #endif  // defined(OS_CHROMEOS)
+@@ -173,7 +173,7 @@
+ #endif
  
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
+ #if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+ #include "sql/database.h"
+ #endif
+ 
+@@ -199,12 +199,12 @@
+ #include "components/enterprise/browser/controller/chrome_browser_cloud_management_controller.h"
+ #endif  // BUILDFLAG(IS_CHROMEOS)
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  #include "chrome/browser/first_run/upgrade_util_linux.h"
- #endif  // defined(OS_LINUX) && !defined(OS_CHROMEOS)
+ #include "chrome/browser/ui/views/chrome_browser_main_extra_parts_views_linux.h"
+ #endif
  
-@@ -245,7 +245,7 @@
- #endif  // defined(OS_WIN)
- 
- #if defined(OS_WIN) || defined(OS_MACOSX) || \
--    (defined(OS_LINUX) && !defined(OS_CHROMEOS))
-+    ((defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS))
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+ #include "chrome/browser/headless/headless_mode_metrics.h"  // nogncheck
+ #include "chrome/browser/headless/headless_mode_util.h"     // nogncheck
  #include "chrome/browser/metrics/desktop_session_duration/desktop_session_duration_tracker.h"
- #include "chrome/browser/metrics/desktop_session_duration/touch_mode_stats_tracker.h"
- #include "chrome/browser/profiles/profile_activity_metrics_recorder.h"
-@@ -924,7 +924,7 @@ int ChromeBrowserMainParts::PreCreateThr
-       AddFirstRunNewTabs(browser_creator_.get(), master_prefs_->new_tabs);
-     }
+@@ -215,7 +215,7 @@
+ #include "ui/gfx/switches.h"
+ #endif
  
--#if defined(OS_MACOSX) || defined(OS_LINUX)
-+#if defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
-     // Create directory for user-level Native Messaging manifest files. This
-     // makes it less likely that the directory will be created by third-party
-     // software with incorrect owner or permission. See crbug.com/725513 .
-@@ -955,7 +955,7 @@ int ChromeBrowserMainParts::PreCreateThr
- #endif  // defined(OS_MACOSX)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+ #include "chrome/browser/first_run/upgrade_util.h"
+ #endif
  
- #if defined(OS_WIN) || defined(OS_MACOSX) || \
--    (defined(OS_LINUX) && !defined(OS_CHROMEOS))
-+    ((defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS))
+@@ -292,7 +292,7 @@
+ #include "chrome/browser/chrome_process_singleton.h"
+ #include "chrome/browser/ui/startup/startup_browser_creator.h"
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "base/nix/xdg_util.h"
+ #endif
+ #endif  // BUILDFLAG(ENABLE_PROCESS_SINGLETON)
+@@ -325,7 +325,7 @@
+ #include "chrome/browser/chrome_browser_main_mac.h"
+ #elif BUILDFLAG(IS_CHROMEOS)
+ #include "chrome/browser/ash/main_parts/chrome_browser_main_parts_ash.h"
+-#elif BUILDFLAG(IS_LINUX)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "chrome/browser/chrome_browser_main_linux.h"
+ #elif BUILDFLAG(IS_ANDROID)
+ #include "chrome/browser/chrome_browser_main_android.h"
+@@ -333,7 +333,7 @@
+ #include "chrome/browser/chrome_browser_main_posix.h"
+ #endif
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "chrome/browser/chrome_browser_main_extra_parts_linux.h"
+ #elif BUILDFLAG(IS_OZONE)
+ #include "chrome/browser/chrome_browser_main_extra_parts_ozone.h"
+@@ -355,7 +355,7 @@
+ namespace {
+ 
+ #if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+ constexpr base::FilePath::CharType kMediaHistoryDatabaseName[] =
+     FILE_PATH_LITERAL("Media History");
+ 
+@@ -505,7 +505,7 @@ void ProcessSingletonNotificationCallbac
+   }
+ #endif
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   // Set the global activation token sent as a command line switch by another
+   // browser process. This also removes the switch after use to prevent any side
+   // effects of leaving it in the command line after this point.
+@@ -571,7 +571,7 @@ bool ProcessSingletonNotificationCallbac
+ 
+   // Drop the request if headless mode is in effect or the request is from
+   // a headless Chrome process.
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+   if (headless::IsHeadlessMode() ||
+       command_line.HasSwitch(switches::kHeadless)) {
+     return false;
+@@ -737,7 +737,7 @@ std::unique_ptr<content::BrowserMainPart
+ #elif BUILDFLAG(IS_CHROMEOS)
+   main_parts = std::make_unique<ash::ChromeBrowserMainPartsAsh>(
+       is_integration_test, startup_data);
+-#elif BUILDFLAG(IS_LINUX)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   main_parts = std::make_unique<ChromeBrowserMainPartsLinux>(
+       is_integration_test, startup_data);
+ #elif BUILDFLAG(IS_ANDROID)
+@@ -767,7 +767,7 @@ std::unique_ptr<content::BrowserMainPart
+   // Construct additional browser parts. Stages are called in the order in
+   // which they are added.
+ #if defined(TOOLKIT_VIEWS)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   main_parts->AddParts(
+       std::make_unique<ChromeBrowserMainExtraPartsViewsLinux>());
+ #else
+@@ -784,7 +784,7 @@ std::unique_ptr<content::BrowserMainPart
+   main_parts->AddParts(std::make_unique<ChromeBrowserMainExtraPartsAsh>());
+ #endif
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   main_parts->AddParts(std::make_unique<ChromeBrowserMainExtraPartsLinux>());
+ #elif BUILDFLAG(IS_OZONE)
+   main_parts->AddParts(std::make_unique<ChromeBrowserMainExtraPartsOzone>());
+@@ -1284,7 +1284,7 @@ int ChromeBrowserMainParts::PreCreateThr
+ 
+ #if BUILDFLAG(ENABLE_EXTENSIONS_CORE) &&                                   \
+     (BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || \
+-     BUILDFLAG(IS_ANDROID))
++     BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD))
+   // Create directory for user-level Native Messaging manifest files. This
+   // makes it less likely that the directory will be created by third-party
+   // software with incorrect owner or permission. See crbug.com/41321051 .
+@@ -1328,7 +1328,7 @@ int ChromeBrowserMainParts::PreCreateThr
+ 
+ #endif  // BUILDFLAG(IS_MAC)
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
    metrics::DesktopSessionDurationTracker::Initialize();
    ProfileActivityMetricsRecorder::Initialize();
-   TouchModeStatsTracker::Initialize(
-@@ -1111,6 +1111,7 @@ void ChromeBrowserMainParts::PostBrowser
-       base::TimeDelta::FromMinutes(1));
+   TouchUIControllerStatsTracker::Initialize(
+@@ -1574,7 +1574,7 @@ void ChromeBrowserMainParts::PostProfile
+ #endif  // BUILDFLAG(IS_WIN)
  
- #if !defined(OS_ANDROID)
-+#if !defined(OS_BSD)
-   if (base::FeatureList::IsEnabled(features::kWebUsb)) {
-     web_usb_detector_.reset(new WebUsbDetector());
-     content::GetUIThreadTaskRunner({base::TaskPriority::BEST_EFFORT})
-@@ -1118,6 +1119,7 @@ void ChromeBrowserMainParts::PostBrowser
-                    base::BindOnce(&WebUsbDetector::Initialize,
-                                   base::Unretained(web_usb_detector_.get())));
+ #if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+   // Delete the media history database if it still exists.
+   // TODO(crbug.com/40177301): Remove this.
+   base::ThreadPool::PostTask(
+@@ -1625,7 +1625,7 @@ void ChromeBrowserMainParts::PostProfile
+       *UrlLanguageHistogramFactory::GetForBrowserContext(profile));
+ #endif
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+   if (headless::IsHeadlessMode()) {
+     headless::ReportHeadlessActionMetrics();
    }
-+#endif
-   if (base::FeatureList::IsEnabled(features::kTabMetricsLogging)) {
-     // Initialize the TabActivityWatcher to begin logging tab activity events.
-     resource_coordinator::TabActivityWatcher::GetInstance();
+@@ -1712,7 +1712,7 @@ int ChromeBrowserMainParts::PreMainMessa
+ #endif
+ 
+   // Should be done before starting metrics recording.
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   // On Linux, the EULA dialog requires Views, so it is shown here rather than
+   // when applying the first-run prefs.
+   if (first_run::IsChromeFirstRun() && master_prefs_->eula_required &&
+@@ -1748,7 +1748,7 @@ int ChromeBrowserMainParts::PreMainMessa
+   // In headless mode provide alternate SelectFileDialog factory overriding
+   // any platform specific SelectFileDialog implementation that may have been
+   // set.
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+   if (headless::IsHeadlessMode()) {
+     headless::HeadlessSelectFileDialogFactory::SetUp();
+   }

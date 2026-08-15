@@ -1,8 +1,8 @@
 $NetBSD$
 
-# Use predefined macros
+# Use standard compiler macros
 
---- input-files.c.orig	2021-03-27 07:38:08.000000000 +0000
+--- input-files.c.orig	2024-07-26 04:36:04.000000000 +0000
 +++ input-files.c
 @@ -48,7 +48,7 @@ FILE * f_subr_open(const char * fname, c
  #ifdef __MINGW32__

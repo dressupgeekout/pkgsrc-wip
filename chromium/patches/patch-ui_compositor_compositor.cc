@@ -1,13 +1,17 @@
 $NetBSD$
 
---- ui/compositor/compositor.cc.orig	2020-07-15 18:56:34.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- ui/compositor/compositor.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ ui/compositor/compositor.cc
-@@ -731,7 +731,7 @@ void Compositor::CancelThroughtputTracke
-   throughput_tracker_map_.erase(tracker_id);
+@@ -994,7 +994,7 @@ void Compositor::OnResume() {
+     obs.ResetIfActive();
  }
  
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
+-#if BUILDFLAG(IS_LINUX) && BUILDFLAG(SUPPORTS_OZONE_X11)
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)) && BUILDFLAG(SUPPORTS_OZONE_X11)
  void Compositor::OnCompleteSwapWithNewSize(const gfx::Size& size) {
-   for (auto& observer : observer_list_)
-     observer.OnCompositingCompleteSwapWithNewSize(this, size);
+   observer_list_.Notify(
+       &CompositorObserver::OnCompositingCompleteSwapWithNewSize, this, size);

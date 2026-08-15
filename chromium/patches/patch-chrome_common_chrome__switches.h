@@ -1,13 +1,26 @@
 $NetBSD$
 
---- chrome/common/chrome_switches.h.orig	2020-07-08 21:41:47.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/common/chrome_switches.h.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/common/chrome_switches.h
-@@ -255,7 +255,7 @@ extern const char kAllowNaClFileHandleAP
- extern const char kAllowNaClSocketAPI[];
+@@ -287,7 +287,7 @@ extern const char kDebugPrint[];
  #endif
  
--#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN)
-+#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN) || defined(OS_BSD)
- extern const char kEnableNewAppMenuIcon[];
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC) || \
+-    BUILDFLAG(IS_WIN)
++    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
  extern const char kGuest[];
  #endif
+ 
+@@ -310,7 +310,7 @@ extern const char kGlicGuestUrlPresetSta
+ extern const char kGlicGuestUrlPresetPreprod[];
+ extern const char kGlicGuestUrlPresetProd[];
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+ extern const char kListApps[];
+ extern const char kProfileBaseName[];
+ extern const char kProfileManagementAttributes[];

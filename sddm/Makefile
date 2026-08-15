@@ -1,70 +1,95 @@
-# $NetBSD$
+# $NetBSD: Makefile,v 1.1 2025/12/30 04:00:08 gutteridge Exp $
 
-DISTNAME=	sddm-0.19.0
+DISTNAME=	sddm-0.21.0
 CATEGORIES=	x11
+PKGREVISION=	1
 MASTER_SITES=	${MASTER_SITE_GITHUB:=sddm/}
-GITHUB_RELEASE=	v${PKGVERSION_NOREV}
-EXTRACT_SUFX=	.tar.xz
+GITHUB_TAG=	refs/tags/v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/sddm/sddm
-COMMENT=	QML based X11 and Wayland display manager
-LICENSE=	gnu-gpl-v2
+COMMENT=	QML-based X11 and Wayland display manager
+LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3
 
-BUILD_DEPENDS+=	extra-cmake-modules-[0-9]*:../../devel/extra-cmake-modules
-BUILD_DEPENDS+=	${PYPKGPREFIX}-docutils-[0-9]*:../../textproc/py-docutils
+WRKSRC=		${WRKDIR}/${DISTNAME}
 
-USE_CMAKE=	yes
-USE_LANGUAGES=	c c++
-USE_TOOLS+=	pkg-config
+USE_LANGUAGES=		c c++
+USE_CXX_FEATURES+=	c++17
+USE_TOOLS+=		pkg-config
 
 .if !exists(/etc/login.defs)
-CMAKE_ARGS+=	-DUID_MIN=1000
-CMAKE_ARGS+=	-DUID_MAX=65000
+CMAKE_CONFIGURE_ARGS+=	-DUID_MIN=1000
+CMAKE_CONFIGURE_ARGS+=	-DUID_MAX=65000
 .endif
-CMAKE_ARGS+=	-DDBUS_CONFIG_DIR=${PREFIX}/share/examples/sddm
-CMAKE_ARGS+=	-DCMAKE_INSTALL_SYSCONFDIR:PATH=${PKG_SYSCONFDIR:Q}
-CMAKE_ARGS+=	-DBUILD_MAN_PAGES=ON
-CMAKE_ARGS+=	-DRST2MAN_EXECUTABLE=${PREFIX}/bin/rst2man-${PYVERSSUFFIX}
-#CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Debug
+CMAKE_CONFIGURE_ARGS+=	-DDBUS_CONFIG_DIR=${PREFIX}/share/examples/sddm
+CMAKE_CONFIGURE_ARGS+=	-DCMAKE_INSTALL_SYSCONFDIR:PATH=${PKG_SYSCONFDIR:Q}
+CMAKE_CONFIGURE_ARGS+=	-DBUILD_MAN_PAGES=ON
+CMAKE_CONFIGURE_ARGS+=	-DRST2MAN_EXECUTABLE=${PREFIX}/bin/rst2man-${PYVERSSUFFIX}
 
-SUBST_CLASSES+=		paths egs
+TOOL_DEPENDS+=	extra-cmake-modules-[0-9]*:../../devel/extra-cmake-modules
+TOOL_DEPENDS+=	${PYPKGPREFIX}-docutils-[0-9]*:../../textproc/py-docutils
+
+.include "options.mk"
+.include "../../mk/bsd.prefs.mk"
+
+.if ${OPSYS} != "Linux"
+CMAKE_CONFIGURE_ARGS+=	-DENABLE_JOURNALD=OFF
+CMAKE_CONFIGURE_ARGS+=	-DNO_SYSTEMD=ON
+.endif
+
+.if ${OPSYS} == "NetBSD"
+CMAKE_CONFIGURE_ARGS+=	-DSDDM_INITIAL_VT=5
+.endif
+
+.if ${OPSYS} == "FreeBSD"
+CMAKE_CONFIGURE_ARGS+=	-DSDDM_INITIAL_VT=7
+.endif
+
+SUBST_CLASSES+=		vars
+SUBST_STAGE.vars=	pre-configure
+SUBST_MESSAGE.vars=	Fix hard-coded absolute paths.
+SUBST_FILES.vars=	src/common/Configuration.h
+SUBST_FILES.vars+=	data/man/sddm.conf.rst.in
+SUBST_VARS.vars=	PREFIX X11BASE
+
+SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	pre-configure
-SUBST_MESSAGE.paths=	Fixing absolute paths.
-SUBST_FILES.paths+=	src/common/Configuration.h
-SUBST_FILES.paths+=	data/man/sddm.conf.rst.in
-SUBST_SED.paths+=	-e 's,/usr/bin/X,${X11BASE}/bin/X,g'
-SUBST_SED.paths+=	-e 's,/usr/bin/Xephyr,${X11BASE}/bin/Xephyr,g'
-SUBST_SED.paths+=	-e 's,/usr/bin/xauth,${X11BASE}/bin/xauth,g'
-SUBST_SED.paths+=	-e 's,/usr/share/xsessions,${PREFIX}/share/xsessions,g'
-SUBST_SED.paths+=	-e 's,/usr/share/wayland-sessions,${PREFIX}/share/wayland-sessions,g'
-SUBST_SED.paths+=	-e 's,/usr/local/bin,${PREFIX}/bin:/usr/local/bin,g'
+SUBST_MESSAGE.paths=	Set path to sddm executable.
+SUBST_FILES.paths=	../xinitrc.desktop
+SUBST_VARS.paths=	PREFIX
 
-SUBST_STAGE.egs=	pre-configure
-SUBST_MESSAGE.egs=	Install via examples dir
-SUBST_FILES.egs+=	services/CMakeLists.txt
-SUBST_SED.egs+=	-e 's,CMAKE_INSTALL_FULL_SYSCONFDIR},CMAKE_INSTALL_PREFIX}/share/examples,g'
+BUILD_DEFS+=		VARBASE
+SDDM_GROUP=		sddm
+SDDM_USER=		sddm
+SDDM_HOME=		${VARBASE}/lib/sddm
+PKG_GROUPS_VARS+=	SMDM_GROUP
+PKG_USERS_VARS+=	SDDM_USER
+PKG_GROUPS=		${SDDM_GROUP}
+PKG_USERS=		${SDDM_USER}:${SDDM_GROUP}
+PKG_GECOS.${SDDM_USER}=	SDDM user
+PKG_HOME.${SDDM_USER}=	${SDDM_HOME}
 
-PKG_USERS=		sddm:sddm
-PKG_GECOS.sddm=		sddm unprivileged user
-PKG_HOME.sddm=		${VARBASE}/lib/sddm
+OWN_DIRS_PERMS+=	${SDDM_HOME} ${SDDM_USER} ${SDDM_GROUP} 0770
 
-CONF_FILES+=		${PREFIX}/share/examples/sddm/org.freedesktop.DisplayManager.conf \
-			${PKG_SYSCONFBASE}/dbus-1/system.d/org.freedesktop.DisplayManager.conf
+.if ${INIT_SYSTEM} == "rc.d"
+DEPENDS+=	daemonize-[0-9]*:../../sysutils/daemonize
+RCD_SCRIPTS+=	sddm
+.endif
 
-LDFLAGS.FreeBSD+=	-lutil
-LDFLAGS.NetBSD+=	-lutil
+INSTALLATION_DIRS+=	share/xsessions
+
+post-extract:
+	${CP} ${FILESDIR}/xsessions/xinitrc.desktop ${WRKDIR}/xinitrc.desktop
 
 post-install:
-	mkdir -p ${DESTDIR}${PREFIX}/share/xsessions
-	cp ${FILESDIR}/* ${DESTDIR}${PREFIX}/share/xsessions
+	${INSTALL_DATA} ${FILESDIR}/xsessions/ctwm.desktop ${DESTDIR}${PREFIX}/share/xsessions/ctwm.desktop
+	${INSTALL_DATA} ${WRKDIR}/xinitrc.desktop ${DESTDIR}${PREFIX}/share/xsessions/xinitrc.desktop
+	${INSTALL_SCRIPT} ${FILESDIR}/xinit-session ${DESTDIR}${PREFIX}/share/sddm/scripts/xinit-session
 
-PYTHON_FOR_BUILD_ONLY=	yes
+PYTHON_FOR_BUILD_ONLY=  yes
+.include "../../devel/cmake/build.mk"
 .include "../../lang/python/pyversion.mk"
+.include "../../sysutils/dbus/buildlink3.mk"
 .include "../../x11/libxcb/buildlink3.mk"
-BUILDLINK_API_DEPENDS.qt5-qtbase+=	qt5-qtbase>=5.15.8
-.include "../../x11/qt5-qtbase/buildlink3.mk"
-.include "../../x11/qt5-qtdeclarative/buildlink3.mk"
-.include "../../x11/qt5-qttools/buildlink3.mk"
 .include "../../mk/pam.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,0 +1,35 @@
+$NetBSD$
+
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/ui/webui/connectors_internals/device_trust_utils.cc.orig	2026-08-05 20:17:42.000000000 +0000
++++ chrome/browser/ui/webui/connectors_internals/device_trust_utils.cc
+@@ -9,7 +9,7 @@
+ #include "components/enterprise/connectors/core/connectors_internals_utils.h"
+ 
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || \
+-    BUILDFLAG(IS_ANDROID)
++    BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
+ #include "chrome/browser/browser_process.h"
+ #include "chrome/browser/policy/chrome_browser_policy_connector.h"
+ #include "components/enterprise/browser/controller/chrome_browser_cloud_management_controller.h"
+@@ -31,7 +31,7 @@ namespace enterprise_connectors::utils {
+ namespace {
+ 
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || \
+-    BUILDFLAG(IS_ANDROID)
++    BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
+ 
+ connectors_internals::mojom::KeyTrustLevel ParseTrustLevel(
+     BPKUR::KeyTrustLevel trust_level) {
+@@ -74,7 +74,7 @@ connectors_internals::mojom::KeyManagerP
+ 
+ connectors_internals::mojom::KeyInfoPtr GetKeyInfo() {
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || \
+-    BUILDFLAG(IS_ANDROID)
++    BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
+   auto* key_manager = g_browser_process->browser_policy_connector()
+                           ->chrome_browser_cloud_management_controller()
+                           ->GetDeviceTrustKeyManager();

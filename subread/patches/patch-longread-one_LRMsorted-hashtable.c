@@ -1,6 +1,6 @@
 $NetBSD$
 
-# Use predefined macros
+# Use standard compiler macros
 
 --- longread-one/LRMsorted-hashtable.c.orig	2018-11-08 14:47:43 UTC
 +++ longread-one/LRMsorted-hashtable.c

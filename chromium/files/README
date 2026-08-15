@@ -1,0 +1,28 @@
+$NetBSD: README,v 1.6 2026/01/19 16:14:05 kikadf Exp $
+
+Some notes on chromium:
+
+1) Wrapper flags support
+  The startup wrapper can read chromium flags
+  from ~/.config/chromium-flags.conf.
+  Example settings in chromium-flags.conf:
+    CHROMIUM_FLAGS="--disable-gpu --enable-foo"
+
+2) Disabling WebAssembly
+  WebAssembly is enabled by default, but it can be disabled by either:
+  - Setting CHROMIUM_ENABLE_WASM=0 in your environment, or
+  - Adding the following flags to ~/.config/chromium-flags.conf:
+    --disable-features=WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming
+    --js-flags=--noexpose-wasm
+
+3) Random tab hang
+  Under investigation. No known working workaround.
+
+4) HID support
+  To enable monitoring attached and detached FIDO devices on NetBSD,
+  you should enable the ndevd service (a devpubd drop-in replacement)
+  in /etc/rc.conf.
+
+5) Widevine support
+  Install the multimedia/openwv package and follow the instructions
+  in its README.chromium file. 

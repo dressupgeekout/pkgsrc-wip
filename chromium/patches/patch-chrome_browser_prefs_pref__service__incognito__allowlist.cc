@@ -1,13 +1,17 @@
 $NetBSD$
 
---- chrome/browser/prefs/pref_service_incognito_allowlist.cc.orig	2020-07-08 21:40:34.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/prefs/pref_service_incognito_allowlist.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/browser/prefs/pref_service_incognito_allowlist.cc
-@@ -135,7 +135,7 @@ const char* const kPersistentPrefNames[]
+@@ -202,7 +202,7 @@ const char* const kPersistentPrefNames[]
      prefs::kShowFullscreenToolbar,
  #endif
  
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
      // Toggleing custom frames affects all open windows in the profile, hence
      // should be written to the regular profile when changed in incognito mode.
      prefs::kUseCustomChromeFrame,

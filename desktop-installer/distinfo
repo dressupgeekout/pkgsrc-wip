@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (desktop-installer-1.1.1.tar.gz) = 574c57c60c38262db72f566a7a708fd9fbd438aa2724dd603ce16cd31b7eaf12
+SHA512 (desktop-installer-1.1.1.tar.gz) = 8e334077cf5ff5671b849607d674d8553ed33c246b3dbe4cb3dc193e63f15b9d7ea0a3cf8e9e2775a51976242855217c83493d0e11ce377256304f84d9101c97
+Size (desktop-installer-1.1.1.tar.gz) = 1749291 bytes

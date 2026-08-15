@@ -1,0 +1,60 @@
+$NetBSD$
+
+Link the hawk_core object statically instead of dynamically for the
+bootstrap phase. This works around incorrect library paths for the
+bootstrap phase.
+
+The bootstrap JIT needs "paxctl +m", so run the command if paxctl
+is found.
+
+Use the clang as the C compiler, not the build time "cc".
+
+Add library search paths when generating executables.
+
+--- CMakeLists.txt.orig	2026-07-06 21:42:40.000000000 +0000
++++ CMakeLists.txt
+@@ -157,8 +157,17 @@ if(BOOTSTRAP)
+   add_library(hawk_image_bootstrap OBJECT hawk_image.c)
+   target_compile_definitions(hawk_image_bootstrap PRIVATE BOOTSTRAP=1)
+ 
+-  add_executable(hawk_bootstrap $<TARGET_OBJECTS:hawk_image_bootstrap>)
+-  add_dependencies(hawk_bootstrap hawk_core)
++  add_executable(hawk_bootstrap $<TARGET_OBJECTS:hawk_image_bootstrap> $<TARGET_OBJECTS:hawk_core>)
++  target_link_libraries(hawk_bootstrap PRIVATE m)
++  if(HAVE_ZSTD)
++    target_link_libraries(hawk_bootstrap PRIVATE ${ZSTD_LIBRARY})
++  endif()
++  if(HAVE_CAPSTONE)
++    target_link_libraries(hawk_bootstrap PRIVATE ${CAPSTONE_LIBRARY})
++  endif()
++  if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
++    target_link_libraries(hawk_bootstrap PRIVATE ${CMAKE_DL_LIBS})
++  endif()
+ endif()
+ # fold generator
+ set(gen_fold_target gen_fold)
+@@ -250,13 +259,22 @@ if(BOOTSTRAP)
+ target_link_libraries(hawk PRIVATE hawk_core)
+ target_link_options(hawk PRIVATE ${HAWK_EXE_EXPORT_FLAG})
+ if(BOOTSTRAP)
+-  target_link_libraries(hawk_bootstrap PRIVATE hawk_core)
++#  target_link_libraries(hawk_bootstrap PRIVATE hawk_core)
+   target_link_options(hawk_bootstrap PRIVATE ${HAWK_EXE_EXPORT_FLAG})
++  find_program(PAXCTL paxctl)
++  if(PAXCTL)
++    add_custom_command(
++      TARGET hawk_bootstrap
++      POST_BUILD
++      COMMAND ${PAXCTL} +m $<TARGET_FILE:hawk_bootstrap>
++      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
++    )
++  endif()
+ endif()
+ 
+ target_compile_definitions(
+   hawk_core PRIVATE
+-  HAWK_CC="${CMAKE_C_COMPILER}"
++  HAWK_CC="${CMAKE_INSTALL_PREFIX}/libexec/hawk-cc"
+   HAWK_CORE_LIB="-lhawk_core"
+   HAWK_EXE_EXPORT_FLAG="${HAWK_EXE_EXPORT_FLAG}"
+   HAWK_DEFAULT_LIBRARY_PATH="${CMAKE_INSTALL_FULL_DATADIR}/hawk"

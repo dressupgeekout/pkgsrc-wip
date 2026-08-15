@@ -1,0 +1,6 @@
+$NetBSD$
+
+BLAKE2s (liblfds%20release%207.1.1%20source.tar.bz2) = aa8d84c166c0637872e4607fb4f8014add5a6e62d69a689b24784bf720cf1fc3
+SHA512 (liblfds%20release%207.1.1%20source.tar.bz2) = fca13888427e9f3d9c73405d6eb31e9de08f2023b5c9cedf1fb1afb6d0af6bd4599ac497c1727e748f07b0a702a468af5df3407a6c5c9dd61d61ad254d460e26
+Size (liblfds%20release%207.1.1%20source.tar.bz2) = 136753 bytes
+SHA1 (patch-liblfds711_inc_liblfds711_lfds711__porting__abstraction__layer__operating__system.h) = 03c7f8b37fd798a5b3cda3eb51a2b3dbed5f8854

@@ -1,15 +1,13 @@
 # $NetBSD: Makefile,v 1.16 2021/01/27 13:35:58 leot Exp $
 
-.include "../../wip/terraform/version.mk"
-
-DISTNAME=	terraform-${TERRAFORM13_VERSION}
-PKGNAME=	terraform13-${TERRAFORM13_VERSION}
+DISTNAME=	terraform-1.3.10
+PKGNAME=	${DISTNAME:S/terraform/&13/}
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=hashicorp/}
 GITHUB_PROJECT=	terraform
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	leot@NetBSD.org
 HOMEPAGE=	https://www.terraform.io/
 COMMENT=	Infrastructure orchestration tool
 LICENSE=	mpl-2.0
@@ -27,7 +25,7 @@ WRKSRC=	${WRKDIR}/${DISTNAME}
 INSTALLATION_DIRS+=	bin
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKDIR}/.gopath/bin/terraform ${DESTDIR}${PREFIX}/bin/terraform${TERRAFORMVERSSUFFIX}
+	${INSTALL_PROGRAM} ${WRKDIR}/.gopath/bin/terraform ${DESTDIR}${PREFIX}/bin/terraform13
 
 .include "go-modules.mk"
 

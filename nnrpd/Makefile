@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.18 2012/10/03 18:15:32 asau Exp $
+# $NetBSD$
 
 DISTNAME=		inn-1.7.2.insync-1.1d
 PKGNAME=		nnrpd-1.7.2
@@ -11,11 +11,7 @@ MAINTAINER=		hauke@NetBSD.org
 HOMEPAGE=		http://www.isc.org/sw/inn/
 COMMENT=		NNTP reader daemon from InterNet News (INN)
 
-INSTALLATION_DIRS=	sbin libexec \
-			share/examples/nnrpd share/doc/nnrpd \
-			${PKGMANDIR}/man3 ${PKGMANDIR}/man5 ${PKGMANDIR}/man8
-
-INN_DATA_DIR?=		/var/news
+INN_DATA_DIR?=		${CNEWSDATA}
 
 CONFLICTS+=		nntpclnt-[0-9]*
 CONFLICTS+=		inn-[0-9]*
@@ -27,15 +23,12 @@ USE_TOOLS+=		perl
 .include "../../wip/c-news/Makefile.common"
 .include "options.mk"
 
-# Given foo=${bar}, replace @foo@ with ${bar}.
-#
-FILES_SUBST+=		PREFIX=${PREFIX}
 FILES_SUBST+=		INNDATA=${INN_DATA_DIR:Q}
 FILES_SUBST+=		INNPREFIX=${PREFIX}
 FILES_SUBST+=		INNMANPREFIX=${PREFIX}
 
 # UBC brought read and mmap in sync
-.if ${OPSYS} == "NetBSD" && (${OS_VERSION:M1.[0-4]*} != "" || \
+.if ${OPSYS} == "NetBSD" && (${OS_VERSION:M1.[0-4].*} != "" || \
 		${OS_VERSION:M1.5} != "" || \
 		${OS_VERSION:M1.5[A-K]} != "")
 FILES_SUBST+=		INNACTSTYLE="READ"
@@ -44,7 +37,6 @@ FILES_SUBST+=		INNCFLAGS=${CFLAGS:M*:Q}
 FILES_SUBST+=		INNACTSTYLE="MMAP"
 FILES_SUBST+=		INNCFLAGS="${CFLAGS} -DOVERSCREAM"
 .endif
-FILES_SUBST_SED=	${FILES_SUBST:S/=/@!/:S/$/!g/:S/^/-e s!@/}
 
 MESSAGE_SUBST+=		NEWSUID=${NEWSUID}
 MESSAGE_SUBST+=		NEWSGID=${NEWSGID}
@@ -62,6 +54,10 @@ CONF_FILES_PERMS+=	${PREFIX}/share/examples/nnrpd/${inn_files} \
 .endfor
 
 BUILD_DEFS+=		INN_DATA_DIR
+
+INSTALLATION_DIRS+=	sbin libexec
+INSTALLATION_DIRS+=	share/examples/nnrpd share/doc/nnrpd
+INSTALLATION_DIRS+=	${PKGMANDIR}/man3 ${PKGMANDIR}/man5 ${PKGMANDIR}/man8
 
 pre-configure:
 	${SED} ${FILES_SUBST_SED} ${FILESDIR}/config.data > \

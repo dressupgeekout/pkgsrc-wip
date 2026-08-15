@@ -1,13 +1,10 @@
+# $NetBSD: Makefile,v 1.39 2025/01/27 19:12:38 rillig Exp $
 
-
-DISTNAME=	gzip-1.11
+DISTNAME=	gzip-1.14
 CATEGORIES=	archivers
-#MASTER_SITES=	${MASTER_SITE_GNU:=gzip/}
-#EXTRACT_SUFX=	.tar.xz
-MASTER_SITES=	${MASTER_SITE_LOCAL}
-EXTRACT_SUFX=	.tar
+MASTER_SITES=	${MASTER_SITE_GNU:=gzip/}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	drixter@e-utp.net
 HOMEPAGE=	https://www.gnu.org/software/gzip/gzip.html
 COMMENT=	Compress or expand files
 LICENSE=	gnu-gpl-v3
@@ -18,8 +15,5 @@ GNU_CONFIGURE=	yes
 MAKE_FLAGS+=	manlinks=so
 INFO_FILES=	yes
 CHECK_PERMS=	no	# can't depend on checkperms; its distfile is gzipped
-
-#bug 20453 in bug-gzip list, passed onto gnulib
-CONFIGURE_ENV.AIX+=	ac_cv_header_wctype_h=no
 
 .include "../../mk/bsd.pkg.mk"

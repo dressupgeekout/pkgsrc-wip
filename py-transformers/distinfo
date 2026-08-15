@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (transformers-5.9.0.tar.gz) = b0fec6d7eecb62c6575e4d26508da66c03ab0707c64434a96ec16814d06ec1c3
+SHA512 (transformers-5.9.0.tar.gz) = caf3315d901d4509a4befaa0082bf6faf96179925d56ba050de7bf9e218d1649b36052309dc12a5bbc82eba1910fad34f7ac0687606cf324868b2a09ce2ec7ac
+Size (transformers-5.9.0.tar.gz) = 8642240 bytes

@@ -1,31 +1,50 @@
 $NetBSD$
 
---- chrome/common/chrome_content_client.cc.orig	2020-07-08 21:41:47.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/common/chrome_content_client.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/common/chrome_content_client.cc
-@@ -65,7 +65,7 @@
- #include "ui/base/resource/resource_bundle.h"
+@@ -61,12 +61,12 @@
  #include "url/url_constants.h"
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ #include "components/webapps/isolated_web_apps/scheme.h"
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) ||
+         // BUILDFLAG(IS_CHROMEOS)
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  #include <fcntl.h>
- #include "chrome/common/component_flash_hint_file_linux.h"
  #include "sandbox/linux/services/credentials.h"
-@@ -294,7 +294,7 @@ bool GetComponentUpdatedPepperFlash(cont
+ #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
+@@ -188,7 +188,7 @@ static const char* const kChromeStandard
+     extensions::kExtensionScheme,
+ #endif
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+     webapps::kIsolatedAppScheme,
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) ||
+         // BUILDFLAG(IS_CHROMEOS)
+@@ -213,7 +213,7 @@ void ChromeContentClient::AddAdditionalS
+ #endif
  
-   return TryCreatePepperFlashInfo(flash_filename, plugin);
- }
--#elif defined(OS_LINUX)
-+#elif defined(OS_LINUX) || defined(OS_BSD)
- // This method is used on Linux only because of architectural differences in how
- // it loads the component updated flash plugin, and not because the other
- // platforms do not support component updated flash. On other platforms, the
-@@ -557,7 +557,7 @@ void ChromeContentClient::AddPepperPlugi
-   std::vector<std::unique_ptr<content::PepperPluginInfo>> flash_versions;
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   schemes->isolated_app_schemes.push_back(webapps::kIsolatedAppScheme);
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) ||
+         // BUILDFLAG(IS_CHROMEOS)
+@@ -262,7 +262,7 @@ void ChromeContentClient::AddAdditionalS
+ #endif
  
- // Get component updated flash for desktop Linux and Chrome OS.
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
-   // Depending on the sandbox configuration, the file system
-   // is not always available. If it is not available, do not try and load any
-   // flash plugin. The flash player, if any, preloaded before the sandbox
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   schemes->secure_schemes.push_back(webapps::kIsolatedAppScheme);
+   schemes->cors_enabled_schemes.push_back(webapps::kIsolatedAppScheme);
+   schemes->service_worker_schemes.push_back(webapps::kIsolatedAppScheme);

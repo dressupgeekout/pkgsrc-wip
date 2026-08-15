@@ -9,7 +9,7 @@ DISTFILES=		${DEFAULT_DISTFILES} ${RUSTSRC_DIST}
 MRUST_DISTDIR=		${DISTDIR}/${DIST_SUBDIR}
 RUSTSRC_LINK=		${DISTDIR}/${DIST_SUBDIR}/${RUSTSRC_DIST}
 BUILD_TARGET=		LIBS
-TEST_TARGET=		mrustc_tests
+TEST_TARGET=		test
 ##TEST_TARGET2=		rust_tests-libs
 TEST_MAKE_FLAGS=	-o bin/mrustc -o LIBS
 MAKE_FILE=		minicargo.mk
@@ -106,8 +106,8 @@ do-install:
 
 ##	    for ff in lib*.rlib lib*.rlib.[ho]* *build build*.txt; do	\
 
-BUILD_DEPENDS+=	mrust-mrustc>=${SNAPSTAMP}:../../wip/mrust-mrustc
-BUILD_DEPENDS+=	mrust-minicargo>=${SNAPSTAMP}:../../wip/mrust-minicargo
+TOOL_DEPENDS+=	mrust-mrustc>=${SNAPSTAMP}:../../wip/mrust-mrustc
+TOOL_DEPENDS+=	mrust-minicargo>=${SNAPSTAMP}:../../wip/mrust-minicargo
 
 .include "../../devel/libatomic/buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"

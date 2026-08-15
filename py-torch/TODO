@@ -1,31 +1,16 @@
-Patches that change AMD64 to amd64 are not confirmed to be necessary. May be removed if not needed
+Only installs the Python files, not the headers and libraries.
 
-Patch for cpuinfo is temporary. An external static instance of cpuinfo is created in the header itself. Since cpuinfo functionality is anyway not available on NetBSD, this should not matter.
+This leads to:
 
-Various components are switched off. Once the build succeeds, try and enable them one by one.
-
-Warning: reference to the libc supplied alloca(3); this most likely will not work. Please use the compiler provided version of alloca(3), by supplying the appropriate compiler flags (e.g. not -std=c89)
-
-https://github.com/OpenImageIO/oiio/issues/2366
-
-OpenMP
-https://stackoverflow.com/questions/60126203/how-do-i-get-cmake-to-find-openmp-c-openmp-cxx-etc
-
-/usr/pkgsrc/work/wip/py-torch/work/pytorch/third_party/ideep/mkl-dnn/third_party/oneDNN/cmake/OpenMP.cmake
-Check openmp settings, which compiler should be used
-	if(NOT OpenMP_CXX_FOUND AND MSVC AND CMAKE_CXX_COMPILER_ID MATCHES "(Clang|IntelLLVM)")
-
-Which library? libiomp5: both are present in parallel/openmp
-        # Tell DPCPP compiler to link against libgomp. By default, it links
-        # against libiomp5
-
-
-
-ld: /usr/pkgsrc/work/wip/py-torch/work/.buildlink/lib/libgomp.so: warning: Warning: reference to the libc supplied alloca(3); this most likely will not work. Please use the compiler provided version of alloca(3), by supplying the appropriate compiler flags (e.g. not -std=c89).
-
-
-Watch CMake warnings, some of those could be addressable
-
-CMake arguments are taken from here, may have to refine
-
-https://forums.freebsd.org/threads/pytorch.85206/
+ERROR: lib/python3.14/site-packages/torch/_C.so: missing library: libtorch_python.so
+ERROR: lib/python3.14/site-packages/torch/bin/torch_shm_manager: missing library: libshm.so
+ERROR: lib/python3.14/site-packages/torch/bin/torch_shm_manager: missing library: libc10.so
+ERROR: lib/python3.14/site-packages/torch/lib/libshm.so: missing library: libtorch_cpu.so
+ERROR: lib/python3.14/site-packages/torch/lib/libshm.so: missing library: libc10.so
+ERROR: lib/python3.14/site-packages/torch/lib/libtorch.so: missing library: libtorch_cpu.so
+ERROR: lib/python3.14/site-packages/torch/lib/libtorch_cpu.so: missing library: libc10.so
+ERROR: lib/python3.14/site-packages/torch/lib/libtorch_python.so: missing library: libtorch.so
+ERROR: lib/python3.14/site-packages/torch/lib/libtorch_python.so: missing library: libshm.so
+ERROR: lib/python3.14/site-packages/torch/lib/libtorch_python.so: missing library: libtorch_cpu.so
+ERROR: lib/python3.14/site-packages/torch/lib/libtorch_python.so: missing library: libc10.so
+*** Error code 1

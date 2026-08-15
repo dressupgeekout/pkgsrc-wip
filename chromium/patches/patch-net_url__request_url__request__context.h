@@ -1,13 +1,17 @@
 $NetBSD$
 
---- net/url_request/url_request_context.h.orig	2020-07-15 18:56:00.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- net/url_request/url_request_context.h.orig	2026-08-05 20:17:42.000000000 +0000
 +++ net/url_request/url_request_context.h
-@@ -82,7 +82,7 @@ class NET_EXPORT URLRequestContext
+@@ -91,7 +91,7 @@ class NET_EXPORT URLRequestContext final
    // session.
-   const HttpNetworkSession::Context* GetNetworkSessionContext() const;
+   const HttpNetworkSessionContext* GetNetworkSessionContext() const;
  
--#if (!defined(OS_WIN) && !defined(OS_LINUX)) || defined(OS_CHROMEOS)
-+#if (!defined(OS_WIN) && !defined(OS_LINUX) && !defined(OS_BSD)) || defined(OS_CHROMEOS)
+-#if !BUILDFLAG(IS_WIN) && !BUILDFLAG(IS_LINUX)
++#if !BUILDFLAG(IS_WIN) && !BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_BSD)
    // This function should not be used in Chromium, please use the version with
    // NetworkTrafficAnnotationTag in the future.
    //

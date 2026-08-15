@@ -1,22 +1,23 @@
 # $NetBSD$
 
-GITHUB_TAG=	v${PKGVERSION_NOREV}
-DISTNAME=	num2words-0.5.10
+DISTNAME=	num2words-0.5.14
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-CATEGORIES=	converters
-MASTER_SITES=	${MASTER_SITE_GITHUB:=savoirfairelinux/}
-GITHUB_PROJECT=	num2words
+CATEGORIES=	converters python
+MASTER_SITES=	${MASTER_SITE_PYPI:=n/num2words/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/savoirfairelinux/num2words
 COMMENT=	Modules to convert numbers to words. Easily extensible
 LICENSE=	gnu-lgpl-v2
 
-WRKSRC=		${WRKDIR}/num2words-0.5.10
+TOOL_DEPENDS+=	${PYPKGPREFIX}-setuptools>=78:../../devel/py-setuptools
 DEPENDS+=	${PYPKGPREFIX}-docopt>=0.6.2:../../devel/py-docopt
-TEST_DEPENDS+=	# TODO: delegator.py>=0
+TEST_DEPENDS+=	${PYPKGPREFIX}-delegator>=0:../../wip/py-delegator
 
 USE_LANGUAGES=	# none
 
-.include "../../lang/python/egg.mk"
+# as of 0.5.14
+# 6 failed, 1428 passed
+
+.include "../../lang/python/wheel.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,0 +1,5 @@
+cad/libbgcode: Add libbgcode version 20231123
+
+Prusa Block & Binary G-code reader/writer/converter. bgcode is a new gcode
+format which includes metadata blocks, indexes, coding and compression, and
+checksums, as supported by Prusa 3D printers.

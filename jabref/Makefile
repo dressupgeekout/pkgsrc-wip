@@ -1,17 +1,18 @@
 # $NetBSD: Makefile,v 1.3 2015/03/14 21:12:48 jihbed Exp $
 
-DISTNAME=	JabRef-2.10
+DISTNAME=	JabRef-2.11.1
 PKGNAME=	${DISTNAME:tl}
 CATEGORIES=	misc
-MASTER_SITES=	http://sourceforge.net/projects/jabref/files/jabref/2.10/
+MASTER_SITES=	http://sourceforge.net/projects/jabref/files/v1.0%20to%20v2.11.1/2.11.1/
 EXTRACT_SUFX=	.jar
 
 MAINTAINER=	pouya@san-serriffe.org
-HOMEPAGE=	http://jabref.sourceforge.net/
+HOMEPAGE=	https://jabref.sourceforge.net/
 COMMENT=	JabRef is an advanced reference manager uses the BibTeX format
 LICENSE=	gnu-gpl-v2
 
 WRKSRC=			${WRKDIR}
+PKG_JVMS_ACCEPTED=	openjdk8
 
 INSTALLATION_DIRS=	bin lib/java
 

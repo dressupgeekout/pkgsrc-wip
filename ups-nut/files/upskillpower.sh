@@ -1,10 +1,10 @@
 #!@RCD_SCRIPTS_SHELL@
 #
-# $NetBSD: upskillpower.sh,v 1.1 2023/01/08 01:14:23 gdt Exp $
+# $NetBSD: upskillpower.sh,v 1.3 2023/11/09 18:58:44 gdt Exp $
 #
 # PROVIDE: upskillpower
 # REQUIRE: mountcritremote
-# BEFORE: upsdriver altq downinterfaces 
+# BEFORE: upsdriver altqd downinterfaces 
 # KEYWORD: shutdown
 
 # This script shuts off power, if upsmon has decided to shutdown

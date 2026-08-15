@@ -4,4 +4,4 @@ turn gives the designer the ability to create smooth, animated user interfaces.
 
 SDDM is extremely themeable. We put no restrictions on the user interface
 design, it is completely up to the designer. We simply provide a few callbacks
-to the user interface which can be used for authentication, suspend etc.
+to the user interface which can be used for authentication, suspend, etc.

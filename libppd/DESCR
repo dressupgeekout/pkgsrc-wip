@@ -1,0 +1,3 @@
+libppd is a supporting library for lib/cups-filters that gives it the
+ability to read, created, and convert PPD files for driverless
+printing.

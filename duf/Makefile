@@ -1,7 +1,8 @@
 # $NetBSD$
 
-DISTNAME=	duf-v0.7.0
+DISTNAME=	duf-v0.9.1
 PKGNAME=	${DISTNAME:S/-v/-/}
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=muesli/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -16,6 +17,10 @@ USE_LANGUAGES=	# none
 GO_BUILD_PATTERN=	.
 
 .include "go-modules.mk"
+
+post-extract:
+	${CP} ${FILESDIR}/filesystems_netbsd.go ${WRKSRC}
+	${CP} ${FILESDIR}/mounts_netbsd.go ${WRKSRC}
 
 .include "../../lang/go/go-module.mk"
 .include "../../mk/bsd.pkg.mk"

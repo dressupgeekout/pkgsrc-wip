@@ -1,13 +1,17 @@
 $NetBSD$
 
---- v8/gni/v8.gni.orig	2020-07-15 19:01:43.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- v8/gni/v8.gni.orig	2026-08-05 20:17:42.000000000 +0000
 +++ v8/gni/v8.gni
-@@ -215,7 +215,7 @@ template("v8_executable") {
-       configs -= invoker.remove_configs
-     }
-     configs += invoker.configs
--    if (is_linux) {
-+    if (is_linux || is_bsd) {
-       # For enabling ASLR.
-       ldflags = [ "-pie" ]
-     }
+@@ -361,7 +361,7 @@ is_drumbrake_supported =
+     (v8_current_cpu == "x64" || v8_current_cpu == "arm64" ||
+      v8_current_cpu == "riscv64") &&
+     (target_os == "win" || target_os == "linux" || target_os == "mac" ||
+-     target_os == "ios")
++     target_os == "ios" || target_os == "openbsd" || target_os == "freebsd" || target_os == "netbsd")
+ 
+ # Turbofan is enabled by default, except in lite mode.
+ if (v8_enable_turbofan == "") {

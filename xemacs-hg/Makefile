@@ -1,7 +1,7 @@
 # $NetBSD$
 
 DISTNAME=	xemacs
-EMACSVERSION=	21.5-b34
+EMACSVERSION=	21.5-b36
 EMACS_DISTNAME=	xemacs-${EMACSVERSION}
 CATEGORIES=	editors
 MASTER_SITES=	# Use hg repository
@@ -24,7 +24,8 @@ LIBDIR=			${PREFIX}/lib/${DISTNAME}
 
 .include "../../mk/bsd.prefs.mk"
 
-USE_TOOLS+=		makeinfo perl
+USE_TOOLS+=		pkg-config perl makeinfo
+TEXINFO_REQD=		4.12
 
 TOOL_DEPENDS+=		gtexinfo>=4.12:../../devel/gtexinfo
 
@@ -32,13 +33,10 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--datadir=${PREFIX}/lib
 CONFIGURE_ARGS+=	--with-infopath=${PREFIX}/${PKGINFODIR}
 CONFIGURE_ARGS+=	--with-clash-detection
-CONFIGURE_ARGS+=	--with-mule
 CONFIGURE_ARGS+=	--with-zlib
 CONFIGURE_ARGS+=	--with-bignum=gmp
 CONFIGURE_ARGS+=	--without-msw
-CONFIGURE_ARGS+=	--with-pdump
-CONFIGURE_ARGS+=	--with-newgc
-CONFIGURE_ARGS+=	--with-kkcc
+CONFIGURE_ARGS+=	--without-dump-in-exec
 CONFIGURE_ARGS+=	--with-postgresql=no
 
 CFLAGS+=		-Dunix
@@ -54,11 +52,22 @@ INSTALL_MAKE_FLAGS+=	TAR=${TOOLS_PATH.gtar}
 CPPFLAGS+=	-DTERMINFO
 .endif
 
+SUBST_CLASSES+=		paths
+SUBST_MESSAGE.paths=	Fixing script interpreter path
+SUBST_STAGE.paths=	pre-configure
+SUBST_FILES.paths=	lisp/ellcc.el
+SUBST_SED.paths=	-E -e "s,^\#!.[^ ]+ (.+),\#!${PREFIX}/bin/\1,g"
+
 # Having the build path in the dumped emacs is not a problem.
 CHECK_WRKREF_SKIP+=	bin/xemacs*
+CHECK_WRKREF_SKIP+=	lib/xemacs-*/xemacs*.dmp
+
+# configure just recording the tool paths used for the build
+CHECK_WRKREF_SKIP+=	lib/xemacs-21.5-b36/x86_64--netbsd/config.values
 
 # The portable dumper creates a dump file with a build ID in its name
 PRINT_PLIST_AWK+=	{ gsub(/-[a-z0-9]+\.dmp$$/, "-$${XEMACS_DUMPID}.dmp"); }
+PRINT_PLIST_AWK+=	{ gsub(/DOC-[a-z0-9]+$$/, "DOC-$${XEMACS_DUMPID}"); }
 PLIST_SUBST+=		XEMACS_DUMPID=${XEMACS_DUMPID:!${WRKSRC}/src/xemacs -sd!}
 
 PRINT_PLIST_AWK+=	{ gsub(/${EMACS_DISTNAME}/, "$${DISTNAME}"); }

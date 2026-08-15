@@ -19,10 +19,9 @@ USE_TOOLS=	cmake pkg-config
 USE_CMAKE=	yes
 
 # Suppress warning for developer
-CMAKE_ARGS+=	-Wno-dev
+CMAKE_CONFIGURE_ARGS+=	-Wno-dev
 
 .include	"../../wip/mk/git-package.mk"
-_GIT_FLAGS=	# set empty, --depth 1 seems harmfull
 
 .include	"../../devel/libusb1/buildlink3.mk"
 .include	"../../mk/bsd.pkg.mk"

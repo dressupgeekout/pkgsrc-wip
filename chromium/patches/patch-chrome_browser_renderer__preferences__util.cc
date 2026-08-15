@@ -1,31 +1,50 @@
 $NetBSD$
 
---- chrome/browser/renderer_preferences_util.cc.orig	2020-07-08 21:40:34.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/renderer_preferences_util.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/browser/renderer_preferences_util.cc
-@@ -31,7 +31,7 @@
- #include "ui/base/cocoa/defaults_utils.h"
- #endif
+@@ -36,12 +36,12 @@
+ #include "ui/base/ui_base_features.h"
+ #include "ui/native_theme/native_theme.h"
  
--#if defined(USE_AURA) && defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if defined(USE_AURA) && (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
+-#if defined(USE_AURA) && BUILDFLAG(IS_LINUX)
++#if defined(USE_AURA) && (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD))
  #include "chrome/browser/themes/theme_service.h"
  #include "chrome/browser/themes/theme_service_factory.h"
- #include "ui/views/linux_ui/linux_ui.h"
-@@ -146,7 +146,7 @@ void UpdateFromSystemSettings(blink::moj
-     prefs->caret_blink_interval = interval;
  #endif
  
--#if defined(USE_AURA) && defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if defined(USE_AURA) && (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
-   views::LinuxUI* linux_ui = views::LinuxUI::instance();
-   if (linux_ui) {
-     if (ThemeServiceFactory::GetForProfile(profile)->UsingSystemTheme()) {
-@@ -165,7 +165,7 @@ void UpdateFromSystemSettings(blink::moj
-   }
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "ui/linux/linux_ui.h"
  #endif
  
--#if defined(OS_LINUX) || defined(OS_ANDROID) || defined(OS_WIN)
-+#if defined(OS_LINUX) || defined(OS_ANDROID) || defined(OS_WIN) || defined(OS_BSD)
+@@ -108,7 +108,7 @@ void UpdateFromSystemSettings(blink::Ren
+                               Profile* profile) {
+   const PrefService* pref_service = profile->GetPrefs();
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || \
+-    BUILDFLAG(IS_WIN)
++    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
    content::UpdateFontRendererPreferencesFromSystemSettings(prefs);
  #endif
+   prefs->focus_ring_color = BUILDFLAG(IS_MAC) ? SkColorSetRGB(0x00, 0x5F, 0xCC)
+@@ -122,7 +122,7 @@ void UpdateFromSystemSettings(blink::Ren
+   prefs->inactive_selection_fg_color = SK_ColorBLACK;
+ #endif
  
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   if (auto* linux_ui_theme = ui::LinuxUiTheme::GetForProfile(profile)) {
+     if (ThemeServiceFactory::GetForProfile(profile)->UsingSystemTheme()) {
+       linux_ui_theme->GetFocusRingColor(&prefs->focus_ring_color);
+@@ -139,7 +139,7 @@ void UpdateFromSystemSettings(blink::Ren
+ #endif  // BUILDFLAG(IS_LINUX)
+ #endif  // BUILDFLAG(USE_AURA)
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   if (auto* linux_ui = ui::LinuxUi::instance()) {
+     prefs->middle_click_paste_allowed = linux_ui->PrimaryPasteEnabled();
+   }

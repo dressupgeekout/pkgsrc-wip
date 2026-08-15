@@ -1,31 +1,26 @@
 $NetBSD$
 
---- chrome/browser/themes/theme_service_factory.cc.orig	2020-07-08 21:40:35.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/themes/theme_service_factory.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/browser/themes/theme_service_factory.cc
-@@ -22,7 +22,7 @@
+@@ -23,7 +23,7 @@
  #include "chrome/browser/themes/theme_helper_win.h"
  #endif
  
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  #include "chrome/browser/themes/theme_service_aura_linux.h"
- #include "ui/views/linux_ui/linux_ui.h"
  #endif
-@@ -77,7 +77,7 @@ ThemeServiceFactory::~ThemeServiceFactor
  
- KeyedService* ThemeServiceFactory::BuildServiceInstanceFor(
+@@ -98,7 +98,7 @@ ThemeServiceFactory::~ThemeServiceFactor
+ std::unique_ptr<KeyedService>
+ ThemeServiceFactory::BuildServiceInstanceForBrowserContext(
      content::BrowserContext* profile) const {
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
    using ThemeService = ThemeServiceAuraLinux;
  #endif
  
-@@ -89,7 +89,7 @@ KeyedService* ThemeServiceFactory::Build
- 
- void ThemeServiceFactory::RegisterProfilePrefs(
-     user_prefs::PrefRegistrySyncable* registry) {
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
-   bool default_uses_system_theme = false;
- 
-   const views::LinuxUI* linux_ui = views::LinuxUI::instance();

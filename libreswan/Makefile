@@ -6,15 +6,17 @@
 # specific overides in mk/default/*.mk (for instance,
 # mk/default/netbsd.mk).
 
-#DISTNAME=	libreswan-4.9
-#MASTER_SITES=	https://download.libreswan.org/
+# See:
+#    pkg_admin pmatch 'foo>=5.0rc1' foo-5.0pre0.20230807
+# the suggestion is:
+#
+# libreswan-git: 5.0pre0.YYYYMMDD 5.0rc1 5.0rc1.YYYYMMDD 5.0
+# 5.1pre.YYYYMMDD ...
+#
+# libreswan: 5.0 5.0nb1 ...
 
-GITHUB_PROJECT=	libreswan
-DISTNAME=	libreswan
-PKGNAME=	libreswan-4.9nb2
-GITHUB_TAG=	00c483c7e2e970ba4bc4a972b204d8ca9cb595fa
-MASTER_SITES=	${MASTER_SITE_GITHUB:=${GITHUB_PROJECT}/}
-DIST_SUBDIR=	${GITHUB_PROJECT}
+DISTNAME=	libreswan-5.3.2
+MASTER_SITES=   https://download.libreswan.org/
 
 CATEGORIES=	security
 MAINTAINER=	pkgsrc-users@NetBSD.org

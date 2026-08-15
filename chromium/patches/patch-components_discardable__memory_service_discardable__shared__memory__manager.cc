@@ -1,22 +1,17 @@
 $NetBSD$
 
---- components/discardable_memory/service/discardable_shared_memory_manager.cc.orig	2020-07-08 21:40:39.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- components/discardable_memory/service/discardable_shared_memory_manager.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ components/discardable_memory/service/discardable_shared_memory_manager.cc
-@@ -33,7 +33,7 @@
- #include "components/discardable_memory/common/discardable_shared_memory_heap.h"
- #include "mojo/public/cpp/bindings/self_owned_receiver.h"
- 
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
- #include "base/files/file_path.h"
- #include "base/files/file_util.h"
- #include "base/metrics/histogram_macros.h"
-@@ -176,7 +176,7 @@ int64_t GetDefaultMemoryLimit() {
-     max_default_memory_limit /= 8;
+@@ -177,6 +177,8 @@ uint64_t GetDefaultMaxBytes() {
+ #if BUILDFLAG(IS_ANDROID)
+   // Limits the number of FDs used to 32, assuming a 4MB allocation size.
+   uint64_t default_max_bytes = 128 * kMegabyte;
++#elif BUILDFLAG(IS_OPENBSD)
++  uint64_t default_max_bytes = 128 * kMegabyte;
+ #else
+   uint64_t default_max_bytes = 512 * kMegabyte;
  #endif
- 
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
-   base::FilePath shmem_dir;
-   if (base::GetShmemTempDir(false, &shmem_dir)) {
-     int64_t shmem_dir_amount_of_free_space =

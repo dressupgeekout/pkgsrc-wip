@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-libraries_source_fcollada_src_FCollada_FUtils_FUCriticalSection.h,v 1.1 2023/05/04 15:20:52 nikita Exp $
 
 --- libraries/source/fcollada/src/FCollada/FUtils/FUCriticalSection.h.orig
 +++ libraries/source/fcollada/src/FCollada/FUtils/FUCriticalSection.h

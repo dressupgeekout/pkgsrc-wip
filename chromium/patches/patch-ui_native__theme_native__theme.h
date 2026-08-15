@@ -1,13 +1,17 @@
 $NetBSD$
 
---- ui/native_theme/native_theme.h.orig	2020-07-15 18:56:34.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- ui/native_theme/native_theme.h.orig	2026-08-05 20:17:42.000000000 +0000
 +++ ui/native_theme/native_theme.h
-@@ -51,7 +51,7 @@ class NATIVE_THEME_EXPORT NativeTheme {
-   // The part to be painted / sized.
+@@ -64,7 +64,7 @@ class COMPONENT_EXPORT(NATIVE_THEME) Nat
+   // A part being sized or painted.
    enum Part {
      kCheckbox,
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
      kFrameTopArea,
  #endif
      kInnerSpinButton,

@@ -1,12 +1,12 @@
 # $NetBSD: Makefile,v 1.15 2022/06/30 11:18:04 nia Exp $
 
-DISTNAME=	bcftools-1.17
+DISTNAME=	bcftools-1.22
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=samtools/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.tar.bz2
 
-OWNER=		bacon@NetBSD.org
+MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://www.htslib.org/
 COMMENT=	Tools for manipulating BCF and VCF variant call files
 LICENSE=	mit
@@ -49,7 +49,8 @@ post-install:
 	${MV} ${DESTDIR}${PREFIX}/bin/vcfutils.pl \
 		${DESTDIR}${PREFIX}/bin/vcfutils
 
-.include "../../biology/htslib/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../math/gsl/buildlink3.mk"
 .include "../../lang/python/application.mk"
+.include "../../biology/htslib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

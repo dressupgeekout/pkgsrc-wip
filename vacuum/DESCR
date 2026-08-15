@@ -1,7 +1,4 @@
-Vacuum Magic is a fast-paced action game. The point of the game is
-using your magical vacuum field to collect food and defend against
-monsters.  Food and certain monsters can also be spat out and used
-as a projectile against other monsters.
+An ultra-super-fast, lightweight OpenAPI linter and quality checking
+tool, written in golang and inspired by Spectral.
 
-Vacuum Magic can be played by up to six players, either cooperatively,
-or against each other.
+It's also compatible with existing Spectral rulesets.

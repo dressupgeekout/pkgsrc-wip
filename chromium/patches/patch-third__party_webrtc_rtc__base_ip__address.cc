@@ -1,14 +1,18 @@
 $NetBSD$
 
---- third_party/webrtc/rtc_base/ip_address.cc.orig	2020-07-15 19:01:42.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- third_party/webrtc/rtc_base/ip_address.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ third_party/webrtc/rtc_base/ip_address.cc
-@@ -11,6 +11,9 @@
+@@ -22,7 +22,8 @@
+ #include "rtc_base/string_utils.h"
+ 
  #if defined(WEBRTC_POSIX)
- #include <netinet/in.h>
- #include <sys/socket.h>
+-#ifdef OPENBSD
 +#if defined(WEBRTC_BSD)
 +#include <sys/types.h>
-+#endif
- #ifdef OPENBSD
  #include <netinet/in_systm.h>
  #endif
+ #include <netdb.h>

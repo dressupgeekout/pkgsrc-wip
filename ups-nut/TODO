@@ -1,4 +1,6 @@
-  - Check all patches and comment and send upstream
-  - Resolve manpage building
-  - Test forced shutdown and uncomment upsdrvctl shutdown
- 
+# required for next import
+
+# someday
+
+  - Debug PLIST.Darwin not working.
+  - Document why altqd is in files/upskillpower.sh, or remove.

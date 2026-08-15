@@ -1,7 +1,111 @@
-This package is incomplete. It installs the server binary but not any of the
-supporting files.
+$NetBSD$
 
-This package has known vulnerabilities, please investigate and fix if possible:
-	CVE-2020-14447
-	CVE-2020-14448
-	CVE-2020-14450
+Building Mattermost collaboration server on NetBSD
+
+
+### Build
+
+Build errors from build log -- grep "^#" /var/tmp/mattermost.buildlog,
+or re-run 'make'
+
+# modernc.org/sqlite/lib
+../../.gopath/pkg/mod/modernc.org/sqlite@v1.39.1/lib/sqlite_netbsd_amd64.go:112447:5: mu.enter undefined (type mutex has no field or method enter)
+../../.gopath/pkg/mod/modernc.org/sqlite@v1.39.1/lib/sqlite_netbsd_amd64.go:112448:11: mu.leave undefined (type mutex has no field or method leave)
+
+<https://gitlab.com/cznic/sqlite/-/work_items/234>
+<https://gitlab.com/cznic/sqlite/-/work_items/246>
+
+# github.com/mattermost/mattermost/server/v8/cmd/mmctl/client
+cmd/mmctl/client/client.go:178:58: undefined: model.ReportPostOptions
+cmd/mmctl/client/client.go:178:90: undefined: model.ReportPostOptionsCursor
+cmd/mmctl/client/client.go:178:123: undefined: model.ReportPostListResponse
+
+# github.com/mattermost/mattermost/server/v8/cmd/mmctl/mocks
+cmd/mmctl/mocks/client_mock.go:1248:76: undefined: model.ReportPostOptions
+cmd/mmctl/mocks/client_mock.go:1248:106: undefined: model.ReportPostOptionsCursor
+cmd/mmctl/mocks/client_mock.go:1248:139: undefined: model.ReportPostListResponse
+cmd/mmctl/mocks/client_mock.go:1251:28: undefined: model.ReportPostListResponse
+
+# github.com/mattermost/mattermost/server/v8/channels/store
+channels/store/store.go:388:59: undefined: model.ReportPostQueryParams
+channels/store/store.go:388:90: undefined: model.ReportPostListResponse
+channels/store/store.go:1149:57: undefined: model.AccessControlPolicyActiveUpdate
+channels/store/store.go:1166:52: undefined: model.Translation
+channels/store/store.go:1167:85: undefined: model.Translation
+channels/store/store.go:1168:57: undefined: model.Translation
+channels/store/store.go:1169:26: undefined: model.Translation
+channels/store/store.go:1170:34: undefined: model.TranslationState
+channels/store/store.go:1170:96: undefined: model.Translation
+channels/store/store.go:1188:92: undefined: model.Translation
+channels/store/store.go:1188:92: too many errors
+
+# github.com/mattermost/mattermost/server/v8/einterfaces
+einterfaces/autotranslation.go:47:102: undefined: model.Translation
+einterfaces/autotranslation.go:52:85: undefined: model.Translation
+
+
+Older releases have different modules error out.
+
+
+### Installation
+
+Directories:
+
+{SYSCONFDIR}/mattermost/config.json		mattermost:mattermost
+{VARBASE}/log/mattermost/mattermost.log	mattermost:mattermost
+{VARBASE}/mattermost/{files,client,plugin}	mattermost:mattermost
+
+From FreeBSD port
+post-install:
+	${MV} ${STAGEDIR}${PREFIX}/bin/mattermost \
+		${STAGEDIR}${PREFIX}/bin/mattermostd
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/mattermost
+	${SETENV} OUTPUT_CONFIG=${WRKSRC}/config/default.json \
+		${WRKDIR}/bin/config_generator
+	${INSTALL_DATA} ${WRKSRC}/config/default.json \
+		${STAGEDIR}${PREFIX}/etc/mattermost/config.json.sample
+	${RM} ${STAGEDIR}${PREFIX}/bin/config_generator
+	${MKDIR} ${STAGEDIR}${WWWDIR}/templates
+	cd ${GO_WRKSRC} && ${COPYTREE_SHARE} 'fonts i18n' ${STAGEDIR}${WWWDIR}
+	cd ${GO_WRKSRC}/templates && ${CP} *.html *.js ${STAGEDIR}${WWWDIR}/templates
+
+From OpenBSD port
+<https://cvsweb.openbsd.org/ports/net/mattermost-server/?sort=File>
+do-install:
+	${INSTALL_PROGRAM} ${MODGO_WORKSPACE}/bin/{mattermost,mmctl} \
+		${PREFIX}/bin/
+	${INSTALL_DATA_DIR} ${PREFIX}/share/mattermost/
+	${INSTALL_DATA_DIR} ${PREFIX}/share/examples/mattermost/
+	cp ${WRKSRC}/server/config/config.json \
+		${PREFIX}/share/examples/mattermost/
+.for _d in client fonts i18n templates
+	cp -Rp ${WRKDIR}/mattermost/${_d} ${PREFIX}/share/mattermost/
+.endfor
+
+
+### Setup
+
+<https://developers.mattermost.com/contribute/developer-setup/>
+
+Install PostgreSQL
+
+Run psql postgres. Then create mmuser by running 
+	CREATE ROLE mmuser WITH LOGIN PASSWORD 'mostest';
+
+Modify the role to give rights to create a database by running 
+	ALTER ROLE mmuser CREATEDB;
+
+Confirm the role rights by running \du
+
+Before creating the database, exit by running \q
+
+Login again via mmuser by running psql postgres -U mmuser
+
+Create the database by running CREATE DATABASE mattermost_test; 
+	and exit again with \q
+q
+Login again with psql postgres and run 
+	GRANT ALL PRIVILEGES ON DATABASE mattermost_test TO mmuser; 
+to give all rights to mmuser
+
+<https://jeffschering.github.io/mmdocs/upgrade/install/config-apache2.html>

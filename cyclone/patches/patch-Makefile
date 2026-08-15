@@ -1,10 +1,21 @@
 $NetBSD$
 
-Use pkgsrc libtommath (internally named libcyclonebn).
+1) Use the path for pkgsrc cyclone-bootstrap for the system cyclone.
+2) Use pkgsrc libtommath (internally named libcyclonebn).
+3) Install some additional .meta files (see also patch-cyclone.scm)
 
---- Makefile.orig	2021-04-06 03:32:12.000000000 +0000
+--- Makefile.orig	2024-02-14 02:31:23.000000000 +0000
 +++ Makefile
-@@ -8,8 +8,8 @@ include Makefile.config
+@@ -9,15 +9,15 @@ include Makefile.config
+ # Set up Cyclone here to build the compiler itself using a system-installed
+ # compiler (EG: from bootstrap or an earlier cyclone version). Everything
+ # else can then be built using our local binary.
+-CYCLONE_SYSTEM = cyclone -I . -CLNK '-L.'
+-CYCLONE_LOCAL = ./cyclone -I . -I libs -COPT '-Iinclude' -CLNK '-L.'
++CYCLONE_SYSTEM = cyclone-bootstrap -CLNK '-L. -L$(PREFIX)/lib'
++CYCLONE_LOCAL = ./cyclone -I . -I libs -COPT '-Iinclude' -CLNK '-L. -L$(PREFIX)/lib'
+ CCOMP = $(CC) $(CFLAGS)
+ FORMAT_CMD = indent -linux -l80 -i2 -nut
  
  # Libraries
  CYC_RT_LIB = libcyclone.a
@@ -14,33 +25,48 @@ Use pkgsrc libtommath (internally named libcyclonebn).
 +#CYC_BN_LIB_SUBDIR = third-party/libtommath-1.2.0
  CYC_LIBS = $(CYC_RT_LIB) $(CYC_BN_LIB)
  
- COBJ = scheme/base \
-@@ -94,8 +94,8 @@ $(CYC_RT_LIB): runtime.c include/cyclone
- 	  $(CREATE_LIBRARY_COMMAND) $(CREATE_LIBRARY_FLAGS) $(LIBRARY_OUTPUT_FILE) runtime.o gc.o ffi.o mstreams.o hashset.o
- 	  $(RANLIB_COMMAND)
+ # Directories
+@@ -70,7 +70,7 @@ clean :
+ 	rm -f tests/srfi-143-tests
+ 	rm -f tests/macro-hygiene
+ 	rm -f tests/match-tests
+-	cd $(CYC_BN_LIB_SUBDIR) ; $(MAKE) clean
++#	cd $(CYC_BN_LIB_SUBDIR) ; $(MAKE) clean
+ 
+ install : libs install-libs install-includes install-bin
+ 	$(MKDIR) $(DESTDIR)$(DATADIR)
+@@ -83,11 +83,14 @@ install : libs install-libs install-incl
+ 	$(INSTALL) -m0644 scheme/*.sld $(DESTDIR)$(DATADIR)/scheme
+ 	$(INSTALL) -m0644 scheme/*.o $(DESTDIR)$(DATADIR)/scheme
+ 	$(INSTALL) -m0755 scheme/*.so $(DESTDIR)$(DATADIR)/scheme
++	$(INSTALL) -m0755 scheme/inexact.meta $(DESTDIR)$(DATADIR)/scheme
++	$(INSTALL) -m0755 scheme/lazy.meta $(DESTDIR)$(DATADIR)/scheme
+ 	$(INSTALL) -m0644 scheme/cyclone/*.sld $(DESTDIR)$(DATADIR)/scheme/cyclone
+ 	$(INSTALL) -m0644 scheme/cyclone/*.scm $(DESTDIR)$(DATADIR)/scheme/cyclone
+ 	$(INSTALL) -m0644 libs/cyclone/test.meta $(DESTDIR)$(DATADIR)/cyclone
+ 	$(INSTALL) -m0644 libs/cyclone/match.meta $(DESTDIR)$(DATADIR)/cyclone
+ 	$(INSTALL) -m0644 libs/cyclone/foreign.meta $(DESTDIR)$(DATADIR)/cyclone
++	$(INSTALL) -m0644 libs/cyclone/concurrent.meta $(DESTDIR)$(DATADIR)/cyclone
+ 	$(INSTALL) -m0644 scheme/cyclone/*.o $(DESTDIR)$(DATADIR)/scheme/cyclone
+ 	$(INSTALL) -m0755 scheme/cyclone/*.so $(DESTDIR)$(DATADIR)/scheme/cyclone
+ 	$(INSTALL) -m0644 libs/cyclone/*.sld $(DESTDIR)$(DATADIR)/cyclone
+@@ -188,8 +191,8 @@ icyc : icyc.scm $(CYC_RT_LIB) $(CYC_BN_L
+ 
+ $(CYC_RT_LIB) : $(CFILES) $(HEADERS) $(CYC_BN_LIB)
  
 -$(CYC_BN_LIB) : $(CYC_BN_LIB_SUBDIR)/*.c
 -	cd $(CYC_BN_LIB_SUBDIR) ; $(MAKE) LIBNAME=$(CYC_BN_LIB) && cp $(CYC_BN_LIB) ../..
 +#$(CYC_BN_LIB) : $(CYC_BN_LIB_SUBDIR)/*.c
 +#	cd $(CYC_BN_LIB_SUBDIR) ; $(MAKE) LIBNAME=$(CYC_BN_LIB) && cp $(CYC_BN_LIB) ../..
  
- cyclone: $(CFILES) $(COBJECTS) $(C_SHARED_OBJECTS) $(CYC_LIBS)
- 	$(CC) cyclone.c $(CFLAGS) -c -o cyclone.o
-@@ -166,7 +166,7 @@ install:
- #install-libs:
+ hashset.o : hashset.c $(HEADERS)
+ 	$(CCOMP) -c $< -o $@
+@@ -336,7 +339,7 @@ install-includes : $(HEADER_DIR)/*.h
+ install-libs : $(CYC_LIBS)
  	$(MKDIR) $(DESTDIR)$(LIBDIR)
  	$(INSTALL) -m0644 $(CYC_RT_LIB) $(DESTDIR)$(LIBDIR)/
 -	$(INSTALL) -m0644 $(CYC_BN_LIB) $(DESTDIR)$(LIBDIR)/
 +#	$(INSTALL) -m0644 $(CYC_BN_LIB) $(DESTDIR)$(LIBDIR)/
- #install-cyclone:
+ 
+ install-bin : cyclone icyc
  	$(MKDIR) $(DESTDIR)$(BINDIR)
- 	$(MKDIR) $(DESTDIR)$(DATADIR)/scheme/cyclone
-@@ -191,7 +191,7 @@ install:
- 	$(INSTALL) -m0755 icyc $(DESTDIR)$(BINDIR)/
- 	$(INSTALL) -m0755 winds $(DESTDIR)$(BINDIR)/
- 	$(INSTALL) -m0644 $(CYC_RT_LIB) $(DESTDIR)$(LIBDIR)/
--	$(INSTALL) -m0644 $(CYC_BN_LIB) $(DESTDIR)$(LIBDIR)/
-+#	$(INSTALL) -m0644 $(CYC_BN_LIB) $(DESTDIR)$(LIBDIR)/
- 	$(INSTALL) -m0644 include/cyclone/*.h $(DESTDIR)$(INCDIR)/
- 	$(INSTALL) -m0644 scheme/*.sld $(DESTDIR)$(DATADIR)/scheme
- 	$(INSTALL) -m0644 scheme/*.o $(DESTDIR)$(DATADIR)/scheme

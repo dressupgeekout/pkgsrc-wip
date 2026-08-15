@@ -1,22 +1,26 @@
 $NetBSD$
 
---- chrome/browser/media/webrtc/webrtc_logging_controller.cc.orig	2020-07-08 21:40:34.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/media/webrtc/webrtc_logging_controller.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/browser/media/webrtc/webrtc_logging_controller.cc
-@@ -23,7 +23,7 @@
- #include "content/public/browser/browser_context.h"
- #include "content/public/browser/render_process_host.h"
+@@ -30,7 +30,7 @@
+ #include "net/base/schemeful_site.h"
+ #include "url/origin.h"
  
--#if defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
  #include "content/public/browser/child_process_security_policy.h"
  #include "storage/browser/file_system/isolated_context.h"
- #endif  // defined(OS_LINUX) || defined(OS_CHROMEOS)
-@@ -272,7 +272,7 @@ void WebRtcLoggingController::StartEvent
-       web_app_id, callback);
+ #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) ||
+@@ -328,7 +328,7 @@ WebRtcLoggingController::GetLogMessageCa
+   return text_log_handler_->GetLogMessageCallback();
  }
  
--#if defined(OS_LINUX) || defined(OS_CHROMEOS)
-+#if defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
  void WebRtcLoggingController::GetLogsDirectory(
-     const LogsDirectoryCallback& callback,
-     const LogsDirectoryErrorCallback& error_callback) {
+     LogsDirectoryCallback callback,
+     LogsDirectoryErrorCallback error_callback) {

@@ -1,13 +1,17 @@
 $NetBSD$
 
---- ui/base/ui_base_features.h.orig	2020-07-15 18:56:33.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- ui/base/ui_base_features.h.orig	2026-08-05 20:17:42.000000000 +0000
 +++ ui/base/ui_base_features.h
-@@ -60,7 +60,7 @@ COMPONENT_EXPORT(UI_BASE_FEATURES) exter
- COMPONENT_EXPORT(UI_BASE_FEATURES) bool IsUsingWMPointerForTouch();
- #endif  // defined(OS_WIN)
+@@ -147,7 +147,7 @@ COMPONENT_EXPORT(UI_BASE_FEATURES)
+ BASE_DECLARE_FEATURE(kWaylandExternalBeginFrameSource);
+ #endif  // BUILDFLAG(IS_OZONE)
  
--#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
-+#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  COMPONENT_EXPORT(UI_BASE_FEATURES)
- extern const base::Feature kDirectManipulationStylus;
- #endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
+ BASE_DECLARE_FEATURE(kGlobalShortcutsPortalPreferredTrigger);
+ #endif

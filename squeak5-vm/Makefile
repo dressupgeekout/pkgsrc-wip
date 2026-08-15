@@ -2,11 +2,11 @@
 
 DISTNAME=	opensmalltak-vm
 PKGNAME=	squeak5-vm-${GITHUB_TAG}
-PKGVERSION=	5.0-${GITHUB_TAG}
+PKGVERSION=	7.0-${GITHUB_TAG}
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GITHUB:=OpenSmalltalk/}
 GITHUB_PROJECT=	opensmalltalk-vm
-GITHUB_TAG=	202206021410
+GITHUB_TAG=	202606270913
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://opensmalltalk.org/
@@ -21,8 +21,6 @@ USE_TOOLS+=	autoreconf autoconf automake pkg-config bash pax
 AUTOCONF_REQD=	2.69
 USE_LIBTOOL=	yes
 
-NO_CONFIGURE=	yes
-
 SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		pre-build
 SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
@@ -36,9 +34,9 @@ SUBST_MESSAGE.sccs=	Set version infomation to the VM.
 SUBST_FILES.sccs=	platforms/Cross/vm/sqSCCSVersion.h
 SUBST_FILES.sccs+=	platforms/Cross/plugins/sqPluginsSCCSVersion.h
 SUBST_SED.sccs=		-e "s,\$$Rev,\$$Rev: ${GITHUB_TAG} ,g"
-SUBST_SED.sccs+=	-e "s,\$$Date,\$$Date: Tue 10 May 2022 15:49:26 +0300 ,g"
+SUBST_SED.sccs+=	-e "s,\$$Date,\$$Date: Sat 27 Jun 2026 11:13:44 +0200 ,g"
 SUBST_SED.sccs+=	-e "s,\$$URL,\$$URL: `${ID} -un`@`${HOSTNAME_CMD}`:${WRKSRC} ,g"
-SUBST_SED.sccs+=	-e "s,\$$CommitHash,\$$CommitHash: c9fd36530 ,g"
+SUBST_SED.sccs+=	-e "s,\$$CommitHash,\$$CommitHash: be1b7ad34 ,g"
 
 INSTALLATION_DIRS+=	bin
 
@@ -68,7 +66,6 @@ do-install:
 	done
 	cd ${DESTDIR}${PREFIX}/bin && ${LN} -s spur64 squeak
 
-.include "../../devel/libuuid/buildlink3.mk"
 .include "../../devel/pango/buildlink3.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"

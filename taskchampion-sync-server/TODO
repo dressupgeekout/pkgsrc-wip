@@ -1,0 +1,7 @@
+1. From pkglint:
+
+        WARN: Makefile:5: Invalid identifier "refs/tags/v${DISTNAME}".
+        ERROR: Makefile:7: Invalid category "wip".
+        WARN: Makefile:10: PKGNAME should not be used in WRKSRC as it includes the PKGREVISION. Please use PKGNAME_NOREV instead.
+        ERROR: Makefile:25: This comment indicates unfinished work (url2pkg).
+2. Make sure I've done the RCD_SCRIPTS bit right. I've just tried to copy other packages. But `make print-PLIST > PLIST` didn't show any updates. Maybe it's not meant to?

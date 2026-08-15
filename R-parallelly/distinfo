@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (R/parallelly_1.41.0.tar.gz) = 145b28cfef990c522cee6d81b4f7b3f3602426b5662643196a32902682979503
+SHA512 (R/parallelly_1.41.0.tar.gz) = 76215101aa3ef837258d555232a746176fd02b36a2fd78d74db49f0980f3fb04d609ba2f6c20864e557abc5f2cfcdf67dc1c500ab37b5941aae454bbf2d98a39
+Size (R/parallelly_1.41.0.tar.gz) = 271820 bytes

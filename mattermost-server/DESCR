@@ -1,4 +1,5 @@
-Mattermost is an open source, private cloud, Slack alternative.
+Mattermost is a self-hosted collaboration platform that offers chat,
+workflow automation, voice calling, screen sharing, and AI integration.
 
-It's written in Golang and React and runs as a single binary with MySQL or
-PostgreSQL.
+Mattermost is written in Go and React, runs as a single binary, and
+relies on PostgreSQL.

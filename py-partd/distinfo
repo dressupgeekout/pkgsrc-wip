@@ -1,5 +1,5 @@
 $NetBSD$
 
-BLAKE2s (partd-1.3.0.tar.gz) = b7eb83e63b10eec63dfdb32c2581c610a71e2d717cce49e21eceafe5dabad21b
-SHA512 (partd-1.3.0.tar.gz) = 0ebcccb5dd25d7328bf76e05523b3e40836a92ea867d26aee31e739b7859ca7848da92c6c20824ed1343c1ced2c759361b25ec30f8405e61bd36308613f866c7
-Size (partd-1.3.0.tar.gz) = 36153 bytes
+BLAKE2s (partd-1.4.2.tar.gz) = b0b1f66c483c934f039aea77bfe5f7695c7b134c984a30aa858c632ac1eaa612
+SHA512 (partd-1.4.2.tar.gz) = ae7af568ea5c2c6127ea01bcb2a6703305f126414ecce8c648a14d39fd8dac987f6356011b6a61a1b1441f14a189a098bf9fe35f978a5794959e5da409668d2b
+Size (partd-1.4.2.tar.gz) = 21029 bytes

@@ -1,25 +1,28 @@
 # $NetBSD$
 
-DISTNAME=		gcc-12.1.0
+DISTNAME=		gcc-16.1.0
 PKGNAME=		${DISTNAME:C/^/avr-/}
 CATEGORIES=		cross
 MASTER_SITES=		${MASTER_SITE_GNU:=gcc/${DISTNAME}/}
-EXTRACT_SUFX=		.tar.xz
-
-MAINTAINER=		pkgsrc-users@NetBSD.org
-COMMENT=		GCC for Atmel AVR 8-bit RISC microcontrollers
-LICENSE=		gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND gnu-lgpl-v3
-
 DISTFILES=		${DEFAULT_DISTFILES}
 EXTRACT_ONLY=		${DEFAULT_DISTFILES}
 
-DEPENDS+=		avr-binutils>=2.38:../../cross/avr-binutils
+MAINTAINER=		micha@NetBSD.org
+COMMENT=		GCC for Atmel AVR 8-bit RISC microcontrollers
+LICENSE=		gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND gnu-lgpl-v3
+
+# Required at least on AMD64
+MKPIE_SUPPORTED=	no
+
+DEPENDS+=		avr-binutils>=2.45:../../wip/avr-binutils
 
 .include "../../mk/bsd.prefs.mk"
 
-USE_LANGUAGES=			c c++
+USE_LANGUAGES=		c c++
+USE_CXX_FEATURES+=	c++14
+
 USE_LIBTOOL=			yes
-USE_TOOLS+=			bash gmake gsed:run
+USE_TOOLS+=			bash gmake gsed:run perl
 GNU_CONFIGURE=			yes
 GNU_CONFIGURE_STRICT=		no
 CHECK_PORTABILITY_SKIP+=	contrib/* # not needed for building
@@ -40,6 +43,8 @@ CONFIGURE_ARGS+=	--disable-lto
 CONFIGURE_ARGS+=	--disable-nls
 CONFIGURE_ARGS+=	--target=avr
 CONFIGURE_ARGS+=	--with-system-zlib
+# XXX: Disabled because of C++ version mismatch problems
+CONFIGURE_ARGS+=	--without-isl
 
 # XXX: Workaround for configure error:
 #    checking dependency style of c++... none

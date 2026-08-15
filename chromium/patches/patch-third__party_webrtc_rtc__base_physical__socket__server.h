@@ -1,13 +1,17 @@
 $NetBSD$
 
---- third_party/webrtc/rtc_base/physical_socket_server.h.orig	2020-07-15 19:01:42.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- third_party/webrtc/rtc_base/physical_socket_server.h.orig	2026-08-05 20:17:42.000000000 +0000
 +++ third_party/webrtc/rtc_base/physical_socket_server.h
-@@ -11,7 +11,7 @@
- #ifndef RTC_BASE_PHYSICAL_SOCKET_SERVER_H_
- #define RTC_BASE_PHYSICAL_SOCKET_SERVER_H_
+@@ -22,7 +22,7 @@
+ #include "rtc_base/socket_address.h"
  
--#if defined(WEBRTC_POSIX) && defined(WEBRTC_LINUX)
-+#if defined(WEBRTC_POSIX) && defined(WEBRTC_LINUX) && !defined(WEBRTC_BSD)
+ #if defined(WEBRTC_POSIX)
+-#if defined(WEBRTC_LINUX)
++#if defined(WEBRTC_LINUX) && !defined(WEBRTC_BSD)
+ // On Linux, use epoll.
  #include <sys/epoll.h>
- #define WEBRTC_USE_EPOLL 1
- #endif
+ 

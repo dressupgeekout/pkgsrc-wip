@@ -1,26 +1,42 @@
 $NetBSD$
 
---- base/system/sys_info_posix.cc.orig	2020-07-15 18:55:48.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- base/system/sys_info_posix.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ base/system/sys_info_posix.cc
-@@ -35,7 +35,7 @@
- 
- namespace {
- 
--#if !defined(OS_OPENBSD)
-+#if !defined(OS_BSD)
- int NumberOfProcessors() {
-   // sysconf returns the number of "logical" (not "physical") processors on both
-   // Mac and Linux.  So we get the number of max available "logical" processors.
-@@ -127,7 +127,7 @@ bool GetDiskSpaceInfo(const base::FilePa
+@@ -59,7 +59,11 @@ base::ByteSize AmountOfVirtualMemory() {
+   if (result != 0) {
+     NOTREACHED();
+   }
++#if BUILDFLAG(IS_FREEBSD)
++  return base::ByteSize(limit.rlim_cur == RLIM_INFINITY ? 0 : base::checked_cast<uint64_t>(limit.rlim_cur));
++#else
+   return base::ByteSize(limit.rlim_cur == RLIM_INFINITY ? 0 : limit.rlim_cur);
++#endif
+ }
+ using LazyVirtualMemory =
+     base::internal::LazySysInfoValue<base::ByteSize, AmountOfVirtualMemory>;
+@@ -110,7 +114,7 @@ void GetKernelVersionNumbers(int32_t* ma
  
  namespace base {
  
--#if !defined(OS_OPENBSD)
-+#if !defined(OS_BSD)
+-#if !BUILDFLAG(IS_OPENBSD)
++#if !BUILDFLAG(IS_BSD)
+ // static
  int SysInfo::NumberOfProcessors() {
-   return g_lazy_number_of_processors.Get().value();
+ #if BUILDFLAG(IS_MAC)
+@@ -166,7 +170,7 @@ int SysInfo::NumberOfProcessors() {
+ 
+   return cached_num_cpus;
  }
-@@ -220,6 +220,8 @@ std::string SysInfo::OperatingSystemArch
+-#endif  // !BUILDFLAG(IS_OPENBSD)
++#endif  // !BUILDFLAG(IS_BSD)
+ 
+ // static
+ ByteSize SysInfo::AmountOfVirtualMemory() {
+@@ -275,6 +279,8 @@ std::string SysInfo::OperatingSystemArch
      arch = "x86";
    } else if (arch == "amd64") {
      arch = "x86_64";

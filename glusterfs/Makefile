@@ -1,29 +1,31 @@
-# $NetBSD: Makefile,v 1.109 2022/06/30 11:18:23 nia Exp $
+# $NetBSD: Makefile,v 1.126 2024/08/19 06:08:08 wiz Exp $
 
-DISTNAME=	glusterfs-10.3
+DISTNAME=	glusterfs-10.5
+# PKGREVISION=	0
 CATEGORIES=	filesystems
-MASTER_SITES=	http://bits.gluster.org/pub/gluster/glusterfs/src/
+MASTER_SITES=	https://bits.gluster.org/pub/gluster/glusterfs/src/
 
 MAINTAINER=	als@thangorodrim.ch
 HOMEPAGE=	https://www.gluster.org/
 COMMENT=	Cluster filesystem
 LICENSE=	gnu-gpl-v3
 
-DEPENDS+=	bash>=4:../../shells/bash
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
-USE_TOOLS+=	flex bison pkg-config bash autoconf autoreconf automake
+USE_TOOLS+=	flex bison pkg-config bash:run autoconf autoreconf automake
 
 CONFIGURE_ARGS+=	--disable-fusermount
 CONFIGURE_ARGS+=	--disable-fuse-notifications
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=	--without-tcmalloc
 # libtirpc not in pkgsrc (yet)
-CONFIGURE_ARGS+=	--without-libtirpc
+# CONFIGURE_ARGS+=	--without-libtirpc
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
+CONFIGURE_ARGS+=	--datadir=${PREFIX}/share/examples/${PKGBASE}
 
 # Upstream glusterfs effectively dropped support for 32bit platforms
 # somewhere between 8.2 (works on e.g. NetBSD/i386) and 10.3 as various
-# internal bits went from 32 to 64 bits and atomic updates where done
+# internal bits went from 32 to 64 bits and atomic updates were done
 # on those - can't do that for 64bit values on a 32bit arch.
 # https://github.com/gluster/glusterfs/issues/702 proposed an explicit
 # drop of 32bit and eventually it just happened. See
@@ -77,7 +79,6 @@ REPLACE_BASH+=		geo-replication/src/set_geo_rep_pem_keys.sh
 # Explicit substitution of bash
 CHECK_PORTABILITY_SKIP+=	extras/peer_add_secret_pub.in
 
-
 SUBST_CLASSES+=		mtab
 SUBST_STAGE.mtab=	post-build
 SUBST_FILES.mtab+=	xlators/mount/fuse/utils/mount.glusterfs.in
@@ -92,10 +93,28 @@ SUBST_SED.etc=		-e "s,/etc/gluster,${PREFIX}/etc/gluster,g"
 SUBST_CLASSES+=		bash
 SUBST_STAGE.bash=	pre-configure
 SUBST_FILES.bash=	build-aux/pkg-version
-SUBST_SED.bash=		-e "s,/bin/bash,/usr/pkg/bin/bash,g"
+SUBST_SED.bash=		-e "s,/bin/bash,${BASH},g"
 
-#EGDIR=			${PREFIX}/etc/glusterfs
-#CONF_FILES+=		${EGDIR}/glusterd.vol.sample ${EGDIR}/glusterd.vol
+EGDIR=		${PREFIX}/share/examples/${PKGBASE}
+CONF_FILES+=	${EGDIR}/eventsconfig.json ${PKG_SYSCONFDIR}/glusterfs/eventsconfig.json
+CONF_FILES+=	${EGDIR}/ganesha/ganesha-ha.conf.sample ${PKG_SYSCONFDIR}/glusterfs/ganesha/ganesha-ha.conf.sample
+CONF_FILES+=	${EGDIR}/gluster-rsyslog-5.8.conf ${PKG_SYSCONFDIR}/glusterfs/gluster-rsyslog-5.8.conf
+CONF_FILES+=	${EGDIR}/gluster-rsyslog-7.2.conf ${PKG_SYSCONFDIR}/glusterfs/gluster-rsyslog-7.2.conf
+CONF_FILES+=	${EGDIR}/glusterd.vol ${PKG_SYSCONFDIR}/glusterfs/glusterd.vol
+CONF_FILES+=	${EGDIR}/glusterfs-georep-logrotate ${PKG_SYSCONFDIR}/glusterfs/glusterfs-georep-logrotate
+CONF_FILES+=	${EGDIR}/glusterfs-logrotate ${PKG_SYSCONFDIR}/glusterfs/glusterfs-logrotate
+CONF_FILES+=	${EGDIR}/group-db-workload ${PKG_SYSCONFDIR}/glusterfs/group-db-workload
+CONF_FILES+=	${EGDIR}/group-distributed-virt ${PKG_SYSCONFDIR}/glusterfs/group-distributed-virt
+CONF_FILES+=	${EGDIR}/group-gluster-block ${PKG_SYSCONFDIR}/glusterfs/group-gluster-block
+CONF_FILES+=	${EGDIR}/group-metadata-cache ${PKG_SYSCONFDIR}/glusterfs/group-metadata-cache
+CONF_FILES+=	${EGDIR}/group-nl-cache ${PKG_SYSCONFDIR}/glusterfs/group-nl-cache
+CONF_FILES+=	${EGDIR}/group-samba ${PKG_SYSCONFDIR}/glusterfs/group-samba
+CONF_FILES+=	${EGDIR}/group-virt.example ${PKG_SYSCONFDIR}/glusterfs/group-virt.example
+CONF_FILES+=	${EGDIR}/logger.conf.example ${PKG_SYSCONFDIR}/glusterfs/logger.conf.example
+CONF_FILES+=	${EGDIR}/thin-arbiter.vol ${PKG_SYSCONFDIR}/glusterfs/thin-arbiter.vol
+OWN_DIRS+=	${PKG_SYSCONFDIR}/glusterfs
+OWN_DIRS+=	${PKG_SYSCONFDIR}/glusterfs/ganesha
+
 OWN_DIRS+=		${VARBASE}/log/glusterfs
 BUILD_DEFS+=		VARBASE
 
@@ -108,7 +127,6 @@ PLIST_SUBST+=		PYSITELIB=${PYSITELIB:Q}
 PLIST_SUBST+=		GLUSTERFS_VERSION=${DISTNAME:S/glusterfs-//}
 MESSAGE_SRC=		${PKGDIR}/MESSAGE.${OPSYS}
 
-
 pre-configure:
 	cd ${WRKSRC} && ./autogen.sh
 
@@ -117,20 +135,33 @@ pre-build:
 	${ECHO} "glusterd.vol.sample: glusterd.vol" >> Makefile &&	\
 	${ECHO} "	cp glusterd.vol glusterd.vol.sample" >> Makefile
 
-post-install:
-	${INSTALL_SCRIPT} ${DESTDIR}/sbin/mount_glusterfs \
-	    ${DESTDIR}/${PREFIX}/sbin/mount_glusterfs
-
 # Debug
-CFLAGS+=		-g
-INSTALL_UNSTRIPPED=	yes
-CONFIGURE_ARGS+=	--enable-debug
+#CFLAGS+=		-g
+#INSTALL_UNSTRIPPED=	yes
+#CONFIGURE_ARGS+=	--enable-debug
 #.include "../../devel/boehm-gc/buildlink3.mk"
 #CFLAGS+=		-DGC_DEBUG
 #CFLAGS+=		-include gc.h
 #LIBS+=			-lgc
 
 .include "../../mk/bsd.prefs.mk"
+
+.if ${OPSYS} == "Linux"
+post-install:
+	${INSTALL_SCRIPT} ${DESTDIR}/sbin/mount.glusterfs \
+	    ${DESTDIR}/${PREFIX}/sbin/mount.glusterfs
+.else
+post-install:
+	${INSTALL_SCRIPT} ${DESTDIR}/sbin/mount_glusterfs \
+	    ${DESTDIR}/${PREFIX}/sbin/mount_glusterfs
+.endif
+
+.include "../../lang/python/pyversion.mk"
+
+.if ${PYTHON_VERSION} > 311
+# uses distutils in configure
+TOOL_DEPENDS+=	${PYPKGPREFIX}-setuptools-[0-9]*:../../devel/py-setuptools
+.endif
 
 .include "../../devel/libuuid/buildlink3.mk"
 .include "../../devel/argp/buildlink3.mk"
@@ -139,8 +170,13 @@ CONFIGURE_ARGS+=	--enable-debug
 .include "../../databases/sqlite3/buildlink3.mk"
 BUILDLINK_API_DEPENDS.userspace-rcu+=	userspace-rcu>=0.12.1
 .include "../../devel/userspace-rcu/buildlink3.mk"
+.if ${OPSYS} == "Linux"
+.include "../../devel/liburing/buildlink3.mk"
+.include "../../sysutils/acl/buildlink3.mk"
+.endif
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
+.include "../../devel/libtirpc/buildlink3.mk"
 
 .if (${OPSYS} == "NetBSD" || ${OPSYS} == "FreeBSD") && exists(/usr/include/execinfo.h)
 LIBS+=	-lexecinfo

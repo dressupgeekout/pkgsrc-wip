@@ -1,0 +1,19 @@
+$NetBSD$
+
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- third_party/boringssl/src/include/openssl/target.h.orig	2026-08-05 20:17:42.000000000 +0000
++++ third_party/boringssl/src/include/openssl/target.h
+@@ -187,6 +187,10 @@
+ #define OPENSSL_OPENBSD
+ #endif
+ 
++#if defined(__NetBSD__)
++#define OPENSSL_NETBSD
++#endif
++
+ // BoringSSL requires platform's locking APIs to make internal global state
+ // thread-safe, including the PRNG. On some single-threaded embedded platforms,
+ // locking APIs may not exist, so this dependency may be disabled with the

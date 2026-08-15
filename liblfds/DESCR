@@ -1,0 +1,19 @@
+This is liblfds, a portable, license-free, lock-free data structure
+library written in C.
+
+Lock-free data structures are process, thread and interrupt safe
+(i.e. the same data structure instance can be safely used concurrently
+and simultaneously across cores, processes, threads and both inside
+and outside of interrupt handlers), never sleep (and so are safe
+for kernel use when sleeping is not permitted), operate without
+context switches, cannot fail (no need to handle error cases, as
+there are none), perform and scale literally orders of magnitude
+better than locking data structures, and liblfds itself (as of
+release 7.0.0) is implemented such that it performs no allocations
+(and so works with NUMA, stack, heap and shared memory) and compiles
+not just on a freestanding C89 implementation, but on a bare C89
+implementation.
+
+The library is completely documented (every API, function, macro,
+struct, define, typedef and enum) and ships with a complete test
+suite and a partial benchmark suite.

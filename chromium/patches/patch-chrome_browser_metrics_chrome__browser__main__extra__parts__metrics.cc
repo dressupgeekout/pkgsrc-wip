@@ -1,14 +1,58 @@
 $NetBSD$
 
---- chrome/browser/metrics/chrome_browser_main_extra_parts_metrics.cc.orig	2020-07-15 18:56:45.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/metrics/chrome_browser_main_extra_parts_metrics.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/browser/metrics/chrome_browser_main_extra_parts_metrics.cc
-@@ -50,7 +50,9 @@
+@@ -84,7 +84,7 @@
+ #endif
+ #endif  // BUILDFLAG(IS_ANDROID)
  
- #if defined(OS_LINUX) && !defined(OS_CHROMEOS)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #if defined(__GLIBC__)
  #include <gnu/libc-version.h>
-+#endif
+ #endif  // defined(__GLIBC__)
+@@ -110,7 +110,7 @@
+ #include "chrome/installer/util/taskbar_util.h"
+ #endif  // BUILDFLAG(IS_WIN)
  
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
- #include "base/linux_util.h"
- #include "base/strings/string_split.h"
- #include "base/strings/string_util.h"
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "chrome/browser/metrics/pressure/pressure_metrics_reporter.h"
+ #endif  // BUILDFLAG(IS_LINUX)
+ 
+@@ -121,7 +121,7 @@
+ #include "components/user_manager/user_manager.h"
+ #endif  // BUILDFLAG(IS_CHROMEOS)
+ 
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ #include "components/power_metrics/system_power_monitor.h"
+ #endif
+ 
+@@ -939,7 +939,7 @@ void RecordStartupMetrics() {
+ 
+   // Record whether Chrome is the default browser or not.
+   // Disabled on Linux due to hanging browser tests, see crbug.com/40770414.
+-#if !BUILDFLAG(IS_LINUX)
++#if !BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_BSD)
+   shell_integration::DefaultWebClientState default_state =
+       shell_integration::GetDefaultBrowser();
+   base::UmaHistogramEnumeration("DefaultBrowser.State", default_state,
+@@ -1194,11 +1194,11 @@ void ChromeBrowserMainExtraPartsMetrics:
+       std::make_unique<web_app::SamplingMetricsProvider>();
+ #endif  // !BUILDFLAG(IS_ANDROID)
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   pressure_metrics_reporter_ = std::make_unique<PressureMetricsReporter>();
+ #endif  // BUILDFLAG(IS_LINUX)
+ 
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   power_metrics::SystemPowerMonitor::Initialize();
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
+ 

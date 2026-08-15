@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (xsdata-26.2.tar.gz) = d7142f2d5ca5873ed2e8f6921b0bd4b19ac4f094921a0ff60a7addaef8bd2f6a
+SHA512 (xsdata-26.2.tar.gz) = 20ccf8c8b975ac5b5b7530ae989b0c6bb7ef8228589ac4c507a9e06427423f89519ae1a7257f30c397978eb88abececcec933483a3f729d322873fc3c7aa22e9
+Size (xsdata-26.2.tar.gz) = 349690 bytes

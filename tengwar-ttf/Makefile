@@ -9,11 +9,11 @@ DISTFILES=	TengwarFormalCSUR11.zip FreeMonoTengwar.2010-06-11.zip
 DISTFILES+=	TengwarTelcontar.008.zip
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://freetengwar.sourceforge.net/
+HOMEPAGE=	https://freetengwar.sourceforge.net/
 COMMENT=	Family of fonts covering J. R. R. Tolkien's Tengwar script
 LICENSE=	gnu-gpl-v3
 
-#BUILD_DEPENDS+=	fontforge-[0-9]*:../../fonts/fontforge
+#TOOL_DEPENDS+=	fontforge-[0-9]*:../../fonts/fontforge
 
 WRKSRC=		${WRKDIR}
 USE_LANGUAGES=	# none

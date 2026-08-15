@@ -7,11 +7,9 @@ CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=tappy/}
 
 MAINTAINER=	jihbed.research@gmail.com
-HOMEPAGE=	http://tappy.sourceforge.net/
+HOMEPAGE=	https://tappy.sourceforge.net/
 COMMENT=	Tidal analysis program in python
 LICENSE=	gnu-gpl-v2
-
-DEPENDS+=	${PYPKGPREFIX}-readline>=0nb2:../../devel/py-readline
 
 USE_LANGUAGES=	# none
 

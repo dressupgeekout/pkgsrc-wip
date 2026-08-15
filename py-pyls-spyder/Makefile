@@ -10,9 +10,10 @@ HOMEPAGE=	https://github.com/spyder-ide/pyls-spyder
 COMMENT=	Spyder extensions for the python-lsp-server
 LICENSE=	mit
 
-DEPENDS+=	${PYPKGPREFIX}-lsp-server>=1.0.1:../../wip/py-lsp-server
+DEPENDS+=	${PYPKGPREFIX}-lsp-server>=1.0.1:../../lang/py-lsp-server
 
 USE_LANGUAGES=	# none
+PYTHON_VERSIONS_INCOMPATIBLE=	27 38
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

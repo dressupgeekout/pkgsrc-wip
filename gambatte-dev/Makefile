@@ -7,11 +7,11 @@ CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=gambatte/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://gambatte.sourceforge.net/
+HOMEPAGE=	https://gambatte.sourceforge.net/
 COMMENT=	Game Boy Color emulator
 LICENSE=	gnu-gpl-v2
 
-BUILD_DEPENDS+=	scons-[0-9]*:../../devel/scons
+TOOL_DEPENDS+=	scons-[0-9]*:../../devel/scons
 
 PKG_DESTDIR_SUPPORT=	user-destdir
 

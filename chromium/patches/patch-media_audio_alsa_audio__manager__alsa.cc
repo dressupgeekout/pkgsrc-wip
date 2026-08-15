@@ -1,54 +1,58 @@
 $NetBSD$
 
---- media/audio/alsa/audio_manager_alsa.cc.orig	2020-07-08 21:40:45.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- media/audio/alsa/audio_manager_alsa.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ media/audio/alsa/audio_manager_alsa.cc
-@@ -92,7 +92,9 @@ void AudioManagerAlsa::GetAlsaAudioDevic
-   int card = -1;
- 
-   // Loop through the sound cards to get ALSA device hints.
-+#if defined(OS_LINUX)
-   while (!wrapper_->CardNext(&card) && card >= 0) {
+@@ -106,7 +106,9 @@ bool AudioManagerAlsa::GetAlsaAudioDevic
+   // Loop through the physical sound cards to get ALSA device hints.
+   bool had_error = false;
+   int card_next_result = 0;
++#if !BUILDFLAG(IS_BSD)
+   while ((card_next_result = wrapper_->CardNext(&card)) == 0 && card >= 0) {
 +#endif
-     void** hints = NULL;
-     int error = wrapper_->DeviceNameHint(card, kPcmInterfaceName, &hints);
-     if (!error) {
-@@ -104,7 +106,9 @@ void AudioManagerAlsa::GetAlsaAudioDevic
-       DLOG(WARNING) << "GetAlsaAudioDevices: unable to get device hints: "
-                     << wrapper_->StrError(error);
+     void** hints = nullptr;
+     int hint_result = wrapper_->DeviceNameHint(card, kPcmInterfaceName, &hints);
+     if (!hint_result) {
+@@ -184,7 +186,9 @@ void AudioManagerAlsa::GetAlsaDevicesInf
+       // Store the device information.
+       device_names->push_back(name);
      }
-+#if defined(OS_LINUX)
++#if !BUILDFLAG(IS_BSD) 
    }
 +#endif
  }
  
- void AudioManagerAlsa::GetAlsaDevicesInfo(AudioManagerAlsa::StreamType type,
-@@ -187,7 +191,11 @@ bool AudioManagerAlsa::IsAlsaDeviceAvail
+ // static
+@@ -211,7 +215,11 @@ bool AudioManagerAlsa::IsAlsaDeviceAvail
    // goes through software conversion if needed (e.g. incompatible
    // sample rate).
    // TODO(joi): Should we prefer "hw" instead?
-+#if defined(OS_LINUX)
-   static const char kDeviceTypeDesired[] = "plughw";
++#if BUILDFLAG(IS_BSD)
++  static constexpr std::string_view kDeviceTypeDesired = "plug";
 +#else
-+  static const char kDeviceTypeDesired[] = "plug";
+   static constexpr std::string_view kDeviceTypeDesired = "plughw";
 +#endif
-   return strncmp(kDeviceTypeDesired, device_name,
-                  base::size(kDeviceTypeDesired) - 1) == 0;
+   return device_name.starts_with(kDeviceTypeDesired);
  }
-@@ -209,7 +217,9 @@ bool AudioManagerAlsa::HasAnyAlsaAudioDe
+ 
+@@ -262,7 +270,9 @@ bool AudioManagerAlsa::HasAnyAlsaAudioDe
    // Loop through the sound cards.
-   // Don't use snd_device_name_hint(-1,..) since there is a access violation
+   // Don't use snd_device_name_hint(-1,..) since there is an access violation
    // inside this ALSA API with libasound.so.2.0.0.
-+#if defined(OS_LINUX)
++#if !BUILDFLAG(IS_BSD)
    while (!wrapper_->CardNext(&card) && (card >= 0) && !has_device) {
 +#endif
      int error = wrapper_->DeviceNameHint(card, kPcmInterfaceName, &hints);
      if (!error) {
-       for (void** hint_iter = hints; *hint_iter != NULL; hint_iter++) {
-@@ -233,7 +243,9 @@ bool AudioManagerAlsa::HasAnyAlsaAudioDe
+       const std::string_view unwanted_type =
+@@ -291,7 +301,9 @@ bool AudioManagerAlsa::HasAnyAlsaAudioDe
        DLOG(WARNING) << "HasAnyAudioDevice: unable to get device hints: "
                      << wrapper_->StrError(error);
      }
-+#if defined(OS_LINUX)
++#if !BUILDFLAG(IS_BSD)
    }
 +#endif
  

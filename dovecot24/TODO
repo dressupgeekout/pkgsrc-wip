@@ -1,0 +1,66 @@
+Prepare COMMIT_MSG.
+
+Reduce diffs to mail/dovecot to ease review:
+  $NetBSD$ lines
+  Check and maybe reduce all other diffs
+    
+    I checked all other diffs, and most of them seem to be applied already.
+    Except for several additions of #include <sys/time.h>, but that doesn't
+    seem to break the build, so I'll assume those patches are no longer needed.
+
+--with-ssl seems to be an non-existing option for configure.
+It looks like dovecot-2.4.2/m4/ssl.m4 says ssl is not optional, and it has to
+be OpenSSL.
+
+--with-libwrap seems to be an non-existing option for configure.
+
+    I wonder if adding libwrap support back is easy?
+
+Add comments to both patches, and upstream URL or argument that the
+patch does not belong upstream.
+
+Explain (COMMIT_MSG) why wiki is going away.
+
+Address having to define _NETBSD_SOURCE.  This is very likely an
+upstream bug that some XOPEN visibility define is set, and that turns
+everything else off.  Consider if avoiding defining that is adequate,
+and/or patching, and filing upstream.
+
+    src/lib/lib.h has the dubious setting of a bunch of these flags:
+
+    #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+    #  define __BSD_VISIBLE 1
+    #elif defined(__APPLE__)
+    #  define _DARWIN_C_SOURCE 1
+    #endif
+    #define _BSD_SOURCE 1
+    #define _DEFAULT_SOURCE 1
+    #define _POSIX_C_SOURCE 200809L
+    #define _XOPEN_SOURCE 700
+
+    After disabling the lot of them, it still builds and my quick runtime test
+    also works.
+
+
+Address the strategy of a lot of config files.  Does dovecot really
+need all those files?  Installed config should be minimal and the user
+is welcome to steal from examples.
+
+    Currently it doesn't install a whole conf.d directory of config file
+    fragements any more. This difference is actually annoying when upgrading
+    from the previous version, which did do that.
+
+Get libinotify to work.
+=======================
+
+With current patches, it will be used, but the un-hibernating will fail with a
+permission error.
+
+1. In dovecot.conf: imap_hibernate_timeout = 10 secs
+2. In mutt:         :set imap_idle=yes
+
+With this, the hibernation step appears to work (at least no error is logged)
+but the un-hibernating fails:
+
+Feb 12 18:31:42 murthe dovecot: imap-hibernate(rhialto)<3278><b0YR26NK0PsAAAAAAAAAAAAAAAAAAAAB>: Error: Failed to unhibernate client: net_connect_unix(/var/run/dovecot/imap-master) failed: Permission denied
+Feb 12 18:31:42 murthe dovecot: imap-hibernate(rhialto)<3278><b0YR26NK0PsAAAAAAAAAAAAAAAAAAAAB>: Disconnected: Failed to unhibernate client in=133 out=290740 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0

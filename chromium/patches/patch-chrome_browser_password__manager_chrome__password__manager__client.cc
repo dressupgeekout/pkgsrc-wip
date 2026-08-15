@@ -1,13 +1,44 @@
 $NetBSD$
 
---- chrome/browser/password_manager/chrome_password_manager_client.cc.orig	2020-07-08 21:40:34.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/password_manager/chrome_password_manager_client.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/browser/password_manager/chrome_password_manager_client.cc
-@@ -95,7 +95,7 @@
- #include "net/base/url_util.h"
- #include "net/cert/cert_status_flags.h"
- #include "services/metrics/public/cpp/ukm_recorder.h"
--#include "third_party/re2/src/re2/re2.h"
-+#include <re2/re2.h>
- #include "url/url_constants.h"
+@@ -719,7 +719,7 @@ void ChromePasswordManagerClient::Contin
+ bool ChromePasswordManagerClient::IsReauthBeforeFillingRequired(
+     device_reauth::DeviceAuthenticator* authenticator) {
+ #if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   if (!GetLocalStatePrefs() || !GetPrefs() || !authenticator) {
+     return false;
+   }
+@@ -1002,7 +1002,7 @@ void ChromePasswordManagerClient::Notify
+ }
  
- #if BUILDFLAG(FULL_SAFE_BROWSING)
+ void ChromePasswordManagerClient::NotifyKeychainError() {
+-#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   PasswordsClientUIDelegate* manage_passwords_ui_controller =
+       PasswordsClientUIDelegateFromWebContents(web_contents());
+   if (manage_passwords_ui_controller) {
+@@ -2087,7 +2087,7 @@ void ChromePasswordManagerClient::HideFi
+ bool ChromePasswordManagerClient::IsPasswordManagementEnabledForCurrentPage(
+     const GURL& url) const {
+ #if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   if (IsPasswordManagerForUrlDisallowedByPolicy(url)) {
+     return false;
+   }
+@@ -2126,7 +2126,7 @@ bool ChromePasswordManagerClient::IsPass
+ }
+ 
+ #if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ bool ChromePasswordManagerClient::IsPasswordManagerForUrlDisallowedByPolicy(
+     const GURL& url) const {
+   if (!GetPrefs() || !GetPrefs()->HasPrefPath(

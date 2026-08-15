@@ -8,6 +8,7 @@ Makefile-url2pkg.bak
 commit_wip.sh
 *~
 \#*\#
+.\#*
 *.orig
 *.core
 *.*.swp
@@ -17,6 +18,11 @@ CVS
 
 # macOS files
 .DS_Store
+
+# distfiles, by accident
+*.tar.gz
+*.tar.bz2
+*.tar.xz
 
 # make readme output
 README.html

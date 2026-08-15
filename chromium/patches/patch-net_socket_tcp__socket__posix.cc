@@ -1,22 +1,36 @@
 $NetBSD$
 
---- net/socket/tcp_socket_posix.cc.orig	2020-07-15 18:56:00.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- net/socket/tcp_socket_posix.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ net/socket/tcp_socket_posix.cc
-@@ -88,6 +88,17 @@ bool SetTCPKeepAlive(int fd, bool enable
-     PLOG(ERROR) << "Failed to set TCP_KEEPALIVE on fd: " << fd;
-     return false;
-   }
-+#elif defined(OS_BSD)
+@@ -6,6 +6,9 @@
+ 
+ #include <errno.h>
+ #include <netinet/tcp.h>
++#if BUILDFLAG(IS_NETBSD)
++#include <netinet/in.h>
++#endif
+ #include <sys/socket.h>
+ 
+ #include <algorithm>
+@@ -103,6 +106,17 @@ bool SetTCPKeepAlive(int fd, bool enable
+       PLOG(ERROR) << "Failed to set TCP_KEEPALIVE on fd: " << fd;
+       return false;
+     }
++#elif BUILDFLAG(IS_FREEBSD) || BUILDFLAG(IS_NETBSD)
 +  // Set seconds until first TCP keep alive.
 +  if (setsockopt(fd, IPPROTO_TCP, TCP_KEEPIDLE, &delay, sizeof(delay))) {
 +    PLOG(ERROR) << "Failed to set TCP_KEEPIDLE on fd: " << fd;
 +    return false;
 +  }
-+  // Set seconds between TCP keep alives.
++  // Set seconds between TCP keep alives.  
 +  if (setsockopt(fd, IPPROTO_TCP, TCP_KEEPINTVL, &delay, sizeof(delay))) {
 +    PLOG(ERROR) << "Failed to set TCP_KEEPINTVL on fd: " << fd;
 +    return false;
 +  }
  #endif
-   return true;
- }
+   }
+ 

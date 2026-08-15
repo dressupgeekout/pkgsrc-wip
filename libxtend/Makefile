@@ -1,11 +1,11 @@
 # $NetBSD$
 
-DISTNAME=	libxtend-0.1.7.7
+DISTNAME=	libxtend-0.2.1.16
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
-GITHUB_TAG=	34c3f27cd16b4f8c1e1001a462cb126ad3f52ee4
+GITHUB_TAG=	eda8e4b32bd64f3525ce05cc8554d1769dba7a8e
 
-OWNER=		bacon@NetBSD.org
+MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://github.com/outpaddling/libxtendc
 COMMENT=	Miscellaneous functions to extend libc
 LICENSE=	2-clause-bsd
@@ -20,8 +20,5 @@ INSTALL_TARGET=	install-strip
 .endif
 
 MAKE_ENV+=	DYLIB_PATH=${PREFIX}/lib MANDIR=${PREFIX}/${PKGMANDIR}
-
-pre-build:
-	cd ${WRKSRC} && ${MAKE} depend
 
 .include "../../mk/bsd.pkg.mk"

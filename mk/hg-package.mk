@@ -42,8 +42,7 @@
 #
 # Keywords: hg mercurial
 
-BUILD_DEPENDS+=		${PYPKGPREFIX}-mercurial>=0.9:../../devel/py-mercurial
-BUILD_DEPENDS+=		mozilla-rootcerts-openssl>=2.6:../../security/mozilla-rootcerts-openssl
+TOOL_DEPENDS+=		${PYPKGPREFIX}-mercurial>=0.9:../../devel/py-mercurial
 
 # Defaults for package-settable variables
 DISTFILES?=		# empty
@@ -185,7 +184,7 @@ _SYS_VARS.hg+=	${varbase}.${repo}
 .endfor
 _USE_VARS.hg+=	DISTDIR DISTNAME PKGBASE PYPKGPREFIX
 _USE_VARS.hg+=	WRKDIR PREFIX
-_DEF_VARS.hg+=	WARNINGS USE_TOOLS BUILD_DEPENDS
+_DEF_VARS.hg+=	WARNINGS USE_TOOLS TOOL_DEPENDS
 _DEF_VARS.hg+=	_HG_PKGVERSION _HG_DISTDIR _HG_TODAY _HG_FLAGS
 
 .include "../../lang/python/pyversion.mk"

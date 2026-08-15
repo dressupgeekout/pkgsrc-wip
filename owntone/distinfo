@@ -1,5 +1,6 @@
 $NetBSD$
 
-BLAKE2s (owntone-28.5.tar.xz) = 7d7e2b51dc08ab605d15ffcdecf892e044f480151cc17e0b24c93493dce65e68
-SHA512 (owntone-28.5.tar.xz) = 91fbc18e52b2e233f132c3cb245f84ee22a52c457b28e199fcf04d3b3d10da80c84fe1753917df54aecd053fbe18a427f2f088f94dea6cca00f2bb911f2446a5
-Size (owntone-28.5.tar.xz) = 1057644 bytes
+BLAKE2s (owntone-28.12.tar.xz) = 45f41289dd0d1542ca9a4275778488e6c33f802aa8899e1fe0e8fb1324f94005
+SHA512 (owntone-28.12.tar.xz) = 87801bb843dab3215158c63f3aeed67ec725a678628cbf2bce417a60b2b7466a413c3d776e306ff3973240aa9e96fb744df801efa2dd3287530ffb3508e606f4
+Size (owntone-28.12.tar.xz) = 1123924 bytes
+SHA1 (patch-src_library_filescanner__ffmpeg.c) = f5645de396580a4621f7305b41923df9ed134b98

@@ -1,0 +1,5 @@
+@comment $NetBSD$
+bin/p0f
+share/doc/p0f/p0f.README
+share/examples/p0f/p0f.fp
+@pkgdir man/man1

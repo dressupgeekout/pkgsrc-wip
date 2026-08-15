@@ -1,13 +1,13 @@
 # $NetBSD$
 
-DISTNAME=	yq-4.30.8
+DISTNAME=	yq-4.32.2
 PKGNAME=	${DISTNAME:C/^/go/}
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mikefarah/}
 GITHUB_PROJECT=	yq
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	leot@NetBSD.org
 HOMEPAGE=	https://mikefarah.gitbook.io/yq/
 COMMENT=	Portable command-line YAML, JSON and XML processor
 LICENSE=	mit

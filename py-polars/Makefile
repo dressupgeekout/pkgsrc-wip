@@ -9,7 +9,7 @@ HOMEPAGE=	https://www.pola.rs/
 COMMENT=	Lightning-fast DataFrame library
 LICENSE=	mit
 
-BUILD_DEPENDS+=	${PYPKGPREFIX}-maturin-[0-9]*:../../devel/py-maturin
+TOOL_DEPENDS+=	${PYPKGPREFIX}-maturin-[0-9]*:../../devel/py-maturin
 
 USE_LANGUAGES=	# none
 PYTHON_VERSIONS_INCOMPATIBLE=		27
@@ -23,7 +23,7 @@ WHEELFILE=	${WRKSRC}/target/wheels/*.whl
 
 .include "../../lang/python/pyversion.mk"
 
-.if ${PYPKGPREFIX} == "py37" || ${PYPKGPREFIX} == "py38" || ${PYPKGPREFIX} == "py39"
+.if ${PYTHON_VERSION} < 310
 DEPENDS+=	${PYPKGPREFIX}-typing-extensions>=4.0:../../devel/py-typing-extensions
 .endif
 

@@ -1,6 +1,4 @@
-Don't install examples into etc; put them in share/examples/rtl-433
-
-Somehow figure out/document how to use this on NetBSD, or explain why
-it can't, perhaps just in a amkefile comment.
-
-(gdt can import this once converged; I actually use rtl_433.)
+  - consider moving to a snapshot instead of a release, as rtl_433 does not have releases adequately often
+  - address \todo issues with upstream (or really, just fix them upstream)
+  - resolve 'make test' not running tests
+ 

@@ -1,0 +1,7 @@
+  - Consider writing and installing an rc.d script.
+
+  - Consider an option for py-requests (needed for some drivers).  But
+    really people can just install it.
+    
+  - Issues best addressed upstream, not really about the package.
+    - Don't have weectl station put examples in user config dir

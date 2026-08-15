@@ -1,0 +1,3 @@
+pta reads bookkeeping journals and writes account lists, balances, and
+cost center assessments to standard output. All input files are ASCII
+text files. It is written in Perl 5 and comes with an ISC license.

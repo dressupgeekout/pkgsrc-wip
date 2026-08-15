@@ -1,0 +1,20 @@
+tfkiss is a software implementation of TheFirmware, the AX.25 packet
+radio firmware written by NORD><LINK for TNC2 hardware.  It presents
+the TheFirmware hostmode interface to client software while using an
+ordinary KISS device for the radio link, so a plain KISS TNC or a
+software modem such as Direwolf can be used in place of a TNC2 running
+TheFirmware in ROM.
+
+It implements AX.25 layer 2 with DAMA support, and optionally FlexNet
+node frame decoding, PID switching, and AX.25 encapsulation in IP or
+UDP datagrams (AXIP).  Up to 50 channels are supported.
+
+tfkiss is normally paired with the tnt terminal program or the dpbox
+mailbox, either of which connects to it over a local socket.  Because
+the AX.25 layer 2 implementation lives in tfkiss rather than in the
+kernel, these programs can be used on systems that have no kernel
+AX.25 stack.
+
+This is a maintained fork of the port by Berndt Josef Wulf, VK5ABN.
+It adds 64-bit correctness fixes, brings the sources to ANSI C, and
+replaces the original build system with autoconf and automake.

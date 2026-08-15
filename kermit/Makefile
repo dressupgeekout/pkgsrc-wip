@@ -1,12 +1,12 @@
 # $NetBSD: Makefile,v 1.93 2020/04/08 15:22:07 rhialto Exp $
 
-# https://www.kermitproject.org/ftp/kermit/test/tar/cku10.0-beta04.tar.gz
-# https://www.kermitproject.org/ftp/kermit/test/tar/cku400-beta05.tar.gz
-# https://www.kermitproject.org/ftp/kermit/test/tar/cku402-beta08.tar.gz
+# https://www.kermitproject.org/ftp/kermit/test/tar/index.html
+# https://www.kermitproject.org/ftp/kermit/test/tar/cku405-beta09.tar.gz
+# https://www.kermitproject.org/ftp/kermit/test/tar/cku416-beta12.tar.gz
 VERSION=	10.0
-VERSIONDIST=	402
+VERSIONDIST=	416
 VERSIONSEP=	-
-VERSIONRC=	beta08
+VERSIONRC=	beta12
 DISTNAME=	cku${VERSIONDIST}${VERSIONSEP}${VERSIONRC}
 PKGNAME=	kermit-${VERSION}${VERSIONRC}
 CATEGORIES=	comms
@@ -59,4 +59,5 @@ BUILD_TARGET_OPSYS=	netbsd
 
 BUILD_TARGET=	${BUILD_TARGET_OPSYS}${BUILD_TARGET_OPTIONS:ts}
 
+.include "../../mk/pam.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,0 +1,2 @@
+TUI for Jujutsu/jj. Built in Rust with Ratatui. Interacts with the
+`jj` CLI program.

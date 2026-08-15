@@ -1,13 +1,21 @@
 $NetBSD$
 
---- chrome/browser/extensions/api/runtime/chrome_runtime_api_delegate.cc.orig	2020-07-08 21:40:34.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/extensions/api/runtime/chrome_runtime_api_delegate.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/browser/extensions/api/runtime/chrome_runtime_api_delegate.cc
-@@ -294,6 +294,8 @@ bool ChromeRuntimeAPIDelegate::GetPlatfo
-     info->os = extensions::api::runtime::PLATFORM_OS_LINUX;
-   } else if (strcmp(os, "openbsd") == 0) {
-     info->os = extensions::api::runtime::PLATFORM_OS_OPENBSD;
-+  } else if (strcmp(os, "netbsd") == 0) {
-+    info->os = extensions::api::runtime::PLATFORM_OS_NETBSD;
+@@ -368,7 +368,11 @@ bool ChromeRuntimeAPIDelegate::GetPlatfo
+   } else if (os == "linux") {
+     info->os = extensions::api::runtime::PlatformOs::kLinux;
+   } else if (os == "openbsd") {
+-    info->os = extensions::api::runtime::PlatformOs::kOpenbsd;
++    info->os = extensions::api::runtime::PlatformOs::kLinux;
++  } else if (os == "freebsd") {
++    info->os = extensions::api::runtime::PlatformOs::kLinux;
++  } else if (os == "netbsd") {
++    info->os = extensions::api::runtime::PlatformOs::kLinux;
+   } else if (os == "android") {
+     info->os = extensions::api::runtime::PlatformOs::kAndroid;
    } else {
-     NOTREACHED();
-     return false;

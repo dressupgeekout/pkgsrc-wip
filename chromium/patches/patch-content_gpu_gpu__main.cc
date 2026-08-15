@@ -1,49 +1,79 @@
 $NetBSD$
 
---- content/gpu/gpu_main.cc.orig	2020-07-08 21:41:48.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- content/gpu/gpu_main.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ content/gpu/gpu_main.cc
-@@ -85,7 +85,7 @@
- #include "ui/gfx/x/x11_types.h"                          // nogncheck
+@@ -112,10 +112,14 @@
+ #include "services/webnn/public/cpp/webnn_sandbox_init.h"
  #endif
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
- #include "content/gpu/gpu_sandbox_hook_linux.h"
- #include "content/public/common/sandbox_init.h"
- #include "services/service_manager/sandbox/linux/sandbox_linux.h"
-@@ -109,7 +109,7 @@ namespace content {
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ #include "content/child/sandboxed_process_thread_type_handler.h"
+ #include "content/common/gpu_pre_sandbox_hook_linux.h"
++#if BUILDFLAG(IS_BSD)
++#include "sandbox/policy/sandbox.h"
++#else
+ #include "sandbox/policy/linux/sandbox_linux.h"
++#endif
+ #include "sandbox/policy/sandbox_type.h"
+ #endif
+ 
+@@ -133,7 +137,7 @@ namespace content {
  
  namespace {
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  bool StartSandboxLinux(gpu::GpuWatchdogThread*,
                         const gpu::GPUInfo*,
                         const gpu::GpuPreferences&);
-@@ -162,7 +162,7 @@ class ContentSandboxHelper : public gpu:
-   bool EnsureSandboxInitialized(gpu::GpuWatchdogThread* watchdog_thread,
+@@ -201,7 +205,7 @@ class ContentSandboxHelper : public gpu:
                                  const gpu::GPUInfo* gpu_info,
                                  const gpu::GpuPreferences& gpu_prefs) override {
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+     TRACE_EVENT("gpu,startup", "gpu_main::EnsureSandboxInitialized");
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
      return StartSandboxLinux(watchdog_thread, gpu_info, gpu_prefs);
- #elif defined(OS_WIN)
+ #elif BUILDFLAG(IS_WIN)
      return StartSandboxWindows(sandbox_info_);
-@@ -297,7 +297,7 @@ int GpuMain(const MainFunctionParams& pa
-               gpu_preferences.message_pump_type);
+@@ -317,7 +321,7 @@ int GpuMain(MainFunctionParams parameter
+           std::make_unique<base::SingleThreadTaskExecutor>(
+               gpu_preferences.message_pump_type, /*is_main_thread=*/true);
      }
- #endif
--#elif defined(OS_LINUX)
-+#elif defined(OS_LINUX) || defined(OS_BSD)
+-#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  #error "Unsupported Linux platform."
- #elif defined(OS_MACOSX)
+ #elif BUILDFLAG(IS_MAC)
      // Cross-process CoreAnimation requires a CFRunLoop to function at all, and
-@@ -450,7 +450,7 @@ int GpuMain(const MainFunctionParams& pa
+@@ -343,7 +347,8 @@ int GpuMain(MainFunctionParams parameter
+   mojo::InterfaceEndpointClient::SetThreadNameSuffixForMetrics("GpuMain");
+   base::MessagePumpWakeupCounter::InitializeForCurrentThread("GpuMain");
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++// XXX BSD
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)) && !BUILDFLAG(IS_BSD)
+   // Thread type delegate of the process should be registered before
+   // thread type change below for the main thread and for thread pool in
+   // ChildProcess constructor.
+@@ -495,7 +500,7 @@ int GpuMain(MainFunctionParams parameter
  
  namespace {
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  bool StartSandboxLinux(gpu::GpuWatchdogThread* watchdog_thread,
                         const gpu::GPUInfo* gpu_info,
                         const gpu::GpuPreferences& gpu_prefs) {
+@@ -543,7 +548,7 @@ bool StartSandboxLinux(gpu::GpuWatchdogT
+   sandbox_options.accelerated_video_encode_enabled =
+       !gpu_prefs.disable_accelerated_video_encode;
+ 
+-#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   // Video decoding of many video streams can use thousands of FDs as well as
+   // Exo clients.
+   // See https://crbug.com/1417237

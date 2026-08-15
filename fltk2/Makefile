@@ -9,13 +9,17 @@ MASTER_SITES=	${MASTER_SITE_GITHUB:=fltk/fltk-legacy/archive/}
 DIST_SUBDIR=	${PKGNAME_NOREV}
 EXTRACT_SUFX=	.zip
 
+CONFLICTS+=	fltk11-[0-9]*
+CONFLICTS+=	fltk13-[0-9]*
+CONFLICTS+=	fltk-[0-9]*
+
 MAINTAINER=	micha@NetBSD.org
 HOMEPAGE=	https://www.fltk.org/
 COMMENT=	Fast Light Tool Kit for graphical user interfaces
 # The LGPL license is relaxed to allow static linking
 LICENSE=	gnu-lgpl-v2
 
-USE_LANGUAGES=		c c++03
+USE_LANGUAGES=		c c++
 USE_TOOLS+=		autoconf gmake
 
 WRKSRC=			${WRKDIR}/fltk-legacy-branch-2.0

@@ -1,13 +1,17 @@
 $NetBSD$
 
---- content/browser/renderer_host/render_view_host_impl.cc.orig	2020-07-08 21:41:48.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- content/browser/renderer_host/render_view_host_impl.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ content/browser/renderer_host/render_view_host_impl.cc
-@@ -230,7 +230,7 @@ void RenderViewHostImpl::GetPlatformSpec
-       display::win::ScreenWin::GetSystemMetricsInDIP(SM_CYVSCROLL);
-   prefs->arrow_bitmap_width_horizontal_scroll_bar_in_dips =
-       display::win::ScreenWin::GetSystemMetricsInDIP(SM_CXHSCROLL);
--#elif defined(OS_LINUX)
-+#elif defined(OS_LINUX) || defined(OS_BSD)
-   prefs->system_font_family_name = gfx::Font().GetFontName();
- #elif defined(OS_FUCHSIA)
-   // Make Blink's "focus ring" invisible. The focus ring is a hairline border
+@@ -265,7 +265,7 @@ void RenderViewHostImpl::GetPlatformSpec
+   GetFontInfo(gfx::win::SystemFont::kStatus, &prefs->status_font_family_name,
+               &prefs->status_font_height);
+ 
+-#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
+   if (command_line->HasSwitch(switches::kSystemFontFamily)) {
+     prefs->system_font_family_name =

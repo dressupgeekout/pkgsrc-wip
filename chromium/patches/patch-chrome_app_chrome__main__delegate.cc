@@ -1,100 +1,128 @@
 $NetBSD$
 
---- chrome/app/chrome_main_delegate.cc.orig	2020-06-25 09:31:20.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/app/chrome_main_delegate.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/app/chrome_main_delegate.cc
-@@ -145,12 +145,12 @@
+@@ -103,7 +103,7 @@
+ #include "ui/base/ui_base_switches.h"
+ 
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || \
+-    BUILDFLAG(IS_MAC)
++    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_BSD)
+ #include "components/webapps/isolated_web_apps/scheme.h"
+ #endif
+ 
+@@ -185,17 +185,17 @@
  #include "v8/include/v8.h"
  #endif
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD) 
  #include "base/environment.h"
  #endif
  
- #if defined(OS_MACOSX) || defined(OS_WIN) || defined(OS_ANDROID) || \
--    defined(OS_LINUX)
-+    defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "base/nix/scoped_xdg_activation_token_injector.h"
+ #include "ui/linux/display_server_utils.h"
+ #endif
+ 
+ #if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_ANDROID) || \
+-    BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  #include "chrome/browser/policy/policy_path_parser.h"
  #include "components/crash/core/app/crashpad.h"
  #endif
-@@ -313,7 +313,7 @@ void AdjustLinuxOOMScore(const std::stri
+@@ -233,7 +233,7 @@ const char* const ChromeMainDelegate::kN
+ #endif
+     chrome::kChromeSearchScheme,
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || \
+-    BUILDFLAG(IS_MAC)
++    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_BSD)
+     webapps::kIsolatedAppScheme,
+ #endif
+     content::kChromeDevToolsScheme,    content::kChromeUIScheme,
+@@ -308,7 +308,7 @@ void AdjustLinuxOOMScore(const std::stri
  // and resources loaded.
  bool SubprocessNeedsResourceBundle(const std::string& process_type) {
    return
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
        // The zygote process opens the resources for the renderers.
-       process_type == service_manager::switches::kZygoteProcess ||
+       process_type == switches::kZygoteProcess ||
  #endif
-@@ -352,7 +352,7 @@ bool HandleVersionSwitches(const base::C
+@@ -388,7 +388,7 @@ bool HandleVersionSwitches(const base::C
    return false;
  }
  
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  // Show the man page if --help or -h is on the command line.
  void HandleHelpSwitches(const base::CommandLine& command_line) {
    if (command_line.HasSwitch(switches::kHelp) ||
-@@ -416,7 +416,7 @@ void InitializeUserDataDir(base::Command
+@@ -400,7 +400,7 @@ void HandleHelpSwitches(const base::Comm
+ }
+ #endif  // BUILDFLAG(IS_LINUX)
+ 
+-#if !BUILDFLAG(IS_MAC) && !BUILDFLAG(IS_ANDROID)
++#if !BUILDFLAG(IS_MAC) && !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_BSD)
+ void SIGTERMProfilingShutdown(int signal) {
+   content::Profiling::Stop();
+   struct sigaction sigact;
+@@ -482,7 +482,7 @@ std::optional<int> AcquireProcessSinglet
+   // process can be exited.
+   ChromeProcessSingleton::CreateInstance(user_data_dir);
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   // Read the xdg-activation token and set it in the command line for the
+   // duration of the notification in order to ensure this is propagated to an
+   // already running browser process if it exists.
+@@ -560,7 +560,7 @@ void InitializeUserDataDir(base::Command
    std::string process_type =
        command_line->GetSwitchValueASCII(switches::kProcessType);
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    // On Linux, Chrome does not support running multiple copies under different
    // DISPLAYs, so the profile directory can be specified in the environment to
    // support the virtual desktop use-case.
-@@ -499,7 +499,7 @@ void RecordMainStartupMetrics(base::Time
-   startup_metric_utils::RecordApplicationStartTime(now);
+@@ -666,7 +666,7 @@ void RecordMainStartupMetrics(const Star
  #endif
  
--#if defined(OS_MACOSX) || defined(OS_WIN) || defined(OS_LINUX)
-+#if defined(OS_MACOSX) || defined(OS_WIN) || defined(OS_LINUX) || defined(OS_BSD)
-   // Record the startup process creation time on supported platforms.
-   startup_metric_utils::RecordStartupProcessCreationTime(
-       base::Process::Current().CreationTime());
-@@ -704,7 +704,7 @@ bool ChromeMainDelegate::BasicStartupCom
-     *exit_code = 0;
-     return true;  // Got a --version switch; exit with a success error code.
+ #if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   // Record the startup process creation time on supported platforms. On Android
+   // this is recorded in ChromeMainDelegateAndroid.
+   startup_metric_utils::GetCommon().RecordStartupProcessCreationTime(
+@@ -1132,7 +1132,7 @@ std::optional<int> ChromeMainDelegate::B
+     return 0;  // Got a --credits switch; exit with a success error code.
    }
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
    // This will directly exit if the user asked for help.
    HandleHelpSwitches(command_line);
  #endif
-@@ -908,7 +908,7 @@ void ChromeMainDelegate::PreSandboxStart
- 
-   crash_reporter::InitializeCrashKeys();
- 
--#if defined(OS_POSIX)
-+#if defined(OS_POSIX) && !defined(OS_BSD)
-   ChromeCrashReporterClient::Create();
- #endif
- 
-@@ -920,7 +920,7 @@ void ChromeMainDelegate::PreSandboxStart
- #if defined(OS_WIN)
-   child_process_logging::Init();
- #endif
--#if defined(ARCH_CPU_ARM_FAMILY) && (defined(OS_ANDROID) || defined(OS_LINUX))
-+#if defined(ARCH_CPU_ARM_FAMILY) && (defined(OS_ANDROID) || defined(OS_LINUX) || defined(OS_BSD))
-   // Create an instance of the CPU class to parse /proc/cpuinfo and cache
-   // cpu_brand info.
-   base::CPU cpu_info;
-@@ -1039,7 +1039,7 @@ void ChromeMainDelegate::PreSandboxStart
-         locale;
+@@ -1461,7 +1461,7 @@ void ChromeMainDelegate::PreSandboxStart
+     CHECK(!loaded_locale.empty()) << "Locale could not be found for " << locale;
    }
  
--#if defined(OS_POSIX) && !defined(OS_MACOSX)
-+#if defined(OS_POSIX) && !defined(OS_MACOSX) && !defined(OS_BSD)
+-#if BUILDFLAG(IS_POSIX) && !BUILDFLAG(IS_MAC)
++#if BUILDFLAG(IS_POSIX) && !BUILDFLAG(IS_MAC) && !BUILDFLAG(IS_BSD)
    // Zygote needs to call InitCrashReporter() in RunZygote().
-   if (process_type != service_manager::switches::kZygoteProcess) {
- #if defined(OS_ANDROID)
-@@ -1122,7 +1122,7 @@ int ChromeMainDelegate::RunProcess(
- 
-     // This entry is not needed on Linux, where the NaCl loader
-     // process is launched via nacl_helper instead.
--#if BUILDFLAG(ENABLE_NACL) && !defined(OS_LINUX)
-+#if BUILDFLAG(ENABLE_NACL) && !defined(OS_LINUX) && !defined(OS_BSD)
-     {switches::kNaClLoaderProcess, NaClMain},
- #else
-     {"<invalid>", nullptr},  // To avoid constant array of size 0
+   if (process_type != switches::kZygoteProcess &&
+       !command_line.HasSwitch(switches::kDisableCrashpadForTesting)) {
+@@ -1506,7 +1506,7 @@ void ChromeMainDelegate::PreSandboxStart
+   if (process_type.empty()) {
+     // Initialize Ozone platform and add required feature flags as per
+     // platform's properties.
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+     ui::SetOzonePlatformForLinuxIfNeeded(
+         *base::CommandLine::ForCurrentProcess());
+ #endif

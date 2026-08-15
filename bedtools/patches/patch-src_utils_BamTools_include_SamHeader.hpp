@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-src_utils_BamTools_include_SamHeader.hpp,v 1.1 2021/02/08 01:49:25 bacon Exp $
 
 # Silence compiler warnings
 

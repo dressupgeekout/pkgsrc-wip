@@ -1,20 +1,21 @@
 $NetBSD$
 
-BLAKE2s (opensmalltak-vm-202206021410.tar.gz) = 5dad73622373eaab242b869751e20e8b402c846d8c892d64b5b5dae8ef18f8c6
-SHA512 (opensmalltak-vm-202206021410.tar.gz) = a72b221eb76178d8d80134b58523bddb5ae480d1497a4b1cbd7079268b9687f3ddf06e391557abcb2e8ec0db972ebbb9529affea8eed41753252ac986abc3905
-Size (opensmalltak-vm-202206021410.tar.gz) = 54790671 bytes
-SHA1 (patch-platforms_Cross_plugins_SqueakFFIPrims_sqFFIPlugin.c) = 6422c6e53716f5ad009235b7b3ae728ae1ef554f
+BLAKE2s (opensmalltak-vm-202606270913.tar.gz) = 43525eba6d8eabafcb3e3b65a45b65a031157c01b62f01803ee800163035b9d3
+SHA512 (opensmalltak-vm-202606270913.tar.gz) = ae51237d7a3d9844c5ab9ff087189d07b45a222b170057a00c025b23059374519f908d435f2d3f1b230b0bf8fffbd4da60889f6db96567991fc08ceb1036b84a
+Size (opensmalltak-vm-202606270913.tar.gz) = 46493970 bytes
+SHA1 (patch-building_linux64x64_squeak.cog.spur_build_mvm) = 33cb8d3c13d37b7b757a457b764aba9cbdb63dc2
+SHA1 (patch-building_linux64x64_squeak.cog.spur_plugins.int) = 5cad209cd518b7d04396b334399d406b400543bb
+SHA1 (patch-platforms_Cross_plugins_PseudoTTYPlugin_PseudoTTYPlugin.h) = dbf963dc6bf5f6e05f9afeb8ca907c24b94b1e5b
+SHA1 (patch-platforms_Cross_plugins_SqueakFFIPrims_sqFFIPlugin.c) = 7c2b933ca02d032f76e076f6b9f98510a06af12e
 SHA1 (patch-platforms_unix_config_bin.squeak.sh.in) = eca83ca07948b5abce150bd4be4b5a7a8e1630eb
 SHA1 (patch-platforms_unix_config_configure.ac) = 465b211778a8d70bc2d030f0e8987f0e48edc1c2
 SHA1 (patch-platforms_unix_config_make.cfg.in) = d3bc685372bf4104f2b3db78625681e26c0c29d9
 SHA1 (patch-platforms_unix_config_make.ext.in) = d9fcf9124568ffac544d9bb388883647f4d01e26
 SHA1 (patch-platforms_unix_config_squeak.sh.in) = 29b074f629fd773a6d14acdd28d5f0054f2ee59d
-SHA1 (patch-platforms_unix_plugins_JoystickTabletPlugin_sqUnixJoystickTablet.c) = 039d233d6f51462a08c05449b82d983cfe1825e0
-SHA1 (patch-platforms_unix_plugins_SerialPlugin_sqUnixSerial.c) = 3e84fbb1a22ea899d8f61bd220c2407e73c1ef06
+SHA1 (patch-platforms_unix_plugins_JoystickTabletPlugin_sqUnixJoystickTablet.c) = ceef9fe35b14024543816246bb69d91962f42108
 SHA1 (patch-platforms_unix_plugins_SqueakSSL_openssl__overlay.h) = f66f067c8876a3c0a22d8728a65c3e8811411b31
+SHA1 (patch-platforms_unix_plugins_UUIDPlugin_sqUnixUUID.c) = ceeffabb8d8ad18e98e4850ca4a7680983a5a88b
 SHA1 (patch-platforms_unix_vm-display-X11_acinclude.m4) = 6fe2caffdcafa00185102d79dbb1dd50c3c814ee
 SHA1 (patch-platforms_unix_vm_include__ucontext.h) = ef722fe06ac5e565e9303a7467cbee1b23f9d0bd
-SHA1 (patch-platforms_unix_vm_sqUnixITimerHeartbeat.c) = 96b6f1094b07c9456f9b6cc56b2bc7237e6c24f0
-SHA1 (patch-platforms_unix_vm_sqUnixITimerTickerHeartbeat.c) = 2714da2e76226d5194a07ad1ea5ead3edc39d7fd
-SHA1 (patch-platforms_unix_vm_sqUnixMain.c) = f000e949fde87f81fdada5be84a40a9842a1d1bd
-SHA1 (patch-src_spur64.cog_cogitX64SysV.c) = f0a60621d6bfc3aa101da95d1fa354829f3e5d56
+SHA1 (patch-platforms_unix_vm_sqUnixMain.c) = 4990908bca9221ed18a4c4f93ee653a4828e4098
+SHA1 (patch-src_spur64.cog_cogitX64SysV.c) = 78a53935edc84d13c40eeb1dc9edcd9df69b5807

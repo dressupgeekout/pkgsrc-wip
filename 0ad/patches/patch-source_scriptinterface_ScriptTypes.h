@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-source_scriptinterface_ScriptTypes.h,v 1.1 2023/05/04 15:20:52 nikita Exp $
 
 --- source/scriptinterface/ScriptTypes.h.orig	2021-07-27 21:56:58.000000000 +0000
 +++ source/scriptinterface/ScriptTypes.h

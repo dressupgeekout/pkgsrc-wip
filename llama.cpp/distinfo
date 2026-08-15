@@ -1,0 +1,9 @@
+$NetBSD$
+
+BLAKE2s (llama-b10276-ui.tar.gz) = 5f0c94d15133d613b57199044db0b458a70ee664048f555e77ad87ef274decc1
+SHA512 (llama-b10276-ui.tar.gz) = 3e342d1cafb40b2078f865ade7176ea1627755132520f6d393627687d4a828c7543d4db62c23cf215deda622edd935a61bda031804b6d126b6b165c7977b3ac0
+Size (llama-b10276-ui.tar.gz) = 3062886 bytes
+BLAKE2s (llama.cpp-b10276.tar.gz) = 594a6133bf8c8026f1dd8d4455fe400f6d0f179c3c1d7dc3e21b3441b0a15e93
+SHA512 (llama.cpp-b10276.tar.gz) = 621bd2ce92172fbb16f6132dedaa35cede36e60791f4e46a3647ca219a6cf30f4b835f80b5db020cda7485880b17fafbaee942a2bc67669e2319f5c954085e8b
+Size (llama.cpp-b10276.tar.gz) = 36569245 bytes
+SHA1 (patch-vendor_sheredom_subprocess.h) = af56949ad770ec8f65b39651f2d6f621cf1b1fa4

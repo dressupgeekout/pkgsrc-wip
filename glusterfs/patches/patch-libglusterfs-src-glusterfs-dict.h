@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-libglusterfs-src-glusterfs-dict.h,v 1.1 2023/03/12 17:57:44 js Exp $
 
 Do not use __WORDSIZE as proxy for sizeof(time_t), since:
  - __WORDSIZE is glibc (and thus Linux) only

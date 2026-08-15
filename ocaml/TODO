@@ -1,0 +1,34 @@
+- improve COMMIT_MESSAGE
+  + review dropped patches
+
+- run tests and file issues upstream
+  + 20251020 NetBSD 10 amd64
+    List of failed tests:
+      tests/lib-bigarray-2/bigarrfml.ml
+      tests/lib-systhreads/testyield.ml
+
+- create meta-pkgs/bulk-test-ocaml and build it
+
+- examine unresolved upstream 5.x issues and decide to address or not
+  + https://github.com/ocaml/ocaml/issues/11913 [stale]
+  + https://github.com/ocaml/ocaml/pull/13320
+
+- test programs using unison
+  + unison
+  + (call for tests on unison-users)
+
+- fix native compiler build
+  (it's not clear what this means, but test native code generation with unison)
+
+- PLIST has opsys-specific entries, find a solution for that
+
+- self tests hang after
+Running tests from 'tests/lib-systhreads' ...
+ ... testing 'boundscheck.ml' => passed
+ ... testing 'eintr.ml' => passed
+ ... testing 'multicore_lifecycle.ml' => passed
+ ... testing 'test_c_thread_register.ml' => skipped
+ ... testing 'testfork.ml' => skipped
+ ... testing 'testfork2.ml' => skipped
+ ... testing 'testpreempt.ml' => passed
+ ... testing 'testyield.ml'

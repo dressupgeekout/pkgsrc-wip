@@ -1,0 +1,59 @@
+$NetBSD$
+
+1) Use pkgsrc libtommath (internally named libcyclonebn).
+2) Install cyclone as cyclone-bootstrap.
+
+--- Makefile.orig	2024-02-14 02:29:41.000000000 +0000
++++ Makefile
+@@ -8,8 +8,8 @@ include Makefile.config
+ 
+ # Libraries
+ CYC_RT_LIB = libcyclone.a
+-CYC_BN_LIB = libcyclonebn.a
+-CYC_BN_LIB_SUBDIR = third-party/libtommath-1.2.0
++#CYC_BN_LIB = libcyclonebn.a
++#CYC_BN_LIB_SUBDIR = third-party/libtommath-1.2.0
+ CYC_LIBS = $(CYC_RT_LIB) $(CYC_BN_LIB)
+ 
+ COBJ = scheme/base \
+@@ -101,8 +101,8 @@ $(CYC_RT_LIB): runtime.c include/cyclone
+ 	  $(CREATE_LIBRARY_COMMAND) $(CREATE_LIBRARY_FLAGS) $(LIBRARY_OUTPUT_FILE) runtime.o gc.o ffi.o mstreams.o hashset.o
+ 	  $(RANLIB_COMMAND)
+ 
+-$(CYC_BN_LIB) : $(CYC_BN_LIB_SUBDIR)/*.c
+-	cd $(CYC_BN_LIB_SUBDIR) ; $(MAKE) LIBNAME=$(CYC_BN_LIB) && cp $(CYC_BN_LIB) ../..
++#$(CYC_BN_LIB) : $(CYC_BN_LIB_SUBDIR)/*.c
++#	cd $(CYC_BN_LIB_SUBDIR) ; $(MAKE) LIBNAME=$(CYC_BN_LIB) && cp $(CYC_BN_LIB) ../..
+ 
+ cyclone: $(CFILES) $(COBJECTS) $(C_SHARED_OBJECTS) $(CYC_LIBS)
+ 	$(CC) cyclone.c $(CFLAGS) -c -o cyclone.o
+@@ -179,12 +179,12 @@ install:
+ #install-libs:
+ 	$(MKDIR) $(DESTDIR)$(LIBDIR)
+ 	$(INSTALL) -m0644 $(CYC_RT_LIB) $(DESTDIR)$(LIBDIR)/
+-	$(INSTALL) -m0644 $(CYC_BN_LIB) $(DESTDIR)$(LIBDIR)/
++#	$(INSTALL) -m0644 $(CYC_BN_LIB) $(DESTDIR)$(LIBDIR)/
+ #install-cyclone:
+ 	$(MKDIR) $(DESTDIR)$(BINDIR)
+ 	$(MKDIR) $(DESTDIR)$(DATADIR)/scheme/cyclone
+ 	$(MKDIR) $(DESTDIR)$(DATADIR)/srfi
+-	$(INSTALL) -m0755 cyclone $(DESTDIR)$(BINDIR)/
++	$(INSTALL) -m0755 cyclone $(DESTDIR)$(BINDIR)/cyclone-bootstrap
+ 	$(INSTALL) -m0644 scheme/*.o $(DESTDIR)$(DATADIR)/scheme
+ 	$(INSTALL) -m0644 scheme/cyclone/*.o $(DESTDIR)$(DATADIR)/scheme/cyclone
+ 	$(INSTALL) -m0644 srfi/*.o $(DESTDIR)$(DATADIR)/srfi
+@@ -200,11 +200,10 @@ install:
+ 	$(MKDIR) $(DESTDIR)$(DATADIR)/srfi
+ 	$(MKDIR) $(DESTDIR)$(DATADIR)/srfi/list-queues
+ 	$(MKDIR) $(DESTDIR)$(DATADIR)/srfi/sorting
+-	$(INSTALL) -m0755 cyclone $(DESTDIR)$(BINDIR)/
+-	$(INSTALL) -m0755 icyc $(DESTDIR)$(BINDIR)/
+-	$(INSTALL) -m0755 winds $(DESTDIR)$(BINDIR)/
++	$(INSTALL) -m0755 cyclone $(DESTDIR)$(BINDIR)/cyclone-bootstrap
++	$(INSTALL) -m0755 icyc $(DESTDIR)$(BINDIR)/icyc-bootstrap
+ 	$(INSTALL) -m0644 $(CYC_RT_LIB) $(DESTDIR)$(LIBDIR)/
+-	$(INSTALL) -m0644 $(CYC_BN_LIB) $(DESTDIR)$(LIBDIR)/
++#	$(INSTALL) -m0644 $(CYC_BN_LIB) $(DESTDIR)$(LIBDIR)/
+ 	$(INSTALL) -m0644 include/cyclone/*.h $(DESTDIR)$(INCDIR)/
+ 	$(INSTALL) -m0644 scheme/*.sld $(DESTDIR)$(DATADIR)/scheme
+ 	$(INSTALL) -m0644 scheme/*.o $(DESTDIR)$(DATADIR)/scheme

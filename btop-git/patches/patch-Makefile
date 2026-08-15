@@ -1,0 +1,30 @@
+$NetBSD$
+
+Fix man page path.
+
+--- Makefile.orig	2026-07-06 08:45:11.525089446 +0000
++++ Makefile
+@@ -378,9 +378,9 @@ install:
+ 	@mkdir -p $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps
+ 	@cp -p Img/icon.svg $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/btop.svg
+ ifneq ($(wildcard btop.1),)
+-	@$(call green,Installing man page to: ,$(WHITE)$(DESTDIR)$(PREFIX)/share/man/man1/btop.1)
+-	@mkdir -p $(DESTDIR)$(PREFIX)/share/man/man1
+-	@cp -p btop.1 $(DESTDIR)$(PREFIX)/share/man/man1/btop.1
++	@$(call green,Installing man page to: ,$(WHITE)$(DESTDIR)$(PREFIX)/$(PKGMANDIR)/man1/btop.1)
++	@mkdir -p $(DESTDIR)$(PREFIX)/$(PKGMANDIR)/man1
++	@cp -p btop.1 $(DESTDIR)$(PREFIX)/$(PKGMANDIR)/man1/btop.1
+ endif
+ 
+ #? Set SUID bit for btop as $SU_USER in $SU_GROUP
+@@ -409,8 +409,8 @@ uninstall:
+ 	@rm -rfv $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/btop.png
+ 	@$(call red,Removing: ,$(WHITE)$(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/btop.svg)
+ 	@rm -rfv $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/btop.svg
+-	@$(call red,Removing: ,$(WHITE)$(DESTDIR)$(PREFIX)/share/man/man1/btop.1)
+-	@rm -rfv $(DESTDIR)$(PREFIX)/share/man/man1/btop.1
++	@$(call red,Removing: ,$(WHITE)$(DESTDIR)$(PREFIX)/$(PKGMANDIR)/man1/btop.1)
++	@rm -rfv $(DESTDIR)$(PREFIX)/$(PKGMANDIR)/man1/btop.1
+ 
+ #? Pull in dependency info for *existing* .o files
+ -include $(OBJECTS:.$(OBJEXT)=.$(DEPEXT))

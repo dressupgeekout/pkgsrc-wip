@@ -1,8 +1,8 @@
 $NetBSD$
 
-# Use predefined macros, getttimeofday()
+# Use standard compiler macros
 
---- gene-algorithms.c.orig	2021-03-27 07:38:08.000000000 +0000
+--- gene-algorithms.c.orig	2024-07-25 00:30:10.000000000 +0000
 +++ gene-algorithms.c
 @@ -29,7 +29,7 @@
  #include <sys/stat.h>
@@ -31,7 +31,7 @@ $NetBSD$
  	pthread_mutex_lock(lock);
  	#else
  	pthread_spin_lock(lock);
-@@ -62,7 +62,7 @@ void subread_lock_occupy(subread_lock_t 
+@@ -62,7 +62,7 @@ void subread_lock_occupy(subread_lock_t
  }
  
  void subread_destroy_lock(subread_lock_t * lock) {
@@ -49,12 +49,12 @@ $NetBSD$
  	pthread_mutex_init(lock, NULL);
  	#else
  	pthread_spin_init(lock, PTHREAD_PROCESS_PRIVATE);
-@@ -1568,7 +1568,7 @@ int load_offsets(gene_offset_t* offsets 
+@@ -1378,7 +1378,7 @@ int load_offsets(gene_offset_t* offsets
  
  double miltime(){
  	double ret;
 -	#ifdef FREEBSD
-+	#if defined(__FreeBSD__) || defined(__NetBSD__)
++	#ifdef __FreeBSD__
  		struct timeval tp;
  		struct timezone tz;
  		tz.tz_minuteswest=0;

@@ -1,2 +1,3 @@
-Needs boost built with icu support.
-pkgsrc default is no icu except on Solaris.
+Check audio situation.
+
+Does nothing on startup, not even show a window.
