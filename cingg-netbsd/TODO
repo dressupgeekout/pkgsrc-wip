@@ -1,0 +1,2 @@
+Test on other architectures (aarch64, ppc), fix warns by pkglint
+learn how to use OPTIONS mechanism

@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	scrcpy-1.24
+DISTNAME=	scrcpy-4.0
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Genymobile/}
-GITHUB_RELEASE=	v${PKGVERSION_NOREV}
+GITHUB_TAG=	refs/tags/v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/Genymobile/scrcpy/
@@ -11,25 +11,25 @@ COMMENT=	Display and control your Android device
 LICENSE=	apache-2.0
 
 USE_TOOLS+=	pkg-config bash
-USE_CMAKE=	yes
 
-SERVERFILE=	scrcpy-server-v1.24
-DISTFILES=	${DEFAULT_DISTFILES} ${SERVERFILE}
-SERVERTGTFILE=	${WRKSRC}/server/scrcpy-server
-ICON_THEMES=	yes
+WRKSRC=		${WRKDIR}/${DISTNAME}
 
-DEPENDS+=	android-tools-adb-[0-9]*:../../wip/android-tools-adb
+DEPENDS+=	android-tools>=34:../../wip/android-tools
 
-SITES.${SERVERFILE}=	${MASTER_SITE_GITHUB:=Genymobile/}/scrcpy/releases/download/v1.24/scrcpy-server-v1.24/
-
-MESON_ARGS+=	-Dprebuilt_server=${SERVERTGTFILE}
+VERSION=		${DISTNAME:S/scrcpy-//}
+SERVERFILE=		scrcpy-server-v${VERSION}
+DISTFILES=		${DEFAULT_DISTFILES} ${SERVERFILE}
+SERVERTGTFILE=		${WRKSRC}/server/scrcpy-server
+SITES.${SERVERFILE}=	${MASTER_SITE_GITHUB:=Genymobile/scrcpy/releases/download/v${VERSION}/}
+MESON_ARGS+=		-Dprebuilt_server=${SERVERTGTFILE}
 
 post-extract:
 	mv ${WRKDIR}/${SERVERFILE} ${SERVERTGTFILE}
 
-.include "../../devel/meson/build.mk"
-.include "../../multimedia/ffmpeg5/buildlink3.mk"
-.include "../../devel/SDL2/buildlink3.mk"
+.include "../../devel/cmake/build.mk"
 .include "../../devel/libusb1/buildlink3.mk"
+.include "../../devel/meson/build.mk"
+.include "../../devel/SDL3/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
+.include "../../multimedia/ffmpeg8/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

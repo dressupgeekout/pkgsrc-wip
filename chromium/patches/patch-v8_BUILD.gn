@@ -1,50 +1,158 @@
 $NetBSD$
 
---- v8/BUILD.gn.orig	2020-06-25 09:34:52.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- v8/BUILD.gn.orig	2026-08-05 20:17:42.000000000 +0000
 +++ v8/BUILD.gn
-@@ -3336,7 +3336,7 @@ v8_source_set("v8_base_without_compiler"
+@@ -1052,6 +1052,9 @@ external_v8_defines = [
+   "V8_TARGET_OS_MACOS",
+   "V8_TARGET_OS_WIN",
+   "V8_TARGET_OS_CHROMEOS",
++  "V8_TARGET_OS_OPENBSD",
++  "V8_TARGET_OS_FREEBSD",
++  "V8_TARGET_OS_NETBSD",
+   "V8_TARGET_ARCH_ARM64",
+   "V8_TARGET_ARCH_PPC64",
+   "V8_TARGET_ARCH_MIPS64",
+@@ -1139,6 +1142,15 @@ if (target_os == "android") {
+ } else if (target_os == "chromeos") {
+   enabled_external_v8_defines += [ "V8_HAVE_TARGET_OS" ]
+   enabled_external_v8_defines += [ "V8_TARGET_OS_CHROMEOS" ]
++} else if (target_os == "openbsd") {
++  enabled_external_v8_defines += [ "V8_HAVE_TARGET_OS" ]
++  enabled_external_v8_defines += [ "V8_TARGET_OS_OPENBSD" ]
++} else if (target_os == "freebsd") {
++  enabled_external_v8_defines += [ "V8_HAVE_TARGET_OS" ]
++  enabled_external_v8_defines += [ "V8_TARGET_OS_FREEBSD" ]
++} else if (target_os == "netbsd") {
++  enabled_external_v8_defines += [ "V8_HAVE_TARGET_OS" ]
++  enabled_external_v8_defines += [ "V8_TARGET_OS_NETBSD" ]
+ }
  
-     # iOS Xcode simulator builds run on an x64 target. iOS and macOS are both
-     # based on Darwin and thus POSIX-compliant to a similar degree.
--    if (is_linux || is_mac || is_ios || target_os == "freebsd") {
-+    if (is_linux || is_mac || is_ios || target_os == "freebsd" || is_bsd) {
-       sources += [
-         "src/trap-handler/handler-inside-posix.cc",
-         "src/trap-handler/handler-inside-posix.h",
-@@ -3677,7 +3677,7 @@ v8_source_set("v8_base_without_compiler"
-     libs += [ "atomic" ]
+ # Some V8_TARGET_ARCH_ defines that affect Api constants (see usages of
+@@ -1824,7 +1836,7 @@ config("toolchain") {
+     # don't block compiler updates in Chromium. We'll resolve these when
+     # rolling the compiler update into V8 instead.
+     if (!build_with_chromium && v8_current_cpu != "ppc64" &&
+-        v8_current_cpu != "s390x") {
++        v8_current_cpu != "s390x" && !is_bsd) {
+       cflags += [ "-Wlifetime-safety-permissive" ]
+     }
+ 
+@@ -1927,9 +1939,6 @@ config("strict_warnings") {
+       cflags += [ "-Wshorten-64-to-32" ]
+     }
+     cflags += [ "-Wmissing-field-initializers" ]
+-    if (v8_current_cpu != "ppc64" && v8_current_cpu != "s390x") {
+-      cflags += [ "-Wunnecessary-virtual-specifier" ]
+-    }
+   }
+ }
+ 
+@@ -2708,6 +2717,23 @@ action("generate_bytecode_builtins_list"
+   ]
+ }
+ 
++action("run_paxctl_mksnapshot") {
++    deps = [ ":mksnapshot($v8_snapshot_toolchain)" ]
++
++    script = "tools/run-paxctl.py"
++    stamp = "$target_gen_dir/paxctl_stamp"
++    outputs = [ stamp ]
++
++    sources = []
++    data = []
++
++    args = [
++      rebase_path(stamp, root_build_dir), "/usr/sbin/paxctl", "+m", "./" + rebase_path(get_label_info(":mksnapshot($v8_snapshot_toolchain)",
++                                        "root_out_dir") + "/mksnapshot",
++                         root_build_dir),
++    ]
++}
++
+ # Template to generate different V8 snapshots based on different runtime flags.
+ # Can be invoked with run_mksnapshot(<name>). The target will resolve to
+ # run_mksnapshot_<name>. If <name> is "default", no file suffixes will be used.
+@@ -2726,7 +2752,11 @@ template("run_mksnapshot") {
+     suffix = "_$name"
+   }
+   action("run_mksnapshot_" + name) {
+-    deps = [ ":mksnapshot($v8_snapshot_toolchain)" ]
++    if (target_os == "netbsd") {
++      deps = [ ":mksnapshot($v8_snapshot_toolchain)", ":run_paxctl_mksnapshot" ]
++    } else {
++      deps = [ ":mksnapshot($v8_snapshot_toolchain)" ]
++    }
+     if (v8_verify_deterministic_mksnapshot) {
+       # We archive the snapshot executable when verifying snapshot
+       # determinism to ease debugging.
+@@ -2856,6 +2886,12 @@ template("run_mksnapshot") {
+       if (!v8_enable_builtins_profiling && v8_enable_builtins_reordering) {
+         args += [ "--reorder-builtins" ]
+       }
++
++      if (v8_current_cpu == "x86") {
++        args -= [
++          "--abort-on-bad-builtin-profile-data",
++        ]
++      }
+     }
+ 
+     # This is needed to distinguish between generating code for the simulator
+@@ -5105,7 +5141,7 @@ v8_header_set("v8_internal_headers") {
+       # iOS Xcode simulator builds run on an x64 target. iOS and macOS are both
+       # based on Darwin and thus POSIX-compliant to a similar degree.
+       if (is_linux || is_chromeos || is_mac || is_ios ||
+-          target_os == "freebsd") {
++          target_os == "freebsd" || target_os == "netbsd") {
+         sources += [ "src/trap-handler/handler-inside-posix.h" ]
+       } else if (is_win) {
+         sources += [ "src/trap-handler/handler-inside-win.h" ]
+@@ -6609,7 +6645,7 @@ v8_cluster_source_set("v8_base_without_c
+       # iOS Xcode simulator builds run on an x64 target. iOS and macOS are both
+       # based on Darwin and thus POSIX-compliant to a similar degree.
+       if (is_linux || is_chromeos || is_mac || is_ios ||
+-          target_os == "freebsd") {
++          target_os == "freebsd" || target_os == "netbsd") {
+         sources += [
+           "src/trap-handler/handler-inside-posix.cc",
+           "src/trap-handler/handler-outside-posix.cc",
+@@ -7321,7 +7357,7 @@ v8_component("v8_libbase") {
+     }
    }
  
--  if (v8_enable_vtunetracemark && (is_linux || is_win)) {
-+  if (v8_enable_vtunetracemark && (is_linux || is_win || is_bsd)) {
+-  if (is_linux || is_chromeos) {
++  if ((is_linux || is_chromeos) && !is_bsd) {
      sources += [
-       "src/extensions/vtunedomain-support-extension.cc",
-       "src/extensions/vtunedomain-support-extension.h",
-@@ -3932,6 +3932,16 @@ v8_component("v8_libbase") {
+       "src/base/debug/stack_trace_posix.cc",
+       "src/base/platform/platform-linux.cc",
+@@ -7332,6 +7368,27 @@ v8_component("v8_libbase") {
        "dl",
        "rt",
      ]
++  } else if (is_openbsd) {
++    sources += [
++      "src/base/debug/stack_trace_posix.cc",
++      "src/base/platform/platform-openbsd.cc",
++    ]
++    libs = [ "execinfo" ]
 +  } else if (is_netbsd) {
 +    sources += [
 +      "src/base/debug/stack_trace_posix.cc",
 +      "src/base/platform/platform-openbsd.cc",
 +    ]
-+
 +    libs = [
 +      "rt",
 +      "execinfo",
 +    ]
++  } else if (is_freebsd) {
++    sources += [
++      "src/base/debug/stack_trace_posix.cc",
++      "src/base/platform/platform-freebsd.cc",
++    ]
++    libs = [ "execinfo" ]
    } else if (current_os == "aix") {
      sources += [
        "src/base/debug/stack_trace_posix.cc",
-@@ -4354,6 +4364,10 @@ if (current_toolchain == v8_snapshot_too
-       "src/snapshot/snapshot-empty.cc",
-     ]
- 
-+    if (is_bsd) {
-+      libs = ["execinfo"]
-+    }
-+
-     configs = [ ":internal_config" ]
- 
-     deps = [

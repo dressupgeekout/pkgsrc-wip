@@ -1,5 +1,0 @@
-$NetBSD: distinfo,v 1.7 2020/02/19 19:07:19 adam Exp $
-
-BLAKE2s (buildbot-waterfall-view-3.7.0.tar.gz) = 811d4a893001c509c042bb266c2bee584b425619ecba23141c8689fd699822b9
-SHA512 (buildbot-waterfall-view-3.7.0.tar.gz) = 85107151bada9fb41bece3e2bc336744df76fb530880144465dd3cf1a779c0e777be4f68e6c419b08776e9d842e238c1538b0c26c3af5d50ce2a637991fc1389
-Size (buildbot-waterfall-view-3.7.0.tar.gz) = 193919 bytes

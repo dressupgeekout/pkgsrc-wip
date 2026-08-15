@@ -19,6 +19,11 @@ CVS
 # macOS files
 .DS_Store
 
+# distfiles, by accident
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+
 # make readme output
 README.html
 index.html

@@ -1,0 +1,7 @@
+@comment $NetBSD$
+${PLIST.client}bin/rdap
+${PLIST.server}bin/rdap-srv
+${PLIST.server}bin/rdap-srv-data
+${PLIST.server}bin/rdap-srv-store
+${PLIST.server}bin/rdap-srv-test-data
+${PLIST.test}bin/rdap-test

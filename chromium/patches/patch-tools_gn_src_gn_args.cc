@@ -1,15 +1,17 @@
 $NetBSD$
 
-https://gn-review.googlesource.com/c/gn/+/9700
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
 
---- tools/gn/src/gn/args.cc.orig	2020-06-25 09:40:29.000000000 +0000
+--- tools/gn/src/gn/args.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ tools/gn/src/gn/args.cc
-@@ -316,6 +316,8 @@ void Args::SetSystemVarsLocked(Scope* de
-   os = "openbsd";
- #elif defined(OS_HAIKU)
-   os = "haiku";
-+#elif defined(OS_NETBSD)
-+  os = "netbsd";
- #else
- #error Unknown OS type.
- #endif
+@@ -386,7 +386,7 @@ void Args::SetSystemVarsLocked(Scope* de
+     arch = kX86;
+   else if (os_arch == "x86_64")
+     arch = kX64;
+-  else if (os_arch == "aarch64" || os_arch == "arm64")
++  else if (os_arch == "aarch64" || os_arch == "arm64" || os_arch == "evbarm")
+     arch = kArm64;
+   else if (os_arch.substr(0, 3) == "arm")
+     arch = kArm;

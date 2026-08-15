@@ -1,12 +1,25 @@
-$NetBSD: patch-modules_dnn_src_tensorflow_tf__importer.cpp,v 1.1 2020/04/18 22:01:34 joerg Exp $
+$NetBSD$
 
---- modules/dnn/src/tensorflow/tf_importer.cpp.orig	2020-04-18 02:43:16.265690888 +0000
+https://github.com/fkenmar/opencv/commit/142801f769ed4946a161f62738bac5a5fe56a60f
+
+--- modules/dnn/src/tensorflow/tf_importer.cpp.orig	2026-06-05 18:50:05.000000000 +0000
 +++ modules/dnn/src/tensorflow/tf_importer.cpp
-@@ -14,6 +14,7 @@ Implementation of Tensorflow models pars
- #ifdef HAVE_PROTOBUF
- #include "tf_io.hpp"
+@@ -3373,15 +3373,15 @@ void writeTextGraph(const String& _model, const String
  
-+#include <sstream>
- #include <iostream>
- #include <fstream>
- #include <algorithm>
+ #define DNN_PROTOBUF_UNSUPPORTED() CV_Error(Error::StsError, "DNN/TF: Build OpenCV with Protobuf to import TensorFlow models")
+ 
+-Net readNetFromTensorflow(const String &, const String &) {
++Net readNetFromTensorflow(const String &, const String &, int, const std::vector<String>&) {
+     DNN_PROTOBUF_UNSUPPORTED();
+ }
+ 
+-Net readNetFromTensorflow(const char*, size_t, const char*, size_t) {
++Net readNetFromTensorflow(const char*, size_t, const char*, size_t, int, const std::vector<String>&) {
+     DNN_PROTOBUF_UNSUPPORTED();
+ }
+ 
+-Net readNetFromTensorflow(const std::vector<uchar>&, const std::vector<uchar>&) {
++Net readNetFromTensorflow(const std::vector<uchar>&, const std::vector<uchar>&, int, const std::vector<String>&) {
+     DNN_PROTOBUF_UNSUPPORTED();
+ }
+ 

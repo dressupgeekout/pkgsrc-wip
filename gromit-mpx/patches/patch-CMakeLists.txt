@@ -1,0 +1,98 @@
+$NetBSD$
+
+- Permit to disable appindicator3 support to avoid dbus dependency.
+  Inspired by OpenBSD ports.
+- Install configuration files under examples directory so they can be handled
+  via pkgsrc properly.
+
+--- CMakeLists.txt.orig	2024-09-09 18:39:05.000000000 +0000
++++ CMakeLists.txt
+@@ -18,16 +18,21 @@ endif(CMAKE_GENERATOR MATCHES "Unix Make
+ 
+ set(CMAKE_C_FLAGS  " ${CMAKE_C_FLAGS} -Wall -Wextra -Wno-unused-parameter")
+ 
++include( CMakeOptions.txt )
++
+ find_package(PkgConfig)
+ find_package(Gettext)
+ 
+ pkg_check_modules(gtk3 REQUIRED "gtk+-3.0 >= 3.22")
+ pkg_check_modules(xinput REQUIRED "xi >= 1.3")
+ pkg_check_modules(x11 REQUIRED x11)
+-pkg_check_modules(appindicator3 "ayatana-appindicator3-0.1 >= 0.5")
+-if(NOT appindicator3_FOUND)
+-  pkg_check_modules(appindicator3 REQUIRED "appindicator3-0.1 >= 0.4.92")
+-  set(APPINDICATOR_IS_LEGACY 1)
++if (ENABLE_APPINDICATOR)
++  set(ENABLE_APPINDICATOR 1)
++  pkg_check_modules(appindicator3 "ayatana-appindicator3-0.1 >= 0.5")
++  if(NOT appindicator3_FOUND)
++    pkg_check_modules(appindicator3 REQUIRED "appindicator3-0.1 >= 0.4.92")
++    set(APPINDICATOR_IS_LEGACY 1)
++  endif()
+ endif()
+ pkg_check_modules(lz4 REQUIRED liblz4)
+ 
+@@ -36,19 +41,27 @@ configure_file(build-config.h_cmake_in b
+ include_directories(
+     ${CMAKE_CURRENT_BINARY_DIR}
+     ${gtk3_INCLUDE_DIRS}
+-    ${appindicator3_INCLUDE_DIRS}
+     ${xinput_INCLUDE_DIRS}
+     ${x11_INCLUDE_DIRS}
+     ${lz4_INCLUDE_DIRS}
+ )
++if (ENABLE_APPINDICATOR)
++include_directories(
++    ${appindicator3_INCLUDE_DIRS}
++)
++endif()
+ 
+ link_directories(
+     ${gtk3_LIBRARY_DIRS}
+-    ${appindicator3_LIBRARY_DIRS}
+     ${xinput_LIBRARY_DIRS}
+     ${x11_LIBRARY_DIRS}
+     ${lz4_LIBRARY_DIRS}
+ )
++if (ENABLE_APPINDICATOR)
++link_directories(
++    ${appindicator3_LIBRARY_DIRS}
++)
++endif()
+ 
+ set(sources
+     src/callbacks.c
+@@ -69,15 +82,20 @@ set(sources
+ 
+ add_executable(${target_name} ${sources})
+ 
+-target_link_libraries(${target_name}
++set(LIBS
+     ${gtk3_LIBRARIES}
+-    ${appindicator3_LIBRARIES}
+     ${xinput_LIBRARIES}
+     ${x11_LIBRARIES}
+     ${lz4_LIBRARIES}
+     -lm
+ )
+-
++if (ENABLE_APPINDICATOR)
++  list(APPEND LIBS
++    ${appindicator3_LIBRARIES})
++endif()
++target_link_libraries(${target_name}
++    ${LIBS}
++)
+ 
+ GETTEXT_PROCESS_PO_FILES(de ALL PO_FILES po/de.po)
+ GETTEXT_PROCESS_PO_FILES(es ALL PO_FILES po/es.po)
+@@ -88,7 +106,7 @@ GETTEXT_PROCESS_PO_FILES(pt_BR ALL PO_FI
+ 
+ install(TARGETS ${target_name} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+ install(FILES data/net.christianbeier.Gromit-MPX.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
+-install(FILES data/gromit-mpx.cfg DESTINATION ${CMAKE_INSTALL_SYSCONFDIR}/gromit-mpx)
++install(FILES data/gromit-mpx.cfg DESTINATION ${CMAKE_INSTALL_DATADIR}/examples/gromit-mpx)
+ install(FILES README.md AUTHORS ChangeLog NEWS.md DESTINATION ${CMAKE_INSTALL_DOCDIR})
+ install(FILES gromit-mpx.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
+ install(FILES data/net.christianbeier.Gromit-MPX.png data/net.christianbeier.Gromit-MPX.active.png DESTINATION ${CMAKE_INSTALL_DATADIR}/pixmaps)

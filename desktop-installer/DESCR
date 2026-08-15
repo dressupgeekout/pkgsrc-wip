@@ -1,0 +1,4 @@
+Desktop-installer is a post-install script to assist in setting up
+a NetBSD desktop system using any desktop environment or window
+manager available in pkgsrc.  It automatically installs essential
+software and configures subsystems such as dbus, etc. for typical use.

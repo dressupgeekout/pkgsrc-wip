@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (Tuba-0.10.3.tar.gz) = cc5fee4d088dc14938e1fea31b4ce58c9a7e04a3faca673f1659f4900bd2c4fb
+SHA512 (Tuba-0.10.3.tar.gz) = 3b7174f27e4b91b60868411909338d806a916cd7c4c47686c56eed68dcfda283ec6ab85ce4eebd1c392aecc3205c111d54f83e59fc66274256a19b0a004491f5
+Size (Tuba-0.10.3.tar.gz) = 2848312 bytes

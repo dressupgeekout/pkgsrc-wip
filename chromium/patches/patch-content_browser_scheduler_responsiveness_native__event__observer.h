@@ -1,49 +1,53 @@
 $NetBSD$
 
---- content/browser/scheduler/responsiveness/native_event_observer.h.orig	2020-07-08 21:40:42.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- content/browser/scheduler/responsiveness/native_event_observer.h.orig	2026-08-05 20:17:42.000000000 +0000
 +++ content/browser/scheduler/responsiveness/native_event_observer.h
-@@ -14,7 +14,7 @@
+@@ -18,7 +18,7 @@
  #include "content/public/browser/native_event_processor_observer_mac.h"
  #endif
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
- #include "ui/aura/window_event_dispatcher_observer.h"
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ #include "ui/events/platform/platform_event_observer.h"
  #endif
  
-@@ -39,7 +39,7 @@ namespace responsiveness {
- class CONTENT_EXPORT NativeEventObserver
- #if defined(OS_MACOSX)
+@@ -43,7 +43,7 @@ namespace responsiveness {
+ class CONTENT_EXPORT BrowserUINativeEventObserver
+ #if BUILDFLAG(IS_MAC)
      : public NativeEventProcessorObserver
--#elif defined(OS_LINUX)
-+#elif defined(OS_LINUX) || defined(OS_BSD)
-     : public aura::WindowEventDispatcherObserver
- #elif defined(OS_WIN)
-     : public base::MessagePumpForUI::Observer
-@@ -56,7 +56,7 @@ class CONTENT_EXPORT NativeEventObserver
-   NativeEventObserver(WillRunEventCallback will_run_event_callback,
-                       DidRunEventCallback did_run_event_callback);
+-#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+     : public ui::PlatformEventObserver
+ #elif BUILDFLAG(IS_WIN)
+     : public base::MessagePumpForUI::NativeEventObserver
+@@ -60,7 +60,7 @@ class CONTENT_EXPORT BrowserUINativeEven
+   BrowserUINativeEventObserver(WillRunEventCallback will_run_event_callback,
+                                DidRunEventCallback did_run_event_callback);
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
-   ~NativeEventObserver() override;
- #else
-   virtual ~NativeEventObserver();
-@@ -68,7 +68,7 @@ class CONTENT_EXPORT NativeEventObserver
-   // Exposed for tests.
-   void WillRunNativeEvent(const void* opaque_identifier) override;
-   void DidRunNativeEvent(const void* opaque_identifier) override;
--#elif defined(OS_LINUX)
-+#elif defined(OS_LINUX) || defined(OS_BSD)
-   // aura::WindowEventDispatcherObserver overrides:
-   void OnWindowEventDispatcherStartedProcessing(
-       aura::WindowEventDispatcher* dispatcher,
-@@ -85,7 +85,7 @@ class CONTENT_EXPORT NativeEventObserver
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ 
+   BrowserUINativeEventObserver(const BrowserUINativeEventObserver&) = delete;
+   BrowserUINativeEventObserver& operator=(const BrowserUINativeEventObserver&) =
+@@ -72,7 +72,7 @@ class CONTENT_EXPORT BrowserUINativeEven
+ #endif
+ 
+  protected:
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   // ui::PlatformEventObserver overrides:
+   void WillProcessEvent(const ui::PlatformEvent& event) override;
+   void DidProcessEvent(const ui::PlatformEvent& event) override;
+@@ -88,7 +88,7 @@ class CONTENT_EXPORT BrowserUINativeEven
    void RegisterObserver();
-   void DeregisterObserver();
+   void UnregisterObserver();
  
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    struct EventInfo {
-     const void* unique_id;
+     uintptr_t unique_id;
    };

@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-libraries_source_fcollada_src_FCollada_FUtils_Platforms.h,v 1.1 2023/05/04 15:20:52 nikita Exp $
 
 --- libraries/source/fcollada/src/FCollada/FUtils/Platforms.h.orig	2012-06-04 21:33:15.000000000 +0000
 +++ libraries/source/fcollada/src/FCollada/FUtils/Platforms.h

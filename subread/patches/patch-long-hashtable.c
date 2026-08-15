@@ -1,8 +1,8 @@
 $NetBSD$
 
-# Use predefined macros
+# Use standard compiler macros
 
---- long-hashtable.c.orig	2021-03-31 00:35:27.202818216 +0000
+--- long-hashtable.c.orig	2024-07-25 00:30:10.000000000 +0000
 +++ long-hashtable.c
 @@ -21,8 +21,8 @@
  #include <stdlib.h>

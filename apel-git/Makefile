@@ -10,7 +10,6 @@ COMMENT=	Portable Emacs library
 LICENSE=	gnu-gpl-v2 OR gnu-gpl-v3
 
 GIT_REPO=	http://git.chise.org/git/elisp/apel.git
-#_GIT_FLAGS+=	--quiet --depth 1
 
 INFO_FILES=		yes
 USE_LANGUAGES=		# none
@@ -33,7 +32,7 @@ MAKE_FLAGS+=	VERSION_SPECIFIC_LISPDIR=${EMACS_LISPPREFIX}
 MAKE_FLAGS+=	${MAKE_FLAGS.${EMACS_FLAVOR}}
 
 # apel is included in xemacs-packages
-EMACS_VERSIONS_ACCEPTED=	emacs21 emacs21nox emacs20 emacs25 emacs26 emacs27
+EMACS_VERSIONS_ACCEPTED=	emacs21 emacs21nox emacs20 emacs26 emacs27
 
 BUILD_TARGET.emacs=	elc
 BUILD_TARGET.xemacs=	package

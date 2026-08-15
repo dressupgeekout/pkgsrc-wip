@@ -1,21 +1,20 @@
 # $NetBSD$
-#
 
-DISTNAME=		go-collectd
-PKGNAME=		go-collectd-20150830
-PKGREVISION=		12
+DISTNAME=		go-collectd-0.6.0
 CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_GITHUB:=collectd/}
-GITHUB_PROJECT=		${DISTNAME}
-GITHUB_TAG=		a1cfcc9efe
+#GITHUB_PROJECT=	${DISTNAME}
+GITHUB_TAG=		v${PKGVERSION_NOREV}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		https://github.com/collectd/go-collectd
 COMMENT=		Go language bindings for collectd
 LICENSE=		modified-bsd
 
-GO_SRCPATH=		collectd.org
-GO_DIST_BASE=		${DISTNAME}-${GITHUB_TAG}*
+MAKE_ENV+=		CGO_CFLAGS="-I${BUILDLINK_DIR}/include/collectd/core/daemon"
 
-.include "../../lang/go/go-package.mk"
+.include "go-modules.mk"
+
+.include "../../sysutils/collectd/buildlink3.mk"
+.include "../../lang/go/go-module.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,0 +1,4 @@
+[X] Fix option "doc"
+    LaTeX documentation is broken (Issue #966)
+    => Option "doc" removed
+[ ] Test with real hardware

@@ -1,0 +1,10 @@
+chromium: update to 151.0.7922.137
+
+* 151.0.7922.137
+This update includes 5 security fixes. Please see the Chrome Security Page for more information.
+
+[$500][535000102] High CVE-2026-19556: Use after free in V8. Reported by Jihyeon Jeong (Compsec Lab, Seoul National University / Research Intern) on 2026-07-15
+[N/A][534867485] High CVE-2026-19557: Use after free in TabStrip. Reported by Google on 2026-07-14
+[N/A][536676756] High CVE-2026-19558: Use after free in Extensions. Reported by @bean5oup on 2026-07-20
+[N/A][540100588] High CVE-2026-19559: Use after free in HTML. Reported by Google on 2026-07-28
+[N/A][540482895] High CVE-2026-19560: Use after free in Blink. Reported by WinD39 - Huynh Dinh Vu on 2026-07-30

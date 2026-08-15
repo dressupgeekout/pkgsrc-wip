@@ -18,7 +18,7 @@ USE_CMAKE=		yes
 
 WRKSRC=			${WRKDIR}/osmo-sdr
 # Suppress warning for developer
-CMAKE_ARGS+=		-Wno-dev
+CMAKE_CONFIGURE_ARGS+=		-Wno-dev
 
 REPLACE_PERL+=		utils/e4000_distance.pl
 REPLACE_PERL+=		utils/e4000_pl.pl
@@ -31,8 +31,6 @@ post-install:
 	(cd ${DESTDIR}${PREFIX}/share/osmo-sdr ; tar xf - ) )
 
 .include "../../wip/mk/git-package.mk"
-# you need place after above line for now.
-_GIT_FLAGS=		# set empty, --depth 1 seems harmfull
 
 .include	"../../devel/libusb1/buildlink3.mk"
 .include	"../../mk/bsd.pkg.mk"

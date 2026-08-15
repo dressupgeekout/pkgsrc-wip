@@ -7,13 +7,12 @@ CATEGORIES=	news
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=sabnzbdplus/sabnzbdplus/}${DISTVERSION}/
 
 MAINTAINER=	wongk@apt.homeunix.net
-HOMEPAGE=	http://sabnzbdplus.sourceforge.net/
+HOMEPAGE=	https://sabnzbdplus.sourceforge.net/
 COMMENT=	Web-interface based binary newsgrabber in python, with nzb support
 LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND modified-bsd AND mit
 
 DEPENDS+=	${PYPKGPREFIX}-cheetah-[0-9]*:../../devel/py-cheetah
 DEPENDS+=	${PYPKGPREFIX}-configobj-[0-9]*:../../devel/py-configobj
-DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
 DEPENDS+=	${PYPKGPREFIX}-xml-[0-9]*:../../textproc/py-xml
 
 NO_BUILD=	yes

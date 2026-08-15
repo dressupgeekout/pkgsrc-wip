@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (R/listenv_0.9.1.tar.gz) = f21f0c7b22f31531abdaf0d46371a7c4c91df23a49b88bec9814456e63a3a66a
+SHA512 (R/listenv_0.9.1.tar.gz) = 67beead03d1328222eff2d74c7ac143ba70da2436941b15142b3dbba63ebc582fc7abd99440a3d1722a91692cc5225c09f5f3ea655a9560d7c9fb522e727dff4
+Size (R/listenv_0.9.1.tar.gz) = 36600 bytes

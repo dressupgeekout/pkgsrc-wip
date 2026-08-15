@@ -1,31 +1,35 @@
 $NetBSD$
 
---- ui/base/ui_base_features.cc.orig	2020-07-15 18:56:33.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- ui/base/ui_base_features.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ ui/base/ui_base_features.cc
-@@ -98,7 +98,7 @@ const base::Feature kCompositorThreadedS
- // native apps on Windows.
- const base::Feature kExperimentalFlingAnimation {
-   "ExperimentalFlingAnimation",
--#if defined(OS_WIN) || (defined(OS_LINUX) && !defined(OS_CHROMEOS))
-+#if defined(OS_WIN) || ((defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS))
-       base::FEATURE_ENABLED_BY_DEFAULT
- #else
-       base::FEATURE_DISABLED_BY_DEFAULT
-@@ -130,7 +130,7 @@ const base::Feature kPrecisionTouchpadLo
-     "PrecisionTouchpadLogging", base::FEATURE_DISABLED_BY_DEFAULT};
- #endif  // defined(OS_WIN)
+@@ -142,7 +142,7 @@ BASE_FEATURE(kWaylandExternalBeginFrameS
+              base::FEATURE_DISABLED_BY_DEFAULT);
+ #endif  // BUILDFLAG(IS_OZONE)
  
--#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
-+#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
- // Enables stylus appearing as touch when in contact with digitizer.
- const base::Feature kDirectManipulationStylus = {
-     "DirectManipulationStylus",
-@@ -179,7 +179,7 @@ bool IsCSSColorSchemeUARenderingEnabled(
- // Mac launch bug.
- const base::Feature kFormControlsRefresh = {"FormControlsRefresh",
- #if defined(OS_WIN) || defined(OS_CHROMEOS) || defined(OS_LINUX) || \
--    defined(OS_MACOSX)
-+    defined(OS_MACOSX) || defined(OS_BSD)
-                                             base::FEATURE_ENABLED_BY_DEFAULT
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ BASE_FEATURE(kGlobalShortcutsPortalPreferredTrigger,
+              base::FEATURE_DISABLED_BY_DEFAULT);
+ #endif
+@@ -198,7 +198,7 @@ BASE_FEATURE(kUiCompositorUsesLayerLists
+ // Enables the use of a touch fling curve that is based on the behavior of
+ // native apps on Windows.
+ BASE_FEATURE(kExperimentalFlingAnimation,
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+              base::FEATURE_ENABLED_BY_DEFAULT
  #else
-                                             base::FEATURE_DISABLED_BY_DEFAULT
+              base::FEATURE_DISABLED_BY_DEFAULT
+@@ -293,7 +293,7 @@ bool IsForcedColorsEnabled() {
+ // milestones.
+ BASE_FEATURE(kEyeDropper,
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+              base::FEATURE_ENABLED_BY_DEFAULT
+ #else
+              base::FEATURE_DISABLED_BY_DEFAULT

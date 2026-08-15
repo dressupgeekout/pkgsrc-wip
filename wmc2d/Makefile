@@ -8,11 +8,11 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=wmc2d/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://wmc2d.sourceforge.net/
+HOMEPAGE=	https://wmc2d.sourceforge.net/
 COMMENT=	Dockapp to monitor coretemp temperature and cpufreq frequency
 LICENSE=	gnu-agpl-v3
 
-BUILD_DEPENDS+=		libxcb-[0-9]*:../../x11/libxcb
+TOOL_DEPENDS+=		libxcb-[0-9]*:../../x11/libxcb
 
 USE_TOOLS+=		gmake pkg-config
 INSTALLATION_DIRS+=	bin ${PKGMANDIR}/man1

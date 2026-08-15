@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	docker-cli-20.10.21
+DISTNAME=	docker-cli-28.4.0
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=docker/}
 GITHUB_PROJECT=	cli
@@ -34,7 +34,8 @@ INSTALLATION_DIRS+=	share/fish/completions
 do-install:
 	${INSTALL_PROGRAM} ${WRKDIR}/bin/docker ${DESTDIR}${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/contrib/completion/bash/docker ${DESTDIR}${PREFIX}/share/bash-completion/completions
-	${INSTALL_DATA} ${WRKSRC}/contrib/completion/fish/docker.fish ${DESTDIR}${PREFIX}/share/fish/completions
+	# Already installed by shells/fish
+	#${INSTALL_DATA} ${WRKSRC}/contrib/completion/fish/docker.fish ${DESTDIR}${PREFIX}/share/fish/completions
 
 .include "../../lang/go/go-package.mk"
 .include "../../mk/bsd.pkg.mk"

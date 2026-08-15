@@ -1,14 +1,16 @@
 $NetBSD$
 
---- ui/gfx/font_fallback_linux.cc.orig	2020-07-15 18:56:34.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- ui/gfx/font_fallback_linux.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ ui/gfx/font_fallback_linux.cc
-@@ -24,6 +24,10 @@
+@@ -28,6 +28,8 @@
  #include "ui/gfx/linux/fontconfig_util.h"
  #include "ui/gfx/platform_font.h"
  
-+#if defined(OS_BSD)
 +#include <unistd.h>
-+#endif
 +
  namespace gfx {
  

@@ -1,0 +1,14 @@
+This file omits most of the \todo markings in Makefile as acceptable
+in pkgsrc.
+
+# normal TODO
+
+  - Write COMMIT_MSG.
+  - Go over cmake configure output and check dependencies.
+  - Grasp/fix lack of secret storage access -- error at startup.
+  - Redo apple bundle exclusion.
+
+# Makefile TODO
+
+  - Grasp qca2-qt6-ossl and package or decide it isn't needed.
+  - Grasp qwt-qt6 and package or decide it isn't needed.

@@ -1,5 +1,5 @@
 $NetBSD$
 
-BLAKE2s (openvdb-10.0.1.tar.gz) = d9ded27d5ffddc1bb020797eb1691730858474aa55c4af5458ba78de0ff3d370
-SHA512 (openvdb-10.0.1.tar.gz) = 361cef8932b69b19ee94c47fe78f665a1acabfabc3f45ff9f490e830f73ff092c42f56ce698677476a8ccf062c89e3e4dc6d4c550aa6842438cbd4d404ee83bb
-Size (openvdb-10.0.1.tar.gz) = 3461352 bytes
+BLAKE2s (openvdb-12.1.1.tar.gz) = af5179e3da32d8975c61b2a05eef20944e6d8b5e84c23250235e986e4daf275a
+SHA512 (openvdb-12.1.1.tar.gz) = 3ca5f7656aa0bf753ae2bd4f8c40f2e0eec48a22a187fbd519e6a42c2f2b3c9a4b2f32d4a2daa692894af712e13172dfb4ca2e9af99b4d63196bf6b74c87ffb5
+Size (openvdb-12.1.1.tar.gz) = 4876713 bytes

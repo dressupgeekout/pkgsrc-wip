@@ -1,0 +1,3 @@
+This exits on startup with:
+
+/usr/pkg/libexec/jj-fzf: line 26: $JJFZF_TEMPD/preview.env: ambiguous redirect

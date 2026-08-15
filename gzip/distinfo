@@ -1,6 +1,6 @@
+$NetBSD: distinfo,v 1.13 2022/04/08 06:24:00 wiz Exp $
 
-
-SHA512 (gzip-1.11.tar) = 04a186524fa0d35af4cc248550d5b91b6cadfbe1011da7d722617a0d36c3f3bb163e2890cfc10cb74f3ea78a94651a78b7e49bc56115f1297782e83c1b0bb7d0
-SHA1 (gzip-1.11.tar) = e2d91d63d78d4515037e6b26b90cbd46c12abf2e
-Size (gzip-1.11.tar) = 5703680 bytes
-SHA1 (patch_xinuos-archivers_gzip_lib-vasnprintf.c) = 4012b674c04f83f2b3bffdef6107a7836ce21d8e
+BLAKE2s (gzip-1.14.tar.gz) = 5de6cb26d527288b50752441a56f4665fde652ea3460ee0b238ebe1b8ac98b44
+SHA512 (gzip-1.14.tar.gz) = 65db6f01d982a976c431d33e9725dab84fcb991c9603cb2a492a2d578a58f9ac03a14ade4b91af49e9e877d81afec61dea563cf1e599f5b2eee2087613a2d368
+Size (gzip-1.14.tar.gz) = 1369513 bytes
+SHA1 (patch-lib_utimens.h) = fba5ec8e9fcb87642247a68ee6a4568a00d4f413

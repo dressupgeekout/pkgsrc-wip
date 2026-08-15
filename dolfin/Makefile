@@ -6,7 +6,7 @@ PKGREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	http://launchpad.net/dolfin/${MMVERSION}.x/${MMVERSION}.0/+download/
 
-MAINTAINER=	bacon@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://launchpad.net/dolfin
 COMMENT=	C++/Python interface of FEniCS
 LICENSE=	gnu-lgpl-v3
@@ -21,7 +21,7 @@ REPLACE_PYTHON+=	scripts/dolfin-plot/dolfin-plot
 REPLACE_PYTHON+=	scripts/dolfin-order/dolfin-order
 REPLACE_PYTHON+=	scripts/dolfin-convert/dolfin-convert
 
-CMAKE_ARGS+=	-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
+CMAKE_CONFIGURE_ARGS+=	-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
 		-DDOLFIN_ENABLE_MPI:BOOL=OFF \
 		-DLOCALBASE=${PREFIX}
 

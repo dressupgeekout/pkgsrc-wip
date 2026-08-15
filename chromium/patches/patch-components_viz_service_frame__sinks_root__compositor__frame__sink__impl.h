@@ -1,13 +1,17 @@
 $NetBSD$
 
---- components/viz/service/frame_sinks/root_compositor_frame_sink_impl.h.orig	2020-07-08 21:40:41.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- components/viz/service/frame_sinks/root_compositor_frame_sink_impl.h.orig	2026-08-05 20:17:42.000000000 +0000
 +++ components/viz/service/frame_sinks/root_compositor_frame_sink_impl.h
-@@ -157,7 +157,7 @@ class RootCompositorFrameSinkImpl : publ
-   base::TimeDelta preferred_frame_interval_ =
-       FrameRateDecider::UnspecifiedFrameInterval();
+@@ -221,7 +221,7 @@ class VIZ_SERVICE_EXPORT RootCompositorF
+   base::TimeDelta display_frame_interval_ = BeginFrameArgs::DefaultInterval();
+   base::TimeDelta preferred_frame_interval_;
  
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
+-#if BUILDFLAG(IS_LINUX) && BUILDFLAG(SUPPORTS_OZONE_X11)
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)) && BUILDFLAG(SUPPORTS_OZONE_X11)
    gfx::Size last_swap_pixel_size_;
- #endif
+ #endif  // BUILDFLAG(IS_LINUX) && BUILDFLAG(SUPPORTS_OZONE_X11)
  

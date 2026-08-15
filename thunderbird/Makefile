@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.289 2023/01/03 17:37:48 wiz Exp $
+# $NetBSD: Makefile,v 1.296 2023/08/14 05:24:48 wiz Exp $
 
 DISTNAME=	thunderbird-${TB_VER}.source
 PKGNAME=	thunderbird-${TB_VER}
-TB_VER=		102.6.1
+#PKGREVISION=	3
+TB_VER=		115.1.1
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_MOZILLA:=thunderbird/releases/${TB_VER}/source/}
 EXTRACT_SUFX=	.tar.xz
@@ -16,6 +17,7 @@ USE_TOOLS+=	unzip pax
 WRKSRC=		${WRKDIR}/${DISTNAME:S/.source//}
 MOZILLA_DIR=	# empty
 PLIST_SRC+=	${PLIST_SRC_DFLT}
+GCC_REQD+=	8
 
 DEPENDS+=	libotr-[0-9]*:../../chat/libotr
 
@@ -52,8 +54,8 @@ CHECK_WRKREF_SKIP+=	lib/${MOZILLA_NAME}/chrome/messenger/content/messenger/build
 CKSUM_CRATES+=	third_party/rust/libc
 
 # patch-third__party_rust_libc_src_unix_bsd_netbsdlike_netbsd_mod.rs
-CKSUMS+=	cb1560bf8ffcc7b2726a27b433efac90e726292960626f3064bd2c6b7f861a55
-CKSUMS+=	1159c20556ff4f50b7140ef4e7f5ac63e3098d9117784794c944228fa7460efb
+CKSUMS+=	107a4aa396b8383c66e0ace2f941450b4b69146558cdc4d9fbe33eeab51760f1
+CKSUMS+=	3aa5bbc6bec675641c8cb02342022256435ea4f958bfa3832344dba6847ba5ea
 
 #CKSUM_CRATES+=	third_party/rust/getrandom
 
@@ -80,14 +82,14 @@ post-extract:
 
 pre-configure:
 	cd ${WRKSRC} && mkdir ${OBJDIR}
-	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} autoconf-2.13
-	cd ${WRKSRC}${MOZILLA_DIR} && ${SETENV} ${CONFIGURE_ENV} autoconf-2.13
-	cd ${WRKSRC}${MOZILLA_DIR}/js/src && ${SETENV} ${CONFIGURE_ENV} autoconf-2.13
+#	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} autoconf-2.13
+#	cd ${WRKSRC}${MOZILLA_DIR} && ${SETENV} ${CONFIGURE_ENV} autoconf-2.13
+#	cd ${WRKSRC}${MOZILLA_DIR}/js/src && ${SETENV} ${CONFIGURE_ENV} autoconf-2.13
 	touch ${WRKSRC}/.mozconfig
 
 do-build:
 # XXX for some reason it doesn't work unless -j is explicitly specified
-	${_ULIMIT_CMD} cd ${WRKSRC}/${OBJDIR} && ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} -j${MAKE_JOBS:U1}
+	${_ULIMIT_CMD} cd ${WRKSRC}/${OBJDIR} && ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} -j${_MAKE_JOBS_N:U1}
 
 MOZILLA=	thunderbird
 MOZILLA_NAME=	${PKGBASE}

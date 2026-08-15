@@ -1,13 +1,44 @@
 $NetBSD$
 
---- chrome/common/chrome_features.h.orig	2020-07-08 21:41:47.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/common/chrome_features.h.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/common/chrome_features.h
-@@ -63,7 +63,7 @@ extern const base::Feature kAppServiceAd
+@@ -64,7 +64,7 @@ BASE_DECLARE_FEATURE(kUseKeychainKeyProv
+ #endif  // BUILDFLAG(IS_MAC)
  
- COMPONENT_EXPORT(CHROME_FEATURES) extern const base::Feature kAsyncDns;
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ COMPONENT_EXPORT(CHROME_FEATURES) BASE_DECLARE_FEATURE(kAutofillAddressSurvey);
+ COMPONENT_EXPORT(CHROME_FEATURES) BASE_DECLARE_FEATURE(kAutofillCardSurvey);
+ COMPONENT_EXPORT(CHROME_FEATURES) BASE_DECLARE_FEATURE(kAutofillPasswordSurvey);
+@@ -127,7 +127,7 @@ COMPONENT_EXPORT(CHROME_FEATURES)
+ BASE_DECLARE_FEATURE(kDocumentPipStandaloneWindow);
  
--#if defined(OS_WIN) || defined(OS_LINUX)
-+#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_BSD)
+ 
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ COMPONENT_EXPORT(CHROME_FEATURES) BASE_DECLARE_FEATURE(kChromeAppsDeprecation);
+ #endif
+ 
+@@ -939,7 +939,7 @@ COMPONENT_EXPORT(CHROME_FEATURES)
+ BASE_DECLARE_FEATURE(kIsolatedWebAppBundleCache);
+ #endif
+ 
+-#if BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS)
++#if (BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS)) || BUILDFLAG(IS_BSD)
+ COMPONENT_EXPORT(CHROME_FEATURES) BASE_DECLARE_FEATURE(kLinuxLowMemoryMonitor);
  COMPONENT_EXPORT(CHROME_FEATURES)
- extern const base::Feature kBackgroundModeAllowRestart;
- #endif  // defined(OS_WIN) || defined(OS_LINUX)
+ extern const base::FeatureParam<int> kLinuxLowMemoryMonitorModerateLevel;
+@@ -947,7 +947,7 @@ COMPONENT_EXPORT(CHROME_FEATURES)
+ extern const base::FeatureParam<int> kLinuxLowMemoryMonitorCriticalLevel;
+ #endif  // BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS)
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+ COMPONENT_EXPORT(CHROME_FEATURES) BASE_DECLARE_FEATURE(kListWebAppsSwitch);
+ #endif
+ 

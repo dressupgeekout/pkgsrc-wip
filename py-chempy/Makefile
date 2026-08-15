@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	chempy-0.7.12
+DISTNAME=	chempy-0.9.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	biology python
-MASTER_SITES=	https://files.pythonhosted.org/packages/b4/f2/b2d10356dfeb2c48d123af3a1b717bcdfefd5c1cd8fb59a256eb042ddc78/
+MASTER_SITES=	https://files.pythonhosted.org/packages/0a/29/641d538639c99042da07b33fef7c8cb4412e239f1d5da02c6c072b669538/
 
 MAINTAINER=	jihbed.research@gmail.com
 HOMEPAGE=	https://github.com/bjodah/chempy
@@ -22,5 +22,5 @@ USE_LANGUAGES=	# none
 
 BUILDLINK_API_DEPENDS.${PYPKGPREFIX}-numpy+=	${PYPKGPREFIX}-numpy>1.11.3
 .include "../../math/py-numpy/buildlink3.mk"
-.include "../../lang/python/egg.mk"
+.include "../../lang/python/wheel.mk"
 .include "../../mk/bsd.pkg.mk"

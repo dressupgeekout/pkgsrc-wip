@@ -1,0 +1,5 @@
+devel/nextpnr: Update nextpnr to 0.9
+
+* Adding support for gatemate FPGAs
+* Improvements to Gowin support
+* Miscellaneous small iCE40 and ECP5 bugfixes

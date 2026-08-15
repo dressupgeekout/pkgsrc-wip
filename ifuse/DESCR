@@ -1,1 +1,12 @@
 A fuse filesystem implementation to access the contents of iOS devices.
+
+This project allows mounting various directories of an iOS device locally
+using the FUSE file system interface.
+
+Some key features are:
+* Media: Mount media directory of an iOS device locally
+* Apps: Mount sandbox container or document directory of an app
+* Jailbreak: Mount root filesystem on jailbroken devices (requires AFC2
+  service)
+* Browse: Allows to retrieve a list of installed file-sharing enabled apps
+* Implementation: Uses libimobiledevice for communication with the device

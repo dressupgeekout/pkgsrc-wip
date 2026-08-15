@@ -1,49 +1,68 @@
 $NetBSD$
 
---- content/renderer/renderer_blink_platform_impl.cc.orig	2020-07-08 21:41:48.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- content/renderer/renderer_blink_platform_impl.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ content/renderer/renderer_blink_platform_impl.cc
-@@ -97,7 +97,7 @@
- 
- #if defined(OS_MACOSX)
- #include "content/child/child_process_sandbox_support_impl_mac.h"
--#elif defined(OS_LINUX)
-+#elif defined(OS_LINUX) || defined(OS_BSD)
- #include "content/child/child_process_sandbox_support_impl_linux.h"
+@@ -122,14 +122,14 @@
+ #include "third_party/blink/public/web/win/web_font_rendering.h"
  #endif
  
-@@ -169,7 +169,7 @@ RendererBlinkPlatformImpl::RendererBlink
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ #include "content/child/font_data/font_data_manager.h"
+ #include "skia/ext/font_utils.h"
+ #endif
+ 
+ #if BUILDFLAG(IS_MAC)
+ #include "content/child/child_process_sandbox_support_impl_mac.h"
+-#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ #include "content/child/child_process_sandbox_support_impl_linux.h"
+ #include "content/child/sandboxed_process_thread_type_handler.h"
+ #endif
+@@ -203,13 +203,13 @@ RendererBlinkPlatformImpl::RendererBlink
+       is_locked_to_site_(false),
+       main_thread_scheduler_(main_thread_scheduler),
+       next_frame_sink_id_(uint32_t{std::numeric_limits<int32_t>::max()} + 1) {
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   sk_sp<font_service::FontLoader> font_loader;
+ #endif
  
    // RenderThread may not exist in some tests.
    if (RenderThreadImpl::current()) {
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
      mojo::PendingRemote<font_service::mojom::FontService> font_service;
      RenderThreadImpl::current()->BindHostReceiver(
          font_service.InitWithNewPipeAndPassReceiver());
-@@ -179,7 +179,7 @@ RendererBlinkPlatformImpl::RendererBlink
+@@ -217,7 +217,7 @@ RendererBlinkPlatformImpl::RendererBlink
+     SkFontConfigInterface::SetGlobal(font_loader);
  #endif
+ 
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+     // Create a FontDataManager if it's enabled, and if we're not in a
+     // single-process environment. In single process, the SkFontMgr is already
+     // installed by browser process code at this point.
+@@ -231,7 +231,7 @@ RendererBlinkPlatformImpl::RendererBlink
    }
  
--#if defined(OS_LINUX) || defined(OS_MACOSX)
-+#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_BSD)
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC) || \
+-    BUILDFLAG(IS_WIN)
++    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
    if (sandboxEnabled()) {
- #if defined(OS_MACOSX)
+ #if BUILDFLAG(IS_MAC)
      sandbox_support_ = std::make_unique<WebSandboxSupportMac>();
-@@ -261,7 +261,7 @@ RendererBlinkPlatformImpl::CreateNetwork
- 
- void RendererBlinkPlatformImpl::SetDisplayThreadPriority(
-     base::PlatformThreadId thread_id) {
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
-   if (RenderThreadImpl* render_thread = RenderThreadImpl::current()) {
-     render_thread->render_message_filter()->SetThreadPriority(
-         thread_id, base::ThreadPriority::DISPLAY);
-@@ -274,7 +274,7 @@ blink::BlameContext* RendererBlinkPlatfo
- }
+@@ -304,7 +304,7 @@ RendererBlinkPlatformImpl::GetWebUIBundl
  
  blink::WebSandboxSupport* RendererBlinkPlatformImpl::GetSandboxSupport() {
--#if defined(OS_LINUX) || defined(OS_MACOSX)
-+#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_BSD)
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC) || \
+-    BUILDFLAG(IS_WIN)
++    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
    return sandbox_support_.get();
  #else
    // These platforms do not require sandbox support.

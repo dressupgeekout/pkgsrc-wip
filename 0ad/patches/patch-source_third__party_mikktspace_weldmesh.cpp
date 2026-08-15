@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-source_third__party_mikktspace_weldmesh.cpp,v 1.1 2023/05/04 15:20:52 nikita Exp $
 
 --- source/third_party/mikktspace/weldmesh.cpp.orig	2013-12-06 00:42:50.000000000 +0000
 +++ source/third_party/mikktspace/weldmesh.cpp

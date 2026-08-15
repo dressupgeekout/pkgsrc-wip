@@ -1,0 +1,6 @@
+$NetBSD$
+
+BLAKE2s (binutils-gdb-THead-2.6.1.tar.gz) = 31ad6b9d99415f9c467b069dae3fc914398d1913495f7d9977347f95601d429f
+SHA512 (binutils-gdb-THead-2.6.1.tar.gz) = 1e057326528f9fbf05357dc09009430b8fa8daf5e6dc1c8e5e8a1019250ddae0e70715701f9d2b35a7500a74283cb2880e43a41b5c8104d5b04b6ab154b8de08
+Size (binutils-gdb-THead-2.6.1.tar.gz) = 61179090 bytes
+SHA1 (patch-ld_emulparams_elf32lriscv-defs.sh) = 9189389708deaabac5b85676a2a823cb02a72da9

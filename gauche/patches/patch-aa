@@ -1,0 +1,46 @@
+$NetBSD: patch-aa,v 1.16 2018/07/26 16:55:29 jperkin Exp $
+
+* Use correct CFLAGS on SunOS.
+* XXX something about arm
+
+--- configure.orig	2024-01-26 00:09:41.000000000 +0000
++++ configure
+@@ -12704,8 +12704,8 @@ GAUCHE_CONFIGURE_ARGS=`echo "$ac_configu
+ 
+ 
+ case $host in
+-  *-pc-solaris2.*)
+-    CFLAGS="$CFLAGS -D_XOPEN_SOURCE -D_XOPEN_SOURCE_EXTENDED=1 -D__EXTENSIONS__" ;;
++  *-solaris2.*)
++    CFLAGS="$CFLAGS -D_XOPEN_SOURCE=600 -D__EXTENSIONS__" ;;
+ esac
+ 
+ ac_ext=c
+@@ -14220,6 +14220,9 @@ printf "%s\n" "#define SCM_TARGET_X86_64
+   alpha*) :
+ 
+     CFLAGS="$CFLAGS -mieee" ;; #(
++  arm*-*-netbsd*)
++    # Don't define DOUBLE_ARMENDIAN on netbsd.
++    ;;
+   arm*) :
+ 
+ 
+@@ -17695,7 +17698,7 @@ then :
+      ;; #(
+   *) :
+     ICONV_CPPFLAGS="-I$with_iconv/include"
+-            ICONV_LDFLAGS="-L$with_iconv/lib" ;;
++	    ICONV_LDFLAGS="${COMPILER_RPATH_FLAG}$with_iconv/lib -L$with_iconv/lib" ;;
+ esac
+ 
+ fi
+@@ -18713,7 +18716,7 @@ then :
+      ;; #(
+   *) :
+     ZLIB_CPPFLAGS="-I$with_zlib/include"
+-            ZLIB_LDFLAGS="-L$with_zlib/lib" ;;
++	    ZLIB_LDFLAGS="${COMPILER_RPATH_FLAG}$with_zlib/lib -L$with_zlib/lib" ;;
+ esac
+ 
+ fi

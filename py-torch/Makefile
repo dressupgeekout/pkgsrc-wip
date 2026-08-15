@@ -1,66 +1,126 @@
-# $NetBSD$
+# $NetBSD: Makefile,v 1.12 2026/06/28 15:41:31 wiz Exp $
 
-DISTNAME=	pytorch-1.12.0
-PKGNAME=	${PYPKGPREFIX}-torch-1.12.0
+DISTNAME=	pytorch-v2.12.1
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S,pytorch-v,torch-,}
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_GITHUB:=pytorch/}
 GITHUB_PROJECT=	pytorch
-GITHUB_TAG=	refs/tags/v${PKGVERSION_NOREV}
+GITHUB_RELEASE=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	https://pytorch.org/
-COMMENT=	Tensors and Dynamic neural networks in Python with GPU acceleration
-#LICENSE=	# TODO: (see mk/license.mk)
+COMMENT=	Tensors and Dynamic neural networks in Python
+LICENSE=	modified-bsd
 
-DEPENDS+=	${PYPKGPREFIX}-yaml>=5.4.1:../../textproc/py-yaml
-DEPENDS+=	${PYPKGPREFIX}-typing-extensions>=3.10.0.2:../../devel/py-typing-extensions
-DEPENDS+=	git-base-[0-9]*:../../devel/git-base
-DEPENDS+=	cmake>=3.17:../../devel/cmake
-DEPENDS+=	protobuf>=3.20.1:../../devel/protobuf
+TOOL_DEPENDS+=	${PYPKGPREFIX}-packaging-[0-9]*:../../devel/py-packaging
+TOOL_DEPENDS+=	${PYPKGPREFIX}-setuptools-[0-9]*:../../devel/py-setuptools
+DEPENDS+=	${PYPKGPREFIX}-filelock-[0-9]*:../../devel/py-filelock
+DEPENDS+=	${PYPKGPREFIX}-jinja2-[0-9]*:../../textproc/py-jinja2
+DEPENDS+=	${PYPKGPREFIX}-networkx-[0-9]*:../../math/py-networkx
+DEPENDS+=	${PYPKGPREFIX}-sympy-[0-9]*:../../math/py-sympy
+DEPENDS+=	${PYPKGPREFIX}-typing-extensions-[0-9]*:../../devel/py-typing-extensions
+DEPENDS+=	${PYPKGPREFIX}-yaml-[0-9]*:../../textproc/py-yaml
+DEPENDS+=	${PYPKGPREFIX}-dill-[0-9]*:../../textproc/py-dill
 
-USE_CMAKE=	yes
-CMAKE_ARGS+=	-B build \
-		-DBUILD_SHARED_LIBS:BOOL=ON \
-		-DBUILD_BINARY:BOOL=ON \
-		-DBUILD_CAFFE2=OFF \
-		-DCMAKE_BUILD_TYPE:STRING=Release \
-		-DBUILD_PYTHON=OFF \
-		-DBUILD_TEST=OFF \
-		-DONNX_ML=OFF \
-		-DUSE_OPENCV=ON \
-		-DUSE_CUDA=OFF \
-		-DUSE_CUDNN=OFF \
-		-DUSE_BREAKPAD=OFF \
-		-DUSE_FBGEMM=OFF \
-		-DUSE_KINETO=OFF \
-		-DBUILD_CUSTOM_PROTOBUF=OFF \
-		-DUSE_{Q/X}NNPACK=OFF
+USE_TOOLS+=	gmake
 
-USE_LANGUAGES+=	c c++
+#EGG_INFODIR=	torch-2.5.0a0+gitunknown-py${PYVERSSUFFIX}.egg-info
+#WHEEL_NAME=	torch-${PKGVERSION}a0+gitunknown
 
-CFLAGS+=	-fopenmp
-CPPFLAGS+=	-fopenmp
+BLAS_INDEX64=		yes
+BLAS_ACCEPTED=		openblas_pthread openblas_openmp
 
-WRKSRC=	${WRKDIR}/pytorch
+USE_LANGUAGES+=		c c++
+USE_CC_FEATURES=	c17
+USE_CXX_FEATURES=	c++20
+# Explicitly checks for gcc 11.3
+GCC_REQD+=		12
 
-BUILDLINK_TRANSFORM.NetBSD+=	rm:-ldl
-BUILDLINK_TRANSFORM.NetBSD+=	l:libgomp:gomp # Otherwise it links -llibgomp
-BUILDLINK_TRANSFORM.NetBSD+=	opt:-std=c++14:-std=gnu++14 # alloca
-BUILDLINK_TRANSFORM.NetBSD+=	opt:-std=c99:-std=gnu99 # alloca
+SUBST_CLASSES+=		blas
+SUBST_STAGE.blas=	pre-configure
+SUBST_FILES.blas=	cmake/Modules/FindBLAS.cmake
+SUBST_VARS.blas=	BLAS_PC
+
+SUBST_CLASSES+=		amd64
+SUBST_STAGE.amd64=	pre-configure
+SUBST_FILES.amd64+=	CMakeLists.txt
+SUBST_FILES.amd64+=	cmake/Dependencies.cmake
+SUBST_FILES.amd64+=	third_party/pthreadpool/CMakeLists.txt
+SUBST_FILES.amd64+=	third_party/XNNPACK/CMakeLists.txt
+SUBST_FILES.amd64+=	third_party/cpuinfo/CMakeLists.txt
+SUBST_FILES.amd64+=	third_party/fbgemm/external/cpuinfo/CMakeLists.txt
+SUBST_SED.amd64=	-e 's/AMD64/amd64/g'
+
+BUILDLINK_TRANSFORM+=	opt:-ldl:${BUILDLINK_LDADD.dl:Q}
+CFLAGS+=		-Wno-error=unused-function
+CFLAGS+=		-Wno-incompatible-pointer-types
+
+# python build uses this as default, set it so we use it in the install phase
+CMAKE_BUILD_DIR=	build
+
+CONFIGURE_ENV+=		OpenBLAS_HOME=${BUILDLINK_DIR}
+#CMAKE_CONFIGURE_ARGS+=	-DBUILD_CUSTOM_PROTOBUF=OFF
+CMAKE_CONFIGURE_ARGS+=	-DBLAS_SET_BY_USER=FALSE
+CMAKE_CONFIGURE_ARGS+=	-DUSE_BLAS=ON
+CMAKE_CONFIGURE_ARGS+=	-DUSE_CUDA=OFF
+CMAKE_CONFIGURE_ARGS+=	-DUSE_ROCM=OFF
+CMAKE_CONFIGURE_ARGS+=	-DUSE_MKLDNN=OFF
+CMAKE_CONFIGURE_ARGS+=	-DUSE_NCCL=OFF
+#CMAKE_CONFIGURE_ARGS+=	-DUSE_PYTORCH_QNNPACK=OFF
+CMAKE_CONFIGURE_ARGS+=	-DUSE_SYSTEM_PYBIND11=ON
+CMAKE_CONFIGURE_ARGS+=	-DBUILD_PYTHON=ON
+CMAKE_CONFIGURE_ARGS+=	-Dpybind11_INCLUDE_DIR=${BUILDLINK_DIR}/${PYSITELIB}/pybind11/include
+CMAKE_CONFIGURE_ARGS+=	-DPython_EXECUTABLE=${PYTHONBIN}
+
+MAKE_ENV+=	USE_MKLDNN=0
+MAKE_ENV+=	BUILD_TEST=0
+MAKE_ENV+=	USE_CUDNN=0
+MAKE_ENV+=	USE_DISTRIBUTED=1
+
+PYTHON_VERSIONS_INCOMPATIBLE=	310 311
 
 post-extract:
-	rsync -a /tmp/pytorch ${WRKDIR}
-	# This step takes long. During development use a local copy
-	#cd ${WRKDIR}; \
-	#git clone --recursive https://github.com/pytorch/pytorch; \
-	#cd pytorch; \
-	#git submodule sync; \
-	#git submodule update --init --recursive --jobs 0
+	# For mkpatches(1) and developers only.
+	${RM} -f ${WRKSRC}/third_party/opentelemetry-cpp/third_party/prometheus-cpp/3rdparty/civetweb/resources/cert/server_bkup.key.orig
+	${RM} -f ${WRKSRC}/third_party/opentelemetry-cpp/third_party/prometheus-cpp/3rdparty/civetweb/resources/cert/client.key.orig
+	${RM} -f ${WRKSRC}/third_party/opentelemetry-cpp/third_party/prometheus-cpp/3rdparty/civetweb/resources/cert/server.key.orig
 
-# url2pkg-marker (please do not remove this line.)
-.include "../../devel/google-glog/buildlink3.mk"
-.include "../../lang/python/egg.mk"
+# HACK: copied from wheel.mk
+TOOL_DEPENDS+= ${PYPKGPREFIX}-build>=0:../../devel/py-build
+do-build:
+	${RUN} cd ${WRKSRC}/${PYSETUPSUBDIR} && \
+	${SETENV} ${MAKE_ENV} ${TOOL_PYTHONBIN} \
+		-m build --wheel --skip-dependency-check --no-isolation ${WHEEL_ARGS}
+
+TOOL_DEPENDS+=  ${PYPKGPREFIX}-installer>=0.7.0nb1:../../misc/py-installer
+post-install:
+	${RUN} cd ${WRKSRC}/${PYSETUPSUBDIR} && \
+	${SETENV} ${INSTALL_ENV} ${TOOL_PYTHONBIN} \
+		-m installer \
+		--destdir ${DESTDIR} \
+		--prefix ${PREFIX} \
+		${PYINSTALL_EXEC} \
+		${WHEELFILE}
+# remove own copy of protobuf and fmt
+	${RM} -f ${DESTDIR}${PREFIX}/bin/protoc*
+	${RM} -f ${DESTDIR}${PREFIX}/lib/libproto*.a
+	${RM} -f ${DESTDIR}${PREFIX}/lib/pkgconfig/fmt.pc
+	${RM} -f ${DESTDIR}${PREFIX}/lib/pkgconfig/protobuf*.pc
+	${RM} -rf ${DESTDIR}${PREFIX}/include/fmt
+	${RM} -rf ${DESTDIR}${PREFIX}/include/google/protobuf
+	${RM} -rf ${DESTDIR}${PREFIX}/lib/cmake/fmt
+	${RM} -rf ${DESTDIR}${PREFIX}/lib/cmake/protobuf
+
+.include "../../devel/gmp/buildlink3.mk"
+.include "../../devel/libexecinfo/buildlink3.mk"
+.include "../../devel/py-pybind11/buildlink3.mk"
+#.include "../../devel/protobuf/buildlink3.mk"
+.include "../../math/fftw/buildlink3.mk"
+.include "../../math/mpfr/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../math/py-numpy/buildlink3.mk"
-.include "../../parallel/openmp/buildlink3.mk"
-.include "../../devel/protobuf/buildlink3.mk"
+.include "../../mk/openmp.mk"
+.include "../../security/openssl/buildlink3.mk"
+.include "../../devel/cmake/build.mk"
+.include "../../lang/python/wheel.mk"
 .include "../../mk/bsd.pkg.mk"

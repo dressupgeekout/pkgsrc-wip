@@ -1,31 +1,35 @@
-$NetBSD$
+$NetBSD: patch-third__party_kineto_libkineto_src_ThreadUtil.cpp,v 1.2 2025/09/27 01:19:55 ryoon Exp $
 
---- third_party/kineto/libkineto/src/ThreadUtil.cpp.orig	2022-07-22 04:49:10.227928374 +0000
+* Support NetBSD.
+
+--- third_party/kineto/libkineto/src/ThreadUtil.cpp.orig	2026-06-18 00:45:16.000000000 +0000
 +++ third_party/kineto/libkineto/src/ThreadUtil.cpp
-@@ -1,5 +1,8 @@
- #include "ThreadUtil.h"
+@@ -26,6 +26,10 @@
+ #undef ERROR
+ #endif // _WIN32
  
-+#ifdef __NetBSD__
++#if defined(__NetBSD__)
 +#include <lwp.h>
 +#endif
- #ifndef _MSC_VER
- #include <pthread.h>
- #include <unistd.h>
-@@ -48,6 +51,8 @@ int32_t systemThreadId() {
-     _sysTid = (int32_t)syscall(SYS_thread_selfid);
- #elif defined _MSC_VER
-     _sysTid = (int32_t)GetCurrentThreadId();
-+#elif defined __NetBSD__
-+    _sysTid = (int32_t) _lwp_self();
- #else
-     _sysTid = (int32_t)syscall(SYS_gettid);
++
+ #ifdef __ANDROID__
+ #include <sys/prctl.h>
  #endif
-@@ -101,6 +106,8 @@ bool setThreadName(const std::string& na
-   std::wstring wname = conv.from_bytes(name);
-   HRESULT hr = _SetThreadDescription(GetCurrentThread(), wname.c_str());
-   return SUCCEEDED(hr);
+@@ -91,6 +95,8 @@ int32_t systemThreadId(bool cache) {
+     syscall(SYS_thr_self, &sysTid);
+ #elif defined _AIX
+     sysTid = pthread_self();
 +#elif defined __NetBSD__
-+  return 0 == pthread_setname_np(pthread_self(), name.c_str(), (void*) "%s");
++    sysTid = (int32_t)_lwp_self();
+ #else
+     sysTid = static_cast<int32_t>(syscall(SYS_gettid));
+ #endif
+@@ -162,6 +168,8 @@ bool setThreadName(const std::string& name) {
+   return SUCCEEDED(hr);
+ #elif defined _AIX
+   return 0;
++#elif defined(__NetBSD__)
++  return 0 == pthread_setname_np(pthread_self(), "thread_%s", const_cast<char *>(name.c_str()));
  #else
    return 0 == pthread_setname_np(pthread_self(), name.c_str());
  #endif

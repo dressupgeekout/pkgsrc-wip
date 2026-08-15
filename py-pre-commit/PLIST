@@ -1,11 +1,11 @@
 @comment $NetBSD$
 bin/pre-commit
-${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
-${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
-${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
-${PYSITELIB}/${EGG_INFODIR}/entry_points.txt
-${PYSITELIB}/${EGG_INFODIR}/requires.txt
-${PYSITELIB}/${EGG_INFODIR}/top_level.txt
+${PYSITELIB}/${WHEEL_INFODIR}/METADATA
+${PYSITELIB}/${WHEEL_INFODIR}/RECORD
+${PYSITELIB}/${WHEEL_INFODIR}/WHEEL
+${PYSITELIB}/${WHEEL_INFODIR}/entry_points.txt
+${PYSITELIB}/${WHEEL_INFODIR}/licenses/LICENSE
+${PYSITELIB}/${WHEEL_INFODIR}/top_level.txt
 ${PYSITELIB}/pre_commit/__init__.py
 ${PYSITELIB}/pre_commit/__init__.pyc
 ${PYSITELIB}/pre_commit/__init__.pyo
@@ -33,6 +33,9 @@ ${PYSITELIB}/pre_commit/commands/clean.pyo
 ${PYSITELIB}/pre_commit/commands/gc.py
 ${PYSITELIB}/pre_commit/commands/gc.pyc
 ${PYSITELIB}/pre_commit/commands/gc.pyo
+${PYSITELIB}/pre_commit/commands/hazmat.py
+${PYSITELIB}/pre_commit/commands/hazmat.pyc
+${PYSITELIB}/pre_commit/commands/hazmat.pyo
 ${PYSITELIB}/pre_commit/commands/hook_impl.py
 ${PYSITELIB}/pre_commit/commands/hook_impl.pyc
 ${PYSITELIB}/pre_commit/commands/hook_impl.pyo
@@ -111,6 +114,12 @@ ${PYSITELIB}/pre_commit/languages/fail.pyo
 ${PYSITELIB}/pre_commit/languages/golang.py
 ${PYSITELIB}/pre_commit/languages/golang.pyc
 ${PYSITELIB}/pre_commit/languages/golang.pyo
+${PYSITELIB}/pre_commit/languages/haskell.py
+${PYSITELIB}/pre_commit/languages/haskell.pyc
+${PYSITELIB}/pre_commit/languages/haskell.pyo
+${PYSITELIB}/pre_commit/languages/julia.py
+${PYSITELIB}/pre_commit/languages/julia.pyc
+${PYSITELIB}/pre_commit/languages/julia.pyo
 ${PYSITELIB}/pre_commit/languages/lua.py
 ${PYSITELIB}/pre_commit/languages/lua.pyc
 ${PYSITELIB}/pre_commit/languages/lua.pyo
@@ -135,15 +144,15 @@ ${PYSITELIB}/pre_commit/languages/ruby.pyo
 ${PYSITELIB}/pre_commit/languages/rust.py
 ${PYSITELIB}/pre_commit/languages/rust.pyc
 ${PYSITELIB}/pre_commit/languages/rust.pyo
-${PYSITELIB}/pre_commit/languages/script.py
-${PYSITELIB}/pre_commit/languages/script.pyc
-${PYSITELIB}/pre_commit/languages/script.pyo
 ${PYSITELIB}/pre_commit/languages/swift.py
 ${PYSITELIB}/pre_commit/languages/swift.pyc
 ${PYSITELIB}/pre_commit/languages/swift.pyo
-${PYSITELIB}/pre_commit/languages/system.py
-${PYSITELIB}/pre_commit/languages/system.pyc
-${PYSITELIB}/pre_commit/languages/system.pyo
+${PYSITELIB}/pre_commit/languages/unsupported.py
+${PYSITELIB}/pre_commit/languages/unsupported.pyc
+${PYSITELIB}/pre_commit/languages/unsupported.pyo
+${PYSITELIB}/pre_commit/languages/unsupported_script.py
+${PYSITELIB}/pre_commit/languages/unsupported_script.pyc
+${PYSITELIB}/pre_commit/languages/unsupported_script.pyo
 ${PYSITELIB}/pre_commit/logging_handler.py
 ${PYSITELIB}/pre_commit/logging_handler.pyc
 ${PYSITELIB}/pre_commit/logging_handler.pyo
@@ -177,7 +186,6 @@ ${PYSITELIB}/pre_commit/repository.pyo
 ${PYSITELIB}/pre_commit/resources/__init__.py
 ${PYSITELIB}/pre_commit/resources/__init__.pyc
 ${PYSITELIB}/pre_commit/resources/__init__.pyo
-${PYSITELIB}/pre_commit/resources/empty_template_.npmignore
 ${PYSITELIB}/pre_commit/resources/empty_template_Cargo.toml
 ${PYSITELIB}/pre_commit/resources/empty_template_LICENSE.renv
 ${PYSITELIB}/pre_commit/resources/empty_template_Makefile.PL
@@ -186,7 +194,6 @@ ${PYSITELIB}/pre_commit/resources/empty_template_environment.yml
 ${PYSITELIB}/pre_commit/resources/empty_template_go.mod
 ${PYSITELIB}/pre_commit/resources/empty_template_main.go
 ${PYSITELIB}/pre_commit/resources/empty_template_main.rs
-${PYSITELIB}/pre_commit/resources/empty_template_package.json
 ${PYSITELIB}/pre_commit/resources/empty_template_pre-commit-package-dev-1.rockspec
 ${PYSITELIB}/pre_commit/resources/empty_template_pre_commit_placeholder_package.gemspec
 ${PYSITELIB}/pre_commit/resources/empty_template_pubspec.yaml
@@ -213,3 +220,6 @@ ${PYSITELIB}/pre_commit/xargs.pyo
 ${PYSITELIB}/pre_commit/yaml.py
 ${PYSITELIB}/pre_commit/yaml.pyc
 ${PYSITELIB}/pre_commit/yaml.pyo
+${PYSITELIB}/pre_commit/yaml_rewrite.py
+${PYSITELIB}/pre_commit/yaml_rewrite.pyc
+${PYSITELIB}/pre_commit/yaml_rewrite.pyo

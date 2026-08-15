@@ -1,12 +1,12 @@
 # $NetBSD$
 
-DISTNAME=	wip-tools-0.1.0.19
+DISTNAME=	wip-tools-0.1.0.31
 CATEGORIES=	pkgtools
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
-GITHUB_TAG=	3163a1530f4f38f4292961beb755bc533fb0d8d3
+GITHUB_TAG=	49abfe0232f893d199fb9bd204b2ca02ac4cb4f4
 GITHUB_PROJECT=	pkgsrc-wip-tools
 
-OWNER=		bacon@NetBSD.org
+MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://github.com/outpaddling/
 COMMENT=	Tools for developing wip packages
 LICENSE=	modified-bsd

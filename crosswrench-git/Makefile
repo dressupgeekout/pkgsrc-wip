@@ -15,13 +15,13 @@ USE_TOOLS+=	pkg-config
 
 USE_CMAKE=	yes
 
-CMAKE_ARGS+=	-DEXTERNAL_LIBS:BOOL=ON
+CMAKE_CONFIGURE_ARGS+=	-DEXTERNAL_LIBS:BOOL=ON
 
 .include "../../devel/cxxopts/buildlink3.mk"
 .include "../../devel/pstreams/buildlink3.mk"
+.include "../../devel/pystring/buildlink3.mk"
 .include "../../security/botan2/buildlink3.mk"
 .include "../../wip/csv2/buildlink3.mk"
 .include "../../wip/libzippp/buildlink3.mk"
 .include "../../wip/mk/git-package.mk"
-.include "../../wip/pystring/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

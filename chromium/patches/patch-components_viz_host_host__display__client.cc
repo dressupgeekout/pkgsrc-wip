@@ -1,13 +1,17 @@
 $NetBSD$
 
---- components/viz/host/host_display_client.cc.orig	2020-07-08 21:40:41.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- components/viz/host/host_display_client.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ components/viz/host/host_display_client.cc
-@@ -56,7 +56,7 @@ void HostDisplayClient::CreateLayeredWin
+@@ -67,7 +67,7 @@ void HostDisplayClient::AddChildWindowTo
  }
  #endif
  
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
+-#if BUILDFLAG(IS_LINUX) && BUILDFLAG(SUPPORTS_OZONE_X11)
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)) && BUILDFLAG(SUPPORTS_OZONE_X11)
  void HostDisplayClient::DidCompleteSwapWithNewSize(const gfx::Size& size) {
    NOTIMPLEMENTED();
  }

@@ -1,6 +1,0 @@
-$NetBSD$
-
-BLAKE2s (colord-1.4.5.tar.xz) = 9df8714f48db8158eebd31b255b6c692dbf2301411f2d5af1393538e8be467df
-SHA512 (colord-1.4.5.tar.xz) = b6cc8087ceff4a99b7d764087208cc72e1219d9f6bb52bd3e3eb13bb62e3c1e99aefef36237dceff46925ab7680c76795f59057b7a4d1c8a123de6270708e03c
-Size (colord-1.4.5.tar.xz) = 1869084 bytes
-SHA1 (patch-man_meson.build) = 5d89ed641cba7f0a16c57c0f5033926ba48c683d

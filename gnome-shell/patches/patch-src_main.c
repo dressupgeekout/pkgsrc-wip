@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-src_main.c,v 1.1 2021/06/03 15:11:05 cirnatdan Exp $
 
 Disable gjs stack dumps?
 

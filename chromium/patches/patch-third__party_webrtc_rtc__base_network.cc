@@ -1,17 +1,21 @@
 $NetBSD$
 
---- third_party/webrtc/rtc_base/network.cc.orig	2020-07-15 19:01:42.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- third_party/webrtc/rtc_base/network.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ third_party/webrtc/rtc_base/network.cc
-@@ -244,7 +244,12 @@ AdapterType GetAdapterTypeFromName(const
+@@ -310,7 +310,12 @@ AdapterType GetAdapterTypeFromName(absl:
    }
  #endif
  
 +#if defined(WEBRTC_BSD)
 +  // Treat all other network interface names as ethernet on BSD
-+  return ADAPTER_TYPE_ETHERNET;
++  return webrtc::ADAPTER_TYPE_ETHERNET;
 +#else
    return ADAPTER_TYPE_UNKNOWN;
 +#endif
  }
  
- NetworkManager::NetworkManager() {}
+ NetworkManager::EnumerationPermission NetworkManager::enumeration_permission()

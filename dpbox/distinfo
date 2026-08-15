@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (dpbox/dpbox-6.1.5.tar.gz) = b7a2d20a7e6238709deb799ab196ec69be9c9a010ac8dff085bf1a3ac5a97528
+SHA512 (dpbox/dpbox-6.1.5.tar.gz) = e53062bc7aa288897b623c82cd30d8815aeee9cf8651a00ae4f308841a61ed7e1baf70996449043df5f82dba49255b882b018736104316b480176fafe584c590
+Size (dpbox/dpbox-6.1.5.tar.gz) = 956598 bytes

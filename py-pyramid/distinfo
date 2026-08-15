@@ -1,0 +1,5 @@
+$NetBSD$
+
+BLAKE2s (pyramid-2.0.2.tar.gz) = a7032e6d267b08c47f3de78dcbc99bf4213d93432b74e11cf1aa35fab7937641
+SHA512 (pyramid-2.0.2.tar.gz) = 9d0c1de36cbe659156b9306b8cafe5532d9b2d2b1d088abf5c0d3c7b62cc8021a9a40682fac61f9bb5511cac312df993e9030d914f461a844fc930d1c8b5d050
+Size (pyramid-2.0.2.tar.gz) = 2637533 bytes

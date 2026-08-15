@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-src_utils_htslib_Makefile,v 1.2 2021/02/08 01:49:25 bacon Exp $
 
 # Respect pkgsrc env
 

@@ -5,11 +5,11 @@ CATEGORIES=	finance kde
 MASTER_SITES=	#
 
 MAINTAINER=	gary@duzan.org
-HOMEPAGE=	http://kmymoney2.sourceforge.net/
+HOMEPAGE=	https://kmymoney2.sourceforge.net/
 COMMENT=	Personal finance manager for KDE 4, Subversion Snapshot
 LICENSE=	gnu-gpl-v2
 
-BUILD_DEPENDS+=	automoc4-[0-9]*:../../devel/automoc4
+TOOL_DEPENDS+=	automoc4-[0-9]*:../../devel/automoc4
 
 GIT_REPOSITORIES=	kmymoney
 GIT_REPO.kmymoney=	git://anongit.kde.org/kmymoney.git

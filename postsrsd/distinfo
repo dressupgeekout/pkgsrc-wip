@@ -1,0 +1,5 @@
+$NetBSD: distinfo,v 1.4 2021/10/26 10:54:22 nia Exp $
+
+BLAKE2s (postsrsd-2.0.11.tar.gz) = 6f9d60a53a03b60674af00bf267f47c691f026835d60c177dbb9b2a352a2744d
+SHA512 (postsrsd-2.0.11.tar.gz) = d85be04decfcf38ac2aaa3435f804106faf37bd51914184f91ff2f130ff39ce4e1b73e9d0748dc57c940bdbc917dddcd25fc8777fcba65e864a1c6f0066c3995
+Size (postsrsd-2.0.11.tar.gz) = 64995 bytes

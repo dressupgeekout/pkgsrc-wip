@@ -1,0 +1,3 @@
+https://github.com/paulfloyd/valgrind-netbsd/issues/2
+
+Build succeeds, test suite hangs.

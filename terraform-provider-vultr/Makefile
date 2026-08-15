@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	terraform-provider-vultr-2.14.0
+DISTNAME=	terraform-provider-vultr-2.30.1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=vultr/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -15,6 +15,8 @@ GO_BUILD_PATTERN=	.
 TERRAFORM_PROVIDER_BIN=		terraform-provider-vultr
 TERRAFORM_PROVIDER_NAMESPACE=	vultr
 TERRAFORM_PROVIDER_TYPE=	vultr
+
+TERRAFORM_PROVIDER_LEGACY_INSTALL=	yes
 
 .include "go-modules.mk"
 

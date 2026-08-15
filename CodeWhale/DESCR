@@ -1,0 +1,10 @@
+# CodeWhale
+
+Local-first agent harness for DeepSeek V4 and open models: operating identity,
+nested authority, and a local evidence loop.
+
+Most coding agents start by adding power: more tools, more context, more
+autonomy. CodeWhale starts by assigning responsibility.
+
+Before an agent edits a repo, it should have an address: this terminal, this
+user, this branch, this session. That is the ego layer. Not swagger; continuity.

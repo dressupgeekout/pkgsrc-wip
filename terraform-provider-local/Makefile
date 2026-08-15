@@ -10,13 +10,11 @@ HOMEPAGE=	https://www.terraform.io/docs/providers/local/
 COMMENT=	Terraform provider for local resources
 LICENSE=	mpl-2.0
 
-GO_BUILD_PATTERN=	.
-
-UNLIMIT_RESOURCES=	datasize virtualsize
-
 TERRAFORM_PROVIDER_BIN=		terraform-provider-local
 TERRAFORM_PROVIDER_NAMESPACE=	hashicorp
 TERRAFORM_PROVIDER_TYPE=	local
+
+TERRAFORM_PROVIDER_LEGACY_INSTALL=	yes
 
 .include "go-modules.mk"
 

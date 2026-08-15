@@ -1,12 +1,17 @@
-$NetBSD: patch-modules_core_src_system.cpp,v 1.1 2013/04/29 21:31:12 joerg Exp $
+$NetBSD: patch-modules_core_src_system.cpp,v 1.3 2025/09/25 10:32:36 adam Exp $
 
---- modules/core/src/system.cpp.orig	2022-12-28 14:31:52.000000000 +0000
+Avoid including all from configure as it contains references to work dir.
+
+--- modules/core/src/system.cpp.orig	2025-04-22 09:32:49.970273357 +0000
 +++ modules/core/src/system.cpp
-@@ -243,6 +243,7 @@ std::wstring GetTempFileNameWinRT(std::w
- #endif
- #include <sys/time.h>
- #include <time.h>
-+#include <unistd.h>
+@@ -1030,9 +1030,7 @@ int64 getTimestampNS()
  
- #if defined __MACH__ && defined __APPLE__
- #include <mach/mach.h>
+ const String& getBuildInformation()
+ {
+-    static String build_info =
+-#include "version_string.inc"
+-    ;
++    static String build_info = "PkgSrc";
+     return build_info;
+ }
+ 

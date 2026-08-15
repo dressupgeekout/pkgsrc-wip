@@ -1,33 +1,31 @@
 # $NetBSD$
 
-DISTNAME=	htop-3.2.2.20230304
+DISTNAME=	htop-3.5.1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=htop-dev/}
 GITHUB_PROJECT=	htop
-GITHUB_TAG=     e207c8aebdcdb88bc8ab838e2ac3dd1774d6a618
+GITHUB_TAG=     1ef42260c441d6d5e41d2a3d4638ff5d14311a90
 
 MAINTAINER=	fox@NetBSD.org
 HOMEPAGE=	https://htop.dev/
 COMMENT=	Enhanced version of top utility
 LICENSE=	gnu-gpl-v2
 
+GIT_REPO=      https://github.com/htop-dev/htop.git
+
 CONFLICTS=	htop-[0-9]*
 
 GNU_CONFIGURE=	yes
-USE_TOOLS+=	autoreconf automake
-USE_LANGUAGES=	c c++
 USE_LIBTOOL=	yes
+USE_TOOLS+=	autoreconf automake pkg-config
+USE_CURSES=	getmouse
 
-.include "../../mk/curses.buildlink3.mk"
-
-.if ${CURSES_TYPE} != "ncursesw"
-# See netbsd/README.md
-CONFIGURE_ARGS+=	--disable-unicode
-.endif
+.include "options.mk"
 
 pre-configure:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ./autogen.sh
 
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
+.include "../../wip/mk/git-package.mk"
 .include "../../mk/bsd.pkg.mk"

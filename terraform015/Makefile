@@ -1,15 +1,13 @@
 # $NetBSD$
 
-.include "../../wip/terraform/version.mk"
-
-DISTNAME=	terraform-${TERRAFORM015_VERSION}
-PKGNAME=	terraform015-${TERRAFORM015_VERSION}
+DISTNAME=	terraform-0.15.5
+PKGNAME=	${DISTNAME:S/terraform/&015/}
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=hashicorp/}
 GITHUB_PROJECT=	terraform
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	leot@NetBSD.org
 HOMEPAGE=	https://www.terraform.io/
 COMMENT=	Infrastructure orchestration tool
 LICENSE=	mpl-2.0
@@ -29,7 +27,7 @@ WRKSRC=	${WRKDIR}/${DISTNAME}
 INSTALLATION_DIRS+=	bin
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKDIR}/.gopath/bin/terraform ${DESTDIR}${PREFIX}/bin/terraform${TERRAFORMVERSSUFFIX}
+	${INSTALL_PROGRAM} ${WRKDIR}/.gopath/bin/terraform ${DESTDIR}${PREFIX}/bin/terraform015
 
 .include "go-modules.mk"
 

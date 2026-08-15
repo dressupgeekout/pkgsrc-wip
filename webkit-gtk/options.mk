@@ -2,8 +2,8 @@
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.webkit-gtk
-PKG_SUPPORTED_OPTIONS=	debug enchant opengl webkit-jit wayland
-PKG_SUGGESTED_OPTIONS=	enchant opengl
+PKG_SUPPORTED_OPTIONS=	debug wayland
+PKG_SUGGESTED_OPTIONS=
 .include "../../devel/wayland/platform.mk"
 .if ${PLATFORM_SUPPORTS_WAYLAND} == "yes"
 PKG_SUGGESTED_OPTIONS+=	wayland
@@ -26,7 +26,7 @@ WEBKIT_JIT_MACHINE_PLATFORMS+=	Linux-*-aarch64 Linux-*-mips*
 WEBKIT_JIT_MACHINE_PLATFORMS+=	NetBSD-*-x86_64 NetBSD-*-aarch64
 
 .if !empty(WEBKIT_JIT_MACHINE_PLATFORMS:@.PLAT.@${MACHINE_PLATFORM:M${.PLAT.}}@)
-PKG_SUGGESTED_OPTIONS+=	webkit-jit
+#PKG_SUGGESTED_OPTIONS+=	webkit-jit
 .endif
 
 .include "../../mk/bsd.options.mk"
@@ -35,47 +35,31 @@ PKG_SUGGESTED_OPTIONS+=	webkit-jit
 # JIT support
 #
 .if !empty(PKG_OPTIONS:Mwebkit-jit)
-CMAKE_ARGS+=	-DENABLE_JIT=ON
-CMAKE_ARGS+=	-DENABLE_C_LOOP=OFF
+CMAKE_CONFIGURE_ARGS+=	-DENABLE_JIT=ON
+CMAKE_CONFIGURE_ARGS+=	-DENABLE_C_LOOP=OFF
 .else
-CMAKE_ARGS+=	-DENABLE_JIT=OFF
-.endif
-
-#
-# OpenGL support: enable support for GLX, WebGL and accelerated compositing
-#
-.if !empty(PKG_OPTIONS:Mopengl)
-CMAKE_ARGS+=	-DUSE_OPENGL_OR_ES=ON
-.else
-CMAKE_ARGS+=	-DUSE_OPENGL_OR_ES=OFF
-.endif
-
-#
-# Spellcheck support using enchant
-#
-.if !empty(PKG_OPTIONS:Menchant)
-CMAKE_ARGS+=	-DENABLE_SPELLCHECK=ON
-.include "../../textproc/enchant2/buildlink3.mk"
-.else
-CMAKE_ARGS+=	-DENABLE_SPELLCHECK=OFF
+CMAKE_CONFIGURE_ARGS+=	-DENABLE_JIT=OFF
+CMAKE_CONFIGURE_ARGS+=	-DENABLE_C_LOOP=ON
 .endif
 
 #
 # Debug build
 #
 .if !empty(PKG_OPTIONS:Mdebug)
-CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Debug
+CMAKE_CONFIGURE_ARGS+=	-DCMAKE_BUILD_TYPE=Debug
+INSTALL_UNSTRIPPED=	yes
+# This does not disable optimisations, merely avoids #error if there are none.
+#CFLAGS+=		-DRELEASE_WITHOUT_OPTIMIZATIONS
 .else
-CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
+CMAKE_CONFIGURE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
 .endif
 
 #
 # Wayland display server support
 #
 .if !empty(PKG_OPTIONS:Mwayland)
-CMAKE_ARGS+=	-DENABLE_WAYLAND_TARGET=ON
-CMAKE_ARGS+=	-DUSE_WPE_RENDERER=OFF # TODO
+CMAKE_CONFIGURE_ARGS+=	-DENABLE_WAYLAND_TARGET=ON
 .include "../../devel/wayland/buildlink3.mk"
 .else
-CMAKE_ARGS+=	-DENABLE_WAYLAND_TARGET=OFF
+CMAKE_CONFIGURE_ARGS+=	-DENABLE_WAYLAND_TARGET=OFF
 .endif

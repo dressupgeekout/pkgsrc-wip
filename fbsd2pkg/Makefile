@@ -3,13 +3,13 @@
 # Don't bother committing this.  I'm adding new features almost every
 # time I convert a port.
 
-DISTNAME=	fbsd2pkg-0.6.0.4
+DISTNAME=	fbsd2pkg-0.6.0.10
 CATEGORIES=	pkgtools
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
-GITHUB_TAG=	09f6552093416e4a09bc6bdfdc0bf7125dec5c22
+GITHUB_TAG=	c2830e51d2d87bb1e2f7f0f5843907166d68a110
 
 MAINTAINER=	bacon@NetBSD.org
-HOMEPAGE=	http://acadix.biz/Ports/distfiles/
+HOMEPAGE=	https://github.com/outpaddling/fbsd2pkg
 COMMENT=	Convert a FreeBSD port framework to a pkgsrc package
 LICENSE=	2-clause-bsd
 

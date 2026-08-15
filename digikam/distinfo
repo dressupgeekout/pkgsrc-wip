@@ -1,0 +1,5 @@
+$NetBSD: distinfo,v 1.64 2025/02/07 21:58:54 wiz Exp $
+
+BLAKE2s (digiKam-8.7.0.tar.xz) = 660aef183ea7077784cdb9b69904d721403e5ff81960e7e964c915b2075b3d7c
+SHA512 (digiKam-8.7.0.tar.xz) = a055b582197aeb4ac1f0f037300f5fb136949047c317865c89d30b39e5114cf2cca087acc7f0196e39b43c3be5ea4623261a6e7b6a52b843d266b4cbf261addd
+Size (digiKam-8.7.0.tar.xz) = 55060536 bytes

@@ -1,0 +1,160 @@
+emulators/xroar: Update to 1.11
+
+Verison 1.11, Tue 12 May 2026
+
+ * New option -trap-trace-n N turns on trace mode for N instruction
+ * Fix trap address range check
+ * Windows: try to use consoles more intelligently
+ * Mac OS X+: fail gracefully when system audio channels > 2 [Steve Clamage]
+ * Option -no-cart disables cartridge for first running machine
+ * Support loading Motorola S19 records
+ * Fix command-line loading of HEX and S19
+
+Version 1.10, Fri 21 Nov 2025
+
+ * Fixed some 6809/6309 indexed instruction behaviour
+ * Fix some arming of NMI in 6809/6309
+ * Implement some more 6809 undocumented behaviour
+ * Disable vsync by default
+ * New option -vo-vsync to re-enable vsync
+
+Version 1.9, Sat 30 Aug 2025
+
+ * Trap-triggered traces now include trap instruction
+ * SDL: don't disable screensaver in windowed mode [Grgori Harbs]
+ * Windows: explicitly map Pause in automatic keyboard lang [Grgori Harbs]
+ * Include profile for Prolgica CP-400
+ * SAMx8 support (specify -ram 512 for a Dragon 64)
+ * Fix second mouse button joystick mapping [Jim Mullis]
+ * Fix CoCo 3/GIME IRQ issues highlighted by Tim Lindner's test code
+ * Fix -ram-init set
+
+Version 1.8.2, Fri 14 Feb 2025
+
+ * SDL build fix [by Andrea Musuruane]
+
+Version 1.8.1, Sun  2 Feb 2025
+
+ * Fix Mac OS X+ build under more modern compilers [Chad Krokosh]
+ * Fix Windows UI zoom in/out [Erico Monteiro]
+
+Version 1.8, Thu 30 Jan 2025
+
+ * Fix mouse virtual joystick on resize in SDL builds [Richard Kelly]
+ * New manual and automatic configuration saving from GUI
+ * Manage HD mounting from drive control dialog
+ * New MCX128 cartridge support for MC-10
+ * Fix some of the compatibility modes in GIME emulation
+ * Assert monitor detect line on CoCo 3 when RGB output selected
+ * Reduce write latency using Becker port [Ron Klein]
+ * Add some more flexible command-line trap options
+
+Version 1.7.3, Fri 29 Nov 2024
+
+ * Fix built-in configs with non-default CPUs
+ * Fix direct loading of DragonDOS binaries
+
+Version 1.7.2, Tue 26 Nov 2024
+
+ * Fix GIME issue when loading from snapshot
+ * Fix Becker port status polling [Pierre Sarrazin]
+
+Version 1.7.1, Fri 22 Nov 2024
+
+ * Reduce memory use when reading gamepad mappings file
+ * Include missing files in tarball distribution [Rui Chen]
+
+Version 1.7, Thu 21 Nov 2024
+
+ * Avoid calling xroar_screenshot() when not supported [with Paul Ripke]
+ * Avoid X11 keyboard init when SDL not built with X11 support [Paul Ripke]
+ * SDL joystick module supports hotplug where possible
+ * SDL joystick module creates Left & Right stick profiles if found
+ * Support reading a SDL gamepad DB file for non-SDL joystick modules
+ * New -joy-db-file option specifies SDL-compatible gamepad DB file
+ * New Linux evdev joystick module (hotplug, internal SDL DB, L/R profiles)
+ * Large changes to underlying UI mechanisms
+ * New features backported to GTK+ 2 UI
+
+Version 1.6.6, Tue 15 Oct 2024
+
+ * Force X11 in GTK+ 3 UI, fixing crash querying keyboard map [Rolf Michelsen]
+
+Version 1.6.5, Mon 23 Sep 2024
+
+ * SDL: fix use of physical joysticks after disconnecting [Pere Serrat]
+
+Version 1.6.4, Fri 20 Sep 2024
+
+ * Fix Control+Shift+digit shortcuts
+ * Fix LUT-based composite rendering for CoCo 3 [Christian M]
+
+Version 1.6.3, Thu 12 Sep 2024
+
+ * Ensure data chunk in WAV output is of even length [Stacey Vetzal]
+
+Version 1.6.2, Fri  6 Sep 2024
+
+ * Add missing menus to Windows/Mac OS X+ UIs
+
+Version 1.6.1, Thu  5 Sep 2024
+
+ * Reinstate ROM image header skipping [Davy Mitchell]
+
+Version 1.6, Thu  5 Sep 2024
+
+ * New -ram-org option to specify RAM addressing
+ * New -ram-init option to specify initial RAM state
+ * 6309 DIVD behaviour fixed against Tim Lindner's fuzzing tool
+ * 6309 DIVD timing fixed according to David Banks's behaviour notes
+ * 6309 DIVQ behaviour & timing adjusted similarly, though untested
+ * More accurate observed NTSC CoCo 3 GIME composite video behaviour
+ * New GTK+ 3 UI
+ * New printer control dialog (GTK+ 3, Windows) or menu options (Mac OS X+)
+ * Update CoCo 3 video timings
+ * SDL: open joysticks in controller mode if possible
+ * New unified keyboard abstraction
+ * Extra default keyboard-based virtual joystick profiles: WASD, IJKL, QAOP
+ * Dynamically include configs for all physical joysticks on startup
+ * New machine Dragon Professional (Alpha), 'dragonpro'
+ * New machine Tandy Deluxe Colour Computer, 'deluxecoco'
+
+Version 1.5.5, Sun 24 Mar 2024
+
+ * Allow SDL to use WASAPI (Windows) audio (bug fixed in SDL 2.29.3)
+ * Use queued audio interface in SDL leading to less glitchy Windows audio
+
+Version 1.5.4, Mon 26 Feb 2024
+
+ * Fixed 6309 register-memory bit ops [R. Allen Murphy]
+
+Version 1.5.3, Tue  6 Feb 2024
+
+ * GIME: fix interrupt fixes fix (fixes RoboCop)
+
+Version 1.5.2, Mon 29 Jan 2024
+
+ * GIME: timer interrupt fixes [Tim Lindner]
+
+Version 1.5.1, Sat 27 Jan 2024
+
+ * Include a cartridge database (mostly CoCo 3 32K) for convenience
+ * Fix potential crash when cartridge loading fails [Russ Le Blang]
+ * Recognise Windows "<drive-letter>:" [Russ Le Blang]
+
+Version 1.5, Thu 25 Jan 2024
+
+ * Add ability to change Picture Area, seeing more or less border
+ * New option -vo-picture
+ * Respect -geometry dimensions in SDL-based UIs
+ * Add optional 60Hz vertical scaling (on by default)
+ * New option -no-vo-scale-60hz disables 60Hz scaling
+ * Faster ROM intercept based printing on CoCo and MC-10
+ * GIME: respect X offset and HVEN in COCO mode
+ * MPI slot config moved from global to per-cart, included in -config-print
+ * Add screenshot to PNG from menu or Control+Shift+S
+ * Fix printing after switching machines [Jak Fearon]
+ * Better rendering of paths in Windows dialogs
+ * Fix some CoCo 3 cartridge behaviour [Christian Haitian]
+ * GIME: reset video address later (fixes Androne) [Russ Le Blang]
+ * GIME: fix various $FExx access problems

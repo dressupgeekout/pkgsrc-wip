@@ -1,5 +1,5 @@
 $NetBSD$
 
-RMD160 (mozprofile-2.5.0.tar.gz) = 0a19e20540895edc95b15d41fc29f552b29ed883
-SHA512 (mozprofile-2.5.0.tar.gz) = 012c11cd1cb7494c7826c7ea75779f104d44dfcc22be25f4d0abaf7bbb23ddba35f88ca1eb5fd761305241a05aaecb50c5415be69dbc63ce37485a0c5beb39f8
-Size (mozprofile-2.5.0.tar.gz) = 18168 bytes
+BLAKE2s (mozprofile-3.0.0.tar.gz) = 1dfc4d7cf64ed73d0b6a5fea60059fb3ae974ee1a9f7b4f68c26541ffa0919bc
+SHA512 (mozprofile-3.0.0.tar.gz) = 1ad408f1c66f53fd67b187dafec770b17ca728135e56c07a3cfda087bd527e3bfeaa6b37003cc4fb9fd6edd6b64c93f3ff7c308e06d4f8051fd96cd88e7c1289
+Size (mozprofile-3.0.0.tar.gz) = 28864 bytes

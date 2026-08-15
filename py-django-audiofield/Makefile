@@ -1,5 +1,4 @@
 # $NetBSD: Makefile,v 1.3 2012/10/27 16:52:10 noud4 Exp $
-#
 
 DISTNAME=	django-audiofield-0.4.6
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}

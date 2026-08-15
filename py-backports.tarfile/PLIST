@@ -1,0 +1,21 @@
+@comment $NetBSD$
+${PYSITELIB}/backports/__init__.py
+${PYSITELIB}/backports/__init__.pyc
+${PYSITELIB}/backports/__init__.pyo
+${PYSITELIB}/backports/tarfile/__init__.py
+${PYSITELIB}/backports/tarfile/__init__.pyc
+${PYSITELIB}/backports/tarfile/__init__.pyo
+${PYSITELIB}/backports/tarfile/__main__.py
+${PYSITELIB}/backports/tarfile/__main__.pyc
+${PYSITELIB}/backports/tarfile/__main__.pyo
+${PYSITELIB}/backports/tarfile/compat/__init__.py
+${PYSITELIB}/backports/tarfile/compat/__init__.pyc
+${PYSITELIB}/backports/tarfile/compat/__init__.pyo
+${PYSITELIB}/backports/tarfile/compat/py38.py
+${PYSITELIB}/backports/tarfile/compat/py38.pyc
+${PYSITELIB}/backports/tarfile/compat/py38.pyo
+${PYSITELIB}/backports_tarfile-0.0.0.dist-info/METADATA
+${PYSITELIB}/backports_tarfile-0.0.0.dist-info/RECORD
+${PYSITELIB}/backports_tarfile-0.0.0.dist-info/WHEEL
+${PYSITELIB}/backports_tarfile-0.0.0.dist-info/licenses/LICENSE
+${PYSITELIB}/backports_tarfile-0.0.0.dist-info/top_level.txt

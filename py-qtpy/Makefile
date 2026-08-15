@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	QtPy-2.2.0
+DISTNAME=	qtpy-2.4.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	python
 MASTER_SITES=	${MASTER_SITE_PYPI:=Q/QtPy/}
@@ -10,12 +10,12 @@ HOMEPAGE=	https://pypi.org/project/QtPy/
 COMMENT=	Abstraction layer for PyQt5/PySide2/PyQt6/PySide6
 LICENSE=	mit
 
-DEPENDS+=	${PYPKGPREFIX}-packaging>0:../../devel/py-packaging
+TOOL_DEPENDS+=	${PYPKGPREFIX}-setuptools>=78:../../devel/py-setuptools
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-cov>=3:../../devel/py-test-cov
+# unpackaged test dependencies:
+#        pytest-qt
 
 USE_LANGUAGES=	# none
 
-post-extract:
-	${CHMOD} -R o-w,g-w ${WRKSRC}
-
-.include "../../lang/python/egg.mk"
+.include "../../lang/python/wheel.mk"
 .include "../../mk/bsd.pkg.mk"

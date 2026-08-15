@@ -1,0 +1,26 @@
+# $NetBSD$
+
+DISTNAME=	gguf-0.19.0
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+CATEGORIES=	devel
+MASTER_SITES=	${MASTER_SITE_PYPI:=g/gguf/}
+
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://pypi.org/project/gguf/
+COMMENT=	Read and write ML models in GGUF for GGML
+LICENSE=	mit
+
+TOOL_DEPENDS+=	${PYPKGPREFIX}-poetry-core>=1.0.0:../../devel/py-poetry-core
+DEPENDS+=	${PYPKGPREFIX}-numpy>=1.17:../../math/py-numpy
+DEPENDS+=	${PYPKGPREFIX}-yaml>=5.1:../../textproc/py-yaml
+
+REPLACE_PYTHON+=	gguf/*.py
+REPLACE_PYTHON+=	gguf/scripts/*.py
+
+USE_LANGUAGES=	# none
+
+PYTHON_VERSIONS_INCOMPATIBLE=	310 311 # py-numpy
+
+.include "../../lang/python/application.mk"
+.include "../../lang/python/wheel.mk"
+.include "../../mk/bsd.pkg.mk"

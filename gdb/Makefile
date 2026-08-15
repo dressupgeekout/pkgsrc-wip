@@ -1,44 +1,60 @@
-# $NetBSD: Makefile,v 1.61 2019/01/23 15:03:34 kamil Exp $
+# $NetBSD: Makefile,v 1.82 2024/01/27 13:56:37 mef Exp $
 
-DISTNAME=	gdb-8.2.1
+# Work in Progress to update from anciend base version.
+# Right now it could work on plain Linux, but gives weird
+# linker error with custom toolchain (maybe also with gcc
+# from pkgsrc?). PLIST might need work, as does the Python
+# part. How much does it care about Python version?
+
+DISTNAME=	gdb-16.2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU:=gdb/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://www.gnu.org/software/gdb/gdb.html
+HOMEPAGE=	https://sourceware.org/gdb/
 COMMENT=	Symbolic debugger for multiple language frontends
 LICENSE=	gnu-gpl-v3
 
-USE_LANGUAGES=		c c++11
+NOT_FOR_PLATFORM+=	Darwin-*-aarch64
+
+USE_LANGUAGES=		c c++
+USE_CXX_FEATURES+=      c++17
 
 BROKEN_GETTEXT_DETECTION=	yes
-GNU_CONFIGURE=			YES
-USE_PKGLOCALEDIR=		YES
-USE_LIBTOOL=			YES
-USE_TOOLS+=			bash gmake msgfmt makeinfo perl:build
+GNU_CONFIGURE=			yes
+GNU_CONFIGURE_STRICT=		no # has sub-configures
+USE_PKGLOCALEDIR=		yes
+USE_LIBTOOL=			yes
+USE_TOOLS+=			gmake msgfmt makeinfo perl:build bash:run
 REPLACE_LOCALEDIR_PATTERNS+=	Make-in
-REPLACE_BASH+=			gdb/gcore.in
-INSTALL_TARGET=			install install-info
+INSTALL_TARGET=			install-gdb install-gdbsupport
 TEST_TARGET=			check
 INFO_FILES=			yes
 CONFIGURE_ENV+=			CONFIG_LDFLAGS=${LDFLAGS:M*:Q}
 
+# wants ncurses.h
+FAKE_NCURSES=			yes
+
+REPLACE_INTERPRETER+=   envbash
+REPLACE.envbash.old=    '/usr/bin/env\ bash'
+REPLACE.envbash.new=    ${PREFIX}/bin/bash
+REPLACE_FILES.envbash=  gdb/gcore.in gdb/gstack-1.in
+
 # In gdb/configure, depcomp is parsed with sed.
 SUBST_CLASSES+=			fix-depcomp
-SUBST_STAGE.fix-depcomp=	pre-configure
-SUBST_MESSAGE.fix-depcomp=	Read depcomp directly
-SUBST_FILES.fix-depcomp+=	gdb/configure
+SUBST_STAGE.fix-depcomp+=	pre-configure
+SUBST_MESSAGE.fix-depcomp+=	Read depcomp directly
+SUBST_FILES.fix-depcomp+=	gdb/configure gdbserver/configure
+SUBST_FILES.fix-depcomp+=	gdbsupport/configure
+SUBST_FILES.fix-depcomp+=	gnulib/configure libctf/configure
 SUBST_SED.fix-depcomp+=		-e 's,< ./depcomp,${_OVERRIDE_PATH.depcomp},'
 
-CONFIGURE_ARGS+=	--disable-binutils
-CONFIGURE_ARGS+=	--disable-gprof
+CONFIGURE_ARGS+=	--disable-gprofng
 CONFIGURE_ARGS+=	--disable-gold
 CONFIGURE_ARGS+=	--disable-gas
 CONFIGURE_ARGS+=	--disable-ld
 
 CONFIGURE_ARGS+=	--enable-targets=all
-
-AUTO_MKDIRS=		yes
 
 .include "options.mk"
 
@@ -50,50 +66,29 @@ PLIST_VARS+=	gcore
 PLIST.gcore=	yes
 .endif
 
+PLIST_VARS+=	gdbserver
+.if ${OPSYS} == "Linux" || \
+	(${OPSYS} == "NetBSD" && ${MACHINE_ARCH} == "x86_64")
+INSTALL_TARGET+=	install-gdbserver
+PLIST.gdbserver=	yes
+.endif
+
 .if ${OPSYS} == "SunOS"
 # Work around a bug in gdb's configure
 CONFIGURE_ENV+=		ac_cv_header_curses_h=yes
 .elif ${OPSYS} == "NetBSD"
 .include "../../mk/curses.buildlink3.mk"
-CONFIGURE_ARGS+= -with-curses
-CONFIGURE_ENV+= gdb_cv_var_elf=yes
-MAKE_ENV+= gdb_cv_var_elf=yes
-CONFIGURE_ENV+= gdb_cv_struct_lwp=yes
-MAKE_ENV+= gdb_cv_struct_lwp=yes
-
+CONFIGURE_ARGS+=	--with-curses
 CONFIGURE_ARGS+=	--with-separate-debug-dir=/usr/libdata/debug
-.elif ${OPSYS} == "DragonFly"
-TARGET_STR=		${MACHINE_ARCH}--dragonfly
-BUILD_DEFS+=		${TARGET_STR}
-## Remove "-pc" string, without this, getting following message:
-##	   *** Gdb does not support native target i386-pc-dragonfly"
-CONFIGURE_ARGS+=	--target=${TARGET_STR}
-TEST_ENV=		DEJAGNU=${WRKDIR}/../files/dragonfly-default.exp
 .endif
 
-post-install:
-	${RM} -f ${DESTDIR}/${PREFIX}/lib/charset.alias
-.if ${OPSYS} == "DragonFly"
-# Following are installed by binutils
-#. for f in ansidecl.h bfdlink.h dis-asm.h symcat.h
-#	(cd ${WRKSRC}/include; ${INSTALL_DATA} ${f}  ${DESTDIR}${PREFIX}/include)
-#. endfor
-	(cd ${DESTDIR}${PREFIX}/bin;               ${LN} ${TARGET_STR}-gdb gdb)
-	(cd ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1; ${LN} ${TARGET_STR}-gdb.1 gdb.1)
-.endif
-#
-# PATH of libiberty.a differs between clang and gcc: (and conflicts to other toolchain)
-# Rename to avoid conflict to native and other toolchain
-# and clang differs its path so, (the same as avr-binutils).
+CONFIGURE_DIRS=		${WRKDIR}/build
+CONFIGURE_SCRIPT=	${WRKSRC}/configure
 
-	(cd ${DESTDIR}${PREFIX};				\
-	for d in ${MACHINE_ARCH}/libiberty.a libiberty.a;	\
-	  do if [ -f lib/$$d ]; then				\
-		${MV}	lib/$$d	 lib/gdb/libiberty.a;		\
-		break;						\
-	     fi;						\
-	  done;	)
-
+post-extract:
+	${MKDIR} ${WRKDIR}/build
+.include "../../math/mpfr/buildlink3.mk"
+.include "../../devel/gmp/buildlink3.mk"
 .include "../../mk/termcap.buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

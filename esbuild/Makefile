@@ -1,11 +1,9 @@
-# $NetBSD$
+# $NetBSD: Makefile,v 1.31 2026/04/08 05:45:12 bsiegert Exp $
 
-GITHUB_PROJECT=	esbuild
-GITHUB_TAG=	v0.12.22
-DISTNAME=	${GITHUB_PROJECT}-${GITHUB_TAG:S,^v,,}
+DISTNAME=	esbuild-0.28.0
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=evanw/}
-DIST_SUBDIR=	${GITHUB_PROJECT}
 
 MAINTAINER=	bsiegert@NetBSD.org
 HOMEPAGE=	https://esbuild.github.io/

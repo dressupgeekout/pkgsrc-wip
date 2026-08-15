@@ -1,0 +1,6 @@
+Does not officially support NetBSD.
+Patches to fake NetBSD as Linux started, but needs C++ fixes now
+(memalign, template issue)
+
+This package has known vulnerabilities, please investigate and fix if possible:
+  CVE-2026-32722

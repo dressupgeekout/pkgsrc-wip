@@ -1,13 +1,17 @@
 $NetBSD$
 
---- chrome/browser/ui/startup/bad_flags_prompt.cc.orig	2020-07-08 21:41:47.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/ui/startup/bad_flags_prompt.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ chrome/browser/ui/startup/bad_flags_prompt.cc
-@@ -88,7 +88,7 @@ static const char* kBadFlags[] = {
-     extensions::switches::kExtensionsOnChromeURLs,
+@@ -120,7 +120,7 @@ const char* const kBadFlags[] = {
+     extensions::switches::kAllowlistedExtensionID,
  #endif
  
--#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
      // Speech dispatcher is buggy, it can crash and it can make Chrome freeze.
-     // http://crbug.com/327295
+     // http://crbug.com/40078530
      switches::kEnableSpeechDispatcher,

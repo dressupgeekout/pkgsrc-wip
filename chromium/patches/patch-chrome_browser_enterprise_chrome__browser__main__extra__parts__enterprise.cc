@@ -1,0 +1,26 @@
+$NetBSD$
+
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- chrome/browser/enterprise/chrome_browser_main_extra_parts_enterprise.cc.orig	2026-08-05 20:17:42.000000000 +0000
++++ chrome/browser/enterprise/chrome_browser_main_extra_parts_enterprise.cc
+@@ -8,7 +8,7 @@
+ #include "components/enterprise/buildflags/buildflags.h"
+ #include "content/public/browser/browser_thread.h"
+ 
+-#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)) && \
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)) && \
+     BUILDFLAG(ENTERPRISE_LOCAL_CONTENT_ANALYSIS)
+ #include "chrome/browser/enterprise/connectors/analysis/content_analysis_sdk_manager.h"  // nogncheck
+ #include "chrome/browser/enterprise/connectors/connectors_service.h"  // nogncheck
+@@ -54,7 +54,7 @@ ChromeBrowserMainExtraPartsEnterprise::C
+ ChromeBrowserMainExtraPartsEnterprise::
+     ~ChromeBrowserMainExtraPartsEnterprise() = default;
+ 
+-#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)) && \
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)) && \
+     BUILDFLAG(ENTERPRISE_LOCAL_CONTENT_ANALYSIS)
+ void ChromeBrowserMainExtraPartsEnterprise::PostProfileInit(
+     Profile* profile,

@@ -1,12 +1,11 @@
 # $NetBSD: Makefile,v 0.2 2018/09/06 16:15:10 andyb Exp $
 
-DISTNAME=	terminology-1.10.0
+DISTNAME=	terminology-1.14.0
 CATEGORIES=	x11
-#PKGREVISION=	1
 MASTER_SITES=	https://download.enlightenment.org/rel/apps/terminology/
 EXTRACT_SUFX=	.tar.xz
 
-MAINTAINER=	kikadf.01@gmail.com
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.enlightenment.org/about-terminology
 COMMENT=	Enlightenment terminal
 LICENSE=	2-clause-bsd

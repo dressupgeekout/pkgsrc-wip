@@ -1,0 +1,3 @@
+games/libdoom-umapinfo: Import 1.1.0
+
+A standalone parser for Doom UMAPINFO data.

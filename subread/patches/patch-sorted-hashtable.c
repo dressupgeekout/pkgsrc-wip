@@ -1,6 +1,6 @@
 $NetBSD$
 
-# Portability
+# Use standard compiler macros
 
 --- sorted-hashtable.c.orig	2018-11-08 03:33:50 UTC
 +++ sorted-hashtable.c

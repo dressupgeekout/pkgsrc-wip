@@ -1,0 +1,5 @@
+$NetBSD: distinfo,v 1.24 2024/07/06 15:45:08 adam Exp $
+
+BLAKE2s (libclc-21.1.8.src.tar.xz) = 0691c5e08a762e4d0aaa57d04eb5cda4c57bf57add35921fb951b7d6048a288b
+SHA512 (libclc-21.1.8.src.tar.xz) = 920302f31833386cf7ebe995fc5578a764c99a6432ea58d94b55e84b7c0304275010d757a5c1cea76ee5cd73564bf4737960ab249995c5021b3dc4cc4c255922
+Size (libclc-21.1.8.src.tar.xz) = 149764 bytes

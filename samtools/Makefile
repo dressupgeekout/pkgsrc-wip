@@ -1,12 +1,12 @@
 # $NetBSD: Makefile,v 1.7 2020/01/26 17:30:46 rillig Exp $
 
-DISTNAME=	samtools-1.17
+DISTNAME=	samtools-1.22
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=samtools/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.tar.bz2
 
-OWNER=		bacon@NetBSD.org
+MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://www.htslib.org/
 COMMENT=	Tools for manipulating sequence alignment maps
 LICENSE=	mit
@@ -35,8 +35,7 @@ REPLACE_LUA+=		misc/*.lua
 pre-configure:
 	cd ${WRKSRC} && autoreconf -if
 
-.include "../../wip/htslib/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../lang/python/application.mk"
 .include "../../mk/curses.buildlink3.mk"
+.include "../../wip/htslib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

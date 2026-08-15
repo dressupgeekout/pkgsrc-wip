@@ -7,12 +7,12 @@ CATEGORIES=		audio
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=rezound/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://rezound.sourceforge.net/
+HOMEPAGE=		https://rezound.sourceforge.net/
 COMMENT=		Audio editor with graphical interface
 LICENSE=		gnu-gpl-v2
 
 # needs real bison and not yacc
-#BUILD_DEPENDS+=	bison-[0-9]*:../../devel/bison
+#TOOL_DEPENDS+=	bison-[0-9]*:../../devel/bison
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-jack

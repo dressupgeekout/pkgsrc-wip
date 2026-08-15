@@ -1,22 +1,69 @@
 $NetBSD$
 
---- remoting/host/host_main.cc.orig	2020-07-15 18:56:01.000000000 +0000
+* Part of patchset to build chromium on NetBSD
+* Based on OpenBSD's chromium patches, and
+  pkgsrc's qt5-qtwebengine patches
+
+--- remoting/host/host_main.cc.orig	2026-08-05 20:17:42.000000000 +0000
 +++ remoting/host/host_main.cc
-@@ -48,7 +48,7 @@ int DesktopProcessMain();
- int FileChooserMain();
- int RdpDesktopSessionMain();
- #endif  // defined(OS_WIN)
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
- int XSessionChooserMain();
- #endif  // defined(OS_LINUX)
+@@ -24,7 +24,7 @@
+ #include "remoting/base/crash/crash_reporting_crashpad.h"
+ #include "remoting/base/logging.h"
  
-@@ -143,7 +143,7 @@ MainRoutineFn SelectMainRoutine(const st
-   } else if (process_type == kProcessTypeRdpDesktopSession) {
-     main_routine = &RdpDesktopSessionMain;
- #endif  // defined(OS_WIN)
--#if defined(OS_LINUX)
-+#if defined(OS_LINUX) || defined(OS_BSD)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include <sys/stat.h>
+ #include <unistd.h>
+ 
+@@ -69,13 +69,13 @@ int FileChooserMain();
+ int RdpDesktopSessionMain();
+ int UrlForwarderConfiguratorMain();
+ #endif  // BUILDFLAG(IS_WIN)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ int XSessionChooserMain();
+ #endif  // BUILDFLAG(IS_LINUX)
+ 
+ namespace {
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ void EnsureVarLibDirectory() {
+   if (getuid() != 0) {
+     // Only do this in the daemon process, which is always run as root.
+@@ -112,7 +112,7 @@ void Usage(const base::FilePath& program
+       "\n"
+       "Options:\n"
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+       "  --audio-pipe-name=<pipe> - Sets the pipe name to capture audio on "
+       "Linux.\n"
+ #endif  // BUILDFLAG(IS_LINUX)
+@@ -208,7 +208,7 @@ MainRoutineFn SelectMainRoutine(const st
+   } else if (process_type == kProcessTypeUrlForwarderConfigurator) {
+     main_routine = &UrlForwarderConfiguratorMain;
+ #endif  // BUILDFLAG(IS_WIN)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
    } else if (process_type == kProcessTypeXSessionChooser) {
      main_routine = &XSessionChooserMain;
- #endif  // defined(OS_LINUX)
+ #endif  // BUILDFLAG(IS_LINUX)
+@@ -272,7 +272,7 @@ int HostMain(int argc, char** argv) {
+   // Enable debug logs.
+   InitHostLogging();
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   EnsureVarLibDirectory();
+ #endif  // BUILDFLAG(IS_LINUX)
+ 
+@@ -283,7 +283,7 @@ int HostMain(int argc, char** argv) {
+   // Note that we enable crash reporting only if the user has opted in to having
+   // the crash reports uploaded.
+   if (IsUsageStatsAllowed()) {
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+     InitializeCrashpadReporting();
+ #elif BUILDFLAG(IS_WIN)
+     // TODO: joedow - Enable crash reporting for the RDP process.

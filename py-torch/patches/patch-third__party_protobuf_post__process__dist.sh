@@ -1,6 +1,8 @@
-$NetBSD$
+$NetBSD: patch-third__party_protobuf_post__process__dist.sh,v 1.1 2025/01/21 13:36:49 ryoon Exp $
 
---- third_party/protobuf/post_process_dist.sh.orig	2022-07-22 04:49:35.746411086 +0000
+* Fix POSIX shell portability issue.
+
+--- third_party/protobuf/post_process_dist.sh.orig	2025-01-17 09:45:58.965296423 +0000
 +++ third_party/protobuf/post_process_dist.sh
 @@ -15,7 +15,7 @@
  #    non-testdata .txt files are converted to Windows-style line endings.

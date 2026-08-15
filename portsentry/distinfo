@@ -1,0 +1,5 @@
+$NetBSD: distinfo,v 1.11 2021/10/26 11:17:39 nia Exp $
+
+BLAKE2s (portsentry-2.0.2.tar.gz) = 35529125cd83f13afff84787ce518f073c45142793e586e5ec2da85bbd2e25b8
+SHA512 (portsentry-2.0.2.tar.gz) = 390efda0d9c5ca32a2c4643e71e18ecb5ffb0fa51ea5a743422881e3ef2e8ae6e07a05eb5ea30750f68ac09d0704fc87c791209fb5651ef2b2d0068b95484e4b
+Size (portsentry-2.0.2.tar.gz) = 158295 bytes

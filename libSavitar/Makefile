@@ -23,7 +23,12 @@ SUBST_FILES.sip=	cmake/FindSIP.cmake
 SUBST_SED.sip=		-e 's|\(SIP_EXECUTABLE sip\)|\1${PYVERSSUFFIX}|'
 
 PY_PATCHPLIST=YES
+
+PYTHON_VERSIONS_ACCEPTED=	311
+
+BUILDLINK_DEPMETHOD.py-sip4?=	build
+
 .include "../../lang/python/extension.mk"
 .include "../../textproc/pugixml/buildlink3.mk"
-.include "../../x11/py-sip/buildlink3.mk"
+.include "../../wip/py-sip4/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

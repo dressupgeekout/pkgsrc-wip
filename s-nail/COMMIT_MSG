@@ -1,0 +1,17 @@
+s-nail: updated to 14.10.0
+
+XXX: remember to cvs rm patches/patch-mk_make-install.sh
+
+- *v15-compat*=yes is now default (setting will disappear in v15)
+- Add OAUTHBEARER authentication for SMTP/POP3/IMAP
+- Add SMTP PIPELINING (RFC 2920) and 8BITMIME (RFC 6152) support
+- New shell-style if/elif with bash-like [[ ]] semantics
+- New $(( )) arithmetic evaluator
+- New *smtp-config* variable for SMTP configuration
+- MIME extension chain recognition (.tar.gz via ?o type-marker)
+- Rewritten character set detection with comprehensive database
+- Bracketed paste mode in line editor
+- New *on-compose-embed* and *on-mailbox-event* hooks
+- Optional Python3 OAuth helper script
+- Fix 11-year-old quoting bug in first message body lines
+- Remove obsolete Heirloom-style credential handling

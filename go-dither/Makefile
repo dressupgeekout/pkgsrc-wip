@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	go-dither-2.2.0
+DISTNAME=	go-dither-2.4.0
 GITHUB_PROJECT=	dither
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_GITHUB:=makeworld-the-better-one/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=makew0rld/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	charlotte@NetBSD.org

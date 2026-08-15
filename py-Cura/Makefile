@@ -13,7 +13,6 @@ HOMEPAGE=	https://github.com/Ultimaker/Cura/
 COMMENT=	3D printer / slicing GUI built on top of the Uranium framework
 LICENSE=	gnu-lgpl-v3
 
-USE_CMAKE=		yes
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++
 
@@ -25,6 +24,7 @@ DEPENDS+=	${PYPKGPREFIX}-cryptography-[0-9]*:../../security/py-cryptography
 DEPENDS+=	${PYPKGPREFIX}-keyring-[0-9]*:../../security/py-keyring
 DEPENDS+=	${PYPKGPREFIX}-trimesh-[0-9]*:../../wip/py-trimesh
 DEPENDS+=	qt5-qtgraphicaleffects-[0-9]*:../../x11/qt5-qtgraphicaleffects
+DEPENDS+=	${PYPKGPREFIX}-backports.tarfile-[0-9]*:../../wip/py-backports.tarfile # from jaraco/context.py
 
 REPLACE_PYTHON+=	cura_app.py
 
@@ -34,8 +34,11 @@ SUBST_MESSAGE.fix-version=	Fixing Cura version.
 SUBST_FILES.fix-version=	CMakeLists.txt
 SUBST_SED.fix-version=		-e "s,\(CURA_VERSION\) \"master\",\1 \"${GITHUB_TAG}\",g"
 
+PYTHON_VERSIONS_INCOMPATIBLE=	310 311 # py-zeroconf
+
 PY_PATCHPLIST=	YES
 
+.include "../../devel/cmake/build.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"

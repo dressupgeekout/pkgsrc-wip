@@ -1,51 +1,47 @@
 # $NetBSD$
 
-DISTNAME=	v2.1.3
-PKGNAME=	wendzelnntpd-${DISTNAME:S/v//}
-CATEGORIES=	news
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=wendzelnntpd/}
+DISTNAME=		v2.2.0-alpha
+PKGNAME=		wendzelnntpd-${DISTNAME:S/v//:S/-//}
+CATEGORIES=		news
+MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=wendzelnntpd/}
 
-MAINTAINER=	micha@NetBSD.org
-HOMEPAGE=	https://sourceforge.net/projects/wendzelnntpd
-COMMENT=	Free Usenet server with SQL backend and RBAC
-LICENSE=	gnu-gpl-v3
+MAINTAINER=		micha@NetBSD.org
+HOMEPAGE=		https://sourceforge.net/projects/wendzelnntpd
+COMMENT=		Free Usenet server with SQL backend and RBAC
+LICENSE=		gnu-gpl-v3
 
-USE_TOOLS+=	bison flex gmake
-USE_FEATURES=	err regcomp snprintf
+GNU_CONFIGURE=		YES
+USE_TOOLS+=		bison flex gmake bash:run
+USE_FEATURES=		err regcomp snprintf
 
-BUILD_DEFS+=		VARBASE
+REPLACE_BASH=		create_certificate_raw
 
-# Build system expects PREFIX as part of DESTDIR
-SUBST_CLASSES+=		make
-SUBST_MESSAGE.make=	Adjust Makefile
-SUBST_STAGE.make=	pre-configure
-SUBST_FILES.make+=	Makefile
-SUBST_SED.make+=	-e 's,$$(DESTDIR),$$(DESTDIR)$$(PREFIX),g'
+SUBST_CLASSES+=		openssl
+SUBST_MESSAGE.openssl=	Insert absolute path for openssl binary.
+SUBST_STAGE.openssl=	pre-configure
+SUBST_FILES.openssl=	create_certificate_raw
+SUBST_SED.openssl=	-e 's,openssl ,${BUILDLINK_PREFIX.openssl}/bin/openssl ,g'
 
 # Directory for example config file
-FAKECDIR=		${DESTDIR}${PREFIX}/share/examples/wendzelnntpd
-
-INSTALLATION_DIRS=	sbin share/doc/wendzelnntpd ${PKGMANDIR}/man8
-SPECIAL_PERMS+=		sbin/wendzelnntpd \
-			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 755
-SPECIAL_PERMS+=		sbin/wendzelnntpadm \
-			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 755
+EGDIR=			${PREFIX}/share/examples/wendzelnntpd
+WRKSRC=			${WRKDIR}/cdpxe-WendzelNNTPd-bf144dc
+BUILD_DEFS+=		VARBASE
+OWN_DIRS_PERMS+=	${PKG_SYSCONFDIR}/wendzelnntpd \
+			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0700
 OWN_DIRS_PERMS+=	${VARBASE}/spool/news/wendzelnntpd \
-			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 700
-CONF_FILES_PERMS=	${FAKECDIR}/wendzelnntpd.conf \
-			${PKG_SYSCONFDIR}/wendzelnntpd.conf \
-			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0644
-WRKSRC=			${WRKDIR}/cdpxe-WendzelNNTPd-17d557d
+			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0700
+CONF_FILES_PERMS=	${EGDIR}/wendzelnntpd/wendzelnntpd.conf \
+			${PKG_SYSCONFDIR}/wendzelnntpd/wendzelnntpd.conf \
+			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0600
+INSTALL_MAKE_FLAGS=	${MAKE_FLAGS} sysconfdir=${EGDIR} \
+			UDBDIR=${PREFIX}/var/spool/news/wendzelnntpd \
+			SQLITEINST=NO CREATE_CERTIFICATES=NO
 
-CONFIGURE_ENV+=		MYSQL=NO
-CONFIGURE_ENV+=		CONFDIR=${PKG_SYSCONFDIR}
-CONFIGURE_ENV+=		FAKECDIR=${FAKECDIR}
-CONFIGURE_ENV+=		DESTDIR=${DESTDIR}
-
-do-configure:
-	cd ${WRKSRC} && env ${CONFIGURE_ENV} ${CONFIG_SHELL} ./configure
+RCD_SCRIPTS=		wendzelnntpd
 
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../security/mhash/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/mysql.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
